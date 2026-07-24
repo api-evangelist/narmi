@@ -1,0 +1,378 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances income source API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: income source
+paths:
+  /v1/income_source/:
+    post:
+      operationId: income_source_create
+      description: 'Creates a self-reported income source instance for a user.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create income source
+      parameters:
+      - in: query
+        name: income
+        schema:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        required: true
+      - in: query
+        name: income_type
+        schema:
+          enum:
+          - employed
+          - part_time
+          - not_employed
+          - self_employed
+          - retirement
+          - other
+          type: string
+          minLength: 1
+        description: '* `employed` - Employed
+
+          * `part_time` - Part time
+
+          * `not_employed` - Not employed
+
+          * `self_employed` - Self employed
+
+          * `retirement` - Retirement
+
+          * `other` - Other'
+        required: true
+      - in: query
+        name: industry
+        schema:
+          type: string
+          maxLength: 128
+      - in: query
+        name: mortgage_rent
+        schema:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+      - in: query
+        name: occupation
+        schema:
+          type: string
+          maxLength: 128
+      tags:
+      - income source
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncomeSourceRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/IncomeSourceRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/IncomeSourceRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncomeSource'
+          description: Returns a newly created IncomeSource
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  id:
+                    type: string
+              examples:
+                ValidationError:
+                  value:
+                    message: Invalid input.
+                    id: invalid
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: You do not have permission to perform this action.
+          description: ''
+        '503':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: il8n7wmcrwwcs
+  /v1/income_source/{uuid}/:
+    put:
+      operationId: income_source_update
+      description: 'Edits a specific self-reported income source instance referencing the UUID.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Edit an income source
+      parameters:
+      - in: query
+        name: income
+        schema:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        required: true
+      - in: query
+        name: income_type
+        schema:
+          enum:
+          - employed
+          - part_time
+          - not_employed
+          - self_employed
+          - retirement
+          - other
+          type: string
+          minLength: 1
+        description: '* `employed` - Employed
+
+          * `part_time` - Part time
+
+          * `not_employed` - Not employed
+
+          * `self_employed` - Self employed
+
+          * `retirement` - Retirement
+
+          * `other` - Other'
+        required: true
+      - in: query
+        name: industry
+        schema:
+          type: string
+          maxLength: 128
+      - in: query
+        name: mortgage_rent
+        schema:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+      - in: query
+        name: occupation
+        schema:
+          type: string
+          maxLength: 128
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - income source
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncomeSourceRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/IncomeSourceRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/IncomeSourceRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncomeSource'
+          description: Returns the updated IncomeSource data
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  id:
+                    type: string
+              examples:
+                ValidationError:
+                  value:
+                    message: Invalid input.
+                    id: invalid
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: You do not have permission to perform this action.
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: Not found.
+          description: ''
+        '503':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: iff7zjzisaii8
+components:
+  schemas:
+    IncomeSource:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        income:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        income_type:
+          $ref: '#/components/schemas/IncomeTypeEnum'
+        mortgage_rent:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        industry:
+          type: string
+          maxLength: 128
+        occupation:
+          type: string
+          maxLength: 128
+      required:
+      - income
+      - income_type
+      x-stoplight:
+        id: cf5t7cvffrpat
+    IncomeSourceRequest:
+      type: object
+      properties:
+        income:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        income_type:
+          $ref: '#/components/schemas/IncomeTypeEnum'
+        mortgage_rent:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        industry:
+          type: string
+          maxLength: 128
+        occupation:
+          type: string
+          maxLength: 128
+      required:
+      - income
+      - income_type
+      x-stoplight:
+        id: 6lravvbf1aphb
+    IncomeTypeEnum:
+      enum:
+      - employed
+      - part_time
+      - not_employed
+      - self_employed
+      - retirement
+      - other
+      type: string
+      description: '* `employed` - Employed
+
+        * `part_time` - Part time
+
+        * `not_employed` - Not employed
+
+        * `self_employed` - Self employed
+
+        * `retirement` - Retirement
+
+        * `other` - Other'
+      x-stoplight:
+        id: vlxoho9hsykzd
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

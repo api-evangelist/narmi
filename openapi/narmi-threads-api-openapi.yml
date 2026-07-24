@@ -1,0 +1,4395 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances threads API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: threads
+paths:
+  /v1/thread_files/policies/:
+    post:
+      operationId: thread_files_policies_create
+      description: 'Creates the payload for a signed request to upload a file directly to S3. Further documentation can be found via the AWS documentation: https://aws.amazon.com/blogs/compute/uploading-to-amazon-s3-directly-from-a-web-or-mobile-application/
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create a signed request for uploading a file to S3
+      tags:
+      - threads
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThreadUploadPolicyCreateDocRequest'
+            examples:
+              CreateThreadUploadPolicy:
+                value:
+                  type: image/png
+                  name: file.png
+                summary: Create thread upload policy
+              ThreadUploadPolicyInvalid:
+                value:
+                  reason: File destination does not exist or is invalid.
+                summary: Thread upload policy invalid
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ThreadUploadPolicyCreateDocRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ThreadUploadPolicyCreateDocRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadUploadPolicyResponse'
+              examples:
+                UploadPolicyCreated:
+                  value:
+                    policy: eyJleHBpcmF0aW9uIjogIjIwMjQtMDYtMThUMTQ6MDA6MDkuMDAwWiIsICJjb25kaXRpb25zIjogW3siYnVja2V0IjogImJ1Y2tldCJ9LCB7ImFjbCI6ICJjkkl2YXRlIn0sIHsia2V5IjogIm9yaWdpsdFsL3N1cHBvcnQvNGQ1ZjQ1NjA2MjhjNDA2YWFiMTVhYjkwMmRhMTI3MDUvZmlsZS5wbmcifSwgeyJzdWNjZXNzX2FjdGlvbl9zdGF0dXMiOiAiMjAxIn0sIHsieC1hbXotY3JlZGVudGlhbCI6ICIvMjAyNDA2MTgvbG9jYWwvczMvYXdzNF9yZXF1ZXN0In0sIHsieC1hbXotYWxnb3JpdGhtIjogIkFXUzQtSE1BQy1TSEEyNTYifSwgeyJ4LWFtei1kYXRlIjogIjIwMjQwNjE4VDEzNTUwOTAwMFoifSwgeyJjb250ZW50LXR5cGUiOiAiaW1hZ2UvcG5nIn0sIHsiQ2FjaGUtQ29udHJvbCI6ICJtYXgtYWdlPTI1OTIwMDAifSwgeyJDb250ZW50LURpc3Bvc2l0aW9uIjogImF0dGFjaG1lbnQifSwgeyJ4LWFtei1zZXJ2ZXItc2lkZS1lbmNyeXB0aW9uIjogIkFFUzI1NiJ9LCBbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwgMCwgMjAwMDAwMDBdXX0=
+                    success_action_status: 201
+                    x-amz-credential: /20240618/local/s3/aws4_request
+                    x-amz-date: 20240618T135509000Z
+                    x-amz-signature: a249243213026c97ac80f9b2e4b2ef06c7c491022a8cf8e46f0ddf95a746e6f7
+                    x-amz-algorithm: AWS4-HMAC-SHA256
+                    form_action: http://example.com/__s3_upload__
+                    key: original/support/4d5f8372828c406aab15ab902da12705/file.png
+                    acl: private
+                    content-type: image/png
+                    Cache-Control: max-age=2592000
+                    Content-Disposition: attachment
+                    x-amz-server-side-encryption: AES256
+                  summary: Upload policy created
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadFileError'
+              examples:
+                ThreadUploadPolicyInvalid:
+                  value:
+                    reason: File destination does not exist or is invalid.
+                  summary: Thread upload policy invalid
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRequestError'
+          description: ''
+      x-stoplight:
+        id: zrdmgff6lcp7q
+  /v1/threads/:
+    get:
+      operationId: threads_list
+      description: 'List support message threads for the authenticated user.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List user's message threads
+      parameters:
+      - in: query
+        name: end_date
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: filter
+        schema:
+          type: string
+        description: Parameter filters threads by subject and message body.
+      - in: query
+        name: order_by
+        schema:
+          type: string
+          enum:
+          - created_at
+          - updated_at
+      - in: query
+        name: start_date
+        schema:
+          type: string
+          format: date
+      tags:
+      - threads
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadsResponse'
+              examples:
+                Read:
+                  value:
+                    threads:
+                    - id: 1cde160e-592d-4ed6-94de-9460861793ba
+                      subject: Traveling Abroad
+                      state: open
+                      message_preview: Can you please put a travel alert on my card?
+                      created_at: '2018-10-27T12:38:51.369000-04:00'
+                      updated_at: '2018-11-01T23:29:18.317000-04:00'
+                      is_read: true
+                    - id: ef0b1d5f-b65c-4430-9bc4-38e6cfe77467
+                      subject: Debit Pin
+                      state: closed
+                      message_preview: I forgot the PIN number for my debit card.
+                      created_at: '2019-04-21T11:37:35.693000-04:00'
+                      updated_at: '2019-05-01T18:16:14.095000-04:00'
+                      is_read: true
+          description: ''
+      x-stoplight:
+        id: d1q1md8w5b5gl
+    post:
+      operationId: threads_create
+      description: 'Create a support message thread for the authenticated user.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create message thread for a user
+      tags:
+      - threads
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThreadCreateRequest'
+            examples:
+              Write:
+                value:
+                  subject: Traveling Abroad
+                  body: Can you please put a travel alert on my card?
+                  url: https://bucket.s3-local.amazonaws.com/file/structure/123123123/file.txt
+                  team_uuid: eb7111bd-9879-4c0c-a5f5-cc06ab481e04
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ThreadCreateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ThreadCreateRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadResponse'
+              examples:
+                Read:
+                  value:
+                    thread:
+                      id: 1cde160e-592d-4ed6-94de-9460861793ba
+                      subject: Traveling Abroad
+                      state: open
+                      message_preview: Can you please put a travel alert on my card?
+                      created_at: '2018-10-27T12:38:51.369000-04:00'
+                      updated_at: '2018-11-01T23:29:18.317000-04:00'
+                      is_read: true
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                ServiceValidationError:
+                  value:
+                    id: invalid_request_error
+                    message: subject
+          description: ''
+      x-stoplight:
+        id: fttfixclnme5y
+  /v1/threads/{thread_uuids}/messages/:
+    get:
+      operationId: threads_messages_list
+      description: 'List messages for the specified support message threads. The threads are specified in the path parameters as comma-separated UUIDs. If the thread does not exist, this endpoint will return a 404. Response will include both messages and thread files (i.e. attachments).
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List messages in a thread
+      parameters:
+      - in: path
+        name: thread_uuids
+        schema:
+          type: string
+          pattern: ^[,0-9A-Za-z-]+$
+        required: true
+      tags:
+      - threads
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessagesResponse'
+              examples:
+                ListFromMultipleThreads:
+                  value:
+                    links:
+                      next: null
+                      previous: null
+                    meta:
+                      total: 16
+                    messages:
+                    - body: '0'
+                      internal_note: false
+                      id: 508fce18-3092-48bd-82ae-5df24f768470
+                      thread_id: 70598155-99e0-4080-8124-1dcc36940eee
+                      author:
+                        email: demo@narmitech.com
+                        core_provided_email: null
+                        username: testuser
+                        id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                        institution_user_identifier: ''
+                        updated_at: '2024-04-30T20:16:46.861043+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: ''
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Documents:
+                              url: /statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Transfer funds:
+                                  url: /transfer
+                                Transactions:
+                                  url: /transactions
+                                Cards:
+                                  url: /cards
+                                Trends:
+                                  url: /trends
+                                Automatic savings:
+                                  url: /automatic
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: false
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                          limits:
+                            immediate_rdc:
+                              '3': 7000
+                            immediate_ach_pull:
+                              '1': 1000
+                            ach_pull:
+                              '30': 5500
+                              '1': 500
+                            ach_push:
+                              '3': 5000
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          can_change_username: false
+                          can_change_estatements: false
+                          zelle: false
+                          hold_days:
+                            rdc_hold_days: 4
+                            ach_hold_days: 2
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-03-26T14:43:59.004000+00:00'
+                        last_login: '2024-06-11 15:05:32.862565+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-04-29T16:09:32.780547-04:00'
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2024-05-16T14:31:48.940392-04:00'
+                      updated_at: '2024-05-16T14:31:48.940401-04:00'
+                    - body: '1'
+                      internal_note: false
+                      id: 1718d5bd-54b3-4b4d-af0e-c2b856cf6552
+                      thread_id: 3e788485-2d04-4ed8-ac88-a89b5ca3b104
+                      author:
+                        email: demo@narmitech.com
+                        core_provided_email: null
+                        username: testuser
+                        id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                        institution_user_identifier: ''
+                        updated_at: '2024-04-30T20:16:46.861043+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: ''
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Documents:
+                              url: /statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Transfer funds:
+                                  url: /transfer
+                                Transactions:
+                                  url: /transactions
+                                Cards:
+                                  url: /cards
+                                Trends:
+                                  url: /trends
+                                Automatic savings:
+                                  url: /automatic
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: false
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                          limits:
+                            immediate_rdc:
+                              '3': 7000
+                            immediate_ach_pull:
+                              '1': 1000
+                            ach_pull:
+                              '30': 5500
+                              '1': 500
+                            ach_push:
+                              '3': 5000
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          can_change_username: false
+                          can_change_estatements: false
+                          zelle: false
+                          hold_days:
+                            rdc_hold_days: 4
+                            ach_hold_days: 2
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-03-26T14:43:59.004000+00:00'
+                        last_login: '2024-06-11 15:05:32.862565+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-04-29T16:09:32.780547-04:00'
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2024-05-16T14:31:48.559740-04:00'
+                      updated_at: '2024-05-16T14:31:48.559752-04:00'
+                    - body: '0'
+                      internal_note: false
+                      id: 94f6f42e-b441-4c3f-9227-3b7218c0a032
+                      thread_id: 26ac2bdb-0426-4563-8bfb-cd1d35efbd02
+                      author:
+                        email: demo@narmitech.com
+                        core_provided_email: null
+                        username: testuser
+                        id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                        institution_user_identifier: ''
+                        updated_at: '2024-04-30T20:16:46.861043+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: ''
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Documents:
+                              url: /statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Transfer funds:
+                                  url: /transfer
+                                Transactions:
+                                  url: /transactions
+                                Cards:
+                                  url: /cards
+                                Trends:
+                                  url: /trends
+                                Automatic savings:
+                                  url: /automatic
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: false
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                          limits:
+                            immediate_rdc:
+                              '3': 7000
+                            immediate_ach_pull:
+                              '1': 1000
+                            ach_pull:
+                              '30': 5500
+                              '1': 500
+                            ach_push:
+                              '3': 5000
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          can_change_username: false
+                          can_change_estatements: false
+                          zelle: false
+                          hold_days:
+                            rdc_hold_days: 4
+                            ach_hold_days: 2
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-03-26T14:43:59.004000+00:00'
+                        last_login: '2024-06-11 15:05:32.862565+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-04-29T16:09:32.780547-04:00'
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2024-05-16T14:18:12.700044-04:00'
+                      updated_at: '2024-05-16T14:18:12.700053-04:00'
+                    - body: '1'
+                      internal_note: false
+                      id: 827df9b3-0906-4b62-a017-ac68bfcb8c3d
+                      thread_id: d1c6c02c-eaf2-44ed-961e-dcc5a7ec75bb
+                      author:
+                        email: demo@narmitech.com
+                        core_provided_email: null
+                        username: testuser
+                        id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                        institution_user_identifier: ''
+                        updated_at: '2024-04-30T20:16:46.861043+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: ''
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Documents:
+                              url: /statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Transfer funds:
+                                  url: /transfer
+                                Transactions:
+                                  url: /transactions
+                                Cards:
+                                  url: /cards
+                                Trends:
+                                  url: /trends
+                                Automatic savings:
+                                  url: /automatic
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: false
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                          limits:
+                            immediate_rdc:
+                              '3': 7000
+                            immediate_ach_pull:
+                              '1': 1000
+                            ach_pull:
+                              '30': 5500
+                              '1': 500
+                            ach_push:
+                              '3': 5000
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          can_change_username: false
+                          can_change_estatements: false
+                          zelle: false
+                          hold_days:
+                            rdc_hold_days: 4
+                            ach_hold_days: 2
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-03-26T14:43:59.004000+00:00'
+                        last_login: '2024-06-11 15:05:32.862565+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-04-29T16:09:32.780547-04:00'
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2024-05-16T14:18:10.176627-04:00'
+                      updated_at: '2024-05-16T14:18:10.176639-04:00'
+                    - body: '1'
+                      internal_note: false
+                      id: 6c0ef2f0-ef3a-402d-bb90-eb6a5f863fed
+                      thread_id: ec286528-0eba-4ab7-bbe2-508b2584c588
+                      author:
+                        email: demo@narmitech.com
+                        core_provided_email: null
+                        username: testuser
+                        id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                        institution_user_identifier: ''
+                        updated_at: '2024-04-30T20:16:46.861043+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: ''
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Documents:
+                              url: /statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Transfer funds:
+                                  url: /transfer
+                                Transactions:
+                                  url: /transactions
+                                Cards:
+                                  url: /cards
+                                Trends:
+                                  url: /trends
+                                Automatic savings:
+                                  url: /automatic
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: false
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                          limits:
+                            immediate_rdc:
+                              '3': 7000
+                            immediate_ach_pull:
+                              '1': 1000
+                            ach_pull:
+                              '30': 5500
+                              '1': 500
+                            ach_push:
+                              '3': 5000
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          can_change_username: false
+                          can_change_estatements: false
+                          zelle: false
+                          hold_days:
+                            rdc_hold_days: 4
+                            ach_hold_days: 2
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-03-26T14:43:59.004000+00:00'
+                        last_login: '2024-06-11 15:05:32.862565+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-04-29T16:09:32.780547-04:00'
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2024-05-16T13:58:47.991922-04:00'
+                      updated_at: '2024-05-16T13:58:47.991928-04:00'
+                    - body: '0'
+                      internal_note: false
+                      id: a598d9b3-1d55-4d67-8e26-01d1f1a32890
+                      thread_id: 6e9e82ff-bf4d-475f-a266-77e002474ce2
+                      author:
+                        email: demo@narmitech.com
+                        core_provided_email: null
+                        username: testuser
+                        id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                        institution_user_identifier: ''
+                        updated_at: '2024-04-30T20:16:46.861043+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: ''
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Documents:
+                              url: /statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Transfer funds:
+                                  url: /transfer
+                                Transactions:
+                                  url: /transactions
+                                Cards:
+                                  url: /cards
+                                Trends:
+                                  url: /trends
+                                Automatic savings:
+                                  url: /automatic
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: false
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                          limits:
+                            immediate_rdc:
+                              '3': 7000
+                            immediate_ach_pull:
+                              '1': 1000
+                            ach_pull:
+                              '30': 5500
+                              '1': 500
+                            ach_push:
+                              '3': 5000
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          can_change_username: false
+                          can_change_estatements: false
+                          zelle: false
+                          hold_days:
+                            rdc_hold_days: 4
+                            ach_hold_days: 2
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-03-26T14:43:59.004000+00:00'
+                        last_login: '2024-06-11 15:05:32.862565+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-04-29T16:09:32.780547-04:00'
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2024-05-16T13:58:47.067507-04:00'
+                      updated_at: '2024-05-16T13:58:47.067511-04:00'
+                    - body: '0'
+                      internal_note: false
+                      id: 743e91e5-0f2e-44a2-a848-24c5bb639e0f
+                      thread_id: de771818-1097-4b30-86b5-24457554b0a9
+                      author:
+                        email: demo@narmitech.com
+                        core_provided_email: null
+                        username: testuser
+                        id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                        institution_user_identifier: ''
+                        updated_at: '2024-04-30T20:16:46.861043+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: ''
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Documents:
+                              url: /statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Transfer funds:
+                                  url: /transfer
+                                Transactions:
+                                  url: /transactions
+                                Cards:
+                                  url: /cards
+                                Trends:
+                                  url: /trends
+                                Automatic savings:
+                                  url: /automatic
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: false
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                          limits:
+                            immediate_rdc:
+                              '3': 7000
+                            immediate_ach_pull:
+                              '1': 1000
+                            ach_pull:
+                              '30': 5500
+                              '1': 500
+                            ach_push:
+                              '3': 5000
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          can_change_username: false
+                          can_change_estatements: false
+                          zelle: false
+                          hold_days:
+                            rdc_hold_days: 4
+                            ach_hold_days: 2
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-03-26T14:43:59.004000+00:00'
+                        last_login: '2024-06-11 15:05:32.862565+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-04-29T16:09:32.780547-04:00'
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2024-05-16T13:48:16.914467-04:00'
+                      updated_at: '2024-05-16T13:48:16.914475-04:00'
+                    - body: '1'
+                      internal_note: false
+                      id: 87779e8a-edde-4d29-9d3a-53fbedb36e9c
+                      thread_id: 741bc5cc-d3de-4176-bbe8-4112f8c82aa9
+                      author:
+                        email: demo@narmitech.com
+                        core_provided_email: null
+                        username: testuser
+                        id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                        institution_user_identifier: ''
+                        updated_at: '2024-04-30T20:16:46.861043+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: ''
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Documents:
+                              url: /statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Transfer funds:
+                                  url: /transfer
+                                Transactions:
+                                  url: /transactions
+                                Cards:
+                                  url: /cards
+                                Trends:
+                                  url: /trends
+                                Automatic savings:
+                                  url: /automatic
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: false
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                          limits:
+                            immediate_rdc:
+                              '3': 7000
+                            immediate_ach_pull:
+                              '1': 1000
+                            ach_pull:
+                              '30': 5500
+                              '1': 500
+                            ach_push:
+                              '3': 5000
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          can_change_username: false
+                          can_change_estatements: false
+                          zelle: false
+                          hold_days:
+                            rdc_hold_days: 4
+                            ach_hold_days: 2
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-03-26 14:43:59.004000+00:00'
+                        last_login: '2024-06-11 15:05:32.862565+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-04-29T16:09:32.780547-04:00'
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2024-05-16T13:48:12.227896-04:00'
+                      updated_at: '2024-05-16T13:48:12.227905-04:00'
+                    - body: '0'
+                      internal_note: false
+                      id: 1b0e310e-ebdc-4b74-b397-a887eaba0d01
+                      thread_id: 6393ba4e-e788-4346-86d8-d21092db8569
+                      author:
+                        email: demo@narmitech.com
+                        core_provided_email: null
+                        username: testuser
+                        id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                        institution_user_identifier: ''
+                        updated_at: '2024-04-30T20:16:46.861043+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: ''
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Documents:
+                              url: /statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Transfer funds:
+                                  url: /transfer
+                                Transactions:
+                                  url: /transactions
+                                Cards:
+                                  url: /cards
+                                Trends:
+                                  url: /trends
+                                Automatic savings:
+                                  url: /automatic
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: false
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                          limits:
+                            immediate_rdc:
+                              '3': 7000
+                            immediate_ach_pull:
+                              '1': 1000
+                            ach_pull:
+                              '30': 5500
+                              '1': 500
+                            ach_push:
+                              '3': 5000
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          can_change_username: false
+                          can_change_estatements: false
+                          zelle: false
+                          hold_days:
+                            rdc_hold_days: 4
+                            ach_hold_days: 2
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-03-26 14:43:59.004000+00:00'
+                        last_login: '2024-06-11 15:05:32.862565+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-04-29T16:09:32.780547-04:00'
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2024-05-16T13:48:11.495597-04:00'
+                      updated_at: '2024-05-16T13:48:11.495604-04:00'
+                    - body: ȁ񰰄
+                      internal_note: false
+                      id: f64157c2-4edf-4e51-a072-03d4f091d123
+                      thread_id: 3cd73d6b-9289-4094-8e00-7a9de310eb27
+                      author:
+                        email: demo@narmitech.com
+                        core_provided_email: null
+                        username: testuser
+                        id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                        institution_user_identifier: ''
+                        updated_at: '2024-04-30T20:16:46.861043+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: ''
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Documents:
+                              url: /statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Transfer funds:
+                                  url: /transfer
+                                Transactions:
+                                  url: /transactions
+                                Cards:
+                                  url: /cards
+                                Trends:
+                                  url: /trends
+                                Automatic savings:
+                                  url: /automatic
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: false
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                          limits:
+                            immediate_rdc:
+                              '3': 7000
+                            immediate_ach_pull:
+                              '1': 1000
+                            ach_pull:
+                              '30': 5500
+                              '1': 500
+                            ach_push:
+                              '3': 5000
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          can_change_username: false
+                          can_change_estatements: false
+                          zelle: false
+                          hold_days:
+                            rdc_hold_days: 4
+                            ach_hold_days: 2
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-03-26 14:43:59.004000+00:00'
+                        last_login: '2024-06-11 15:05:32.862565+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-04-29T16:09:32.780547-04:00'
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2024-05-16T13:48:03.513579-04:00'
+                      updated_at: '2024-05-16T13:48:03.513586-04:00'
+                    - body: '[Attached File](https://bucket.s3-local.amazonaws.com/original/support/ba602c5309ba41f28c7c63853785a607/file.txt?AWSAccessKeyId=&Expires=1718123455&Signature=1FDXjiXiRaJxPpCE%2FVP%2B045R7NQ%3D)'
+                      url: https://bucket.s3-local.amazonaws.com/original/support/ba602c5309ba41f28c7c63853785a607/file.txt
+                      internal_note: false
+                      id: 54887f55-f8fe-435c-84b9-53b4d442092d
+                      thread_id: 519f5228-0b72-4cd2-8e8d-e99869678dfb
+                      author:
+                        email: ''
+                        core_provided_email: null
+                        username: ''
+                        id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                        institution_user_identifier: ''
+                        updated_at: '2024-04-30T20:16:46.861043+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: Jane
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Documents:
+                              url: /statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Transfer funds:
+                                  url: /transfer
+                                Transactions:
+                                  url: /transactions
+                                Cards:
+                                  url: /cards
+                                Trends:
+                                  url: /trends
+                                Automatic savings:
+                                  url: /automatic
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: false
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                          limits:
+                            immediate_rdc:
+                              '3': 7000
+                            immediate_ach_pull:
+                              '1': 1000
+                            ach_pull:
+                              '30': 5500
+                              '1': 500
+                            ach_push:
+                              '3': 5000
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          can_change_username: false
+                          can_change_estatements: false
+                          zelle: false
+                          hold_days:
+                            rdc_hold_days: 4
+                            ach_hold_days: 2
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-03-26 14:43:59.004000+00:00'
+                        last_login: '2024-06-11 15:05:32.862565+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-04-29T16:09:32.780547-04:00'
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2019-04-26T19:36:29.570000-04:00'
+                      updated_at: '2024-06-11T11:15:04.367456-04:00'
+                    - body: Hi Jack - We don't currently offer a home equity loan. We are always looking for ways to improve and I'll log your inquiry so we know that it would be a welcomed addition.
+                      internal_note: false
+                      id: f69622aa-a2cc-4d1d-9624-fd16512357ab
+                      thread_id: 519a5228-0b72-4cd2-8e8d-e99869678dfb
+                      author:
+                        email: ''
+                        core_provided_email: null
+                        username: ''
+                        id: 8e0b92dd-ee33-4f64-a376-502c78ae88e7
+                        institution_user_identifier: ''
+                        updated_at: '2018-11-02T03:29:18.317000+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: John
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu: default
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: true
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: true
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-10-26 19:55:19.777000+00:00'
+                        last_login: '2020-05-18 15:24:21.589000+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: false
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: null
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2018-11-13T14:55:15.144000-05:00'
+                      updated_at: '2018-11-13T14:55:15.144000-05:00'
+                    - body: "Hi Jane - Sorry to hear about the card. I've gone ahead and cancelled the card and sent a new one to the following address:\r\n\r\n3700 O St NW\r\nWashington, DC 20007\r\n\r\nPlease let me know if I can do anything else to help."
+                      internal_note: false
+                      id: 5089770e-bb97-4df3-9f01-6e3949971825
+                      thread_id: 519f5228-0b72-4cd2-8e8d-e99869678dfb
+                      author:
+                        email: ''
+                        core_provided_email: null
+                        username: ''
+                        id: 8e0b92dd-ee33-4f64-a376-502c78ae88e7
+                        institution_user_identifier: ''
+                        updated_at: '2018-11-02T03:29:18.317000+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: John
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu: default
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: true
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: true
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-10-26 19:55:19.777000+00:00'
+                        last_login: '2020-05-18 15:24:21.589000+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: false
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: null
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2018-11-10T14:21:38.012000-05:00'
+                      updated_at: '2018-11-10T14:21:38.012000-05:00'
+                    - body: "Hi - As I previously mentioned, I am currently traveling in Paris. I unfortunately lost my card. Could you please cancel my card and mail me a new card to the account on file.\r\n\r\nThanks,\r\n\r\nJane"
+                      internal_note: false
+                      id: 4b53fc58-86b1-453a-9086-607216df1302
+                      thread_id: 519f5228-0b72-4cd2-8e8d-e99869678dfb
+                      author:
+                        email: demo@narmitech.com
+                        core_provided_email: null
+                        username: testuser
+                        id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                        institution_user_identifier: ''
+                        updated_at: '2024-04-30T20:16:46.861043+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: ''
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Documents:
+                              url: /statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Transfer funds:
+                                  url: /transfer
+                                Transactions:
+                                  url: /transactions
+                                Cards:
+                                  url: /cards
+                                Trends:
+                                  url: /trends
+                                Automatic savings:
+                                  url: /automatic
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: false
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                          limits:
+                            immediate_rdc:
+                              '3': 7000
+                            immediate_ach_pull:
+                              '1': 1000
+                            ach_pull:
+                              '30': 5500
+                              '1': 500
+                            ach_push:
+                              '3': 5000
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          can_change_username: false
+                          can_change_estatements: false
+                          zelle: false
+                          hold_days:
+                            rdc_hold_days: 4
+                            ach_hold_days: 2
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-03-26 14:43:59.004000+00:00'
+                        last_login: '2024-06-11 15:05:32.862565+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-04-29T16:09:32.780547-04:00'
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2018-11-10T14:18:59.306000-05:00'
+                      updated_at: '2018-11-10T14:18:59.306000-05:00'
+                    - body: Hi Jane - I've updated your card records so that you'll be able to use it while in Paris. Have a great trip!
+                      internal_note: false
+                      id: 897e9ed7-c57a-4633-8613-638bfc25d76b
+                      thread_id: 1cde160e-592d-4ed6-94de-9460861793ba
+                      author:
+                        email: ''
+                        core_provided_email: null
+                        username: ''
+                        id: 8e0b92dd-ee33-4f64-a376-502c78ae88e7
+                        institution_user_identifier: ''
+                        updated_at: '2018-11-02T03:29:18.317000+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: John
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu: default
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: true
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: true
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-10-26 19:55:19.777000+00:00'
+                        last_login: '2020-05-18 15:24:21.589000+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: false
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: null
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2018-10-27T13:37:22.971000-04:00'
+                      updated_at: '2018-10-27T13:37:22.971000-04:00'
+                    - body: Hi - I will be traveling to Paris from November 10th to the 15th. Can you please make sure to put a travel alert on my card.
+                      internal_note: false
+                      id: c3de4cec-c98b-43d8-a240-8cfe8bff0fff
+                      thread_id: 1cde160e-592d-4ed6-94de-9460861793ba
+                      author:
+                        email: demo@narmitech.com
+                        core_provided_email: null
+                        username: testuser
+                        id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                        institution_user_identifier: ''
+                        updated_at: '2024-04-30T20:16:46.861043+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: ''
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Documents:
+                              url: /statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Transfer funds:
+                                  url: /transfer
+                                Transactions:
+                                  url: /transactions
+                                Cards:
+                                  url: /cards
+                                Trends:
+                                  url: /trends
+                                Automatic savings:
+                                  url: /automatic
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: false
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                          limits:
+                            immediate_rdc:
+                              '3': 7000
+                            immediate_ach_pull:
+                              '1': 1000
+                            ach_pull:
+                              '30': 5500
+                              '1': 500
+                            ach_push:
+                              '3': 5000
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          can_change_username: false
+                          can_change_estatements: false
+                          zelle: false
+                          hold_days:
+                            rdc_hold_days: 4
+                            ach_hold_days: 2
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-03-26 14:43:59.004000+00:00'
+                        last_login: '2024-06-11 15:05:32.862565+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-04-29T16:09:32.780547-04:00'
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2018-10-27T12:38:51.389000-04:00'
+                      updated_at: '2018-10-27T12:38:51.389000-04:00'
+                  summary: List from multiple threads
+                ListFromSingleThread:
+                  value:
+                    links:
+                      next: null
+                      previous: null
+                    meta:
+                      total: 3
+                    messages:
+                    - body: '[Attached File](https://bucket.s3-local.amazonaws.com/original/support/ba602c5309ba41f28c7c63853785a607/file.txt?AWSAccessKeyId=&Expires=1718123663&Signature=Iw7IjHcbMKY2FtJ7iTtCmI4eVUI%3D)'
+                      url: https://bucket.s3-local.amazonaws.com/original/support/ba602c5309ba41f28c7c63853785a607/file.txt
+                      internal_note: false
+                      id: 54887f55-f8fe-435c-84b9-53b4d442092d
+                      thread_id: 519f5228-0b72-4cd2-8e8d-e99869678dfb
+                      author:
+                        email: ''
+                        core_provided_email: null
+                        username: ''
+                        id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                        institution_user_identifier: ''
+                        updated_at: '2024-04-30T20:16:46.861043+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: Jane
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Documents:
+                              url: /statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Transfer funds:
+                                  url: /transfer
+                                Transactions:
+                                  url: /transactions
+                                Cards:
+                                  url: /cards
+                                Trends:
+                                  url: /trends
+                                Automatic savings:
+                                  url: /automatic
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: false
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                          limits:
+                            immediate_rdc:
+                              '3': 7000
+                            immediate_ach_pull:
+                              '1': 1000
+                            ach_pull:
+                              '30': 5500
+                              '1': 500
+                            ach_push:
+                              '3': 5000
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          can_change_username: false
+                          can_change_estatements: false
+                          zelle: false
+                          hold_days:
+                            rdc_hold_days: 4
+                            ach_hold_days: 2
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-03-26T14:43:59.004000+00:00'
+                        last_login: '2024-06-11T15:05:32.862565+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-04-29T16:09:32.780547-04:00'
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2019-04-26T19:36:29.570000-04:00'
+                      updated_at: '2024-06-11T11:15:04.367456-04:00'
+                    - body: "Hi Jane - Sorry to hear about the card. I've gone ahead and cancelled the card and sent a new one to the following address:\r\n\r\n3700 O St NW\r\nWashington, DC 20007\r\n\r\nPlease let me know if I can do anything else to help."
+                      internal_note: false
+                      id: 5089770e-bb97-4df3-9f01-6e3949971825
+                      thread_id: 519f5228-0b72-4cd2-8e8d-e99869678dfb
+                      author:
+                        email: ''
+                        core_provided_email: null
+                        username: ''
+                        id: 8e0b92dd-ee33-4f64-a376-502c78ae88e7
+                        institution_user_identifier: ''
+                        updated_at: '2018-11-02T03:29:18.317000+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: John
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu: default
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: true
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: true
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-10-26T19:55:19.777000+00:00'
+                        last_login: '2020-05-18 15:24:21.589000+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: false
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: null
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2018-11-10T14:21:38.012000-05:00'
+                      updated_at: '2018-11-10T14:21:38.012000-05:00'
+                    - body: "Hi - As I previously mentioned, I am currently traveling in Paris. I unfortunately lost my card. Could you please cancel my card and mail me a new card to the account on file.\r\n\r\nThanks,\r\n\r\nJane"
+                      internal_note: false
+                      id: 4b53fc58-86b1-453a-9086-607216df1302
+                      thread_id: 519f5228-0b72-4cd2-8e8d-e99869678dfb
+                      author:
+                        email: demo@narmitech.com
+                        core_provided_email: null
+                        username: testuser
+                        id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                        institution_user_identifier: ''
+                        updated_at: '2024-04-30T20:16:46.861043+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: ''
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Documents:
+                              url: /statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Transfer funds:
+                                  url: /transfer
+                                Transactions:
+                                  url: /transactions
+                                Cards:
+                                  url: /cards
+                                Trends:
+                                  url: /trends
+                                Automatic savings:
+                                  url: /automatic
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: false
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                          limits:
+                            immediate_rdc:
+                              '3': 7000
+                            immediate_ach_pull:
+                              '1': 1000
+                            ach_pull:
+                              '30': 5500
+                              '1': 500
+                            ach_push:
+                              '3': 5000
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          can_change_username: false
+                          can_change_estatements: false
+                          zelle: false
+                          hold_days:
+                            rdc_hold_days: 4
+                            ach_hold_days: 2
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-03-26T14:43:59.004000+00:00'
+                        last_login: '2024-06-11 15:05:32.862565+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-04-29T16:09:32.780547-04:00'
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2018-11-10T14:18:59.306000-05:00'
+                      updated_at: '2018-11-10T14:18:59.306000-05:00'
+                  summary: List from single thread
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+              examples:
+                ThreadNotFound:
+                  value:
+                    id: api_error
+                    message: No Thread matches the given query.
+                  summary: Thread not found
+          description: ''
+      x-stoplight:
+        id: kunu8rfhqusuk
+    post:
+      operationId: user_messages_create
+      description: "Create a message on the specified support message thread as the authenticated user. \n\nDefine either `body` or `url` in the request to create a message or attachment, respectively.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      summary: Create a message in a thread
+      parameters:
+      - in: path
+        name: thread_uuids
+        schema:
+          type: string
+          pattern: ^[,0-9A-Za-z-]+$
+        required: true
+      tags:
+      - threads
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageCreateRequest'
+            examples:
+              CreateMessageRequest:
+                value:
+                  body: hello world
+                summary: Create message request
+              CreateThreadfile/attachmentRequest:
+                value:
+                  url: https://bucket.s3.amazonaws.com/original/support/38A94057B31C44FDA5F6D0C64D6362E2/attached.file
+                summary: Create threadfile/attachment request
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MessageCreateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MessageCreateRequest'
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageCreateResponse'
+              examples:
+                CreateMessageResponse:
+                  value:
+                    message:
+                      body: hello world
+                      internal_note: false
+                      id: 6092644e-8d2a-4a75-b1db-d4f2012548a2
+                      thread_id: 014b6275-3abd-48b9-ac6a-3ab261a3ce8d
+                      author:
+                        email: johndoe_1@emailpalace.com
+                        core_provided_email: null
+                        username: test_user_1
+                        id: 1a1947ab-f407-4f7d-a17e-35103c7d91b9
+                        institution_user_identifier: ''
+                        updated_at: '2024-06-11T17:42:55.207633+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: ''
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: false
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: false
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Transfer:
+                              url: /transfer
+                              feature_flag:
+                              - internal_transfers
+                              - ach
+                              - bill_pay
+                              - p2p
+                              - wires
+                              - zelle
+                            Documents:
+                              url: /statements
+                              feature_flag: statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Zelle:
+                                  url: /transfer/zelle
+                                  feature_flag: zelle
+                                  superscript: ®
+                                Cards:
+                                  url: /cards
+                                  feature_flag: cards
+                                Trends:
+                                  url: /trends
+                                  feature_flag: trends
+                                Automatic savings:
+                                  url: /automatic
+                                  feature_flag: automatic_savings
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                Refer a member:
+                                  url: /referral
+                                  feature_flag: refer_a_member
+                                Dual approvals:
+                                  url: /approval_requests
+                                  feature_flag: indigo.DualApprovalRequest_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: false
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          wires: false
+                          bill_pay: false
+                          transfers: false
+                          can_change_username: false
+                          stop_payment: false
+                          cards: false
+                          can_change_estatements: false
+                          zelle: false
+                          p2p: false
+                          hold_days:
+                            rdc_hold_days: 2
+                            ach_hold_days: 2
+                          mobile_manage_recipients: false
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2024-06-11 17:42:32.081609+00:00'
+                        last_login: '2024-05-22 17:42:32.081606+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: false
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-06-11T13:42:32.085474-04:00'
+                        is_converting: false
+                        has_permitted_device: false
+                        has_backup_codes: false
+                      created_at: '2024-06-11T13:42:55.336036-04:00'
+                      updated_at: '2024-06-11T13:42:55.336040-04:00'
+                  summary: Create message response
+                CreateThreadfile/attachmentResponse:
+                  value:
+                    message:
+                      body: '[Attached File](There was a problem displaying a file)'
+                      url: https://bucket.s3.amazonaws.com/original/support/38A94057B31C44FDA5F6D0C64D6362E2/attached.file
+                      internal_note: false
+                      id: aad37a64-46f9-4b89-b6ad-74be558acde8
+                      thread_id: 14ca0531-cae7-4a12-82cb-07f92b6babef
+                      author:
+                        email: ''
+                        core_provided_email: null
+                        username: ''
+                        id: 68aff810-0dbd-41d6-9d30-ba76e37030a1
+                        institution_user_identifier: ''
+                        updated_at: '2024-06-11T17:45:02.604717+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: Wayne
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: false
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: false
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Transfer:
+                              url: /transfer
+                              feature_flag:
+                              - internal_transfers
+                              - ach
+                              - bill_pay
+                              - p2p
+                              - wires
+                              - zelle
+                            Documents:
+                              url: /statements
+                              feature_flag: statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Zelle:
+                                  url: /transfer/zelle
+                                  feature_flag: zelle
+                                  superscript: ®
+                                Cards:
+                                  url: /cards
+                                  feature_flag: cards
+                                Trends:
+                                  url: /trends
+                                  feature_flag: trends
+                                Automatic savings:
+                                  url: /automatic
+                                  feature_flag: automatic_savings
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                Refer a member:
+                                  url: /referral
+                                  feature_flag: refer_a_member
+                                Dual approvals:
+                                  url: /approval_requests
+                                  feature_flag: indigo.DualApprovalRequest_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: false
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          wires: false
+                          bill_pay: false
+                          transfers: false
+                          can_change_username: false
+                          stop_payment: false
+                          cards: false
+                          can_change_estatements: false
+                          zelle: false
+                          p2p: false
+                          hold_days:
+                            rdc_hold_days: 2
+                            ach_hold_days: 2
+                          mobile_manage_recipients: false
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2024-06-11 17:42:32.081609+00:00'
+                        last_login: '2024-05-22 17:42:32.081606+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: false
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-06-11T13:42:32.085474-04:00'
+                        is_converting: false
+                        has_permitted_device: false
+                        has_backup_codes: false
+                      created_at: '2024-06-11T13:45:02.776819-04:00'
+                      updated_at: '2024-06-11T13:45:02.776824-04:00'
+                  summary: Create threadfile/attachment response
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+              examples:
+                ThreadNotFound:
+                  value:
+                    id: api_error
+                    message: No Thread matches the given query.
+                  summary: Thread not found
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRequestError'
+              examples:
+                InvalidThreadfileUrl:
+                  value:
+                    id: invalid_request_error
+                    message: url
+                  summary: Invalid threadfile url
+          description: ''
+      x-stoplight:
+        id: w4xaw7kmwhxxe
+  /v1/threads/{thread_uuid}/messages/{uuid}/:
+    get:
+      operationId: threads_messages_retrieve
+      description: 'Fetch a specified message on the specified support message thread. This request will not return thread files (i.e. attachments).
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve user messages
+      parameters:
+      - in: path
+        name: thread_uuid
+        schema:
+          type: string
+          pattern: ^[,0-9A-Za-z-]+$
+        required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          pattern: ^[0-9a-z-_]+$
+        required: true
+      tags:
+      - threads
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+              examples:
+                Success:
+                  value:
+                    message:
+                      body: Hi - I will be traveling to Paris from November 10th to the 15th. Can you please make sure to put a travel alert on my card.
+                      internal_note: false
+                      id: c3de4cec-c98b-43d8-a240-8cfe8bff0fff
+                      thread_id: 1cde160e-592d-4ed6-94de-9460861793ba
+                      author:
+                        email: demo@narmitech.com
+                        core_provided_email: null
+                        username: testuser
+                        id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                        institution_user_identifier: ''
+                        updated_at: '2024-04-30T20:16:46.861043+00:00'
+                        addresses: []
+                        phone_numbers: []
+                        first_name: ''
+                        last_name: ''
+                        paper_statements: null
+                        user_category: personal
+                        features:
+                          ach: true
+                          allow_olb_device_remembering: true
+                          check_order: true
+                          edit_scheduled_transfers: true
+                          stop_payment_by_range: true
+                          top_menu:
+                            Dashboard:
+                              url: /dashboard
+                            Accounts:
+                              accounts: true
+                            Documents:
+                              url: /statements
+                            Support:
+                              url: /support
+                            Tools:
+                              menu:
+                                Transfer funds:
+                                  url: /transfer
+                                Transactions:
+                                  url: /transactions
+                                Cards:
+                                  url: /cards
+                                Trends:
+                                  url: /trends
+                                Automatic savings:
+                                  url: /automatic
+                                Manage users:
+                                  url: /access_manager
+                                  feature_flag: indigo.OrganizationUser_permission
+                                List all NAF options:
+                                  naf: true
+                          internal_transfers: true
+                          account_membership: true
+                          address_change: true
+                          alerts: true
+                          allpoint_locator_atm: true
+                          automatic_savings: OPT_IN
+                          bill_pay: ipay
+                          billshark: true
+                          business_account_opening: true
+                          personal_banking: true
+                          business_banking: true
+                          cards: true
+                          coop_locator_atm: true
+                          coop_locator_branch: true
+                          core_based_alerts: false
+                          existing_user_account_opening: true
+                          existing_user_dao: true
+                          instant_account_verification: mx
+                          insurance: lemonade
+                          login_and_enroll_blocked: false
+                          mobile_banking: true
+                          moneypass_locator_atm: true
+                          deposit_sso: true
+                          new_account_opening: true
+                          offers: true
+                          offline_verification: true
+                          online_banking: true
+                          p2p:
+                          - m2m
+                          paperless_statement_enrollment: true
+                          paperless_statement_unenrollment: false
+                          phone_change: true
+                          push_notifications: true
+                          rdc: true
+                          refer_a_member: true
+                          show_transaction_contact_support: true
+                          statements: true
+                          transfers: true
+                          trends: mx
+                          user_message_uploads: true
+                          username: true
+                          wires: true
+                          stop_payment: true
+                          beneficiaries: true
+                          naf_app_management: true
+                          profile_switcher: true
+                          mobile_login_switcher: true
+                          limits:
+                            immediate_rdc:
+                              '3': 7000
+                            immediate_ach_pull:
+                              '1': 1000
+                            ach_pull:
+                              '30': 5500
+                              '1': 500
+                            ach_push:
+                              '3': 5000
+                          indigo.Account_permission: '*'
+                          indigo.AchTransfer_permission: '*'
+                          integrations.base.Card_permission: '*'
+                          indigo.ExternalAccount_permission: '*'
+                          indigo.IntraInstitutionTransfer_permission: '*'
+                          indigo.MemberFriend_permission: '*'
+                          integrations.base.Payee_permission: '*'
+                          integrations.base.Payment_permission: '*'
+                          indigo.Transaction_permission: '*'
+                          indigo.WireTransaction_permission: '*'
+                          integrations.documents_permission: '*'
+                          integrations.rdc_permission: '*'
+                          can_change_username: false
+                          can_change_estatements: false
+                          zelle: false
+                          hold_days:
+                            rdc_hold_days: 4
+                            ach_hold_days: 2
+                        org_uuid: null
+                        org_role: null
+                        org_name: ''
+                        business_permissions: []
+                        dual_approval_required: false
+                        is_staff: false
+                        is_active: true
+                        is_superuser: false
+                        is_narmi: false
+                        date_joined: '2018-03-26T14:43:59.004000+00:00'
+                        last_login: '2024-06-11T15:05:32.862565+00:00'
+                        segment: ''
+                        metadata: {}
+                        has_username: true
+                        has_password: true
+                        has_accepted_latest_terms: true
+                        requires_enrollment_code_verification: false
+                        enabled_estatements_at: '2024-04-29T16:09:32.780547-04:00'
+                        is_converting: false
+                        has_permitted_device: true
+                        has_backup_codes: false
+                      created_at: '2018-10-27T12:38:51.389000-04:00'
+                      updated_at: '2018-10-27T12:38:51.389000-04:00'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+              examples:
+                DoesNotExistOrRequestedThreadFile:
+                  value:
+                    id: api_error
+                    message: No Message matches the given query.
+                  summary: Does not exist or requested thread file
+          description: ''
+      x-stoplight:
+        id: yxhfpy9zjw5hg
+  /v1/threads/{uuid}/:
+    get:
+      operationId: threads_retrieve
+      description: 'Fetch a specified support message thread.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve a thread
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          pattern: ^[0-9a-z-]+$
+        required: true
+      tags:
+      - threads
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadResponse'
+              examples:
+                Read:
+                  value:
+                    thread:
+                      id: 1cde160e-592d-4ed6-94de-9460861793ba
+                      subject: Traveling Abroad
+                      state: open
+                      message_preview: Can you please put a travel alert on my card?
+                      created_at: '2018-10-27T12:38:51.369000-04:00'
+                      updated_at: '2018-11-01T23:29:18.317000-04:00'
+                      is_read: true
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: Not found.
+          description: ''
+      x-stoplight:
+        id: ioqwnrrpxo7ow
+    put:
+      operationId: threads_update
+      description: 'Mark a specified support message thread as closed or open.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Update user's thread
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          pattern: ^[0-9a-z-]+$
+        required: true
+      tags:
+      - threads
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThreadUpdateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ThreadUpdateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ThreadUpdateRequest'
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadResponse'
+              examples:
+                Read:
+                  value:
+                    thread:
+                      id: 1cde160e-592d-4ed6-94de-9460861793ba
+                      subject: Traveling Abroad
+                      state: open
+                      message_preview: Can you please put a travel alert on my card?
+                      created_at: '2018-10-27T12:38:51.369000-04:00'
+                      updated_at: '2018-11-01T23:29:18.317000-04:00'
+                      is_read: true
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: Not found.
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                ServiceValidationError:
+                  value:
+                    id: invalid_request_error
+                    message: state
+          description: ''
+      x-stoplight:
+        id: frm16tum7wjcf
+  /v1/threads/{uuid}/mark_read/:
+    put:
+      operationId: threads_mark_read_update
+      description: 'Mark the specified support message thread as read.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Modify thread mark read
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          pattern: ^[0-9a-z-]+$
+        required: true
+      tags:
+      - threads
+      security:
+      - oauth2:
+        - write
+      - {}
+      responses:
+        '200':
+          description: No response body
+      x-stoplight:
+        id: hek8vudvuqvcr
+components:
+  schemas:
+    Address:
+      type: object
+      properties:
+        street_address:
+          type: string
+        street_address_2:
+          type: string
+        city:
+          type: string
+        region_code:
+          type: string
+          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
+        postal_code:
+          type: string
+          description: Typically a five-digit numeric US ZIP Code.
+        country_code:
+          type: string
+          description: An ISO 3166-1 alpha-2 country code.
+        type:
+          type: string
+      required:
+      - city
+      - postal_code
+      - region_code
+      - street_address
+      x-stoplight:
+        id: xatva1xwqb0yk
+    ThreadCreateRequest:
+      type: object
+      properties:
+        subject:
+          type: string
+          minLength: 1
+          description: Subject of the thread.
+          maxLength: 100
+        body:
+          type: string
+          minLength: 1
+          description: Text content of the initial message for this thread.
+        file:
+          allOf:
+          - $ref: '#/components/schemas/ThreadFileRequest'
+          description: File to upload to this thread. Must include both 'url' and 'signature'.
+        team_uuid:
+          type: string
+          minLength: 1
+          description: Identifier for relevant team.
+      required:
+      - subject
+      x-stoplight:
+        id: ygl8gsxdgfoq9
+    Profile:
+      type: object
+      description: ''
+      properties:
+        email:
+          type: string
+          readOnly: true
+          description: Email address for the registered user.
+          example: demo@narmitech.com
+        core_provided_email:
+          type: string
+          nullable: true
+          readOnly: true
+          description: Email address the user has registered to the core.
+          example: null
+        username:
+          type: string
+          nullable: true
+          readOnly: true
+          description: Username for the registered user.
+          example: testuser
+        id:
+          type: string
+          format: uuid
+          nullable: true
+          readOnly: true
+          description: UUID of the registered user. This value is used as the unique identifier for the user in the API.
+          example: 07231f46-23f1-482e-bdc4-35f2267b60e6
+        institution_user_identifier:
+          type: string
+          readOnly: true
+          description: Core user ID, may be set to empty string if the requesting user does not have the `core_user_id` scope for the target user.
+          example: ''
+        updated_at:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+          description: The last date-time that the information for this user was altered or saved.
+          example: '2018-11-02T03:29:18.317000+00:00'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+          readOnly: true
+          description: A list of addresses for the registered user. This list contains the primary address and the mailing address of the user, if it exists. This may be set to empty list if the requesting user does not have the `address` scope for the target user.
+          example: []
+        phone_numbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Phone'
+          readOnly: true
+          description: A list of phone numbers for the registered user. This list often includes only one phone number. This may be set to empty list if the requesting user does not have the `phone` scope for the target user.
+          example: []
+        notifications_enabled:
+          type: boolean
+          nullable: true
+          readOnly: true
+          description: Whether the user has registered a device for notifications. This field will also check to make sure that at least one of the devices is set to active.
+        first_name:
+          type: string
+          readOnly: true
+          description: First name of the registered user, can also include middle or second names. This may be set to empty string if the requesting user does not have the `name` scope for the target user.
+          example: ''
+        last_name:
+          type: string
+          readOnly: true
+          description: Last name of the registered user, may include items such as hyphenated/multiple surnames and generational suffixes (ie. Jr, Sr, III). This may be set to empty string if the requesting user does not have the `name` scope for the target user.
+          example: ''
+        paper_statements:
+          type: boolean
+          nullable: true
+          readOnly: true
+          description: Whether the registered user has opted to receive eStatements. This may be set to `null` if the requesting user does not have the `preferences` scope for the target user.
+          example: true
+        user_category:
+          description: Used to distinguish whether this is a `business` or `personal` user.
+          nullable: true
+          readOnly: true
+          example: personal
+          oneOf:
+          - $ref: '#/components/schemas/UserCategory4f2Enum'
+          - $ref: '#/components/schemas/NullEnum'
+        features:
+          type: object
+          additionalProperties: {}
+          nullable: true
+          readOnly: true
+          description: A set of user features which define what the user can and can not do.
+          example:
+            ach: true
+            allow_olb_device_remembering: true
+            check_order: true
+            edit_scheduled_transfers: true
+            stop_payment_by_range: true
+            top_menu:
+              Dashboard:
+                url: /dashboard
+              Accounts:
+                accounts: true
+              Documents:
+                url: /statements
+              Support:
+                url: /support
+              Tools:
+                menu:
+                  Transfer funds:
+                    url: /transfer
+                  Transactions:
+                    url: /transactions
+                  Cards:
+                    url: /cards
+                  Trends:
+                    url: /trends
+                  Automatic savings:
+                    url: /automatic
+                  Manage users:
+                    url: /access_manager
+                    feature_flag: indigo.OrganizationUser_permission
+                  List all NAF options:
+                    naf: true
+            internal_transfers: true
+            account_membership: true
+            address_change: true
+            alerts: true
+            allpoint_locator_atm: true
+            automatic_savings: OPT_IN
+            bill_pay: ipay
+            billshark: true
+            business_account_opening: true
+            personal_banking: true
+            business_banking: true
+            cards: true
+            coop_locator_atm: true
+            coop_locator_branch: true
+            core_based_alerts: false
+            existing_user_account_opening: true
+            existing_user_dao: true
+            instant_account_verification: mx
+            insurance: lemonade
+            login_and_enroll_blocked: false
+            mobile_banking: true
+            moneypass_locator_atm: true
+            deposit_sso: true
+            new_account_opening: true
+            offers: true
+            offline_verification: true
+            online_banking: true
+            p2p:
+            - m2m
+            paperless_statement_enrollment: true
+            paperless_statement_unenrollment: false
+            phone_change: true
+            push_notifications: true
+            rdc: true
+            refer_a_member: true
+            show_transaction_contact_support: true
+            statements: true
+            transfers: true
+            trends: mx
+            user_message_uploads: true
+            username: true
+            wires: true
+            stop_payment: true
+            beneficiaries: true
+            naf_app_management: true
+            profile_switcher: true
+            mobile_login_switcher: true
+            limits:
+              immediate_rdc:
+                '3': 7000
+              immediate_ach_pull:
+                '1': 1000
+              ach_pull:
+                '30': 5500
+                '1': 500
+              ach_push:
+                '3': 5000
+            indigo.Account_permission: '*'
+            indigo.AchTransfer_permission: '*'
+            integrations.base.Card_permission: '*'
+            indigo.ExternalAccount_permission: '*'
+            indigo.IntraInstitutionTransfer_permission: '*'
+            indigo.MemberFriend_permission: '*'
+            integrations.base.Payee_permission: '*'
+            integrations.base.Payment_permission: '*'
+            indigo.Transaction_permission: '*'
+            indigo.WireTransaction_permission: '*'
+            integrations.documents_permission: '*'
+            integrations.rdc_permission: '*'
+            can_change_username: false
+            can_change_estatements: true
+            zelle: false
+            hold_days:
+              rdc_hold_days: 4
+              ach_hold_days: 2
+        org_uuid:
+          type: string
+          format: uuid
+          nullable: true
+          readOnly: true
+          description: The UUID of the organization which the user belongs to. This will be set to `null` if the user category is set to `personal`.
+          example: null
+        org_role:
+          description: The role of the user for the organization it belongs to. This will be set to `null` if the user category is set to `personal`.
+          nullable: true
+          readOnly: true
+          example: null
+          oneOf:
+          - $ref: '#/components/schemas/OrgRoleEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        org_name:
+          type: string
+          readOnly: true
+          description: Name of the organization the user belongs to. This will be the DBA (Doing Business As) name if it exists, otherwise it will be set to the organization's legal name.
+          example: ''
+        business_permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/BusinessPermissionsField'
+          readOnly: true
+          description: Permissions that a user has to a business. The permissions which are granted are dictated by the users role in the organization. This will be set to an empty list for non-business users.
+          example: []
+        dual_approval_required:
+          type: boolean
+          nullable: true
+          readOnly: true
+          description: For business users, this field indicates whether wire transactions initiated by the user require approval from the organization. For non-business users this will always be set to `false`.
+          example: false
+        ach_dual_approval_required:
+          type: boolean
+          nullable: true
+          readOnly: true
+          description: For business users, this field indicates whether ACH transactions initiated by the user require approval from the organization. For non-business users this will always be set to `false`.
+        income_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncomeSource'
+          readOnly: true
+          description: A list of user reported income sources.
+        international_wire_dual_approval_required:
+          type: boolean
+          nullable: true
+          readOnly: true
+          description: For business users, this field indicates whether international wire transactions initiated by the user require approval from the organization. For non-business users this will always be set to `false`.
+        is_staff:
+          type: boolean
+          readOnly: true
+          description: Indicates whether the registered user is an employee of the financial institution.
+          example: false
+        is_active:
+          type: boolean
+          readOnly: true
+          description: Indicates whether the user has been disabled.
+          example: true
+        is_superuser:
+          type: boolean
+          readOnly: true
+          description: Indicates whether the user is an admin.
+          example: false
+        is_narmi:
+          type: boolean
+          readOnly: true
+          description: Indicates whether the user is a Narmi user.
+          example: false
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+          description: The date-time the user was enrolled in the Narmi system.
+          example: '2018-03-26T14:43:59.004000+00:00'
+        last_login:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+          description: The date-time the user last logged in.
+          example: '2024-04-22T21:06:02.006532+00:00'
+        segment:
+          type: string
+          readOnly: true
+          description: The banking segment which the user is a member of. These values can be unique for different financial institutions.
+          example: ''
+        metadata:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+          description: Metadata for the registered user, this is often set as an empty object `{}`.
+          example: {}
+        has_username:
+          type: boolean
+          readOnly: true
+          description: Whether the username was defined by the user or was autogenerated by the system.
+          example: true
+        has_password:
+          type: boolean
+          readOnly: true
+          description: Whether the password was set by the user.
+          example: true
+        has_accepted_latest_terms:
+          type: boolean
+          readOnly: true
+          description: Whether the user has accepted the latest terms of service.
+          example: false
+        requires_enrollment_code_verification:
+          type: boolean
+          readOnly: true
+          description: Whether the user has verified their account. This can prevent the user from logging in. Enrollment can be completed via `/v1/enroll_verify/`.
+          example: false
+        enabled_estatements_at:
+          oneOf:
+          - type: string
+            format: date-time
+          - type: string
+          nullable: true
+          readOnly: true
+          description: Date-time the user opted into electronic statements.
+          example: null
+        is_converting:
+          type: boolean
+          readOnly: true
+          description: Whether the user is in the process of enrolling into online banking.
+          example: false
+        has_permitted_device:
+          type: boolean
+          readOnly: true
+          description: When 2FA is enabled for the FI, this field indicates whether the user has a device which they can use to authenticate to the system.
+          example: true
+        has_backup_codes:
+          type: boolean
+          readOnly: true
+          description: Whether the registered user has a one-time password backup code for two-factor authentication.
+          example: false
+        support_teams:
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
+          readOnly: true
+          description: The UUIDs of the support teams which the user belongs to. This will be set to `null` if the user does not belong to a support team.
+        session_oidc_provider:
+          type: string
+          nullable: true
+          readOnly: true
+          description: The OIDC provider associated with the user's current session, if any.
+      x-stoplight:
+        id: g4tqfglwr85hp
+    UserCategory4f2Enum:
+      enum:
+      - personal
+      - business
+      type: string
+      x-stoplight:
+        id: vmvxka9zperhg
+    MessageCreateResponse:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/MessageCreate'
+      required:
+      - message
+      x-stoplight:
+        id: jthkudazxuxns
+    ThreadUpdateRequest:
+      type: object
+      properties:
+        state:
+          allOf:
+          - $ref: '#/components/schemas/StateFf1Enum'
+          description: 'Indicates whether the thread has been closed or remains open.
+
+
+            * `closed` - closed
+
+            * `open` - open'
+      x-stoplight:
+        id: ech1lwv4agqdr
+    Message:
+      type: object
+      properties:
+        body:
+          type: string
+          default: Hello World!
+          readOnly: true
+          description: The text body of a message or the url of a threadfile/attachment.
+        internal_note:
+          type: boolean
+          default: false
+          description: Text which should only be visible to FI staff members.
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        thread_id:
+          type: string
+          default: '47ea8231-d4ba-41d0-9e50-0c52f5c5205a '
+          readOnly: true
+          description: The UUID of the thread to which the message belongs.
+        author:
+          allOf:
+          - $ref: '#/components/schemas/Profile'
+          readOnly: true
+          description: User information about the author of the message.
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        url:
+          type: string
+          format: uri
+          readOnly: true
+          nullable: true
+          description: Raw S3 URL of the file attachment, if present. To access the file content, use the presigned secure URL returned in the `body` field.
+      x-stoplight:
+        id: emav3bmztctyj
+    BusinessPermissionsField:
+      type: object
+      properties:
+        model_str:
+          type: string
+        operation:
+          type: string
+        uuid:
+          type: string
+          format: uuid
+      required:
+      - model_str
+      - operation
+      - uuid
+      x-stoplight:
+        id: rhmxqgl8o5k8x
+    MessageCreateRequest:
+      type: object
+      properties:
+        body:
+          type: string
+          minLength: 1
+          description: Text content of the message; should not be specified with the `file` parameter.
+        file:
+          allOf:
+          - $ref: '#/components/schemas/ThreadFileRequest'
+          writeOnly: true
+          description: File to upload to this message. Must include both 'url' and 'signature'.
+        internal_note:
+          type: boolean
+          default: false
+          description: Text which should only be visible to FI staff members.
+      x-stoplight:
+        id: eeyyxym9jkngz
+    NullEnum:
+      enum:
+      - null
+      x-stoplight:
+        id: 2493tmzk9db0y
+    ThreadUploadPolicyResponse:
+      type: object
+      properties:
+        policy:
+          type: string
+        success_action_status:
+          type: string
+        form_action:
+          type: string
+        key:
+          type: string
+        acl:
+          type: string
+        signature:
+          type: string
+        x-amz-credential:
+          type: string
+        x-amz-date:
+          type: string
+        x-amz-signature:
+          type: string
+        x-amz-algorithm:
+          type: string
+        content-type:
+          type: string
+      required:
+      - acl
+      - content-type
+      - form_action
+      - key
+      - policy
+      - signature
+      - success_action_status
+      - x-amz-algorithm
+      - x-amz-credential
+      - x-amz-date
+      - x-amz-signature
+      x-stoplight:
+        id: kdb9fsldtqsae
+    MessagesResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+      required:
+      - messages
+      x-stoplight:
+        id: yvxkjur0cwx0g
+    IncomeSource:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        income:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        income_type:
+          $ref: '#/components/schemas/IncomeTypeEnum'
+        mortgage_rent:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        industry:
+          type: string
+          maxLength: 128
+        occupation:
+          type: string
+          maxLength: 128
+      required:
+      - income
+      - income_type
+      x-stoplight:
+        id: cf5t7cvffrpat
+    ThreadsResponse:
+      type: object
+      properties:
+        threads:
+          type: array
+          items:
+            $ref: '#/components/schemas/Thread'
+      required:
+      - threads
+      x-stoplight:
+        id: chy75fdbdrdxr
+    Thread:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        subject:
+          type: string
+          readOnly: true
+          description: Subject of the thread.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/StateFf1Enum'
+          description: 'Indicates whether the thread has been closed or remains open.
+
+
+            * `closed` - closed
+
+            * `open` - open'
+          readOnly: true
+        message_preview:
+          type: string
+          description: Text content of the initial message for this thread.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        is_read:
+          type: boolean
+          readOnly: true
+      x-stoplight:
+        id: dq2x9gtnrpagg
+    MessageCreate:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Text content of the message; should not be specified with the `file` parameter.
+        internal_note:
+          type: boolean
+          default: false
+          description: Text which should only be visible to FI staff members.
+      x-stoplight:
+        id: 351zf3p9zkh0g
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    StateFf1Enum:
+      enum:
+      - closed
+      - open
+      type: string
+      description: '* `closed` - closed
+
+        * `open` - open'
+      x-stoplight:
+        id: cyhzi9ykogwtj
+    MessageResponse:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/Message'
+      required:
+      - message
+      x-stoplight:
+        id: bzlavp0n5ailq
+    ThreadUploadPolicyCreateDocRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          minLength: 1
+          description: MIME content type for the target upload.
+        name:
+          type: string
+          minLength: 1
+          description: Target filename for the uploaded file.
+      required:
+      - name
+      - type
+      x-stoplight:
+        id: 2d9racy3tadfr
+    ThreadResponse:
+      type: object
+      properties:
+        thread:
+          $ref: '#/components/schemas/Thread'
+      required:
+      - thread
+      x-stoplight:
+        id: 7di4huw8j7ria
+    OrgRoleEnum:
+      enum:
+      - Account Holder
+      - Admin
+      - Collaborator
+      - No Permissions
+      - Viewer
+      type: string
+      x-stoplight:
+        id: bcxpswdnbrned
+    ThreadFileRequest:
+      type: object
+      description: Serializer for file uploads to threads that validates both URL and signature.
+      properties:
+        url:
+          type: string
+          format: uri
+          minLength: 1
+          pattern: ^https://production-sandbox-uploads\.s3(?:[.-][a-z0-9-]+)?\.amazonaws\.com/original/support/[A-Za-z0-9]{24,}/
+        signature:
+          type: string
+          minLength: 1
+      required:
+      - signature
+      - url
+      x-stoplight:
+        id: tl2ecehruzowj
+    InvalidRequestError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid_request_error
+        message:
+          type: object
+          additionalProperties: {}
+          default:
+            field_name: Error description.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: aelrw6rc7wiph
+    UploadFileError:
+      type: object
+      properties:
+        reason:
+          type: string
+          default: File destination does not exist or is invalid.
+      x-stoplight:
+        id: tgjembz2s6zp9
+    Phone:
+      type: object
+      properties:
+        number:
+          type: string
+        device_id:
+          type: string
+          nullable: true
+        device_request_id:
+          type: string
+          nullable: true
+      required:
+      - number
+      x-stoplight:
+        id: vm2qlwcduqdwc
+    IncomeTypeEnum:
+      enum:
+      - employed
+      - part_time
+      - not_employed
+      - self_employed
+      - retirement
+      - other
+      type: string
+      description: '* `employed` - Employed
+
+        * `part_time` - Part time
+
+        * `not_employed` - Not employed
+
+        * `self_employed` - Self employed
+
+        * `retirement` - Retirement
+
+        * `other` - Other'
+      x-stoplight:
+        id: vlxoho9hsykzd
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

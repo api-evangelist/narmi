@@ -1,0 +1,449 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances international wires API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: international wires
+paths:
+  /v1/swift_transactions/:
+    get:
+      operationId: swift_transactions_list
+      description: 'List the authenticated user''s Swift wire transactions.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List Swift wire transactions
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - international wires
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSwiftWireTransactionList'
+          description: ''
+      x-stoplight:
+        id: y218rh0nqfwcm
+    post:
+      operationId: swift_transactions_create
+      description: 'Create a Swift wire transaction using the provided details.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create a Swift wire transaction
+      tags:
+      - international wires
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SwiftWireTransactionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SwiftWireTransactionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SwiftWireTransactionRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwiftWireTransaction'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+          description: ''
+      x-stoplight:
+        id: w0bou6ra3u7jq
+  /v1/swift_transactions/{uuid}/:
+    get:
+      operationId: swift_transactions_retrieve
+      description: 'Fetch details for a specified Swift wire transaction.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve a Swift wire transaction
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+        required: true
+      tags:
+      - international wires
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwiftWireTransaction'
+          description: ''
+      x-stoplight:
+        id: ezfu6mzbh9gps
+  /v1/swift_transactions/payment_codes/:
+    get:
+      operationId: swift_transactions_payment_codes_retrieve
+      description: 'Retrieve payment codes for a specific BIC. This is used to get the purpose codes for international wire transactions.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve Swift payment codes
+      tags:
+      - international wires
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwiftWireTransaction'
+          description: ''
+      x-stoplight:
+        id: xpgoztqpvggpg
+  /v1/swift_transactions/templates/:
+    post:
+      operationId: swift_transactions_templates_create
+      description: 'Send a swift wire using an existing swift wire template.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Send a swift wire using a swift wire template
+      tags:
+      - international wires
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SwiftWireTransactionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SwiftWireTransactionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SwiftWireTransactionRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwiftWireTransaction'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+                example:
+                  id: idempotency_key_used
+                  message: Idempotency-Key is already used.
+          description: ''
+      x-stoplight:
+        id: rjckjhd6e2htv
+components:
+  schemas:
+    GeneralError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid
+        message:
+          type: string
+          description: An error response detailing the field and the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: v76fz3qxj5djb
+    StateC02Enum:
+      enum:
+      - analyzing
+      - pending
+      - review
+      - processing
+      - processed
+      - rejected
+      - canceled
+      - awaiting_approval
+      - rejected_approval
+      type: string
+      description: '* `analyzing` - Analyzing
+
+        * `pending` - Pending
+
+        * `review` - Review
+
+        * `processing` - Processing
+
+        * `processed` - Processed (in transit)
+
+        * `rejected` - Rejected by staff
+
+        * `canceled` - Canceled
+
+        * `awaiting_approval` - Awaiting dual approval
+
+        * `rejected_approval` - Dual approval rejected'
+      x-stoplight:
+        id: qbox8yql7ah47
+    PaginatedSwiftWireTransactionList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SwiftWireTransaction'
+      x-stoplight:
+        id: z84pr8zubieyv
+    SwiftWireTransaction:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        payment_identification:
+          type: string
+          readOnly: true
+        recipient:
+          type: string
+          format: uuid
+          readOnly: true
+          description: The UUID of the recipient of the transaction.
+        template_name:
+          type: string
+          readOnly: true
+          nullable: true
+        user:
+          type: string
+        from_account:
+          type: string
+          format: uuid
+          description: UUID of the account from which the transaction is initiated.
+        destination:
+          type: string
+          format: uuid
+          description: UUID of the recipient associated with this Swift destination.
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: The amount of the swift payment in cents.
+          type: integer
+        wire_reason:
+          type: string
+          nullable: true
+        memo:
+          type: string
+          nullable: true
+          maxLength: 128
+        note:
+          type: string
+          nullable: true
+        state:
+          $ref: '#/components/schemas/StateC02Enum'
+        quote:
+          $ref: '#/components/schemas/FXQuote'
+      required:
+      - amount
+      - destination
+      - from_account
+      - user
+      x-stoplight:
+        id: zouzw63lbtog6
+    FXQuote:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        amount:
+          type: string
+          readOnly: true
+        specified_currency:
+          type: string
+          readOnly: true
+        converted_currency:
+          type: string
+          readOnly: true
+        settlement_currency:
+          type: string
+          readOnly: true
+        expiration_in_seconds:
+          type: integer
+          readOnly: true
+        rate:
+          type: string
+          readOnly: true
+        converted_amount:
+          type: string
+          nullable: true
+          readOnly: true
+      x-stoplight:
+        id: hodvkt23ysral
+    SwiftWireTransactionRequest:
+      type: object
+      properties:
+        user:
+          type: string
+          minLength: 1
+        from_account:
+          type: string
+          format: uuid
+          description: UUID of the account from which the transaction is initiated.
+        destination:
+          type: string
+          format: uuid
+          description: UUID of the recipient associated with this Swift destination.
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: The amount of the swift payment in cents.
+          type: integer
+        wire_reason:
+          type: string
+          nullable: true
+        memo:
+          type: string
+          nullable: true
+          maxLength: 128
+        note:
+          type: string
+          nullable: true
+        state:
+          $ref: '#/components/schemas/StateC02Enum'
+        device_id:
+          type: string
+          writeOnly: true
+          nullable: true
+        device_request_id:
+          type: string
+          writeOnly: true
+          nullable: true
+        swiftwire_template:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the swiftwire template to use for the swiftwire transaction.
+          type: string
+          format: uuid
+          writeOnly: true
+      required:
+      - amount
+      - destination
+      - from_account
+      - user
+      x-stoplight:
+        id: cd5gaaqyl79ov
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

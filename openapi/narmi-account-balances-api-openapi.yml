@@ -1,0 +1,216 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: account balances
+paths:
+  /v1/account_balances/:
+    get:
+      operationId: account_balances_list
+      description: "List the authenticated user's account balances for each account. A caller may use this endpoint in order to update the balance totals for an account who's data has already been fetched. \n\nA full set of account data can be queried via accounts section.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      summary: List account balances
+      tags:
+      - account balances
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBalancesDocResponse'
+              examples:
+                AccountBalancesResponse:
+                  value:
+                    account_balances:
+                    - id: abl_8b143f3e-70df-4799-a2ae-c5e3dabed963
+                      account_id: 8b143f3e-70df-4799-a2ae-c5e3dabed963
+                      primary: '119950.25'
+                      available: '0.00'
+                      ledger: '119950.25'
+                      updated_at: '2024-03-21T10:34:31.416851-04:00'
+                    - id: abl_aba59f13-d8b3-4d27-9e0f-bc55fe82dfde
+                      account_id: aba59f13-d8b3-4d27-9e0f-bc55fe82dfde
+                      primary: '9010.60'
+                      available: '9010.60'
+                      ledger: '8945.40'
+                      updated_at: '2024-03-21T10:34:31.322257-04:00'
+                  summary: Account Balances Response
+          description: ''
+        '500':
+          description: Server side error. Typically an issue related to connecting to the core or a third party API.
+      x-stoplight:
+        id: l5nsdhnncwhlz
+  /v1/account_balances/{uuid}/:
+    get:
+      operationId: account_balances_retrieve
+      description: "Fetch the balances for an account as specified by its uuid. A caller may use this endpoint in order to update the balance totals for an account who's data has already been fetched. \n\nA full set of account data can be queried via accounts section.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      summary: Retrieve account balances for an account
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+        description: Account UUID for which to fetch balances, prepended with `'abl_'`
+        required: true
+        examples:
+          Sample:
+            value: abl_8b143f3e-70df-4799-a2ae-c5e3dabed963
+            summary: sample
+      tags:
+      - account balances
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountBalanceDocResponse'
+              examples:
+                AccountBalancesResponse:
+                  value:
+                    account_balance:
+                      id: abl_8b143f3e-70df-4799-a2ae-c5e3dabed963
+                      account_id: 8b143f3e-70df-4799-a2ae-c5e3dabed963
+                      primary: '9010.60'
+                      available: '9010.60'
+                      ledger: '8945.40'
+                      updated_at: '2024-03-21T10:34:31.322257-04:00'
+                  summary: Account Balances Response
+                  description: Checking account with primary balance equal to available balance.
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+              examples:
+                AccountBalancesResponse:
+                  value:
+                    id: api_error
+                    message: Not found.
+                  summary: Not Found
+                  description: UUID specified was not associated with an existing account.
+          description: ''
+        '500':
+          description: Server side error. Typically an issue related to connecting to the core or a third party API.
+      x-stoplight:
+        id: 0bpdkj7xssga3
+components:
+  schemas:
+    AccountBalancesDocResponse:
+      type: object
+      properties:
+        account_balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountBalance'
+          description: A list of account balances for each account.
+      required:
+      - account_balances
+      x-stoplight:
+        id: v5ytn9lfhgobu
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    AccountBalance:
+      type: object
+      description: A representation of an account with respect to its balance totals.
+      properties:
+        id:
+          example: abl_8b143f3e-70df-4799-a2ae-c5e3dabed963
+          description: Account UUID prefixed with "abl_" for use with this endpoint.
+          type: string
+          readOnly: true
+        account_id:
+          example: 8b143f3e-70df-4799-a2ae-c5e3dabed963
+          type: string
+          format: uuid
+          readOnly: true
+          description: UUID to the associated account.
+        primary:
+          example: 100.0
+          maximum: 10000000000000.0
+          minimum: -10000000000000.0
+          description: The balance to be presented to the customer. Set to the available balance for non CD deposit accounts, and ledger balance otherwise. May be null for external accounts that have not yet been synced with balance data.
+          type: number
+          format: double
+          readOnly: true
+          nullable: true
+        available:
+          example: 100.0
+          maximum: 10000000000000.0
+          minimum: -10000000000000.0
+          description: The funds immediately available to use, including any pending transactions or temporary holds on the account. May be null for external accounts that have not yet been synced with balance data.
+          type: number
+          format: double
+          readOnly: true
+          nullable: true
+        ledger:
+          example: 100.0
+          maximum: 10000000000000.0
+          minimum: -10000000000000.0
+          description: The total amount of funds in the account not including temporary holds or pending transactions. May be null for external accounts that have not yet been synced with balance data.
+          type: number
+          format: double
+          readOnly: true
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date when the account was last updated.
+      x-stoplight:
+        id: sswt197xsfwzw
+    AccountBalanceDocResponse:
+      type: object
+      properties:
+        account_balance:
+          allOf:
+          - $ref: '#/components/schemas/AccountBalance'
+          description: Account balances for the specified account.
+      required:
+      - account_balance
+      x-stoplight:
+        id: bucgaqtqcibez
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

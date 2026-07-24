@@ -1,0 +1,158 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances ach destinations API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: ach destinations
+paths:
+  /v1/ach_details/:
+    post:
+      operationId: ach_details_create
+      description: 'Create a set of ACH details that can be used as a destination for ACH Payments.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create an ACH destination
+      tags:
+      - ach destinations
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ACHDetails'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  id:
+                    type: string
+              examples:
+                ValidationError:
+                  value:
+                    message: Invalid input.
+                    id: invalid
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionDeniedError'
+          description: ''
+      x-stoplight:
+        id: vuosc0nliwo71
+components:
+  schemas:
+    AccountPurposeEnum:
+      enum:
+      - personal
+      - business
+      type: string
+      description: '* `personal` - Personal
+
+        * `business` - Business'
+      x-stoplight:
+        id: ccf1svqamabvv
+    AccountTypeEnum:
+      enum:
+      - checking
+      - savings
+      - loan
+      type: string
+      description: '* `checking` - Checking
+
+        * `savings` - Savings
+
+        * `loan` - Loan'
+      x-stoplight:
+        id: ds0e59zxe4i8q
+    ACHDetails:
+      type: object
+      description: 'In addition to the standard ACHDetails fields you''d expect for a create/updated request,
+
+        this serializer also requires a recipient (passed in as the uuid of the recipient)
+
+        that will be associated with the created/updated ACHDetails.'
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        account_number:
+          example: '123456'
+          description: Account number for the ACH destination.
+          type: string
+          maxLength: 17
+          minLength: 1
+        routing_number:
+          example: '021030004'
+          description: Routing number for the ACH destination.
+          type: string
+          maxLength: 9
+          minLength: 9
+        account_type:
+          $ref: '#/components/schemas/AccountTypeEnum'
+        account_purpose:
+          $ref: '#/components/schemas/AccountPurposeEnum'
+        institution_name:
+          type: string
+          readOnly: true
+      required:
+      - account_number
+      - account_purpose
+      - account_type
+      - routing_number
+      x-stoplight:
+        id: rvctfxe73rl2e
+    PermissionDeniedError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: You do not have permission to perform this action.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: ywbohhxwqjqj3
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

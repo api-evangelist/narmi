@@ -1,0 +1,603 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances recipients API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: recipients
+paths:
+  /v1/recipients/:
+    get:
+      operationId: recipients_list
+      description: 'List a user''s recipients, including recipients created by other users in their organization.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List recipients
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - recipients
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedRecipientList'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionDeniedError'
+          description: ''
+      x-stoplight:
+        id: v1d3vwos6svdo
+    post:
+      operationId: recipients_create
+      description: 'Create a recipient that can be used as a destination for wires or ACH payments.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create a recipient
+      tags:
+      - recipients
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RecipientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RecipientRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  id:
+                    type: string
+              examples:
+                ValidationError:
+                  value:
+                    message: Invalid input.
+                    id: invalid
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionDeniedError'
+          description: ''
+      x-stoplight:
+        id: t2vncmvc4cdc7
+  /v1/recipients/{uuid}/:
+    get:
+      operationId: recipients_retrieve
+      description: 'Fetch details for a specified recipient.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve a recipient
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - recipients
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionDeniedError'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: ''
+      x-stoplight:
+        id: q2znbhouy8ue1
+    put:
+      operationId: recipients_update
+      description: 'Update the details of a recipient belonging to authenticated user, identified by `uuid`
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Update a recipient
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - recipients
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecipientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RecipientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RecipientRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  id:
+                    type: string
+              examples:
+                ValidationError:
+                  value:
+                    message: Invalid input.
+                    id: invalid
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionDeniedError'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: ''
+      x-stoplight:
+        id: mpszqk5mhpzyx
+    delete:
+      operationId: recipients_destroy
+      description: 'Delete a specified recipient belonging to the user. The recipient will continue to exist in the database, but won''t be retrievable by the user. The name of the deleted recipient will be available for use in creating a new recipient.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Delete a recipient
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - recipients
+      security:
+      - oauth2:
+        - write
+      responses:
+        '204':
+          description: No response body
+      x-stoplight:
+        id: lxwrvkkhisxgm
+components:
+  schemas:
+    AccountTypeEnum:
+      enum:
+      - checking
+      - savings
+      - loan
+      type: string
+      description: '* `checking` - Checking
+
+        * `savings` - Savings
+
+        * `loan` - Loan'
+      x-stoplight:
+        id: ds0e59zxe4i8q
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    WireRecipientAddress:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        street_address:
+          type: string
+          maxLength: 128
+        street_address_2:
+          type: string
+          maxLength: 128
+        city:
+          type: string
+          maxLength: 128
+        region_code:
+          type: string
+          maxLength: 128
+        postal_code:
+          type: string
+          maxLength: 128
+        country_code:
+          type: string
+          maxLength: 2
+      required:
+      - street_address
+      x-stoplight:
+        id: dsp8dadbgwst0
+    Recipient:
+      type: object
+      description: 'Updates to the ach_destination and fedwire_destination fields are handled by the
+
+        ACHDetailsSerializer and FedwireDestinationSerializer, respectively.'
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        name:
+          type: string
+          description: Used to formally identify the recipient (e.g. for sending fedwires.)
+          maxLength: 140
+        nickname:
+          type: string
+          description: Name used internally to more easily identify the recipient.
+          maxLength: 256
+        type:
+          allOf:
+          - $ref: '#/components/schemas/RecipientTypeEnum'
+          default: person
+        ach_destination:
+          allOf:
+          - $ref: '#/components/schemas/ACHDetails'
+          readOnly: true
+          description: A dictionary containing the destination (account number & routing number), account type (e.g. 'checking'), and account purpose ('personal' or 'business') for the ACH destination. A null value reflects that the recipient does not have an ACH destination.
+        fedwire_destination:
+          allOf:
+          - $ref: '#/components/schemas/FedwireDestination'
+          readOnly: true
+          description: A dictionary containing the destination (account number & routing number) and address for the Fedwire destination. A null value reflects that the recipient does not have a Fedwire destination.
+        swift_destination:
+          allOf:
+          - $ref: '#/components/schemas/SwiftWireDestination'
+          readOnly: true
+          description: A dictionary containing the destination (bic, iban) and address for the Swift destination. A null value reflects that the recipient does not have a Swift destination.
+      required:
+      - name
+      x-stoplight:
+        id: buqdhdq6mraig
+    PaginatedRecipientList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipient'
+      x-stoplight:
+        id: rzjbbg1xbpys1
+    AccountPurposeEnum:
+      enum:
+      - personal
+      - business
+      type: string
+      description: '* `personal` - Personal
+
+        * `business` - Business'
+      x-stoplight:
+        id: ccf1svqamabvv
+    RecipientTypeEnum:
+      enum:
+      - person
+      - business
+      type: string
+      description: '* `person` - Person
+
+        * `business` - Business'
+      x-stoplight:
+        id: cetfkhhexomuz
+    ACHDetails:
+      type: object
+      description: 'In addition to the standard ACHDetails fields you''d expect for a create/updated request,
+
+        this serializer also requires a recipient (passed in as the uuid of the recipient)
+
+        that will be associated with the created/updated ACHDetails.'
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        account_number:
+          example: '123456'
+          description: Account number for the ACH destination.
+          type: string
+          maxLength: 17
+          minLength: 1
+        routing_number:
+          example: '021030004'
+          description: Routing number for the ACH destination.
+          type: string
+          maxLength: 9
+          minLength: 9
+        account_type:
+          $ref: '#/components/schemas/AccountTypeEnum'
+        account_purpose:
+          $ref: '#/components/schemas/AccountPurposeEnum'
+        institution_name:
+          type: string
+          readOnly: true
+      required:
+      - account_number
+      - account_purpose
+      - account_type
+      - routing_number
+      x-stoplight:
+        id: rvctfxe73rl2e
+    PermissionDeniedError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: You do not have permission to perform this action.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: ywbohhxwqjqj3
+    FedwireDestination:
+      type: object
+      description: 'In addition to the standard FedwireDestination fields you''d expect for a create/updated request,
+
+        this serializer also requires a recipient (passed in as the uuid of the recipient)
+
+        that will be associated with the created/updated FedwireDestination instance.'
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        account_number:
+          example: '123456'
+          description: Account number for the Fedwire destination.
+          type: string
+          maxLength: 17
+          minLength: 1
+        routing_number:
+          example: '021030004'
+          description: Routing number for the Fedwire destination.
+          type: string
+          maxLength: 9
+          minLength: 9
+        address:
+          $ref: '#/components/schemas/FedwireRecipientAddress'
+        institution_name:
+          type: string
+          readOnly: true
+      required:
+      - account_number
+      - address
+      - routing_number
+      x-stoplight:
+        id: 5nq8io7fuwyrs
+    SwiftWireDestination:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        bic:
+          type: string
+        metadata: {}
+        address:
+          $ref: '#/components/schemas/WireRecipientAddress'
+        account_identifier:
+          type: string
+          description: Account identifier (IBAN, account number, phone) for the Swift wire destination.
+        branch_address:
+          allOf:
+          - $ref: '#/components/schemas/WireRecipientAddress'
+          nullable: true
+      required:
+      - account_identifier
+      - address
+      - bic
+      x-stoplight:
+        id: fsxcazs4nwqxc
+    FedwireRecipientAddress:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        street_address:
+          type: string
+          maxLength: 35
+        street_address_2:
+          type: string
+          maxLength: 35
+        city:
+          type: string
+          maxLength: 128
+        region_code:
+          type: string
+          maxLength: 128
+        postal_code:
+          type: string
+          maxLength: 128
+        country_code:
+          type: string
+          maxLength: 2
+      required:
+      - street_address
+      x-stoplight:
+        id: alp6ww1u4r5wf
+    RecipientRequest:
+      type: object
+      description: 'Updates to the ach_destination and fedwire_destination fields are handled by the
+
+        ACHDetailsSerializer and FedwireDestinationSerializer, respectively.'
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: Used to formally identify the recipient (e.g. for sending fedwires.)
+          maxLength: 140
+        nickname:
+          type: string
+          description: Name used internally to more easily identify the recipient.
+          maxLength: 256
+        type:
+          allOf:
+          - $ref: '#/components/schemas/RecipientTypeEnum'
+          default: person
+      required:
+      - name
+      x-stoplight:
+        id: n6ayn4zrjmmxd
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

@@ -1,0 +1,415 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances instant transfers API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: instant transfers
+paths:
+  /v1/fednow_transaction/{uuid}/:
+    get:
+      operationId: fednow_transaction_retrieve
+      description: 'Fetch details for a specified instant transfer.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve a FedNow transfer
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - instant transfers
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FedNowTransaction'
+          description: ''
+      x-stoplight:
+        id: ywmzftaq89mch
+  /v1/transfers/instant/{payment_identification}/:
+    get:
+      operationId: transfers_instant_retrieve
+      description: 'Retrieve the details and status for an instant transfer. This is only supported for payments that have been assigned a payment ID.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve instant transfer details by payment identification
+      parameters:
+      - in: path
+        name: payment_identification
+        schema:
+          type: string
+        required: true
+      tags:
+      - instant transfers
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FednowPayment'
+          description: ''
+      x-stoplight:
+        id: cmrazffgejiur
+  /v1/transfers/instant/eligibility/{routing_number}/:
+    get:
+      operationId: transfers_instant_eligibility_retrieve
+      description: 'Check if the provided routing number is enrolled and active in the FedNow network
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Check eligibility for instant transfers
+      parameters:
+      - in: path
+        name: routing_number
+        schema:
+          type: string
+          pattern: ^[0-9]+$
+        required: true
+      tags:
+      - instant transfers
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FedNowEligibility'
+          description: ''
+      x-stoplight:
+        id: ernzq6smgdf7y
+  /v1/transfers/instant/fees/:
+    get:
+      operationId: transfers_instant_fees_retrieve
+      description: 'Returns the fee structure for instant transfers to calculate the fee for any transfer.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve fee information for instant transfers
+      tags:
+      - instant transfers
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransfersFee'
+          description: ''
+      x-stoplight:
+        id: dk5asim2gu0dq
+components:
+  schemas:
+    FedNowTransactionStateEnum:
+      enum:
+      - pending
+      - accepted
+      - declined
+      - failed
+      - processed
+      - overridden
+      - processed_settled
+      - processed_reversed
+      - overridden_settled
+      - awaiting_approval
+      - rejected_approval
+      - canceled
+      - approval_expired
+      - awaiting_bulk_approval
+      - rejected_bulk_approval
+      type: string
+      description: '* `pending` - Pending fraud evaluation
+
+        * `accepted` - Fraud evaluation passed
+
+        * `declined` - Fraud evaluation failed
+
+        * `failed` - Failed before FedNow processing was initiated
+
+        * `processed` - Payment initiated in FedNow service
+
+        * `overridden` - Decline manually overridden and payment initiated in FedNow service
+
+        * `processed_settled` - Payment settlement has been confirmed by FedNow service
+
+        * `processed_reversed` - Payment was returned by FedNow service
+
+        * `overridden_settled` - Payment settlement confirmed after override
+
+        * `awaiting_approval` - Awaiting dual approval
+
+        * `rejected_approval` - Dual approval rejected
+
+        * `canceled` - Canceled
+
+        * `approval_expired` - Dual approval expired
+
+        * `awaiting_bulk_approval` - Awaiting bulk approval
+
+        * `rejected_bulk_approval` - Rejected bulk approval'
+      x-stoplight:
+        id: otlhozfwfxeds
+    TransfersFee:
+      type: object
+      properties:
+        kind:
+          allOf:
+          - $ref: '#/components/schemas/KindEnum'
+          description: 'Supported fee structures
+
+
+            * `free` - free
+
+            * `fixed` - fixed
+
+            * `percent` - percent'
+        percent:
+          type: string
+          format: decimal
+          pattern: ^-?0?(?:\.\d{0,4})?$
+          nullable: true
+          description: Percentage fee of transfer amount. For free and fixed kind this will null, for percentage it is the fee percent as a decimal.
+        max:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          nullable: true
+          description: Maximum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount cap for the percentage fee.
+        min:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          nullable: true
+          description: Minimum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount minimum for the percentage fee.
+      required:
+      - kind
+      x-stoplight:
+        id: rmlugpiarfokw
+    FedNowEligibility:
+      type: object
+      properties:
+        online:
+          type: boolean
+          default: false
+        enrollment_level:
+          $ref: '#/components/schemas/EnrollmentLevelEnum'
+        name:
+          type: string
+          default: ''
+        routing_number:
+          type: string
+          maxLength: 9
+      required:
+      - enrollment_level
+      - routing_number
+      x-stoplight:
+        id: dwymj4s81xw4o
+    KindEnum:
+      enum:
+      - free
+      - fixed
+      - percent
+      type: string
+      description: '* `free` - free
+
+        * `fixed` - fixed
+
+        * `percent` - percent'
+      x-stoplight:
+        id: qcqed657de0rl
+    FedNowTransaction:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        amount_cents:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        memo:
+          type: string
+          maxLength: 140
+        state:
+          $ref: '#/components/schemas/FedNowTransactionStateEnum'
+        payment_identification:
+          type: string
+          maxLength: 35
+        source_account:
+          type: string
+          format: uuid
+        external_account:
+          type: string
+          format: uuid
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        unverified_recipient:
+          type: string
+          format: uuid
+          nullable: true
+        bulk_payment:
+          type: string
+          format: uuid
+          nullable: true
+      required:
+      - amount_cents
+      - bulk_payment
+      - external_account
+      - id
+      - source_account
+      - unverified_recipient
+      x-stoplight:
+        id: 7qinjdob3wcd1
+    EnrollmentLevelEnum:
+      enum:
+      - receive
+      - send
+      - send_receive
+      - rfp
+      - rfp_send
+      - send_only
+      - none
+      type: string
+      description: '* `receive` - Receive only
+
+        * `send` - Send only
+
+        * `send_receive` - Send and Receive
+
+        * `rfp` - Request for payment and receive only
+
+        * `rfp_send` - Request for payment with send and receive
+
+        * `send_only` - Send only, meant for internal use only
+
+        * `none` - Not in the FedNow network'
+      x-stoplight:
+        id: 3sonktbgvbhvk
+    FednowPayment:
+      type: object
+      properties:
+        amount_cents:
+          type: integer
+          maximum: 100000000
+          minimum: 0
+        source_fi:
+          type: string
+        source_fi_name:
+          type: string
+          readOnly: true
+        destination_fi:
+          type: string
+        destination_fi_name:
+          type: string
+          readOnly: true
+        source_account:
+          type: string
+          minLength: 1
+        destination_account:
+          type: string
+          minLength: 1
+        source_name:
+          type: string
+        destination_name:
+          type: string
+        payment_identification:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        memo:
+          type: string
+        state:
+          type: string
+        type:
+          type: string
+        fed_settlement_date:
+          type: string
+          format: date
+        core_transaction_id:
+          type: string
+      required:
+      - amount_cents
+      - created_at
+      - destination_account
+      - destination_fi
+      - fed_settlement_date
+      - payment_identification
+      - source_fi
+      - state
+      - type
+      - updated_at
+      x-stoplight:
+        id: g74hjbbstiqwt
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

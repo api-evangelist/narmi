@@ -1,0 +1,582 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances payees API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: payees
+paths:
+  /v1/payees/:
+    get:
+      operationId: payees_list
+      description: 'List bill payment payees for a user. Payees can be used to create payments via the payments endpoints.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List bill payment payees
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+          maximum: 2147483648
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+          maximum: 2147483648
+      tags:
+      - payees
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBillPayeeList'
+          description: ''
+        '500':
+          description: No response body
+      x-stoplight:
+        id: 13ulame6wjrwc
+    post:
+      operationId: payees_create
+      description: 'Creates a bill payment payee via third-party integration (typically iPay). Payees can be used to create payments via the payments endpoints.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create a bill payment payee
+      tags:
+      - payees
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayeeCreateDocRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PayeeCreateDocRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PayeeCreateDocRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payee'
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRequestError'
+          description: ''
+        '500':
+          description: No response body
+      x-stoplight:
+        id: mcplhusrxdzpr
+  /v1/payees/{id}/:
+    get:
+      operationId: payees_retrieve
+      description: 'Fetch a specified bill payment payee. Payees can be used to create payments via the payments endpoints.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve a bill payment payee
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          pattern: ^[0-9a-z-]+$
+        required: true
+      tags:
+      - payees
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payee'
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRequestError'
+          description: ''
+        '500':
+          description: No response body
+      x-stoplight:
+        id: fpp26lh5ngka7
+    put:
+      operationId: payees_update
+      description: 'Update fields for a specified bill payment payee via third-party integration (typically iPay).Payees can be used to create payments via the payments endpoints.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Update a bill payment payee
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          pattern: ^[0-9a-z-]+$
+        required: true
+      tags:
+      - payees
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayeeCreateDocRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PayeeCreateDocRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PayeeCreateDocRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payee'
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRequestError'
+          description: ''
+        '500':
+          description: No response body
+      x-stoplight:
+        id: rdxkww1agto7z
+    delete:
+      operationId: payees_destroy
+      description: 'Delete a specified bill payment payee via third-party integration (typically iPay).Payees can be used to create payments via the payments endpoints.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Delete a bill payment payee
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          pattern: ^[0-9a-z-]+$
+        required: true
+      tags:
+      - payees
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BillPayDestroy'
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRequestError'
+          description: ''
+        '500':
+          description: No response body
+      x-stoplight:
+        id: jjy6u8rhc7uxk
+components:
+  schemas:
+    Address:
+      type: object
+      properties:
+        street_address:
+          type: string
+        street_address_2:
+          type: string
+        city:
+          type: string
+        region_code:
+          type: string
+          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
+        postal_code:
+          type: string
+          description: Typically a five-digit numeric US ZIP Code.
+        country_code:
+          type: string
+          description: An ISO 3166-1 alpha-2 country code.
+        type:
+          type: string
+      required:
+      - city
+      - postal_code
+      - region_code
+      - street_address
+      x-stoplight:
+        id: xatva1xwqb0yk
+    Type905Enum:
+      type: string
+      enum:
+      - personal
+      - business
+      x-stoplight:
+        id: ulcreuinjodf5
+    AddressRequest:
+      type: object
+      properties:
+        street_address:
+          type: string
+          minLength: 1
+        street_address_2:
+          type: string
+        city:
+          type: string
+          minLength: 1
+        region_code:
+          type: string
+          minLength: 1
+          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
+        postal_code:
+          type: string
+          minLength: 1
+          description: Typically a five-digit numeric US ZIP Code.
+        country_code:
+          type: string
+          minLength: 1
+          description: An ISO 3166-1 alpha-2 country code.
+        type:
+          type: string
+          minLength: 1
+        device_id:
+          type: string
+          writeOnly: true
+          nullable: true
+        device_request_id:
+          type: string
+          writeOnly: true
+          nullable: true
+      required:
+      - city
+      - postal_code
+      - region_code
+      - street_address
+      x-stoplight:
+        id: 4ixdbnlsh0rei
+    PayeeCreateDocRequest:
+      type: object
+      properties:
+        type:
+          allOf:
+          - $ref: '#/components/schemas/Type905Enum'
+          minLength: 1
+          description: Whether the payment recipient is a person or business.
+          example: personal
+        name:
+          type: string
+          minLength: 1
+          description: Recipient's name.
+          example: John
+        description:
+          type: string
+          minLength: 1
+          description: Free-form text.
+        phone:
+          type: string
+          minLength: 1
+          description: Recipient's phone number.
+          example: '+12125556666'
+        email:
+          type: string
+          nullable: true
+          description: Recipient's email address.
+          example: fake@email.com
+        passphrase:
+          type: string
+          minLength: 1
+          description: Shared secret phrase between payer and payee.
+        account_number:
+          type: string
+          nullable: true
+          minLength: 1
+          description: Destination account number.
+          example: abc123def3456
+        address:
+          allOf:
+          - $ref: '#/components/schemas/AddressRequest'
+          nullable: true
+          description: Recipient's address.
+          example:
+            street_address: 96484 Donald Squares
+            street_address_2: ''
+            city: Lewishaven
+            region_code: MN
+            postal_code: '83505'
+            country_code: US
+            type: primary
+        delivery_options:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillDeliveryOptionRequest'
+        ignore_warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorRequest'
+          writeOnly: true
+          description: Warning codes to be suppressed during call.
+          example:
+          - - code: '555'
+              description: Description
+            - code: '920'
+              description: Description
+      required:
+      - name
+      - type
+      x-stoplight:
+        id: sskdhy8j5ihgs
+    InvalidRequestError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid_request_error
+        message:
+          type: object
+          additionalProperties: {}
+          default:
+            field_name: Error description.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: aelrw6rc7wiph
+    BillDeliveryOptionRequest:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+      required:
+      - date
+      x-stoplight:
+        id: i3oemzw6y6ap9
+    BillDeliveryOption:
+      type: object
+      properties:
+        description:
+          type: string
+          readOnly: true
+        fee:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+          readOnly: true
+        transit_days:
+          type: integer
+          readOnly: true
+        date:
+          type: string
+          format: date
+      required:
+      - date
+      x-stoplight:
+        id: i4cqeow4pzxv6
+    PaginatedBillPayeeList:
+      type: object
+      required:
+      - meta
+      - links
+      - payees
+      properties:
+        payees:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillPayee'
+        links:
+          type: object
+          description: URIs linking to sequential pages of the result.
+          properties:
+            next:
+              type: string
+              format: uri
+              nullable: true
+              example: https://narmi.example.com/v1/payments?after=400
+            prev:
+              type: string
+              format: uri
+              nullable: true
+              example: https://narmi.example.com/v1/payments?before=200
+        meta:
+          description: Free-form object, contains total object count.
+          type: object
+          properties:
+            total:
+              type: integer
+      x-stoplight:
+        id: tlq0yzqzttgcn
+    Payee:
+      type: object
+      properties:
+        payee:
+          $ref: '#/components/schemas/BillPayee'
+      required:
+      - payee
+      x-stoplight:
+        id: nfevnjkpkwzdk
+    ErrorRequest:
+      type: object
+      properties:
+        code:
+          type: string
+          minLength: 1
+        description:
+          type: string
+          minLength: 1
+      required:
+      - code
+      x-stoplight:
+        id: cqk62uhcqgodx
+    BillPayDestroy:
+      type: object
+      properties:
+        deleted:
+          type: string
+          readOnly: true
+          default: true
+      x-stoplight:
+        id: tzrspxlehskqp
+    BillPayee:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: Identifies payment recipient to the payment processor. Can be fetched via the payees endpoints.
+          example: abc123
+        masked_account_number:
+          type: string
+          readOnly: true
+          example: '*********3456'
+        type:
+          allOf:
+          - $ref: '#/components/schemas/Type905Enum'
+          description: Whether the payment recipient is a person or business.
+          example: personal
+        name:
+          type: string
+          description: Recipient's name.
+          example: John
+        description:
+          type: string
+          description: Free-form text.
+        phone:
+          type: string
+          description: Recipient's phone number.
+          example: '+12125556666'
+        email:
+          type: string
+          nullable: true
+          description: Recipient's email address.
+          example: fake@email.com
+        passphrase:
+          type: string
+          description: Shared secret phrase between payer and payee.
+        account_number:
+          type: string
+          nullable: true
+          description: Destination account number.
+          example: abc123def3456
+        address:
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          nullable: true
+          description: Recipient's address.
+          example:
+            street_address: 96484 Donald Squares
+            street_address_2: ''
+            city: Lewishaven
+            region_code: MN
+            postal_code: '83505'
+            country_code: US
+            type: primary
+        delivery_options:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillDeliveryOption'
+      required:
+      - name
+      - type
+      x-stoplight:
+        id: ewjmueomsaapw
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

@@ -1,0 +1,482 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances fedwire templates API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: fedwire templates
+paths:
+  /v1/fedwire_templates/:
+    get:
+      operationId: fedwire_templates_list
+      description: 'List a user''s templates, including templates created by other users in their organization. Templates will only be included in the returned list where the user has access to the template''s source account.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List Fedwire templates
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - fedwire templates
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedFedwireTemplateList'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: ''
+      x-stoplight:
+        id: noxzxw4hlnwea
+    post:
+      operationId: fedwire_templates_create
+      description: 'Create a template that can be used to send wires.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create a Fedwire template
+      tags:
+      - fedwire templates
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FedwireTemplateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FedwireTemplateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FedwireTemplateRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FedwireTemplate'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+          description: ''
+      x-stoplight:
+        id: gdkzvsulji2rd
+  /v1/fedwire_templates/{uuid}/:
+    get:
+      operationId: fedwire_templates_retrieve
+      description: 'Fetch details for a specified template.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve a Fedwire template
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - fedwire templates
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FedwireTemplate'
+          description: ''
+      x-stoplight:
+        id: mytjxnnzmqqzm
+    put:
+      operationId: fedwire_templates_update
+      description: 'Update the details of a template belonging to authenticated user, identified by `uuid`
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Update a Fedwire template
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - fedwire templates
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FedwireTemplateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FedwireTemplateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FedwireTemplateRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FedwireTemplate'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+          description: ''
+      x-stoplight:
+        id: ljvdxd9y6wocd
+    patch:
+      operationId: fedwire_templates_partial_update
+      description: 'Update the details of a template belonging to authenticated user, identified by `uuid`
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Update a Fedwire template
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - fedwire templates
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedFedwireTemplateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedFedwireTemplateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedFedwireTemplateRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FedwireTemplate'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+          description: ''
+      x-stoplight:
+        id: olpndk55cgzkx
+    delete:
+      operationId: fedwire_templates_destroy
+      description: 'Delete a specified template belonging to the user. The template will continue to exist in the database, but won''t be retrievable by the user. The name of the deleted template will be available for use in creating a new template.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Delete a Fedwire template
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - fedwire templates
+      security:
+      - oauth2:
+        - write
+      responses:
+        '204':
+          description: No response body
+      x-stoplight:
+        id: tbwsw1jb9caaq
+components:
+  schemas:
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    GeneralError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid
+        message:
+          type: string
+          description: An error response detailing the field and the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: v76fz3qxj5djb
+    PaginatedFedwireTemplateList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FedwireTemplate'
+      x-stoplight:
+        id: ysgmbpbdxpd4v
+    FedwireTemplateRequest:
+      type: object
+      properties:
+        recipient:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the wire recipient for wires sent using this template.
+          type: string
+          format: uuid
+        source_account:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the source account for wires sent using this template.
+          type: string
+          format: uuid
+        name:
+          type: string
+          minLength: 1
+          maxLength: 35
+          example: Construction
+          description: Name of the wire template for easy reference in the UI. This name must be unique to all templates owned by an organization.
+        wire_reason:
+          type: string
+          nullable: true
+          maxLength: 100
+          example: Payment for an invoice or bill
+          description: Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. If not provided, this value must be included when making a request to send a wire.
+        amount:
+          example: 500000
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: 'A field that returns the original value in the currency''s smallest unit (e.g. cents). If not provided, this value must be included when making a request to send a wire. '
+          type: integer
+          nullable: true
+        memo:
+          type: string
+          nullable: true
+          maxLength: 140
+          example: 'Invoice #1234'
+          description: Memo for wires sent using this template. If not provided, this value must be included when making a request to send a wire.
+      required:
+      - name
+      - recipient
+      - source_account
+      x-stoplight:
+        id: x7sgv4axacihg
+    PatchedFedwireTemplateRequest:
+      type: object
+      properties:
+        recipient:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the wire recipient for wires sent using this template.
+          type: string
+          format: uuid
+        source_account:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the source account for wires sent using this template.
+          type: string
+          format: uuid
+        name:
+          type: string
+          minLength: 1
+          maxLength: 35
+          example: Construction
+          description: Name of the wire template for easy reference in the UI. This name must be unique to all templates owned by an organization.
+        wire_reason:
+          type: string
+          nullable: true
+          maxLength: 100
+          example: Payment for an invoice or bill
+          description: Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. If not provided, this value must be included when making a request to send a wire.
+        amount:
+          example: 500000
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: 'A field that returns the original value in the currency''s smallest unit (e.g. cents). If not provided, this value must be included when making a request to send a wire. '
+          type: integer
+          nullable: true
+        memo:
+          type: string
+          nullable: true
+          maxLength: 140
+          example: 'Invoice #1234'
+          description: Memo for wires sent using this template. If not provided, this value must be included when making a request to send a wire.
+      required:
+      - name
+      - recipient
+      - source_account
+      x-stoplight:
+        id: aucbpwalozqdc
+    FedwireTemplate:
+      type: object
+      properties:
+        last_used:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+          description: Date when the template was last used to send a wire.
+        version_id:
+          type: string
+          readOnly: true
+          description: The version ID of the template, based on when template or recipient details were last updated.
+          example: e28e3b5e9076550cd276ba4d0ddbc93c52a273129238f107ed599edc0483d509
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        recipient:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the wire recipient for wires sent using this template.
+          type: string
+          format: uuid
+        source_account:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the source account for wires sent using this template.
+          type: string
+          format: uuid
+        name:
+          type: string
+          maxLength: 35
+          example: Construction
+          description: Name of the wire template for easy reference in the UI. This name must be unique to all templates owned by an organization.
+        wire_reason:
+          type: string
+          nullable: true
+          maxLength: 100
+          example: Payment for an invoice or bill
+          description: Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. If not provided, this value must be included when making a request to send a wire.
+        amount:
+          example: 500000
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: 'A field that returns the original value in the currency''s smallest unit (e.g. cents). If not provided, this value must be included when making a request to send a wire. '
+          type: integer
+          nullable: true
+        memo:
+          type: string
+          nullable: true
+          maxLength: 140
+          example: 'Invoice #1234'
+          description: Memo for wires sent using this template. If not provided, this value must be included when making a request to send a wire.
+      required:
+      - name
+      - recipient
+      - source_account
+      x-stoplight:
+        id: sxxn2v1apoapr
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

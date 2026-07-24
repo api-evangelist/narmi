@@ -1,0 +1,112 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances same-day transfers API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: same-day transfers
+paths:
+  /v1/transfers/same_day/fees/:
+    get:
+      operationId: transfers_same_day_fees_retrieve
+      description: 'Returns the fee structure for same day transfers to calculate the fee for any transfer.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve fee information for same day transfers
+      tags:
+      - same-day transfers
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransfersFee'
+          description: ''
+      x-stoplight:
+        id: cstxhyzmdea8d
+components:
+  schemas:
+    KindEnum:
+      enum:
+      - free
+      - fixed
+      - percent
+      type: string
+      description: '* `free` - free
+
+        * `fixed` - fixed
+
+        * `percent` - percent'
+      x-stoplight:
+        id: qcqed657de0rl
+    TransfersFee:
+      type: object
+      properties:
+        kind:
+          allOf:
+          - $ref: '#/components/schemas/KindEnum'
+          description: 'Supported fee structures
+
+
+            * `free` - free
+
+            * `fixed` - fixed
+
+            * `percent` - percent'
+        percent:
+          type: string
+          format: decimal
+          pattern: ^-?0?(?:\.\d{0,4})?$
+          nullable: true
+          description: Percentage fee of transfer amount. For free and fixed kind this will null, for percentage it is the fee percent as a decimal.
+        max:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          nullable: true
+          description: Maximum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount cap for the percentage fee.
+        min:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          nullable: true
+          description: Minimum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount minimum for the percentage fee.
+      required:
+      - kind
+      x-stoplight:
+        id: rmlugpiarfokw
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

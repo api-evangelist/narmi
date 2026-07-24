@@ -1,0 +1,339 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances reports API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: reports
+paths:
+  /v1/reports/bai_transaction_types/:
+    get:
+      operationId: reports_bai_transaction_types_list
+      description: 'Return the institution''s configured BAI transaction type codes from core metadata. Each entry includes the 3-digit BAI code, an optional description, and a direction (credit/debit/misc) derived from the code range.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List BAI transaction type codes
+      tags:
+      - reports
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BaiTransactionType'
+          description: ''
+      x-stoplight:
+        id: rprfeduxbqpte
+  /v1/reports/transactions_download/:
+    post:
+      operationId: reports_transactions_download_create
+      description: 'Export transaction history across one or more accounts as CSV or BAI2.
+
+
+        Use the `format` field to select the output format (defaults to `csv`).
+
+
+        Use the optional `filename` field to set a custom filename in the Content-Disposition header.
+
+        If omitted, a default name like `transaction-export-2024-03-05.csv` is generated.
+
+
+        Transactions are filtered by the specified date range. Optionally, results can be narrowed to
+
+        specific BAI transaction type codes.
+
+
+        CSV returns columns: Posted Date, Type, Description, Amount, Account, Notes, Balance, Raw Description, BAI Code.
+
+
+        BAI2 returns a spec-compliant BAI2 file with record types 01-99.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Export multi-account transactions
+      tags:
+      - reports
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultiAccountTransactionsDownloadRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MultiAccountTransactionsDownloadRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MultiAccountTransactionsDownloadRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          description: Streaming export file (CSV or BAI2) containing matching transactions.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRequestError'
+              examples:
+                InvalidRequestBody:
+                  value:
+                    id: invalid_request_error
+                    message: account_uuids is required
+                  summary: Request body failed validation.
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+              examples:
+                AccountUUIDNotFound:
+                  value:
+                    id: api_error
+                    message: No Account matches the given query.
+                  summary: One or more account UUIDs do not belong to the authenticated user.
+          description: ''
+      x-stoplight:
+        id: qqtfdg6jsdxb6
+  /v1/reports/transactions_stats/:
+    post:
+      operationId: reports_transactions_stats_create
+      description: 'Return aggregate statistics (count, credits, debits, net total) for transactions across one or more accounts within a date range.
+
+
+        Optionally filter by BAI transaction type codes. All monetary values are returned as integers representing amounts in cents.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Get multi-account transaction statistics
+      tags:
+      - reports
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MultiAccountTransactionsDownloadRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MultiAccountTransactionsDownloadRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MultiAccountTransactionsDownloadRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionStatsResponse'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRequestError'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: ''
+      x-stoplight:
+        id: h6lta5x2df2kv
+components:
+  schemas:
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    InvalidRequestError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid_request_error
+        message:
+          type: object
+          additionalProperties: {}
+          default:
+            field_name: Error description.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: aelrw6rc7wiph
+    FormatEnum:
+      enum:
+      - csv
+      - bai2
+      type: string
+      description: '* `csv` - CSV
+
+        * `bai2` - BAI2'
+      x-stoplight:
+        id: dmtikuvtyippe
+    TransactionStatsResponse:
+      type: object
+      properties:
+        transaction_count:
+          type: integer
+        net_total:
+          type: integer
+        credits:
+          type: integer
+        debits:
+          type: integer
+      required:
+      - credits
+      - debits
+      - net_total
+      - transaction_count
+      x-stoplight:
+        id: zctx6dbhmw4hq
+    BaiTransactionType:
+      type: object
+      properties:
+        code:
+          type: string
+          description: 3-digit BAI transaction type code.
+        description:
+          type: string
+          nullable: true
+          description: Human-readable description of the BAI code.
+        direction:
+          allOf:
+          - $ref: '#/components/schemas/DirectionEnum'
+          description: 'Transaction direction derived from the BAI code range.
+
+
+            * `credit` - credit
+
+            * `debit` - debit
+
+            * `misc` - misc'
+      required:
+      - code
+      - description
+      - direction
+      x-stoplight:
+        id: 38y8aokwjqdr4
+    MultiAccountTransactionsDownloadRequest:
+      type: object
+      description: Serializer for multi-account transaction export requests.
+      properties:
+        account_uuids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: List of account UUIDs to include in the export.
+          minItems: 1
+        min_date:
+          type: string
+          format: date
+          description: Start date of the export range (inclusive).
+        max_date:
+          type: string
+          format: date
+          description: End date of the export range (inclusive, end of day).
+        bai_codes:
+          type: array
+          items:
+            type: string
+            minLength: 1
+            maxLength: 3
+          description: List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included.
+        format:
+          allOf:
+          - $ref: '#/components/schemas/FormatEnum'
+          default: csv
+          description: 'Export file format. Defaults to CSV.
+
+
+            * `csv` - CSV
+
+            * `bai2` - BAI2'
+        filename:
+          type: string
+          minLength: 1
+          description: Custom filename for the downloaded file. Must end with the correct extension (.csv or .bai2).
+          maxLength: 255
+      required:
+      - account_uuids
+      - max_date
+      - min_date
+      x-stoplight:
+        id: 2xip7egajj3kk
+    DirectionEnum:
+      enum:
+      - credit
+      - debit
+      - misc
+      type: string
+      description: '* `credit` - credit
+
+        * `debit` - debit
+
+        * `misc` - misc'
+      x-stoplight:
+        id: fnpwkqv4ujmyo
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

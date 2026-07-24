@@ -1,0 +1,379 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances payments API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: payments
+paths:
+  /v1/payments/:
+    get:
+      operationId: payments_list
+      description: 'List the authenticated user''s bill payments. Payments use a third-party service (typically iPay) and represent transfers from a user''s account to a specified payee.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List bill payments
+      parameters:
+      - in: query
+        name: category
+        schema:
+          enum:
+          - history
+          - scheduled
+          type: string
+          minLength: 1
+        description: '* `history` - history
+
+          * `scheduled` - scheduled'
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+          maximum: 2147483648
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+          maximum: 2147483648
+      tags:
+      - payments
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedBillPaymentList'
+          description: ''
+      x-stoplight:
+        id: b6y2pxqr66zcw
+    post:
+      operationId: payments_create
+      description: 'Creates a bill payment for the authenticated user.Payments use a third-party service (typically iPay) and transfers can execute from a user''s account to a specified payee.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Creates a bill payment
+      tags:
+      - payments
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentCreateDocRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PaymentCreateDocRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PaymentCreateDocRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: api_error
+                    message: You do not have permission to perform this action.
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRequestError'
+          description: ''
+      x-stoplight:
+        id: fsngu5auqyswr
+  /v1/payments/{id}/:
+    delete:
+      operationId: payments_destroy
+      description: 'Deletes an authenticated user''s bill payment via the third-party integration (typically iPay).
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Delete a bill payment
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          pattern: ^[0-9a-z-]+$
+        required: true
+      tags:
+      - payments
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BillPayDestroy'
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRequestError'
+          description: ''
+      x-stoplight:
+        id: tkgh2l16a0nou
+components:
+  schemas:
+    PaymentCreateDocRequest:
+      type: object
+      properties:
+        payee_id:
+          type: string
+          minLength: 1
+          description: Identifies payment recipient to the payment processor. Can be fetched via the payees endpoints.
+          example: abc123
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        send_date:
+          type: string
+          format: date
+        expected_arrival_date:
+          type: string
+          format: date
+        type:
+          type: string
+          minLength: 1
+          description: The mode of payment, such as check or email.
+          example: check
+        recurring_rule:
+          type: string
+          minLength: 1
+          description: Cadence of recurring payment, as per the RFC-5545 specification.
+          example: RRULE:FREQ=DAILY;COUNT=1
+        ignore_warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorRequest'
+          writeOnly: true
+          description: Warning codes to be suppressed during call.
+          example:
+          - - code: '555'
+              description: Description
+            - code: '920'
+              description: Description
+      required:
+      - amount
+      - expected_arrival_date
+      - payee_id
+      - recurring_rule
+      - send_date
+      - type
+      x-stoplight:
+        id: dy1brabe9nexg
+    InvalidRequestError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid_request_error
+        message:
+          type: object
+          additionalProperties: {}
+          default:
+            field_name: Error description.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: aelrw6rc7wiph
+    PaginatedBillPaymentList:
+      type: object
+      required:
+      - meta
+      - links
+      - payments
+      properties:
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillPayment'
+        links:
+          type: object
+          description: URIs linking to sequential pages of the result.
+          properties:
+            next:
+              type: string
+              format: uri
+              nullable: true
+              example: https://narmi.example.com/v1/payments?after=400
+            prev:
+              type: string
+              format: uri
+              nullable: true
+              example: https://narmi.example.com/v1/payments?before=200
+        meta:
+          description: Free-form object, contains total object count.
+          type: object
+          properties:
+            total:
+              type: integer
+      x-stoplight:
+        id: 9en5lvhnoo3yu
+    ErrorRequest:
+      type: object
+      properties:
+        code:
+          type: string
+          minLength: 1
+        description:
+          type: string
+          minLength: 1
+      required:
+      - code
+      x-stoplight:
+        id: cqk62uhcqgodx
+    BillPayment:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: Identifies payment sender to the payment processor.
+          example: abc123
+        state:
+          allOf:
+          - $ref: '#/components/schemas/BillPaymentStateEnum'
+          readOnly: true
+          description: Indicates the status of the payment, for instance, if it's been processed or is pending.
+          example: pending
+        payee_id:
+          type: string
+          description: Identifies payment recipient to the payment processor. Can be fetched via the payees endpoints.
+          example: abc123
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        send_date:
+          type: string
+          format: date
+        expected_arrival_date:
+          type: string
+          format: date
+        type:
+          type: string
+          description: The mode of payment, such as check or email.
+          example: check
+        recurring_rule:
+          type: string
+          description: Cadence of recurring payment, as per the RFC-5545 specification.
+          example: RRULE:FREQ=DAILY;COUNT=1
+        from_account_id:
+          type: string
+          format: uuid
+          nullable: true
+          readOnly: true
+          description: UUID identifying the source account in the Narmi database.
+      required:
+      - amount
+      - expected_arrival_date
+      - payee_id
+      - recurring_rule
+      - send_date
+      - type
+      x-stoplight:
+        id: 5c2xpcuohb6ih
+    Payment:
+      type: object
+      properties:
+        payment:
+          $ref: '#/components/schemas/BillPayment'
+      required:
+      - payment
+      x-stoplight:
+        id: cnircybhdqhxw
+    BillPayDestroy:
+      type: object
+      properties:
+        deleted:
+          type: string
+          readOnly: true
+          default: true
+      x-stoplight:
+        id: tzrspxlehskqp
+    BillPaymentStateEnum:
+      type: string
+      enum:
+      - processed
+      - canceled
+      - pending
+      - returned
+      x-stoplight:
+        id: nfluwrqa5rysj
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

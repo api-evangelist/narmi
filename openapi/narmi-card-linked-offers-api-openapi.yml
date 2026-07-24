@@ -1,0 +1,620 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances card linked offers API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: card linked offers
+paths:
+  /v1/card-linked-offers/:
+    get:
+      operationId: card_linked_offers_retrieve
+      description: 'Get available card offers for a user.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Get card offers
+      parameters:
+      - in: query
+        name: is_targeted
+        schema:
+          type: boolean
+          default: false
+        description: Filter for targeted/recommended offers only
+      tags:
+      - card linked offers
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CardOffer'
+          description: List of available card offers
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: You do not have permission to perform this action.
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - id
+                - message
+                properties:
+                  id:
+                    type: string
+                    example: invalid_request_error
+                  message:
+                    description: An error response detailing the field and the nature of the error.
+                    oneOf:
+                    - type: string
+                    - type: object
+                      additionalProperties: true
+                    - type: array
+                      items:
+                        type: object
+                        additionalProperties: true
+              examples:
+                StringMessage:
+                  value:
+                    id: invalid_request_error
+                    message: Missing required profile data
+                  summary: String message
+                ObjectMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                      field_name: Message describing nature of error.
+                  summary: Object message
+                ArrayMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                    - field_name: Message describing nature of error.
+                    - second_field_name: Second Message.
+                  summary: Array message
+          description: Invalid request response.
+        '503':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: brbvfj2tthhwm
+  /v1/card-linked-offers/enrollment/:
+    get:
+      operationId: card_linked_offers_enrollment_retrieve
+      description: 'Check if the user is enrolled in a card linked offers program.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Check enrollment status
+      tags:
+      - card linked offers
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardOfferEnrollmentStatus'
+          description: Enrollment status
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: You do not have permission to perform this action.
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - id
+                - message
+                properties:
+                  id:
+                    type: string
+                    example: invalid_request_error
+                  message:
+                    description: An error response detailing the field and the nature of the error.
+                    oneOf:
+                    - type: string
+                    - type: object
+                      additionalProperties: true
+                    - type: array
+                      items:
+                        type: object
+                        additionalProperties: true
+              examples:
+                StringMessage:
+                  value:
+                    id: invalid_request_error
+                    message: An error string specifying the error.
+                  summary: String message
+                ObjectMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                      field_name: Message describing nature of error.
+                  summary: Object message
+                ArrayMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                    - field_name: Message describing nature of error.
+                    - second_field_name: Second Message.
+                  summary: Array message
+          description: Invalid request response.
+        '503':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: 2erzk1sbknvgq
+    post:
+      operationId: card_linked_offers_enrollment_create
+      description: 'Enroll the user in card linked offers feature using their profile information.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Enroll user in card linked offers
+      tags:
+      - card linked offers
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          description: No response body
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: You do not have permission to perform this action.
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - id
+                - message
+                properties:
+                  id:
+                    type: string
+                    example: invalid_request_error
+                  message:
+                    description: An error response detailing the field and the nature of the error.
+                    oneOf:
+                    - type: string
+                    - type: object
+                      additionalProperties: true
+                    - type: array
+                      items:
+                        type: object
+                        additionalProperties: true
+              examples:
+                StringMessage:
+                  value:
+                    id: invalid_request_error
+                    message: An error string specifying the error.
+                  summary: String message
+                ObjectMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                      field_name: Message describing nature of error.
+                  summary: Object message
+                ArrayMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                    - field_name: Message describing nature of error.
+                    - second_field_name: Second Message.
+                  summary: Array message
+          description: Invalid request response.
+        '503':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: pugxrdhwoc2wx
+    delete:
+      operationId: card_linked_offers_enrollment_destroy
+      description: 'Unenroll the user from the card linked offers feature using their profile information.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Unenroll user from card linked offers
+      tags:
+      - card linked offers
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          description: No response body
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: You do not have permission to perform this action.
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - id
+                - message
+                properties:
+                  id:
+                    type: string
+                    example: invalid_request_error
+                  message:
+                    description: An error response detailing the field and the nature of the error.
+                    oneOf:
+                    - type: string
+                    - type: object
+                      additionalProperties: true
+                    - type: array
+                      items:
+                        type: object
+                        additionalProperties: true
+              examples:
+                StringMessage:
+                  value:
+                    id: invalid_request_error
+                    message: User is not enrolled in card linked offers
+                  summary: String message
+                ObjectMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                      field_name: Message describing nature of error.
+                  summary: Object message
+                ArrayMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                    - field_name: Message describing nature of error.
+                    - second_field_name: Second Message.
+                  summary: Array message
+          description: Invalid request response.
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - id
+                - message
+                properties:
+                  id:
+                    type: string
+                    example: invalid_request_error
+                  message:
+                    description: An error response detailing the field and the nature of the error.
+                    oneOf:
+                    - type: string
+                    - type: object
+                      additionalProperties: true
+                    - type: array
+                      items:
+                        type: object
+                        additionalProperties: true
+              examples:
+                StringMessage:
+                  value:
+                    id: invalid_request_error
+                    message: Missing required profile data
+                  summary: String message
+                ObjectMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                      field_name: Message describing nature of error.
+                  summary: Object message
+                ArrayMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                    - field_name: Message describing nature of error.
+                    - second_field_name: Second Message.
+                  summary: Array message
+          description: Invalid request response.
+        '503':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: kua5wbsfobnao
+components:
+  schemas:
+    PurchaseChannelsEnum:
+      enum:
+      - online
+      - in_store
+      type: string
+      description: '* `online` - online
+
+        * `in_store` - in_store'
+      x-stoplight:
+        id: mjmvea9tnh4vq
+    CardOfferEnrollmentStatus:
+      type: object
+      description: Serializer for enrollment status response
+      properties:
+        is_enrolled:
+          type: boolean
+          readOnly: true
+      x-stoplight:
+        id: a6dwo7tpb2ghy
+    CategoriesEnum:
+      enum:
+      - Arts & Entertainment
+      - Baby, Kids & Toys
+      - Books & Digital Media
+      - Clothing, Shoes & Accessories
+      - Computers, Electronics & Software
+      - Convenience
+      - Gas
+      - Department Stores
+      - Food & Beverage
+      - Health & Beauty
+      - Home & Garden
+      - Miscellaneous
+      - Occasions & Gifts
+      - Pets
+      - Sports & Outdoors
+      - Supplies & Services
+      - Travel
+      - Other
+      type: string
+      description: '* `Arts & Entertainment` - Arts & Entertainment
+
+        * `Baby, Kids & Toys` - Baby, Kids & Toys
+
+        * `Books & Digital Media` - Books & Digital Media
+
+        * `Clothing, Shoes & Accessories` - Clothing, Shoes & Accessories
+
+        * `Computers, Electronics & Software` - Computers, Electronics & Software
+
+        * `Convenience` - Convenience
+
+        * `Gas` - Gas
+
+        * `Department Stores` - Department Stores
+
+        * `Food & Beverage` - Food & Beverage
+
+        * `Health & Beauty` - Health & Beauty
+
+        * `Home & Garden` - Home & Garden
+
+        * `Miscellaneous` - Miscellaneous
+
+        * `Occasions & Gifts` - Occasions & Gifts
+
+        * `Pets` - Pets
+
+        * `Sports & Outdoors` - Sports & Outdoors
+
+        * `Supplies & Services` - Supplies & Services
+
+        * `Travel` - Travel
+
+        * `Other` - Other'
+      x-stoplight:
+        id: hnd0c8ky6kbs8
+    CardOfferAsset:
+      type: object
+      description: Serializer for card offer assets.
+      properties:
+        type:
+          type: string
+        url:
+          type: string
+          format: uri
+        alt_text:
+          type: string
+      required:
+      - alt_text
+      - type
+      - url
+      x-stoplight:
+        id: rwb5b0hmczudt
+    RewardTypeEnum:
+      enum:
+      - flat
+      - percentage
+      type: string
+      description: '* `flat` - flat
+
+        * `percentage` - percentage'
+      x-stoplight:
+        id: wbtxqz7kofhhe
+    CardOffer:
+      type: object
+      description: Serializer for card offers returned by the API.
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        terms:
+          type: string
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/CategoriesEnum'
+        expiration_date:
+          type: string
+          format: date-time
+          nullable: true
+        start_date:
+          type: string
+          format: date-time
+          nullable: true
+        reward_type:
+          $ref: '#/components/schemas/RewardTypeEnum'
+        reward_value:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        purchase_channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseChannelsEnum'
+        min_reward_amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+          nullable: true
+        max_reward_amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+          nullable: true
+        min_transaction_amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+          nullable: true
+        max_transaction_amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+          nullable: true
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardOfferAsset'
+        merchant_url:
+          type: string
+          format: uri
+          nullable: true
+      required:
+      - assets
+      - categories
+      - description
+      - expiration_date
+      - id
+      - max_reward_amount
+      - max_transaction_amount
+      - merchant_url
+      - min_reward_amount
+      - min_transaction_amount
+      - name
+      - purchase_channels
+      - reward_type
+      - reward_value
+      - start_date
+      - terms
+      x-stoplight:
+        id: sfc37b8rofbms
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

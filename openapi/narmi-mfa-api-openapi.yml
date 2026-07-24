@@ -1,0 +1,383 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances mfa API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: mfa
+paths:
+  /v1/mfa/:
+    get:
+      operationId: mfa_list
+      description: 'List the authenticated user''s MFA devices.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List MFA devices
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+          maximum: 2147483648
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+          maximum: 2147483648
+      tags:
+      - mfa
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedMFAList'
+              examples:
+                ListMFADevices:
+                  value:
+                    links:
+                      next: null
+                      previous: null
+                    meta:
+                      total: 4
+                    results:
+                    - id: django_otp.plugins.otp_totp.models.TOTPDevice/1
+                      name: Narmi Auth
+                      type: totp
+                      value: ''
+                    - id: django_otp.plugins.otp_static.models.StaticDevice/1
+                      name: Backup Codes
+                      type: static
+                      value: ''
+                    - id: django_otp.plugins.otp_email.models.EmailDevice/1
+                      name: Email
+                      type: email
+                      value: johndoe_0@emailpalace.com
+                    - id: otp_twilio.models.TwilioSMSDevice/1
+                      name: Phone (***) ***-*234
+                      type: phone
+                      value: (201) 555-1234
+                  summary: List MFA devices
+          description: ''
+      x-stoplight:
+        id: exurgwgjhxydk
+  /v1/mfa/{id}/:
+    delete:
+      operationId: mfa_destroy
+      description: 'Delete a user''s MFA device.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Delete MFA device
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        description: MFA device ID, constituted by a string of the device type followed by a device ID e.g. `otp_twilio.models.TwilioSMSDevice/1`.
+        required: true
+      tags:
+      - mfa
+      security:
+      - oauth2:
+        - write
+      responses:
+        '204':
+          description: Successfully deleted.
+        '400':
+          description: Device type specified is invalid.
+        '403':
+          description: User is not the owner of the device.
+        '404':
+          description: Device not found.
+        '422':
+          description: Device deletion blocked by risk evaluation.
+      x-stoplight:
+        id: fipnjdclprclr
+  /v1/sudo/:
+    get:
+      operationId: sudo_retrieve
+      description: 'Retrieve information on whether the current user has sudo permissions.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve sudo status
+      tags:
+      - mfa
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetrieveSudoResponse'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: Not found.
+          description: ''
+      x-stoplight:
+        id: id3s9kglbg24y
+    post:
+      operationId: sudo_create
+      description: "Elevate user permissions using Two-Factor-Authentication. \n\n\n\nSend a `device_id` to generate and dispatch a one-time-password to the specified device. \n\n\n\nSend `device_id` and `one_time_password` to validate the OTP sent to a user. \n\n\n\nThe endpoint will return a `403` if there is an issue with the `device_id` or `one_time_password`, or if the user has no registered 2FA devices.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      summary: Elevate sudo permissions
+      tags:
+      - mfa
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSudoRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateSudoRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateSudoRequest'
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSudo'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  id:
+                    type: string
+              examples:
+                ValidationError:
+                  value:
+                    message: Invalid input.
+                    id: invalid
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSudoErrorResponse'
+          description: ''
+      x-stoplight:
+        id: 1touz0r3uuwrb
+components:
+  schemas:
+    RetrieveSudoResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          readOnly: true
+          default: true
+      x-stoplight:
+        id: ecxgpo7l4spwk
+    MFATypeEnum:
+      enum:
+      - phone
+      - email
+      - totp
+      - static
+      type: string
+      description: '* `phone` - phone
+
+        * `email` - email
+
+        * `totp` - totp
+
+        * `static` - static'
+      x-stoplight:
+        id: mh44yrg9eexp8
+    MFA:
+      type: object
+      description: Serializer for two-factor authorization devices.
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        type:
+          allOf:
+          - $ref: '#/components/schemas/MFATypeEnum'
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+          description: This field will be set to the user's phone number or email for the respective device types, otherwise, it will be blank.
+      x-stoplight:
+        id: uasyxxgs07boc
+    Device:
+      type: object
+      description: Serializer for two-factor authorization devices.
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: otp_twilio.models.TwilioSMSDevice/1
+        number_type:
+          type: string
+          readOnly: true
+          example: mobile
+        name:
+          type: string
+          readOnly: true
+          example: User's iPhone
+      x-stoplight:
+        id: t9hj1bdrxqmb5
+    PaginatedMFAList:
+      type: object
+      required:
+      - meta
+      - links
+      - results
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/MFA'
+        links:
+          type: object
+          description: URIs linking to sequential pages of the result.
+          properties:
+            next:
+              type: string
+              format: uri
+              nullable: true
+              example: https://narmi.example.com/v1/payments?after=400
+            prev:
+              type: string
+              format: uri
+              nullable: true
+              example: https://narmi.example.com/v1/payments?before=200
+        meta:
+          description: Free-form object, contains total object count.
+          type: object
+          properties:
+            total:
+              type: integer
+      x-stoplight:
+        id: 7td8zskzbxtfs
+    CreateSudo:
+      type: object
+      properties:
+        message:
+          type: string
+          readOnly: true
+          default: sudo mode granted
+      x-stoplight:
+        id: bfxhys08o2jvk
+    CreateSudoErrorResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique code describing the error
+          example: two_factor_authentication_required
+        message:
+          type: string
+          description: Error message detailing what went wrong
+          example: Please enter the code from your second factor device.
+        devices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Device'
+          description: A list of devices that can be used to send an OTP to.
+        device:
+          allOf:
+          - $ref: '#/components/schemas/Device'
+          description: Device which was targetted for the request by the client.
+      required:
+      - device
+      - devices
+      - id
+      - message
+      x-stoplight:
+        id: plbglbg82ol4i
+    CreateSudoRequest:
+      type: object
+      properties:
+        device_id:
+          type: string
+          writeOnly: true
+          minLength: 1
+          example: otp_twilio.models.TwilioSMSDevice/1
+        one_time_password:
+          type: string
+          writeOnly: true
+          minLength: 1
+          example: '123123'
+      x-stoplight:
+        id: cegpkzjxlrdeq
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

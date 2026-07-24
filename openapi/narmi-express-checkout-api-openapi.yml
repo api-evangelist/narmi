@@ -1,0 +1,82 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances express-checkout API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: express-checkout
+paths:
+  /v1/express-checkout/create-setup-intent/:
+    post:
+      operationId: express_checkout_setup_intent_create
+      description: 'Creates a Stripe SetupIntent for collecting payment method details via Express Checkout Element (Apple Pay, Google Pay) without immediate charge.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create SetupIntent for Express Checkout
+      tags:
+      - express-checkout
+      responses:
+        '200':
+          description: No response body
+      x-stoplight:
+        id: jzjuhse0vmkkw
+  /v1/express-checkout/payment-method/{payment_method_id}/:
+    get:
+      operationId: express_checkout_payment_method_retrieve
+      description: 'Retrieves card brand and last4 digits from a Stripe payment method for display purposes.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Get payment method details
+      parameters:
+      - in: path
+        name: payment_method_id
+        schema:
+          type: string
+          pattern: ^pm_[a-zA-Z0-9]+$
+        required: true
+      tags:
+      - express-checkout
+      responses:
+        '200':
+          description: No response body
+      x-stoplight:
+        id: zo4ikfqtjdmok
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

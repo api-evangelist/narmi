@@ -1,0 +1,151 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances ach companies API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: ach companies
+paths:
+  /v1/ach_companies/:
+    get:
+      operationId: ach_companies_list
+      description: 'List the ACH companies an authenticated business user has access to for ACH origination purposes.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List ACH companies
+      parameters:
+      - in: query
+        name: institution_account
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: organization
+        schema:
+          type: string
+          format: uuid
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - ach companies
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedACHCompanyList'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionDeniedError'
+          description: ''
+      x-stoplight:
+        id: 9lfgrnxaltxtj
+components:
+  schemas:
+    PaginatedACHCompanyList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHCompany'
+      x-stoplight:
+        id: lsm498fpc94po
+    PermissionDeniedError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: You do not have permission to perform this action.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: ywbohhxwqjqj3
+    ACHCompany:
+      type: object
+      properties:
+        company_name:
+          type: string
+          description: The name of the entity that is sending money through the ACH network. This name should be recognizable to the recipient.
+          maxLength: 16
+          example: Stark Industries
+        company_id:
+          type: string
+          description: 10-digit alphanumeric string that identifies the entity that is sending money through the ACH network.
+          maxLength: 10
+          example: '0111122222'
+        organization:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The organization associated with the ACH company.
+          type: string
+          format: uuid
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+      required:
+      - company_id
+      - company_name
+      - organization
+      x-stoplight:
+        id: godr0nhfnit5i
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

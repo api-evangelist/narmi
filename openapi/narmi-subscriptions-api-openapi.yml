@@ -1,0 +1,603 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances subscriptions API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: subscriptions
+paths:
+  /v1/subscriptions/:
+    get:
+      operationId: subscriptions_list
+      description: 'List the authenticated user''s subscriptions.
+
+
+        Subscriptions are used to create callback events for the webhook service.
+
+
+        When a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.
+
+
+        More information including how to validate the webhook callback request can be found in the webhook events section of the documentation.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List subscriptions
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: per_page
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - subscriptions
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSubscriptionList'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: ''
+      x-stoplight:
+        id: v4qoawevxd4ay
+    post:
+      operationId: subscriptions_create
+      description: 'Creates a subscription for the authenticated user to fire a webhook when a target object is modified.
+
+
+        Subscriptions are used to create callback events for the webhook service.
+
+
+        When a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.
+
+
+        More information including how to validate the webhook callback request can be found in the webhook events section of the documentation.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create a subscription
+      tags:
+      - subscriptions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - id
+                - message
+                properties:
+                  id:
+                    type: string
+                    example: invalid_request_error
+                  message:
+                    description: An error response detailing the field and the nature of the error.
+                    oneOf:
+                    - type: string
+                    - type: object
+                      additionalProperties: true
+                    - type: array
+                      items:
+                        type: object
+                        additionalProperties: true
+              examples:
+                StringMessage:
+                  value:
+                    id: invalid_request_error
+                    message: Message describing nature of error.
+                  summary: String message
+                ObjectMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                      field_name: Message describing nature of error.
+                  summary: Object message
+                ArrayMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                    - field_name: Message describing nature of error.
+                    - second_field_name: Second Message.
+                  summary: Array message
+          description: Invalid request response.
+      x-stoplight:
+        id: j1rfo47ewafht
+  /v1/subscriptions/{uuid}/:
+    get:
+      operationId: subscriptions_retrieve
+      description: 'Fetch a specified subscription.
+
+
+        Subscriptions are used to create callback events for the webhook service.
+
+
+        When a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.
+
+
+        More information including how to validate the webhook callback request can be found in the webhook events section of the documentation.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve a subscription
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+        required: true
+      tags:
+      - subscriptions
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          description: ''
+      x-stoplight:
+        id: vdqug5wrtwbew
+    put:
+      operationId: subscriptions_update
+      description: 'Update a specified subscription.
+
+
+        Subscriptions are used to create callback events for the webhook service.
+
+
+        When a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.
+
+
+        More information including how to validate the webhook callback request can be found in the webhook events section of the documentation.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Update a subscription
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+        required: true
+      tags:
+      - subscriptions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SubscriptionRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionResponse'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - id
+                - message
+                properties:
+                  id:
+                    type: string
+                    example: invalid_request_error
+                  message:
+                    description: An error response detailing the field and the nature of the error.
+                    oneOf:
+                    - type: string
+                    - type: object
+                      additionalProperties: true
+                    - type: array
+                      items:
+                        type: object
+                        additionalProperties: true
+              examples:
+                StringMessage:
+                  value:
+                    id: invalid_request_error
+                    message: Message describing nature of error.
+                  summary: String message
+                ObjectMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                      field_name: Message describing nature of error.
+                  summary: Object message
+                ArrayMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                    - field_name: Message describing nature of error.
+                    - second_field_name: Second Message.
+                  summary: Array message
+          description: Invalid request response.
+      x-stoplight:
+        id: nx9dn46wiyqsn
+    patch:
+      operationId: subscriptions_partial_update
+      description: 'Update specific fields for a specified subscription.
+
+
+        Subscriptions are used to create callback events for the webhook service.
+
+
+        When a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.
+
+
+        More information including how to validate the webhook callback request can be found in the webhook events section of the documentation.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Modify subscription
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+        required: true
+      tags:
+      - subscriptions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSubscriptionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSubscriptionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSubscriptionRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Subscription'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          description: ''
+      x-stoplight:
+        id: jqat1f5iegf52
+    delete:
+      operationId: subscriptions_destroy
+      description: 'Delete a specified subscription.
+
+
+        Subscriptions are used to create callback events for the webhook service.
+
+
+        When a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.
+
+
+        More information including how to validate the webhook callback request can be found in the webhook events section of the documentation.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Delete a subscription
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+        required: true
+      tags:
+      - subscriptions
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          description: No response body
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          description: ''
+      x-stoplight:
+        id: yvwxef2piehum
+components:
+  schemas:
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    SubscriptionRequest:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          minLength: 1
+          description: The URL called when the webhook event occurs.
+        is_active:
+          type: boolean
+        version:
+          type: string
+          minLength: 1
+          description: Version string for future versioning functionality, can be left blank
+          maxLength: 64
+          example: ''
+        event_type:
+          type: string
+          minLength: 1
+          description: The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`
+          maxLength: 64
+          example: user.login
+        description:
+          type: string
+          minLength: 1
+          maxLength: 64
+          example: Webhook subscription for monitoring user logins.
+      required:
+      - url
+      x-stoplight:
+        id: p7b6jotjjvlvu
+    PaginatedSubscriptionList:
+      type: object
+      required:
+      - meta
+      - links
+      properties:
+        meta:
+          description: Free-form object, contains total object count.
+          type: object
+          properties:
+            total:
+              type: integer
+        links:
+          type: object
+          description: URIs linking to sequential pages of the result.
+          properties:
+            next:
+              type: string
+              format: uri
+              nullable: true
+              example: http://api.example.org/accounts/?page=4
+            prev:
+              type: string
+              format: uri
+              nullable: true
+              example: http://api.example.org/accounts/?page=4
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
+      x-stoplight:
+        id: cfy3ohfpwkyn5
+    SubscriptionResponse:
+      type: object
+      properties:
+        subscription:
+          $ref: '#/components/schemas/Subscription'
+      required:
+      - subscription
+      x-stoplight:
+        id: 1t5cvzomt9ll7
+    Subscription:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+          example: 1f428078-d075-410a-939d-194357a7be0b
+        url:
+          type: string
+          format: uri
+          description: The URL called when the webhook event occurs.
+        is_active:
+          type: boolean
+        version:
+          type: string
+          description: Version string for future versioning functionality, can be left blank
+          maxLength: 64
+          example: ''
+        event_type:
+          type: string
+          description: The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`
+          maxLength: 64
+          example: user.login
+        secret:
+          type: string
+          readOnly: true
+          description: Key used to validate signatures sent during webhook calls
+          example: aLwDFGWc5suR
+        description:
+          type: string
+          maxLength: 64
+          example: Webhook subscription for monitoring user logins.
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - url
+      x-stoplight:
+        id: gsayimqdodbuv
+    PatchedSubscriptionRequest:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          minLength: 1
+          description: The URL called when the webhook event occurs.
+        is_active:
+          type: boolean
+        version:
+          type: string
+          minLength: 1
+          description: Version string for future versioning functionality, can be left blank
+          maxLength: 64
+          example: ''
+        event_type:
+          type: string
+          minLength: 1
+          description: The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`
+          maxLength: 64
+          example: user.login
+        description:
+          type: string
+          minLength: 1
+          maxLength: 64
+          example: Webhook subscription for monitoring user logins.
+      required:
+      - url
+      x-stoplight:
+        id: 2iwc8rppnzdr3
+    ObjectNotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: Not found.
+      x-stoplight:
+        id: z4yx0oczlqjyf
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

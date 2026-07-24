@@ -1,0 +1,2547 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances cards API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: cards
+paths:
+  /v1/cards/:
+    get:
+      operationId: cards_list
+      description: "List the user's cards. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      summary: List cards for a user
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - cards
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCardInfoList'
+              examples:
+                READ:
+                  value:
+                    count: 123
+                    next: http://api.example.org/accounts/?page=4
+                    previous: http://api.example.org/accounts/?page=2
+                    results:
+                    - id: '1'
+                      name: Standard Rewards
+                      last_four_digits: '4692'
+                      shipping:
+                        address:
+                          street_address: 96484 Donald Squares
+                          street_address_2: ''
+                          city: Lewishaven
+                          region_code: MN
+                          postal_code: '83505'
+                          country_code: US
+                          type: primary
+                        method: ''
+                        shipped_on: '2024-05-24'
+                      network: Visa
+                      state: normal
+                      image: <svg>...</svg>
+                      text_color: '#FFFFFF'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: You do not have permission to perform this action.
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: Not found.
+          description: ''
+        '500':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: wqvit71pccxzo
+  /v1/cards/{card_id}/:
+    get:
+      operationId: cards_retrieve
+      description: "Retrieve specified card. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      summary: Retrieve specified card
+      parameters:
+      - in: path
+        name: card_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - cards
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardInfo'
+              examples:
+                READ:
+                  value:
+                    id: '1'
+                    name: Standard Rewards
+                    last_four_digits: '4692'
+                    shipping:
+                      address:
+                        street_address: 96484 Donald Squares
+                        street_address_2: ''
+                        city: Lewishaven
+                        region_code: MN
+                        postal_code: '83505'
+                        country_code: US
+                        type: primary
+                      method: ''
+                      shipped_on: '2024-05-24'
+                    network: Visa
+                    state: normal
+                    image: <svg>...</svg>
+                    text_color: '#FFFFFF'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: You do not have permission to perform this action.
+          description: ''
+        '500':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: 1kxqohlsv7zwo
+    put:
+      operationId: cards_update
+      description: "Activate and deactivate a specified card. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      summary: Activate or deactivate card
+      parameters:
+      - in: path
+        name: card_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - cards
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CardRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CardRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      deprecated: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LegacyUpdateCardResponse'
+              examples:
+                Read:
+                  value:
+                    card:
+                      id: card_id
+                      core_user_id: '1'
+                      bin: '123412'
+                      last_four_digits: '1234'
+                      state: active
+                      svg: <svg>...</svg>
+                      is_card_number_on_front: 'True'
+                      card_text_color: '#FFFFFF'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: You do not have permission to perform this action.
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: Not found.
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                ErrorExample:
+                  value:
+                    id: invalid_request_error
+                    message: state
+          description: ''
+        '406':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotAcceptable:
+                  value:
+                    id: not_acceptable
+                    message: Deprecated update endpoint supports only versions <= 16.
+                  description: Endpoint deprecated for version 17+
+          description: Endpoint deprecated for version 17+
+        '500':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: dxhbislydke4r
+  /v1/cards/{card_id}/address/:
+    get:
+      operationId: cards_address_retrieve
+      description: "Retrieve the registered address for the specified card. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      summary: Retrieve card address
+      parameters:
+      - in: path
+        name: card_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - cards
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+              examples:
+                READ:
+                  value:
+                    street_address: 96484 Donald Squares
+                    street_address_2: ''
+                    city: Lewishaven
+                    region_code: MN
+                    postal_code: '83505'
+                    country_code: US
+                    type: primary
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: You do not have permission to perform this action.
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: Not found.
+          description: ''
+        '500':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: duivxf40ljmtj
+  /v1/cards/{card_id}/limits/:
+    get:
+      operationId: cards_limits_retrieve
+      description: "Get specified card limits. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      summary: Get specified card limits
+      parameters:
+      - in: path
+        name: card_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - cards
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardLimits'
+              examples:
+                READ:
+                  value:
+                    id: '222'
+                    pos_limit: 5000.0
+                    atm_limit: 1000.0
+                    has_atm_limit_increased_today: false
+                    has_pos_limit_increased_today: false
+                    can_user_request_limit_increase: true
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: User does not have the necessary card limit increase features.
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: Not found.
+          description: ''
+        '500':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: pwdilhzyrbsyn
+    post:
+      operationId: cards_limits_create
+      description: "Update card limits. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      summary: Update card limits
+      parameters:
+      - in: path
+        name: card_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - cards
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardLimits'
+              examples:
+                READ:
+                  value:
+                    id: '222'
+                    pos_limit: 5000.0
+                    atm_limit: 1000.0
+                    has_atm_limit_increased_today: false
+                    has_pos_limit_increased_today: false
+                    can_user_request_limit_increase: true
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  id:
+                    type: string
+              examples:
+                ValidationError:
+                  value:
+                    message: Requested limit must be greater than current limit
+                    id: invalid
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+              examples:
+                ErrorMaxRequestsExample:
+                  value:
+                    message: Maximum number of requests made
+                    id: max_number_requests
+                ErrorATMPermissionExample:
+                  value:
+                    message: User does not have permission to increase atm limit
+                    id: permission_denied
+                ErrorPOSPermissionExample:
+                  value:
+                    message: User does not have permission to increase spending limit
+                    id: permission_denied
+                ErrorCardTypeATMPermissionExample:
+                  value:
+                    message: User does not have permission to update "atm" card type limits
+                    id: permission_denied
+                ErrorCardTypeCreditPermissionExample:
+                  value:
+                    message: User does not have permission to update "credit" card type limits
+                    id: permission_denied
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: Not found.
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                ErrorInvalidRequestExample:
+                  value:
+                    id: invalid_request_error
+                    message: amount
+          description: ''
+        '500':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: 3bjygpeehrwvy
+  /v1/cards/{card_id}/lock/:
+    post:
+      operationId: cards_lock_create
+      description: "Freeze a card so that it cannot be used. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      summary: Lock a card
+      parameters:
+      - in: path
+        name: card_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - cards
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonCard'
+              examples:
+                READ:
+                  value:
+                    id: '405'
+                    core_user_id: gszAmFzCglfoGwyD
+                    last_four_digits: 0058
+                    state: normal
+                    bin: '478763'
+                    network: Visa
+                    name: Standard Rewards
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: You do not have permission to perform this action.
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: No card found for 1
+          description: ''
+        '500':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: bw0lkepmbwc55
+  /v1/cards/{card_id}/replace_card/:
+    post:
+      operationId: cards_replace_card_create
+      description: 'Submits a request to the card processor to send a replacement to the user, as well as notifying the user of said action via email.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Replace a missing card
+      parameters:
+      - in: path
+        name: card_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - cards
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MissingCardRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MissingCardRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MissingCardRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonCard'
+              examples:
+                READ:
+                  value:
+                    id: '405'
+                    core_user_id: gszAmFzCglfoGwyD
+                    last_four_digits: 0058
+                    state: normal
+                    bin: '478763'
+                    network: Visa
+                    name: Standard Rewards
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  id:
+                    type: string
+              examples:
+                ValidationError:
+                  value:
+                    message: Please enter a valid reason.
+                    id: invalid
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: You do not have permission to perform this action.
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: Not found.
+          description: ''
+        '500':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: wiy6vrwdotcx7
+  /v1/cards/{card_id}/sensitive/:
+    get:
+      operationId: cards_sensitive_retrieve
+      description: 'Fetches card PAN, CVV, and Expiration Date.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve card PAN
+      parameters:
+      - in: path
+        name: card_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - cards
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensitiveCardInfo'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: No card found for 1
+          description: ''
+        '500':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: cdq8iiws8zupy
+  /v1/cards/{card_id}/subscriptions/:
+    get:
+      operationId: cards_subscriptions_retrieve
+      description: 'Retrieve card subscriptions for a specified card.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve card subscriptions
+      parameters:
+      - in: path
+        name: card_id
+        schema:
+          type: string
+        description: The id of the card to fetch subscriptions for.
+        required: true
+      - in: query
+        name: end_date
+        schema:
+          type: string
+          format: date
+          default: '2026-07-17'
+        description: Optional `end_date` parameter. The end date for card subscriptions (YYYY-MM-DD).
+      - in: query
+        name: start_date
+        schema:
+          type: string
+          format: date
+          default: '2025-07-17'
+        description: Optional `start_date` parameter. The start date for card subscriptions (YYYY-MM-DD).
+      tags:
+      - cards
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardSubscriptionsAndTransactions'
+              examples:
+                READ:
+                  value:
+                    subscriptions:
+                    - id: 8c082ea3-00a4-4881-b38a-b6487ba93a52
+                      amount: 10.0
+                      merchant_name: Spotify
+                      state: current
+                      recurrence_frequency: monthly
+                      next_payment_date: '2024-06-01'
+                    - id: 17cc8bdc-5d5f-4026-8109-c93b82e5e5ba
+                      amount: 2.99
+                      merchant_name: Apple
+                      state: cancelled
+                      recurrence_frequency: monthly
+                      next_payment_date: null
+                    monthly_transactions:
+                    - month: 2024-03
+                      total: 12.99
+                      transaction_count: 2
+                      transactions:
+                      - id: cb10f8c0-bfbd-406a-9df9-f0dcc92e9dfc
+                        amount: '10.00'
+                        category_code: '1234'
+                        merchant_name: Spotify
+                        transaction_date: '2024-03-01'
+                        subscription_id: 8c082ea3-00a4-4881-b38a-b6487ba93a52
+                      - id: dbed8914-6935-4e3c-bcb6-4eed42dc2751
+                        amount: '2.99'
+                        merchant_name: Apple
+                        category_code: '5678'
+                        transaction_date: '2024-03-10'
+                        subscription_id: 17cc8bdc-5d5f-4026-8109-c93b82e5e5ba
+                    - month: 2024-04
+                      total: 12.99
+                      transaction_count: 2
+                      transactions:
+                      - id: 9c19c5d9-96df-40a7-93d4-83daf55308d2
+                        amount: '10.00'
+                        category_code: '1234'
+                        merchant_name: Spotify
+                        transaction_date: '2024-04-01'
+                        subscription_id: 8c082ea3-00a4-4881-b38a-b6487ba93a52
+                      - id: d5e0930a-efc0-422e-b63c-d89346eae4a8
+                        amount: '2.99'
+                        merchant_name: Apple
+                        category_code: '5678'
+                        transaction_date: '2024-04-10'
+                        subscription_id: 17cc8bdc-5d5f-4026-8109-c93b82e5e5ba
+                    - month: 2024-05
+                      total: 10.0
+                      transaction_count: 1
+                      transactions:
+                      - id: e81f51fc-23ee-4b2c-8e71-1abd5866a01d
+                        amount: '10.00'
+                        category_code: '1234'
+                        merchant_name: Spotify
+                        transaction_date: '2024-05-01'
+                        subscription_id: 8c082ea3-00a4-4881-b38a-b6487ba93a52
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  id:
+                    type: string
+              examples:
+                ValidationError:
+                  value:
+                    message: Invalid input.
+                    id: invalid
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+              examples:
+                ErrorCardSubscriptionPermissionExample:
+                  value:
+                    message: User does not have the necessary card subscription management feature.
+                    id: permission_denied
+                ErrorCardPermissionExample:
+                  value:
+                    message: User does not have the "cards" feature.
+                    id: permission_denied
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: Not found.
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+                description: Unspecified response body
+              examples:
+                VisaExceptionError:
+                  value:
+                    id: service_failure_error
+                    message: Sorry, we were unable to process your request, please check back soon.
+          description: ''
+      x-stoplight:
+        id: insbbgsoclbop
+  /v1/cards/{card_id}/travel_note/:
+    get:
+      operationId: cards_travel_note_list
+      description: 'List the travel notices for the specified card.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Get a card's travel notice
+      parameters:
+      - in: path
+        name: card_id
+        schema:
+          type: string
+          pattern: ^[0-9A-Za-z-]+$
+        required: true
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - cards
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCardTravelNoteList'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: You do not have permission to perform this action.
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: Not found.
+          description: ''
+        '500':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: lvtb0mmdqmnrt
+    post:
+      operationId: cards_travel_note_create
+      description: 'Create travel note for the specified card.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create travel note
+      parameters:
+      - in: path
+        name: card_id
+        schema:
+          type: string
+          pattern: ^[0-9A-Za-z-]+$
+        required: true
+      tags:
+      - cards
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardTravelNoteRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CardTravelNoteRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CardTravelNoteRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardTravelNote'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  id:
+                    type: string
+              examples:
+                ValidationError:
+                  value:
+                    message: This card is not eligible for travel notes.
+                    id: invalid
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: You do not have permission to perform this action.
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: Not found.
+          description: ''
+        '500':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: ddbqa8wd0q3rt
+    delete:
+      operationId: cards_travel_note_destroy
+      description: 'Delete travel note for specified card.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Delete travel note
+      parameters:
+      - in: path
+        name: card_id
+        schema:
+          type: string
+          pattern: ^[0-9A-Za-z-]+$
+        required: true
+      tags:
+      - cards
+      security:
+      - oauth2:
+        - write
+      responses:
+        '204':
+          description: No response body
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: You do not have permission to perform this action.
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: Not found.
+          description: ''
+        '500':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: 3z0x7fztfjvkr
+  /v1/cards/{card_id}/unlock/:
+    post:
+      operationId: cards_unlock_create
+      description: "Un-freeze a card so that it can be used. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      summary: Unlock a card
+      parameters:
+      - in: path
+        name: card_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - cards
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonCard'
+              examples:
+                READ:
+                  value:
+                    id: '405'
+                    core_user_id: gszAmFzCglfoGwyD
+                    last_four_digits: 0058
+                    state: normal
+                    bin: '478763'
+                    network: Visa
+                    name: Standard Rewards
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: You do not have permission to perform this action.
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                NotFound:
+                  value:
+                    id: not_found
+                    message: No card found for 1
+          description: ''
+        '500':
+          description: Server side error. Typically an issue related to connecting to the core or a third-party API.
+      x-stoplight:
+        id: iesdurzqprmmm
+components:
+  schemas:
+    Address:
+      type: object
+      properties:
+        street_address:
+          type: string
+        street_address_2:
+          type: string
+        city:
+          type: string
+        region_code:
+          type: string
+          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
+        postal_code:
+          type: string
+          description: Typically a five-digit numeric US ZIP Code.
+        country_code:
+          type: string
+          description: An ISO 3166-1 alpha-2 country code.
+        type:
+          type: string
+      required:
+      - city
+      - postal_code
+      - region_code
+      - street_address
+      x-stoplight:
+        id: xatva1xwqb0yk
+    CardShippingInfo:
+      type: object
+      description: integrations.cards.api_messages.Shipping
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        method:
+          type: string
+        shipped_on:
+          type: string
+          format: date
+          nullable: true
+      required:
+      - address
+      - method
+      x-stoplight:
+        id: d3dtn5mecxm9n
+    RecurringTransaction:
+      type: object
+      properties:
+        id:
+          type: string
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+        category_code:
+          type: string
+        transaction_date:
+          type: string
+          format: date
+        merchant_name:
+          type: string
+        subscription_id:
+          type: string
+          format: uuid
+      required:
+      - amount
+      - category_code
+      - id
+      - merchant_name
+      - subscription_id
+      - transaction_date
+      x-stoplight:
+        id: ldemqix6pa0tc
+    CardSubscriptionsAndTransactions:
+      type: object
+      properties:
+        monthly_transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardTransactionsByMonth'
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardSubscriptions'
+      required:
+      - monthly_transactions
+      - subscriptions
+      x-stoplight:
+        id: gri4ifgvdrsvw
+    CardRequest:
+      type: object
+      properties:
+        state:
+          allOf:
+          - $ref: '#/components/schemas/CardStateEnum'
+          description: 'Indicates whether the card is functional.
+
+
+            * `active` - active
+
+            * `inactive` - inactive'
+      required:
+      - state
+      x-stoplight:
+        id: lvdyknsgnuyu5
+    CardTravelNote:
+      type: object
+      description: For getting and setting integrations.cards.api_messages.CardTravelNote
+      properties:
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+      required:
+      - end_date
+      - start_date
+      x-stoplight:
+        id: llgatlkhvo1zf
+    CardSubscriptions:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+        category_code:
+          type: string
+        merchant_name:
+          type: string
+        state:
+          $ref: '#/components/schemas/CardSubscriptionsStateEnum'
+        recurrence_frequency:
+          oneOf:
+          - $ref: '#/components/schemas/RecurrenceFrequencyEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+        next_payment_date:
+          type: string
+          format: date
+          nullable: true
+      required:
+      - amount
+      - category_code
+      - id
+      - merchant_name
+      - next_payment_date
+      - recurrence_frequency
+      - state
+      x-stoplight:
+        id: tzfuauxjtqn3q
+    PaginatedCardInfoList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardInfo'
+      x-stoplight:
+        id: l0ulmogdgptfu
+    CardInfo:
+      type: object
+      description: integrations.cards.api_messages.CardInfo
+      properties:
+        id:
+          type: string
+          description: An identifier for the card object.
+        name:
+          type: string
+          description: The card product's name.
+        last_four_digits:
+          type: string
+          description: Last four digits of the card's account number.
+        shipping:
+          allOf:
+          - $ref: '#/components/schemas/CardShippingInfo'
+          description: Shipping information, not always populated.
+        network:
+          type: string
+          nullable: true
+          default: visa
+          description: The credit card processing network, such as Visa, Discover, etc.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/StateBd5Enum'
+          description: 'Indicates whether the card is functional, and if not for what reason.
+
+
+            * `locked` - locked
+
+            * `normal` - normal
+
+            * `shipped` - shipped
+
+            * `cancelled` - cancelled
+
+            * `damaged` - damaged'
+          readOnly: true
+        image:
+          type: string
+          description: An image of the card or a placeholder image.
+          readOnly: true
+        text_color:
+          type: string
+          default: '#FFFFFF'
+          description: Hex value indicating text color.
+        card_type:
+          type: string
+          description: The card's type, debit, credit or atm.
+      required:
+      - card_type
+      - id
+      - last_four_digits
+      - name
+      x-stoplight:
+        id: odrdkdiznuohw
+    MissingCardRequest:
+      type: object
+      properties:
+        reason:
+          $ref: '#/components/schemas/ReasonEnum'
+      required:
+      - reason
+      x-stoplight:
+        id: htvopglvr495y
+    CommonCard:
+      type: object
+      description: integrations.cards.common.Card
+      properties:
+        id:
+          type: string
+          description: An identifier for the card object.
+        core_user_id:
+          type: string
+          description: String uniquely identifying a user or user's primary account on the banking core
+        last_four_digits:
+          type: string
+          description: Last four digits of the card's account number.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/StateBd5Enum'
+          description: 'Indicates whether the card is functional, and if not for what reason.
+
+
+            * `locked` - locked
+
+            * `normal` - normal
+
+            * `shipped` - shipped
+
+            * `cancelled` - cancelled
+
+            * `damaged` - damaged'
+          readOnly: true
+        bin:
+          type: string
+          description: Bank Identification Number (BIN) is the first 6 to 8 digits of the Primary Account Number (PAN).
+        network:
+          type: string
+          description: The credit card processing network, such as Visa, Discover, etc.
+        name:
+          type: string
+          description: The card product's name.
+        card_type:
+          type: string
+          description: The card's type, debit, credit or atm.
+      required:
+      - bin
+      - card_type
+      - core_user_id
+      - id
+      - last_four_digits
+      - name
+      - network
+      x-stoplight:
+        id: chf14nszhkbex
+    CardTransactionsByMonth:
+      type: object
+      properties:
+        month:
+          type: string
+        total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+        transaction_count:
+          type: integer
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecurringTransaction'
+      required:
+      - month
+      - total
+      - transaction_count
+      - transactions
+      x-stoplight:
+        id: terphibvp3zyp
+    CardStateEnum:
+      enum:
+      - active
+      - inactive
+      type: string
+      description: '* `active` - active
+
+        * `inactive` - inactive'
+      x-stoplight:
+        id: or81aivklcwgb
+    CardTravelNoteRequest:
+      type: object
+      description: For getting and setting integrations.cards.api_messages.CardTravelNote
+      properties:
+        travel_destination_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/TravelDestinationCodesEnum'
+          writeOnly: true
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+      required:
+      - end_date
+      - start_date
+      - travel_destination_codes
+      x-stoplight:
+        id: a3bgtpnfmeevl
+    Card:
+      type: object
+      properties:
+        state:
+          allOf:
+          - $ref: '#/components/schemas/CardStateEnum'
+          description: 'Indicates whether the card is functional.
+
+
+            * `active` - active
+
+            * `inactive` - inactive'
+        id:
+          type: string
+          readOnly: true
+          description: An identifier for the card object.
+        core_user_id:
+          type: string
+          readOnly: true
+          description: String uniquely identifying a user or user's primary account on the banking core.
+        bin:
+          type: string
+          readOnly: true
+          description: Bank Identification Number (BIN), the first 6 to 8 digits of the Primary Account Number (PAN)
+        last_four_digits:
+          type: string
+          readOnly: true
+          description: Last four digits of the card number.
+        svg:
+          type: string
+          readOnly: true
+          description: An image of the card or a placeholder image.
+        is_card_number_on_front:
+          type: string
+          readOnly: true
+          description: '"True" or "False"'
+        card_text_color:
+          type: string
+          readOnly: true
+          description: Hex value representing card text color.
+      required:
+      - state
+      x-stoplight:
+        id: bsnjpqmciiqgl
+    StateBd5Enum:
+      enum:
+      - locked
+      - normal
+      - shipped
+      - cancelled
+      - damaged
+      type: string
+      description: '* `locked` - locked
+
+        * `normal` - normal
+
+        * `shipped` - shipped
+
+        * `cancelled` - cancelled
+
+        * `damaged` - damaged'
+      x-stoplight:
+        id: xhbwau39q9oko
+    CardSubscriptionsStateEnum:
+      enum:
+      - current
+      - new
+      - cancelled
+      type: string
+      description: '* `current` - current
+
+        * `new` - new
+
+        * `cancelled` - cancelled'
+      x-stoplight:
+        id: hcp1u8tvpuntl
+    SensitiveCardInfo:
+      type: object
+      properties:
+        pan:
+          type: string
+          example: '4012000033330026'
+        cvv:
+          type: string
+          example: '000'
+        expiration_date:
+          type: string
+          format: date
+          example: 2031-07-24
+      required:
+      - cvv
+      - expiration_date
+      - pan
+      x-stoplight:
+        id: y3vcpgnlzduvh
+    ReasonEnum:
+      enum:
+      - damaged
+      - lost
+      - stolen
+      type: string
+      description: '* `damaged` - damaged
+
+        * `lost` - lost
+
+        * `stolen` - stolen'
+      x-stoplight:
+        id: dnkxb7jc76rkm
+    TravelDestinationCodesEnum:
+      enum:
+      - AW
+      - AF
+      - AO
+      - AI
+      - AX
+      - AL
+      - AD
+      - AE
+      - AR
+      - AM
+      - AS
+      - AQ
+      - TF
+      - AG
+      - AU
+      - AT
+      - AZ
+      - BI
+      - BE
+      - BJ
+      - BQ
+      - BF
+      - BD
+      - BG
+      - BH
+      - BS
+      - BA
+      - BL
+      - BY
+      - BZ
+      - BM
+      - BO
+      - BR
+      - BB
+      - BN
+      - BT
+      - BV
+      - BW
+      - CF
+      - CA
+      - CC
+      - CH
+      - CL
+      - CN
+      - CI
+      - CM
+      - CD
+      - CG
+      - CK
+      - CO
+      - KM
+      - CV
+      - CR
+      - CU
+      - CW
+      - CX
+      - KY
+      - CY
+      - CZ
+      - DE
+      - DJ
+      - DM
+      - DK
+      - DO
+      - DZ
+      - EC
+      - EG
+      - ER
+      - EH
+      - ES
+      - EE
+      - ET
+      - FI
+      - FJ
+      - FK
+      - FR
+      - FO
+      - FM
+      - GA
+      - GB
+      - GE
+      - GG
+      - GH
+      - GI
+      - GN
+      - GP
+      - GM
+      - GW
+      - GQ
+      - GR
+      - GD
+      - GL
+      - GT
+      - GF
+      - GU
+      - GY
+      - HK
+      - HM
+      - HN
+      - HR
+      - HT
+      - HU
+      - ID
+      - IM
+      - IN
+      - IO
+      - IE
+      - IR
+      - IQ
+      - IS
+      - IL
+      - IT
+      - JM
+      - JE
+      - JO
+      - JP
+      - KZ
+      - KE
+      - KG
+      - KH
+      - KI
+      - KN
+      - KR
+      - KW
+      - LA
+      - LB
+      - LR
+      - LY
+      - LC
+      - LI
+      - LK
+      - LS
+      - LT
+      - LU
+      - LV
+      - MO
+      - MF
+      - MA
+      - MC
+      - MD
+      - MG
+      - MV
+      - MX
+      - MH
+      - MK
+      - ML
+      - MT
+      - MM
+      - ME
+      - MN
+      - MP
+      - MZ
+      - MR
+      - MS
+      - MQ
+      - MU
+      - MW
+      - MY
+      - YT
+      - NA
+      - NC
+      - NE
+      - NF
+      - NG
+      - NI
+      - NU
+      - NL
+      - 'NO'
+      - NP
+      - NR
+      - NZ
+      - OM
+      - PK
+      - PA
+      - PN
+      - PE
+      - PH
+      - PW
+      - PG
+      - PL
+      - PR
+      - KP
+      - PT
+      - PY
+      - PS
+      - PF
+      - QA
+      - RE
+      - RO
+      - RU
+      - RW
+      - SA
+      - SD
+      - SN
+      - SG
+      - GS
+      - SH
+      - SJ
+      - SB
+      - SL
+      - SV
+      - SM
+      - SO
+      - PM
+      - RS
+      - SS
+      - ST
+      - SR
+      - SK
+      - SI
+      - SE
+      - SZ
+      - SX
+      - SC
+      - SY
+      - TC
+      - TD
+      - TG
+      - TH
+      - TJ
+      - TK
+      - TM
+      - TL
+      - TO
+      - TT
+      - TN
+      - TR
+      - TV
+      - TW
+      - TZ
+      - UG
+      - UA
+      - UM
+      - UY
+      - US
+      - UZ
+      - VA
+      - VC
+      - VE
+      - VG
+      - VI
+      - VN
+      - VU
+      - WF
+      - WS
+      - YE
+      - ZA
+      - ZM
+      - ZW
+      type: string
+      description: '* `AW` - AW
+
+        * `AF` - AF
+
+        * `AO` - AO
+
+        * `AI` - AI
+
+        * `AX` - AX
+
+        * `AL` - AL
+
+        * `AD` - AD
+
+        * `AE` - AE
+
+        * `AR` - AR
+
+        * `AM` - AM
+
+        * `AS` - AS
+
+        * `AQ` - AQ
+
+        * `TF` - TF
+
+        * `AG` - AG
+
+        * `AU` - AU
+
+        * `AT` - AT
+
+        * `AZ` - AZ
+
+        * `BI` - BI
+
+        * `BE` - BE
+
+        * `BJ` - BJ
+
+        * `BQ` - BQ
+
+        * `BF` - BF
+
+        * `BD` - BD
+
+        * `BG` - BG
+
+        * `BH` - BH
+
+        * `BS` - BS
+
+        * `BA` - BA
+
+        * `BL` - BL
+
+        * `BY` - BY
+
+        * `BZ` - BZ
+
+        * `BM` - BM
+
+        * `BO` - BO
+
+        * `BR` - BR
+
+        * `BB` - BB
+
+        * `BN` - BN
+
+        * `BT` - BT
+
+        * `BV` - BV
+
+        * `BW` - BW
+
+        * `CF` - CF
+
+        * `CA` - CA
+
+        * `CC` - CC
+
+        * `CH` - CH
+
+        * `CL` - CL
+
+        * `CN` - CN
+
+        * `CI` - CI
+
+        * `CM` - CM
+
+        * `CD` - CD
+
+        * `CG` - CG
+
+        * `CK` - CK
+
+        * `CO` - CO
+
+        * `KM` - KM
+
+        * `CV` - CV
+
+        * `CR` - CR
+
+        * `CU` - CU
+
+        * `CW` - CW
+
+        * `CX` - CX
+
+        * `KY` - KY
+
+        * `CY` - CY
+
+        * `CZ` - CZ
+
+        * `DE` - DE
+
+        * `DJ` - DJ
+
+        * `DM` - DM
+
+        * `DK` - DK
+
+        * `DO` - DO
+
+        * `DZ` - DZ
+
+        * `EC` - EC
+
+        * `EG` - EG
+
+        * `ER` - ER
+
+        * `EH` - EH
+
+        * `ES` - ES
+
+        * `EE` - EE
+
+        * `ET` - ET
+
+        * `FI` - FI
+
+        * `FJ` - FJ
+
+        * `FK` - FK
+
+        * `FR` - FR
+
+        * `FO` - FO
+
+        * `FM` - FM
+
+        * `GA` - GA
+
+        * `GB` - GB
+
+        * `GE` - GE
+
+        * `GG` - GG
+
+        * `GH` - GH
+
+        * `GI` - GI
+
+        * `GN` - GN
+
+        * `GP` - GP
+
+        * `GM` - GM
+
+        * `GW` - GW
+
+        * `GQ` - GQ
+
+        * `GR` - GR
+
+        * `GD` - GD
+
+        * `GL` - GL
+
+        * `GT` - GT
+
+        * `GF` - GF
+
+        * `GU` - GU
+
+        * `GY` - GY
+
+        * `HK` - HK
+
+        * `HM` - HM
+
+        * `HN` - HN
+
+        * `HR` - HR
+
+        * `HT` - HT
+
+        * `HU` - HU
+
+        * `ID` - ID
+
+        * `IM` - IM
+
+        * `IN` - IN
+
+        * `IO` - IO
+
+        * `IE` - IE
+
+        * `IR` - IR
+
+        * `IQ` - IQ
+
+        * `IS` - IS
+
+        * `IL` - IL
+
+        * `IT` - IT
+
+        * `JM` - JM
+
+        * `JE` - JE
+
+        * `JO` - JO
+
+        * `JP` - JP
+
+        * `KZ` - KZ
+
+        * `KE` - KE
+
+        * `KG` - KG
+
+        * `KH` - KH
+
+        * `KI` - KI
+
+        * `KN` - KN
+
+        * `KR` - KR
+
+        * `KW` - KW
+
+        * `LA` - LA
+
+        * `LB` - LB
+
+        * `LR` - LR
+
+        * `LY` - LY
+
+        * `LC` - LC
+
+        * `LI` - LI
+
+        * `LK` - LK
+
+        * `LS` - LS
+
+        * `LT` - LT
+
+        * `LU` - LU
+
+        * `LV` - LV
+
+        * `MO` - MO
+
+        * `MF` - MF
+
+        * `MA` - MA
+
+        * `MC` - MC
+
+        * `MD` - MD
+
+        * `MG` - MG
+
+        * `MV` - MV
+
+        * `MX` - MX
+
+        * `MH` - MH
+
+        * `MK` - MK
+
+        * `ML` - ML
+
+        * `MT` - MT
+
+        * `MM` - MM
+
+        * `ME` - ME
+
+        * `MN` - MN
+
+        * `MP` - MP
+
+        * `MZ` - MZ
+
+        * `MR` - MR
+
+        * `MS` - MS
+
+        * `MQ` - MQ
+
+        * `MU` - MU
+
+        * `MW` - MW
+
+        * `MY` - MY
+
+        * `YT` - YT
+
+        * `NA` - NA
+
+        * `NC` - NC
+
+        * `NE` - NE
+
+        * `NF` - NF
+
+        * `NG` - NG
+
+        * `NI` - NI
+
+        * `NU` - NU
+
+        * `NL` - NL
+
+        * `NO` - NO
+
+        * `NP` - NP
+
+        * `NR` - NR
+
+        * `NZ` - NZ
+
+        * `OM` - OM
+
+        * `PK` - PK
+
+        * `PA` - PA
+
+        * `PN` - PN
+
+        * `PE` - PE
+
+        * `PH` - PH
+
+        * `PW` - PW
+
+        * `PG` - PG
+
+        * `PL` - PL
+
+        * `PR` - PR
+
+        * `KP` - KP
+
+        * `PT` - PT
+
+        * `PY` - PY
+
+        * `PS` - PS
+
+        * `PF` - PF
+
+        * `QA` - QA
+
+        * `RE` - RE
+
+        * `RO` - RO
+
+        * `RU` - RU
+
+        * `RW` - RW
+
+        * `SA` - SA
+
+        * `SD` - SD
+
+        * `SN` - SN
+
+        * `SG` - SG
+
+        * `GS` - GS
+
+        * `SH` - SH
+
+        * `SJ` - SJ
+
+        * `SB` - SB
+
+        * `SL` - SL
+
+        * `SV` - SV
+
+        * `SM` - SM
+
+        * `SO` - SO
+
+        * `PM` - PM
+
+        * `RS` - RS
+
+        * `SS` - SS
+
+        * `ST` - ST
+
+        * `SR` - SR
+
+        * `SK` - SK
+
+        * `SI` - SI
+
+        * `SE` - SE
+
+        * `SZ` - SZ
+
+        * `SX` - SX
+
+        * `SC` - SC
+
+        * `SY` - SY
+
+        * `TC` - TC
+
+        * `TD` - TD
+
+        * `TG` - TG
+
+        * `TH` - TH
+
+        * `TJ` - TJ
+
+        * `TK` - TK
+
+        * `TM` - TM
+
+        * `TL` - TL
+
+        * `TO` - TO
+
+        * `TT` - TT
+
+        * `TN` - TN
+
+        * `TR` - TR
+
+        * `TV` - TV
+
+        * `TW` - TW
+
+        * `TZ` - TZ
+
+        * `UG` - UG
+
+        * `UA` - UA
+
+        * `UM` - UM
+
+        * `UY` - UY
+
+        * `US` - US
+
+        * `UZ` - UZ
+
+        * `VA` - VA
+
+        * `VC` - VC
+
+        * `VE` - VE
+
+        * `VG` - VG
+
+        * `VI` - VI
+
+        * `VN` - VN
+
+        * `VU` - VU
+
+        * `WF` - WF
+
+        * `WS` - WS
+
+        * `YE` - YE
+
+        * `ZA` - ZA
+
+        * `ZM` - ZM
+
+        * `ZW` - ZW'
+      x-stoplight:
+        id: hbdgoazuxfyfn
+    CardLimits:
+      type: object
+      description: For getting and setting card limits
+      properties:
+        atm_limit:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: Current ATM withdrawal limit.
+          type: integer
+        pos_limit:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: Current spending limit.
+          type: integer
+        has_atm_limit_increased_today:
+          type: boolean
+          default: false
+          description: ATM withdrawal limit was increased today.
+        has_pos_limit_increased_today:
+          type: boolean
+          default: false
+          description: Spending limit was increased today.
+        can_user_request_limit_increase:
+          type: boolean
+          default: false
+          description: Is the user allowed to request a limit increase?
+      x-stoplight:
+        id: 0uh0y3w9wzzqe
+    LegacyUpdateCardResponse:
+      type: object
+      properties:
+        card:
+          allOf:
+          - $ref: '#/components/schemas/Card'
+          readOnly: true
+      x-stoplight:
+        id: uc3qkcb24dtla
+    BlankEnum:
+      enum:
+      - ''
+      x-stoplight:
+        id: kjdrahkcokejl
+    RecurrenceFrequencyEnum:
+      enum:
+      - daily
+      - semi-monthly
+      - monthly
+      - bimonthly
+      - quarterly
+      - biannually
+      - annually
+      type: string
+      description: '* `daily` - daily
+
+        * `semi-monthly` - semi-monthly
+
+        * `monthly` - monthly
+
+        * `bimonthly` - bimonthly
+
+        * `quarterly` - quarterly
+
+        * `biannually` - biannually
+
+        * `annually` - annually
+
+        * `` - '
+      x-stoplight:
+        id: hnoqaesl0wqdw
+    PaginatedCardTravelNoteList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardTravelNote'
+      x-stoplight:
+        id: cp4oim92gdv1d
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

@@ -1,0 +1,490 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances swift wire templates API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: swift wire templates
+paths:
+  /v1/swiftwire_templates/:
+    get:
+      operationId: swiftwire_templates_list
+      description: 'List a user''s Swift Wire templates for their organization.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List Swift Wire templates
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - swift wire templates
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedSwiftWireTemplateList'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: ''
+      x-stoplight:
+        id: oncewf4esgpmy
+    post:
+      operationId: swiftwire_templates_create
+      description: 'Create a template that can be used to send Swift Wire transfers.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create a Swift Wire template
+      tags:
+      - swift wire templates
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SwiftWireTemplateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SwiftWireTemplateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SwiftWireTemplateRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwiftWireTemplate'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+          description: ''
+      x-stoplight:
+        id: szdmfwibfdqan
+  /v1/swiftwire_templates/{uuid}/:
+    get:
+      operationId: swiftwire_templates_retrieve
+      description: 'Fetch details for a specified template.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve a Swift Wire template
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - swift wire templates
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwiftWireTemplate'
+          description: ''
+      x-stoplight:
+        id: xmeztif6y4vwz
+    put:
+      operationId: swiftwire_templates_update
+      description: 'Update the details of a template belonging to authenticated user, identified by `uuid`
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Update a Swift Wire template
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - swift wire templates
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SwiftWireTemplateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SwiftWireTemplateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SwiftWireTemplateRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwiftWireTemplate'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+          description: ''
+      x-stoplight:
+        id: a8rekvafizz8t
+    patch:
+      operationId: swiftwire_templates_partial_update
+      description: 'Update the details of a template belonging to authenticated user, identified by `uuid`
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Update a Swift Wire template
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - swift wire templates
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSwiftWireTemplateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSwiftWireTemplateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSwiftWireTemplateRequest'
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SwiftWireTemplate'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+          description: ''
+      x-stoplight:
+        id: sregk9dty6vnc
+    delete:
+      operationId: swiftwire_templates_destroy
+      description: 'Delete a specified Swift Wire template belonging to the user. The template will continue to exist in the database, but won''t be retrievable by the user. The name of the deleted template will be available for use in creating a new template.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Delete a Swift Wire template
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - swift wire templates
+      security:
+      - oauth2:
+        - write
+      responses:
+        '204':
+          description: No response body
+      x-stoplight:
+        id: dba72yw8y894w
+components:
+  schemas:
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    GeneralError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid
+        message:
+          type: string
+          description: An error response detailing the field and the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: v76fz3qxj5djb
+    PatchedSwiftWireTemplateRequest:
+      type: object
+      properties:
+        recipient:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the recipient for swiftwires sent using this template.
+          type: string
+          format: uuid
+        from_account:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the source account for swiftwires sent using this template.
+          type: string
+          format: uuid
+        name:
+          type: string
+          minLength: 1
+          maxLength: 35
+        wire_reason:
+          type: string
+          nullable: true
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+          nullable: true
+        amount_currency:
+          type: string
+          nullable: true
+          description: ISO 4217 currency code the amount is denominated in (e.g. 'USD' or the recipient's currency).
+          maxLength: 3
+        memo:
+          type: string
+          nullable: true
+          maxLength: 128
+        note:
+          type: string
+          nullable: true
+        recipient_currency:
+          type: string
+          minLength: 1
+          maxLength: 3
+      x-stoplight:
+        id: dukgiedw1xvjv
+    SwiftWireTemplate:
+      type: object
+      properties:
+        last_used:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+          description: Date when the template was last used to send a swiftwire.
+        version_id:
+          type: string
+          readOnly: true
+          description: The version ID of the template, based on when template or recipient details were last updated.
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        recipient:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the recipient for swiftwires sent using this template.
+          type: string
+          format: uuid
+        from_account:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the source account for swiftwires sent using this template.
+          type: string
+          format: uuid
+        name:
+          type: string
+          maxLength: 35
+        wire_reason:
+          type: string
+          nullable: true
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+          nullable: true
+        amount_currency:
+          type: string
+          nullable: true
+          description: ISO 4217 currency code the amount is denominated in (e.g. 'USD' or the recipient's currency).
+          maxLength: 3
+        memo:
+          type: string
+          nullable: true
+          maxLength: 128
+        note:
+          type: string
+          nullable: true
+        recipient_currency:
+          type: string
+          maxLength: 3
+      required:
+      - from_account
+      - name
+      - recipient
+      x-stoplight:
+        id: k0d9pahpxnqko
+    PaginatedSwiftWireTemplateList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SwiftWireTemplate'
+      x-stoplight:
+        id: xgc9i9azikswf
+    SwiftWireTemplateRequest:
+      type: object
+      properties:
+        recipient:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the recipient for swiftwires sent using this template.
+          type: string
+          format: uuid
+        from_account:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the source account for swiftwires sent using this template.
+          type: string
+          format: uuid
+        name:
+          type: string
+          minLength: 1
+          maxLength: 35
+        wire_reason:
+          type: string
+          nullable: true
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+          nullable: true
+        amount_currency:
+          type: string
+          nullable: true
+          description: ISO 4217 currency code the amount is denominated in (e.g. 'USD' or the recipient's currency).
+          maxLength: 3
+        memo:
+          type: string
+          nullable: true
+          maxLength: 128
+        note:
+          type: string
+          nullable: true
+        recipient_currency:
+          type: string
+          minLength: 1
+          maxLength: 3
+      required:
+      - from_account
+      - name
+      - recipient
+      x-stoplight:
+        id: bnskmiqnavwxx
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

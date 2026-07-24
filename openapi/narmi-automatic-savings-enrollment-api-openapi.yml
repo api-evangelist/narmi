@@ -1,0 +1,506 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances automatic savings enrollment API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: automatic savings enrollment
+paths:
+  /v1/automatic_savings_enrollment/:
+    get:
+      operationId: automatic_savings_enrollment_retrieve
+      description: 'Fetch a user''s automatic saving enrollment. Automatic savings enrollment detects any deposit from the source account and does an internal transfer of 3% of the deposit amount into the specified destination account.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Get automatic savings enrollment
+      tags:
+      - automatic savings enrollment
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutomaticSavingsEnrollment'
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - id
+                - message
+                properties:
+                  id:
+                    type: string
+                    example: invalid_request_error
+                  message:
+                    description: An error response detailing the field and the nature of the error.
+                    oneOf:
+                    - type: string
+                    - type: object
+                      additionalProperties: true
+                    - type: array
+                      items:
+                        type: object
+                        additionalProperties: true
+              examples:
+                StringMessage:
+                  value:
+                    id: invalid_request_error
+                    message: An error string specifying the error.
+                  summary: String message
+                ObjectMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                      field_name: Message describing nature of error.
+                  summary: Object message
+                ArrayMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                    - field_name: Message describing nature of error.
+                    - second_field_name: Second Message.
+                  summary: Array message
+          description: Invalid request response.
+      x-stoplight:
+        id: sqxeenfhvy6id
+    post:
+      operationId: automatic_savings_enrollment_list
+      description: 'Create an automatic saving enrollment for a user.Automatic Savings Enrollment detects any deposit from the source account and does an internal transfer of 3% of the deposit amount into the specified destination account.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create automatic savings enrollment
+      tags:
+      - automatic savings enrollment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AutomaticSavingsEnrollmentDeserializerRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AutomaticSavingsEnrollmentDeserializerRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AutomaticSavingsEnrollmentDeserializerRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          description: No response body
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - id
+                - message
+                properties:
+                  id:
+                    type: string
+                    example: invalid_request_error
+                  message:
+                    description: An error response detailing the field and the nature of the error.
+                    oneOf:
+                    - type: string
+                    - type: object
+                      additionalProperties: true
+                    - type: array
+                      items:
+                        type: object
+                        additionalProperties: true
+              examples:
+                StringMessage:
+                  value:
+                    id: invalid_request_error
+                    message: An error string specifying the error.
+                  summary: String message
+                ObjectMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                      field_name: Message describing nature of error.
+                  summary: Object message
+                ArrayMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                    - field_name: Message describing nature of error.
+                    - second_field_name: Second Message.
+                  summary: Array message
+          description: Invalid request response.
+      x-stoplight:
+        id: ty45fzmxfdegy
+    delete:
+      operationId: automatic_savings_enrollment_destroy
+      description: 'Delete a user''s automatic saving enrollment. The endpoint will return a 422 in the event that the service fails to unenroll the user.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Delete automatic savings enrollment
+      tags:
+      - automatic savings enrollment
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          description: No response body
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - id
+                - message
+                properties:
+                  id:
+                    type: string
+                    example: invalid_request_error
+                  message:
+                    description: An error response detailing the field and the nature of the error.
+                    oneOf:
+                    - type: string
+                    - type: object
+                      additionalProperties: true
+                    - type: array
+                      items:
+                        type: object
+                        additionalProperties: true
+              examples:
+                StringMessage:
+                  value:
+                    id: invalid_request_error
+                    message: An error string specifying the error.
+                  summary: String message
+                ObjectMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                      field_name: Message describing nature of error.
+                  summary: Object message
+                ArrayMessage:
+                  value:
+                    id: invalid_request_error
+                    message:
+                    - field_name: Message describing nature of error.
+                    - second_field_name: Second Message.
+                  summary: Array message
+          description: Invalid request response.
+      x-stoplight:
+        id: 2ndeyxhmmhw0h
+components:
+  schemas:
+    State973Enum:
+      enum:
+      - active
+      - inactive
+      - pending
+      - verified
+      - removed
+      type: string
+      x-stoplight:
+        id: sx7oslmzp4bem
+    AutomaticSavingsEnrollment:
+      type: object
+      properties:
+        source_account:
+          $ref: '#/components/schemas/Account'
+        destination_account:
+          $ref: '#/components/schemas/Account'
+        automatic_savings_eligible:
+          type: boolean
+        automatic_savings_active:
+          type: boolean
+      x-stoplight:
+        id: qd8r4jdkwdvpe
+    LoanDetails:
+      type: object
+      properties:
+        minimum_payment:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+          readOnly: true
+        interest_rate:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,16}(?:\.\d{0,4})?$
+          readOnly: true
+        next_payment_at:
+          type: string
+          format: date-time
+          readOnly: true
+      x-stoplight:
+        id: quxztlucbcd9s
+    AccountBalance:
+      type: object
+      description: A representation of an account with respect to its balance totals.
+      properties:
+        id:
+          example: abl_8b143f3e-70df-4799-a2ae-c5e3dabed963
+          description: Account UUID prefixed with "abl_" for use with this endpoint.
+          type: string
+          readOnly: true
+        account_id:
+          example: 8b143f3e-70df-4799-a2ae-c5e3dabed963
+          type: string
+          format: uuid
+          readOnly: true
+          description: UUID to the associated account.
+        primary:
+          example: 100.0
+          maximum: 10000000000000.0
+          minimum: -10000000000000.0
+          description: The balance to be presented to the customer. Set to the available balance for non CD deposit accounts, and ledger balance otherwise. May be null for external accounts that have not yet been synced with balance data.
+          type: number
+          format: double
+          readOnly: true
+          nullable: true
+        available:
+          example: 100.0
+          maximum: 10000000000000.0
+          minimum: -10000000000000.0
+          description: The funds immediately available to use, including any pending transactions or temporary holds on the account. May be null for external accounts that have not yet been synced with balance data.
+          type: number
+          format: double
+          readOnly: true
+          nullable: true
+        ledger:
+          example: 100.0
+          maximum: 10000000000000.0
+          minimum: -10000000000000.0
+          description: The total amount of funds in the account not including temporary holds or pending transactions. May be null for external accounts that have not yet been synced with balance data.
+          type: number
+          format: double
+          readOnly: true
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date when the account was last updated.
+      x-stoplight:
+        id: sswt197xsfwzw
+    AutomaticSavingsEnrollmentDeserializerRequest:
+      type: object
+      properties:
+        source_account_uuid:
+          type: string
+          format: uuid
+        destination_account_uuid:
+          type: string
+          format: uuid
+      required:
+      - destination_account_uuid
+      - source_account_uuid
+      x-stoplight:
+        id: x1brbxl2libjx
+    SourceEnum:
+      enum:
+      - institution
+      - external
+      type: string
+      description: '* `institution` - institution
+
+        * `external` - external'
+      x-stoplight:
+        id: z2qbah6dv7xog
+    Account:
+      type: object
+      description: A representation of either an account or an external account.
+      properties:
+        name:
+          type: string
+          readOnly: true
+          description: Customer-facing name for the account, can be customized per user, but defaults to account name or product name.
+        nickname:
+          type: string
+          readOnly: true
+          description: Customizable nickname for the account, this is blank if custom name is not set.
+        id:
+          type: string
+          readOnly: true
+          description: UUID of the account, can be used to query the account elsewhere in the API.
+        number:
+          type: string
+          readOnly: true
+          description: Account number.
+        type:
+          type: string
+          readOnly: true
+          description: Account type, can be set to `credit`, `debit`, or `deposit`.
+        product:
+          allOf:
+          - $ref: '#/components/schemas/Product'
+          readOnly: true
+          description: Product type for the account, can be one of `checking`, `savings`, `certificate_of_deposit`, `hsa`, `ira`, `ira_certificate_of_deposit`, `money_market`, `line_of_credit`, `credit_card`, `loan`, `mortgage`, or `lease`.
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date the account was last updated or changed.
+        users:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        features:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+          description: List of capabilities for the account. Dictates when and how money can be moved to and from the account. Can contain any of the values `transfer_destination`, `transfer_source`, `ach_destination`, `ach_source`, `check_order`, `stop_payment`, `check_withdrawal`, `external_loan_management`, `zero_balance`, `m2m_source`, and `m2m_destination`.
+        routing:
+          type: string
+          nullable: true
+          readOnly: true
+          description: Routing number for the account.
+        loan_details:
+          allOf:
+          - $ref: '#/components/schemas/LoanDetails'
+          readOnly: true
+          description: Information related to loan payments associated with the account.
+        source:
+          allOf:
+          - $ref: '#/components/schemas/SourceEnum'
+          readOnly: true
+          description: 'Set to `institution` for internal accounts and `external` for external accounts.
+
+
+            * `institution` - institution
+
+            * `external` - external'
+        state:
+          allOf:
+          - $ref: '#/components/schemas/State973Enum'
+          description: Indicates whether the account is active (unlocked) or inactive (locked). This does not affect the data returned from the list accounts endpoint.
+          readOnly: true
+        favorited:
+          type: boolean
+          readOnly: true
+          description: Per-user preference used to mark favorited accounts. This does not affect the data returned from the list accounts endpoint.
+        hidden:
+          type: boolean
+          default: false
+          readOnly: true
+          description: Per-user preference to mark hidden accounts. This does not affect the data returned from the list accounts endpoint.
+        out_of_date:
+          type: boolean
+          readOnly: true
+          description: Whether the account has been recently updated successfully from the upstream core banking system. The threshold is defined by a setting that can vary, but by default is set to 300 seconds.
+        updated_from_source_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+          description: Last datetime the account was updated from the core.
+        check_micr:
+          type: string
+          readOnly: true
+          nullable: true
+          description: A unique identifier that has a one-to-one mapping with an account number. This identifier is typically printed on the MICR line of physical checks written against this account and/or used in other externally facing bank payments like ACH or wires. Depending on the financial institution, it may be the same as account number or a different value.
+        metadata:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+          description: Additional information about the account such as interest rates, minimum balances, maturity date, etc.
+        balances:
+          allOf:
+          - $ref: '#/components/schemas/AccountBalance'
+          description: Primary, available, and ledger balance information.
+        fi_name:
+          type: string
+          nullable: true
+          readOnly: true
+          description: Display name of the financial institution the account belongs to, derived from the routing number on the account.
+        created_at:
+          type: string
+          readOnly: true
+          description: Date account was created in the database.
+        verified:
+          type: boolean
+          readOnly: true
+          description: Whether the account has been verified. Always true for internal accounts.
+        fi_svg:
+          type: string
+          readOnly: true
+          description: Logo data for the financial institution in SVG (HTML) format.
+        organization:
+          type: object
+          additionalProperties: {}
+          nullable: true
+          readOnly: true
+          description: Organization associated with this account, if applicable.
+      required:
+      - balances
+      x-stoplight:
+        id: wknvwcjc17vw6
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          nullable: true
+        type:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          readOnly: true
+      x-stoplight:
+        id: wzdifft3exj5t
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

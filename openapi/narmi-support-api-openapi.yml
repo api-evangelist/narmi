@@ -1,0 +1,146 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances support API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: support
+paths:
+  /v1/support/info/:
+    get:
+      operationId: support_info_retrieve
+      description: 'Supplies information on support contacts, faqs, links, and expected support response time.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List support info
+      tags:
+      - support
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportInfoResponse'
+          description: ''
+      x-stoplight:
+        id: 9o2a4qwhkqwmj
+components:
+  schemas:
+    SupportInfoResponse:
+      type: object
+      properties:
+        support_settings:
+          $ref: '#/components/schemas/SupportInfo'
+      required:
+      - support_settings
+      x-stoplight:
+        id: uyw1wyns14pqz
+    SupportInfo:
+      type: object
+      description: Serializer that returns institution specific support information
+      properties:
+        contacts:
+          readOnly: true
+          description: Support contact information, defined by the `Support Page Contact Us Information` institution setting
+          example:
+          - type: MESSAGE_CENTER
+            title: Send a secure message
+          - type: EMAIL
+            title: Email
+            email: ''
+          - type: PHONE
+            title: Contact Us
+            numbers:
+            - name: General Support
+              phone: ''
+        faqs:
+          readOnly: true
+          description: Frequently Asked Questions for support, defined by the `Support Page Frequently Asked Questions` institution setting
+          example:
+          - category: Bill pay
+            questions:
+            - question: What is bill pay?
+              answer: Bill pay allows you to easily pay a bill via a check or electronic payment. When payment is made with a check, we handle printing the check and mailing it.
+            - question: Can I make payments on a holiday or weekend?
+              answer: While you can create a bill payment in digital banking at any time, payments can only be processed on business days. This will affect the dates available to select when scheduling your payments.
+          - category: Automatic savings
+            questions:
+            - question: What is automatic savings?
+              answer: Automatic savings allows you to easily save money on every deposit you make to your account without any manual intervention. Three percent of every deposit into your checking account will be automatically transferred into your savings account.
+            - question: What if I don’t have a checking and savings account?
+              answer: In order to be eligible for automatic savings, you need to have both a checking and savings account. You can open a new checking or savings account if you do not already have one in order to take advantage of automatic savings.
+            - question: When does the transfer occur?
+              answer: A single transfer will be made from your checking to your savings account on the next calendar day if there are any eligible deposits in your checking account.
+          - category: Account settings
+            questions:
+            - question: How can I manage two-factor authentication?
+              answer: You can manage your two-factor authentication devices by going to 'Settings' and selecting 'Alerts & Security'. Please note that for security purposes, you might not be able to remove all of your two-factor authentication devices.
+            - question: How can I setup a transaction or balance alert?
+              answer: You can setup transaction or balance alerts by going to 'Settings' and selecting 'Alerts & Security'. You can setup an alert to trigger based on a specific transaction keyword and/or amount. Additionally, you can setup an alert for a particular balance threshold.
+        links:
+          readOnly: true
+          description: Support links to documentation and utilities, defined by the `Support Page Quick Links` institution setting
+          example:
+          - text: Find my routing number
+            url: '#'
+          - text: Activate my debit card
+            url: '#'
+          - text: Report a lost card
+            url: '#'
+          - text: Change my login info
+            url: /settings
+          - text: Dispute a transaction
+            url: '#'
+          - text: View your FICO score
+            url: '#'
+          - text: Stop payment on a check
+            url: '#'
+          - text: Request a payment deferral
+            url: '#'
+        support_message_reply_time:
+          type: string
+          readOnly: true
+          description: Support reply time, defined by the `Support Message Reply Time` institution setting
+          example: 24 hours
+        support_message_reply_disclaimer:
+          type: string
+          readOnly: true
+          description: Disclaimer information, defined by the `Support Message Reply Disclaimer` institution setting
+          example: Support messages will be responded to within 24 hours.
+      x-stoplight:
+        id: vdwqdjypiqjmb
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

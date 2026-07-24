@@ -1,0 +1,381 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances ach transfers API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: ach transfers
+paths:
+  /v1/transfers/:
+    get:
+      operationId: ach_transfers_list
+      description: 'List the authenticated user''s ACH transfers. Transfers are movements of funds between two internal accounts or two verified external accounts.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List ACH transfers
+      parameters:
+      - in: query
+        name: filter
+        schema:
+          type: string
+          enum:
+          - recent
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: per_page
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - ach transfers
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAchTransactionList'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: ''
+      x-stoplight:
+        id: xcwht1ibghxha
+    post:
+      operationId: ach_transfers_create
+      description: 'Transfer funds between two accounts. The target accounts should be either an account at the financial institution belonging to the user or a verified external account.
+
+
+        A list of eligible accounts can be retrieved or listed from the accounts endpoints.
+
+
+        If the `instant` flag is provided for a push external transfer, processing will be done via FedNow and core posting will be immediate, otherwise all external transfers are processed via ACH by default.
+
+
+        Additionally, this endpoint requires the use of sudo elevation. For details, please refer to the <a href="#/operations/retrieve_sudo">sudo documentation.</a>
+
+
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create an ACH transfer
+      tags:
+      - ach transfers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AchTransactionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AchTransactionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AchTransactionRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RetrieveAchTransaction'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                PermissionDenied:
+                  value:
+                    id: api_error
+                    message: Your account does not support internal transfers.
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: object
+                    properties:
+                      amount:
+                        type: string
+              examples:
+                InvalidPayload:
+                  value:
+                    id: invalid_request_error
+                    message:
+                      amount: This field is required.
+                  summary: Invalid Payload
+          description: ''
+        '503':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                CoreInactive:
+                  value:
+                    id: api_connection_error
+                    message: Sorry, we were unable to process your request, please check back soon.
+                  summary: Core Inactive
+          description: ''
+      x-stoplight:
+        id: jvxrdrcdpbqdw
+components:
+  schemas:
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    PaginatedAchTransactionList:
+      type: object
+      required:
+      - meta
+      - links
+      properties:
+        meta:
+          description: Free-form object, contains total object count.
+          type: object
+          properties:
+            total:
+              type: integer
+        links:
+          type: object
+          description: URIs linking to sequential pages of the result.
+          properties:
+            next:
+              type: string
+              format: uri
+              nullable: true
+              example: http://api.example.org/accounts/?page=4
+            prev:
+              type: string
+              format: uri
+              nullable: true
+              example: http://api.example.org/accounts/?page=4
+        transfers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AchTransaction'
+      x-stoplight:
+        id: fihijvn8nxqxd
+    AchTransactionRequest:
+      type: object
+      description: Common fields between `ScheduledTransferSerializer`, and AchTransactionSerializer
+      properties:
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        from_account_id:
+          type: string
+          format: uuid
+          description: UUID identifying the source account in the Narmi database.
+        to_account_id:
+          type: string
+          format: uuid
+          description: UUID identifying the destination account in the Narmi database.
+        agreement:
+          type: boolean
+          writeOnly: true
+          description: Whether or not the terms of the transfer were agreed to.
+        device_id:
+          type: string
+          writeOnly: true
+          minLength: 1
+          description: Device 'fingerprint' from alloy/iovation.
+        instant:
+          type: boolean
+          writeOnly: true
+          default: false
+        memo:
+          type: string
+          writeOnly: true
+          minLength: 1
+          default: ''
+          description: Free-form description of transfer.
+      required:
+      - agreement
+      - amount
+      - from_account_id
+      - to_account_id
+      x-stoplight:
+        id: qqfawl4moqr7y
+    RetrieveAchTransaction:
+      type: object
+      properties:
+        transfer:
+          allOf:
+          - $ref: '#/components/schemas/AchTransaction'
+          readOnly: true
+      x-stoplight:
+        id: ynzdqhihwwxkd
+    AchTransactionStateEnum:
+      enum:
+      - analyzing
+      - pending
+      - processing
+      - processed
+      - rejected
+      - review
+      - canceled
+      - canceled_by_user
+      type: string
+      description: '* `analyzing` - analyzing
+
+        * `pending` - pending
+
+        * `processing` - processing
+
+        * `processed` - processed
+
+        * `rejected` - rejected
+
+        * `review` - review
+
+        * `canceled` - canceled
+
+        * `canceled_by_user` - canceled_by_user'
+      x-stoplight:
+        id: z6genr1ouwuth
+    AchTransaction:
+      type: object
+      description: Common fields between `ScheduledTransferSerializer`, and AchTransactionSerializer
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        state:
+          allOf:
+          - $ref: '#/components/schemas/AchTransactionStateEnum'
+          readOnly: true
+          description: 'Indicates the status of the transfer, for instance, if it''s been processed or is pending.
+
+
+            * `analyzing` - analyzing
+
+            * `pending` - pending
+
+            * `processing` - processing
+
+            * `processed` - processed
+
+            * `rejected` - rejected
+
+            * `review` - review
+
+            * `canceled` - canceled
+
+            * `canceled_by_user` - canceled_by_user'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        from_account_id:
+          type: string
+          format: uuid
+          description: UUID identifying the source account in the Narmi database.
+        to_account_id:
+          type: string
+          format: uuid
+          description: UUID identifying the destination account in the Narmi database.
+        estimated_process_date:
+          type: string
+          format: date-time
+          readOnly: true
+        estimated_arrival_date:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+      required:
+      - amount
+      - from_account_id
+      - to_account_id
+      x-stoplight:
+        id: h4yj1x7pldwi9
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

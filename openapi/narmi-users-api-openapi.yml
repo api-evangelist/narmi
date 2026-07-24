@@ -1,0 +1,1300 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances users API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: users
+paths:
+  /v1/users/:
+    get:
+      operationId: users_list
+      description: 'List the authenticated user''s joint access users and self. This endpoint is now deprecated and only returns information about the currently authenticated user.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List joint users
+      tags:
+      - users
+      security:
+      - oauth2:
+        - banking:users:read
+      deprecated: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersResponse'
+              examples:
+                ListUsers:
+                  value:
+                    users:
+                    - email: demo@narmitech.com
+                      core_provided_email: null
+                      username: testuser
+                      id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                      institution_user_identifier: ''
+                      updated_at: '2018-11-02T03:29:18.317000+00:00'
+                      addresses: []
+                      phone_numbers: []
+                      first_name: ''
+                      last_name: ''
+                      paper_statements: true
+                      user_category: personal
+                      features:
+                        ach: true
+                        allow_olb_device_remembering: true
+                        check_order: true
+                        edit_scheduled_transfers: true
+                        stop_payment_by_range: true
+                        top_menu:
+                          Dashboard:
+                            url: /dashboard
+                          Accounts:
+                            accounts: true
+                          Documents:
+                            url: /statements
+                          Support:
+                            url: /support
+                          Tools:
+                            menu:
+                              Transfer funds:
+                                url: /transfer
+                              Transactions:
+                                url: /transactions
+                              Cards:
+                                url: /cards
+                              Trends:
+                                url: /trends
+                              Automatic savings:
+                                url: /automatic
+                              Manage users:
+                                url: /access_manager
+                                feature_flag: indigo.OrganizationUser_permission
+                              List all NAF options:
+                                naf: true
+                        internal_transfers: true
+                        account_membership: true
+                        address_change: true
+                        alerts: true
+                        allpoint_locator_atm: true
+                        automatic_savings: OPT_IN
+                        bill_pay: ipay
+                        billshark: true
+                        business_account_opening: true
+                        personal_banking: true
+                        business_banking: true
+                        cards: true
+                        coop_locator_atm: true
+                        coop_locator_branch: true
+                        core_based_alerts: false
+                        existing_user_account_opening: true
+                        existing_user_dao: true
+                        instant_account_verification: mx
+                        insurance: lemonade
+                        login_and_enroll_blocked: false
+                        mobile_banking: true
+                        moneypass_locator_atm: true
+                        deposit_sso: true
+                        new_account_opening: true
+                        offers: true
+                        offline_verification: true
+                        online_banking: true
+                        p2p:
+                        - m2m
+                        paperless_statement_enrollment: true
+                        paperless_statement_unenrollment: false
+                        phone_change: true
+                        push_notifications: true
+                        rdc: true
+                        refer_a_member: true
+                        show_transaction_contact_support: true
+                        statements: true
+                        transfers: true
+                        trends: mx
+                        user_message_uploads: true
+                        username: true
+                        wires: true
+                        stop_payment: true
+                        beneficiaries: true
+                        naf_app_management: true
+                        profile_switcher: true
+                        mobile_login_switcher: true
+                        limits:
+                          immediate_rdc:
+                            '3': 7000
+                          immediate_ach_pull:
+                            '1': 1000
+                          ach_pull:
+                            '30': 5500
+                            '1': 500
+                          ach_push:
+                            '3': 5000
+                        indigo.Account_permission: '*'
+                        indigo.AchTransfer_permission: '*'
+                        integrations.base.Card_permission: '*'
+                        indigo.ExternalAccount_permission: '*'
+                        indigo.IntraInstitutionTransfer_permission: '*'
+                        indigo.MemberFriend_permission: '*'
+                        integrations.base.Payee_permission: '*'
+                        integrations.base.Payment_permission: '*'
+                        indigo.Transaction_permission: '*'
+                        indigo.WireTransaction_permission: '*'
+                        integrations.documents_permission: '*'
+                        integrations.rdc_permission: '*'
+                        can_change_username: false
+                        can_change_estatements: true
+                        zelle: false
+                        hold_days:
+                          rdc_hold_days: 4
+                          ach_hold_days: 2
+                      org_uuid: null
+                      org_role: null
+                      org_name: ''
+                      business_permissions: []
+                      dual_approval_required: false
+                      is_staff: false
+                      is_active: true
+                      is_superuser: false
+                      is_narmi: false
+                      date_joined: '2018-03-26T14:43:59.004000+00:00'
+                      last_login: '2024-04-22T21:06:02.006532+00:00'
+                      segment: ''
+                      metadata: {}
+                      has_username: true
+                      has_password: true
+                      has_accepted_latest_terms: false
+                      requires_enrollment_code_verification: false
+                      enabled_estatements_at: null
+                      is_converting: false
+                      has_permitted_device: true
+                      has_backup_codes: false
+                  summary: List joint users
+          description: ''
+      x-stoplight:
+        id: colhfovx5ye9w
+  /v1/users/{user_uuid}/:
+    get:
+      operationId: users_retrieve
+      description: 'Fetch a user specified by UUID. A user can be retrieved when it is a member of an associated account.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve a user
+      parameters:
+      - in: path
+        name: user_uuid
+        schema:
+          type: string
+          pattern: ^[0-9a-z-]+$
+        required: true
+      tags:
+      - users
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+              examples:
+                RetrieveUser:
+                  value:
+                    user:
+                      email: demo@narmitech.com
+                      core_provided_email: null
+                      username: testuser
+                      id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                      institution_user_identifier: ''
+                      updated_at: '2018-11-02T03:29:18.317000+00:00'
+                      addresses: []
+                      phone_numbers: []
+                      first_name: ''
+                      last_name: ''
+                      paper_statements: true
+                      user_category: personal
+                      features:
+                        ach: true
+                        allow_olb_device_remembering: true
+                        check_order: true
+                        edit_scheduled_transfers: true
+                        stop_payment_by_range: true
+                        top_menu:
+                          Dashboard:
+                            url: /dashboard
+                          Accounts:
+                            accounts: true
+                          Documents:
+                            url: /statements
+                          Support:
+                            url: /support
+                          Tools:
+                            menu:
+                              Transfer funds:
+                                url: /transfer
+                              Transactions:
+                                url: /transactions
+                              Cards:
+                                url: /cards
+                              Trends:
+                                url: /trends
+                              Automatic savings:
+                                url: /automatic
+                              Manage users:
+                                url: /access_manager
+                                feature_flag: indigo.OrganizationUser_permission
+                              List all NAF options:
+                                naf: true
+                        internal_transfers: true
+                        account_membership: true
+                        address_change: true
+                        alerts: true
+                        allpoint_locator_atm: true
+                        automatic_savings: OPT_IN
+                        bill_pay: ipay
+                        billshark: true
+                        business_account_opening: true
+                        personal_banking: true
+                        business_banking: true
+                        cards: true
+                        coop_locator_atm: true
+                        coop_locator_branch: true
+                        core_based_alerts: false
+                        existing_user_account_opening: true
+                        existing_user_dao: true
+                        instant_account_verification: mx
+                        insurance: lemonade
+                        login_and_enroll_blocked: false
+                        mobile_banking: true
+                        moneypass_locator_atm: true
+                        deposit_sso: true
+                        new_account_opening: true
+                        offers: true
+                        offline_verification: true
+                        online_banking: true
+                        p2p:
+                        - m2m
+                        paperless_statement_enrollment: true
+                        paperless_statement_unenrollment: false
+                        phone_change: true
+                        push_notifications: true
+                        rdc: true
+                        refer_a_member: true
+                        show_transaction_contact_support: true
+                        statements: true
+                        transfers: true
+                        trends: mx
+                        user_message_uploads: true
+                        username: true
+                        wires: true
+                        stop_payment: true
+                        beneficiaries: true
+                        naf_app_management: true
+                        profile_switcher: true
+                        mobile_login_switcher: true
+                        limits:
+                          immediate_rdc:
+                            '3': 7000
+                          immediate_ach_pull:
+                            '1': 1000
+                          ach_pull:
+                            '30': 5500
+                            '1': 500
+                          ach_push:
+                            '3': 5000
+                        indigo.Account_permission: '*'
+                        indigo.AchTransfer_permission: '*'
+                        integrations.base.Card_permission: '*'
+                        indigo.ExternalAccount_permission: '*'
+                        indigo.IntraInstitutionTransfer_permission: '*'
+                        indigo.MemberFriend_permission: '*'
+                        integrations.base.Payee_permission: '*'
+                        integrations.base.Payment_permission: '*'
+                        indigo.Transaction_permission: '*'
+                        indigo.WireTransaction_permission: '*'
+                        integrations.documents_permission: '*'
+                        integrations.rdc_permission: '*'
+                        can_change_username: false
+                        can_change_estatements: true
+                        zelle: false
+                        hold_days:
+                          rdc_hold_days: 4
+                          ach_hold_days: 2
+                      org_uuid: null
+                      org_role: null
+                      org_name: ''
+                      business_permissions: []
+                      dual_approval_required: false
+                      is_staff: false
+                      is_active: true
+                      is_superuser: false
+                      is_narmi: false
+                      date_joined: '2018-03-26T14:43:59.004000+00:00'
+                      last_login: '2024-04-22T21:06:02.006532+00:00'
+                      segment: ''
+                      metadata: {}
+                      has_username: true
+                      has_password: true
+                      has_accepted_latest_terms: false
+                      requires_enrollment_code_verification: false
+                      enabled_estatements_at: null
+                      is_converting: false
+                      has_permitted_device: true
+                      has_backup_codes: false
+                  summary: Successfully retrieve a user
+          description: ''
+        '404':
+          description: No response body
+      x-stoplight:
+        id: wkklncnfcftkw
+    put:
+      operationId: users_update
+      description: 'Set a user''s preference to receive paper statements.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Update a user
+      parameters:
+      - in: path
+        name: user_uuid
+        schema:
+          type: string
+          pattern: ^[0-9a-z-]+$
+        required: true
+      tags:
+      - users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedProfileUpdateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedProfileUpdateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedProfileUpdateRequest'
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+              examples:
+                SuccessfullyUpdatedAUser:
+                  value:
+                    user:
+                      email: demo@narmitech.com
+                      core_provided_email: null
+                      username: testuser
+                      id: 07231f46-23f1-482e-bdc4-35f2267b60e6
+                      institution_user_identifier: ''
+                      updated_at: '2018-11-02T03:29:18.317000+00:00'
+                      addresses: []
+                      phone_numbers: []
+                      first_name: ''
+                      last_name: ''
+                      paper_statements: true
+                      user_category: personal
+                      features:
+                        ach: true
+                        allow_olb_device_remembering: true
+                        check_order: true
+                        edit_scheduled_transfers: true
+                        stop_payment_by_range: true
+                        top_menu:
+                          Dashboard:
+                            url: /dashboard
+                          Accounts:
+                            accounts: true
+                          Documents:
+                            url: /statements
+                          Support:
+                            url: /support
+                          Tools:
+                            menu:
+                              Transfer funds:
+                                url: /transfer
+                              Transactions:
+                                url: /transactions
+                              Cards:
+                                url: /cards
+                              Trends:
+                                url: /trends
+                              Automatic savings:
+                                url: /automatic
+                              Manage users:
+                                url: /access_manager
+                                feature_flag: indigo.OrganizationUser_permission
+                              List all NAF options:
+                                naf: true
+                        internal_transfers: true
+                        account_membership: true
+                        address_change: true
+                        alerts: true
+                        allpoint_locator_atm: true
+                        automatic_savings: OPT_IN
+                        bill_pay: ipay
+                        billshark: true
+                        business_account_opening: true
+                        personal_banking: true
+                        business_banking: true
+                        cards: true
+                        coop_locator_atm: true
+                        coop_locator_branch: true
+                        core_based_alerts: false
+                        existing_user_account_opening: true
+                        existing_user_dao: true
+                        instant_account_verification: mx
+                        insurance: lemonade
+                        login_and_enroll_blocked: false
+                        mobile_banking: true
+                        moneypass_locator_atm: true
+                        deposit_sso: true
+                        new_account_opening: true
+                        offers: true
+                        offline_verification: true
+                        online_banking: true
+                        p2p:
+                        - m2m
+                        paperless_statement_enrollment: true
+                        paperless_statement_unenrollment: false
+                        phone_change: true
+                        push_notifications: true
+                        rdc: true
+                        refer_a_member: true
+                        show_transaction_contact_support: true
+                        statements: true
+                        transfers: true
+                        trends: mx
+                        user_message_uploads: true
+                        username: true
+                        wires: true
+                        stop_payment: true
+                        beneficiaries: true
+                        naf_app_management: true
+                        profile_switcher: true
+                        mobile_login_switcher: true
+                        limits:
+                          immediate_rdc:
+                            '3': 7000
+                          immediate_ach_pull:
+                            '1': 1000
+                          ach_pull:
+                            '30': 5500
+                            '1': 500
+                          ach_push:
+                            '3': 5000
+                        indigo.Account_permission: '*'
+                        indigo.AchTransfer_permission: '*'
+                        integrations.base.Card_permission: '*'
+                        indigo.ExternalAccount_permission: '*'
+                        indigo.IntraInstitutionTransfer_permission: '*'
+                        indigo.MemberFriend_permission: '*'
+                        integrations.base.Payee_permission: '*'
+                        integrations.base.Payment_permission: '*'
+                        indigo.Transaction_permission: '*'
+                        indigo.WireTransaction_permission: '*'
+                        integrations.documents_permission: '*'
+                        integrations.rdc_permission: '*'
+                        can_change_username: false
+                        can_change_estatements: true
+                        zelle: false
+                        hold_days:
+                          rdc_hold_days: 4
+                          ach_hold_days: 2
+                      org_uuid: null
+                      org_role: null
+                      org_name: ''
+                      business_permissions: []
+                      dual_approval_required: false
+                      is_staff: false
+                      is_active: true
+                      is_superuser: false
+                      is_narmi: false
+                      date_joined: '2018-03-26T14:43:59.004000+00:00'
+                      last_login: '2024-04-22T21:06:02.006532+00:00'
+                      segment: ''
+                      metadata: {}
+                      has_username: true
+                      has_password: true
+                      has_accepted_latest_terms: false
+                      requires_enrollment_code_verification: false
+                      enabled_estatements_at: null
+                      is_converting: false
+                      has_permitted_device: true
+                      has_backup_codes: false
+                  summary: Request successfully sets eStatements to `true`.
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionDeniedError'
+              examples:
+                PermissionDenied:
+                  value:
+                    id: permission_denied
+                    message: Permission is required to disable eStatements.
+                  summary: Setting eStatements to false fails when setting to `true`.
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+              examples:
+                UserNotFound:
+                  value:
+                    id: not_found
+                    message: User not found
+                  summary: Setting user fails when user UUID is invalid.
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRequestError'
+              examples:
+                InvalidInput:
+                  value:
+                    id: invalid_request_error
+                    message: paper_statements
+                  summary: Field `paper_statements` is set with non-boolean data.
+          description: ''
+      x-stoplight:
+        id: wzpzs24yu0zp0
+  /v1/users/{user_uuid}/estatements/:
+    post:
+      operationId: users_estatements_create
+      description: 'Sets the authenticated user to no longer receive paper statements. Does not affect whether the user can view statements within Digital Banking.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Sets user to receive estatements
+      parameters:
+      - in: path
+        name: user_uuid
+        schema:
+          type: string
+          pattern: ^[0-9a-z-]+$
+        required: true
+      tags:
+      - users
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstatementsResponse'
+              examples:
+                EnableEStatements:
+                  value:
+                    eStatements: true
+                  summary: Enable eStatements
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+              examples:
+                UserNotFound:
+                  value:
+                    not_found: User not found
+                  summary: User not found
+                MissingPaperlessStatementEnrollment/unenrollment:
+                  value:
+                    not_found: Permission is required to enable eStatements.
+                  summary: Missing paperless statement enrollment/unenrollment
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRequestError'
+              examples:
+                MissingPaperlessStatementEnrollment/unenrollment:
+                  value:
+                    invalid_request_error: We could not enable your paperless statement setting at this time. Please contact Support.
+                  summary: Missing paperless statement enrollment/unenrollment
+          description: ''
+      x-stoplight:
+        id: pi0cpo2fkshw0
+    delete:
+      operationId: users_estatements_destroy
+      description: 'Sets the authenticated user to receive paper statements. Does not affect whether the user can view statements within Digital Banking.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Sets user to receive paper statements
+      parameters:
+      - in: path
+        name: user_uuid
+        schema:
+          type: string
+          pattern: ^[0-9a-z-]+$
+        required: true
+      tags:
+      - users
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstatementsResponse'
+              examples:
+                EnableEStatements:
+                  value:
+                    eStatements: true
+                  summary: Enable eStatements
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+              examples:
+                UserNotFound:
+                  value:
+                    not_found: User not found
+                  summary: User not found
+                MissingPaperlessStatementEnrollment/unenrollment:
+                  value:
+                    not_found: Permission is required to enable eStatements.
+                  summary: Missing paperless statement enrollment/unenrollment
+          description: ''
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidRequestError'
+              examples:
+                MissingPaperlessStatementEnrollment/unenrollment:
+                  value:
+                    invalid_request_error: We could not enable your paperless statement setting at this time. Please contact Support.
+                  summary: Missing paperless statement enrollment/unenrollment
+          description: ''
+      x-stoplight:
+        id: goqw4lzxcqqkn
+components:
+  schemas:
+    Address:
+      type: object
+      properties:
+        street_address:
+          type: string
+        street_address_2:
+          type: string
+        city:
+          type: string
+        region_code:
+          type: string
+          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
+        postal_code:
+          type: string
+          description: Typically a five-digit numeric US ZIP Code.
+        country_code:
+          type: string
+          description: An ISO 3166-1 alpha-2 country code.
+        type:
+          type: string
+      required:
+      - city
+      - postal_code
+      - region_code
+      - street_address
+      x-stoplight:
+        id: xatva1xwqb0yk
+    BusinessPermissionsField:
+      type: object
+      properties:
+        model_str:
+          type: string
+        operation:
+          type: string
+        uuid:
+          type: string
+          format: uuid
+      required:
+      - model_str
+      - operation
+      - uuid
+      x-stoplight:
+        id: rhmxqgl8o5k8x
+    InvalidRequestError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid_request_error
+        message:
+          type: object
+          additionalProperties: {}
+          default:
+            field_name: Error description.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: aelrw6rc7wiph
+    UserResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/Profile'
+      required:
+      - user
+      x-stoplight:
+        id: yxxytavfdkjc0
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    UsersResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/Profile'
+      required:
+      - users
+      x-stoplight:
+        id: oa4hi1e7x69nz
+    Profile:
+      type: object
+      description: ''
+      properties:
+        email:
+          type: string
+          readOnly: true
+          description: Email address for the registered user.
+          example: demo@narmitech.com
+        core_provided_email:
+          type: string
+          nullable: true
+          readOnly: true
+          description: Email address the user has registered to the core.
+          example: null
+        username:
+          type: string
+          nullable: true
+          readOnly: true
+          description: Username for the registered user.
+          example: testuser
+        id:
+          type: string
+          format: uuid
+          nullable: true
+          readOnly: true
+          description: UUID of the registered user. This value is used as the unique identifier for the user in the API.
+          example: 07231f46-23f1-482e-bdc4-35f2267b60e6
+        institution_user_identifier:
+          type: string
+          readOnly: true
+          description: Core user ID, may be set to empty string if the requesting user does not have the `core_user_id` scope for the target user.
+          example: ''
+        updated_at:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+          description: The last date-time that the information for this user was altered or saved.
+          example: '2018-11-02T03:29:18.317000+00:00'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+          readOnly: true
+          description: A list of addresses for the registered user. This list contains the primary address and the mailing address of the user, if it exists. This may be set to empty list if the requesting user does not have the `address` scope for the target user.
+          example: []
+        phone_numbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Phone'
+          readOnly: true
+          description: A list of phone numbers for the registered user. This list often includes only one phone number. This may be set to empty list if the requesting user does not have the `phone` scope for the target user.
+          example: []
+        notifications_enabled:
+          type: boolean
+          nullable: true
+          readOnly: true
+          description: Whether the user has registered a device for notifications. This field will also check to make sure that at least one of the devices is set to active.
+        first_name:
+          type: string
+          readOnly: true
+          description: First name of the registered user, can also include middle or second names. This may be set to empty string if the requesting user does not have the `name` scope for the target user.
+          example: ''
+        last_name:
+          type: string
+          readOnly: true
+          description: Last name of the registered user, may include items such as hyphenated/multiple surnames and generational suffixes (ie. Jr, Sr, III). This may be set to empty string if the requesting user does not have the `name` scope for the target user.
+          example: ''
+        paper_statements:
+          type: boolean
+          nullable: true
+          readOnly: true
+          description: Whether the registered user has opted to receive eStatements. This may be set to `null` if the requesting user does not have the `preferences` scope for the target user.
+          example: true
+        user_category:
+          description: Used to distinguish whether this is a `business` or `personal` user.
+          nullable: true
+          readOnly: true
+          example: personal
+          oneOf:
+          - $ref: '#/components/schemas/UserCategory4f2Enum'
+          - $ref: '#/components/schemas/NullEnum'
+        features:
+          type: object
+          additionalProperties: {}
+          nullable: true
+          readOnly: true
+          description: A set of user features which define what the user can and can not do.
+          example:
+            ach: true
+            allow_olb_device_remembering: true
+            check_order: true
+            edit_scheduled_transfers: true
+            stop_payment_by_range: true
+            top_menu:
+              Dashboard:
+                url: /dashboard
+              Accounts:
+                accounts: true
+              Documents:
+                url: /statements
+              Support:
+                url: /support
+              Tools:
+                menu:
+                  Transfer funds:
+                    url: /transfer
+                  Transactions:
+                    url: /transactions
+                  Cards:
+                    url: /cards
+                  Trends:
+                    url: /trends
+                  Automatic savings:
+                    url: /automatic
+                  Manage users:
+                    url: /access_manager
+                    feature_flag: indigo.OrganizationUser_permission
+                  List all NAF options:
+                    naf: true
+            internal_transfers: true
+            account_membership: true
+            address_change: true
+            alerts: true
+            allpoint_locator_atm: true
+            automatic_savings: OPT_IN
+            bill_pay: ipay
+            billshark: true
+            business_account_opening: true
+            personal_banking: true
+            business_banking: true
+            cards: true
+            coop_locator_atm: true
+            coop_locator_branch: true
+            core_based_alerts: false
+            existing_user_account_opening: true
+            existing_user_dao: true
+            instant_account_verification: mx
+            insurance: lemonade
+            login_and_enroll_blocked: false
+            mobile_banking: true
+            moneypass_locator_atm: true
+            deposit_sso: true
+            new_account_opening: true
+            offers: true
+            offline_verification: true
+            online_banking: true
+            p2p:
+            - m2m
+            paperless_statement_enrollment: true
+            paperless_statement_unenrollment: false
+            phone_change: true
+            push_notifications: true
+            rdc: true
+            refer_a_member: true
+            show_transaction_contact_support: true
+            statements: true
+            transfers: true
+            trends: mx
+            user_message_uploads: true
+            username: true
+            wires: true
+            stop_payment: true
+            beneficiaries: true
+            naf_app_management: true
+            profile_switcher: true
+            mobile_login_switcher: true
+            limits:
+              immediate_rdc:
+                '3': 7000
+              immediate_ach_pull:
+                '1': 1000
+              ach_pull:
+                '30': 5500
+                '1': 500
+              ach_push:
+                '3': 5000
+            indigo.Account_permission: '*'
+            indigo.AchTransfer_permission: '*'
+            integrations.base.Card_permission: '*'
+            indigo.ExternalAccount_permission: '*'
+            indigo.IntraInstitutionTransfer_permission: '*'
+            indigo.MemberFriend_permission: '*'
+            integrations.base.Payee_permission: '*'
+            integrations.base.Payment_permission: '*'
+            indigo.Transaction_permission: '*'
+            indigo.WireTransaction_permission: '*'
+            integrations.documents_permission: '*'
+            integrations.rdc_permission: '*'
+            can_change_username: false
+            can_change_estatements: true
+            zelle: false
+            hold_days:
+              rdc_hold_days: 4
+              ach_hold_days: 2
+        org_uuid:
+          type: string
+          format: uuid
+          nullable: true
+          readOnly: true
+          description: The UUID of the organization which the user belongs to. This will be set to `null` if the user category is set to `personal`.
+          example: null
+        org_role:
+          description: The role of the user for the organization it belongs to. This will be set to `null` if the user category is set to `personal`.
+          nullable: true
+          readOnly: true
+          example: null
+          oneOf:
+          - $ref: '#/components/schemas/OrgRoleEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        org_name:
+          type: string
+          readOnly: true
+          description: Name of the organization the user belongs to. This will be the DBA (Doing Business As) name if it exists, otherwise it will be set to the organization's legal name.
+          example: ''
+        business_permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/BusinessPermissionsField'
+          readOnly: true
+          description: Permissions that a user has to a business. The permissions which are granted are dictated by the users role in the organization. This will be set to an empty list for non-business users.
+          example: []
+        dual_approval_required:
+          type: boolean
+          nullable: true
+          readOnly: true
+          description: For business users, this field indicates whether wire transactions initiated by the user require approval from the organization. For non-business users this will always be set to `false`.
+          example: false
+        ach_dual_approval_required:
+          type: boolean
+          nullable: true
+          readOnly: true
+          description: For business users, this field indicates whether ACH transactions initiated by the user require approval from the organization. For non-business users this will always be set to `false`.
+        income_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncomeSource'
+          readOnly: true
+          description: A list of user reported income sources.
+        international_wire_dual_approval_required:
+          type: boolean
+          nullable: true
+          readOnly: true
+          description: For business users, this field indicates whether international wire transactions initiated by the user require approval from the organization. For non-business users this will always be set to `false`.
+        is_staff:
+          type: boolean
+          readOnly: true
+          description: Indicates whether the registered user is an employee of the financial institution.
+          example: false
+        is_active:
+          type: boolean
+          readOnly: true
+          description: Indicates whether the user has been disabled.
+          example: true
+        is_superuser:
+          type: boolean
+          readOnly: true
+          description: Indicates whether the user is an admin.
+          example: false
+        is_narmi:
+          type: boolean
+          readOnly: true
+          description: Indicates whether the user is a Narmi user.
+          example: false
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+          description: The date-time the user was enrolled in the Narmi system.
+          example: '2018-03-26T14:43:59.004000+00:00'
+        last_login:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+          description: The date-time the user last logged in.
+          example: '2024-04-22T21:06:02.006532+00:00'
+        segment:
+          type: string
+          readOnly: true
+          description: The banking segment which the user is a member of. These values can be unique for different financial institutions.
+          example: ''
+        metadata:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+          description: Metadata for the registered user, this is often set as an empty object `{}`.
+          example: {}
+        has_username:
+          type: boolean
+          readOnly: true
+          description: Whether the username was defined by the user or was autogenerated by the system.
+          example: true
+        has_password:
+          type: boolean
+          readOnly: true
+          description: Whether the password was set by the user.
+          example: true
+        has_accepted_latest_terms:
+          type: boolean
+          readOnly: true
+          description: Whether the user has accepted the latest terms of service.
+          example: false
+        requires_enrollment_code_verification:
+          type: boolean
+          readOnly: true
+          description: Whether the user has verified their account. This can prevent the user from logging in. Enrollment can be completed via `/v1/enroll_verify/`.
+          example: false
+        enabled_estatements_at:
+          oneOf:
+          - type: string
+            format: date-time
+          - type: string
+          nullable: true
+          readOnly: true
+          description: Date-time the user opted into electronic statements.
+          example: null
+        is_converting:
+          type: boolean
+          readOnly: true
+          description: Whether the user is in the process of enrolling into online banking.
+          example: false
+        has_permitted_device:
+          type: boolean
+          readOnly: true
+          description: When 2FA is enabled for the FI, this field indicates whether the user has a device which they can use to authenticate to the system.
+          example: true
+        has_backup_codes:
+          type: boolean
+          readOnly: true
+          description: Whether the registered user has a one-time password backup code for two-factor authentication.
+          example: false
+        support_teams:
+          type: array
+          items:
+            type: string
+            format: uuid
+          nullable: true
+          readOnly: true
+          description: The UUIDs of the support teams which the user belongs to. This will be set to `null` if the user does not belong to a support team.
+        session_oidc_provider:
+          type: string
+          nullable: true
+          readOnly: true
+          description: The OIDC provider associated with the user's current session, if any.
+      x-stoplight:
+        id: g4tqfglwr85hp
+    UserCategory4f2Enum:
+      enum:
+      - personal
+      - business
+      type: string
+      x-stoplight:
+        id: vmvxka9zperhg
+    IncomeTypeEnum:
+      enum:
+      - employed
+      - part_time
+      - not_employed
+      - self_employed
+      - retirement
+      - other
+      type: string
+      description: '* `employed` - Employed
+
+        * `part_time` - Part time
+
+        * `not_employed` - Not employed
+
+        * `self_employed` - Self employed
+
+        * `retirement` - Retirement
+
+        * `other` - Other'
+      x-stoplight:
+        id: vlxoho9hsykzd
+    IncomeSource:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        income:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        income_type:
+          $ref: '#/components/schemas/IncomeTypeEnum'
+        mortgage_rent:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        industry:
+          type: string
+          maxLength: 128
+        occupation:
+          type: string
+          maxLength: 128
+      required:
+      - income
+      - income_type
+      x-stoplight:
+        id: cf5t7cvffrpat
+    Phone:
+      type: object
+      properties:
+        number:
+          type: string
+        device_id:
+          type: string
+          nullable: true
+        device_request_id:
+          type: string
+          nullable: true
+      required:
+      - number
+      x-stoplight:
+        id: vm2qlwcduqdwc
+    PermissionDeniedError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: You do not have permission to perform this action.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: ywbohhxwqjqj3
+    OrgRoleEnum:
+      enum:
+      - Account Holder
+      - Admin
+      - Collaborator
+      - No Permissions
+      - Viewer
+      type: string
+      x-stoplight:
+        id: bcxpswdnbrned
+    EstatementsResponse:
+      type: object
+      properties:
+        eStatements:
+          type: boolean
+      required:
+      - eStatements
+      x-stoplight:
+        id: ma1e7klanhtdp
+    PatchedProfileUpdateRequest:
+      type: object
+      description: Write-serializer for updating paper statements.
+      properties:
+        paper_statements:
+          type: boolean
+          description: Whether a user should receive paper statements or eStatements. If the core does not support eStatements or paper statements, or the feature `CoreUpdateEstatementSetting` is not set to true, setting this may fail with a permission denied error.
+      x-stoplight:
+        id: th7vqjustdawm
+    NullEnum:
+      enum:
+      - null
+      x-stoplight:
+        id: 2493tmzk9db0y
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

@@ -1,0 +1,294 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances surveys API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: surveys
+paths:
+  /v1/survey_impressions/:
+    get:
+      operationId: survey_impressions_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - in: query
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        description: UUID of the survey being viewed
+        required: true
+      tags:
+      - surveys
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedImpressionList'
+          description: ''
+      description: 'All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      x-stoplight:
+        id: gkvrdleasvut0
+    post:
+      operationId: survey_impressions_create
+      tags:
+      - surveys
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImpressionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ImpressionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ImpressionRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Impression'
+          description: ''
+      description: 'All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      x-stoplight:
+        id: bdwhxl8zfcuta
+  /v1/survey_impressions/create_answer/:
+    post:
+      operationId: survey_impressions_create_answer_create
+      tags:
+      - surveys
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAnswerRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateAnswerRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateAnswerRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          description: No response body
+      description: 'All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      x-stoplight:
+        id: qllxmevdp3mh2
+  /v1/surveys/:
+    get:
+      operationId: surveys_retrieve
+      description: "Returns the current survey that should be displayed to the authenticated user. Only one survey is shown at a time, prioritized by creation date (newest first). \n\nSurveys are filtered based on:\n- User's response history and survey frequency settings (once, monthly, quarterly, yearly)\n- Survey status (active, not archived, not draft)\n- Survey date range (starts_at and ends_at)\n- Product type (banking vs command/staff)\n\nReturns empty JSON `{}` if no survey should be shown to the user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      summary: Get current survey
+      tags:
+      - surveys
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Survey'
+              examples:
+                SurveyWithNPSQuestion:
+                  value:
+                    uuid: a1b2c3d4-5678-90ab-cdef-1234567890ab
+                    name: Customer Satisfaction Survey
+                    questions:
+                    - uuid: b2c3d4e5-6789-01bc-def1-234567890abc
+                      text: How likely are you to recommend us?
+                      is_required: true
+                      answer_type: npsscore
+                      answer_choices:
+                        uuid: c3d4e5f6-7890-12cd-ef12-34567890abcd
+                        choices:
+                        - 1
+                        - 2
+                        - 3
+                        - 4
+                        - 5
+                        - 6
+                        - 7
+                        - 8
+                        - 9
+                        - 10
+                    - uuid: d4e5f6a7-8901-23de-f123-4567890abcde
+                      text: Any additional comments?
+                      is_required: false
+                      answer_type: freeformtext
+                      answer_choices: null
+                  summary: Survey with NPS question
+                NoSurveyAvailable:
+                  value: {}
+                  summary: No survey available
+                  description: Returned when no survey should be shown to the user
+          description: Successfully retrieved the current survey or empty object if no survey is available
+      x-stoplight:
+        id: nviadxk2jj3d0
+components:
+  schemas:
+    ImpressionRequest:
+      type: object
+      description: 'Serializer for creating survey impressions.
+
+        Records that a user viewed a survey.'
+      properties:
+        survey:
+          type: string
+          format: uuid
+          description: UUID of the survey that was viewed
+      required:
+      - survey
+      x-stoplight:
+        id: aaui1avehvk19
+    Survey:
+      type: object
+      description: 'Serializer for surveys with nested questions.
+
+
+        Questions can be pre-sorted and passed via context[''questions''].'
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: Unique identifier for the survey
+        name:
+          type: string
+          description: Name of the survey
+        questions:
+          description: List of questions in the survey, ordered by priority (highest first)
+          readOnly: true
+      required:
+      - name
+      - uuid
+      x-stoplight:
+        id: 8wwz1p5y7iqn4
+    Impression:
+      type: object
+      description: 'Serializer for creating survey impressions.
+
+        Records that a user viewed a survey.'
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+          description: Unique identifier for the impression
+        survey:
+          type: string
+          format: uuid
+          description: UUID of the survey that was viewed
+        viewed_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Timestamp when the survey was viewed by the user
+      required:
+      - survey
+      x-stoplight:
+        id: tph0rpzmae7zm
+    PaginatedImpressionList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Impression'
+      x-stoplight:
+        id: atdsmymzgw1ww
+    CreateAnswerRequest:
+      type: object
+      properties:
+        impression_uuid:
+          type: string
+          format: uuid
+          writeOnly: true
+        question_uuid:
+          type: string
+          format: uuid
+          writeOnly: true
+        value:
+          writeOnly: true
+      required:
+      - impression_uuid
+      - question_uuid
+      - value
+      x-stoplight:
+        id: vxbunjwb2qgfd
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

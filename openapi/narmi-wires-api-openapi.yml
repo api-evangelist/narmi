@@ -1,0 +1,631 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances wires API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: wires
+paths:
+  /v1/wires/:
+    get:
+      operationId: wires_list
+      description: "List the authenticated user's wire transactions. Accepts `account_uuid` as a query parameter, limiting results to those relevant to the specified account. User must have permission to read account information. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      summary: List wire transactions.
+      parameters:
+      - in: query
+        name: account_uuid
+        schema:
+          type: string
+          format: uuid
+        description: Optional account UUID used to filter wire transactions to those for the specified account.
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: per_page
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - wires
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWireList'
+          description: ''
+      x-stoplight:
+        id: tw9fexrryj6lz
+    post:
+      operationId: wires_create
+      description: 'Creates a new wire transaction. A confirmation email may be sent to members of the `from_account` if wire was submitted for processing (prerequisites such as dual approval were not required).
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create a new wire transaction.
+      tags:
+      - wires
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WireCreateDocRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WireCreateDocRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WireCreateDocRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WireCreateResponse'
+          description: Wire transaction successfully created.
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+          description: Bad request. Validation failed for the submitted wire data.
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+          description: Unprocessable entity. Validation failed for the submitted wire data.
+      x-stoplight:
+        id: rgywdlzhhdldj
+  /v1/wires/{uuid}/:
+    get:
+      operationId: wires_retrieve
+      description: 'Retrieve details for a specific wire transaction by UUID.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve a wire transaction
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          pattern: ^[0-9a-z-]+$
+        required: true
+      tags:
+      - wires
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wire'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: ''
+      x-stoplight:
+        id: 1tz6lxsf6nf61
+  /v1/wires/fedwire_templates/:
+    post:
+      operationId: wires_fedwire_templates_create
+      description: 'Send a wire using an existing wire template.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Send a wire using a wire template
+      tags:
+      - wires
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WireTransactionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WireTransactionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WireTransactionRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WireTransaction'
+          description: ''
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+          description: ''
+        '409':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+                example:
+                  id: idempotency_key_used
+                  message: Idempotency-Key is already used.
+          description: ''
+      x-stoplight:
+        id: tzlyv4xykjd5p
+components:
+  schemas:
+    Wire:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        processed_at:
+          type: string
+          format: date-time
+          readOnly: true
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+          readOnly: true
+        from_account:
+          type: string
+          format: uuid
+          readOnly: true
+        from_account_display:
+          type: string
+          readOnly: true
+        to_account_number:
+          type: string
+          readOnly: true
+        to_account_routing_number:
+          type: string
+          readOnly: true
+        to_account_institution_name:
+          type: string
+          readOnly: true
+        beneficiary_name:
+          type: string
+          readOnly: true
+        beneficiary_address_1:
+          type: string
+          readOnly: true
+        beneficiary_address_2:
+          type: string
+          readOnly: true
+        beneficiary_address_3:
+          type: string
+          readOnly: true
+        memo_1:
+          type: string
+          readOnly: true
+        memo_2:
+          type: string
+          readOnly: true
+        memo_3:
+          type: string
+          readOnly: true
+        memo_4:
+          type: string
+          readOnly: true
+        state:
+          type: string
+          readOnly: true
+        display_state:
+          type: string
+          readOnly: true
+        template_name:
+          type: string
+          readOnly: true
+        wire_reason:
+          type: string
+          readOnly: true
+      x-stoplight:
+        id: igunvqvoaorhw
+    WireTransaction:
+      type: object
+      description: 'Currently, this serializer creates a WireTransaction based on an existing wire template, where the template
+
+        prescribes every field (except a few optional fields that, if not provided, must be filled out by the wire sender).
+
+
+        Most of the logic in this serializer is also relevant to the non-template wire sending flow, so in the near future, we should refactor
+
+        the non-template wire sending flow to use this serializer, and handle the template-specific validation separately.'
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        processed_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        from_account_display:
+          example: Checking (******7890)
+          description: The account name and masked account number.
+          type: string
+          readOnly: true
+        display_state:
+          example: Submitted
+          description: The current human-readable state of the wire transaction.
+          type: string
+          readOnly: true
+        to_account_institution_name:
+          type: string
+          readOnly: true
+          example: LIVERMORE FALLS TR
+          description: The abbreviated, capitalized name of the destination financial institution.
+        from_account:
+          type: string
+          format: uuid
+          readOnly: true
+          description: The account from which the wire transaction was sent.
+        to_account_number:
+          type: string
+          readOnly: true
+          example: '123456'
+          description: The account number of the recipient.
+        to_account_routing_number:
+          type: string
+          readOnly: true
+          example: 011201995
+          description: The routing number of the recipient.
+        beneficiary_name:
+          type: string
+          readOnly: true
+          example: John Doe
+          description: The name of the recipient.
+        beneficiary_address_1:
+          type: string
+          readOnly: true
+          example: 123 Main Street
+          description: The first line of the recipient's address.
+        beneficiary_address_2:
+          type: string
+          readOnly: true
+          example: Apt 4B
+          description: The second line of the recipient's address. Usually, this is the apartment, floor, or suite.
+        beneficiary_address_3:
+          type: string
+          readOnly: true
+          example: New York, NY 10017 US
+          description: The third line of the recipient's address. Usually, this is the city, state, postal code and country code.
+        memo_1:
+          type: string
+          readOnly: true
+          example: The first memo line
+          description: The first 35 characters of the memo used to create the wire transaction. If the memo is longer than 35 characters, the memo will be split into additional memo lines.
+        memo_2:
+          type: string
+          readOnly: true
+          example: The second memo line
+          description: Characters 36-70 of the memo used to create the wire transaction.
+        memo_3:
+          type: string
+          readOnly: true
+          example: The third memo line
+          description: Characters 71-105 of the memo used to create the wire transaction.
+        memo_4:
+          type: string
+          readOnly: true
+          example: The fourth memo line
+          description: Characters 106-140 of the memo used to create the wire transaction.
+        template_name:
+          type: string
+          readOnly: true
+          nullable: true
+          example: Construction
+          description: The name of the template used to create the wire transaction.
+        wire_reason:
+          type: string
+          nullable: true
+          description: 'Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. '
+          example: Payment for a subscription service
+        state:
+          allOf:
+          - $ref: '#/components/schemas/StateC02Enum'
+          readOnly: true
+        amount:
+          example: 1
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+      x-stoplight:
+        id: k58fwfxw4mkym
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    GeneralError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid
+        message:
+          type: string
+          description: An error response detailing the field and the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: v76fz3qxj5djb
+    PaginatedWireList:
+      type: object
+      required:
+      - meta
+      - links
+      properties:
+        meta:
+          description: Free-form object, contains total object count.
+          type: object
+          properties:
+            total:
+              type: integer
+        links:
+          type: object
+          description: URIs linking to sequential pages of the result.
+          properties:
+            next:
+              type: string
+              format: uri
+              nullable: true
+              example: http://api.example.org/accounts/?page=4
+            prev:
+              type: string
+              format: uri
+              nullable: true
+              example: http://api.example.org/accounts/?page=4
+        wires:
+          type: array
+          items:
+            $ref: '#/components/schemas/Wire'
+      x-stoplight:
+        id: 1gar1tw6thkwk
+    WireTransactionRequest:
+      type: object
+      description: 'Currently, this serializer creates a WireTransaction based on an existing wire template, where the template
+
+        prescribes every field (except a few optional fields that, if not provided, must be filled out by the wire sender).
+
+
+        Most of the logic in this serializer is also relevant to the non-template wire sending flow, so in the near future, we should refactor
+
+        the non-template wire sending flow to use this serializer, and handle the template-specific validation separately.'
+      properties:
+        wire_reason:
+          type: string
+          nullable: true
+          description: 'Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. '
+          example: Payment for a subscription service
+        fedwire_template:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the fedwire template to use for the wire transaction.
+          type: string
+          format: uuid
+          writeOnly: true
+        amount:
+          example: 1
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        memo:
+          type: string
+          writeOnly: true
+          nullable: true
+          description: Memo for the wire transaction. If not provided, the memo will be generated from the template's memo field.
+          maxLength: 140
+          example: 'Invoice #1234'
+        version_id:
+          type: string
+          writeOnly: true
+          minLength: 1
+          description: The version ID of the template, based on when template or recipient details were last updated. This value is used to ensure that the template hasn't been updated since the user began drafting a wire using this template.
+          example: e28e3b5e9076550cd276ba4d0ddbc93c52a273129238f107ed599edc0483d509
+      required:
+      - fedwire_template
+      - version_id
+      x-stoplight:
+        id: 68tc9fitepbjn
+    WireCreateDocRequest:
+      type: object
+      properties:
+        from_account:
+          type: string
+          format: uuid
+          title: From
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        to_account_routing_number:
+          type: string
+          minLength: 1
+          maxLength: 9
+        to_account_number:
+          type: string
+          minLength: 1
+          maxLength: 34
+        to_account_institution_name:
+          type: string
+          maxLength: 18
+        beneficiary_name:
+          type: string
+          maxLength: 140
+        beneficiary_address_1:
+          type: string
+          maxLength: 35
+        beneficiary_address_2:
+          type: string
+          maxLength: 35
+        beneficiary_address_3:
+          type: string
+          maxLength: 35
+        memo_1:
+          type: string
+          minLength: 1
+          maxLength: 35
+        memo_2:
+          type: string
+          maxLength: 35
+        memo_3:
+          type: string
+          maxLength: 35
+        memo_4:
+          type: string
+          maxLength: 35
+        state:
+          type: string
+          minLength: 1
+        wire_reason:
+          type: string
+          nullable: true
+          maxLength: 100
+        device_id:
+          type: string
+          minLength: 1
+        device_request_id:
+          type: string
+          minLength: 1
+      required:
+      - amount
+      - from_account
+      - memo_1
+      - to_account_number
+      - to_account_routing_number
+      x-stoplight:
+        id: xdw3obgyxcqyz
+    WireCreateResponse:
+      type: object
+      properties:
+        wires:
+          type: array
+          items:
+            $ref: '#/components/schemas/Wire'
+      required:
+      - wires
+      x-stoplight:
+        id: mmf7ufl8ct7k7
+    StateC02Enum:
+      enum:
+      - analyzing
+      - pending
+      - review
+      - processing
+      - processed
+      - rejected
+      - canceled
+      - awaiting_approval
+      - rejected_approval
+      type: string
+      description: '* `analyzing` - Analyzing
+
+        * `pending` - Pending
+
+        * `review` - Review
+
+        * `processing` - Processing
+
+        * `processed` - Processed (in transit)
+
+        * `rejected` - Rejected by staff
+
+        * `canceled` - Canceled
+
+        * `awaiting_approval` - Awaiting dual approval
+
+        * `rejected_approval` - Dual approval rejected'
+      x-stoplight:
+        id: qbox8yql7ah47
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

@@ -1,0 +1,142 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances merchants API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: merchants
+paths:
+  /v1/merchants/:
+    get:
+      operationId: merchants_list
+      description: 'Retrieve a list of popular merchants for subscriptions and relevant cancellation details.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve merchants
+      tags:
+      - merchants
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Merchant'
+          description: ''
+        '401':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                AuthenticationFailed:
+                  value:
+                    id: authentication_failed
+                    message: Incorrect authentication credentials.
+          description: ''
+        '500':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                ServiceFailureError:
+                  value:
+                    id: service_failure_error
+                    message: Sorry, we were unable to process your request, please check back soon.
+          description: ''
+      x-stoplight:
+        id: lbkkcxlhrnvjh
+components:
+  schemas:
+    Merchant:
+      type: object
+      properties:
+        merchant_name:
+          type: string
+          description: The name of the merchant associated with the transaction.
+          maxLength: 100
+        website_url:
+          type: string
+          format: uri
+          description: The website URL of the merchant.
+          maxLength: 255
+        cancellation_url:
+          type: string
+          format: uri
+          nullable: true
+          description: The cancellation URL of the merchant.
+          maxLength: 255
+        logo_url:
+          type: string
+          nullable: true
+          readOnly: true
+        contact_number:
+          type: string
+          nullable: true
+          description: The contact number of the merchant.
+          maxLength: 20
+        contact_email:
+          type: string
+          format: email
+          nullable: true
+          description: The contact email of the merchant.
+          maxLength: 100
+        cancellation_instructions:
+          type: array
+          items:
+            type: string
+            maxLength: 500
+          nullable: true
+          description: Instructions for cancelling a subscription with the merchant.
+      required:
+      - merchant_name
+      - website_url
+      x-stoplight:
+        id: drdbt5axwltjc
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

@@ -1,0 +1,149 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances data access management API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: data access management
+paths:
+  /v1/data_access_management/:
+    get:
+      operationId: data_access_management_list
+      tags:
+      - data access management
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDataAccessConsentList'
+          description: ''
+      description: 'All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      x-stoplight:
+        id: 0fvxwfc3scl3c
+  /v1/data_access_management/revoke/:
+    post:
+      operationId: data_access_management_revoke_create
+      summary: Revoke a third-party data access connection
+      tags:
+      - data access management
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataAccessConsentRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/DataAccessConsentRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/DataAccessConsentRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '204':
+          description: No response body
+        '502':
+          description: No response body
+      description: 'All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      x-stoplight:
+        id: nohz0utqhws5g
+components:
+  schemas:
+    DataAccessConsentRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 1
+        data_partner:
+          type: string
+          minLength: 1
+        application_name:
+          type: string
+          minLength: 1
+        connected_at:
+          type: string
+          format: date-time
+      required:
+      - application_name
+      - connected_at
+      - data_partner
+      - id
+      x-stoplight:
+        id: qx1nvezsitftj
+    DataAccessConsent:
+      type: object
+      properties:
+        id:
+          type: string
+        data_partner:
+          type: string
+        application_name:
+          type: string
+        connected_at:
+          type: string
+          format: date-time
+      required:
+      - application_name
+      - connected_at
+      - data_partner
+      - id
+      x-stoplight:
+        id: 2jqpwebufujel
+    PaginatedDataAccessConsentList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataAccessConsent'
+      x-stoplight:
+        id: 0hfmpfydofabh
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

@@ -1,0 +1,511 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances wire recipients API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: wire recipients
+paths:
+  /v1/wire_recipients/:
+    get:
+      operationId: wire_recipients_list
+      description: 'Returns a list of the authenticated user''s previous wire recipients. They are persisted so the user may easily reference them for future wire transfers.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List wire recipients
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - wire recipients
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedWireRecipientList'
+          description: ''
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionDeniedError'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: ''
+      x-stoplight:
+        id: 7gxs45gruwzcg
+    post:
+      operationId: wire_recipients_create
+      description: 'Create a new wire recipient for the authenticated user to be referenced in wire transfers.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create wire recipients
+      tags:
+      - wire recipients
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WireRecipientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WireRecipientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WireRecipientRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WireRecipient'
+          description: ''
+      x-stoplight:
+        id: wcxsui1sw7y8c
+  /v1/wire_recipients/{uuid}/:
+    get:
+      operationId: wire_recipients_retrieve
+      description: 'Returns wire recipient belonging to authenticated user, identified by `uuid`
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Retrieve wire recipients
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - wire recipients
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WireRecipient'
+          description: ''
+      x-stoplight:
+        id: alwnt198dhpbh
+    put:
+      operationId: wire_recipients_update
+      description: 'Update the details of a wire recipient belonging to authenticated user, identified by `uuid`
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Update wire recipients
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - wire recipients
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WireRecipientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WireRecipientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/WireRecipientRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WireRecipient'
+          description: ''
+      x-stoplight:
+        id: 4fouilifqfami
+    patch:
+      operationId: wire_recipients_partial_update
+      description: 'Update the details of a wire recipient belonging to authenticated user, identified by `uuid`
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Modify wire recipients
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - wire recipients
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedWireRecipientRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedWireRecipientRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedWireRecipientRequest'
+        required: true
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WireRecipient'
+          description: ''
+      x-stoplight:
+        id: zedmdlwpg1zbj
+    delete:
+      operationId: wire_recipients_destroy
+      description: 'Delete an authenticated user''s wire recipient identified by `uuid`
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Delete wire recipients
+      parameters:
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - wire recipients
+      security:
+      - oauth2:
+        - write
+      responses:
+        '204':
+          description: No response body
+      x-stoplight:
+        id: phmudftmgswyx
+components:
+  schemas:
+    FedwireRecipientAddressRequest:
+      type: object
+      properties:
+        street_address:
+          type: string
+          minLength: 1
+          maxLength: 35
+        street_address_2:
+          type: string
+          maxLength: 35
+        city:
+          type: string
+          maxLength: 128
+        region_code:
+          type: string
+          maxLength: 128
+        postal_code:
+          type: string
+          maxLength: 128
+        country_code:
+          type: string
+          minLength: 1
+          maxLength: 2
+      required:
+      - street_address
+      x-stoplight:
+        id: jpxphmdao13bd
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    WireRecipientRequest:
+      type: object
+      description: 'This serializer supports backwards compatibility for the WireRecipientViewSet,
+
+        which is deprecated and should be avoided in favor of RecipientViewSet.
+
+        WireRecipient was created before we''d had a more general Recipient concept.'
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: Used to formally identify the recipient and when sending fedwires.
+          maxLength: 140
+        routing_number:
+          type: string
+          minLength: 1
+          maxLength: 9
+        account_number:
+          type: string
+          minLength: 1
+          maxLength: 17
+        address:
+          $ref: '#/components/schemas/FedwireRecipientAddressRequest'
+        fedwire_destination:
+          type: object
+          properties:
+            name:
+              type: string
+              example: J. Doe
+            routing_number:
+              type: string
+              example: '021000021'
+            account_number:
+              type: string
+              example: '12345678912345678'
+      required:
+      - account_number
+      - address
+      - name
+      - routing_number
+      x-stoplight:
+        id: ifvybcisydbkd
+    WireRecipient:
+      type: object
+      description: 'This serializer supports backwards compatibility for the WireRecipientViewSet,
+
+        which is deprecated and should be avoided in favor of RecipientViewSet.
+
+        WireRecipient was created before we''d had a more general Recipient concept.'
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: Used to formally identify the recipient and when sending fedwires.
+          maxLength: 140
+        routing_number:
+          type: string
+          maxLength: 9
+        account_number:
+          type: string
+          maxLength: 17
+        address:
+          $ref: '#/components/schemas/FedwireRecipientAddress'
+        destination_institution_name:
+          type: string
+          readOnly: true
+        fedwire_destination:
+          type: object
+          properties:
+            name:
+              type: string
+              example: J. Doe
+            routing_number:
+              type: string
+              example: '021000021'
+            account_number:
+              type: string
+              example: '12345678912345678'
+          institution_name:
+            type: string
+            example: JPMChase
+      required:
+      - account_number
+      - address
+      - name
+      - routing_number
+      x-stoplight:
+        id: acopmwxwejxqo
+    PermissionDeniedError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: You do not have permission to perform this action.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: ywbohhxwqjqj3
+    PaginatedWireRecipientList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/WireRecipient'
+      x-stoplight:
+        id: helxd3oqo981w
+    FedwireRecipientAddress:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        street_address:
+          type: string
+          maxLength: 35
+        street_address_2:
+          type: string
+          maxLength: 35
+        city:
+          type: string
+          maxLength: 128
+        region_code:
+          type: string
+          maxLength: 128
+        postal_code:
+          type: string
+          maxLength: 128
+        country_code:
+          type: string
+          maxLength: 2
+      required:
+      - street_address
+      x-stoplight:
+        id: alp6ww1u4r5wf
+    PatchedWireRecipientRequest:
+      type: object
+      description: 'This serializer supports backwards compatibility for the WireRecipientViewSet,
+
+        which is deprecated and should be avoided in favor of RecipientViewSet.
+
+        WireRecipient was created before we''d had a more general Recipient concept.'
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: Used to formally identify the recipient and when sending fedwires.
+          maxLength: 140
+        routing_number:
+          type: string
+          minLength: 1
+          maxLength: 9
+        account_number:
+          type: string
+          minLength: 1
+          maxLength: 17
+        address:
+          $ref: '#/components/schemas/FedwireRecipientAddressRequest'
+        fedwire_destination:
+          type: object
+          properties:
+            name:
+              type: string
+              example: J. Doe
+            routing_number:
+              type: string
+              example: '021000021'
+            account_number:
+              type: string
+              example: '12345678912345678'
+      required:
+      - account_number
+      - address
+      - name
+      - routing_number
+      x-stoplight:
+        id: sq5docs92xmmk
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x

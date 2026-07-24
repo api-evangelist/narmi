@@ -1,0 +1,346 @@
+openapi: 3.0.3
+info:
+  title: Narmi Public account balances documents API
+  version: v1
+  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  termsOfService: https://www.narmi.com/policies/developer-terms-conditions
+  contact:
+    name: Narmi Support
+    email: support@narmi.com
+servers:
+- url: https://api.sandbox.narmi.dev/
+  description: ''
+tags:
+- name: documents
+paths:
+  /v1/documents/:
+    get:
+      operationId: documents_list
+      description: 'List the authenticated user''s documents (statements, tax forms, etc.).
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: List documents
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      tags:
+      - documents
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDocumentList'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                Http404:
+                  value:
+                    id: api_error
+                    message: Not found.
+                  description: May be returned if the statements feature is not available.
+          description: May be returned if the statements feature is not available.
+      x-stoplight:
+        id: jj43wihawhdct
+  /v1/documents/{document_id}/:
+    get:
+      operationId: documents_retrieve
+      description: "Fetch a specific statement by statement ID. \n\nAn invalid document ID will typically return the documented error response, however if the `statements` feature is not enabled, it may also return a blank 404 response.\n\nThis endpoint will return a 404 if a trailing slash is included in the request.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      summary: Retrieve a document
+      parameters:
+      - in: query
+        name: data
+        schema:
+          type: boolean
+        description: Whether or not to include base64 encoded file data in the `data` field.
+      - in: path
+        name: document_id
+        schema:
+          type: string
+          pattern: ^[-_%A-Za-z0-9+\/=]+$
+        required: true
+      tags:
+      - documents
+      security:
+      - oauth2:
+        - read
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDocument'
+          description: ''
+        '404':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                Http404:
+                  value:
+                    id: api_error
+                    message: Not found.
+                  description: May be returned if the statements feature is not available.
+          description: May be returned if the statements feature is not available.
+        '503':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceFailureError'
+          description: ''
+      x-stoplight:
+        id: okrkhkrpuox5p
+  /v1/documents/download/:
+    post:
+      operationId: documents_download_zip
+      description: 'Creates a zip file of the requested document ids.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+
+
+        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+      summary: Create zip file of selected documents
+      parameters:
+      - in: query
+        name: share
+        schema:
+          type: integer
+          enum:
+          - 1
+        description: When 1, zip file will be emailed to the request's user's email instead of returning it in the response.
+      tags:
+      - documents
+      security:
+      - oauth2:
+        - write
+      responses:
+        '200':
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+                description: Zip file containing PDF documents organized by account.
+              examples:
+                ZipFile:
+                  value: "PK\x03\x04..."
+                  description: Zip file containing requested PDF documents organized by account.
+          description: Returns selected pdf documents inside zip file.
+        '400':
+          description: Will occur if no document ids or too many document ids are specified.
+        '403':
+          description: May be returned if the statements or enable_document_filters feature(s) are not available.
+        '202':
+          description: Zip file is being prepared for sharing via email.
+        '413':
+          description: May be returned if the zip file is too large to share via email.
+        '503':
+          description: May be returned if an empty zip file would be returned.
+      x-stoplight:
+        id: 3s7tkyokn7zyn
+components:
+  schemas:
+    DocumentResponse:
+      type: object
+      properties:
+        document:
+          $ref: '#/components/schemas/Document'
+      required:
+      - document
+      x-stoplight:
+        id: b2w8p4gq2jw1j
+    DocumentWithData:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: Document ID. The format of the ID can vary between document stores.
+          example: f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5
+        type:
+          type: string
+          nullable: true
+          readOnly: true
+          description: Document type, this value can vary between document stores.
+          example: statement
+        type_label:
+          type: string
+          nullable: true
+          readOnly: true
+          description: Human readable type, defaults to value of `type` field when missing.
+          example: statement
+        description:
+          type: string
+          nullable: true
+          readOnly: true
+          example: Account 43333
+        created_at:
+          type: string
+          readOnly: true
+          description: The date-time the document was posted.
+          example: '2018-10-30T00:00:00-04:00'
+        account_id:
+          type: string
+          readOnly: true
+        data:
+          type: string
+          format: uri
+          description: Binary PDF file data, base64 encoded. This is included when `data` parameter is specified.
+          example: dGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5nCg==
+        url:
+          type: string
+          format: uri
+          nullable: true
+          description: The URL of the retrieve API call.
+          readOnly: true
+          example: https://demo2-api.uat.narmitech.com/v1/documents/f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5?data=true
+      x-stoplight:
+        id: xrmejhjmnyf1h
+    ServiceFailureError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_connection_error
+        message:
+          type: string
+          default: Sorry, we were unable to process your request, please check back soon.
+      x-stoplight:
+        id: 6qutj3sa03we7
+    UserDocument:
+      oneOf:
+      - $ref: '#/components/schemas/DocumentResponse'
+      - $ref: '#/components/schemas/DocumentWithDataResponse'
+      x-stoplight:
+        id: hcy6wln20g4we
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: Document ID. The format of the ID can vary between document stores.
+          example: f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5
+        type:
+          type: string
+          nullable: true
+          readOnly: true
+          description: Document type, this value can vary between document stores.
+          example: statement
+        type_label:
+          type: string
+          nullable: true
+          readOnly: true
+          description: Human readable type, defaults to value of `type` field when missing.
+          example: statement
+        description:
+          type: string
+          nullable: true
+          readOnly: true
+          example: Account 43333
+        created_at:
+          type: string
+          readOnly: true
+          description: The date-time the document was posted.
+          example: '2018-10-30T00:00:00-04:00'
+        account_id:
+          type: string
+          readOnly: true
+        url:
+          type: string
+          format: uri
+          nullable: true
+          description: The URL of the retrieve API call.
+          readOnly: true
+          example: https://demo2-api.uat.narmitech.com/v1/documents/f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5?data=true
+      x-stoplight:
+        id: 9mjrd0thewwlb
+    PaginatedDocumentList:
+      type: object
+      required:
+      - documents
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+      x-stoplight:
+        id: 0aow4ftsieugm
+    DocumentWithDataResponse:
+      type: object
+      properties:
+        document:
+          $ref: '#/components/schemas/DocumentWithData'
+      required:
+      - document
+      x-stoplight:
+        id: 64o2djny8szc0
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /v2/oauth/authorize/
+          tokenUrl: /v2/oauth/token/
+          scopes:
+            banking:accounts:read: Can read account information.
+            banking:transactions:read: Can read transaction information.
+            banking:scheduled_transfers:read: Can read scheduled transfer information.
+            banking:scheduled_transfers:write: Can create and update scheduled transfers.
+            banking:accounts:write: Can update account information.
+            banking:transactions:write: Can update transaction information.
+            banking:users:read: Can read user profile information.
+            banking:products:read: Can read product information.
+            banking:documents:read: Can read user statements and documents.
+x-stoplight:
+  id: 68n444msv6n7x
