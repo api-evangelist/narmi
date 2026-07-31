@@ -1,0 +1,140 @@
+{
+  "info": {
+    "_postman_id": "64adad49-92fa-4f23-bde9-77dc57d209ea",
+    "name": "Narmi Public account balances me API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:15.000Z",
+    "updatedAt": "2026-07-28T02:16:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-64adad49-92fa-4f23-bde9-77dc57d209ea"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "me",
+          "item": [
+            {
+              "name": "List authenticated user information",
+              "id": "07a7353d-30a4-42d6-bb6b-c73ea3e99fde",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/me/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "me",
+                    ""
+                  ]
+                },
+                "description": "List the authenticated users profile information.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "4d1851d9-21cf-45dd-97bc-2a0a556a5a90",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/me/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "me",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"users\": [\n    {\n      \"email\": \"<string>\",\n      \"core_provided_email\": \"<string>\",\n      \"username\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"institution_user_identifier\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"addresses\": [\n        {\n          \"city\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"region_code\": \"<string>\",\n          \"street_address\": \"<string>\",\n          \"street_address_2\": \"<string>\",\n          \"country_code\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"city\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"region_code\": \"<string>\",\n          \"street_address\": \"<string>\",\n          \"street_address_2\": \"<string>\",\n          \"country_code\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"phone_numbers\": [\n        {\n          \"number\": \"<string>\",\n          \"device_id\": \"<string>\",\n          \"device_request_id\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"device_id\": \"<string>\",\n          \"device_request_id\": \"<string>\"\n        }\n      ],\n      \"notifications_enabled\": \"<boolean>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"paper_statements\": \"<boolean>\",\n      \"user_category\": \"personal\",\n      \"features\": {\n        \"exercitation_e1\": {}\n      },\n      \"org_uuid\": \"<uuid>\",\n      \"org_role\": \"No Permissions\",\n      \"org_name\": \"<string>\",\n      \"business_permissions\": [\n        {\n          \"model_str\": \"<string>\",\n          \"operation\": \"<string>\",\n          \"uuid\": \"<uuid>\"\n        },\n        {\n          \"model_str\": \"<string>\",\n          \"operation\": \"<string>\",\n          \"uuid\": \"<uuid>\"\n        }\n      ],\n      \"dual_approval_required\": \"<boolean>\",\n      \"ach_dual_approval_required\": \"<boolean>\",\n      \"income_sources\": [\n        {\n          \"income\": \"<integer>\",\n          \"income_type\": \"retirement\",\n          \"uuid\": \"<uuid>\",\n          \"mortgage_rent\": \"<integer>\",\n          \"industry\": \"<string>\",\n          \"occupation\": \"<string>\"\n        },\n        {\n          \"income\": \"<integer>\",\n          \"income_type\": \"retirement\",\n          \"uuid\": \"<uuid>\",\n          \"mortgage_rent\": \"<integer>\",\n          \"industry\": \"<string>\",\n          \"occupation\": \"<string>\"\n        }\n      ],\n      \"international_wire_dual_approval_required\": \"<boolean>\",\n      \"is_staff\": \"<boolean>\",\n      \"is_active\": \"<boolean>\",\n      \"is_superuser\": \"<boolean>\",\n      \"is_narmi\": \"<boolean>\",\n      \"date_joined\": \"<dateTime>\",\n      \"last_login\": \"<dateTime>\",\n      \"segment\": \"<string>\",\n      \"metadata\": {\n        \"commodo_4\": {}\n      },\n      \"has_username\": \"<boolean>\",\n      \"has_password\": \"<boolean>\",\n      \"has_accepted_latest_terms\": \"<boolean>\",\n      \"requires_enrollment_code_verification\": \"<boolean>\",\n      \"enabled_estatements_at\": \"<dateTime>\",\n      \"is_converting\": \"<boolean>\",\n      \"has_permitted_device\": \"<boolean>\",\n      \"has_backup_codes\": \"<boolean>\",\n      \"support_teams\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"session_oidc_provider\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"core_provided_email\": \"<string>\",\n      \"username\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"institution_user_identifier\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"addresses\": [\n        {\n          \"city\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"region_code\": \"<string>\",\n          \"street_address\": \"<string>\",\n          \"street_address_2\": \"<string>\",\n          \"country_code\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"city\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"region_code\": \"<string>\",\n          \"street_address\": \"<string>\",\n          \"street_address_2\": \"<string>\",\n          \"country_code\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"phone_numbers\": [\n        {\n          \"number\": \"<string>\",\n          \"device_id\": \"<string>\",\n          \"device_request_id\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"device_id\": \"<string>\",\n          \"device_request_id\": \"<string>\"\n        }\n      ],\n      \"notifications_enabled\": \"<boolean>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"paper_statements\": \"<boolean>\",\n      \"user_category\": \"personal\",\n      \"features\": {\n        \"ea0\": {},\n        \"Duis_c\": {},\n        \"culpa9c\": {}\n      },\n      \"org_uuid\": \"<uuid>\",\n      \"org_role\": \"Collaborator\",\n      \"org_name\": \"<string>\",\n      \"business_permissions\": [\n        {\n          \"model_str\": \"<string>\",\n          \"operation\": \"<string>\",\n          \"uuid\": \"<uuid>\"\n        },\n        {\n          \"model_str\": \"<string>\",\n          \"operation\": \"<string>\",\n          \"uuid\": \"<uuid>\"\n        }\n      ],\n      \"dual_approval_required\": \"<boolean>\",\n      \"ach_dual_approval_required\": \"<boolean>\",\n      \"income_sources\": [\n        {\n          \"income\": \"<integer>\",\n          \"income_type\": \"self_employed\",\n          \"uuid\": \"<uuid>\",\n          \"mortgage_rent\": \"<integer>\",\n          \"industry\": \"<string>\",\n          \"occupation\": \"<string>\"\n        },\n        {\n          \"income\": \"<integer>\",\n          \"income_type\": \"not_employed\",\n          \"uuid\": \"<uuid>\",\n          \"mortgage_rent\": \"<integer>\",\n          \"industry\": \"<string>\",\n          \"occupation\": \"<string>\"\n        }\n      ],\n      \"international_wire_dual_approval_required\": \"<boolean>\",\n      \"is_staff\": \"<boolean>\",\n      \"is_active\": \"<boolean>\",\n      \"is_superuser\": \"<boolean>\",\n      \"is_narmi\": \"<boolean>\",\n      \"date_joined\": \"<dateTime>\",\n      \"last_login\": \"<dateTime>\",\n      \"segment\": \"<string>\",\n      \"metadata\": {\n        \"elit__\": {},\n        \"nostrud_9\": {}\n      },\n      \"has_username\": \"<boolean>\",\n      \"has_password\": \"<boolean>\",\n      \"has_accepted_latest_terms\": \"<boolean>\",\n      \"requires_enrollment_code_verification\": \"<boolean>\",\n      \"enabled_estatements_at\": \"<dateTime>\",\n      \"is_converting\": \"<boolean>\",\n      \"has_permitted_device\": \"<boolean>\",\n      \"has_backup_codes\": \"<boolean>\",\n      \"support_teams\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"session_oidc_provider\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:15.000Z",
+                  "updatedAt": "2026-07-28T02:16:15.000Z",
+                  "uid": "35240-4d1851d9-21cf-45dd-97bc-2a0a556a5a90"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:15.000Z",
+              "updatedAt": "2026-07-28T02:16:15.000Z",
+              "uid": "35240-07a7353d-30a4-42d6-bb6b-c73ea3e99fde"
+            }
+          ],
+          "id": "61ea22ca-6c8c-4468-9835-4da42febf932",
+          "createdAt": "2026-07-28T02:16:15.000Z",
+          "updatedAt": "2026-07-28T02:16:15.000Z",
+          "uid": "35240-61ea22ca-6c8c-4468-9835-4da42febf932"
+        }
+      ],
+      "id": "126a8dee-e650-4a07-ba66-ea372ffa4f45",
+      "createdAt": "2026-07-28T02:16:15.000Z",
+      "updatedAt": "2026-07-28T02:16:15.000Z",
+      "uid": "35240-126a8dee-e650-4a07-ba66-ea372ffa4f45"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

@@ -1,0 +1,211 @@
+{
+  "info": {
+    "_postman_id": "88c9e979-63c0-477f-b186-cf21fcb3ec53",
+    "name": "Narmi Public account balances teams API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:49.000Z",
+    "updatedAt": "2026-07-28T02:16:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-88c9e979-63c0-477f-b186-cf21fcb3ec53"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "teams",
+          "item": [
+            {
+              "name": "List teams",
+              "id": "115e6657-63be-4cd2-9a89-0aed876081bc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/teams/?limit=<integer>&offset=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "teams",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of results to return per page.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The initial index from which to return the results.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Lists the message center teams a user can message, used for group inboxes.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "188a2da0-1a41-42f3-9d14-b66682695b1d",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/teams/?limit=<integer>&offset=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "teams",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of results to return per page.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The initial index from which to return the results.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"meta\": {\n    \"total\": \"<integer>\"\n  },\n  \"links\": {\n    \"next\": \"<uri>\",\n    \"prev\": \"<uri>\"\n  },\n  \"results\": [\n    {\n      \"uuid\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"uuid\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:49.000Z",
+                  "updatedAt": "2026-07-28T02:16:49.000Z",
+                  "uid": "35240-188a2da0-1a41-42f3-9d14-b66682695b1d"
+                },
+                {
+                  "id": "bb3a83aa-328e-4157-a701-d1551dbee75f",
+                  "name": "No response body",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/teams/?limit=<integer>&offset=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "teams",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of results to return per page.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The initial index from which to return the results.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:16:49.000Z",
+                  "updatedAt": "2026-07-28T02:16:49.000Z",
+                  "uid": "35240-bb3a83aa-328e-4157-a701-d1551dbee75f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:49.000Z",
+              "updatedAt": "2026-07-28T02:16:49.000Z",
+              "uid": "35240-115e6657-63be-4cd2-9a89-0aed876081bc"
+            }
+          ],
+          "id": "6d0ccf64-7d45-4dc7-9217-c002d6b03b2c",
+          "createdAt": "2026-07-28T02:16:49.000Z",
+          "updatedAt": "2026-07-28T02:16:49.000Z",
+          "uid": "35240-6d0ccf64-7d45-4dc7-9217-c002d6b03b2c"
+        }
+      ],
+      "id": "7f5dacd9-428b-4328-8c22-be2b36e25b3a",
+      "createdAt": "2026-07-28T02:16:49.000Z",
+      "updatedAt": "2026-07-28T02:16:49.000Z",
+      "uid": "35240-7f5dacd9-428b-4328-8c22-be2b36e25b3a"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

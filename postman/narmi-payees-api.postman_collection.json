@@ -1,0 +1,1137 @@
+{
+  "info": {
+    "_postman_id": "bb949a23-8d6b-4efe-9c0a-ccd005207067",
+    "name": "Narmi Public account balances payees API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:34.000Z",
+    "updatedAt": "2026-07-28T02:16:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bb949a23-8d6b-4efe-9c0a-ccd005207067"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "payees",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Retrieve a bill payment payee",
+                  "id": "215a9d85-b4f6-4247-bb44-f03c2116d059",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/payees/:id/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payees",
+                        ":id",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "e6f20f5f-7d98-47db-abec-61f63e6c05a9",
+                          "key": "id",
+                          "value": "at55rei",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Fetch a specified bill payment payee. Payees can be used to create payments via the payments endpoints.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "fc94f84c-d98f-49fe-a38d-4b5d37673ab9",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payees/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payees",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"payee\": {\n    \"name\": \"<string>\",\n    \"type\": \"personal\",\n    \"id\": \"<string>\",\n    \"masked_account_number\": \"<string>\",\n    \"description\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<string>\",\n    \"passphrase\": \"<string>\",\n    \"account_number\": \"<string>\",\n    \"address\": {\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"street_address\": \"<string>\",\n      \"street_address_2\": \"<string>\",\n      \"country_code\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"delivery_options\": [\n      {\n        \"date\": \"<date>\",\n        \"description\": \"<string>\",\n        \"fee\": \"<integer>\",\n        \"transit_days\": \"<integer>\"\n      },\n      {\n        \"date\": \"<date>\",\n        \"description\": \"<string>\",\n        \"fee\": \"<integer>\",\n        \"transit_days\": \"<integer>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:35.000Z",
+                      "updatedAt": "2026-07-28T02:16:35.000Z",
+                      "uid": "35240-fc94f84c-d98f-49fe-a38d-4b5d37673ab9"
+                    },
+                    {
+                      "id": "9d7e742e-84e4-40c6-ac3d-ff9ec626d8e6",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payees/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payees",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:35.000Z",
+                      "updatedAt": "2026-07-28T02:16:35.000Z",
+                      "uid": "35240-9d7e742e-84e4-40c6-ac3d-ff9ec626d8e6"
+                    },
+                    {
+                      "id": "92ba8ef2-4a85-46d8-a317-d593b1a51ab3",
+                      "name": "No response body",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payees/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payees",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:35.000Z",
+                      "updatedAt": "2026-07-28T02:16:35.000Z",
+                      "uid": "35240-92ba8ef2-4a85-46d8-a317-d593b1a51ab3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:35.000Z",
+                  "updatedAt": "2026-07-28T02:16:35.000Z",
+                  "uid": "35240-215a9d85-b4f6-4247-bb44-f03c2116d059"
+                },
+                {
+                  "name": "Update a bill payment payee",
+                  "id": "1a8313ae-454c-421e-b04c-5a5cbc4590f9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"business\",\n  \"description\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"email\": \"<string>\",\n  \"passphrase\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"type\": \"<string>\",\n    \"device_id\": \"<string>\",\n    \"device_request_id\": \"<string>\"\n  },\n  \"delivery_options\": [\n    {\n      \"date\": \"<date>\"\n    },\n    {\n      \"date\": \"<date>\"\n    }\n  ],\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/payees/:id/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payees",
+                        ":id",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "24b52ab1-6b52-4b69-a1ee-7dedb92c88d1",
+                          "key": "id",
+                          "value": "at55rei",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update fields for a specified bill payment payee via third-party integration (typically iPay).Payees can be used to create payments via the payments endpoints.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "69cba305-e598-4f57-a58b-b224b9a0396e",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"business\",\n  \"description\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"email\": \"<string>\",\n  \"passphrase\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"type\": \"<string>\",\n    \"device_id\": \"<string>\",\n    \"device_request_id\": \"<string>\"\n  },\n  \"delivery_options\": [\n    {\n      \"date\": \"<date>\"\n    },\n    {\n      \"date\": \"<date>\"\n    }\n  ],\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payees/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payees",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"payee\": {\n    \"name\": \"<string>\",\n    \"type\": \"personal\",\n    \"id\": \"<string>\",\n    \"masked_account_number\": \"<string>\",\n    \"description\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<string>\",\n    \"passphrase\": \"<string>\",\n    \"account_number\": \"<string>\",\n    \"address\": {\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"street_address\": \"<string>\",\n      \"street_address_2\": \"<string>\",\n      \"country_code\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"delivery_options\": [\n      {\n        \"date\": \"<date>\",\n        \"description\": \"<string>\",\n        \"fee\": \"<integer>\",\n        \"transit_days\": \"<integer>\"\n      },\n      {\n        \"date\": \"<date>\",\n        \"description\": \"<string>\",\n        \"fee\": \"<integer>\",\n        \"transit_days\": \"<integer>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:35.000Z",
+                      "updatedAt": "2026-07-28T02:16:35.000Z",
+                      "uid": "35240-69cba305-e598-4f57-a58b-b224b9a0396e"
+                    },
+                    {
+                      "id": "1b80e590-fa4e-42bb-ba03-e463175921a8",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"business\",\n  \"description\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"email\": \"<string>\",\n  \"passphrase\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"type\": \"<string>\",\n    \"device_id\": \"<string>\",\n    \"device_request_id\": \"<string>\"\n  },\n  \"delivery_options\": [\n    {\n      \"date\": \"<date>\"\n    },\n    {\n      \"date\": \"<date>\"\n    }\n  ],\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payees/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payees",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:35.000Z",
+                      "updatedAt": "2026-07-28T02:16:35.000Z",
+                      "uid": "35240-1b80e590-fa4e-42bb-ba03-e463175921a8"
+                    },
+                    {
+                      "id": "73a0d1e0-0e74-4ce2-950a-9c7161c738b1",
+                      "name": "No response body",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"business\",\n  \"description\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"email\": \"<string>\",\n  \"passphrase\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"type\": \"<string>\",\n    \"device_id\": \"<string>\",\n    \"device_request_id\": \"<string>\"\n  },\n  \"delivery_options\": [\n    {\n      \"date\": \"<date>\"\n    },\n    {\n      \"date\": \"<date>\"\n    }\n  ],\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payees/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payees",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:35.000Z",
+                      "updatedAt": "2026-07-28T02:16:35.000Z",
+                      "uid": "35240-73a0d1e0-0e74-4ce2-950a-9c7161c738b1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:35.000Z",
+                  "updatedAt": "2026-07-28T02:16:35.000Z",
+                  "uid": "35240-1a8313ae-454c-421e-b04c-5a5cbc4590f9"
+                },
+                {
+                  "name": "Delete a bill payment payee",
+                  "id": "c64c49b7-0e74-4980-af32-2e1c176e004f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/payees/:id/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payees",
+                        ":id",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "155a659a-e6c5-4c02-a361-b1258ecaefc2",
+                          "key": "id",
+                          "value": "at55rei",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Delete a specified bill payment payee via third-party integration (typically iPay).Payees can be used to create payments via the payments endpoints.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "d51d7a69-6455-47ba-8a45-cfaef5440c8f",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payees/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payees",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"deleted\": true\n}",
+                      "createdAt": "2026-07-28T02:16:35.000Z",
+                      "updatedAt": "2026-07-28T02:16:35.000Z",
+                      "uid": "35240-d51d7a69-6455-47ba-8a45-cfaef5440c8f"
+                    },
+                    {
+                      "id": "4e47f14d-3cd9-4d38-9501-5a5b000e971e",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payees/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payees",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:35.000Z",
+                      "updatedAt": "2026-07-28T02:16:35.000Z",
+                      "uid": "35240-4e47f14d-3cd9-4d38-9501-5a5b000e971e"
+                    },
+                    {
+                      "id": "e642fd56-5afd-4e61-b1af-23447747389e",
+                      "name": "No response body",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payees/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payees",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:35.000Z",
+                      "updatedAt": "2026-07-28T02:16:35.000Z",
+                      "uid": "35240-e642fd56-5afd-4e61-b1af-23447747389e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:35.000Z",
+                  "updatedAt": "2026-07-28T02:16:35.000Z",
+                  "uid": "35240-c64c49b7-0e74-4980-af32-2e1c176e004f"
+                }
+              ],
+              "id": "df36dc85-fb72-45a7-b42d-5d495ba00fc7",
+              "createdAt": "2026-07-28T02:16:35.000Z",
+              "updatedAt": "2026-07-28T02:16:35.000Z",
+              "uid": "35240-df36dc85-fb72-45a7-b42d-5d495ba00fc7"
+            },
+            {
+              "name": "List bill payment payees",
+              "id": "d91287a4-5e60-4fe9-b77a-438d40f90a28",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/payees/?limit=<integer>&offset=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "payees",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of results to return per page.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The initial index from which to return the results.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "List bill payment payees for a user. Payees can be used to create payments via the payments endpoints.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "9306fc18-e197-4168-ab12-f27d4eb8397e",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/payees/?limit=<integer>&offset=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payees",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of results to return per page.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The initial index from which to return the results.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"meta\": {\n    \"total\": \"<integer>\"\n  },\n  \"links\": {\n    \"next\": \"<uri>\",\n    \"prev\": \"<uri>\"\n  },\n  \"payees\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"personal\",\n      \"id\": \"<string>\",\n      \"masked_account_number\": \"<string>\",\n      \"description\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"email\": \"<string>\",\n      \"passphrase\": \"<string>\",\n      \"account_number\": \"<string>\",\n      \"address\": {\n        \"city\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"region_code\": \"<string>\",\n        \"street_address\": \"<string>\",\n        \"street_address_2\": \"<string>\",\n        \"country_code\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"delivery_options\": [\n        {\n          \"date\": \"<date>\",\n          \"description\": \"<string>\",\n          \"fee\": \"<integer>\",\n          \"transit_days\": \"<integer>\"\n        },\n        {\n          \"date\": \"<date>\",\n          \"description\": \"<string>\",\n          \"fee\": \"<integer>\",\n          \"transit_days\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"business\",\n      \"id\": \"<string>\",\n      \"masked_account_number\": \"<string>\",\n      \"description\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"email\": \"<string>\",\n      \"passphrase\": \"<string>\",\n      \"account_number\": \"<string>\",\n      \"address\": {\n        \"city\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"region_code\": \"<string>\",\n        \"street_address\": \"<string>\",\n        \"street_address_2\": \"<string>\",\n        \"country_code\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"delivery_options\": [\n        {\n          \"date\": \"<date>\",\n          \"description\": \"<string>\",\n          \"fee\": \"<integer>\",\n          \"transit_days\": \"<integer>\"\n        },\n        {\n          \"date\": \"<date>\",\n          \"description\": \"<string>\",\n          \"fee\": \"<integer>\",\n          \"transit_days\": \"<integer>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:35.000Z",
+                  "updatedAt": "2026-07-28T02:16:35.000Z",
+                  "uid": "35240-9306fc18-e197-4168-ab12-f27d4eb8397e"
+                },
+                {
+                  "id": "c58054ec-6bab-4cf3-9a18-422366de54f0",
+                  "name": "No response body",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/payees/?limit=<integer>&offset=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payees",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of results to return per page.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The initial index from which to return the results.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:16:35.000Z",
+                  "updatedAt": "2026-07-28T02:16:35.000Z",
+                  "uid": "35240-c58054ec-6bab-4cf3-9a18-422366de54f0"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:35.000Z",
+              "updatedAt": "2026-07-28T02:16:35.000Z",
+              "uid": "35240-d91287a4-5e60-4fe9-b77a-438d40f90a28"
+            },
+            {
+              "name": "Create a bill payment payee",
+              "id": "dd482a54-7dd5-475a-b726-2e2cbfa70ebe",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"business\",\n  \"description\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"email\": \"<string>\",\n  \"passphrase\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"type\": \"<string>\",\n    \"device_id\": \"<string>\",\n    \"device_request_id\": \"<string>\"\n  },\n  \"delivery_options\": [\n    {\n      \"date\": \"<date>\"\n    },\n    {\n      \"date\": \"<date>\"\n    }\n  ],\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/payees/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "payees",
+                    ""
+                  ]
+                },
+                "description": "Creates a bill payment payee via third-party integration (typically iPay). Payees can be used to create payments via the payments endpoints.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "23c0c8b6-fdab-4e34-8984-7a0e2ba12d1d",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"business\",\n  \"description\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"email\": \"<string>\",\n  \"passphrase\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"type\": \"<string>\",\n    \"device_id\": \"<string>\",\n    \"device_request_id\": \"<string>\"\n  },\n  \"delivery_options\": [\n    {\n      \"date\": \"<date>\"\n    },\n    {\n      \"date\": \"<date>\"\n    }\n  ],\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/payees/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payees",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"payee\": {\n    \"name\": \"<string>\",\n    \"type\": \"personal\",\n    \"id\": \"<string>\",\n    \"masked_account_number\": \"<string>\",\n    \"description\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"email\": \"<string>\",\n    \"passphrase\": \"<string>\",\n    \"account_number\": \"<string>\",\n    \"address\": {\n      \"city\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"street_address\": \"<string>\",\n      \"street_address_2\": \"<string>\",\n      \"country_code\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"delivery_options\": [\n      {\n        \"date\": \"<date>\",\n        \"description\": \"<string>\",\n        \"fee\": \"<integer>\",\n        \"transit_days\": \"<integer>\"\n      },\n      {\n        \"date\": \"<date>\",\n        \"description\": \"<string>\",\n        \"fee\": \"<integer>\",\n        \"transit_days\": \"<integer>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:35.000Z",
+                  "updatedAt": "2026-07-28T02:16:35.000Z",
+                  "uid": "35240-23c0c8b6-fdab-4e34-8984-7a0e2ba12d1d"
+                },
+                {
+                  "id": "4d3bac10-cf9e-4c7e-bca9-18dd46a4ef10",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"business\",\n  \"description\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"email\": \"<string>\",\n  \"passphrase\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"type\": \"<string>\",\n    \"device_id\": \"<string>\",\n    \"device_request_id\": \"<string>\"\n  },\n  \"delivery_options\": [\n    {\n      \"date\": \"<date>\"\n    },\n    {\n      \"date\": \"<date>\"\n    }\n  ],\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/payees/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payees",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:35.000Z",
+                  "updatedAt": "2026-07-28T02:16:35.000Z",
+                  "uid": "35240-4d3bac10-cf9e-4c7e-bca9-18dd46a4ef10"
+                },
+                {
+                  "id": "bed0b7be-c518-4bfe-92a9-06f949c9ee5a",
+                  "name": "No response body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"business\",\n  \"description\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"email\": \"<string>\",\n  \"passphrase\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"type\": \"<string>\",\n    \"device_id\": \"<string>\",\n    \"device_request_id\": \"<string>\"\n  },\n  \"delivery_options\": [\n    {\n      \"date\": \"<date>\"\n    },\n    {\n      \"date\": \"<date>\"\n    }\n  ],\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/payees/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payees",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:16:35.000Z",
+                  "updatedAt": "2026-07-28T02:16:35.000Z",
+                  "uid": "35240-bed0b7be-c518-4bfe-92a9-06f949c9ee5a"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:35.000Z",
+              "updatedAt": "2026-07-28T02:16:35.000Z",
+              "uid": "35240-dd482a54-7dd5-475a-b726-2e2cbfa70ebe"
+            }
+          ],
+          "id": "5680b688-7711-4f09-9c47-84a9298b6469",
+          "createdAt": "2026-07-28T02:16:35.000Z",
+          "updatedAt": "2026-07-28T02:16:35.000Z",
+          "uid": "35240-5680b688-7711-4f09-9c47-84a9298b6469"
+        }
+      ],
+      "id": "69fe3fea-bc30-436a-a78a-470ac7bb71f7",
+      "createdAt": "2026-07-28T02:16:35.000Z",
+      "updatedAt": "2026-07-28T02:16:35.000Z",
+      "uid": "35240-69fe3fea-bc30-436a-a78a-470ac7bb71f7"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

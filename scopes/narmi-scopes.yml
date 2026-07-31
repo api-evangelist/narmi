@@ -1,0 +1,71 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/narmi-public-openapi-original.yml
+schemes:
+- name: oauth2
+  source: openapi/narmi-public-openapi-original.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: /v2/oauth/authorize/
+    tokenUrl: /v2/oauth/token/
+scopes:
+- scope: banking:accounts:read
+  description: Can read account information.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/narmi-public-openapi-original.yml
+- scope: banking:accounts:write
+  description: Can update account information.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/narmi-public-openapi-original.yml
+- scope: banking:documents:read
+  description: Can read user statements and documents.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/narmi-public-openapi-original.yml
+- scope: banking:products:read
+  description: Can read product information.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/narmi-public-openapi-original.yml
+- scope: banking:scheduled_transfers:read
+  description: Can read scheduled transfer information.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/narmi-public-openapi-original.yml
+- scope: banking:scheduled_transfers:write
+  description: Can create and update scheduled transfers.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/narmi-public-openapi-original.yml
+- scope: banking:transactions:read
+  description: Can read transaction information.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/narmi-public-openapi-original.yml
+- scope: banking:transactions:write
+  description: Can update transaction information.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/narmi-public-openapi-original.yml
+- scope: banking:users:read
+  description: Can read user profile information.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/narmi-public-openapi-original.yml
+- scope: read
+  sources:
+  - openapi/narmi-public-openapi-original.yml
+- scope: write
+  sources:
+  - openapi/narmi-public-openapi-original.yml

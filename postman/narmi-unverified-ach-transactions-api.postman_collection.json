@@ -1,0 +1,1077 @@
+{
+  "info": {
+    "_postman_id": "8e45b592-a44c-4217-a6ce-1b9a9b49b3c6",
+    "name": "Narmi Public account balances unverified ach transactions API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:17:00.000Z",
+    "updatedAt": "2026-07-28T02:17:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8e45b592-a44c-4217-a6ce-1b9a9b49b3c6"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "unverified_ach_transactions",
+          "item": [
+            {
+              "name": "{uuid}",
+              "item": [
+                {
+                  "name": "Retrieve an unverified ACH transaction",
+                  "id": "8f783c48-6a58-4816-ba37-420ddbf2a8fb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/unverified_ach_transactions/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "unverified_ach_transactions",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "cc50e9d8-1269-42e5-9583-d38234e5fbe9",
+                          "key": "uuid",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Fetch details for a specified unverified ACH transaction.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "e3c0fa8b-be1d-4736-b41c-6cd676410a89",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/unverified_ach_transactions/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "unverified_ach_transactions",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"std_ent_cls_code\": \"ARC\",\n  \"transaction_type\": \"debit\",\n  \"id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"processed_at\": \"<dateTime>\",\n  \"state\": \"approval_expired\",\n  \"display_state\": \"<string>\",\n  \"company_id\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"description\": \"\",\n  \"external_account_details\": \"<string>\",\n  \"memo\": \"\"\n}",
+                      "createdAt": "2026-07-28T02:17:00.000Z",
+                      "updatedAt": "2026-07-28T02:17:00.000Z",
+                      "uid": "35240-e3c0fa8b-be1d-4736-b41c-6cd676410a89"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:17:00.000Z",
+                  "updatedAt": "2026-07-28T02:17:00.000Z",
+                  "uid": "35240-8f783c48-6a58-4816-ba37-420ddbf2a8fb"
+                }
+              ],
+              "id": "c09987b9-8c3a-4452-8bd4-e010bbb0486e",
+              "createdAt": "2026-07-28T02:17:00.000Z",
+              "updatedAt": "2026-07-28T02:17:00.000Z",
+              "uid": "35240-c09987b9-8c3a-4452-8bd4-e010bbb0486e"
+            },
+            {
+              "name": "scheduled",
+              "item": [
+                {
+                  "name": "{uuid}",
+                  "item": [
+                    {
+                      "name": "Retrieve a scheduled Unverified ACH transaction",
+                      "id": "b2ba99a1-b9a8-4924-8c85-7068dfc42991",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/unverified_ach_transactions/scheduled/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "unverified_ach_transactions",
+                            "scheduled",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "604303dd-ec74-41a2-b8f2-25b1f70e2cfd",
+                              "key": "uuid",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "5c4fee81-db23-4258-b803-3b8e870e20d8",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/unverified_ach_transactions/scheduled/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "unverified_ach_transactions",
+                                "scheduled",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"std_ent_cls_code\": \"POS\",\n  \"memo\": \"\",\n  \"id\": \"<uuid>\",\n  \"company_id\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"description\": \"\",\n  \"next_transfer_at\": \"<dateTime>\",\n  \"dual_approval_state\": \"<string>\",\n  \"display_state\": \"<string>\",\n  \"completed_at\": \"<dateTime>\",\n  \"transaction_type\": \"debit\"\n}",
+                          "createdAt": "2026-07-28T02:17:00.000Z",
+                          "updatedAt": "2026-07-28T02:17:00.000Z",
+                          "uid": "35240-5c4fee81-db23-4258-b803-3b8e870e20d8"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:17:00.000Z",
+                      "updatedAt": "2026-07-28T02:17:00.000Z",
+                      "uid": "35240-b2ba99a1-b9a8-4924-8c85-7068dfc42991"
+                    },
+                    {
+                      "name": "Delete a scheduled Unverified ACH transaction",
+                      "id": "739bcb9f-fb61-4b71-bae4-d5c1759e2191",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/unverified_ach_transactions/scheduled/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "unverified_ach_transactions",
+                            "scheduled",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "e540a8a6-97b9-43d0-9d35-6a0bfaeea75c",
+                              "key": "uuid",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "7959d477-0420-4589-a5d4-46c7a72cc7aa",
+                          "name": "No response body",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/unverified_ach_transactions/scheduled/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "unverified_ach_transactions",
+                                "scheduled",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:17:00.000Z",
+                          "updatedAt": "2026-07-28T02:17:00.000Z",
+                          "uid": "35240-7959d477-0420-4589-a5d4-46c7a72cc7aa"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:17:00.000Z",
+                      "updatedAt": "2026-07-28T02:17:00.000Z",
+                      "uid": "35240-739bcb9f-fb61-4b71-bae4-d5c1759e2191"
+                    }
+                  ],
+                  "id": "a413a165-2acd-415b-ba0c-73f455660440",
+                  "createdAt": "2026-07-28T02:17:00.000Z",
+                  "updatedAt": "2026-07-28T02:17:00.000Z",
+                  "uid": "35240-a413a165-2acd-415b-ba0c-73f455660440"
+                },
+                {
+                  "name": "List scheduled Unverified ACH transactions",
+                  "id": "1a1da2ad-8f8c-4efe-bc1b-1d67f3c2b48e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/unverified_ach_transactions/scheduled/?page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "unverified_ach_transactions",
+                        "scheduled",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "List the authenticated user's Unverified ACH transactions.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "c96df965-cbb5-4059-8183-ade85871f2d5",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/unverified_ach_transactions/scheduled/?page=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "unverified_ach_transactions",
+                            "scheduled",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "A page number within the paginated result set.",
+                              "key": "page",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"results\": [\n    {\n      \"amount\": \"<integer>\",\n      \"entry_desc\": \"<string>\",\n      \"institution_account\": \"<uuid>\",\n      \"recipient\": \"<uuid>\",\n      \"recurring_rule\": \"<string>\",\n      \"std_ent_cls_code\": \"BOC\",\n      \"memo\": \"\",\n      \"id\": \"<uuid>\",\n      \"company_id\": \"<string>\",\n      \"company_name\": \"<string>\",\n      \"description\": \"\",\n      \"next_transfer_at\": \"<dateTime>\",\n      \"dual_approval_state\": \"<string>\",\n      \"display_state\": \"<string>\",\n      \"completed_at\": \"<dateTime>\",\n      \"transaction_type\": \"credit\"\n    },\n    {\n      \"amount\": \"<integer>\",\n      \"entry_desc\": \"<string>\",\n      \"institution_account\": \"<uuid>\",\n      \"recipient\": \"<uuid>\",\n      \"recurring_rule\": \"<string>\",\n      \"std_ent_cls_code\": \"POP\",\n      \"memo\": \"\",\n      \"id\": \"<uuid>\",\n      \"company_id\": \"<string>\",\n      \"company_name\": \"<string>\",\n      \"description\": \"\",\n      \"next_transfer_at\": \"<dateTime>\",\n      \"dual_approval_state\": \"<string>\",\n      \"display_state\": \"<string>\",\n      \"completed_at\": \"<dateTime>\",\n      \"transaction_type\": \"debit\"\n    }\n  ],\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\"\n}",
+                      "createdAt": "2026-07-28T02:17:00.000Z",
+                      "updatedAt": "2026-07-28T02:17:00.000Z",
+                      "uid": "35240-c96df965-cbb5-4059-8183-ade85871f2d5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:17:00.000Z",
+                  "updatedAt": "2026-07-28T02:17:00.000Z",
+                  "uid": "35240-1a1da2ad-8f8c-4efe-bc1b-1d67f3c2b48e"
+                },
+                {
+                  "name": "Create a scheduled Unverified ACH transaction",
+                  "id": "4903f8d7-4041-4822-aaf6-1e4abfe2285c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"std_ent_cls_code\": \"POS\",\n  \"transaction_type\": \"debit\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\",\n  \"memo\": \"\",\n  \"ach_company\": \"<uuid>\",\n  \"description\": \"\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/unverified_ach_transactions/scheduled/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "unverified_ach_transactions",
+                        "scheduled",
+                        ""
+                      ]
+                    },
+                    "description": "All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "f20f77f4-9351-4044-8525-92b0dddd43e2",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"std_ent_cls_code\": \"POS\",\n  \"transaction_type\": \"debit\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\",\n  \"memo\": \"\",\n  \"ach_company\": \"<uuid>\",\n  \"description\": \"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/unverified_ach_transactions/scheduled/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "unverified_ach_transactions",
+                            "scheduled",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"std_ent_cls_code\": \"POS\",\n  \"memo\": \"\",\n  \"id\": \"<uuid>\",\n  \"company_id\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"description\": \"\",\n  \"next_transfer_at\": \"<dateTime>\",\n  \"dual_approval_state\": \"<string>\",\n  \"display_state\": \"<string>\",\n  \"completed_at\": \"<dateTime>\",\n  \"transaction_type\": \"debit\"\n}",
+                      "createdAt": "2026-07-28T02:17:00.000Z",
+                      "updatedAt": "2026-07-28T02:17:00.000Z",
+                      "uid": "35240-f20f77f4-9351-4044-8525-92b0dddd43e2"
+                    },
+                    {
+                      "id": "862673cb-c9aa-4c59-9257-6313da531f5e",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"std_ent_cls_code\": \"POS\",\n  \"transaction_type\": \"debit\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\",\n  \"memo\": \"\",\n  \"ach_company\": \"<uuid>\",\n  \"description\": \"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/unverified_ach_transactions/scheduled/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "unverified_ach_transactions",
+                            "scheduled",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"invalid\"\n}",
+                      "createdAt": "2026-07-28T02:17:00.000Z",
+                      "updatedAt": "2026-07-28T02:17:00.000Z",
+                      "uid": "35240-862673cb-c9aa-4c59-9257-6313da531f5e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:17:00.000Z",
+                  "updatedAt": "2026-07-28T02:17:00.000Z",
+                  "uid": "35240-4903f8d7-4041-4822-aaf6-1e4abfe2285c"
+                }
+              ],
+              "id": "18cae283-ca3c-4633-93bf-f0db76eebaf4",
+              "createdAt": "2026-07-28T02:17:00.000Z",
+              "updatedAt": "2026-07-28T02:17:00.000Z",
+              "uid": "35240-18cae283-ca3c-4633-93bf-f0db76eebaf4"
+            },
+            {
+              "name": "List unverified ACH transactions",
+              "id": "6f6a96db-4576-4f38-89c9-002ffe31e392",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/unverified_ach_transactions/?page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "unverified_ach_transactions",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "A page number within the paginated result set.",
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "List the authenticated user's unverified ACH transactions.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "122ed068-a610-4822-9587-d32c29e020d0",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/unverified_ach_transactions/?page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "unverified_ach_transactions",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\",\n  \"results\": [\n    {\n      \"amount\": \"<integer>\",\n      \"entry_desc\": \"<string>\",\n      \"institution_account\": \"<uuid>\",\n      \"recipient\": \"<uuid>\",\n      \"std_ent_cls_code\": \"POP\",\n      \"transaction_type\": \"credit\",\n      \"id\": \"<uuid>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"processed_at\": \"<dateTime>\",\n      \"state\": \"review\",\n      \"display_state\": \"<string>\",\n      \"company_id\": \"<string>\",\n      \"company_name\": \"<string>\",\n      \"description\": \"\",\n      \"external_account_details\": \"<string>\",\n      \"memo\": \"\"\n    },\n    {\n      \"amount\": \"<integer>\",\n      \"entry_desc\": \"<string>\",\n      \"institution_account\": \"<uuid>\",\n      \"recipient\": \"<uuid>\",\n      \"std_ent_cls_code\": \"TEL\",\n      \"transaction_type\": \"debit\",\n      \"id\": \"<uuid>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"processed_at\": \"<dateTime>\",\n      \"state\": \"processed\",\n      \"display_state\": \"<string>\",\n      \"company_id\": \"<string>\",\n      \"company_name\": \"<string>\",\n      \"description\": \"\",\n      \"external_account_details\": \"<string>\",\n      \"memo\": \"\"\n    }\n  ],\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T02:17:00.000Z",
+                  "updatedAt": "2026-07-28T02:17:00.000Z",
+                  "uid": "35240-122ed068-a610-4822-9587-d32c29e020d0"
+                }
+              ],
+              "createdAt": "2026-07-28T02:17:00.000Z",
+              "updatedAt": "2026-07-28T02:17:00.000Z",
+              "uid": "35240-6f6a96db-4576-4f38-89c9-002ffe31e392"
+            },
+            {
+              "name": "Originate an Unverified ACH Transaction",
+              "id": "5970a232-80af-401b-bae8-4dcd9b098f2d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"std_ent_cls_code\": \"CTX\",\n  \"transaction_type\": \"credit\",\n  \"description\": \"\",\n  \"ach_company\": \"<uuid>\",\n  \"memo\": \"\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/unverified_ach_transactions/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "unverified_ach_transactions",
+                    ""
+                  ]
+                },
+                "description": "Originate an Unverified ACH Credit or Debit using an existing recipient and set of external account details (i.e. account number, routing number, account type, account purpose).\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "4e6bade0-49d7-4e76-8e65-3c528baa6114",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"std_ent_cls_code\": \"CTX\",\n  \"transaction_type\": \"credit\",\n  \"description\": \"\",\n  \"ach_company\": \"<uuid>\",\n  \"memo\": \"\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/unverified_ach_transactions/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "unverified_ach_transactions",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"std_ent_cls_code\": \"ARC\",\n  \"transaction_type\": \"debit\",\n  \"id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"processed_at\": \"<dateTime>\",\n  \"state\": \"approval_expired\",\n  \"display_state\": \"<string>\",\n  \"company_id\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"description\": \"\",\n  \"external_account_details\": \"<string>\",\n  \"memo\": \"\"\n}",
+                  "createdAt": "2026-07-28T02:17:00.000Z",
+                  "updatedAt": "2026-07-28T02:17:00.000Z",
+                  "uid": "35240-4e6bade0-49d7-4e76-8e65-3c528baa6114"
+                },
+                {
+                  "id": "8b2d14fe-a0af-4f64-9a31-e34dc1bb47ca",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"std_ent_cls_code\": \"CTX\",\n  \"transaction_type\": \"credit\",\n  \"description\": \"\",\n  \"ach_company\": \"<uuid>\",\n  \"memo\": \"\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/unverified_ach_transactions/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "unverified_ach_transactions",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"invalid\"\n}",
+                  "createdAt": "2026-07-28T02:17:00.000Z",
+                  "updatedAt": "2026-07-28T02:17:00.000Z",
+                  "uid": "35240-8b2d14fe-a0af-4f64-9a31-e34dc1bb47ca"
+                },
+                {
+                  "id": "f2f5700d-38e3-4215-ba19-498c9667f1d4",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"std_ent_cls_code\": \"CTX\",\n  \"transaction_type\": \"credit\",\n  \"description\": \"\",\n  \"ach_company\": \"<uuid>\",\n  \"memo\": \"\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/unverified_ach_transactions/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "unverified_ach_transactions",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:17:00.000Z",
+                  "updatedAt": "2026-07-28T02:17:00.000Z",
+                  "uid": "35240-f2f5700d-38e3-4215-ba19-498c9667f1d4"
+                }
+              ],
+              "createdAt": "2026-07-28T02:17:00.000Z",
+              "updatedAt": "2026-07-28T02:17:00.000Z",
+              "uid": "35240-5970a232-80af-401b-bae8-4dcd9b098f2d"
+            }
+          ],
+          "id": "1080308f-d805-442d-9c2b-8b659fd320d3",
+          "createdAt": "2026-07-28T02:17:00.000Z",
+          "updatedAt": "2026-07-28T02:17:00.000Z",
+          "uid": "35240-1080308f-d805-442d-9c2b-8b659fd320d3"
+        }
+      ],
+      "id": "83270888-e315-4aa5-9ab0-5371a6d7a089",
+      "createdAt": "2026-07-28T02:17:00.000Z",
+      "updatedAt": "2026-07-28T02:17:00.000Z",
+      "uid": "35240-83270888-e315-4aa5-9ab0-5371a6d7a089"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "info": {
+    "_postman_id": "2b4be5bb-ffc6-4fa1-9767-914268181cfa",
+    "name": "Narmi Public account balances whatismyip API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:17:03.000Z",
+    "updatedAt": "2026-07-28T02:17:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2b4be5bb-ffc6-4fa1-9767-914268181cfa"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "whatismyip",
+          "item": [
+            {
+              "name": "Retrieve IP address",
+              "id": "ce795767-1e5d-4284-860e-5e9c1d30e8f8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/whatismyip/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "whatismyip",
+                    ""
+                  ]
+                },
+                "description": "Returns the IP address of the client making the request.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "5dc7db19-0b2f-4f92-b1c2-91fba9c6e0dc",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/whatismyip/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "whatismyip",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ip\": \"<ipv4>\"\n}",
+                  "createdAt": "2026-07-28T02:17:04.000Z",
+                  "updatedAt": "2026-07-28T02:17:04.000Z",
+                  "uid": "35240-5dc7db19-0b2f-4f92-b1c2-91fba9c6e0dc"
+                }
+              ],
+              "createdAt": "2026-07-28T02:17:04.000Z",
+              "updatedAt": "2026-07-28T02:17:04.000Z",
+              "uid": "35240-ce795767-1e5d-4284-860e-5e9c1d30e8f8"
+            }
+          ],
+          "id": "9a183022-417a-47b7-b6a8-ce285c77629f",
+          "createdAt": "2026-07-28T02:17:04.000Z",
+          "updatedAt": "2026-07-28T02:17:04.000Z",
+          "uid": "35240-9a183022-417a-47b7-b6a8-ce285c77629f"
+        }
+      ],
+      "id": "7870b325-71ff-4a4b-8f70-d4a86a1fd393",
+      "createdAt": "2026-07-28T02:17:04.000Z",
+      "updatedAt": "2026-07-28T02:17:04.000Z",
+      "uid": "35240-7870b325-71ff-4a4b-8f70-d4a86a1fd393"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

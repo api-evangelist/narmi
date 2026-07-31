@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.narmi.com/developers/developer-portal
+spec_type: Webhooks
+description: >-
+  Narmi documents a webhook surface driven by the Narmi Admin API: "Use our
+  Narmi Admin API to power Webhooks or custom admin functionality across all
+  accounts on your environment." Webhooks let an institution receive
+  server-to-server event notifications about platform activity. No published
+  AsyncAPI document was found; this artifact captures the webhook surface only.
+webhooks:
+  driver: Narmi Admin API
+  docs: https://docs.narmi.com/docs/narmi-developer-docs/36f2ea902e193-narmi-admin-api
+  scope: all accounts on the institution environment
+  events:
+    published: false
+    notes: >-
+      The concrete event-type catalog is documented inside the Stoplight-hosted
+      Admin API reference (a JavaScript-rendered SPA not machine-fetchable in
+      this pass). Event types are therefore not enumerated here to avoid
+      fabrication; the webhook capability itself is confirmed from the
+      developer portal and Admin API description.
+asyncapi_spec:
+  published: false

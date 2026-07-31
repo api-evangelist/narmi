@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/narmi-public-openapi-original.yml
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: OpenAPI securityScheme type oauth2, authorizationCode flow with 9 banking:* scopes
+  - id: oauth2-pkce
+    conforms: true
+    evidence: PKCE used in the authorization-code flow (narmi/pkce-challenge, SDK test app)
+  - id: oidc
+    conforms: false
+    evidence: no openIdConnect scheme or /.well-known/openid-configuration
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: errors use a custom { id, message } envelope, not application/problem+json
+  - id: idempotency
+    conforms: true
+    evidence: Idempotency-Key header on mutating operations; 409 idempotency_key_used
+  - id: pagination
+    conforms: true
+    evidence: page + limit/offset pagination parameters
+  - id: fednow
+    conforms: true
+    evidence: >-
+      Narmi Now holds full FedNow Service send-and-receive certification (went
+      live with Grasshopper Bank in receive mode, August 2024); the Public API
+      exposes fednow_transaction operations.
+  - id: fedwire
+    conforms: true
+    evidence: Fedwire destinations/templates operations; narmi/fedwire FAIM-format library
+  - id: ach-nacha
+    conforms: true
+    evidence: ACH payments/transfers plus NACHA file import/download operations
+  - id: swift
+    conforms: true
+    evidence: SWIFT wire templates and international-wire operations

@@ -1,0 +1,318 @@
+{
+  "info": {
+    "_postman_id": "df977e01-503e-4a3a-a159-cfde79dd417d",
+    "name": "Narmi Public account balances data access management API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:15:58.000Z",
+    "updatedAt": "2026-07-28T02:15:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-df977e01-503e-4a3a-a159-cfde79dd417d"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "data_access_management",
+          "item": [
+            {
+              "name": "revoke",
+              "item": [
+                {
+                  "name": "Revoke a third-party data access connection",
+                  "id": "b865da41-2016-4d90-9dce-6424e81a99b8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"application_name\": \"<string>\",\n  \"connected_at\": \"<dateTime>\",\n  \"data_partner\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/data_access_management/revoke/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "data_access_management",
+                        "revoke",
+                        ""
+                      ]
+                    },
+                    "description": "All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "9a5c38f2-b4bb-4b0f-8da6-5c30854782bf",
+                      "name": "No response body",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"application_name\": \"<string>\",\n  \"connected_at\": \"<dateTime>\",\n  \"data_partner\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/data_access_management/revoke/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "data_access_management",
+                            "revoke",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:15:59.000Z",
+                      "updatedAt": "2026-07-28T02:15:59.000Z",
+                      "uid": "35240-9a5c38f2-b4bb-4b0f-8da6-5c30854782bf"
+                    },
+                    {
+                      "id": "ed953b6a-d508-4f92-84df-5baf21f4ca8e",
+                      "name": "No response body",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"application_name\": \"<string>\",\n  \"connected_at\": \"<dateTime>\",\n  \"data_partner\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/data_access_management/revoke/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "data_access_management",
+                            "revoke",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Bad Gateway",
+                      "code": 502,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:15:59.000Z",
+                      "updatedAt": "2026-07-28T02:15:59.000Z",
+                      "uid": "35240-ed953b6a-d508-4f92-84df-5baf21f4ca8e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:15:59.000Z",
+                  "updatedAt": "2026-07-28T02:15:59.000Z",
+                  "uid": "35240-b865da41-2016-4d90-9dce-6424e81a99b8"
+                }
+              ],
+              "id": "bc7c1314-0868-47a9-b7b4-a5047d92c97d",
+              "createdAt": "2026-07-28T02:15:59.000Z",
+              "updatedAt": "2026-07-28T02:15:59.000Z",
+              "uid": "35240-bc7c1314-0868-47a9-b7b4-a5047d92c97d"
+            },
+            {
+              "name": "data access management list",
+              "id": "0835db3d-95e0-4d64-a3a3-90e29c156264",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/data_access_management/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "data_access_management",
+                    ""
+                  ]
+                },
+                "description": "All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "ca025ba4-fca8-46b1-89b8-acf5b66895e0",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/data_access_management/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "data_access_management",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\",\n  \"results\": [\n    {\n      \"application_name\": \"<string>\",\n      \"connected_at\": \"<dateTime>\",\n      \"data_partner\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"application_name\": \"<string>\",\n      \"connected_at\": \"<dateTime>\",\n      \"data_partner\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:15:59.000Z",
+                  "updatedAt": "2026-07-28T02:15:59.000Z",
+                  "uid": "35240-ca025ba4-fca8-46b1-89b8-acf5b66895e0"
+                }
+              ],
+              "createdAt": "2026-07-28T02:15:59.000Z",
+              "updatedAt": "2026-07-28T02:15:59.000Z",
+              "uid": "35240-0835db3d-95e0-4d64-a3a3-90e29c156264"
+            }
+          ],
+          "id": "86d47e6a-8a0c-4102-b0f9-aedda8a21be0",
+          "createdAt": "2026-07-28T02:15:59.000Z",
+          "updatedAt": "2026-07-28T02:15:59.000Z",
+          "uid": "35240-86d47e6a-8a0c-4102-b0f9-aedda8a21be0"
+        }
+      ],
+      "id": "0ee70f52-179b-4a30-9bc0-33854dee27bd",
+      "createdAt": "2026-07-28T02:15:59.000Z",
+      "updatedAt": "2026-07-28T02:15:59.000Z",
+      "uid": "35240-0ee70f52-179b-4a30-9bc0-33854dee27bd"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

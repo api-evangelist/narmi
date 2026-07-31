@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/narmi-public-openapi-original.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  oauth_path: v2
+  docs: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+deprecation:
+  policy_url: null
+  evidence: >-
+    The schema exposes version-gated update endpoints that return HTTP 406
+    (`not_acceptable`: "Deprecated update endpoint supports only versions <= 16"),
+    indicating an internal API-version deprecation mechanism. No standalone
+    published deprecation-policy page was found.
+  sunset_header: false
+sla:
+  url: null
+status_page:
+  url: null
+  notes: status.narmi.com did not resolve during probing; no public status page found.
+terms_of_service: https://www.narmi.com/policies/developer-terms-conditions
+deprecated_operations: []

@@ -1,0 +1,566 @@
+{
+  "info": {
+    "_postman_id": "2f6ffa05-cbf3-405d-aa7d-376e92280f54",
+    "name": "Narmi Public account balances fedwire destinations API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:07.000Z",
+    "updatedAt": "2026-07-28T02:16:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2f6ffa05-cbf3-405d-aa7d-376e92280f54"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "fedwire_destinations",
+          "item": [
+            {
+              "name": "{uuid}",
+              "item": [
+                {
+                  "name": "Update a Fedwire destination",
+                  "id": "69dccf09-2c17-4221-9ee4-c7e454357725",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"recipient\": \"<uuid>\",\n  \"routing_number\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/fedwire_destinations/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "fedwire_destinations",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "c57e5130-1f2c-4b11-8a66-394882a5a231",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update a set of Fedwire details that can be used as a destination for fedwires.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "f6d88d8a-1a39-4d0d-8da8-77d4b7f1afdd",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"recipient\": \"<uuid>\",\n  \"routing_number\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/fedwire_destinations/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "fedwire_destinations",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"routing_number\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"institution_name\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:08.000Z",
+                      "updatedAt": "2026-07-28T02:16:08.000Z",
+                      "uid": "35240-f6d88d8a-1a39-4d0d-8da8-77d4b7f1afdd"
+                    },
+                    {
+                      "id": "e13e1dc0-93af-442e-b83d-1f9b8b883fbb",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"recipient\": \"<uuid>\",\n  \"routing_number\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/fedwire_destinations/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "fedwire_destinations",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:08.000Z",
+                      "updatedAt": "2026-07-28T02:16:08.000Z",
+                      "uid": "35240-e13e1dc0-93af-442e-b83d-1f9b8b883fbb"
+                    },
+                    {
+                      "id": "59d7f344-7fe4-4ed5-b0f2-c8388d22bc68",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"recipient\": \"<uuid>\",\n  \"routing_number\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/fedwire_destinations/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "fedwire_destinations",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+                      "createdAt": "2026-07-28T02:16:08.000Z",
+                      "updatedAt": "2026-07-28T02:16:08.000Z",
+                      "uid": "35240-59d7f344-7fe4-4ed5-b0f2-c8388d22bc68"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:08.000Z",
+                  "updatedAt": "2026-07-28T02:16:08.000Z",
+                  "uid": "35240-69dccf09-2c17-4221-9ee4-c7e454357725"
+                }
+              ],
+              "id": "6042cd70-1fd1-4b9d-8656-a6db665d6607",
+              "createdAt": "2026-07-28T02:16:08.000Z",
+              "updatedAt": "2026-07-28T02:16:08.000Z",
+              "uid": "35240-6042cd70-1fd1-4b9d-8656-a6db665d6607"
+            },
+            {
+              "name": "Create a Fedwire destination",
+              "id": "ba31633f-871d-48dc-9120-eb11c8fca04d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"recipient\": \"<uuid>\",\n  \"routing_number\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/fedwire_destinations/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "fedwire_destinations",
+                    ""
+                  ]
+                },
+                "description": "Create a set of Fedwire details that can be used as a destination for fedwires.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "0bceef2f-b1f7-4702-9967-7620453e50a1",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"recipient\": \"<uuid>\",\n  \"routing_number\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/fedwire_destinations/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "fedwire_destinations",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"routing_number\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"institution_name\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:08.000Z",
+                  "updatedAt": "2026-07-28T02:16:08.000Z",
+                  "uid": "35240-0bceef2f-b1f7-4702-9967-7620453e50a1"
+                },
+                {
+                  "id": "9db67432-b616-4bdf-83d3-4445711ab337",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"recipient\": \"<uuid>\",\n  \"routing_number\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/fedwire_destinations/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "fedwire_destinations",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:08.000Z",
+                  "updatedAt": "2026-07-28T02:16:08.000Z",
+                  "uid": "35240-9db67432-b616-4bdf-83d3-4445711ab337"
+                },
+                {
+                  "id": "4eabc9bd-673e-41a0-8184-9d25ad3bc3f1",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"recipient\": \"<uuid>\",\n  \"routing_number\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/fedwire_destinations/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "fedwire_destinations",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+                  "createdAt": "2026-07-28T02:16:08.000Z",
+                  "updatedAt": "2026-07-28T02:16:08.000Z",
+                  "uid": "35240-4eabc9bd-673e-41a0-8184-9d25ad3bc3f1"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:08.000Z",
+              "updatedAt": "2026-07-28T02:16:08.000Z",
+              "uid": "35240-ba31633f-871d-48dc-9120-eb11c8fca04d"
+            }
+          ],
+          "id": "6ea335df-a10c-4db1-833e-3a1fc13dff43",
+          "createdAt": "2026-07-28T02:16:08.000Z",
+          "updatedAt": "2026-07-28T02:16:08.000Z",
+          "uid": "35240-6ea335df-a10c-4db1-833e-3a1fc13dff43"
+        }
+      ],
+      "id": "4d288702-5753-460a-b2db-7f420cf9c6c6",
+      "createdAt": "2026-07-28T02:16:08.000Z",
+      "updatedAt": "2026-07-28T02:16:08.000Z",
+      "uid": "35240-4d288702-5753-460a-b2db-7f420cf9c6c6"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

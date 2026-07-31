@@ -1,0 +1,30 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Narmi Public API
+  version: 1.0.0
+extends: openapi/narmi-public-openapi-original.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enrichment:
+        conventions: conventions/narmi-conventions.yml
+        authentication: authentication/narmi-authentication.yml
+        scopes: scopes/narmi-scopes.yml
+        errors: errors/narmi-problem-types.yml
+        agentic-access: agentic-access/narmi-agentic-access.yml
+        idempotency:
+          header: Idempotency-Key
+          supported: true
+        money-representation: minor-units
+  - target: $.info
+    update:
+      x-apievangelist-category: digital-banking
+      x-apievangelist-tags:
+        - banking
+        - payments
+        - ach
+        - fedwire
+        - fednow
+        - wires
+        - cards
+        - accounts

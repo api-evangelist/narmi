@@ -1,0 +1,1040 @@
+{
+  "info": {
+    "_postman_id": "4bb281b9-0498-43c0-9c42-77bff2f4f586",
+    "name": "Narmi Public account balances fedwire templates API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:08.000Z",
+    "updatedAt": "2026-07-28T02:16:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4bb281b9-0498-43c0-9c42-77bff2f4f586"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "fedwire_templates",
+          "item": [
+            {
+              "name": "{uuid}",
+              "item": [
+                {
+                  "name": "Retrieve a Fedwire template",
+                  "id": "75d0b748-be85-4e3c-8541-feab60137773",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/fedwire_templates/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "fedwire_templates",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "6d103f74-7c3b-479d-b766-b3013d12a221",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Fetch details for a specified template.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "d4a3d46a-f595-46e3-a64f-f66820ac2655",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/fedwire_templates/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "fedwire_templates",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"source_account\": \"<uuid>\",\n  \"last_used\": \"<dateTime>\",\n  \"version_id\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:09.000Z",
+                      "updatedAt": "2026-07-28T02:16:09.000Z",
+                      "uid": "35240-d4a3d46a-f595-46e3-a64f-f66820ac2655"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:09.000Z",
+                  "updatedAt": "2026-07-28T02:16:09.000Z",
+                  "uid": "35240-75d0b748-be85-4e3c-8541-feab60137773"
+                },
+                {
+                  "name": "Update a Fedwire template",
+                  "id": "42b81b2b-08a3-47d5-9cae-bafb4192f2cf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"source_account\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/fedwire_templates/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "fedwire_templates",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "2e03dc0d-9af0-4d21-9f8a-198c4b2f7d62",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update the details of a template belonging to authenticated user, identified by `uuid`\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "e816f65d-7221-4f61-820d-4fdebe9811ad",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"source_account\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/fedwire_templates/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "fedwire_templates",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"source_account\": \"<uuid>\",\n  \"last_used\": \"<dateTime>\",\n  \"version_id\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:09.000Z",
+                      "updatedAt": "2026-07-28T02:16:09.000Z",
+                      "uid": "35240-e816f65d-7221-4f61-820d-4fdebe9811ad"
+                    },
+                    {
+                      "id": "25fc1106-443d-4d7d-b2c6-e25022adc2f5",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"source_account\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/fedwire_templates/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "fedwire_templates",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"invalid\"\n}",
+                      "createdAt": "2026-07-28T02:16:09.000Z",
+                      "updatedAt": "2026-07-28T02:16:09.000Z",
+                      "uid": "35240-25fc1106-443d-4d7d-b2c6-e25022adc2f5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:09.000Z",
+                  "updatedAt": "2026-07-28T02:16:09.000Z",
+                  "uid": "35240-42b81b2b-08a3-47d5-9cae-bafb4192f2cf"
+                },
+                {
+                  "name": "Update a Fedwire template",
+                  "id": "e3d1646a-ba1a-4541-a708-e54e32a93d2d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"source_account\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/fedwire_templates/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "fedwire_templates",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "c583a3c7-4cb0-4ed5-b992-c3aae4e56afe",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update the details of a template belonging to authenticated user, identified by `uuid`\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "8c873719-cd5b-41b6-8f5d-96cfeec84eb8",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"source_account\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/fedwire_templates/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "fedwire_templates",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"source_account\": \"<uuid>\",\n  \"last_used\": \"<dateTime>\",\n  \"version_id\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:09.000Z",
+                      "updatedAt": "2026-07-28T02:16:09.000Z",
+                      "uid": "35240-8c873719-cd5b-41b6-8f5d-96cfeec84eb8"
+                    },
+                    {
+                      "id": "44924864-50cc-42ef-8780-0f2c46743340",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"source_account\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/fedwire_templates/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "fedwire_templates",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"invalid\"\n}",
+                      "createdAt": "2026-07-28T02:16:09.000Z",
+                      "updatedAt": "2026-07-28T02:16:09.000Z",
+                      "uid": "35240-44924864-50cc-42ef-8780-0f2c46743340"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:09.000Z",
+                  "updatedAt": "2026-07-28T02:16:09.000Z",
+                  "uid": "35240-e3d1646a-ba1a-4541-a708-e54e32a93d2d"
+                },
+                {
+                  "name": "Delete a Fedwire template",
+                  "id": "9a254291-e3ca-4170-8c2f-7733f107970c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/fedwire_templates/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "fedwire_templates",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "b174c7cc-effd-4737-b903-b3b71b368ecc",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Delete a specified template belonging to the user. The template will continue to exist in the database, but won't be retrievable by the user. The name of the deleted template will be available for use in creating a new template.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "32dea644-9831-4407-ae77-fa9c2c6a5aaa",
+                      "name": "No response body",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/fedwire_templates/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "fedwire_templates",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:09.000Z",
+                      "updatedAt": "2026-07-28T02:16:09.000Z",
+                      "uid": "35240-32dea644-9831-4407-ae77-fa9c2c6a5aaa"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:09.000Z",
+                  "updatedAt": "2026-07-28T02:16:09.000Z",
+                  "uid": "35240-9a254291-e3ca-4170-8c2f-7733f107970c"
+                }
+              ],
+              "id": "c2164930-25b4-4bd5-9844-07577442ebe3",
+              "createdAt": "2026-07-28T02:16:09.000Z",
+              "updatedAt": "2026-07-28T02:16:09.000Z",
+              "uid": "35240-c2164930-25b4-4bd5-9844-07577442ebe3"
+            },
+            {
+              "name": "List Fedwire templates",
+              "id": "39cba957-d252-4789-9f54-7c87ddbdd5d3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/fedwire_templates/?page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "fedwire_templates",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "A page number within the paginated result set.",
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "List a user's templates, including templates created by other users in their organization. Templates will only be included in the returned list where the user has access to the template's source account.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "fcf930d0-c7f0-4798-a440-c3c0d94809ea",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/fedwire_templates/?page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "fedwire_templates",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\",\n  \"results\": [\n    {\n      \"name\": \"<string>\",\n      \"recipient\": \"<uuid>\",\n      \"source_account\": \"<uuid>\",\n      \"last_used\": \"<dateTime>\",\n      \"version_id\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"wire_reason\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"memo\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"recipient\": \"<uuid>\",\n      \"source_account\": \"<uuid>\",\n      \"last_used\": \"<dateTime>\",\n      \"version_id\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"wire_reason\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"memo\": \"<string>\"\n    }\n  ],\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T02:16:09.000Z",
+                  "updatedAt": "2026-07-28T02:16:09.000Z",
+                  "uid": "35240-fcf930d0-c7f0-4798-a440-c3c0d94809ea"
+                },
+                {
+                  "id": "09e6ae10-c4c1-4fcd-8dc6-6ef4b4bc19e3",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/fedwire_templates/?page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "fedwire_templates",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                  "createdAt": "2026-07-28T02:16:09.000Z",
+                  "updatedAt": "2026-07-28T02:16:09.000Z",
+                  "uid": "35240-09e6ae10-c4c1-4fcd-8dc6-6ef4b4bc19e3"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:09.000Z",
+              "updatedAt": "2026-07-28T02:16:09.000Z",
+              "uid": "35240-39cba957-d252-4789-9f54-7c87ddbdd5d3"
+            },
+            {
+              "name": "Create a Fedwire template",
+              "id": "650eae77-e171-440a-b814-e72bbe31a9ac",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"source_account\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/fedwire_templates/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "fedwire_templates",
+                    ""
+                  ]
+                },
+                "description": "Create a template that can be used to send wires.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "a38e848e-f943-4808-9711-6bc3c11d72bd",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"source_account\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/fedwire_templates/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "fedwire_templates",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"source_account\": \"<uuid>\",\n  \"last_used\": \"<dateTime>\",\n  \"version_id\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:09.000Z",
+                  "updatedAt": "2026-07-28T02:16:09.000Z",
+                  "uid": "35240-a38e848e-f943-4808-9711-6bc3c11d72bd"
+                },
+                {
+                  "id": "9fbc74bb-7408-4585-b36c-aa34bd6373c7",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"source_account\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/fedwire_templates/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "fedwire_templates",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"invalid\"\n}",
+                  "createdAt": "2026-07-28T02:16:09.000Z",
+                  "updatedAt": "2026-07-28T02:16:09.000Z",
+                  "uid": "35240-9fbc74bb-7408-4585-b36c-aa34bd6373c7"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:09.000Z",
+              "updatedAt": "2026-07-28T02:16:09.000Z",
+              "uid": "35240-650eae77-e171-440a-b814-e72bbe31a9ac"
+            }
+          ],
+          "id": "48db7c50-51bf-4ed8-991b-2a739cb3eeb5",
+          "createdAt": "2026-07-28T02:16:09.000Z",
+          "updatedAt": "2026-07-28T02:16:09.000Z",
+          "uid": "35240-48db7c50-51bf-4ed8-991b-2a739cb3eeb5"
+        }
+      ],
+      "id": "f7804cca-e964-4bbe-98a0-c8ec0ee71d8c",
+      "createdAt": "2026-07-28T02:16:09.000Z",
+      "updatedAt": "2026-07-28T02:16:09.000Z",
+      "uid": "35240-f7804cca-e964-4bbe-98a0-c8ec0ee71d8c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

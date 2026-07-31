@@ -1,0 +1,43 @@
+arazzo: 1.0.1
+info:
+  title: Read Narmi accounts, balances, and transactions
+  version: 1.0.0
+  summary: Authenticate, list accounts, read balances, and pull an account's transactions.
+sourceDescriptions:
+  - name: narmiPublic
+    url: ../openapi/narmi-public-openapi-original.yml
+    type: openapi
+workflows:
+  - workflowId: readAccountsAndTransactions
+    summary: List the authenticated user's accounts, their balances, and one account's transactions.
+    inputs:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: OAuth 2.0 bearer access token with banking:accounts:read + banking:transactions:read.
+    steps:
+      - stepId: whoAmI
+        operationId: me_list
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: listAccounts
+        operationId: accounts_list
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          accountUuid: $response.body#/results/0/id
+      - stepId: listBalances
+        operationId: account_balances_list
+        successCriteria:
+          - condition: $statusCode == 200
+      - stepId: listTransactions
+        operationId: transactions_list
+        parameters:
+          - name: account_uuids
+            in: path
+            value: $steps.listAccounts.outputs.accountUuid
+        successCriteria:
+          - condition: $statusCode == 200
+    outputs:
+      accountUuid: $steps.listAccounts.outputs.accountUuid

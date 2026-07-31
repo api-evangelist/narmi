@@ -1,0 +1,162 @@
+{
+  "info": {
+    "_postman_id": "672f5de8-b52e-482b-aa32-186dbae1dd9b",
+    "name": "Narmi Public account balances same-day transfers API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:41.000Z",
+    "updatedAt": "2026-07-28T02:16:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-672f5de8-b52e-482b-aa32-186dbae1dd9b"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "transfers",
+          "item": [
+            {
+              "name": "same_day",
+              "item": [
+                {
+                  "name": "fees",
+                  "item": [
+                    {
+                      "name": "Retrieve fee information for same day transfers",
+                      "id": "7e865654-a12a-4203-80a4-0407627a7b09",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transfers/same_day/fees/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transfers",
+                            "same_day",
+                            "fees",
+                            ""
+                          ]
+                        },
+                        "description": "Returns the fee structure for same day transfers to calculate the fee for any transfer.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "f9f9038b-6c43-4b36-8580-5c89a265bb5b",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/transfers/same_day/fees/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "transfers",
+                                "same_day",
+                                "fees",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"fixed\",\n  \"percent\": \"0\",\n  \"max\": \"9\",\n  \"min\": \".7\"\n}",
+                          "createdAt": "2026-07-28T02:16:41.000Z",
+                          "updatedAt": "2026-07-28T02:16:41.000Z",
+                          "uid": "35240-f9f9038b-6c43-4b36-8580-5c89a265bb5b"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:16:41.000Z",
+                      "updatedAt": "2026-07-28T02:16:41.000Z",
+                      "uid": "35240-7e865654-a12a-4203-80a4-0407627a7b09"
+                    }
+                  ],
+                  "id": "64360536-b3ed-41d3-b9bd-3c86ccaa8792",
+                  "createdAt": "2026-07-28T02:16:41.000Z",
+                  "updatedAt": "2026-07-28T02:16:41.000Z",
+                  "uid": "35240-64360536-b3ed-41d3-b9bd-3c86ccaa8792"
+                }
+              ],
+              "id": "89b66c1e-8d7e-477d-b287-b3bffb94882d",
+              "createdAt": "2026-07-28T02:16:41.000Z",
+              "updatedAt": "2026-07-28T02:16:41.000Z",
+              "uid": "35240-89b66c1e-8d7e-477d-b287-b3bffb94882d"
+            }
+          ],
+          "id": "a71ed303-d1f4-4994-a26e-92cd840bc2f9",
+          "createdAt": "2026-07-28T02:16:41.000Z",
+          "updatedAt": "2026-07-28T02:16:41.000Z",
+          "uid": "35240-a71ed303-d1f4-4994-a26e-92cd840bc2f9"
+        }
+      ],
+      "id": "e46080dc-d14e-498c-b17a-b32bcc656eb0",
+      "createdAt": "2026-07-28T02:16:41.000Z",
+      "updatedAt": "2026-07-28T02:16:41.000Z",
+      "uid": "35240-e46080dc-d14e-498c-b17a-b32bcc656eb0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

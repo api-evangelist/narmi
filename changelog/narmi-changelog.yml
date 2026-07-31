@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: searched
+source: https://new.narmi.com/
+url: https://new.narmi.com/
+scheme: date-based
+cadence: monthly
+notes: >-
+  Narmi publishes a public, dated product changelog at new.narmi.com ("What's New
+  at Narmi") as monthly "Product Highlights" posts in reverse-chronological order,
+  tagged by product line (Narmi Grow, Narmi Banking, Narmi Command, Narmi Now,
+  Narmi Open, etc.). Entries are dated by calendar month rather than semantic
+  version numbers; archives extend back to at least 2021. This is a
+  product-platform changelog, not an API-version changelog — the Narmi Public API
+  itself is versioned via URI path (v1 / v2 oauth) and signals internal
+  API-version deprecation through HTTP 406 responses (see lifecycle/).
+entries:
+  - date: '2026-06-25'
+    title: "What's New at Narmi: June Product Highlights"
+    url: https://new.narmi.com/
+  - date: '2026-05-21'
+    title: "What's New at Narmi: May Product Highlights"
+    url: https://new.narmi.com/
+  - date: '2026-04-23'
+    title: "What's New at Narmi: April Product Highlights"
+    url: https://new.narmi.com/
+  - date: '2026-03-26'
+    title: "What's New at Narmi: March Product Highlights"
+    url: https://new.narmi.com/
+  - date: '2026-02-27'
+    title: "What's New at Narmi: February Product Highlights"
+    url: https://new.narmi.com/

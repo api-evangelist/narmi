@@ -1,0 +1,198 @@
+{
+  "info": {
+    "_postman_id": "f714c711-367c-4bf0-b1f3-51cd8a78b661",
+    "name": "Narmi Public account balances express-checkout API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:06.000Z",
+    "updatedAt": "2026-07-28T02:16:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f714c711-367c-4bf0-b1f3-51cd8a78b661"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "express-checkout",
+          "item": [
+            {
+              "name": "create-setup-intent",
+              "item": [
+                {
+                  "name": "Create SetupIntent for Express Checkout",
+                  "id": "555b7af5-902d-418c-a70e-4583f06e5419",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/express-checkout/create-setup-intent/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "express-checkout",
+                        "create-setup-intent",
+                        ""
+                      ]
+                    },
+                    "description": "Creates a Stripe SetupIntent for collecting payment method details via Express Checkout Element (Apple Pay, Google Pay) without immediate charge.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "a9c1f2c6-dd2c-44f6-8846-6b28ba1178ea",
+                      "name": "No response body",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/express-checkout/create-setup-intent/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "express-checkout",
+                            "create-setup-intent",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:07.000Z",
+                      "updatedAt": "2026-07-28T02:16:07.000Z",
+                      "uid": "35240-a9c1f2c6-dd2c-44f6-8846-6b28ba1178ea"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:07.000Z",
+                  "updatedAt": "2026-07-28T02:16:07.000Z",
+                  "uid": "35240-555b7af5-902d-418c-a70e-4583f06e5419"
+                }
+              ],
+              "id": "e338859b-29a6-4a8d-a128-510616690774",
+              "createdAt": "2026-07-28T02:16:07.000Z",
+              "updatedAt": "2026-07-28T02:16:07.000Z",
+              "uid": "35240-e338859b-29a6-4a8d-a128-510616690774"
+            },
+            {
+              "name": "payment-method",
+              "item": [
+                {
+                  "name": "{payment_method_id}",
+                  "item": [
+                    {
+                      "name": "Get payment method details",
+                      "id": "0bdaf2f5-d2db-4105-80db-291dae15244e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/express-checkout/payment-method/:payment_method_id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "express-checkout",
+                            "payment-method",
+                            ":payment_method_id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "bf53f3f5-fe73-4d7d-ba5b-de8b51e4ebda",
+                              "key": "payment_method_id",
+                              "value": "pm_u",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieves card brand and last4 digits from a Stripe payment method for display purposes.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "c25ee250-08ac-4b7e-b263-2179e1271181",
+                          "name": "No response body",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/express-checkout/payment-method/:payment_method_id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "express-checkout",
+                                "payment-method",
+                                ":payment_method_id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "payment_method_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:16:07.000Z",
+                          "updatedAt": "2026-07-28T02:16:07.000Z",
+                          "uid": "35240-c25ee250-08ac-4b7e-b263-2179e1271181"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:16:07.000Z",
+                      "updatedAt": "2026-07-28T02:16:07.000Z",
+                      "uid": "35240-0bdaf2f5-d2db-4105-80db-291dae15244e"
+                    }
+                  ],
+                  "id": "1ef6c10e-82d1-4e53-8800-736a74bbc37c",
+                  "createdAt": "2026-07-28T02:16:07.000Z",
+                  "updatedAt": "2026-07-28T02:16:07.000Z",
+                  "uid": "35240-1ef6c10e-82d1-4e53-8800-736a74bbc37c"
+                }
+              ],
+              "id": "6e15017d-25eb-4f97-b975-9d777ca2106f",
+              "createdAt": "2026-07-28T02:16:07.000Z",
+              "updatedAt": "2026-07-28T02:16:07.000Z",
+              "uid": "35240-6e15017d-25eb-4f97-b975-9d777ca2106f"
+            }
+          ],
+          "id": "85b98d42-7cca-482b-84a9-0df4914fa470",
+          "createdAt": "2026-07-28T02:16:07.000Z",
+          "updatedAt": "2026-07-28T02:16:07.000Z",
+          "uid": "35240-85b98d42-7cca-482b-84a9-0df4914fa470"
+        }
+      ],
+      "id": "7619b3c6-e27b-440f-89fe-6a74eba97938",
+      "createdAt": "2026-07-28T02:16:07.000Z",
+      "updatedAt": "2026-07-28T02:16:07.000Z",
+      "uid": "35240-7619b3c6-e27b-440f-89fe-6a74eba97938"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

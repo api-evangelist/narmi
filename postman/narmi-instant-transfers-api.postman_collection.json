@@ -1,0 +1,564 @@
+{
+  "info": {
+    "_postman_id": "9799eacd-0dac-413f-81a7-836dc5a4d859",
+    "name": "Narmi Public account balances instant transfers API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:12.000Z",
+    "updatedAt": "2026-07-28T02:16:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9799eacd-0dac-413f-81a7-836dc5a4d859"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "fednow_transaction",
+          "item": [
+            {
+              "name": "{uuid}",
+              "item": [
+                {
+                  "name": "Retrieve a FedNow transfer",
+                  "id": "8a598984-654e-4665-843a-e4d4291fd3de",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/fednow_transaction/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "fednow_transaction",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "765d55e5-b5c7-4a42-a02b-ebef0008fb36",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Fetch details for a specified instant transfer.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "574e4b4a-f1d9-4d43-8d9d-8fbe8fe0a50d",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/fednow_transaction/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "fednow_transaction",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"amount_cents\": \"<integer>\",\n  \"bulk_payment\": \"<uuid>\",\n  \"external_account\": \"<uuid>\",\n  \"id\": \"<uuid>\",\n  \"source_account\": \"<uuid>\",\n  \"unverified_recipient\": \"<uuid>\",\n  \"memo\": \"<string>\",\n  \"state\": \"rejected_bulk_approval\",\n  \"payment_identification\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:16:13.000Z",
+                      "updatedAt": "2026-07-28T02:16:13.000Z",
+                      "uid": "35240-574e4b4a-f1d9-4d43-8d9d-8fbe8fe0a50d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:13.000Z",
+                  "updatedAt": "2026-07-28T02:16:13.000Z",
+                  "uid": "35240-8a598984-654e-4665-843a-e4d4291fd3de"
+                }
+              ],
+              "id": "e13586e1-6448-4622-8ed5-2022913ea66b",
+              "createdAt": "2026-07-28T02:16:12.000Z",
+              "updatedAt": "2026-07-28T02:16:12.000Z",
+              "uid": "35240-e13586e1-6448-4622-8ed5-2022913ea66b"
+            }
+          ],
+          "id": "9e917feb-21e7-44c6-95e7-fec16b17c952",
+          "createdAt": "2026-07-28T02:16:12.000Z",
+          "updatedAt": "2026-07-28T02:16:12.000Z",
+          "uid": "35240-9e917feb-21e7-44c6-95e7-fec16b17c952"
+        },
+        {
+          "name": "transfers",
+          "item": [
+            {
+              "name": "instant",
+              "item": [
+                {
+                  "name": "{payment_identification}",
+                  "item": [
+                    {
+                      "name": "Retrieve instant transfer details by payment identification",
+                      "id": "77c93441-9de2-4321-90c8-2f163969b595",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transfers/instant/:payment_identification/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transfers",
+                            "instant",
+                            ":payment_identification",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "8b411b10-be76-4711-baa1-620c19b3d06f",
+                              "key": "payment_identification",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve the details and status for an instant transfer. This is only supported for payments that have been assigned a payment ID.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "b1f366b9-0cbf-44f6-b0f6-fc8d1fb9f145",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/transfers/instant/:payment_identification/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "transfers",
+                                "instant",
+                                ":payment_identification",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "payment_identification"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"amount_cents\": \"<integer>\",\n  \"created_at\": \"<dateTime>\",\n  \"destination_account\": \"<string>\",\n  \"destination_fi\": \"<string>\",\n  \"fed_settlement_date\": \"<date>\",\n  \"payment_identification\": \"<string>\",\n  \"source_fi\": \"<string>\",\n  \"state\": \"<string>\",\n  \"type\": \"<string>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source_fi_name\": \"<string>\",\n  \"destination_fi_name\": \"<string>\",\n  \"source_account\": \"<string>\",\n  \"source_name\": \"<string>\",\n  \"destination_name\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"core_transaction_id\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:16:13.000Z",
+                          "updatedAt": "2026-07-28T02:16:13.000Z",
+                          "uid": "35240-b1f366b9-0cbf-44f6-b0f6-fc8d1fb9f145"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:16:13.000Z",
+                      "updatedAt": "2026-07-28T02:16:13.000Z",
+                      "uid": "35240-77c93441-9de2-4321-90c8-2f163969b595"
+                    }
+                  ],
+                  "id": "9779a3e8-f462-4f45-9d53-9eaa98bab4e0",
+                  "createdAt": "2026-07-28T02:16:12.000Z",
+                  "updatedAt": "2026-07-28T02:16:12.000Z",
+                  "uid": "35240-9779a3e8-f462-4f45-9d53-9eaa98bab4e0"
+                },
+                {
+                  "name": "eligibility",
+                  "item": [
+                    {
+                      "name": "{routing_number}",
+                      "item": [
+                        {
+                          "name": "Check eligibility for instant transfers",
+                          "id": "c9473c2c-57f4-4eed-8d52-54b6649879f3",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "/v2/oauth/token/",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "/v2/oauth/authorize/",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/transfers/instant/eligibility/:routing_number/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "transfers",
+                                "instant",
+                                "eligibility",
+                                ":routing_number",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "2a9fc953-94d6-405c-a6c7-e09610703054",
+                                  "key": "routing_number",
+                                  "value": "318814040",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Check if the provided routing number is enrolled and active in the FedNow network\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                          },
+                          "response": [
+                            {
+                              "id": "fb39601e-92b7-4720-834b-f146cff31291",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/transfers/instant/eligibility/:routing_number/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "transfers",
+                                    "instant",
+                                    "eligibility",
+                                    ":routing_number",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "routing_number"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"enrollment_level\": \"send_receive\",\n  \"routing_number\": \"<string>\",\n  \"online\": false,\n  \"name\": \"\"\n}",
+                              "createdAt": "2026-07-28T02:16:13.000Z",
+                              "updatedAt": "2026-07-28T02:16:13.000Z",
+                              "uid": "35240-fb39601e-92b7-4720-834b-f146cff31291"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:16:13.000Z",
+                          "updatedAt": "2026-07-28T02:16:13.000Z",
+                          "uid": "35240-c9473c2c-57f4-4eed-8d52-54b6649879f3"
+                        }
+                      ],
+                      "id": "d4b4dcd7-951a-4a20-a514-3341dd577085",
+                      "createdAt": "2026-07-28T02:16:12.000Z",
+                      "updatedAt": "2026-07-28T02:16:12.000Z",
+                      "uid": "35240-d4b4dcd7-951a-4a20-a514-3341dd577085"
+                    }
+                  ],
+                  "id": "6770bcdb-cf60-4ad8-ab92-9d7ae54a56b7",
+                  "createdAt": "2026-07-28T02:16:12.000Z",
+                  "updatedAt": "2026-07-28T02:16:12.000Z",
+                  "uid": "35240-6770bcdb-cf60-4ad8-ab92-9d7ae54a56b7"
+                },
+                {
+                  "name": "fees",
+                  "item": [
+                    {
+                      "name": "Retrieve fee information for instant transfers",
+                      "id": "8e3c7949-d71b-4bf6-ad98-55d2ca18e553",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transfers/instant/fees/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transfers",
+                            "instant",
+                            "fees",
+                            ""
+                          ]
+                        },
+                        "description": "Returns the fee structure for instant transfers to calculate the fee for any transfer.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "379da64d-1c7c-4b38-afa1-848265950c5a",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/transfers/instant/fees/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "transfers",
+                                "instant",
+                                "fees",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"kind\": \"fixed\",\n  \"percent\": \"-0.140\",\n  \"max\": \"-.9\",\n  \"min\": \"-\"\n}",
+                          "createdAt": "2026-07-28T02:16:13.000Z",
+                          "updatedAt": "2026-07-28T02:16:13.000Z",
+                          "uid": "35240-379da64d-1c7c-4b38-afa1-848265950c5a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:16:13.000Z",
+                      "updatedAt": "2026-07-28T02:16:13.000Z",
+                      "uid": "35240-8e3c7949-d71b-4bf6-ad98-55d2ca18e553"
+                    }
+                  ],
+                  "id": "884b4c28-42db-4e5a-b9e9-5ba1d4286277",
+                  "createdAt": "2026-07-28T02:16:12.000Z",
+                  "updatedAt": "2026-07-28T02:16:12.000Z",
+                  "uid": "35240-884b4c28-42db-4e5a-b9e9-5ba1d4286277"
+                }
+              ],
+              "id": "89af694c-c4f6-402c-881f-f9b979ce9029",
+              "createdAt": "2026-07-28T02:16:12.000Z",
+              "updatedAt": "2026-07-28T02:16:12.000Z",
+              "uid": "35240-89af694c-c4f6-402c-881f-f9b979ce9029"
+            }
+          ],
+          "id": "b884c304-bc18-4467-b910-32b47afe0c75",
+          "createdAt": "2026-07-28T02:16:12.000Z",
+          "updatedAt": "2026-07-28T02:16:12.000Z",
+          "uid": "35240-b884c304-bc18-4467-b910-32b47afe0c75"
+        }
+      ],
+      "id": "df3cffa3-4915-44cc-979e-120b46200ef0",
+      "createdAt": "2026-07-28T02:16:12.000Z",
+      "updatedAt": "2026-07-28T02:16:12.000Z",
+      "uid": "35240-df3cffa3-4915-44cc-979e-120b46200ef0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

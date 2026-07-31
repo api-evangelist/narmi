@@ -1,0 +1,841 @@
+{
+  "info": {
+    "_postman_id": "cd182d3b-8013-4ed1-97a9-ea672c164b65",
+    "name": "Narmi Public account balances mfa API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:32.000Z",
+    "updatedAt": "2026-07-28T02:16:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cd182d3b-8013-4ed1-97a9-ea672c164b65"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "mfa",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Delete MFA device",
+                  "id": "9b87b1f8-373d-4dae-9e28-c05b2dd59ab5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/mfa/:id/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "mfa",
+                        ":id",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "bbe71d82-cc22-41b9-929a-d6db0978df51",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) MFA device ID, constituted by a string of the device type followed by a device ID e.g. `otp_twilio.models.TwilioSMSDevice/1`."
+                        }
+                      ]
+                    },
+                    "description": "Delete a user's MFA device.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "3c08e470-2e66-4c03-b608-7df9054fb706",
+                      "name": "Successfully deleted.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/mfa/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "mfa",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:32.000Z",
+                      "updatedAt": "2026-07-28T02:16:32.000Z",
+                      "uid": "35240-3c08e470-2e66-4c03-b608-7df9054fb706"
+                    },
+                    {
+                      "id": "e5848f19-6b24-49b6-ae46-ba21a6d32a78",
+                      "name": "Device type specified is invalid.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/mfa/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "mfa",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:32.000Z",
+                      "updatedAt": "2026-07-28T02:16:32.000Z",
+                      "uid": "35240-e5848f19-6b24-49b6-ae46-ba21a6d32a78"
+                    },
+                    {
+                      "id": "c160852b-520e-4765-b5a6-2740fb66c56f",
+                      "name": "User is not the owner of the device.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/mfa/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "mfa",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:32.000Z",
+                      "updatedAt": "2026-07-28T02:16:32.000Z",
+                      "uid": "35240-c160852b-520e-4765-b5a6-2740fb66c56f"
+                    },
+                    {
+                      "id": "0dce9c3e-b519-452c-a127-7e93dffb40d6",
+                      "name": "Device not found.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/mfa/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "mfa",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:32.000Z",
+                      "updatedAt": "2026-07-28T02:16:32.000Z",
+                      "uid": "35240-0dce9c3e-b519-452c-a127-7e93dffb40d6"
+                    },
+                    {
+                      "id": "c70442e1-4f3a-4ab7-87da-623c63c02084",
+                      "name": "Device deletion blocked by risk evaluation.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/mfa/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "mfa",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:32.000Z",
+                      "updatedAt": "2026-07-28T02:16:32.000Z",
+                      "uid": "35240-c70442e1-4f3a-4ab7-87da-623c63c02084"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:32.000Z",
+                  "updatedAt": "2026-07-28T02:16:32.000Z",
+                  "uid": "35240-9b87b1f8-373d-4dae-9e28-c05b2dd59ab5"
+                }
+              ],
+              "id": "856f1ad1-2e1b-41b1-9f3c-2f8d2dcbb1d1",
+              "createdAt": "2026-07-28T02:16:32.000Z",
+              "updatedAt": "2026-07-28T02:16:32.000Z",
+              "uid": "35240-856f1ad1-2e1b-41b1-9f3c-2f8d2dcbb1d1"
+            },
+            {
+              "name": "List MFA devices",
+              "id": "f70222e7-5ba9-4b58-8369-0e0fed202342",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/mfa/?limit=<integer>&offset=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "mfa",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of results to return per page.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The initial index from which to return the results.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "List the authenticated user's MFA devices.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "94da1cd5-3451-4a3c-9d48-39b12e33b3ff",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/mfa/?limit=<integer>&offset=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "mfa",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of results to return per page.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The initial index from which to return the results.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"meta\": {\n    \"total\": \"<integer>\"\n  },\n  \"links\": {\n    \"next\": \"<uri>\",\n    \"prev\": \"<uri>\"\n  },\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"totp\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"static\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:32.000Z",
+                  "updatedAt": "2026-07-28T02:16:32.000Z",
+                  "uid": "35240-94da1cd5-3451-4a3c-9d48-39b12e33b3ff"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:32.000Z",
+              "updatedAt": "2026-07-28T02:16:32.000Z",
+              "uid": "35240-f70222e7-5ba9-4b58-8369-0e0fed202342"
+            }
+          ],
+          "id": "68b8a8e3-5037-419f-831b-2239645a03ba",
+          "createdAt": "2026-07-28T02:16:32.000Z",
+          "updatedAt": "2026-07-28T02:16:32.000Z",
+          "uid": "35240-68b8a8e3-5037-419f-831b-2239645a03ba"
+        },
+        {
+          "name": "sudo",
+          "item": [
+            {
+              "name": "Retrieve sudo status",
+              "id": "55f1b5bc-8baf-47f3-a5e9-f99b792f4ea5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/sudo/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "sudo",
+                    ""
+                  ]
+                },
+                "description": "Retrieve information on whether the current user has sudo permissions.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "eb4bd0d5-01e5-42c6-bc60-4e5d3d00dbb0",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sudo/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sudo",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": true\n}",
+                  "createdAt": "2026-07-28T02:16:32.000Z",
+                  "updatedAt": "2026-07-28T02:16:32.000Z",
+                  "uid": "35240-eb4bd0d5-01e5-42c6-bc60-4e5d3d00dbb0"
+                },
+                {
+                  "id": "1411d6a3-f54c-43f2-8a78-cb07ff039160",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sudo/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sudo",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:32.000Z",
+                  "updatedAt": "2026-07-28T02:16:32.000Z",
+                  "uid": "35240-1411d6a3-f54c-43f2-8a78-cb07ff039160"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:32.000Z",
+              "updatedAt": "2026-07-28T02:16:32.000Z",
+              "uid": "35240-55f1b5bc-8baf-47f3-a5e9-f99b792f4ea5"
+            },
+            {
+              "name": "Elevate sudo permissions",
+              "id": "ea39f312-f7a1-4f3a-b54a-2737b6c1ee6b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"device_id\": \"<string>\",\n  \"one_time_password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/sudo/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "sudo",
+                    ""
+                  ]
+                },
+                "description": "Elevate user permissions using Two-Factor-Authentication. \n\n\n\nSend a `device_id` to generate and dispatch a one-time-password to the specified device. \n\n\n\nSend `device_id` and `one_time_password` to validate the OTP sent to a user. \n\n\n\nThe endpoint will return a `403` if there is an issue with the `device_id` or `one_time_password`, or if the user has no registered 2FA devices.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "ce0edaf2-1cf5-48fc-b21d-670a959b5010",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"device_id\": \"<string>\",\n  \"one_time_password\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sudo/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sudo",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"sudo mode granted\"\n}",
+                  "createdAt": "2026-07-28T02:16:32.000Z",
+                  "updatedAt": "2026-07-28T02:16:32.000Z",
+                  "uid": "35240-ce0edaf2-1cf5-48fc-b21d-670a959b5010"
+                },
+                {
+                  "id": "8747c448-8a93-48cc-822a-3659ce8489de",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"device_id\": \"<string>\",\n  \"one_time_password\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sudo/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sudo",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:32.000Z",
+                  "updatedAt": "2026-07-28T02:16:32.000Z",
+                  "uid": "35240-8747c448-8a93-48cc-822a-3659ce8489de"
+                },
+                {
+                  "id": "1686d35c-19e7-4c7a-bb20-c299677b1d4d",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"device_id\": \"<string>\",\n  \"one_time_password\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/sudo/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "sudo",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"device\": {\n    \"id\": \"<string>\",\n    \"number_type\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"devices\": [\n    {\n      \"id\": \"<string>\",\n      \"number_type\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"number_type\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ],\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:32.000Z",
+                  "updatedAt": "2026-07-28T02:16:32.000Z",
+                  "uid": "35240-1686d35c-19e7-4c7a-bb20-c299677b1d4d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:32.000Z",
+              "updatedAt": "2026-07-28T02:16:32.000Z",
+              "uid": "35240-ea39f312-f7a1-4f3a-b54a-2737b6c1ee6b"
+            }
+          ],
+          "id": "322f9fe3-3463-4b4f-b736-f098fb4a9d8c",
+          "createdAt": "2026-07-28T02:16:32.000Z",
+          "updatedAt": "2026-07-28T02:16:32.000Z",
+          "uid": "35240-322f9fe3-3463-4b4f-b736-f098fb4a9d8c"
+        }
+      ],
+      "id": "11387b83-7b91-48ee-b78d-56ae2b38cc6f",
+      "createdAt": "2026-07-28T02:16:32.000Z",
+      "updatedAt": "2026-07-28T02:16:32.000Z",
+      "uid": "35240-11387b83-7b91-48ee-b78d-56ae2b38cc6f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

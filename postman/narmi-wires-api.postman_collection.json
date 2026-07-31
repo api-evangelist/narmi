@@ -1,0 +1,855 @@
+{
+  "info": {
+    "_postman_id": "a1630eee-11de-4f57-9166-9f61e71863a7",
+    "name": "Narmi Public account balances wires API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:17:05.000Z",
+    "updatedAt": "2026-07-28T02:17:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a1630eee-11de-4f57-9166-9f61e71863a7"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "wires",
+          "item": [
+            {
+              "name": "{uuid}",
+              "item": [
+                {
+                  "name": "Retrieve a wire transaction",
+                  "id": "8bd642a2-61e5-43be-ae68-841a87bfac37",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/wires/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "wires",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "cf74171b-b129-4aae-acd4-dcbce9386445",
+                          "key": "uuid",
+                          "value": "r2xyqzxl-",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve details for a specific wire transaction by UUID.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "d62a574a-f154-4251-a848-96059d362b05",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/wires/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "wires",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"processed_at\": \"<dateTime>\",\n  \"amount\": \"<integer>\",\n  \"from_account\": \"<uuid>\",\n  \"from_account_display\": \"<string>\",\n  \"to_account_number\": \"<string>\",\n  \"to_account_routing_number\": \"<string>\",\n  \"to_account_institution_name\": \"<string>\",\n  \"beneficiary_name\": \"<string>\",\n  \"beneficiary_address_1\": \"<string>\",\n  \"beneficiary_address_2\": \"<string>\",\n  \"beneficiary_address_3\": \"<string>\",\n  \"memo_1\": \"<string>\",\n  \"memo_2\": \"<string>\",\n  \"memo_3\": \"<string>\",\n  \"memo_4\": \"<string>\",\n  \"state\": \"<string>\",\n  \"display_state\": \"<string>\",\n  \"template_name\": \"<string>\",\n  \"wire_reason\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:17:06.000Z",
+                      "updatedAt": "2026-07-28T02:17:06.000Z",
+                      "uid": "35240-d62a574a-f154-4251-a848-96059d362b05"
+                    },
+                    {
+                      "id": "dfcc5037-5b5a-4736-8292-fbed6d6a3272",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/wires/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "wires",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                      "createdAt": "2026-07-28T02:17:06.000Z",
+                      "updatedAt": "2026-07-28T02:17:06.000Z",
+                      "uid": "35240-dfcc5037-5b5a-4736-8292-fbed6d6a3272"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:17:06.000Z",
+                  "updatedAt": "2026-07-28T02:17:06.000Z",
+                  "uid": "35240-8bd642a2-61e5-43be-ae68-841a87bfac37"
+                }
+              ],
+              "id": "8d3d32c0-0af7-4aa4-8e3b-9321ce684dff",
+              "createdAt": "2026-07-28T02:17:06.000Z",
+              "updatedAt": "2026-07-28T02:17:06.000Z",
+              "uid": "35240-8d3d32c0-0af7-4aa4-8e3b-9321ce684dff"
+            },
+            {
+              "name": "fedwire_templates",
+              "item": [
+                {
+                  "name": "Send a wire using a wire template",
+                  "id": "19ea2d42-993b-4e93-8c44-7df582f26b42",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fedwire_template\": \"<uuid>\",\n  \"version_id\": \"<string>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/wires/fedwire_templates/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "wires",
+                        "fedwire_templates",
+                        ""
+                      ]
+                    },
+                    "description": "Send a wire using an existing wire template.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "9ea6d7a6-d983-4edb-a8bc-e8f15cfc1e06",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"fedwire_template\": \"<uuid>\",\n  \"version_id\": \"<string>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/wires/fedwire_templates/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "wires",
+                            "fedwire_templates",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"processed_at\": \"<dateTime>\",\n  \"from_account_display\": \"<string>\",\n  \"display_state\": \"<string>\",\n  \"to_account_institution_name\": \"<string>\",\n  \"from_account\": \"<uuid>\",\n  \"to_account_number\": \"<string>\",\n  \"to_account_routing_number\": \"<string>\",\n  \"beneficiary_name\": \"<string>\",\n  \"beneficiary_address_1\": \"<string>\",\n  \"beneficiary_address_2\": \"<string>\",\n  \"beneficiary_address_3\": \"<string>\",\n  \"memo_1\": \"<string>\",\n  \"memo_2\": \"<string>\",\n  \"memo_3\": \"<string>\",\n  \"memo_4\": \"<string>\",\n  \"template_name\": \"<string>\",\n  \"wire_reason\": \"<string>\",\n  \"state\": \"processing\",\n  \"amount\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:17:06.000Z",
+                      "updatedAt": "2026-07-28T02:17:06.000Z",
+                      "uid": "35240-9ea6d7a6-d983-4edb-a8bc-e8f15cfc1e06"
+                    },
+                    {
+                      "id": "71876dd4-1665-4bfe-be44-64bd1106958d",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"fedwire_template\": \"<uuid>\",\n  \"version_id\": \"<string>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/wires/fedwire_templates/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "wires",
+                            "fedwire_templates",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"invalid\"\n}",
+                      "createdAt": "2026-07-28T02:17:06.000Z",
+                      "updatedAt": "2026-07-28T02:17:06.000Z",
+                      "uid": "35240-71876dd4-1665-4bfe-be44-64bd1106958d"
+                    },
+                    {
+                      "id": "90b25279-ee29-43fa-bb9b-05e5351bb777",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"fedwire_template\": \"<uuid>\",\n  \"version_id\": \"<string>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"memo\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/wires/fedwire_templates/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "wires",
+                            "fedwire_templates",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:17:06.000Z",
+                      "updatedAt": "2026-07-28T02:17:06.000Z",
+                      "uid": "35240-90b25279-ee29-43fa-bb9b-05e5351bb777"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:17:06.000Z",
+                  "updatedAt": "2026-07-28T02:17:06.000Z",
+                  "uid": "35240-19ea2d42-993b-4e93-8c44-7df582f26b42"
+                }
+              ],
+              "id": "ec84e5d4-7018-4cf0-a335-40ae70fc5078",
+              "createdAt": "2026-07-28T02:17:06.000Z",
+              "updatedAt": "2026-07-28T02:17:06.000Z",
+              "uid": "35240-ec84e5d4-7018-4cf0-a335-40ae70fc5078"
+            },
+            {
+              "name": "List wire transactions.",
+              "id": "d387f582-2c75-41da-b0e9-ac185380031e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/wires/?account_uuid=<uuid>&page=<integer>&per_page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "wires",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Optional account UUID used to filter wire transactions to those for the specified account.",
+                      "key": "account_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "description": "A page number within the paginated result set.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of results to return per page.",
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "List the authenticated user's wire transactions. Accepts `account_uuid` as a query parameter, limiting results to those relevant to the specified account. User must have permission to read account information. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "bfd61428-9a6c-41ed-b4c9-4e43a705658c",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/wires/?account_uuid=<uuid>&page=<integer>&per_page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "wires",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Optional account UUID used to filter wire transactions to those for the specified account.",
+                          "key": "account_uuid",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of results to return per page.",
+                          "key": "per_page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"meta\": {\n    \"total\": \"<integer>\"\n  },\n  \"links\": {\n    \"next\": \"<uri>\",\n    \"prev\": \"<uri>\"\n  },\n  \"wires\": [\n    {\n      \"id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"processed_at\": \"<dateTime>\",\n      \"amount\": \"<integer>\",\n      \"from_account\": \"<uuid>\",\n      \"from_account_display\": \"<string>\",\n      \"to_account_number\": \"<string>\",\n      \"to_account_routing_number\": \"<string>\",\n      \"to_account_institution_name\": \"<string>\",\n      \"beneficiary_name\": \"<string>\",\n      \"beneficiary_address_1\": \"<string>\",\n      \"beneficiary_address_2\": \"<string>\",\n      \"beneficiary_address_3\": \"<string>\",\n      \"memo_1\": \"<string>\",\n      \"memo_2\": \"<string>\",\n      \"memo_3\": \"<string>\",\n      \"memo_4\": \"<string>\",\n      \"state\": \"<string>\",\n      \"display_state\": \"<string>\",\n      \"template_name\": \"<string>\",\n      \"wire_reason\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"processed_at\": \"<dateTime>\",\n      \"amount\": \"<integer>\",\n      \"from_account\": \"<uuid>\",\n      \"from_account_display\": \"<string>\",\n      \"to_account_number\": \"<string>\",\n      \"to_account_routing_number\": \"<string>\",\n      \"to_account_institution_name\": \"<string>\",\n      \"beneficiary_name\": \"<string>\",\n      \"beneficiary_address_1\": \"<string>\",\n      \"beneficiary_address_2\": \"<string>\",\n      \"beneficiary_address_3\": \"<string>\",\n      \"memo_1\": \"<string>\",\n      \"memo_2\": \"<string>\",\n      \"memo_3\": \"<string>\",\n      \"memo_4\": \"<string>\",\n      \"state\": \"<string>\",\n      \"display_state\": \"<string>\",\n      \"template_name\": \"<string>\",\n      \"wire_reason\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:17:06.000Z",
+                  "updatedAt": "2026-07-28T02:17:06.000Z",
+                  "uid": "35240-bfd61428-9a6c-41ed-b4c9-4e43a705658c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:17:06.000Z",
+              "updatedAt": "2026-07-28T02:17:06.000Z",
+              "uid": "35240-d387f582-2c75-41da-b0e9-ac185380031e"
+            },
+            {
+              "name": "Create a new wire transaction.",
+              "id": "ad5466db-dbac-4f13-ba0c-b0acd011c247",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"from_account\": \"<uuid>\",\n  \"memo_1\": \"<string>\",\n  \"to_account_number\": \"<string>\",\n  \"to_account_routing_number\": \"<string>\",\n  \"to_account_institution_name\": \"<string>\",\n  \"beneficiary_name\": \"<string>\",\n  \"beneficiary_address_1\": \"<string>\",\n  \"beneficiary_address_2\": \"<string>\",\n  \"beneficiary_address_3\": \"<string>\",\n  \"memo_2\": \"<string>\",\n  \"memo_3\": \"<string>\",\n  \"memo_4\": \"<string>\",\n  \"state\": \"<string>\",\n  \"wire_reason\": \"<string>\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/wires/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "wires",
+                    ""
+                  ]
+                },
+                "description": "Creates a new wire transaction. A confirmation email may be sent to members of the `from_account` if wire was submitted for processing (prerequisites such as dual approval were not required).\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "c91e2b5c-967a-477e-b534-3aa32c44e1d0",
+                  "name": "Wire transaction successfully created.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"from_account\": \"<uuid>\",\n  \"memo_1\": \"<string>\",\n  \"to_account_number\": \"<string>\",\n  \"to_account_routing_number\": \"<string>\",\n  \"to_account_institution_name\": \"<string>\",\n  \"beneficiary_name\": \"<string>\",\n  \"beneficiary_address_1\": \"<string>\",\n  \"beneficiary_address_2\": \"<string>\",\n  \"beneficiary_address_3\": \"<string>\",\n  \"memo_2\": \"<string>\",\n  \"memo_3\": \"<string>\",\n  \"memo_4\": \"<string>\",\n  \"state\": \"<string>\",\n  \"wire_reason\": \"<string>\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/wires/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "wires",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"wires\": [\n    {\n      \"id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"processed_at\": \"<dateTime>\",\n      \"amount\": \"<integer>\",\n      \"from_account\": \"<uuid>\",\n      \"from_account_display\": \"<string>\",\n      \"to_account_number\": \"<string>\",\n      \"to_account_routing_number\": \"<string>\",\n      \"to_account_institution_name\": \"<string>\",\n      \"beneficiary_name\": \"<string>\",\n      \"beneficiary_address_1\": \"<string>\",\n      \"beneficiary_address_2\": \"<string>\",\n      \"beneficiary_address_3\": \"<string>\",\n      \"memo_1\": \"<string>\",\n      \"memo_2\": \"<string>\",\n      \"memo_3\": \"<string>\",\n      \"memo_4\": \"<string>\",\n      \"state\": \"<string>\",\n      \"display_state\": \"<string>\",\n      \"template_name\": \"<string>\",\n      \"wire_reason\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"processed_at\": \"<dateTime>\",\n      \"amount\": \"<integer>\",\n      \"from_account\": \"<uuid>\",\n      \"from_account_display\": \"<string>\",\n      \"to_account_number\": \"<string>\",\n      \"to_account_routing_number\": \"<string>\",\n      \"to_account_institution_name\": \"<string>\",\n      \"beneficiary_name\": \"<string>\",\n      \"beneficiary_address_1\": \"<string>\",\n      \"beneficiary_address_2\": \"<string>\",\n      \"beneficiary_address_3\": \"<string>\",\n      \"memo_1\": \"<string>\",\n      \"memo_2\": \"<string>\",\n      \"memo_3\": \"<string>\",\n      \"memo_4\": \"<string>\",\n      \"state\": \"<string>\",\n      \"display_state\": \"<string>\",\n      \"template_name\": \"<string>\",\n      \"wire_reason\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:17:06.000Z",
+                  "updatedAt": "2026-07-28T02:17:06.000Z",
+                  "uid": "35240-c91e2b5c-967a-477e-b534-3aa32c44e1d0"
+                },
+                {
+                  "id": "5b806982-464e-4373-8f0b-ba5561763cbd",
+                  "name": "Bad request. Validation failed for the submitted wire data.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"from_account\": \"<uuid>\",\n  \"memo_1\": \"<string>\",\n  \"to_account_number\": \"<string>\",\n  \"to_account_routing_number\": \"<string>\",\n  \"to_account_institution_name\": \"<string>\",\n  \"beneficiary_name\": \"<string>\",\n  \"beneficiary_address_1\": \"<string>\",\n  \"beneficiary_address_2\": \"<string>\",\n  \"beneficiary_address_3\": \"<string>\",\n  \"memo_2\": \"<string>\",\n  \"memo_3\": \"<string>\",\n  \"memo_4\": \"<string>\",\n  \"state\": \"<string>\",\n  \"wire_reason\": \"<string>\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/wires/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "wires",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"invalid\"\n}",
+                  "createdAt": "2026-07-28T02:17:06.000Z",
+                  "updatedAt": "2026-07-28T02:17:06.000Z",
+                  "uid": "35240-5b806982-464e-4373-8f0b-ba5561763cbd"
+                },
+                {
+                  "id": "5313a3a1-de6d-4d84-8430-1e44103bb8ea",
+                  "name": "Unprocessable entity. Validation failed for the submitted wire data.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"from_account\": \"<uuid>\",\n  \"memo_1\": \"<string>\",\n  \"to_account_number\": \"<string>\",\n  \"to_account_routing_number\": \"<string>\",\n  \"to_account_institution_name\": \"<string>\",\n  \"beneficiary_name\": \"<string>\",\n  \"beneficiary_address_1\": \"<string>\",\n  \"beneficiary_address_2\": \"<string>\",\n  \"beneficiary_address_3\": \"<string>\",\n  \"memo_2\": \"<string>\",\n  \"memo_3\": \"<string>\",\n  \"memo_4\": \"<string>\",\n  \"state\": \"<string>\",\n  \"wire_reason\": \"<string>\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/wires/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "wires",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"invalid\"\n}",
+                  "createdAt": "2026-07-28T02:17:06.000Z",
+                  "updatedAt": "2026-07-28T02:17:06.000Z",
+                  "uid": "35240-5313a3a1-de6d-4d84-8430-1e44103bb8ea"
+                }
+              ],
+              "createdAt": "2026-07-28T02:17:06.000Z",
+              "updatedAt": "2026-07-28T02:17:06.000Z",
+              "uid": "35240-ad5466db-dbac-4f13-ba0c-b0acd011c247"
+            }
+          ],
+          "id": "4249111f-56c5-4c54-ad32-8f42032c7eae",
+          "createdAt": "2026-07-28T02:17:06.000Z",
+          "updatedAt": "2026-07-28T02:17:06.000Z",
+          "uid": "35240-4249111f-56c5-4c54-ad32-8f42032c7eae"
+        }
+      ],
+      "id": "97d7fd1e-ee4e-4dbf-9e67-003834edba10",
+      "createdAt": "2026-07-28T02:17:06.000Z",
+      "updatedAt": "2026-07-28T02:17:06.000Z",
+      "uid": "35240-97d7fd1e-ee4e-4dbf-9e67-003834edba10"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

@@ -1,0 +1,1874 @@
+{
+  "info": {
+    "_postman_id": "3d8670cf-1c84-4452-ac2b-6d179eacc5c1",
+    "name": "Narmi Public account balances threads API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:50.000Z",
+    "updatedAt": "2026-07-28T02:16:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3d8670cf-1c84-4452-ac2b-6d179eacc5c1"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "thread_files",
+          "item": [
+            {
+              "name": "policies",
+              "item": [
+                {
+                  "name": "Create a signed request for uploading a file to S3",
+                  "id": "37730709-6a6a-4fa5-8213-6a5065a863dd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/thread_files/policies/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "thread_files",
+                        "policies",
+                        ""
+                      ]
+                    },
+                    "description": "Creates the payload for a signed request to upload a file directly to S3. Further documentation can be found via the AWS documentation: https://aws.amazon.com/blogs/compute/uploading-to-amazon-s3-directly-from-a-web-or-mobile-application/\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "963bff34-e3ea-4216-a8b5-d632048bf8c9",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/thread_files/policies/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "thread_files",
+                            "policies",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"acl\": \"<string>\",\n  \"content-type\": \"<string>\",\n  \"form_action\": \"<string>\",\n  \"key\": \"<string>\",\n  \"policy\": \"<string>\",\n  \"signature\": \"<string>\",\n  \"success_action_status\": \"<string>\",\n  \"x-amz-algorithm\": \"<string>\",\n  \"x-amz-credential\": \"<string>\",\n  \"x-amz-date\": \"<string>\",\n  \"x-amz-signature\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:50.000Z",
+                      "updatedAt": "2026-07-28T02:16:50.000Z",
+                      "uid": "35240-963bff34-e3ea-4216-a8b5-d632048bf8c9"
+                    },
+                    {
+                      "id": "9aeaf4f5-874f-48fe-a07f-cf3bc44a6517",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/thread_files/policies/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "thread_files",
+                            "policies",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reason\": \"File destination does not exist or is invalid.\"\n}",
+                      "createdAt": "2026-07-28T02:16:50.000Z",
+                      "updatedAt": "2026-07-28T02:16:50.000Z",
+                      "uid": "35240-9aeaf4f5-874f-48fe-a07f-cf3bc44a6517"
+                    },
+                    {
+                      "id": "b8b3493c-376d-4424-b824-b81ee2d427a1",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/thread_files/policies/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "thread_files",
+                            "policies",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:50.000Z",
+                      "updatedAt": "2026-07-28T02:16:50.000Z",
+                      "uid": "35240-b8b3493c-376d-4424-b824-b81ee2d427a1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:50.000Z",
+                  "updatedAt": "2026-07-28T02:16:50.000Z",
+                  "uid": "35240-37730709-6a6a-4fa5-8213-6a5065a863dd"
+                }
+              ],
+              "id": "267948e8-ec17-4ffc-9443-ddcb97c5dfc5",
+              "createdAt": "2026-07-28T02:16:50.000Z",
+              "updatedAt": "2026-07-28T02:16:50.000Z",
+              "uid": "35240-267948e8-ec17-4ffc-9443-ddcb97c5dfc5"
+            }
+          ],
+          "id": "946a022b-e428-40f5-afa8-c4b73afedbdb",
+          "createdAt": "2026-07-28T02:16:50.000Z",
+          "updatedAt": "2026-07-28T02:16:50.000Z",
+          "uid": "35240-946a022b-e428-40f5-afa8-c4b73afedbdb"
+        },
+        {
+          "name": "threads",
+          "item": [
+            {
+              "name": "{thread_uuids}",
+              "item": [
+                {
+                  "name": "messages",
+                  "item": [
+                    {
+                      "name": "List messages in a thread",
+                      "id": "77cc0f94-ea39-4fd3-b752-a21a7652400c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/threads/:thread_uuids/messages/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "threads",
+                            ":thread_uuids",
+                            "messages",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "a7b8dbe9-5219-4d4e-941c-d8e27d258d48",
+                              "key": "thread_uuids",
+                              "value": "WuckD-3aF8I",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "List messages for the specified support message threads. The threads are specified in the path parameters as comma-separated UUIDs. If the thread does not exist, this endpoint will return a 404. Response will include both messages and thread files (i.e. attachments).\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "180143e7-6e18-450d-90e1-7cc18f2573be",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/threads/:thread_uuids/messages/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "threads",
+                                ":thread_uuids",
+                                "messages",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "thread_uuids"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"messages\": [\n    {\n      \"body\": \"Hello World!\",\n      \"internal_note\": false,\n      \"id\": \"<uuid>\",\n      \"thread_id\": \"47ea8231-d4ba-41d0-9e50-0c52f5c5205a \",\n      \"author\": {\n        \"email\": \"<string>\",\n        \"core_provided_email\": \"<string>\",\n        \"username\": \"<string>\",\n        \"id\": \"<uuid>\",\n        \"institution_user_identifier\": \"<string>\",\n        \"updated_at\": \"<dateTime>\",\n        \"addresses\": [\n          {\n            \"city\": \"<string>\",\n            \"postal_code\": \"<string>\",\n            \"region_code\": \"<string>\",\n            \"street_address\": \"<string>\",\n            \"street_address_2\": \"<string>\",\n            \"country_code\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"city\": \"<string>\",\n            \"postal_code\": \"<string>\",\n            \"region_code\": \"<string>\",\n            \"street_address\": \"<string>\",\n            \"street_address_2\": \"<string>\",\n            \"country_code\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ],\n        \"phone_numbers\": [\n          {\n            \"number\": \"<string>\",\n            \"device_id\": \"<string>\",\n            \"device_request_id\": \"<string>\"\n          },\n          {\n            \"number\": \"<string>\",\n            \"device_id\": \"<string>\",\n            \"device_request_id\": \"<string>\"\n          }\n        ],\n        \"notifications_enabled\": \"<boolean>\",\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\",\n        \"paper_statements\": \"<boolean>\",\n        \"user_category\": \"business\",\n        \"features\": {},\n        \"org_uuid\": \"<uuid>\",\n        \"org_role\": \"No Permissions\",\n        \"org_name\": \"<string>\",\n        \"business_permissions\": [\n          {\n            \"model_str\": \"<string>\",\n            \"operation\": \"<string>\",\n            \"uuid\": \"<uuid>\"\n          },\n          {\n            \"model_str\": \"<string>\",\n            \"operation\": \"<string>\",\n            \"uuid\": \"<uuid>\"\n          }\n        ],\n        \"dual_approval_required\": \"<boolean>\",\n        \"ach_dual_approval_required\": \"<boolean>\",\n        \"income_sources\": [\n          {\n            \"income\": \"<integer>\",\n            \"income_type\": \"other\",\n            \"uuid\": \"<uuid>\",\n            \"mortgage_rent\": \"<integer>\",\n            \"industry\": \"<string>\",\n            \"occupation\": \"<string>\"\n          },\n          {\n            \"income\": \"<integer>\",\n            \"income_type\": \"retirement\",\n            \"uuid\": \"<uuid>\",\n            \"mortgage_rent\": \"<integer>\",\n            \"industry\": \"<string>\",\n            \"occupation\": \"<string>\"\n          }\n        ],\n        \"international_wire_dual_approval_required\": \"<boolean>\",\n        \"is_staff\": \"<boolean>\",\n        \"is_active\": \"<boolean>\",\n        \"is_superuser\": \"<boolean>\",\n        \"is_narmi\": \"<boolean>\",\n        \"date_joined\": \"<dateTime>\",\n        \"last_login\": \"<dateTime>\",\n        \"segment\": \"<string>\",\n        \"metadata\": {},\n        \"has_username\": \"<boolean>\",\n        \"has_password\": \"<boolean>\",\n        \"has_accepted_latest_terms\": \"<boolean>\",\n        \"requires_enrollment_code_verification\": \"<boolean>\",\n        \"enabled_estatements_at\": \"<dateTime>\",\n        \"is_converting\": \"<boolean>\",\n        \"has_permitted_device\": \"<boolean>\",\n        \"has_backup_codes\": \"<boolean>\",\n        \"support_teams\": [\n          \"<uuid>\",\n          \"<uuid>\"\n        ],\n        \"session_oidc_provider\": \"<string>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"body\": \"Hello World!\",\n      \"internal_note\": false,\n      \"id\": \"<uuid>\",\n      \"thread_id\": \"47ea8231-d4ba-41d0-9e50-0c52f5c5205a \",\n      \"author\": {\n        \"email\": \"<string>\",\n        \"core_provided_email\": \"<string>\",\n        \"username\": \"<string>\",\n        \"id\": \"<uuid>\",\n        \"institution_user_identifier\": \"<string>\",\n        \"updated_at\": \"<dateTime>\",\n        \"addresses\": [\n          {\n            \"city\": \"<string>\",\n            \"postal_code\": \"<string>\",\n            \"region_code\": \"<string>\",\n            \"street_address\": \"<string>\",\n            \"street_address_2\": \"<string>\",\n            \"country_code\": \"<string>\",\n            \"type\": \"<string>\"\n          },\n          {\n            \"city\": \"<string>\",\n            \"postal_code\": \"<string>\",\n            \"region_code\": \"<string>\",\n            \"street_address\": \"<string>\",\n            \"street_address_2\": \"<string>\",\n            \"country_code\": \"<string>\",\n            \"type\": \"<string>\"\n          }\n        ],\n        \"phone_numbers\": [\n          {\n            \"number\": \"<string>\",\n            \"device_id\": \"<string>\",\n            \"device_request_id\": \"<string>\"\n          },\n          {\n            \"number\": \"<string>\",\n            \"device_id\": \"<string>\",\n            \"device_request_id\": \"<string>\"\n          }\n        ],\n        \"notifications_enabled\": \"<boolean>\",\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\",\n        \"paper_statements\": \"<boolean>\",\n        \"user_category\": \"personal\",\n        \"features\": {},\n        \"org_uuid\": \"<uuid>\",\n        \"org_role\": \"Viewer\",\n        \"org_name\": \"<string>\",\n        \"business_permissions\": [\n          {\n            \"model_str\": \"<string>\",\n            \"operation\": \"<string>\",\n            \"uuid\": \"<uuid>\"\n          },\n          {\n            \"model_str\": \"<string>\",\n            \"operation\": \"<string>\",\n            \"uuid\": \"<uuid>\"\n          }\n        ],\n        \"dual_approval_required\": \"<boolean>\",\n        \"ach_dual_approval_required\": \"<boolean>\",\n        \"income_sources\": [\n          {\n            \"income\": \"<integer>\",\n            \"income_type\": \"other\",\n            \"uuid\": \"<uuid>\",\n            \"mortgage_rent\": \"<integer>\",\n            \"industry\": \"<string>\",\n            \"occupation\": \"<string>\"\n          },\n          {\n            \"income\": \"<integer>\",\n            \"income_type\": \"retirement\",\n            \"uuid\": \"<uuid>\",\n            \"mortgage_rent\": \"<integer>\",\n            \"industry\": \"<string>\",\n            \"occupation\": \"<string>\"\n          }\n        ],\n        \"international_wire_dual_approval_required\": \"<boolean>\",\n        \"is_staff\": \"<boolean>\",\n        \"is_active\": \"<boolean>\",\n        \"is_superuser\": \"<boolean>\",\n        \"is_narmi\": \"<boolean>\",\n        \"date_joined\": \"<dateTime>\",\n        \"last_login\": \"<dateTime>\",\n        \"segment\": \"<string>\",\n        \"metadata\": {},\n        \"has_username\": \"<boolean>\",\n        \"has_password\": \"<boolean>\",\n        \"has_accepted_latest_terms\": \"<boolean>\",\n        \"requires_enrollment_code_verification\": \"<boolean>\",\n        \"enabled_estatements_at\": \"<dateTime>\",\n        \"is_converting\": \"<boolean>\",\n        \"has_permitted_device\": \"<boolean>\",\n        \"has_backup_codes\": \"<boolean>\",\n        \"support_teams\": [\n          \"<uuid>\",\n          \"<uuid>\"\n        ],\n        \"session_oidc_provider\": \"<string>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"url\": \"<uri>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:16:50.000Z",
+                          "updatedAt": "2026-07-28T02:16:50.000Z",
+                          "uid": "35240-180143e7-6e18-450d-90e1-7cc18f2573be"
+                        },
+                        {
+                          "id": "37a81692-4ed3-41e7-be04-cc98324d7cf7",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/threads/:thread_uuids/messages/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "threads",
+                                ":thread_uuids",
+                                "messages",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "thread_uuids"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                          "createdAt": "2026-07-28T02:16:50.000Z",
+                          "updatedAt": "2026-07-28T02:16:50.000Z",
+                          "uid": "35240-37a81692-4ed3-41e7-be04-cc98324d7cf7"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:16:50.000Z",
+                      "updatedAt": "2026-07-28T02:16:50.000Z",
+                      "uid": "35240-77cc0f94-ea39-4fd3-b752-a21a7652400c"
+                    },
+                    {
+                      "name": "Create a message in a thread",
+                      "id": "a04c9120-ea54-4143-aeb1-927832fe0e5b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"body\": \"<string>\",\n  \"file\": {\n    \"signature\": \"<string>\",\n    \"url\": \"https://production-sandbox-uploads.s3-wn3.amazonaws.com/original/support/eRQCBGEEu8pOquop4MJe4LYcV/\"\n  },\n  \"internal_note\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/threads/:thread_uuids/messages/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "threads",
+                            ":thread_uuids",
+                            "messages",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "f893d7a6-419e-49ed-94be-cce2d446a00d",
+                              "key": "thread_uuids",
+                              "value": "WuckD-3aF8I",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Create a message on the specified support message thread as the authenticated user. \n\nDefine either `body` or `url` in the request to create a message or attachment, respectively.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "1288d4f7-f538-4200-a192-826c3b5b6250",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"body\": \"<string>\",\n  \"file\": {\n    \"signature\": \"<string>\",\n    \"url\": \"https://production-sandbox-uploads.s3-wn3.amazonaws.com/original/support/eRQCBGEEu8pOquop4MJe4LYcV/\"\n  },\n  \"internal_note\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/threads/:thread_uuids/messages/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "threads",
+                                ":thread_uuids",
+                                "messages",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "thread_uuids"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": {\n    \"body\": \"<string>\",\n    \"internal_note\": false\n  }\n}",
+                          "createdAt": "2026-07-28T02:16:50.000Z",
+                          "updatedAt": "2026-07-28T02:16:50.000Z",
+                          "uid": "35240-1288d4f7-f538-4200-a192-826c3b5b6250"
+                        },
+                        {
+                          "id": "900ec190-2153-47c8-afde-32eb62bcc784",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"body\": \"<string>\",\n  \"file\": {\n    \"signature\": \"<string>\",\n    \"url\": \"https://production-sandbox-uploads.s3-wn3.amazonaws.com/original/support/eRQCBGEEu8pOquop4MJe4LYcV/\"\n  },\n  \"internal_note\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/threads/:thread_uuids/messages/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "threads",
+                                ":thread_uuids",
+                                "messages",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "thread_uuids"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                          "createdAt": "2026-07-28T02:16:50.000Z",
+                          "updatedAt": "2026-07-28T02:16:50.000Z",
+                          "uid": "35240-900ec190-2153-47c8-afde-32eb62bcc784"
+                        },
+                        {
+                          "id": "18226de5-cad1-4622-a9d6-55ff54fb29cc",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"body\": \"<string>\",\n  \"file\": {\n    \"signature\": \"<string>\",\n    \"url\": \"https://production-sandbox-uploads.s3-wn3.amazonaws.com/original/support/eRQCBGEEu8pOquop4MJe4LYcV/\"\n  },\n  \"internal_note\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/threads/:thread_uuids/messages/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "threads",
+                                ":thread_uuids",
+                                "messages",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "thread_uuids"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:16:50.000Z",
+                          "updatedAt": "2026-07-28T02:16:50.000Z",
+                          "uid": "35240-18226de5-cad1-4622-a9d6-55ff54fb29cc"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:16:50.000Z",
+                      "updatedAt": "2026-07-28T02:16:50.000Z",
+                      "uid": "35240-a04c9120-ea54-4143-aeb1-927832fe0e5b"
+                    }
+                  ],
+                  "id": "e2644710-d77c-4d4f-a712-b4e412de081c",
+                  "createdAt": "2026-07-28T02:16:50.000Z",
+                  "updatedAt": "2026-07-28T02:16:50.000Z",
+                  "uid": "35240-e2644710-d77c-4d4f-a712-b4e412de081c"
+                }
+              ],
+              "id": "e6aea2a6-945d-46b5-bbe1-7ca126ee32cf",
+              "createdAt": "2026-07-28T02:16:50.000Z",
+              "updatedAt": "2026-07-28T02:16:50.000Z",
+              "uid": "35240-e6aea2a6-945d-46b5-bbe1-7ca126ee32cf"
+            },
+            {
+              "name": "{thread_uuid}",
+              "item": [
+                {
+                  "name": "messages",
+                  "item": [
+                    {
+                      "name": "{uuid}",
+                      "item": [
+                        {
+                          "name": "Retrieve user messages",
+                          "id": "e33d6b5a-39ca-427c-9c51-6dc7d26d659f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "/v2/oauth/token/",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "/v2/oauth/authorize/",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/threads/:thread_uuid/messages/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "threads",
+                                ":thread_uuid",
+                                "messages",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "80c243f7-90cb-4241-b220-de005f3a69e4",
+                                  "key": "thread_uuid",
+                                  "value": "WuckD-3aF8I",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "a3e7b7e3-4207-48d5-81e3-fd23fed9a0b9",
+                                  "key": "uuid",
+                                  "value": "_3m9a3naz-e",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Fetch a specified message on the specified support message thread. This request will not return thread files (i.e. attachments).\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                          },
+                          "response": [
+                            {
+                              "id": "e49cfaba-6bad-496a-89ed-3e14fb5a103e",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/threads/:thread_uuid/messages/:uuid/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "threads",
+                                    ":thread_uuid",
+                                    "messages",
+                                    ":uuid",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "thread_uuid"
+                                    },
+                                    {
+                                      "key": "uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": {\n    \"body\": \"Hello World!\",\n    \"internal_note\": false,\n    \"id\": \"<uuid>\",\n    \"thread_id\": \"47ea8231-d4ba-41d0-9e50-0c52f5c5205a \",\n    \"author\": {\n      \"email\": \"<string>\",\n      \"core_provided_email\": \"<string>\",\n      \"username\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"institution_user_identifier\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"addresses\": [\n        {\n          \"city\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"region_code\": \"<string>\",\n          \"street_address\": \"<string>\",\n          \"street_address_2\": \"<string>\",\n          \"country_code\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"city\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"region_code\": \"<string>\",\n          \"street_address\": \"<string>\",\n          \"street_address_2\": \"<string>\",\n          \"country_code\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"phone_numbers\": [\n        {\n          \"number\": \"<string>\",\n          \"device_id\": \"<string>\",\n          \"device_request_id\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"device_id\": \"<string>\",\n          \"device_request_id\": \"<string>\"\n        }\n      ],\n      \"notifications_enabled\": \"<boolean>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"paper_statements\": \"<boolean>\",\n      \"user_category\": \"business\",\n      \"features\": {},\n      \"org_uuid\": \"<uuid>\",\n      \"org_role\": \"Collaborator\",\n      \"org_name\": \"<string>\",\n      \"business_permissions\": [\n        {\n          \"model_str\": \"<string>\",\n          \"operation\": \"<string>\",\n          \"uuid\": \"<uuid>\"\n        },\n        {\n          \"model_str\": \"<string>\",\n          \"operation\": \"<string>\",\n          \"uuid\": \"<uuid>\"\n        }\n      ],\n      \"dual_approval_required\": \"<boolean>\",\n      \"ach_dual_approval_required\": \"<boolean>\",\n      \"income_sources\": [\n        {\n          \"income\": \"<integer>\",\n          \"income_type\": \"employed\",\n          \"uuid\": \"<uuid>\",\n          \"mortgage_rent\": \"<integer>\",\n          \"industry\": \"<string>\",\n          \"occupation\": \"<string>\"\n        },\n        {\n          \"income\": \"<integer>\",\n          \"income_type\": \"employed\",\n          \"uuid\": \"<uuid>\",\n          \"mortgage_rent\": \"<integer>\",\n          \"industry\": \"<string>\",\n          \"occupation\": \"<string>\"\n        }\n      ],\n      \"international_wire_dual_approval_required\": \"<boolean>\",\n      \"is_staff\": \"<boolean>\",\n      \"is_active\": \"<boolean>\",\n      \"is_superuser\": \"<boolean>\",\n      \"is_narmi\": \"<boolean>\",\n      \"date_joined\": \"<dateTime>\",\n      \"last_login\": \"<dateTime>\",\n      \"segment\": \"<string>\",\n      \"metadata\": {},\n      \"has_username\": \"<boolean>\",\n      \"has_password\": \"<boolean>\",\n      \"has_accepted_latest_terms\": \"<boolean>\",\n      \"requires_enrollment_code_verification\": \"<boolean>\",\n      \"enabled_estatements_at\": \"<dateTime>\",\n      \"is_converting\": \"<boolean>\",\n      \"has_permitted_device\": \"<boolean>\",\n      \"has_backup_codes\": \"<boolean>\",\n      \"support_teams\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"session_oidc_provider\": \"<string>\"\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"url\": \"<uri>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:16:50.000Z",
+                              "updatedAt": "2026-07-28T02:16:50.000Z",
+                              "uid": "35240-e49cfaba-6bad-496a-89ed-3e14fb5a103e"
+                            },
+                            {
+                              "id": "a44cdd67-a686-4303-a9be-ef69c17c581e",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/threads/:thread_uuid/messages/:uuid/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "threads",
+                                    ":thread_uuid",
+                                    "messages",
+                                    ":uuid",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "thread_uuid"
+                                    },
+                                    {
+                                      "key": "uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                              "createdAt": "2026-07-28T02:16:50.000Z",
+                              "updatedAt": "2026-07-28T02:16:50.000Z",
+                              "uid": "35240-a44cdd67-a686-4303-a9be-ef69c17c581e"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:16:50.000Z",
+                          "updatedAt": "2026-07-28T02:16:50.000Z",
+                          "uid": "35240-e33d6b5a-39ca-427c-9c51-6dc7d26d659f"
+                        }
+                      ],
+                      "id": "1f41fbc6-438a-47ee-b522-641cd80acae1",
+                      "createdAt": "2026-07-28T02:16:50.000Z",
+                      "updatedAt": "2026-07-28T02:16:50.000Z",
+                      "uid": "35240-1f41fbc6-438a-47ee-b522-641cd80acae1"
+                    }
+                  ],
+                  "id": "e7195b87-fc35-4c8b-97cf-941c8c97b8b8",
+                  "createdAt": "2026-07-28T02:16:50.000Z",
+                  "updatedAt": "2026-07-28T02:16:50.000Z",
+                  "uid": "35240-e7195b87-fc35-4c8b-97cf-941c8c97b8b8"
+                }
+              ],
+              "id": "b9e51440-a46b-4b78-af1d-78898d8cbb77",
+              "createdAt": "2026-07-28T02:16:50.000Z",
+              "updatedAt": "2026-07-28T02:16:50.000Z",
+              "uid": "35240-b9e51440-a46b-4b78-af1d-78898d8cbb77"
+            },
+            {
+              "name": "{uuid}",
+              "item": [
+                {
+                  "name": "mark_read",
+                  "item": [
+                    {
+                      "name": "Modify thread mark read",
+                      "id": "8d4988df-85e2-442b-80be-b5b81da29b2f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/threads/:uuid/mark_read/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "threads",
+                            ":uuid",
+                            "mark_read",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "b6a58355-6ba9-4bd5-8bad-58d3f23ee650",
+                              "key": "uuid",
+                              "value": "wov",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Mark the specified support message thread as read.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "f09e4ed9-9a3e-4c68-a757-012638511807",
+                          "name": "No response body",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/threads/:uuid/mark_read/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "threads",
+                                ":uuid",
+                                "mark_read",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:16:50.000Z",
+                          "updatedAt": "2026-07-28T02:16:50.000Z",
+                          "uid": "35240-f09e4ed9-9a3e-4c68-a757-012638511807"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:16:50.000Z",
+                      "updatedAt": "2026-07-28T02:16:50.000Z",
+                      "uid": "35240-8d4988df-85e2-442b-80be-b5b81da29b2f"
+                    }
+                  ],
+                  "id": "017de30d-4e1f-4589-bb1a-d974d7936df1",
+                  "createdAt": "2026-07-28T02:16:50.000Z",
+                  "updatedAt": "2026-07-28T02:16:50.000Z",
+                  "uid": "35240-017de30d-4e1f-4589-bb1a-d974d7936df1"
+                },
+                {
+                  "name": "Retrieve a thread",
+                  "id": "d02dfc05-43eb-4cc2-aa9a-4b6c293d652b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/threads/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "threads",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "61bf9f65-8d1a-466d-b924-bdfd92bcf08f",
+                          "key": "uuid",
+                          "value": "wov",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Fetch a specified support message thread.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "803efff7-066d-478f-a980-32b7eb6dd6d0",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/threads/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "threads",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"thread\": {\n    \"id\": \"<uuid>\",\n    \"subject\": \"<string>\",\n    \"state\": \"open\",\n    \"message_preview\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"is_read\": \"<boolean>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:50.000Z",
+                      "updatedAt": "2026-07-28T02:16:50.000Z",
+                      "uid": "35240-803efff7-066d-478f-a980-32b7eb6dd6d0"
+                    },
+                    {
+                      "id": "08b987ac-b33c-4e65-8453-7c4defc6a444",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/threads/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "threads",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:50.000Z",
+                      "updatedAt": "2026-07-28T02:16:50.000Z",
+                      "uid": "35240-08b987ac-b33c-4e65-8453-7c4defc6a444"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:50.000Z",
+                  "updatedAt": "2026-07-28T02:16:50.000Z",
+                  "uid": "35240-d02dfc05-43eb-4cc2-aa9a-4b6c293d652b"
+                },
+                {
+                  "name": "Update user's thread",
+                  "id": "f0d701e5-b837-4bf7-b527-7ebd1f0f7ec9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"state\": \"closed\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/threads/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "threads",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "8fa24d00-2a7b-4867-bdd6-106c630e3e3c",
+                          "key": "uuid",
+                          "value": "wov",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Mark a specified support message thread as closed or open.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "f034b1b4-42ee-44d9-af4b-bb7581261750",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"state\": \"closed\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/threads/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "threads",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"thread\": {\n    \"id\": \"<uuid>\",\n    \"subject\": \"<string>\",\n    \"state\": \"open\",\n    \"message_preview\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"is_read\": \"<boolean>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:50.000Z",
+                      "updatedAt": "2026-07-28T02:16:50.000Z",
+                      "uid": "35240-f034b1b4-42ee-44d9-af4b-bb7581261750"
+                    },
+                    {
+                      "id": "824fe779-e811-4816-bb65-3af6a00b64d6",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"state\": \"closed\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/threads/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "threads",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:50.000Z",
+                      "updatedAt": "2026-07-28T02:16:50.000Z",
+                      "uid": "35240-824fe779-e811-4816-bb65-3af6a00b64d6"
+                    },
+                    {
+                      "id": "710de129-ba25-4e7e-80ad-713ab9f5ed05",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"state\": \"closed\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/threads/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "threads",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:50.000Z",
+                      "updatedAt": "2026-07-28T02:16:50.000Z",
+                      "uid": "35240-710de129-ba25-4e7e-80ad-713ab9f5ed05"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:50.000Z",
+                  "updatedAt": "2026-07-28T02:16:50.000Z",
+                  "uid": "35240-f0d701e5-b837-4bf7-b527-7ebd1f0f7ec9"
+                }
+              ],
+              "id": "db8484cd-a795-4bf9-8d1e-46cbe54d72ce",
+              "createdAt": "2026-07-28T02:16:50.000Z",
+              "updatedAt": "2026-07-28T02:16:50.000Z",
+              "uid": "35240-db8484cd-a795-4bf9-8d1e-46cbe54d72ce"
+            },
+            {
+              "name": "List user's message threads",
+              "id": "85974970-60e0-426e-ac9d-b88122334575",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/threads/?end_date=<date>&filter=<string>&order_by=created_at&start_date=<date>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "threads",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "description": "Parameter filters threads by subject and message body.",
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "created_at"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    }
+                  ]
+                },
+                "description": "List support message threads for the authenticated user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "29f93c71-2b70-4368-a947-69d63669756a",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/threads/?end_date=<date>&filter=<string>&order_by=created_at&start_date=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "threads",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "key": "end_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Parameter filters threads by subject and message body.",
+                          "key": "filter",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "order_by",
+                          "value": "created_at"
+                        },
+                        {
+                          "key": "start_date",
+                          "value": "<date>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"threads\": [\n    {\n      \"id\": \"<uuid>\",\n      \"subject\": \"<string>\",\n      \"state\": \"closed\",\n      \"message_preview\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"is_read\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"subject\": \"<string>\",\n      \"state\": \"closed\",\n      \"message_preview\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"is_read\": \"<boolean>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:50.000Z",
+                  "updatedAt": "2026-07-28T02:16:50.000Z",
+                  "uid": "35240-29f93c71-2b70-4368-a947-69d63669756a"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:50.000Z",
+              "updatedAt": "2026-07-28T02:16:50.000Z",
+              "uid": "35240-85974970-60e0-426e-ac9d-b88122334575"
+            },
+            {
+              "name": "Create message thread for a user",
+              "id": "1e09f872-f468-4958-9420-527e9185d6b5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"subject\": \"<string>\",\n  \"body\": \"<string>\",\n  \"file\": {\n    \"signature\": \"<string>\",\n    \"url\": \"https://production-sandbox-uploads.s3.amazonaws.com/original/support/M2sEyFUM4lQsVXq9xWNW6KaGybp9qZ/\"\n  },\n  \"team_uuid\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/threads/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "threads",
+                    ""
+                  ]
+                },
+                "description": "Create a support message thread for the authenticated user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "4ea99c4e-a003-4ca7-8e4f-65058644a9a4",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"subject\": \"<string>\",\n  \"body\": \"<string>\",\n  \"file\": {\n    \"signature\": \"<string>\",\n    \"url\": \"https://production-sandbox-uploads.s3.amazonaws.com/original/support/M2sEyFUM4lQsVXq9xWNW6KaGybp9qZ/\"\n  },\n  \"team_uuid\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/threads/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "threads",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"thread\": {\n    \"id\": \"<uuid>\",\n    \"subject\": \"<string>\",\n    \"state\": \"open\",\n    \"message_preview\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"is_read\": \"<boolean>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:50.000Z",
+                  "updatedAt": "2026-07-28T02:16:50.000Z",
+                  "uid": "35240-4ea99c4e-a003-4ca7-8e4f-65058644a9a4"
+                },
+                {
+                  "id": "eebc717c-103e-45bc-b8c7-d6d25dd2ef8f",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"subject\": \"<string>\",\n  \"body\": \"<string>\",\n  \"file\": {\n    \"signature\": \"<string>\",\n    \"url\": \"https://production-sandbox-uploads.s3.amazonaws.com/original/support/M2sEyFUM4lQsVXq9xWNW6KaGybp9qZ/\"\n  },\n  \"team_uuid\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/threads/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "threads",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:50.000Z",
+                  "updatedAt": "2026-07-28T02:16:50.000Z",
+                  "uid": "35240-eebc717c-103e-45bc-b8c7-d6d25dd2ef8f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:50.000Z",
+              "updatedAt": "2026-07-28T02:16:50.000Z",
+              "uid": "35240-1e09f872-f468-4958-9420-527e9185d6b5"
+            }
+          ],
+          "id": "90f11923-6d06-406d-8764-77f4364be2fd",
+          "createdAt": "2026-07-28T02:16:50.000Z",
+          "updatedAt": "2026-07-28T02:16:50.000Z",
+          "uid": "35240-90f11923-6d06-406d-8764-77f4364be2fd"
+        }
+      ],
+      "id": "09a465ed-e6f0-49a3-8fcd-0069db7ee3a3",
+      "createdAt": "2026-07-28T02:16:50.000Z",
+      "updatedAt": "2026-07-28T02:16:50.000Z",
+      "uid": "35240-09a465ed-e6f0-49a3-8fcd-0069db7ee3a3"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

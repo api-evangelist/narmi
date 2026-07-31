@@ -1,0 +1,35 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/narmi
+packages:
+  - language: typescript
+    registry: github
+    name: public-api-sdk-ts
+    url: https://github.com/narmi/public-api-sdk-ts
+    install: git clone https://github.com/narmi/public-api-sdk-ts
+    description: >-
+      Official TypeScript SDK for the Narmi Public API, generated from the
+      published OpenAPI schema (online.sandbox.narmi.dev/v1/schema) via
+      openapi-generator (typescript-fetch) and shipped with an express.js
+      test application demonstrating the OAuth 2.0 authorization-code flow.
+    official: true
+  - language: python
+    registry: github
+    name: fedwire
+    url: https://github.com/narmi/fedwire
+    install: pip install fedwire
+    description: >-
+      First-party Python library to write Fedwire message files using the
+      FAIM format. Apache-2.0 licensed. Adjacent to the payments surface of
+      the Narmi platform (Fedwire origination).
+    official: true
+  - language: javascript
+    registry: npm
+    name: pkce-challenge
+    url: https://github.com/narmi/pkce-challenge
+    install: npm install pkce-challenge
+    description: >-
+      Generate or verify a Proof Key for Code Exchange (PKCE) challenge pair —
+      the mechanism the Narmi Public API OAuth 2.0 authorization-code flow uses.
+      Now archived. General-purpose utility, not a Narmi-API-specific client.
+    official: true

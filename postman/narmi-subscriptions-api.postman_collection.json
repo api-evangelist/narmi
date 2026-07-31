@@ -1,0 +1,1224 @@
+{
+  "info": {
+    "_postman_id": "811ef2a5-bc18-4b3d-b24c-8c75ca20c09e",
+    "name": "Narmi Public account balances subscriptions API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:45.000Z",
+    "updatedAt": "2026-07-28T02:16:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-811ef2a5-bc18-4b3d-b24c-8c75ca20c09e"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "subscriptions",
+          "item": [
+            {
+              "name": "{uuid}",
+              "item": [
+                {
+                  "name": "Retrieve a subscription",
+                  "id": "e2e87f51-6477-44df-94c6-fcd48ae29e74",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscriptions/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscriptions",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "3b4ff2da-8aa7-44c1-950d-e1516373d32b",
+                          "key": "uuid",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Fetch a specified subscription.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "f95e8994-7e41-4d1b-bcd6-5b28c678ca76",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscriptions/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscriptions",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"subscription\": {\n    \"url\": \"<uri>\",\n    \"id\": \"<uuid>\",\n    \"is_active\": \"<boolean>\",\n    \"version\": \"<string>\",\n    \"event_type\": \"<string>\",\n    \"secret\": \"<string>\",\n    \"description\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:45.000Z",
+                      "updatedAt": "2026-07-28T02:16:45.000Z",
+                      "uid": "35240-f95e8994-7e41-4d1b-bcd6-5b28c678ca76"
+                    },
+                    {
+                      "id": "e8a50fc4-b846-4b2b-b0ae-1a187f0e3e6f",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscriptions/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscriptions",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"Not found.\"\n}",
+                      "createdAt": "2026-07-28T02:16:45.000Z",
+                      "updatedAt": "2026-07-28T02:16:45.000Z",
+                      "uid": "35240-e8a50fc4-b846-4b2b-b0ae-1a187f0e3e6f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:45.000Z",
+                  "updatedAt": "2026-07-28T02:16:45.000Z",
+                  "uid": "35240-e2e87f51-6477-44df-94c6-fcd48ae29e74"
+                },
+                {
+                  "name": "Update a subscription",
+                  "id": "7a7b299c-65e6-4ed4-9a3a-7642395ea710",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"is_active\": \"<boolean>\",\n  \"version\": \"<string>\",\n  \"event_type\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscriptions/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscriptions",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "31deeaf7-94df-4f68-960d-8fb39b65f43f",
+                          "key": "uuid",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update a specified subscription.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "6bc65458-2c2e-4f66-9b39-1d55d957a057",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<uri>\",\n  \"is_active\": \"<boolean>\",\n  \"version\": \"<string>\",\n  \"event_type\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscriptions/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscriptions",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"subscription\": {\n    \"url\": \"<uri>\",\n    \"id\": \"<uuid>\",\n    \"is_active\": \"<boolean>\",\n    \"version\": \"<string>\",\n    \"event_type\": \"<string>\",\n    \"secret\": \"<string>\",\n    \"description\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:45.000Z",
+                      "updatedAt": "2026-07-28T02:16:45.000Z",
+                      "uid": "35240-6bc65458-2c2e-4f66-9b39-1d55d957a057"
+                    },
+                    {
+                      "id": "e73ace45-77ec-4922-a972-5a72ce01294d",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<uri>\",\n  \"is_active\": \"<boolean>\",\n  \"version\": \"<string>\",\n  \"event_type\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscriptions/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscriptions",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"Not found.\"\n}",
+                      "createdAt": "2026-07-28T02:16:45.000Z",
+                      "updatedAt": "2026-07-28T02:16:45.000Z",
+                      "uid": "35240-e73ace45-77ec-4922-a972-5a72ce01294d"
+                    },
+                    {
+                      "id": "e6643d25-d648-410a-a7d9-25bed7af1fd8",
+                      "name": "Invalid request response.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<uri>\",\n  \"is_active\": \"<boolean>\",\n  \"version\": \"<string>\",\n  \"event_type\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscriptions/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscriptions",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:45.000Z",
+                      "updatedAt": "2026-07-28T02:16:45.000Z",
+                      "uid": "35240-e6643d25-d648-410a-a7d9-25bed7af1fd8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:45.000Z",
+                  "updatedAt": "2026-07-28T02:16:45.000Z",
+                  "uid": "35240-7a7b299c-65e6-4ed4-9a3a-7642395ea710"
+                },
+                {
+                  "name": "Modify subscription",
+                  "id": "994fab66-a1ac-4081-ad70-c033b18f4039",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"is_active\": \"<boolean>\",\n  \"version\": \"<string>\",\n  \"event_type\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscriptions/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscriptions",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "248c1811-7c18-4bcb-971b-4646c67c0374",
+                          "key": "uuid",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update specific fields for a specified subscription.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "36baaca3-9e20-429e-851a-31c3c3c7c790",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<uri>\",\n  \"is_active\": \"<boolean>\",\n  \"version\": \"<string>\",\n  \"event_type\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscriptions/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscriptions",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"url\": \"<uri>\",\n  \"id\": \"<uuid>\",\n  \"is_active\": \"<boolean>\",\n  \"version\": \"<string>\",\n  \"event_type\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:16:45.000Z",
+                      "updatedAt": "2026-07-28T02:16:45.000Z",
+                      "uid": "35240-36baaca3-9e20-429e-851a-31c3c3c7c790"
+                    },
+                    {
+                      "id": "23997baf-9ad9-4333-892c-9cb14fcd2872",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<uri>\",\n  \"is_active\": \"<boolean>\",\n  \"version\": \"<string>\",\n  \"event_type\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscriptions/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscriptions",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"Not found.\"\n}",
+                      "createdAt": "2026-07-28T02:16:45.000Z",
+                      "updatedAt": "2026-07-28T02:16:45.000Z",
+                      "uid": "35240-23997baf-9ad9-4333-892c-9cb14fcd2872"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:45.000Z",
+                  "updatedAt": "2026-07-28T02:16:45.000Z",
+                  "uid": "35240-994fab66-a1ac-4081-ad70-c033b18f4039"
+                },
+                {
+                  "name": "Delete a subscription",
+                  "id": "572f9000-bcd6-45be-8251-936feec4379d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscriptions/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscriptions",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "23648379-66b0-4c44-a177-e80a7203ccd3",
+                          "key": "uuid",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Delete a specified subscription.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "3e353740-7de1-4723-b23a-094cc0a2d530",
+                      "name": "No response body",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscriptions/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscriptions",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:45.000Z",
+                      "updatedAt": "2026-07-28T02:16:45.000Z",
+                      "uid": "35240-3e353740-7de1-4723-b23a-094cc0a2d530"
+                    },
+                    {
+                      "id": "46bbdd97-cf28-47ea-bb79-5a98bd362526",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/subscriptions/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "subscriptions",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"Not found.\"\n}",
+                      "createdAt": "2026-07-28T02:16:45.000Z",
+                      "updatedAt": "2026-07-28T02:16:45.000Z",
+                      "uid": "35240-46bbdd97-cf28-47ea-bb79-5a98bd362526"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:45.000Z",
+                  "updatedAt": "2026-07-28T02:16:45.000Z",
+                  "uid": "35240-572f9000-bcd6-45be-8251-936feec4379d"
+                }
+              ],
+              "id": "dc41097b-5db9-425b-95c7-0556900342d5",
+              "createdAt": "2026-07-28T02:16:45.000Z",
+              "updatedAt": "2026-07-28T02:16:45.000Z",
+              "uid": "35240-dc41097b-5db9-425b-95c7-0556900342d5"
+            },
+            {
+              "name": "List subscriptions",
+              "id": "2c3fbe8c-bfe0-463c-aa72-223cbc58dcd0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/subscriptions/?page=<integer>&per_page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "subscriptions",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "A page number within the paginated result set.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of results to return per page.",
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "List the authenticated user's subscriptions.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "8cc4d2b7-80c6-4deb-b60d-20b793cf6e94",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscriptions/?page=<integer>&per_page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscriptions",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of results to return per page.",
+                          "key": "per_page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"meta\": {\n    \"total\": \"<integer>\"\n  },\n  \"links\": {\n    \"next\": \"<uri>\",\n    \"prev\": \"<uri>\"\n  },\n  \"results\": [\n    {\n      \"url\": \"<uri>\",\n      \"id\": \"<uuid>\",\n      \"is_active\": \"<boolean>\",\n      \"version\": \"<string>\",\n      \"event_type\": \"<string>\",\n      \"secret\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"url\": \"<uri>\",\n      \"id\": \"<uuid>\",\n      \"is_active\": \"<boolean>\",\n      \"version\": \"<string>\",\n      \"event_type\": \"<string>\",\n      \"secret\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:45.000Z",
+                  "updatedAt": "2026-07-28T02:16:45.000Z",
+                  "uid": "35240-8cc4d2b7-80c6-4deb-b60d-20b793cf6e94"
+                },
+                {
+                  "id": "6cab555f-415d-487f-a03b-d1bddeebe2ca",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscriptions/?page=<integer>&per_page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscriptions",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of results to return per page.",
+                          "key": "per_page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                  "createdAt": "2026-07-28T02:16:45.000Z",
+                  "updatedAt": "2026-07-28T02:16:45.000Z",
+                  "uid": "35240-6cab555f-415d-487f-a03b-d1bddeebe2ca"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:45.000Z",
+              "updatedAt": "2026-07-28T02:16:45.000Z",
+              "uid": "35240-2c3fbe8c-bfe0-463c-aa72-223cbc58dcd0"
+            },
+            {
+              "name": "Create a subscription",
+              "id": "b2f1e2d1-cfdf-4396-9065-b76e72d4811f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"is_active\": \"<boolean>\",\n  \"version\": \"<string>\",\n  \"event_type\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/subscriptions/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "subscriptions",
+                    ""
+                  ]
+                },
+                "description": "Creates a subscription for the authenticated user to fire a webhook when a target object is modified.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "2fa05521-f0fe-447d-b2e6-e103bf8e7c1d",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"is_active\": \"<boolean>\",\n  \"version\": \"<string>\",\n  \"event_type\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscriptions/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscriptions",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"subscription\": {\n    \"url\": \"<uri>\",\n    \"id\": \"<uuid>\",\n    \"is_active\": \"<boolean>\",\n    \"version\": \"<string>\",\n    \"event_type\": \"<string>\",\n    \"secret\": \"<string>\",\n    \"description\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:45.000Z",
+                  "updatedAt": "2026-07-28T02:16:45.000Z",
+                  "uid": "35240-2fa05521-f0fe-447d-b2e6-e103bf8e7c1d"
+                },
+                {
+                  "id": "4ce1fcb8-fc3a-4880-94d0-c8ced397ff5f",
+                  "name": "Invalid request response.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"is_active\": \"<boolean>\",\n  \"version\": \"<string>\",\n  \"event_type\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/subscriptions/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "subscriptions",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:45.000Z",
+                  "updatedAt": "2026-07-28T02:16:45.000Z",
+                  "uid": "35240-4ce1fcb8-fc3a-4880-94d0-c8ced397ff5f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:45.000Z",
+              "updatedAt": "2026-07-28T02:16:45.000Z",
+              "uid": "35240-b2f1e2d1-cfdf-4396-9065-b76e72d4811f"
+            }
+          ],
+          "id": "2c12b3d3-496c-4c9c-8524-414204a445fb",
+          "createdAt": "2026-07-28T02:16:45.000Z",
+          "updatedAt": "2026-07-28T02:16:45.000Z",
+          "uid": "35240-2c12b3d3-496c-4c9c-8524-414204a445fb"
+        }
+      ],
+      "id": "c19bf3d2-fdd0-4e15-a29a-a430f615ae1e",
+      "createdAt": "2026-07-28T02:16:45.000Z",
+      "updatedAt": "2026-07-28T02:16:45.000Z",
+      "uid": "35240-c19bf3d2-fdd0-4e15-a29a-a430f615ae1e"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

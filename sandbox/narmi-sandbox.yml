@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/narmi/public-api-sdk-ts
+description: >-
+  Narmi ships a dedicated sandbox environment for the Public API. The OpenAPI
+  schema itself is served from the sandbox host, and the official TypeScript
+  SDK's build tooling downloads it directly from there.
+environments:
+  - name: sandbox
+    api_base_url: https://api.sandbox.narmi.dev/
+    schema_url: https://online.sandbox.narmi.dev/v1/schema
+    oauth_authorize: https://api.sandbox.narmi.dev/v2/oauth/authorize/
+    oauth_token: https://api.sandbox.narmi.dev/v2/oauth/token/
+    notes: >-
+      Declared as the servers[] entry in the Public API OpenAPI. The SDK's
+      `download-schema` npm script pulls the live schema from
+      online.sandbox.narmi.dev/v1/schema to regenerate the client.
+test_data:
+  published: false
+  notes: >-
+    Narmi does not publish universal magic test values (test cards / test
+    accounts) the way a card acquirer does — the Public API runs against a
+    financial institution's own sandbox core data, provisioned per developer
+    engagement. Sandbox credentials (OAuth client_id / client_secret and PKCE)
+    are issued to onboarded institution developers rather than self-serve.
+    No test values are asserted here to avoid fabrication.
+auth:
+  flow: authorization_code_pkce
+  scopes_reference: scopes/narmi-scopes.yml

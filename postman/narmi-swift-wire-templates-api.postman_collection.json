@@ -1,0 +1,1040 @@
+{
+  "info": {
+    "_postman_id": "fdd551a8-de4f-434e-90e6-6de430abcc38",
+    "name": "Narmi Public account balances swift wire templates API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:48.000Z",
+    "updatedAt": "2026-07-28T02:16:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fdd551a8-de4f-434e-90e6-6de430abcc38"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "swiftwire_templates",
+          "item": [
+            {
+              "name": "{uuid}",
+              "item": [
+                {
+                  "name": "Retrieve a Swift Wire template",
+                  "id": "0073384e-7aec-4fef-a10f-d3b47390ae48",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/swiftwire_templates/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "swiftwire_templates",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "20890da3-6b83-496b-9159-517abf45ead9",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Fetch details for a specified template.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "d4b1f0ee-f6c2-45f8-9556-b26548ab343c",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/swiftwire_templates/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "swiftwire_templates",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"from_account\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"last_used\": \"<dateTime>\",\n  \"version_id\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"amount_currency\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"note\": \"<string>\",\n  \"recipient_currency\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:48.000Z",
+                      "updatedAt": "2026-07-28T02:16:48.000Z",
+                      "uid": "35240-d4b1f0ee-f6c2-45f8-9556-b26548ab343c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:48.000Z",
+                  "updatedAt": "2026-07-28T02:16:48.000Z",
+                  "uid": "35240-0073384e-7aec-4fef-a10f-d3b47390ae48"
+                },
+                {
+                  "name": "Update a Swift Wire template",
+                  "id": "579b13e9-80ac-4a86-91b5-a20919de6828",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"from_account\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"amount_currency\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"note\": \"<string>\",\n  \"recipient_currency\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/swiftwire_templates/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "swiftwire_templates",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "2cf578aa-e35f-4996-ba26-8a4d68d2c9e7",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update the details of a template belonging to authenticated user, identified by `uuid`\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "2f28615e-5dc9-400d-9efc-3554f79d1dc8",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from_account\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"amount_currency\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"note\": \"<string>\",\n  \"recipient_currency\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/swiftwire_templates/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "swiftwire_templates",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"from_account\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"last_used\": \"<dateTime>\",\n  \"version_id\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"amount_currency\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"note\": \"<string>\",\n  \"recipient_currency\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:48.000Z",
+                      "updatedAt": "2026-07-28T02:16:48.000Z",
+                      "uid": "35240-2f28615e-5dc9-400d-9efc-3554f79d1dc8"
+                    },
+                    {
+                      "id": "ed4cb1b7-bb9e-4e39-a41f-8f38f0c1bc0f",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"from_account\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"amount_currency\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"note\": \"<string>\",\n  \"recipient_currency\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/swiftwire_templates/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "swiftwire_templates",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"invalid\"\n}",
+                      "createdAt": "2026-07-28T02:16:48.000Z",
+                      "updatedAt": "2026-07-28T02:16:48.000Z",
+                      "uid": "35240-ed4cb1b7-bb9e-4e39-a41f-8f38f0c1bc0f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:48.000Z",
+                  "updatedAt": "2026-07-28T02:16:48.000Z",
+                  "uid": "35240-579b13e9-80ac-4a86-91b5-a20919de6828"
+                },
+                {
+                  "name": "Update a Swift Wire template",
+                  "id": "0b087f44-e950-42b7-afd6-06fd25779931",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"recipient\": \"<uuid>\",\n  \"from_account\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"amount_currency\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"note\": \"<string>\",\n  \"recipient_currency\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/swiftwire_templates/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "swiftwire_templates",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "c04cf6d8-1574-40c3-9b5f-273c134805f2",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update the details of a template belonging to authenticated user, identified by `uuid`\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "f1a77000-626b-4b49-88e2-9f148fa03acf",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"recipient\": \"<uuid>\",\n  \"from_account\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"amount_currency\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"note\": \"<string>\",\n  \"recipient_currency\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/swiftwire_templates/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "swiftwire_templates",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"from_account\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"last_used\": \"<dateTime>\",\n  \"version_id\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"amount_currency\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"note\": \"<string>\",\n  \"recipient_currency\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:48.000Z",
+                      "updatedAt": "2026-07-28T02:16:48.000Z",
+                      "uid": "35240-f1a77000-626b-4b49-88e2-9f148fa03acf"
+                    },
+                    {
+                      "id": "8e03fc67-823d-4144-85f1-e92bf41fe41e",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"recipient\": \"<uuid>\",\n  \"from_account\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"amount_currency\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"note\": \"<string>\",\n  \"recipient_currency\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/swiftwire_templates/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "swiftwire_templates",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"invalid\"\n}",
+                      "createdAt": "2026-07-28T02:16:48.000Z",
+                      "updatedAt": "2026-07-28T02:16:48.000Z",
+                      "uid": "35240-8e03fc67-823d-4144-85f1-e92bf41fe41e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:48.000Z",
+                  "updatedAt": "2026-07-28T02:16:48.000Z",
+                  "uid": "35240-0b087f44-e950-42b7-afd6-06fd25779931"
+                },
+                {
+                  "name": "Delete a Swift Wire template",
+                  "id": "c2c43ca6-2b15-4415-9bed-b63374342be2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/swiftwire_templates/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "swiftwire_templates",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "e10b9fe1-b354-4d78-8075-750e1d11e916",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Delete a specified Swift Wire template belonging to the user. The template will continue to exist in the database, but won't be retrievable by the user. The name of the deleted template will be available for use in creating a new template.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "c7b9037e-2e59-45c0-b454-60431eaf5742",
+                      "name": "No response body",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/swiftwire_templates/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "swiftwire_templates",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:48.000Z",
+                      "updatedAt": "2026-07-28T02:16:48.000Z",
+                      "uid": "35240-c7b9037e-2e59-45c0-b454-60431eaf5742"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:48.000Z",
+                  "updatedAt": "2026-07-28T02:16:48.000Z",
+                  "uid": "35240-c2c43ca6-2b15-4415-9bed-b63374342be2"
+                }
+              ],
+              "id": "1193e30d-d886-438c-854e-d40c17179dcf",
+              "createdAt": "2026-07-28T02:16:48.000Z",
+              "updatedAt": "2026-07-28T02:16:48.000Z",
+              "uid": "35240-1193e30d-d886-438c-854e-d40c17179dcf"
+            },
+            {
+              "name": "List Swift Wire templates",
+              "id": "aaccbadc-743e-426f-aa04-bcd1d335e945",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/swiftwire_templates/?page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "swiftwire_templates",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "A page number within the paginated result set.",
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "List a user's Swift Wire templates for their organization.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "f0ba910f-ad8c-4309-a794-ec89535df14a",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/swiftwire_templates/?page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "swiftwire_templates",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\",\n  \"results\": [\n    {\n      \"from_account\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"recipient\": \"<uuid>\",\n      \"last_used\": \"<dateTime>\",\n      \"version_id\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"wire_reason\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"amount_currency\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"note\": \"<string>\",\n      \"recipient_currency\": \"<string>\"\n    },\n    {\n      \"from_account\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"recipient\": \"<uuid>\",\n      \"last_used\": \"<dateTime>\",\n      \"version_id\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"wire_reason\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"amount_currency\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"note\": \"<string>\",\n      \"recipient_currency\": \"<string>\"\n    }\n  ],\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T02:16:48.000Z",
+                  "updatedAt": "2026-07-28T02:16:48.000Z",
+                  "uid": "35240-f0ba910f-ad8c-4309-a794-ec89535df14a"
+                },
+                {
+                  "id": "d8bdc161-ed6e-4448-be15-21f8885e5f57",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/swiftwire_templates/?page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "swiftwire_templates",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                  "createdAt": "2026-07-28T02:16:48.000Z",
+                  "updatedAt": "2026-07-28T02:16:48.000Z",
+                  "uid": "35240-d8bdc161-ed6e-4448-be15-21f8885e5f57"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:48.000Z",
+              "updatedAt": "2026-07-28T02:16:48.000Z",
+              "uid": "35240-aaccbadc-743e-426f-aa04-bcd1d335e945"
+            },
+            {
+              "name": "Create a Swift Wire template",
+              "id": "3f665ac5-b96f-4a89-92a0-ec856e3ca0cf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"from_account\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"amount_currency\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"note\": \"<string>\",\n  \"recipient_currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/swiftwire_templates/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "swiftwire_templates",
+                    ""
+                  ]
+                },
+                "description": "Create a template that can be used to send Swift Wire transfers.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "5d2477c8-929e-4464-ba66-fe596db30ba3",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"from_account\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"amount_currency\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"note\": \"<string>\",\n  \"recipient_currency\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/swiftwire_templates/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "swiftwire_templates",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"from_account\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"last_used\": \"<dateTime>\",\n  \"version_id\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"amount_currency\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"note\": \"<string>\",\n  \"recipient_currency\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:48.000Z",
+                  "updatedAt": "2026-07-28T02:16:48.000Z",
+                  "uid": "35240-5d2477c8-929e-4464-ba66-fe596db30ba3"
+                },
+                {
+                  "id": "667f024f-cc5c-400f-919f-802a15a8dc48",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"from_account\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"recipient\": \"<uuid>\",\n  \"wire_reason\": \"<string>\",\n  \"amount\": \"<integer>\",\n  \"amount_currency\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"note\": \"<string>\",\n  \"recipient_currency\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/swiftwire_templates/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "swiftwire_templates",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"invalid\"\n}",
+                  "createdAt": "2026-07-28T02:16:48.000Z",
+                  "updatedAt": "2026-07-28T02:16:48.000Z",
+                  "uid": "35240-667f024f-cc5c-400f-919f-802a15a8dc48"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:48.000Z",
+              "updatedAt": "2026-07-28T02:16:48.000Z",
+              "uid": "35240-3f665ac5-b96f-4a89-92a0-ec856e3ca0cf"
+            }
+          ],
+          "id": "24d513c8-bcd2-4d32-9620-3c4ad4c6b89f",
+          "createdAt": "2026-07-28T02:16:48.000Z",
+          "updatedAt": "2026-07-28T02:16:48.000Z",
+          "uid": "35240-24d513c8-bcd2-4d32-9620-3c4ad4c6b89f"
+        }
+      ],
+      "id": "8f162e5e-d5b5-4252-8652-9a14e5d24846",
+      "createdAt": "2026-07-28T02:16:48.000Z",
+      "updatedAt": "2026-07-28T02:16:48.000Z",
+      "uid": "35240-8f162e5e-d5b5-4252-8652-9a14e5d24846"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

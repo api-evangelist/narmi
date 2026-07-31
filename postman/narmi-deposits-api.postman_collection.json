@@ -1,0 +1,743 @@
+{
+  "info": {
+    "_postman_id": "5437e8cb-3f5a-403f-bb30-d163728e6847",
+    "name": "Narmi Public account balances deposits API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:15:59.000Z",
+    "updatedAt": "2026-07-28T02:16:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5437e8cb-3f5a-403f-bb30-d163728e6847"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "deposits",
+          "item": [
+            {
+              "name": "{deposit_id}",
+              "item": [
+                {
+                  "name": "Retrieve deposit",
+                  "id": "ba6c5ea8-deb9-42e2-8a32-779f13daf40e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/deposits/:deposit_id/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "deposits",
+                        ":deposit_id",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "0fd23d09-dc63-4951-88bf-4107ec381d1b",
+                          "key": "deposit_id",
+                          "value": "coi_tes-wjk",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Fetch a specified deposit by deposit ID. This identifier is defined via the check deposit integration, e.g. Ensenta.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "d1332bf2-dcc8-4e91-9512-3528eb0fcaf2",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/deposits/:deposit_id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "deposits",
+                            ":deposit_id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "deposit_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"deposit\": {\n    \"id\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"state\": \"<string>\",\n    \"front\": \"<string>\",\n    \"back\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:00.000Z",
+                      "updatedAt": "2026-07-28T02:16:00.000Z",
+                      "uid": "35240-d1332bf2-dcc8-4e91-9512-3528eb0fcaf2"
+                    },
+                    {
+                      "id": "1c652b97-bd2f-42e2-b8b3-ec9b00bbf4dd",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/deposits/:deposit_id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "deposits",
+                            ":deposit_id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "deposit_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                      "createdAt": "2026-07-28T02:16:00.000Z",
+                      "updatedAt": "2026-07-28T02:16:00.000Z",
+                      "uid": "35240-1c652b97-bd2f-42e2-b8b3-ec9b00bbf4dd"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:00.000Z",
+                  "updatedAt": "2026-07-28T02:16:00.000Z",
+                  "uid": "35240-ba6c5ea8-deb9-42e2-8a32-779f13daf40e"
+                }
+              ],
+              "id": "4ce0df2f-eee0-4baf-abac-f59a26f8c3f8",
+              "createdAt": "2026-07-28T02:16:00.000Z",
+              "updatedAt": "2026-07-28T02:16:00.000Z",
+              "uid": "35240-4ce0df2f-eee0-4baf-abac-f59a26f8c3f8"
+            },
+            {
+              "name": "List deposits",
+              "id": "0ba62b2a-7be0-4c01-97c9-cccd67047b0b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/deposits/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "deposits",
+                    ""
+                  ]
+                },
+                "description": "List the authenticated user's check deposits.\n\nThis endpoint can return 5xx errors when there are issues connecting to the core or when fetching and provisioning users on the check deposit integration.\n\nPagination for this endpoint should always return none and the endpoint will always return a list of all available deposits.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "18f15dfc-a6d9-4ee7-a6ea-b3deceeb5e85",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/deposits/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "deposits",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"deposits\": [\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"state\": \"<string>\",\n      \"front\": \"<string>\",\n      \"back\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"state\": \"<string>\",\n      \"front\": \"<string>\",\n      \"back\": \"<string>\"\n    }\n  ],\n  \"links\": {\n    \"next\": \"<uri>\",\n    \"previous\": \"<uri>\"\n  },\n  \"meta\": {\n    \"Ut_54\": {},\n    \"fugiat_0e\": {},\n    \"et35\": {},\n    \"consequat_a54\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:00.000Z",
+                  "updatedAt": "2026-07-28T02:16:00.000Z",
+                  "uid": "35240-18f15dfc-a6d9-4ee7-a6ea-b3deceeb5e85"
+                },
+                {
+                  "id": "46eb21d0-3d55-4098-a11c-cd715ae0e261",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/deposits/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "deposits",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:00.000Z",
+                  "updatedAt": "2026-07-28T02:16:00.000Z",
+                  "uid": "35240-46eb21d0-3d55-4098-a11c-cd715ae0e261"
+                },
+                {
+                  "id": "62fac1a1-cdb5-4899-95dc-7353c2cb4043",
+                  "name": "No response body",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/deposits/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "deposits",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:16:00.000Z",
+                  "updatedAt": "2026-07-28T02:16:00.000Z",
+                  "uid": "35240-62fac1a1-cdb5-4899-95dc-7353c2cb4043"
+                },
+                {
+                  "id": "5f26d2ef-c420-48fe-b8e3-86346332382d",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/deposits/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "deposits",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"check_deposit_error\",\n  \"message\": \"An error response detailing the field and the nature of the error.\"\n}",
+                  "createdAt": "2026-07-28T02:16:00.000Z",
+                  "updatedAt": "2026-07-28T02:16:00.000Z",
+                  "uid": "35240-5f26d2ef-c420-48fe-b8e3-86346332382d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:00.000Z",
+              "updatedAt": "2026-07-28T02:16:00.000Z",
+              "uid": "35240-0ba62b2a-7be0-4c01-97c9-cccd67047b0b"
+            },
+            {
+              "name": "Create a deposit",
+              "id": "3e1d1aa2-24ba-48df-ab06-0502b74ad106",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"back\": \"<binary>\",\n  \"front\": \"<binary>\",\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/deposits/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "deposits",
+                    ""
+                  ]
+                },
+                "description": "Create a deposit for authenticated user via third-party processor.\n\nThe endpoint will return a 403 if remote deposit capture has not been enabled. \n\nThe endpoint can also return a 404 if the `account_id` specified is not associated with an available account.\n\n\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "72c4feaa-f3f3-4785-a1df-ddf24a924bd9",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"back\": \"<binary>\",\n  \"front\": \"<binary>\",\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/deposits/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "deposits",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"deposit\": {\n    \"id\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"state\": \"<string>\",\n    \"front\": \"<string>\",\n    \"back\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:00.000Z",
+                  "updatedAt": "2026-07-28T02:16:00.000Z",
+                  "uid": "35240-72c4feaa-f3f3-4785-a1df-ddf24a924bd9"
+                },
+                {
+                  "id": "859cf9cb-35af-449b-a055-eb74666cfe88",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"back\": \"<binary>\",\n  \"front\": \"<binary>\",\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/deposits/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "deposits",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+                  "createdAt": "2026-07-28T02:16:00.000Z",
+                  "updatedAt": "2026-07-28T02:16:00.000Z",
+                  "uid": "35240-859cf9cb-35af-449b-a055-eb74666cfe88"
+                },
+                {
+                  "id": "d9db1c9d-26f1-4921-9943-2f603525ebd2",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"back\": \"<binary>\",\n  \"front\": \"<binary>\",\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/deposits/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "deposits",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"Not found.\"\n}",
+                  "createdAt": "2026-07-28T02:16:00.000Z",
+                  "updatedAt": "2026-07-28T02:16:00.000Z",
+                  "uid": "35240-d9db1c9d-26f1-4921-9943-2f603525ebd2"
+                },
+                {
+                  "id": "04210b6c-ee65-42a5-a1f8-61e831545d29",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"back\": \"<binary>\",\n  \"front\": \"<binary>\",\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/deposits/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "deposits",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:00.000Z",
+                  "updatedAt": "2026-07-28T02:16:00.000Z",
+                  "uid": "35240-04210b6c-ee65-42a5-a1f8-61e831545d29"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:00.000Z",
+              "updatedAt": "2026-07-28T02:16:00.000Z",
+              "uid": "35240-3e1d1aa2-24ba-48df-ab06-0502b74ad106"
+            }
+          ],
+          "id": "cdc8daaa-9b2c-4cf6-87ca-deda45cfd076",
+          "createdAt": "2026-07-28T02:16:00.000Z",
+          "updatedAt": "2026-07-28T02:16:00.000Z",
+          "uid": "35240-cdc8daaa-9b2c-4cf6-87ca-deda45cfd076"
+        }
+      ],
+      "id": "ef2133f5-30c5-4026-a828-0d983d61a645",
+      "createdAt": "2026-07-28T02:16:00.000Z",
+      "updatedAt": "2026-07-28T02:16:00.000Z",
+      "uid": "35240-ef2133f5-30c5-4026-a828-0d983d61a645"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

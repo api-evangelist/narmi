@@ -1,0 +1,1132 @@
+{
+  "info": {
+    "_postman_id": "9314e128-cf02-4b89-88c6-f84a8b989339",
+    "name": "Narmi Public account balances recipients API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:39.000Z",
+    "updatedAt": "2026-07-28T02:16:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9314e128-cf02-4b89-88c6-f84a8b989339"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "recipients",
+          "item": [
+            {
+              "name": "{uuid}",
+              "item": [
+                {
+                  "name": "Retrieve a recipient",
+                  "id": "b1773a81-762c-4d7f-88f5-7ff8a5c8a8c2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/recipients/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "recipients",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "47939ffd-9207-49c4-b06c-4f3734fcaaa9",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Fetch details for a specified recipient.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "8f9b2eee-9e38-4f0c-9a4d-ad3fe9222fd3",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/recipients/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "recipients",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"updated_at\": \"<dateTime>\",\n  \"nickname\": \"<string>\",\n  \"type\": \"person\",\n  \"ach_destination\": {\n    \"account_number\": \"<string>\",\n    \"account_purpose\": \"business\",\n    \"account_type\": \"loan\",\n    \"routing_number\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"institution_name\": \"<string>\"\n  },\n  \"fedwire_destination\": {\n    \"account_number\": \"<string>\",\n    \"address\": {\n      \"street_address\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"street_address_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"routing_number\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"institution_name\": \"<string>\"\n  },\n  \"swift_destination\": {\n    \"account_identifier\": \"<string>\",\n    \"address\": {\n      \"street_address\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"street_address_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"bic\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"metadata\": {},\n    \"branch_address\": {\n      \"street_address\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"street_address_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country_code\": \"<string>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:39.000Z",
+                      "updatedAt": "2026-07-28T02:16:39.000Z",
+                      "uid": "35240-8f9b2eee-9e38-4f0c-9a4d-ad3fe9222fd3"
+                    },
+                    {
+                      "id": "2839d318-274f-4b18-ac52-ca0aad33042c",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/recipients/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "recipients",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+                      "createdAt": "2026-07-28T02:16:39.000Z",
+                      "updatedAt": "2026-07-28T02:16:39.000Z",
+                      "uid": "35240-2839d318-274f-4b18-ac52-ca0aad33042c"
+                    },
+                    {
+                      "id": "0df230ec-2594-4441-9217-71227989ad1d",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/recipients/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "recipients",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                      "createdAt": "2026-07-28T02:16:39.000Z",
+                      "updatedAt": "2026-07-28T02:16:39.000Z",
+                      "uid": "35240-0df230ec-2594-4441-9217-71227989ad1d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:39.000Z",
+                  "updatedAt": "2026-07-28T02:16:39.000Z",
+                  "uid": "35240-b1773a81-762c-4d7f-88f5-7ff8a5c8a8c2"
+                },
+                {
+                  "name": "Update a recipient",
+                  "id": "abfe43fe-0102-4d13-b10d-3ed795c21c5a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"nickname\": \"<string>\",\n  \"type\": \"person\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/recipients/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "recipients",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "a0a063eb-8347-4f51-b942-2cdcb6c5247d",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update the details of a recipient belonging to authenticated user, identified by `uuid`\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "3dc90b65-82cb-4a38-85ee-8f9e971300d1",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"nickname\": \"<string>\",\n  \"type\": \"person\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/recipients/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "recipients",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"updated_at\": \"<dateTime>\",\n  \"nickname\": \"<string>\",\n  \"type\": \"person\",\n  \"ach_destination\": {\n    \"account_number\": \"<string>\",\n    \"account_purpose\": \"business\",\n    \"account_type\": \"loan\",\n    \"routing_number\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"institution_name\": \"<string>\"\n  },\n  \"fedwire_destination\": {\n    \"account_number\": \"<string>\",\n    \"address\": {\n      \"street_address\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"street_address_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"routing_number\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"institution_name\": \"<string>\"\n  },\n  \"swift_destination\": {\n    \"account_identifier\": \"<string>\",\n    \"address\": {\n      \"street_address\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"street_address_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"bic\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"metadata\": {},\n    \"branch_address\": {\n      \"street_address\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"street_address_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country_code\": \"<string>\"\n    }\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:39.000Z",
+                      "updatedAt": "2026-07-28T02:16:39.000Z",
+                      "uid": "35240-3dc90b65-82cb-4a38-85ee-8f9e971300d1"
+                    },
+                    {
+                      "id": "17497c14-6731-4d37-b953-19300bbe9fe6",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"nickname\": \"<string>\",\n  \"type\": \"person\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/recipients/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "recipients",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:39.000Z",
+                      "updatedAt": "2026-07-28T02:16:39.000Z",
+                      "uid": "35240-17497c14-6731-4d37-b953-19300bbe9fe6"
+                    },
+                    {
+                      "id": "51ce60db-c4d9-4249-9484-9a7fadd79e6b",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"nickname\": \"<string>\",\n  \"type\": \"person\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/recipients/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "recipients",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+                      "createdAt": "2026-07-28T02:16:39.000Z",
+                      "updatedAt": "2026-07-28T02:16:39.000Z",
+                      "uid": "35240-51ce60db-c4d9-4249-9484-9a7fadd79e6b"
+                    },
+                    {
+                      "id": "cace57f3-6c0a-4bc8-94a2-1cf8f2e9ef1b",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"nickname\": \"<string>\",\n  \"type\": \"person\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/recipients/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "recipients",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                      "createdAt": "2026-07-28T02:16:39.000Z",
+                      "updatedAt": "2026-07-28T02:16:39.000Z",
+                      "uid": "35240-cace57f3-6c0a-4bc8-94a2-1cf8f2e9ef1b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:39.000Z",
+                  "updatedAt": "2026-07-28T02:16:39.000Z",
+                  "uid": "35240-abfe43fe-0102-4d13-b10d-3ed795c21c5a"
+                },
+                {
+                  "name": "Delete a recipient",
+                  "id": "48414b4c-b3cf-4974-9d45-29ae74d4867d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/recipients/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "recipients",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "3bb43df5-d2b1-4d2e-a3a8-c1f20d2ce9c2",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Delete a specified recipient belonging to the user. The recipient will continue to exist in the database, but won't be retrievable by the user. The name of the deleted recipient will be available for use in creating a new recipient.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "087140b2-11a8-4cbf-9748-f6d533a9bcfc",
+                      "name": "No response body",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/recipients/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "recipients",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:39.000Z",
+                      "updatedAt": "2026-07-28T02:16:39.000Z",
+                      "uid": "35240-087140b2-11a8-4cbf-9748-f6d533a9bcfc"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:39.000Z",
+                  "updatedAt": "2026-07-28T02:16:39.000Z",
+                  "uid": "35240-48414b4c-b3cf-4974-9d45-29ae74d4867d"
+                }
+              ],
+              "id": "3ee661c7-d626-4834-a209-d484d04377ae",
+              "createdAt": "2026-07-28T02:16:39.000Z",
+              "updatedAt": "2026-07-28T02:16:39.000Z",
+              "uid": "35240-3ee661c7-d626-4834-a209-d484d04377ae"
+            },
+            {
+              "name": "List recipients",
+              "id": "d1438466-3f1c-4d6a-b4e6-969b1318d90a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/recipients/?limit=<integer>&offset=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "recipients",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of results to return per page.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The initial index from which to return the results.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "List a user's recipients, including recipients created by other users in their organization.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "8c670e18-8c36-484a-969a-c99690a8b585",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/recipients/?limit=<integer>&offset=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "recipients",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of results to return per page.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The initial index from which to return the results.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\",\n  \"results\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"updated_at\": \"<dateTime>\",\n      \"nickname\": \"<string>\",\n      \"type\": \"person\",\n      \"ach_destination\": {\n        \"account_number\": \"<string>\",\n        \"account_purpose\": \"business\",\n        \"account_type\": \"checking\",\n        \"routing_number\": \"<string>\",\n        \"id\": \"<uuid>\",\n        \"institution_name\": \"<string>\"\n      },\n      \"fedwire_destination\": {\n        \"account_number\": \"<string>\",\n        \"address\": {\n          \"street_address\": \"<string>\",\n          \"id\": \"<integer>\",\n          \"street_address_2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"region_code\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country_code\": \"<string>\"\n        },\n        \"routing_number\": \"<string>\",\n        \"id\": \"<uuid>\",\n        \"institution_name\": \"<string>\"\n      },\n      \"swift_destination\": {\n        \"account_identifier\": \"<string>\",\n        \"address\": {\n          \"street_address\": \"<string>\",\n          \"id\": \"<integer>\",\n          \"street_address_2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"region_code\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country_code\": \"<string>\"\n        },\n        \"bic\": \"<string>\",\n        \"id\": \"<uuid>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\",\n        \"metadata\": {},\n        \"branch_address\": {\n          \"street_address\": \"<string>\",\n          \"id\": \"<integer>\",\n          \"street_address_2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"region_code\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country_code\": \"<string>\"\n        }\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"updated_at\": \"<dateTime>\",\n      \"nickname\": \"<string>\",\n      \"type\": \"person\",\n      \"ach_destination\": {\n        \"account_number\": \"<string>\",\n        \"account_purpose\": \"business\",\n        \"account_type\": \"loan\",\n        \"routing_number\": \"<string>\",\n        \"id\": \"<uuid>\",\n        \"institution_name\": \"<string>\"\n      },\n      \"fedwire_destination\": {\n        \"account_number\": \"<string>\",\n        \"address\": {\n          \"street_address\": \"<string>\",\n          \"id\": \"<integer>\",\n          \"street_address_2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"region_code\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country_code\": \"<string>\"\n        },\n        \"routing_number\": \"<string>\",\n        \"id\": \"<uuid>\",\n        \"institution_name\": \"<string>\"\n      },\n      \"swift_destination\": {\n        \"account_identifier\": \"<string>\",\n        \"address\": {\n          \"street_address\": \"<string>\",\n          \"id\": \"<integer>\",\n          \"street_address_2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"region_code\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country_code\": \"<string>\"\n        },\n        \"bic\": \"<string>\",\n        \"id\": \"<uuid>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\",\n        \"metadata\": {},\n        \"branch_address\": {\n          \"street_address\": \"<string>\",\n          \"id\": \"<integer>\",\n          \"street_address_2\": \"<string>\",\n          \"city\": \"<string>\",\n          \"region_code\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country_code\": \"<string>\"\n        }\n      }\n    }\n  ],\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T02:16:39.000Z",
+                  "updatedAt": "2026-07-28T02:16:39.000Z",
+                  "uid": "35240-8c670e18-8c36-484a-969a-c99690a8b585"
+                },
+                {
+                  "id": "d8a1724d-e52e-4ac5-bcf9-80b367fe2605",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/recipients/?limit=<integer>&offset=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "recipients",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of results to return per page.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The initial index from which to return the results.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+                  "createdAt": "2026-07-28T02:16:39.000Z",
+                  "updatedAt": "2026-07-28T02:16:39.000Z",
+                  "uid": "35240-d8a1724d-e52e-4ac5-bcf9-80b367fe2605"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:39.000Z",
+              "updatedAt": "2026-07-28T02:16:39.000Z",
+              "uid": "35240-d1438466-3f1c-4d6a-b4e6-969b1318d90a"
+            },
+            {
+              "name": "Create a recipient",
+              "id": "5ee86bd4-3944-439f-ae87-b6cec2c5b3fe",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"nickname\": \"<string>\",\n  \"type\": \"person\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/recipients/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "recipients",
+                    ""
+                  ]
+                },
+                "description": "Create a recipient that can be used as a destination for wires or ACH payments.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "31c2b4b1-6016-4f65-90b7-083aeea7e84a",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"nickname\": \"<string>\",\n  \"type\": \"person\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/recipients/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "recipients",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"updated_at\": \"<dateTime>\",\n  \"nickname\": \"<string>\",\n  \"type\": \"person\",\n  \"ach_destination\": {\n    \"account_number\": \"<string>\",\n    \"account_purpose\": \"business\",\n    \"account_type\": \"loan\",\n    \"routing_number\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"institution_name\": \"<string>\"\n  },\n  \"fedwire_destination\": {\n    \"account_number\": \"<string>\",\n    \"address\": {\n      \"street_address\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"street_address_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"routing_number\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"institution_name\": \"<string>\"\n  },\n  \"swift_destination\": {\n    \"account_identifier\": \"<string>\",\n    \"address\": {\n      \"street_address\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"street_address_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"bic\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"metadata\": {},\n    \"branch_address\": {\n      \"street_address\": \"<string>\",\n      \"id\": \"<integer>\",\n      \"street_address_2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country_code\": \"<string>\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:39.000Z",
+                  "updatedAt": "2026-07-28T02:16:39.000Z",
+                  "uid": "35240-31c2b4b1-6016-4f65-90b7-083aeea7e84a"
+                },
+                {
+                  "id": "ac7598c5-b4cd-48b4-9293-279a51c41be4",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"nickname\": \"<string>\",\n  \"type\": \"person\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/recipients/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "recipients",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:39.000Z",
+                  "updatedAt": "2026-07-28T02:16:39.000Z",
+                  "uid": "35240-ac7598c5-b4cd-48b4-9293-279a51c41be4"
+                },
+                {
+                  "id": "af197228-ed8f-443c-98af-8651c330754d",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"nickname\": \"<string>\",\n  \"type\": \"person\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/recipients/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "recipients",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+                  "createdAt": "2026-07-28T02:16:39.000Z",
+                  "updatedAt": "2026-07-28T02:16:39.000Z",
+                  "uid": "35240-af197228-ed8f-443c-98af-8651c330754d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:39.000Z",
+              "updatedAt": "2026-07-28T02:16:39.000Z",
+              "uid": "35240-5ee86bd4-3944-439f-ae87-b6cec2c5b3fe"
+            }
+          ],
+          "id": "7c9d7244-30ed-4df4-b61b-8feff6f95b11",
+          "createdAt": "2026-07-28T02:16:39.000Z",
+          "updatedAt": "2026-07-28T02:16:39.000Z",
+          "uid": "35240-7c9d7244-30ed-4df4-b61b-8feff6f95b11"
+        }
+      ],
+      "id": "d8e66165-a01d-41e5-967a-ed6d3a771038",
+      "createdAt": "2026-07-28T02:16:39.000Z",
+      "updatedAt": "2026-07-28T02:16:39.000Z",
+      "uid": "35240-d8e66165-a01d-41e5-967a-ed6d3a771038"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

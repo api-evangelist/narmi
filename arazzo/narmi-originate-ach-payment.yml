@@ -1,0 +1,51 @@
+arazzo: 1.0.1
+info:
+  title: Originate a Narmi ACH payment
+  version: 1.0.0
+  summary: Pick a funding account and create an ACH payment idempotently, then read it back.
+sourceDescriptions:
+  - name: narmiPublic
+    url: ../openapi/narmi-public-openapi-original.yml
+    type: openapi
+workflows:
+  - workflowId: originateAchPayment
+    summary: List accounts, create an ACH payment with an Idempotency-Key, and confirm it.
+    inputs:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: OAuth 2.0 bearer token with banking:accounts:read + banking:transactions:write.
+        idempotencyKey:
+          type: string
+          description: Unique key for the create request (sent as the Idempotency-Key header).
+        amount:
+          type: integer
+          description: Payment amount in minor units (cents).
+    steps:
+      - stepId: listAccounts
+        operationId: accounts_list
+        successCriteria:
+          - condition: $statusCode == 200
+        outputs:
+          accountUuid: $response.body#/results/0/id
+      - stepId: createAchPayment
+        operationId: ach_payments_create
+        parameters:
+          - name: Idempotency-Key
+            in: header
+            value: $inputs.idempotencyKey
+        successCriteria:
+          - condition: $statusCode == 201
+        outputs:
+          paymentUuid: $response.body#/id
+      - stepId: confirmPayment
+        operationId: ach_payments_retrieve
+        parameters:
+          - name: uuid
+            in: path
+            value: $steps.createAchPayment.outputs.paymentUuid
+        successCriteria:
+          - condition: $statusCode == 200
+    outputs:
+      paymentUuid: $steps.createAchPayment.outputs.paymentUuid

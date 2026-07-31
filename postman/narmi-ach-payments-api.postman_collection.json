@@ -1,0 +1,1227 @@
+{
+  "info": {
+    "_postman_id": "ae9c6876-9682-4948-b23a-1bf82e7363ad",
+    "name": "Narmi Public account balances ach payments API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:15:43.000Z",
+    "updatedAt": "2026-07-28T02:15:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ae9c6876-9682-4948-b23a-1bf82e7363ad"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "ach_payments",
+          "item": [
+            {
+              "name": "{uuid}",
+              "item": [
+                {
+                  "name": "Retrieve an ACH payment",
+                  "id": "2c9f8bb5-bf38-4614-a5f6-d17725925b90",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ach_payments/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ach_payments",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "e212006d-0705-4685-8a72-9ffefa9161c3",
+                          "key": "uuid",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Fetch details for a specified ACH payment.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "e04e7752-1d64-4115-9521-79143ffc38d6",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/ach_payments/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "ach_payments",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"std_ent_cls_code\": \"TEL\",\n  \"id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"processed_at\": \"<dateTime>\",\n  \"state\": \"rejected\",\n  \"display_state\": \"<string>\",\n  \"company_id\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"description\": \"\",\n  \"external_account_details\": \"<string>\",\n  \"memo\": \"\",\n  \"transaction_type\": \"debit\"\n}",
+                      "createdAt": "2026-07-28T02:15:44.000Z",
+                      "updatedAt": "2026-07-28T02:15:44.000Z",
+                      "uid": "35240-e04e7752-1d64-4115-9521-79143ffc38d6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:15:44.000Z",
+                  "updatedAt": "2026-07-28T02:15:44.000Z",
+                  "uid": "35240-2c9f8bb5-bf38-4614-a5f6-d17725925b90"
+                }
+              ],
+              "id": "1f1f66e8-d957-4c33-a6ba-d4e262223598",
+              "createdAt": "2026-07-28T02:15:44.000Z",
+              "updatedAt": "2026-07-28T02:15:44.000Z",
+              "uid": "35240-1f1f66e8-d957-4c33-a6ba-d4e262223598"
+            },
+            {
+              "name": "scheduled",
+              "item": [
+                {
+                  "name": "{uuid}",
+                  "item": [
+                    {
+                      "name": "Retrieve a scheduled ACH payment",
+                      "id": "8afeae8b-b35e-420a-91ee-83f4724f72f1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/ach_payments/scheduled/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "ach_payments",
+                            "scheduled",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "9424d38e-65b9-4ff7-a7ff-38c40883eefe",
+                              "key": "uuid",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "bf7c8fe1-6b80-4b35-880e-96833d32786e",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/ach_payments/scheduled/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "ach_payments",
+                                "scheduled",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"std_ent_cls_code\": \"CTX\",\n  \"memo\": \"\",\n  \"id\": \"<uuid>\",\n  \"company_id\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"description\": \"\",\n  \"next_transfer_at\": \"<dateTime>\",\n  \"dual_approval_state\": \"<string>\",\n  \"display_state\": \"<string>\",\n  \"completed_at\": \"<dateTime>\",\n  \"transaction_type\": \"credit\"\n}",
+                          "createdAt": "2026-07-28T02:15:44.000Z",
+                          "updatedAt": "2026-07-28T02:15:44.000Z",
+                          "uid": "35240-bf7c8fe1-6b80-4b35-880e-96833d32786e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:15:44.000Z",
+                      "updatedAt": "2026-07-28T02:15:44.000Z",
+                      "uid": "35240-8afeae8b-b35e-420a-91ee-83f4724f72f1"
+                    },
+                    {
+                      "name": "Delete a scheduled ACH payment",
+                      "id": "b1688000-aff9-4413-b3fd-5fd4b9562ee8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/ach_payments/scheduled/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "ach_payments",
+                            "scheduled",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "d3593d75-7c65-4241-9fb9-a77ab854eaef",
+                              "key": "uuid",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "89176cd2-7d26-4a15-a841-b65bf3bbe98a",
+                          "name": "No response body",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/ach_payments/scheduled/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "ach_payments",
+                                "scheduled",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:15:44.000Z",
+                          "updatedAt": "2026-07-28T02:15:44.000Z",
+                          "uid": "35240-89176cd2-7d26-4a15-a841-b65bf3bbe98a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:15:44.000Z",
+                      "updatedAt": "2026-07-28T02:15:44.000Z",
+                      "uid": "35240-b1688000-aff9-4413-b3fd-5fd4b9562ee8"
+                    }
+                  ],
+                  "id": "d9d0b67b-786d-46d7-8b49-472dc5885fe3",
+                  "createdAt": "2026-07-28T02:15:44.000Z",
+                  "updatedAt": "2026-07-28T02:15:44.000Z",
+                  "uid": "35240-d9d0b67b-786d-46d7-8b49-472dc5885fe3"
+                },
+                {
+                  "name": "List scheduled ACH payments",
+                  "id": "d7c130c3-260a-4403-bed7-16dc3eee3acd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ach_payments/scheduled/?page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ach_payments",
+                        "scheduled",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "List the authenticated user's scheduled ACH payments.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "561cb643-a8d3-4c31-91cb-d268ea0ed2ef",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/ach_payments/scheduled/?page=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "ach_payments",
+                            "scheduled",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "A page number within the paginated result set.",
+                              "key": "page",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"results\": [\n    {\n      \"amount\": \"<integer>\",\n      \"entry_desc\": \"<string>\",\n      \"institution_account\": \"<uuid>\",\n      \"recipient\": \"<uuid>\",\n      \"recurring_rule\": \"<string>\",\n      \"std_ent_cls_code\": \"CIE\",\n      \"memo\": \"\",\n      \"id\": \"<uuid>\",\n      \"company_id\": \"<string>\",\n      \"company_name\": \"<string>\",\n      \"description\": \"\",\n      \"next_transfer_at\": \"<dateTime>\",\n      \"dual_approval_state\": \"<string>\",\n      \"display_state\": \"<string>\",\n      \"completed_at\": \"<dateTime>\",\n      \"transaction_type\": \"debit\"\n    },\n    {\n      \"amount\": \"<integer>\",\n      \"entry_desc\": \"<string>\",\n      \"institution_account\": \"<uuid>\",\n      \"recipient\": \"<uuid>\",\n      \"recurring_rule\": \"<string>\",\n      \"std_ent_cls_code\": \"POS\",\n      \"memo\": \"\",\n      \"id\": \"<uuid>\",\n      \"company_id\": \"<string>\",\n      \"company_name\": \"<string>\",\n      \"description\": \"\",\n      \"next_transfer_at\": \"<dateTime>\",\n      \"dual_approval_state\": \"<string>\",\n      \"display_state\": \"<string>\",\n      \"completed_at\": \"<dateTime>\",\n      \"transaction_type\": \"credit\"\n    }\n  ],\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\"\n}",
+                      "createdAt": "2026-07-28T02:15:44.000Z",
+                      "updatedAt": "2026-07-28T02:15:44.000Z",
+                      "uid": "35240-561cb643-a8d3-4c31-91cb-d268ea0ed2ef"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:15:44.000Z",
+                  "updatedAt": "2026-07-28T02:15:44.000Z",
+                  "uid": "35240-d7c130c3-260a-4403-bed7-16dc3eee3acd"
+                },
+                {
+                  "name": "Create a scheduled ACH payment",
+                  "id": "88021dbe-ebf4-4770-8a34-b85abb3bca91",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"std_ent_cls_code\": \"CCD\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\",\n  \"memo\": \"\",\n  \"ach_company\": \"<uuid>\",\n  \"description\": \"\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ach_payments/scheduled/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ach_payments",
+                        "scheduled",
+                        ""
+                      ]
+                    },
+                    "description": "All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "4989d50d-b28c-48bc-a11b-8c6f15fb6d5a",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"std_ent_cls_code\": \"CCD\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\",\n  \"memo\": \"\",\n  \"ach_company\": \"<uuid>\",\n  \"description\": \"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/ach_payments/scheduled/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "ach_payments",
+                            "scheduled",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"std_ent_cls_code\": \"CTX\",\n  \"memo\": \"\",\n  \"id\": \"<uuid>\",\n  \"company_id\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"description\": \"\",\n  \"next_transfer_at\": \"<dateTime>\",\n  \"dual_approval_state\": \"<string>\",\n  \"display_state\": \"<string>\",\n  \"completed_at\": \"<dateTime>\",\n  \"transaction_type\": \"credit\"\n}",
+                      "createdAt": "2026-07-28T02:15:44.000Z",
+                      "updatedAt": "2026-07-28T02:15:44.000Z",
+                      "uid": "35240-4989d50d-b28c-48bc-a11b-8c6f15fb6d5a"
+                    },
+                    {
+                      "id": "d5689b4d-bc7f-4784-93ea-bf4a7bb5df27",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"std_ent_cls_code\": \"CCD\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\",\n  \"memo\": \"\",\n  \"ach_company\": \"<uuid>\",\n  \"description\": \"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/ach_payments/scheduled/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "ach_payments",
+                            "scheduled",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"invalid\"\n}",
+                      "createdAt": "2026-07-28T02:15:44.000Z",
+                      "updatedAt": "2026-07-28T02:15:44.000Z",
+                      "uid": "35240-d5689b4d-bc7f-4784-93ea-bf4a7bb5df27"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:15:44.000Z",
+                  "updatedAt": "2026-07-28T02:15:44.000Z",
+                  "uid": "35240-88021dbe-ebf4-4770-8a34-b85abb3bca91"
+                }
+              ],
+              "id": "d11c0377-a54f-4f7c-90bf-dc1680d4eb3c",
+              "createdAt": "2026-07-28T02:15:44.000Z",
+              "updatedAt": "2026-07-28T02:15:44.000Z",
+              "uid": "35240-d11c0377-a54f-4f7c-90bf-dc1680d4eb3c"
+            },
+            {
+              "name": "List ACH payments",
+              "id": "be69ae26-9e68-4d23-9fdb-3a94eb642a44",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ach_payments/?page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ach_payments",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "A page number within the paginated result set.",
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "List the authenticated user's ACH payments.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "60d4f6c0-325c-4099-a023-d50b8a3dc9fd",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ach_payments/?page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ach_payments",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\",\n  \"results\": [\n    {\n      \"amount\": \"<integer>\",\n      \"entry_desc\": \"<string>\",\n      \"institution_account\": \"<uuid>\",\n      \"recipient\": \"<uuid>\",\n      \"std_ent_cls_code\": \"BOC\",\n      \"id\": \"<uuid>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"processed_at\": \"<dateTime>\",\n      \"state\": \"analyzing\",\n      \"display_state\": \"<string>\",\n      \"company_id\": \"<string>\",\n      \"company_name\": \"<string>\",\n      \"description\": \"\",\n      \"external_account_details\": \"<string>\",\n      \"memo\": \"\",\n      \"transaction_type\": \"credit\"\n    },\n    {\n      \"amount\": \"<integer>\",\n      \"entry_desc\": \"<string>\",\n      \"institution_account\": \"<uuid>\",\n      \"recipient\": \"<uuid>\",\n      \"std_ent_cls_code\": \"ARC\",\n      \"id\": \"<uuid>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"processed_at\": \"<dateTime>\",\n      \"state\": \"rejected_approval\",\n      \"display_state\": \"<string>\",\n      \"company_id\": \"<string>\",\n      \"company_name\": \"<string>\",\n      \"description\": \"\",\n      \"external_account_details\": \"<string>\",\n      \"memo\": \"\",\n      \"transaction_type\": \"debit\"\n    }\n  ],\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T02:15:44.000Z",
+                  "updatedAt": "2026-07-28T02:15:44.000Z",
+                  "uid": "35240-60d4f6c0-325c-4099-a023-d50b8a3dc9fd"
+                }
+              ],
+              "createdAt": "2026-07-28T02:15:44.000Z",
+              "updatedAt": "2026-07-28T02:15:44.000Z",
+              "uid": "35240-be69ae26-9e68-4d23-9fdb-3a94eb642a44"
+            },
+            {
+              "name": "Send an ACH Payment",
+              "id": "7d0ef8c9-8520-44b5-8b8b-ee5be6be0608",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"std_ent_cls_code\": \"ARC\",\n  \"description\": \"\",\n  \"ach_company\": \"<uuid>\",\n  \"memo\": \"\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ach_payments/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ach_payments",
+                    ""
+                  ]
+                },
+                "description": "Send an ACH Payment using an existing recipient and set of external account details (i.e. account number, routing number, account type, account purpose).\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "61388fbb-c515-4042-bb67-c91703aeebfb",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"std_ent_cls_code\": \"ARC\",\n  \"description\": \"\",\n  \"ach_company\": \"<uuid>\",\n  \"memo\": \"\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ach_payments/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ach_payments",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"std_ent_cls_code\": \"BOC\",\n  \"transaction_type\": \"debit\",\n  \"id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"processed_at\": \"<dateTime>\",\n  \"state\": \"awaiting_bulk_approval\",\n  \"display_state\": \"<string>\",\n  \"company_id\": \"<string>\",\n  \"company_name\": \"<string>\",\n  \"description\": \"\",\n  \"external_account_details\": \"<string>\",\n  \"memo\": \"\"\n}",
+                  "createdAt": "2026-07-28T02:15:44.000Z",
+                  "updatedAt": "2026-07-28T02:15:44.000Z",
+                  "uid": "35240-61388fbb-c515-4042-bb67-c91703aeebfb"
+                },
+                {
+                  "id": "3affd6c0-565a-4376-b52f-d490bfb9f2e2",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"std_ent_cls_code\": \"ARC\",\n  \"description\": \"\",\n  \"ach_company\": \"<uuid>\",\n  \"memo\": \"\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ach_payments/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ach_payments",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"invalid\"\n}",
+                  "createdAt": "2026-07-28T02:15:44.000Z",
+                  "updatedAt": "2026-07-28T02:15:44.000Z",
+                  "uid": "35240-3affd6c0-565a-4376-b52f-d490bfb9f2e2"
+                },
+                {
+                  "id": "62edb6e7-87a5-4d38-b3e9-807b99e667dd",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"entry_desc\": \"<string>\",\n  \"institution_account\": \"<uuid>\",\n  \"recipient\": \"<uuid>\",\n  \"std_ent_cls_code\": \"ARC\",\n  \"description\": \"\",\n  \"ach_company\": \"<uuid>\",\n  \"memo\": \"\",\n  \"device_id\": \"<string>\",\n  \"device_request_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ach_payments/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ach_payments",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:15:44.000Z",
+                  "updatedAt": "2026-07-28T02:15:44.000Z",
+                  "uid": "35240-62edb6e7-87a5-4d38-b3e9-807b99e667dd"
+                }
+              ],
+              "createdAt": "2026-07-28T02:15:44.000Z",
+              "updatedAt": "2026-07-28T02:15:44.000Z",
+              "uid": "35240-7d0ef8c9-8520-44b5-8b8b-ee5be6be0608"
+            }
+          ],
+          "id": "d3b9fec9-d81a-49d7-bffc-05e2732a8334",
+          "createdAt": "2026-07-28T02:15:44.000Z",
+          "updatedAt": "2026-07-28T02:15:44.000Z",
+          "uid": "35240-d3b9fec9-d81a-49d7-bffc-05e2732a8334"
+        },
+        {
+          "name": "loan_payments",
+          "item": [
+            {
+              "name": "ach",
+              "item": [
+                {
+                  "name": "Create an ACH loan payment",
+                  "id": "7eef10f0-0212-4bc6-997b-7043c1e2a17e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"from_account\": \"<uuid>\",\n  \"payment_type\": \"<string>\",\n  \"to_account\": \"<uuid>\",\n  \"ach_transfer\": \"<integer>\",\n  \"memo\": \"<string>\",\n  \"device_id\": \"<string>\",\n  \"metadata\": {\n    \"mollit_76c\": {},\n    \"sunt_72f\": {},\n    \"do_150\": {}\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/loan_payments/ach/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "loan_payments",
+                        "ach",
+                        ""
+                      ]
+                    },
+                    "description": "Create an ACH payment from an external account to a loan.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "1f2e3e0c-729d-4897-914e-f664ae43c485",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<integer>\",\n  \"from_account\": \"<uuid>\",\n  \"payment_type\": \"<string>\",\n  \"to_account\": \"<uuid>\",\n  \"ach_transfer\": \"<integer>\",\n  \"memo\": \"<string>\",\n  \"device_id\": \"<string>\",\n  \"metadata\": {\n    \"mollit_76c\": {},\n    \"sunt_72f\": {},\n    \"do_150\": {}\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/loan_payments/ach/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "loan_payments",
+                            "ach",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"amount\": \"<integer>\",\n  \"from_account\": \"<uuid>\",\n  \"payment_type\": \"<string>\",\n  \"to_account\": \"<uuid>\",\n  \"ach_transfer\": \"<integer>\",\n  \"memo\": \"<string>\",\n  \"device_id\": \"<string>\",\n  \"metadata\": {\n    \"nisi869\": {},\n    \"qui_fd\": {}\n  }\n}",
+                      "createdAt": "2026-07-28T02:15:44.000Z",
+                      "updatedAt": "2026-07-28T02:15:44.000Z",
+                      "uid": "35240-1f2e3e0c-729d-4897-914e-f664ae43c485"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:15:44.000Z",
+                  "updatedAt": "2026-07-28T02:15:44.000Z",
+                  "uid": "35240-7eef10f0-0212-4bc6-997b-7043c1e2a17e"
+                }
+              ],
+              "id": "f2843c99-ea8f-4e34-8ff2-440474db4e5b",
+              "createdAt": "2026-07-28T02:15:44.000Z",
+              "updatedAt": "2026-07-28T02:15:44.000Z",
+              "uid": "35240-f2843c99-ea8f-4e34-8ff2-440474db4e5b"
+            }
+          ],
+          "id": "17f39766-0c33-4708-ae5b-c234da98ad49",
+          "createdAt": "2026-07-28T02:15:44.000Z",
+          "updatedAt": "2026-07-28T02:15:44.000Z",
+          "uid": "35240-17f39766-0c33-4708-ae5b-c234da98ad49"
+        }
+      ],
+      "id": "57355007-ce85-44a5-a854-2fac8fd5b7f8",
+      "createdAt": "2026-07-28T02:15:44.000Z",
+      "updatedAt": "2026-07-28T02:15:44.000Z",
+      "uid": "35240-57355007-ce85-44a5-a854-2fac8fd5b7f8"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

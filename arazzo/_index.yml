@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: derived
+source: arazzo/*.yml
+workflows:
+  - file: narmi-read-accounts.yml
+    workflowId: readAccountsAndTransactions
+    title: Read Narmi accounts, balances, and transactions
+    summary: Authenticate, list accounts, read balances, and pull an account's transactions.
+  - file: narmi-originate-ach-payment.yml
+    workflowId: originateAchPayment
+    title: Originate a Narmi ACH payment
+    summary: Pick a funding account and create an ACH payment idempotently, then read it back.

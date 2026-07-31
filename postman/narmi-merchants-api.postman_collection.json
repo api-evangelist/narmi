@@ -1,0 +1,228 @@
+{
+  "info": {
+    "_postman_id": "14628fa3-2600-4947-8c67-f93b6ac407c6",
+    "name": "Narmi Public account balances merchants API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:31.000Z",
+    "updatedAt": "2026-07-28T02:16:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-14628fa3-2600-4947-8c67-f93b6ac407c6"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "merchants",
+          "item": [
+            {
+              "name": "Retrieve merchants",
+              "id": "43b4db4d-9f0d-4467-ade3-483de8666313",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/merchants/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ""
+                  ]
+                },
+                "description": "Retrieve a list of popular merchants for subscriptions and relevant cancellation details.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "8456fb37-c8d8-445c-a6ff-49eebddedce1",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/merchants/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "merchants",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"merchant_name\": \"<string>\",\n    \"website_url\": \"<uri>\",\n    \"cancellation_url\": \"<uri>\",\n    \"logo_url\": \"<string>\",\n    \"contact_number\": \"<string>\",\n    \"contact_email\": \"<email>\",\n    \"cancellation_instructions\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"merchant_name\": \"<string>\",\n    \"website_url\": \"<uri>\",\n    \"cancellation_url\": \"<uri>\",\n    \"logo_url\": \"<string>\",\n    \"contact_number\": \"<string>\",\n    \"contact_email\": \"<email>\",\n    \"cancellation_instructions\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-07-28T02:16:31.000Z",
+                  "updatedAt": "2026-07-28T02:16:31.000Z",
+                  "uid": "35240-8456fb37-c8d8-445c-a6ff-49eebddedce1"
+                },
+                {
+                  "id": "7edf2cc4-e03f-4950-8ea8-2f95e768d27f",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/merchants/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "merchants",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:31.000Z",
+                  "updatedAt": "2026-07-28T02:16:31.000Z",
+                  "uid": "35240-7edf2cc4-e03f-4950-8ea8-2f95e768d27f"
+                },
+                {
+                  "id": "1f8573d9-1813-4794-acc5-d21abdc408a4",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/merchants/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "merchants",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:31.000Z",
+                  "updatedAt": "2026-07-28T02:16:31.000Z",
+                  "uid": "35240-1f8573d9-1813-4794-acc5-d21abdc408a4"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:31.000Z",
+              "updatedAt": "2026-07-28T02:16:31.000Z",
+              "uid": "35240-43b4db4d-9f0d-4467-ade3-483de8666313"
+            }
+          ],
+          "id": "ae82d48e-558b-4cc1-949d-9cf06098dd22",
+          "createdAt": "2026-07-28T02:16:31.000Z",
+          "updatedAt": "2026-07-28T02:16:31.000Z",
+          "uid": "35240-ae82d48e-558b-4cc1-949d-9cf06098dd22"
+        }
+      ],
+      "id": "4de38ccf-aaba-41be-8182-29b5ce3d4e72",
+      "createdAt": "2026-07-28T02:16:31.000Z",
+      "updatedAt": "2026-07-28T02:16:31.000Z",
+      "uid": "35240-4de38ccf-aaba-41be-8182-29b5ce3d4e72"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

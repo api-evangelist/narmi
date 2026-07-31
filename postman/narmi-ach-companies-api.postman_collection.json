@@ -1,0 +1,229 @@
+{
+  "info": {
+    "_postman_id": "e0c10b75-545d-45a7-a2f5-a95a523f2e06",
+    "name": "Narmi Public account balances ach companies API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:15:41.000Z",
+    "updatedAt": "2026-07-28T02:15:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e0c10b75-545d-45a7-a2f5-a95a523f2e06"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "ach_companies",
+          "item": [
+            {
+              "name": "List ACH companies",
+              "id": "02c25310-4822-4afe-8179-7f40beefa7c4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ach_companies/?institution_account=<uuid>&organization=<uuid>&page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ach_companies",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "institution_account",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "organization",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "description": "A page number within the paginated result set.",
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "List the ACH companies an authenticated business user has access to for ACH origination purposes.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "beb8957a-fe53-474b-a34b-9e80193322b7",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ach_companies/?institution_account=<uuid>&organization=<uuid>&page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ach_companies",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "key": "institution_account",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\",\n  \"results\": [\n    {\n      \"company_id\": \"<string>\",\n      \"company_name\": \"<string>\",\n      \"organization\": \"<uuid>\",\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"company_id\": \"<string>\",\n      \"company_name\": \"<string>\",\n      \"organization\": \"<uuid>\",\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T02:15:41.000Z",
+                  "updatedAt": "2026-07-28T02:15:41.000Z",
+                  "uid": "35240-beb8957a-fe53-474b-a34b-9e80193322b7"
+                },
+                {
+                  "id": "02166995-9af0-4b2c-8013-ade647d1c19d",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ach_companies/?institution_account=<uuid>&organization=<uuid>&page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ach_companies",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "key": "institution_account",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "key": "organization",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+                  "createdAt": "2026-07-28T02:15:41.000Z",
+                  "updatedAt": "2026-07-28T02:15:41.000Z",
+                  "uid": "35240-02166995-9af0-4b2c-8013-ade647d1c19d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:15:41.000Z",
+              "updatedAt": "2026-07-28T02:15:41.000Z",
+              "uid": "35240-02c25310-4822-4afe-8179-7f40beefa7c4"
+            }
+          ],
+          "id": "90dc7c28-7613-4a00-8381-c0b000eb4a10",
+          "createdAt": "2026-07-28T02:15:41.000Z",
+          "updatedAt": "2026-07-28T02:15:41.000Z",
+          "uid": "35240-90dc7c28-7613-4a00-8381-c0b000eb4a10"
+        }
+      ],
+      "id": "cb03c854-ce95-4fcd-b100-924a09a938a8",
+      "createdAt": "2026-07-28T02:15:41.000Z",
+      "updatedAt": "2026-07-28T02:15:41.000Z",
+      "uid": "35240-cb03c854-ce95-4fcd-b100-924a09a938a8"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

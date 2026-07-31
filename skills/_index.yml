@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/narmi-public-openapi-original.yml
+skills:
+  - file: narmi-read-accounts-and-transactions.md
+    name: Read account balances and transactions
+    api: openapi/narmi-public-openapi-original.yml
+    operations: [me_list, accounts_list, account_balances_list, transactions_list]
+  - file: narmi-originate-ach-payment.md
+    name: Originate an ACH payment
+    api: openapi/narmi-public-openapi-original.yml
+    operations: [accounts_list, ach_companies_list, ach_payments_create, ach_payments_retrieve]
+  - file: narmi-manage-card-controls.md
+    name: Manage card controls (lock, unlock, limits)
+    api: openapi/narmi-public-openapi-original.yml
+    operations: [cards_list, cards_retrieve, cards_lock_create, cards_unlock_create, cards_limits_create]

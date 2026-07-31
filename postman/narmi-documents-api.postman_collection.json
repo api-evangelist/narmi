@@ -1,0 +1,816 @@
+{
+  "info": {
+    "_postman_id": "bc6acc67-882d-4740-a846-4f4b2cb78943",
+    "name": "Narmi Public account balances documents API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:00.000Z",
+    "updatedAt": "2026-07-28T02:16:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bc6acc67-882d-4740-a846-4f4b2cb78943"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "documents",
+          "item": [
+            {
+              "name": "{document_id}",
+              "item": [
+                {
+                  "name": "Retrieve a document",
+                  "id": "9d84aa81-0d33-4c9c-b6c2-6a109562221a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/documents/:document_id/?data=<boolean>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "documents",
+                        ":document_id",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Whether or not to include base64 encoded file data in the `data` field.",
+                          "key": "data",
+                          "value": "<boolean>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "4b29347e-8291-4783-a6e6-ef05e3bd509e",
+                          "key": "document_id",
+                          "value": "EfL=k",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Fetch a specific statement by statement ID. \n\nAn invalid document ID will typically return the documented error response, however if the `statements` feature is not enabled, it may also return a blank 404 response.\n\nThis endpoint will return a 404 if a trailing slash is included in the request.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "82998038-5ed3-498c-a585-0e0b0cb7af6b",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/documents/:document_id/?data=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "documents",
+                            ":document_id",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Whether or not to include base64 encoded file data in the `data` field.",
+                              "key": "data",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "document_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"document\": {\n    \"id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"type_label\": \"<string>\",\n    \"description\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"account_id\": \"<string>\",\n    \"url\": \"<uri>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:01.000Z",
+                      "updatedAt": "2026-07-28T02:16:01.000Z",
+                      "uid": "35240-82998038-5ed3-498c-a585-0e0b0cb7af6b"
+                    },
+                    {
+                      "id": "6a2d7aa0-4a7c-43e1-b755-602385773037",
+                      "name": "May be returned if the statements feature is not available.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/documents/:document_id/?data=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "documents",
+                            ":document_id",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Whether or not to include base64 encoded file data in the `data` field.",
+                              "key": "data",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "document_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:01.000Z",
+                      "updatedAt": "2026-07-28T02:16:01.000Z",
+                      "uid": "35240-6a2d7aa0-4a7c-43e1-b755-602385773037"
+                    },
+                    {
+                      "id": "8cda293c-7183-4b44-ae0e-44172e55a03e",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/documents/:document_id/?data=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "documents",
+                            ":document_id",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Whether or not to include base64 encoded file data in the `data` field.",
+                              "key": "data",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "document_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"api_connection_error\",\n  \"message\": \"Sorry, we were unable to process your request, please check back soon.\"\n}",
+                      "createdAt": "2026-07-28T02:16:01.000Z",
+                      "updatedAt": "2026-07-28T02:16:01.000Z",
+                      "uid": "35240-8cda293c-7183-4b44-ae0e-44172e55a03e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-9d84aa81-0d33-4c9c-b6c2-6a109562221a"
+                }
+              ],
+              "id": "c431c340-ee9f-4770-9cd3-58432f019326",
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-c431c340-ee9f-4770-9cd3-58432f019326"
+            },
+            {
+              "name": "download",
+              "item": [
+                {
+                  "name": "Create zip file of selected documents",
+                  "id": "83e97428-d91d-4fff-88e8-71cf14a53690",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/zip"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/documents/download/?share=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "documents",
+                        "download",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "When 1, zip file will be emailed to the request's user's email instead of returning it in the response.",
+                          "key": "share",
+                          "value": "1"
+                        }
+                      ]
+                    },
+                    "description": "Creates a zip file of the requested document ids.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "ae4e67ee-7011-4ebf-bc38-d169a92653d4",
+                      "name": "Returns selected pdf documents inside zip file.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/zip"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/documents/download/?share=1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "documents",
+                            "download",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "When 1, zip file will be emailed to the request's user's email instead of returning it in the response.",
+                              "key": "share",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/zip"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<binary>",
+                      "createdAt": "2026-07-28T02:16:01.000Z",
+                      "updatedAt": "2026-07-28T02:16:01.000Z",
+                      "uid": "35240-ae4e67ee-7011-4ebf-bc38-d169a92653d4"
+                    },
+                    {
+                      "id": "c6689b60-cc55-4a0a-9283-570719f0df0e",
+                      "name": "Zip file is being prepared for sharing via email.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/documents/download/?share=1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "documents",
+                            "download",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "When 1, zip file will be emailed to the request's user's email instead of returning it in the response.",
+                              "key": "share",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:01.000Z",
+                      "updatedAt": "2026-07-28T02:16:01.000Z",
+                      "uid": "35240-c6689b60-cc55-4a0a-9283-570719f0df0e"
+                    },
+                    {
+                      "id": "a9cad9b3-0dbd-490f-b7f2-2d159a13ae2c",
+                      "name": "Will occur if no document ids or too many document ids are specified.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/documents/download/?share=1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "documents",
+                            "download",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "When 1, zip file will be emailed to the request's user's email instead of returning it in the response.",
+                              "key": "share",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:01.000Z",
+                      "updatedAt": "2026-07-28T02:16:01.000Z",
+                      "uid": "35240-a9cad9b3-0dbd-490f-b7f2-2d159a13ae2c"
+                    },
+                    {
+                      "id": "94bba371-a476-40dc-a2f4-cf3f32950714",
+                      "name": "May be returned if the statements or enable_document_filters feature(s) are not available.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/documents/download/?share=1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "documents",
+                            "download",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "When 1, zip file will be emailed to the request's user's email instead of returning it in the response.",
+                              "key": "share",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:01.000Z",
+                      "updatedAt": "2026-07-28T02:16:01.000Z",
+                      "uid": "35240-94bba371-a476-40dc-a2f4-cf3f32950714"
+                    },
+                    {
+                      "id": "c15b5c06-1688-46c5-9743-8213efc4a367",
+                      "name": "May be returned if the zip file is too large to share via email.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/documents/download/?share=1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "documents",
+                            "download",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "When 1, zip file will be emailed to the request's user's email instead of returning it in the response.",
+                              "key": "share",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Request Entity Too Large",
+                      "code": 413,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:01.000Z",
+                      "updatedAt": "2026-07-28T02:16:01.000Z",
+                      "uid": "35240-c15b5c06-1688-46c5-9743-8213efc4a367"
+                    },
+                    {
+                      "id": "7155d3cc-2a7c-4f24-ab66-271e4180f860",
+                      "name": "May be returned if an empty zip file would be returned.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/documents/download/?share=1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "documents",
+                            "download",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "When 1, zip file will be emailed to the request's user's email instead of returning it in the response.",
+                              "key": "share",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Service Unavailable",
+                      "code": 503,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:01.000Z",
+                      "updatedAt": "2026-07-28T02:16:01.000Z",
+                      "uid": "35240-7155d3cc-2a7c-4f24-ab66-271e4180f860"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-83e97428-d91d-4fff-88e8-71cf14a53690"
+                }
+              ],
+              "id": "853faa13-0608-4ecb-9ff3-25285031ec33",
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-853faa13-0608-4ecb-9ff3-25285031ec33"
+            },
+            {
+              "name": "List documents",
+              "id": "9f938483-2bf2-4302-86d8-4abc6a429576",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/documents/?limit=<integer>&offset=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Number of results to return per page.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The initial index from which to return the results.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "List the authenticated user's documents (statements, tax forms, etc.).\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "7340bf7a-981d-40dc-ac51-aef71231e5c1",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/documents/?limit=<integer>&offset=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "documents",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of results to return per page.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The initial index from which to return the results.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\",\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"type_label\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"account_id\": \"<string>\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"type_label\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"account_id\": \"<string>\",\n      \"url\": \"<uri>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-7340bf7a-981d-40dc-ac51-aef71231e5c1"
+                },
+                {
+                  "id": "fdfc2d61-402f-4f84-ba0a-90bbe6b84cf3",
+                  "name": "May be returned if the statements feature is not available.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/documents/?limit=<integer>&offset=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "documents",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Number of results to return per page.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The initial index from which to return the results.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:01.000Z",
+                  "updatedAt": "2026-07-28T02:16:01.000Z",
+                  "uid": "35240-fdfc2d61-402f-4f84-ba0a-90bbe6b84cf3"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:01.000Z",
+              "updatedAt": "2026-07-28T02:16:01.000Z",
+              "uid": "35240-9f938483-2bf2-4302-86d8-4abc6a429576"
+            }
+          ],
+          "id": "cc961784-9824-4c3d-95d6-5221606c0421",
+          "createdAt": "2026-07-28T02:16:01.000Z",
+          "updatedAt": "2026-07-28T02:16:01.000Z",
+          "uid": "35240-cc961784-9824-4c3d-95d6-5221606c0421"
+        }
+      ],
+      "id": "f7695b66-8e1d-4f0e-87b1-01facb08e647",
+      "createdAt": "2026-07-28T02:16:01.000Z",
+      "updatedAt": "2026-07-28T02:16:01.000Z",
+      "uid": "35240-f7695b66-8e1d-4f0e-87b1-01facb08e647"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

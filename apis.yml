@@ -1,28 +1,749 @@
 aid: narmi
 name: Narmi
-description: 'Narmi is a company surfaced as a portfolio company of nea, techstars and added to the API
-  Evangelist network as a stub for enrichment. Sector: fintech. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  Narmi is a digital banking platform for community banks and credit unions in the United States.
+  The Narmi One platform unifies consumer and business digital banking, omnichannel account opening
+  (Narmi Grow), instant payments over FedNow (Narmi Now), fraud prevention (Narmi Guard), lending
+  (Narmi Lend), a digital back-office (Narmi Command), an API-driven open architecture (Narmi Open),
+  and agentic AI capabilities (Narmi AI). Narmi integrates with major core banking systems including
+  Corelation Keystone, Symitar, Jack Henry Silverlake, Fiserv DNA/Premier, FIS Horizon/IBS, and COCC.
+  The Narmi Public API is a REST API (OAuth 2.0, 189 operations) exposing accounts, balances,
+  transactions, cards, ACH, Fedwire, FedNow, SWIFT wires, deposits, alerts, and messaging. Narmi
+  launched the first MCP server deployed by a U.S. bank (with Grasshopper Bank, August 2025).
 url: https://raw.githubusercontent.com/api-evangelist/narmi/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/6155dc277c0e6923df412e1b/6192c6364208f389eb6285e2_Narmi_OG-image-main.jpg
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - nea
 - techstars
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: active
+x-tier-reason: enriched-has-public-api
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
 - Fintech
-apis: []
+- Digital Banking
+- Banking
+- Payments
+- ACH
+- Wires
+- FedNow
+- Cards
+- Financial Services
+apis:
+- aid: narmi:narmi-account-balances-api
+  name: Narmi account balances API
+  description: The account balances API from Narmi — 2 operation(s) for account balances.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - account balances
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-account-balances-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-accounts-api
+  name: Narmi accounts API
+  description: The accounts API from Narmi — 10 operation(s) for accounts.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-ach-companies-api
+  name: Narmi ach companies API
+  description: The ach companies API from Narmi — 1 operation(s) for ach companies.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - ach companies
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-ach-companies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-ach-destinations-api
+  name: Narmi ach destinations API
+  description: The ach destinations API from Narmi — 1 operation(s) for ach destinations.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - ach destinations
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-ach-destinations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-ach-import-api
+  name: Narmi ach import API
+  description: The ach import API from Narmi — 6 operation(s) for ach import.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - ach import
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-ach-import-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-ach-payments-api
+  name: Narmi ach payments API
+  description: The ach payments API from Narmi — 5 operation(s) for ach payments.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - ach payments
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-ach-payments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-ach-transfers-api
+  name: Narmi ach transfers API
+  description: The ach transfers API from Narmi — 1 operation(s) for ach transfers.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - ach transfers
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-ach-transfers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-alerts-api
+  name: Narmi alerts API
+  description: The alerts API from Narmi — 6 operation(s) for alerts.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - alerts
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-alerts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-automatic-savings-enrollment-api
+  name: Narmi automatic savings enrollment API
+  description: >-
+    The automatic savings enrollment API from Narmi — 1 operation(s) for automatic savings enrollment.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - automatic savings enrollment
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-automatic-savings-enrollment-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-card-linked-offers-api
+  name: Narmi card linked offers API
+  description: The card linked offers API from Narmi — 2 operation(s) for card linked offers.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - card linked offers
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-card-linked-offers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-cards-api
+  name: Narmi cards API
+  description: The cards API from Narmi — 10 operation(s) for cards.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - cards
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-cards-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-data-access-management-api
+  name: Narmi data access management API
+  description: The data access management API from Narmi — 2 operation(s) for data access management.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - data access management
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-data-access-management-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-deposits-api
+  name: Narmi deposits API
+  description: The deposits API from Narmi — 2 operation(s) for deposits.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - deposits
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-deposits-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-documents-api
+  name: Narmi documents API
+  description: The documents API from Narmi — 3 operation(s) for documents.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - documents
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-documents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-enrollments-api
+  name: Narmi enrollments API
+  description: The enrollments API from Narmi — 5 operation(s) for enrollments.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - enrollments
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-enrollments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-express-checkout-api
+  name: Narmi express-checkout API
+  description: The express-checkout API from Narmi — 2 operation(s) for express-checkout.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - express-checkout
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-express-checkout-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-fedwire-destinations-api
+  name: Narmi fedwire destinations API
+  description: The fedwire destinations API from Narmi — 2 operation(s) for fedwire destinations.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - fedwire destinations
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-fedwire-destinations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-fedwire-templates-api
+  name: Narmi fedwire templates API
+  description: The fedwire templates API from Narmi — 2 operation(s) for fedwire templates.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - fedwire templates
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-fedwire-templates-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-income-source-api
+  name: Narmi income source API
+  description: The income source API from Narmi — 2 operation(s) for income source.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - income source
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-income-source-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-instant-transfers-api
+  name: Narmi instant transfers API
+  description: The instant transfers API from Narmi — 4 operation(s) for instant transfers.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - instant transfers
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-instant-transfers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-institution-api
+  name: Narmi institution API
+  description: The institution API from Narmi — 2 operation(s) for institution.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - institution
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-institution-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-international-wires-api
+  name: Narmi international wires API
+  description: The international wires API from Narmi — 4 operation(s) for international wires.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - international wires
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-international-wires-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-me-api
+  name: Narmi me API
+  description: The me API from Narmi — 1 operation(s) for me.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - me
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-me-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-merchants-api
+  name: Narmi merchants API
+  description: The merchants API from Narmi — 1 operation(s) for merchants.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - merchants
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-merchants-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-mfa-api
+  name: Narmi mfa API
+  description: The mfa API from Narmi — 3 operation(s) for mfa.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - mfa
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-mfa-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-payees-api
+  name: Narmi payees API
+  description: The payees API from Narmi — 2 operation(s) for payees.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - payees
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-payees-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-payments-api
+  name: Narmi payments API
+  description: The payments API from Narmi — 2 operation(s) for payments.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - payments
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-payments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-ping-api
+  name: Narmi ping API
+  description: The ping API from Narmi — 1 operation(s) for ping.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - ping
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-ping-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-recipients-api
+  name: Narmi recipients API
+  description: The recipients API from Narmi — 2 operation(s) for recipients.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - recipients
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-recipients-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-reports-api
+  name: Narmi reports API
+  description: The reports API from Narmi — 3 operation(s) for reports.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - reports
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-reports-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-same-day-transfers-api
+  name: Narmi same-day transfers API
+  description: The same-day transfers API from Narmi — 1 operation(s) for same-day transfers.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - same-day transfers
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-same-day-transfers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-scheduled-transfers-api
+  name: Narmi scheduled transfers API
+  description: The scheduled transfers API from Narmi — 1 operation(s) for scheduled transfers.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - scheduled transfers
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-scheduled-transfers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-subscriptions-api
+  name: Narmi subscriptions API
+  description: The subscriptions API from Narmi — 2 operation(s) for subscriptions.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-support-api
+  name: Narmi support API
+  description: The support API from Narmi — 1 operation(s) for support.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - support
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-support-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-surveys-api
+  name: Narmi surveys API
+  description: The surveys API from Narmi — 3 operation(s) for surveys.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - surveys
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-surveys-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-swift-wire-templates-api
+  name: Narmi swift wire templates API
+  description: The swift wire templates API from Narmi — 2 operation(s) for swift wire templates.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - swift wire templates
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-swift-wire-templates-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-teams-api
+  name: Narmi teams API
+  description: The teams API from Narmi — 1 operation(s) for teams.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - teams
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-teams-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-threads-api
+  name: Narmi threads API
+  description: The threads API from Narmi — 6 operation(s) for threads.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - threads
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-threads-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-transactions-api
+  name: Narmi transactions API
+  description: The transactions API from Narmi — 3 operation(s) for transactions.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-unverified-ach-transactions-api
+  name: Narmi unverified ach transactions API
+  description: >-
+    The unverified ach transactions API from Narmi — 4 operation(s) for unverified ach transactions.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - unverified ach transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-unverified-ach-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-users-api
+  name: Narmi users API
+  description: The users API from Narmi — 3 operation(s) for users.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - users
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-whatismyip-api
+  name: Narmi whatismyip API
+  description: The whatismyip API from Narmi — 1 operation(s) for whatismyip.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - whatismyip
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-whatismyip-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-wire-recipients-api
+  name: Narmi wire recipients API
+  description: The wire recipients API from Narmi — 2 operation(s) for wire recipients.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - wire recipients
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-wire-recipients-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- aid: narmi:narmi-wires-api
+  name: Narmi wires API
+  description: The wires API from Narmi — 3 operation(s) for wires.
+  humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+  baseURL: https://api.sandbox.narmi.dev/
+  tags:
+  - wires
+  properties:
+  - type: OpenAPI
+    url: openapi/narmi-wires-api-openapi.yml
+  - type: Documentation
+    url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+  - type: APIReference
+    url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/narmi/overview
 - type: Website
   url: https://www.narmi.com
+- type: DeveloperPortal
+  url: https://www.narmi.com/developers/developer-portal
+- type: Documentation
+  url: https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction
+- type: APIReference
+  url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
+- type: GettingStarted
+  url: https://docs.narmi.com/docs/narmi-developer-docs/p6fy3ne24ivqc-quick-start-guide
+- type: Blog
+  url: https://www.narmi.com/insights
+- type: GitHubOrganization
+  url: https://github.com/narmi
+- type: Support
+  url: mailto:support@narmi.com
+- type: TermsOfService
+  url: https://www.narmi.com/policies/developer-terms-conditions
+- type: PrivacyPolicy
+  url: https://www.narmi.com/policies/privacy
+- type: SignUp
+  url: https://www.narmi.com/request-a-demo
+- type: ChangeLog
+  url: changelog/narmi-changelog.yml
+- type: Authentication
+  url: authentication/narmi-authentication.yml
+- type: OAuthScopes
+  url: scopes/narmi-scopes.yml
+- type: AgenticAccess
+  url: agentic-access/narmi-agentic-access.yml
+- type: Packages
+  url: packages/narmi-packages.yml
+- type: SDKs
+  url: packages/narmi-packages.yml
+- type: MCPServer
+  url: mcp/narmi-mcp.yml
+- type: LLMsTxt
+  url: llms/narmi-llms.txt
+- type: Conventions
+  url: conventions/narmi-conventions.yml
+- type: Idempotency
+  url: conventions/narmi-conventions.yml
+- type: ErrorCatalog
+  url: errors/narmi-problem-types.yml
+- type: Conformance
+  url: conformance/narmi-conformance.yml
+- type: Lifecycle
+  url: lifecycle/narmi-lifecycle.yml
+- type: DataModel
+  url: data-model/narmi-data-model.yml
+- type: Components
+  url: components/narmi-components.yml
+- type: Sandbox
+  url: sandbox/narmi-sandbox.yml
+- type: Webhooks
+  url: asyncapi/narmi-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Security
+  url: https://www.narmi.com/policies/security
+- type: VulnerabilityDisclosure
+  url: security/narmi-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/narmi-domain-security.yml
+- type: Arazzo
+  name: Read Narmi accounts, balances, and transactions
+  url: arazzo/narmi-read-accounts.yml
+- type: Arazzo
+  name: Originate a Narmi ACH payment
+  url: arazzo/narmi-originate-ach-payment.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 27
+  pass: local-v1

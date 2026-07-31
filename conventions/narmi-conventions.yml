@@ -1,0 +1,57 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/narmi-public-openapi-original.yml
+description: >-
+  Cross-cutting request/response semantics for the Narmi Public API, derived
+  from the OpenAPI schema and the developer docs.
+authentication:
+  style: oauth2
+  flow: authorization_code
+  pkce: true
+  authorization_url: /v2/oauth/authorize/
+  token_url: /v2/oauth/token/
+  scopes_reference: scopes/narmi-scopes.yml
+  reference: authentication/narmi-authentication.yml
+idempotency:
+  supported: true
+  header: Idempotency-Key
+  scope: mutating (POST) operations
+  behavior: >-
+    Replaying a request with a previously-seen Idempotency-Key returns HTTP 409
+    with error id `idempotency_key_used` ("Idempotency-Key is already used.").
+    Callers send a fresh Idempotency-Key per distinct request and safely retry
+    with the same key.
+  evidence: openapi/narmi-public-openapi-original.yml
+pagination:
+  style: page-number + limit/offset (Django REST Framework)
+  params:
+    - page
+    - limit
+    - offset
+  notes: >-
+    List endpoints accept `page` (page-number pagination) and/or `limit`+`offset`
+    windowing. Response bodies wrap results in a paginated envelope.
+money:
+  representation: minor units (integer)
+  notes: >-
+    All monetary values are represented in minor units — the smallest unit of
+    the currency with no decimal (e.g. cents). $10.00 is represented as 1000.
+versioning:
+  scheme: uri-path
+  current: v1
+  oauth_path: v2
+  header_version_note: >-
+    Some update endpoints are additionally version-gated and return HTTP 406
+    (`not_acceptable`, "Deprecated update endpoint supports only versions <= 16")
+    when an unsupported version is requested.
+  reference: lifecycle/narmi-lifecycle.yml
+error_envelope:
+  shape: '{ id, message }'
+  reference: errors/narmi-problem-types.yml
+rate_limiting:
+  signal: >-
+    A 403 with error id `max_number_requests` ("Maximum number of requests
+    made") signals an attempt/rate ceiling. No standardized RateLimit-* headers
+    were observed in the schema.
+identifiers:
+  style: UUID path parameters (e.g. {uuid}, {account_uuid}, {card_id})

@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/narmi/design_system
+description: >-
+  Narmi ships a first-party client-side UI component library — the Narmi Design
+  System (NDS) — used to build embedded and custom digital-banking surfaces on
+  top of the Narmi platform, including custom account-opening flows and widgets.
+families:
+  - name: Narmi Design System (NDS)
+    kind: react-component-library
+    repo: https://github.com/narmi/design_system
+    stars: 38
+    docs:
+      - label: Storybook component library
+        url: https://narmi.github.io/design_system
+      - label: Chromatic component explorer
+        url: https://60620d422ffdf100216415b2-ixnrifvgev.chromatic.com/?path=/docs/components-button--overview
+      - label: Zeroheight design-system reference (NDS)
+        url: https://zeroheight.com/8ac87d4ba/p/446c38-narmi-design-system-nds
+    notes: >-
+      JavaScript/React UI library (⚡ Narmi Design System and UI Library).
+      Distinct from the server-side SDK in packages/ — these are client-side
+      presentational components for building banking UIs.
+  - name: Narmi Application Framework
+    kind: embedding-framework
+    docs:
+      - label: Open Platform / Application Framework
+        url: https://www.narmi.com/open-platform#platform
+    notes: >-
+      Framework for embedding third-party fintech apps (and agentic AI tools)
+      directly into the Narmi digital-banking experience; surfaced through the
+      AppXchange marketplace.

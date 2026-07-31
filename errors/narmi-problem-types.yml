@@ -1,0 +1,80 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/narmi-public-openapi-original.yml
+format: custom
+envelope:
+  shape: '{ "id": "<machine_code>", "message": "<human_readable | field_errors>" }'
+  id_field: id
+  message_field: message
+  notes: >-
+    Narmi errors are NOT RFC 9457 problem+json. Responses carry a custom
+    envelope with a machine-readable `id` and a human-readable `message`.
+    For 422 validation errors the `message` is an object of field -> [errors]
+    (e.g. {"routing_number": ["Routing number must contain 9 digits..."]}).
+status_codes_observed:
+  '400': 39
+  '401': 1
+  '403': 51
+  '404': 75
+  '406': 1
+  '409': 4
+  '413': 1
+  '422': 46
+  '500': 29
+  '502': 1
+  '503': 15
+problems:
+  - status: 401
+    id: authentication_failed
+    message: Incorrect authentication credentials.
+    remediation: Refresh or re-issue the OAuth 2.0 access token.
+  - status: 403
+    id: permission_denied
+    message: You do not have permission to perform this action.
+    remediation: Ensure the token was granted the required banking:* scope.
+  - status: 403
+    id: max_number_requests
+    message: Maximum number of requests made
+    remediation: Back off — a rate/attempt ceiling was reached.
+  - status: 404
+    id: api_error
+    message: Not found.
+  - status: 404
+    id: not_found
+    message: Not found.
+  - status: 404
+    id: not_found_error
+    message: The requested resource was not found.
+  - status: 404
+    id: complete_enrollment_user_not_found
+    message: User not found.
+    source_operation: openapi/narmi-public-openapi-original.yml#users_enrollment_complete_create
+  - status: 406
+    id: not_acceptable
+    message: Deprecated update endpoint supports only versions <= 16.
+    remediation: Send a supported API version; some update endpoints are version-gated.
+  - status: 409
+    id: idempotency_key_used
+    message: Idempotency-Key is already used.
+    remediation: Reuse the original response, or send a new Idempotency-Key for a new request.
+  - status: 422
+    id: invalid_request_error
+    message: '{ field: [validation errors] } — e.g. routing_number must contain 9 digits'
+  - status: 422
+    id: invalid
+    message: 'Routing number must contain 9 digits. Received 1234.'
+  - status: 422
+    id: check_already_cleared_error
+    message: Check has already cleared and cannot be stopped.
+  - status: 422
+    id: enrollment_already_completed
+    message: You have already completed enrollment. Please refresh the page.
+  - status: 500
+    id: service_failure_error
+    message: Sorry, we were unable to process your request, please check back soon.
+  - status: 503
+    id: api_connection_error
+    message: Sorry, we were unable to process your request, please try again later.
+  - status: 503
+    id: check_deposit_error
+    message: Unable to create check deposit user.

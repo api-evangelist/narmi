@@ -1,0 +1,228 @@
+{
+  "info": {
+    "_postman_id": "2a013dc2-8f62-4645-adb4-1e191cf82ae3",
+    "name": "Narmi Public account balances ach destinations API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:15:41.000Z",
+    "updatedAt": "2026-07-28T02:15:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2a013dc2-8f62-4645-adb4-1e191cf82ae3"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "ach_details",
+          "item": [
+            {
+              "name": "Create an ACH destination",
+              "id": "cfdd0ee8-5270-4b39-ae0c-0ecffc4ccf1e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ach_details/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ach_details",
+                    ""
+                  ]
+                },
+                "description": "Create a set of ACH details that can be used as a destination for ACH Payments.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "1bfe49ef-680e-48b3-909f-3521e373af33",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ach_details/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ach_details",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"account_number\": \"<string>\",\n  \"account_purpose\": \"personal\",\n  \"account_type\": \"loan\",\n  \"routing_number\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"institution_name\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:15:42.000Z",
+                  "updatedAt": "2026-07-28T02:15:42.000Z",
+                  "uid": "35240-1bfe49ef-680e-48b3-909f-3521e373af33"
+                },
+                {
+                  "id": "5d2e4fd1-47b8-450d-a12a-7b895b3da2ab",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ach_details/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ach_details",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:15:42.000Z",
+                  "updatedAt": "2026-07-28T02:15:42.000Z",
+                  "uid": "35240-5d2e4fd1-47b8-450d-a12a-7b895b3da2ab"
+                },
+                {
+                  "id": "ce1f107a-d9a7-4df3-afa9-71d8bb540d6c",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ach_details/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ach_details",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+                  "createdAt": "2026-07-28T02:15:42.000Z",
+                  "updatedAt": "2026-07-28T02:15:42.000Z",
+                  "uid": "35240-ce1f107a-d9a7-4df3-afa9-71d8bb540d6c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:15:42.000Z",
+              "updatedAt": "2026-07-28T02:15:42.000Z",
+              "uid": "35240-cfdd0ee8-5270-4b39-ae0c-0ecffc4ccf1e"
+            }
+          ],
+          "id": "6221eee9-12ec-4c7e-b3bf-489d4201f5f0",
+          "createdAt": "2026-07-28T02:15:42.000Z",
+          "updatedAt": "2026-07-28T02:15:42.000Z",
+          "uid": "35240-6221eee9-12ec-4c7e-b3bf-489d4201f5f0"
+        }
+      ],
+      "id": "f259e67a-28bf-4f47-ad68-ca233792c766",
+      "createdAt": "2026-07-28T02:15:42.000Z",
+      "updatedAt": "2026-07-28T02:15:42.000Z",
+      "uid": "35240-f259e67a-28bf-4f47-ad68-ca233792c766"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

@@ -1,0 +1,1095 @@
+{
+  "info": {
+    "_postman_id": "0f88c013-e931-42d0-bf5a-6f9ecb432a0e",
+    "name": "Narmi Public account balances users API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:17:01.000Z",
+    "updatedAt": "2026-07-28T02:17:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0f88c013-e931-42d0-bf5a-6f9ecb432a0e"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "users",
+          "item": [
+            {
+              "name": "{user_uuid}",
+              "item": [
+                {
+                  "name": "estatements",
+                  "item": [
+                    {
+                      "name": "Sets user to receive estatements",
+                      "id": "1270323e-1278-4259-bcc8-b2ad67a0d323",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/users/:user_uuid/estatements/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "users",
+                            ":user_uuid",
+                            "estatements",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "93920ded-2f59-4e01-ad0f-8362bb2c46cd",
+                              "key": "user_uuid",
+                              "value": "qgt",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Sets the authenticated user to no longer receive paper statements. Does not affect whether the user can view statements within Digital Banking.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "68f6e207-cff0-44bb-b4a1-e37b7ab8eb73",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/users/:user_uuid/estatements/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "users",
+                                ":user_uuid",
+                                "estatements",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "user_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"eStatements\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T02:17:01.000Z",
+                          "updatedAt": "2026-07-28T02:17:01.000Z",
+                          "uid": "35240-68f6e207-cff0-44bb-b4a1-e37b7ab8eb73"
+                        },
+                        {
+                          "id": "da3ccf72-979a-4743-8c93-38f26766f08a",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/users/:user_uuid/estatements/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "users",
+                                ":user_uuid",
+                                "estatements",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "user_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                          "createdAt": "2026-07-28T02:17:01.000Z",
+                          "updatedAt": "2026-07-28T02:17:01.000Z",
+                          "uid": "35240-da3ccf72-979a-4743-8c93-38f26766f08a"
+                        },
+                        {
+                          "id": "463e8227-ebf7-4d8f-add1-8266a4476af2",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/users/:user_uuid/estatements/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "users",
+                                ":user_uuid",
+                                "estatements",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "user_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:17:01.000Z",
+                          "updatedAt": "2026-07-28T02:17:01.000Z",
+                          "uid": "35240-463e8227-ebf7-4d8f-add1-8266a4476af2"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:17:01.000Z",
+                      "updatedAt": "2026-07-28T02:17:01.000Z",
+                      "uid": "35240-1270323e-1278-4259-bcc8-b2ad67a0d323"
+                    },
+                    {
+                      "name": "Sets user to receive paper statements",
+                      "id": "66118bb9-26ff-470e-b29a-f23e9e54f544",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/users/:user_uuid/estatements/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "users",
+                            ":user_uuid",
+                            "estatements",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "c1328369-9eb4-4d4d-8a72-57d917d6de39",
+                              "key": "user_uuid",
+                              "value": "qgt",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Sets the authenticated user to receive paper statements. Does not affect whether the user can view statements within Digital Banking.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "16e23d26-9687-4d91-978c-9b0787d55d51",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/users/:user_uuid/estatements/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "users",
+                                ":user_uuid",
+                                "estatements",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "user_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"eStatements\": \"<boolean>\"\n}",
+                          "createdAt": "2026-07-28T02:17:01.000Z",
+                          "updatedAt": "2026-07-28T02:17:01.000Z",
+                          "uid": "35240-16e23d26-9687-4d91-978c-9b0787d55d51"
+                        },
+                        {
+                          "id": "4a80ca57-e740-4537-93bf-b234807d49c1",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/users/:user_uuid/estatements/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "users",
+                                ":user_uuid",
+                                "estatements",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "user_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                          "createdAt": "2026-07-28T02:17:01.000Z",
+                          "updatedAt": "2026-07-28T02:17:01.000Z",
+                          "uid": "35240-4a80ca57-e740-4537-93bf-b234807d49c1"
+                        },
+                        {
+                          "id": "89e456ba-2824-4824-9347-9477672a45fb",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/users/:user_uuid/estatements/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "users",
+                                ":user_uuid",
+                                "estatements",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "user_uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:17:01.000Z",
+                          "updatedAt": "2026-07-28T02:17:01.000Z",
+                          "uid": "35240-89e456ba-2824-4824-9347-9477672a45fb"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:17:01.000Z",
+                      "updatedAt": "2026-07-28T02:17:01.000Z",
+                      "uid": "35240-66118bb9-26ff-470e-b29a-f23e9e54f544"
+                    }
+                  ],
+                  "id": "417735bf-68f1-4f38-abed-00df050c9a7d",
+                  "createdAt": "2026-07-28T02:17:01.000Z",
+                  "updatedAt": "2026-07-28T02:17:01.000Z",
+                  "uid": "35240-417735bf-68f1-4f38-abed-00df050c9a7d"
+                },
+                {
+                  "name": "Retrieve a user",
+                  "id": "a49b8524-e278-442f-b346-ff521c1dd948",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/users/:user_uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "users",
+                        ":user_uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "215cec79-d036-4eb2-9884-514a182cf982",
+                          "key": "user_uuid",
+                          "value": "qgt",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Fetch a user specified by UUID. A user can be retrieved when it is a member of an associated account.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "ade851bd-25d1-4802-9d86-adf406a82474",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/users/:user_uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "users",
+                            ":user_uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "user_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"user\": {\n    \"email\": \"<string>\",\n    \"core_provided_email\": \"<string>\",\n    \"username\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"institution_user_identifier\": \"<string>\",\n    \"updated_at\": \"<dateTime>\",\n    \"addresses\": [\n      {\n        \"city\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"region_code\": \"<string>\",\n        \"street_address\": \"<string>\",\n        \"street_address_2\": \"<string>\",\n        \"country_code\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"city\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"region_code\": \"<string>\",\n        \"street_address\": \"<string>\",\n        \"street_address_2\": \"<string>\",\n        \"country_code\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"phone_numbers\": [\n      {\n        \"number\": \"<string>\",\n        \"device_id\": \"<string>\",\n        \"device_request_id\": \"<string>\"\n      },\n      {\n        \"number\": \"<string>\",\n        \"device_id\": \"<string>\",\n        \"device_request_id\": \"<string>\"\n      }\n    ],\n    \"notifications_enabled\": \"<boolean>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"paper_statements\": \"<boolean>\",\n    \"user_category\": \"personal\",\n    \"features\": {\n      \"ea_8_9\": {},\n      \"velit552\": {},\n      \"irure1ab\": {}\n    },\n    \"org_uuid\": \"<uuid>\",\n    \"org_role\": \"Viewer\",\n    \"org_name\": \"<string>\",\n    \"business_permissions\": [\n      {\n        \"model_str\": \"<string>\",\n        \"operation\": \"<string>\",\n        \"uuid\": \"<uuid>\"\n      },\n      {\n        \"model_str\": \"<string>\",\n        \"operation\": \"<string>\",\n        \"uuid\": \"<uuid>\"\n      }\n    ],\n    \"dual_approval_required\": \"<boolean>\",\n    \"ach_dual_approval_required\": \"<boolean>\",\n    \"income_sources\": [\n      {\n        \"income\": \"<integer>\",\n        \"income_type\": \"employed\",\n        \"uuid\": \"<uuid>\",\n        \"mortgage_rent\": \"<integer>\",\n        \"industry\": \"<string>\",\n        \"occupation\": \"<string>\"\n      },\n      {\n        \"income\": \"<integer>\",\n        \"income_type\": \"employed\",\n        \"uuid\": \"<uuid>\",\n        \"mortgage_rent\": \"<integer>\",\n        \"industry\": \"<string>\",\n        \"occupation\": \"<string>\"\n      }\n    ],\n    \"international_wire_dual_approval_required\": \"<boolean>\",\n    \"is_staff\": \"<boolean>\",\n    \"is_active\": \"<boolean>\",\n    \"is_superuser\": \"<boolean>\",\n    \"is_narmi\": \"<boolean>\",\n    \"date_joined\": \"<dateTime>\",\n    \"last_login\": \"<dateTime>\",\n    \"segment\": \"<string>\",\n    \"metadata\": {\n      \"aliquip_e8\": {},\n      \"dolore_38_\": {}\n    },\n    \"has_username\": \"<boolean>\",\n    \"has_password\": \"<boolean>\",\n    \"has_accepted_latest_terms\": \"<boolean>\",\n    \"requires_enrollment_code_verification\": \"<boolean>\",\n    \"enabled_estatements_at\": \"<dateTime>\",\n    \"is_converting\": \"<boolean>\",\n    \"has_permitted_device\": \"<boolean>\",\n    \"has_backup_codes\": \"<boolean>\",\n    \"support_teams\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"session_oidc_provider\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:17:01.000Z",
+                      "updatedAt": "2026-07-28T02:17:01.000Z",
+                      "uid": "35240-ade851bd-25d1-4802-9d86-adf406a82474"
+                    },
+                    {
+                      "id": "09bed6cc-46c0-4342-99e3-6c17a4543970",
+                      "name": "No response body",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/users/:user_uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "users",
+                            ":user_uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "user_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:17:01.000Z",
+                      "updatedAt": "2026-07-28T02:17:01.000Z",
+                      "uid": "35240-09bed6cc-46c0-4342-99e3-6c17a4543970"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:17:01.000Z",
+                  "updatedAt": "2026-07-28T02:17:01.000Z",
+                  "uid": "35240-a49b8524-e278-442f-b346-ff521c1dd948"
+                },
+                {
+                  "name": "Update a user",
+                  "id": "feb12a2d-0af7-4eda-a4a0-441e07278614",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"paper_statements\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/users/:user_uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "users",
+                        ":user_uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "133b441c-95c9-406a-8b27-6efac7149c0e",
+                          "key": "user_uuid",
+                          "value": "qgt",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Set a user's preference to receive paper statements.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "5ee92d50-d2a7-4d30-bb52-a24311abcaf7",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"paper_statements\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/users/:user_uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "users",
+                            ":user_uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "user_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"user\": {\n    \"email\": \"<string>\",\n    \"core_provided_email\": \"<string>\",\n    \"username\": \"<string>\",\n    \"id\": \"<uuid>\",\n    \"institution_user_identifier\": \"<string>\",\n    \"updated_at\": \"<dateTime>\",\n    \"addresses\": [\n      {\n        \"city\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"region_code\": \"<string>\",\n        \"street_address\": \"<string>\",\n        \"street_address_2\": \"<string>\",\n        \"country_code\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"city\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"region_code\": \"<string>\",\n        \"street_address\": \"<string>\",\n        \"street_address_2\": \"<string>\",\n        \"country_code\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"phone_numbers\": [\n      {\n        \"number\": \"<string>\",\n        \"device_id\": \"<string>\",\n        \"device_request_id\": \"<string>\"\n      },\n      {\n        \"number\": \"<string>\",\n        \"device_id\": \"<string>\",\n        \"device_request_id\": \"<string>\"\n      }\n    ],\n    \"notifications_enabled\": \"<boolean>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"paper_statements\": \"<boolean>\",\n    \"user_category\": \"personal\",\n    \"features\": {\n      \"ea_8_9\": {},\n      \"velit552\": {},\n      \"irure1ab\": {}\n    },\n    \"org_uuid\": \"<uuid>\",\n    \"org_role\": \"Viewer\",\n    \"org_name\": \"<string>\",\n    \"business_permissions\": [\n      {\n        \"model_str\": \"<string>\",\n        \"operation\": \"<string>\",\n        \"uuid\": \"<uuid>\"\n      },\n      {\n        \"model_str\": \"<string>\",\n        \"operation\": \"<string>\",\n        \"uuid\": \"<uuid>\"\n      }\n    ],\n    \"dual_approval_required\": \"<boolean>\",\n    \"ach_dual_approval_required\": \"<boolean>\",\n    \"income_sources\": [\n      {\n        \"income\": \"<integer>\",\n        \"income_type\": \"employed\",\n        \"uuid\": \"<uuid>\",\n        \"mortgage_rent\": \"<integer>\",\n        \"industry\": \"<string>\",\n        \"occupation\": \"<string>\"\n      },\n      {\n        \"income\": \"<integer>\",\n        \"income_type\": \"employed\",\n        \"uuid\": \"<uuid>\",\n        \"mortgage_rent\": \"<integer>\",\n        \"industry\": \"<string>\",\n        \"occupation\": \"<string>\"\n      }\n    ],\n    \"international_wire_dual_approval_required\": \"<boolean>\",\n    \"is_staff\": \"<boolean>\",\n    \"is_active\": \"<boolean>\",\n    \"is_superuser\": \"<boolean>\",\n    \"is_narmi\": \"<boolean>\",\n    \"date_joined\": \"<dateTime>\",\n    \"last_login\": \"<dateTime>\",\n    \"segment\": \"<string>\",\n    \"metadata\": {\n      \"aliquip_e8\": {},\n      \"dolore_38_\": {}\n    },\n    \"has_username\": \"<boolean>\",\n    \"has_password\": \"<boolean>\",\n    \"has_accepted_latest_terms\": \"<boolean>\",\n    \"requires_enrollment_code_verification\": \"<boolean>\",\n    \"enabled_estatements_at\": \"<dateTime>\",\n    \"is_converting\": \"<boolean>\",\n    \"has_permitted_device\": \"<boolean>\",\n    \"has_backup_codes\": \"<boolean>\",\n    \"support_teams\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"session_oidc_provider\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:17:01.000Z",
+                      "updatedAt": "2026-07-28T02:17:01.000Z",
+                      "uid": "35240-5ee92d50-d2a7-4d30-bb52-a24311abcaf7"
+                    },
+                    {
+                      "id": "dc8cce91-3f54-4c91-a487-ae0de95ecd36",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"paper_statements\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/users/:user_uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "users",
+                            ":user_uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "user_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+                      "createdAt": "2026-07-28T02:17:01.000Z",
+                      "updatedAt": "2026-07-28T02:17:01.000Z",
+                      "uid": "35240-dc8cce91-3f54-4c91-a487-ae0de95ecd36"
+                    },
+                    {
+                      "id": "47a1c456-f319-410d-8735-38e01ce017b5",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"paper_statements\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/users/:user_uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "users",
+                            ":user_uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "user_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                      "createdAt": "2026-07-28T02:17:01.000Z",
+                      "updatedAt": "2026-07-28T02:17:01.000Z",
+                      "uid": "35240-47a1c456-f319-410d-8735-38e01ce017b5"
+                    },
+                    {
+                      "id": "980cca0a-bd80-4c57-8d16-8f5a875d12c9",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"paper_statements\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/users/:user_uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "users",
+                            ":user_uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "user_uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:17:01.000Z",
+                      "updatedAt": "2026-07-28T02:17:01.000Z",
+                      "uid": "35240-980cca0a-bd80-4c57-8d16-8f5a875d12c9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:17:01.000Z",
+                  "updatedAt": "2026-07-28T02:17:01.000Z",
+                  "uid": "35240-feb12a2d-0af7-4eda-a4a0-441e07278614"
+                }
+              ],
+              "id": "f49780fc-74a0-462d-ab4e-5f0f2d2bf32c",
+              "createdAt": "2026-07-28T02:17:01.000Z",
+              "updatedAt": "2026-07-28T02:17:01.000Z",
+              "uid": "35240-f49780fc-74a0-462d-ab4e-5f0f2d2bf32c"
+            },
+            {
+              "name": "List joint users",
+              "id": "474ce936-e1c0-49ab-896d-34d4d20e8a4d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/users/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "users",
+                    ""
+                  ]
+                },
+                "description": "List the authenticated user's joint access users and self. This endpoint is now deprecated and only returns information about the currently authenticated user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "229c1ce1-3c2e-4f81-a260-275bfdd51495",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/users/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "users",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"users\": [\n    {\n      \"email\": \"<string>\",\n      \"core_provided_email\": \"<string>\",\n      \"username\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"institution_user_identifier\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"addresses\": [\n        {\n          \"city\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"region_code\": \"<string>\",\n          \"street_address\": \"<string>\",\n          \"street_address_2\": \"<string>\",\n          \"country_code\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"city\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"region_code\": \"<string>\",\n          \"street_address\": \"<string>\",\n          \"street_address_2\": \"<string>\",\n          \"country_code\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"phone_numbers\": [\n        {\n          \"number\": \"<string>\",\n          \"device_id\": \"<string>\",\n          \"device_request_id\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"device_id\": \"<string>\",\n          \"device_request_id\": \"<string>\"\n        }\n      ],\n      \"notifications_enabled\": \"<boolean>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"paper_statements\": \"<boolean>\",\n      \"user_category\": \"business\",\n      \"features\": {\n        \"non6d0\": {},\n        \"ipsum6_7\": {},\n        \"doloree8\": {}\n      },\n      \"org_uuid\": \"<uuid>\",\n      \"org_role\": \"Viewer\",\n      \"org_name\": \"<string>\",\n      \"business_permissions\": [\n        {\n          \"model_str\": \"<string>\",\n          \"operation\": \"<string>\",\n          \"uuid\": \"<uuid>\"\n        },\n        {\n          \"model_str\": \"<string>\",\n          \"operation\": \"<string>\",\n          \"uuid\": \"<uuid>\"\n        }\n      ],\n      \"dual_approval_required\": \"<boolean>\",\n      \"ach_dual_approval_required\": \"<boolean>\",\n      \"income_sources\": [\n        {\n          \"income\": \"<integer>\",\n          \"income_type\": \"part_time\",\n          \"uuid\": \"<uuid>\",\n          \"mortgage_rent\": \"<integer>\",\n          \"industry\": \"<string>\",\n          \"occupation\": \"<string>\"\n        },\n        {\n          \"income\": \"<integer>\",\n          \"income_type\": \"not_employed\",\n          \"uuid\": \"<uuid>\",\n          \"mortgage_rent\": \"<integer>\",\n          \"industry\": \"<string>\",\n          \"occupation\": \"<string>\"\n        }\n      ],\n      \"international_wire_dual_approval_required\": \"<boolean>\",\n      \"is_staff\": \"<boolean>\",\n      \"is_active\": \"<boolean>\",\n      \"is_superuser\": \"<boolean>\",\n      \"is_narmi\": \"<boolean>\",\n      \"date_joined\": \"<dateTime>\",\n      \"last_login\": \"<dateTime>\",\n      \"segment\": \"<string>\",\n      \"metadata\": {\n        \"Loremb3\": {},\n        \"anim_75\": {},\n        \"ut_b9\": {}\n      },\n      \"has_username\": \"<boolean>\",\n      \"has_password\": \"<boolean>\",\n      \"has_accepted_latest_terms\": \"<boolean>\",\n      \"requires_enrollment_code_verification\": \"<boolean>\",\n      \"enabled_estatements_at\": \"<dateTime>\",\n      \"is_converting\": \"<boolean>\",\n      \"has_permitted_device\": \"<boolean>\",\n      \"has_backup_codes\": \"<boolean>\",\n      \"support_teams\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"session_oidc_provider\": \"<string>\"\n    },\n    {\n      \"email\": \"<string>\",\n      \"core_provided_email\": \"<string>\",\n      \"username\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"institution_user_identifier\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"addresses\": [\n        {\n          \"city\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"region_code\": \"<string>\",\n          \"street_address\": \"<string>\",\n          \"street_address_2\": \"<string>\",\n          \"country_code\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"city\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"region_code\": \"<string>\",\n          \"street_address\": \"<string>\",\n          \"street_address_2\": \"<string>\",\n          \"country_code\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"phone_numbers\": [\n        {\n          \"number\": \"<string>\",\n          \"device_id\": \"<string>\",\n          \"device_request_id\": \"<string>\"\n        },\n        {\n          \"number\": \"<string>\",\n          \"device_id\": \"<string>\",\n          \"device_request_id\": \"<string>\"\n        }\n      ],\n      \"notifications_enabled\": \"<boolean>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"paper_statements\": \"<boolean>\",\n      \"user_category\": \"business\",\n      \"features\": {\n        \"laboree28\": {},\n        \"temporb7\": {}\n      },\n      \"org_uuid\": \"<uuid>\",\n      \"org_role\": \"Admin\",\n      \"org_name\": \"<string>\",\n      \"business_permissions\": [\n        {\n          \"model_str\": \"<string>\",\n          \"operation\": \"<string>\",\n          \"uuid\": \"<uuid>\"\n        },\n        {\n          \"model_str\": \"<string>\",\n          \"operation\": \"<string>\",\n          \"uuid\": \"<uuid>\"\n        }\n      ],\n      \"dual_approval_required\": \"<boolean>\",\n      \"ach_dual_approval_required\": \"<boolean>\",\n      \"income_sources\": [\n        {\n          \"income\": \"<integer>\",\n          \"income_type\": \"not_employed\",\n          \"uuid\": \"<uuid>\",\n          \"mortgage_rent\": \"<integer>\",\n          \"industry\": \"<string>\",\n          \"occupation\": \"<string>\"\n        },\n        {\n          \"income\": \"<integer>\",\n          \"income_type\": \"other\",\n          \"uuid\": \"<uuid>\",\n          \"mortgage_rent\": \"<integer>\",\n          \"industry\": \"<string>\",\n          \"occupation\": \"<string>\"\n        }\n      ],\n      \"international_wire_dual_approval_required\": \"<boolean>\",\n      \"is_staff\": \"<boolean>\",\n      \"is_active\": \"<boolean>\",\n      \"is_superuser\": \"<boolean>\",\n      \"is_narmi\": \"<boolean>\",\n      \"date_joined\": \"<dateTime>\",\n      \"last_login\": \"<dateTime>\",\n      \"segment\": \"<string>\",\n      \"metadata\": {\n        \"minim2\": {}\n      },\n      \"has_username\": \"<boolean>\",\n      \"has_password\": \"<boolean>\",\n      \"has_accepted_latest_terms\": \"<boolean>\",\n      \"requires_enrollment_code_verification\": \"<boolean>\",\n      \"enabled_estatements_at\": \"<dateTime>\",\n      \"is_converting\": \"<boolean>\",\n      \"has_permitted_device\": \"<boolean>\",\n      \"has_backup_codes\": \"<boolean>\",\n      \"support_teams\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"session_oidc_provider\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:17:01.000Z",
+                  "updatedAt": "2026-07-28T02:17:01.000Z",
+                  "uid": "35240-229c1ce1-3c2e-4f81-a260-275bfdd51495"
+                }
+              ],
+              "createdAt": "2026-07-28T02:17:01.000Z",
+              "updatedAt": "2026-07-28T02:17:01.000Z",
+              "uid": "35240-474ce936-e1c0-49ab-896d-34d4d20e8a4d"
+            }
+          ],
+          "id": "8a0dd0e5-4e5b-42c5-8ec5-73cb9cd77945",
+          "createdAt": "2026-07-28T02:17:01.000Z",
+          "updatedAt": "2026-07-28T02:17:01.000Z",
+          "uid": "35240-8a0dd0e5-4e5b-42c5-8ec5-73cb9cd77945"
+        }
+      ],
+      "id": "d238a8be-a83b-4d33-b33f-b5e62d1a0df0",
+      "createdAt": "2026-07-28T02:17:01.000Z",
+      "updatedAt": "2026-07-28T02:17:01.000Z",
+      "uid": "35240-d238a8be-a83b-4d33-b33f-b5e62d1a0df0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

@@ -1,0 +1,1069 @@
+{
+  "info": {
+    "_postman_id": "12c64974-5275-45a6-8649-d901f412d40f",
+    "name": "Narmi Public account balances ach import API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:15:42.000Z",
+    "updatedAt": "2026-07-28T02:15:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-12c64974-5275-45a6-8649-d901f412d40f"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "ach_import",
+          "item": [
+            {
+              "name": "csv",
+              "item": [
+                {
+                  "name": "import",
+                  "item": [
+                    {
+                      "name": "Import ACH CSV",
+                      "id": "958f6ebf-f12c-4cbf-98d7-ac2e055b4a36",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) ",
+                              "key": "file",
+                              "type": "file",
+                              "value": null
+                            },
+                            {
+                              "key": "has_header_row",
+                              "value": "true",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/ach_import/csv/import/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "ach_import",
+                            "csv",
+                            "import",
+                            ""
+                          ]
+                        },
+                        "description": "Upload a CSV file, store it in S3, and return preview rows with a suggested column mapping.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "c4693254-f698-460a-b597-716a29dc69e6",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "multipart/form-data"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "formdata",
+                              "formdata": [
+                                {
+                                  "description": "(Required) ",
+                                  "key": "file",
+                                  "type": "file"
+                                },
+                                {
+                                  "key": "has_header_row",
+                                  "value": "true",
+                                  "type": "text"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/ach_import/csv/import/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "ach_import",
+                                "csv",
+                                "import",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"columns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"organization_file_uuid\": \"<uuid>\",\n  \"preview_rows\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"row_count\": \"<integer>\",\n  \"s3_key\": \"<string>\",\n  \"suggested_mapping\": {\n    \"column_mappings\": [\n      {\n        \"column_header\": \"<string>\",\n        \"column_index\": \"<integer>\",\n        \"field\": \"<string>\"\n      },\n      {\n        \"column_header\": \"<string>\",\n        \"column_index\": \"<integer>\",\n        \"field\": \"<string>\"\n      }\n    ],\n    \"mapping_name\": \"<string>\",\n    \"mapping_uuid\": \"<uuid>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:15:43.000Z",
+                          "updatedAt": "2026-07-28T02:15:43.000Z",
+                          "uid": "35240-c4693254-f698-460a-b597-716a29dc69e6"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:15:43.000Z",
+                      "updatedAt": "2026-07-28T02:15:43.000Z",
+                      "uid": "35240-958f6ebf-f12c-4cbf-98d7-ac2e055b4a36"
+                    }
+                  ],
+                  "id": "6532aed7-e318-4bf1-be58-d42d5840d545",
+                  "createdAt": "2026-07-28T02:15:43.000Z",
+                  "updatedAt": "2026-07-28T02:15:43.000Z",
+                  "uid": "35240-6532aed7-e318-4bf1-be58-d42d5840d545"
+                },
+                {
+                  "name": "mappings",
+                  "item": [
+                    {
+                      "name": "{uuid}",
+                      "item": [
+                        {
+                          "name": "Delete a saved CSV mapping",
+                          "id": "8bf27daa-5482-463b-9ebd-02e05260b315",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "/v2/oauth/token/",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "/v2/oauth/authorize/",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/ach_import/csv/mappings/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "ach_import",
+                                "csv",
+                                "mappings",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1e645c26-5c49-4d0d-9eb2-c8533159fa66",
+                                  "key": "uuid",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Delete a saved CSV field mapping by UUID.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                          },
+                          "response": [
+                            {
+                              "id": "440d6722-4568-4cba-97cd-3877f11fc3f8",
+                              "name": "No response body",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/ach_import/csv/mappings/:uuid/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "ach_import",
+                                    "csv",
+                                    "mappings",
+                                    ":uuid",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "uuid"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:15:43.000Z",
+                              "updatedAt": "2026-07-28T02:15:43.000Z",
+                              "uid": "35240-440d6722-4568-4cba-97cd-3877f11fc3f8"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:15:43.000Z",
+                          "updatedAt": "2026-07-28T02:15:43.000Z",
+                          "uid": "35240-8bf27daa-5482-463b-9ebd-02e05260b315"
+                        }
+                      ],
+                      "id": "ae8f3423-00b8-4514-8fd0-0cfd856c9c62",
+                      "createdAt": "2026-07-28T02:15:43.000Z",
+                      "updatedAt": "2026-07-28T02:15:43.000Z",
+                      "uid": "35240-ae8f3423-00b8-4514-8fd0-0cfd856c9c62"
+                    },
+                    {
+                      "name": "List saved CSV mappings",
+                      "id": "d118fcf1-6a56-408c-9ec8-3e687cfe4939",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/ach_import/csv/mappings/?page=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "ach_import",
+                            "csv",
+                            "mappings",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "A page number within the paginated result set.",
+                              "key": "page",
+                              "value": "<integer>"
+                            }
+                          ]
+                        },
+                        "description": "Return all saved CSV field mappings for the authenticated user's organization.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "a0fdb939-e52f-48d8-84b8-ed66411d596f",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/ach_import/csv/mappings/?page=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "ach_import",
+                                "csv",
+                                "mappings",
+                                ""
+                              ],
+                              "query": [
+                                {
+                                  "description": "A page number within the paginated result set.",
+                                  "key": "page",
+                                  "value": "<integer>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"count\": \"<integer>\",\n  \"results\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"has_header_row\": \"<boolean>\",\n      \"date_column_index\": \"<integer>\",\n      \"date_column_header\": \"<string>\",\n      \"recipient_name_column_index\": \"<integer>\",\n      \"recipient_name_column_header\": \"<string>\",\n      \"routing_number_column_index\": \"<integer>\",\n      \"routing_number_column_header\": \"<string>\",\n      \"account_number_column_index\": \"<integer>\",\n      \"account_number_column_header\": \"<string>\",\n      \"account_type_column_index\": \"<integer>\",\n      \"account_type_column_header\": \"<string>\",\n      \"action_column_index\": \"<integer>\",\n      \"action_column_header\": \"<string>\",\n      \"description_column_index\": \"<integer>\",\n      \"description_column_header\": \"<string>\",\n      \"amount_column_index\": \"<integer>\",\n      \"amount_column_header\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"has_header_row\": \"<boolean>\",\n      \"date_column_index\": \"<integer>\",\n      \"date_column_header\": \"<string>\",\n      \"recipient_name_column_index\": \"<integer>\",\n      \"recipient_name_column_header\": \"<string>\",\n      \"routing_number_column_index\": \"<integer>\",\n      \"routing_number_column_header\": \"<string>\",\n      \"account_number_column_index\": \"<integer>\",\n      \"account_number_column_header\": \"<string>\",\n      \"account_type_column_index\": \"<integer>\",\n      \"account_type_column_header\": \"<string>\",\n      \"action_column_index\": \"<integer>\",\n      \"action_column_header\": \"<string>\",\n      \"description_column_index\": \"<integer>\",\n      \"description_column_header\": \"<string>\",\n      \"amount_column_index\": \"<integer>\",\n      \"amount_column_header\": \"<string>\"\n    }\n  ],\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\"\n}",
+                          "createdAt": "2026-07-28T02:15:43.000Z",
+                          "updatedAt": "2026-07-28T02:15:43.000Z",
+                          "uid": "35240-a0fdb939-e52f-48d8-84b8-ed66411d596f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:15:43.000Z",
+                      "updatedAt": "2026-07-28T02:15:43.000Z",
+                      "uid": "35240-d118fcf1-6a56-408c-9ec8-3e687cfe4939"
+                    },
+                    {
+                      "name": "Create a saved CSV mapping",
+                      "id": "0307661d-a31a-41a2-9f2e-290671144aae",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"has_header_row\": \"<boolean>\",\n  \"date_column_index\": \"<integer>\",\n  \"date_column_header\": \"<string>\",\n  \"recipient_name_column_index\": \"<integer>\",\n  \"recipient_name_column_header\": \"<string>\",\n  \"routing_number_column_index\": \"<integer>\",\n  \"routing_number_column_header\": \"<string>\",\n  \"account_number_column_index\": \"<integer>\",\n  \"account_number_column_header\": \"<string>\",\n  \"account_type_column_index\": \"<integer>\",\n  \"account_type_column_header\": \"<string>\",\n  \"action_column_index\": \"<integer>\",\n  \"action_column_header\": \"<string>\",\n  \"description_column_index\": \"<integer>\",\n  \"description_column_header\": \"<string>\",\n  \"amount_column_index\": \"<integer>\",\n  \"amount_column_header\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/ach_import/csv/mappings/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "ach_import",
+                            "csv",
+                            "mappings",
+                            ""
+                          ]
+                        },
+                        "description": "Save a new named CSV field mapping for the authenticated user's organization.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "6ab7d5a7-b2ec-4e90-b174-df9f25486b64",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"has_header_row\": \"<boolean>\",\n  \"date_column_index\": \"<integer>\",\n  \"date_column_header\": \"<string>\",\n  \"recipient_name_column_index\": \"<integer>\",\n  \"recipient_name_column_header\": \"<string>\",\n  \"routing_number_column_index\": \"<integer>\",\n  \"routing_number_column_header\": \"<string>\",\n  \"account_number_column_index\": \"<integer>\",\n  \"account_number_column_header\": \"<string>\",\n  \"account_type_column_index\": \"<integer>\",\n  \"account_type_column_header\": \"<string>\",\n  \"action_column_index\": \"<integer>\",\n  \"action_column_header\": \"<string>\",\n  \"description_column_index\": \"<integer>\",\n  \"description_column_header\": \"<string>\",\n  \"amount_column_index\": \"<integer>\",\n  \"amount_column_header\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/ach_import/csv/mappings/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "ach_import",
+                                "csv",
+                                "mappings",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"has_header_row\": \"<boolean>\",\n  \"date_column_index\": \"<integer>\",\n  \"date_column_header\": \"<string>\",\n  \"recipient_name_column_index\": \"<integer>\",\n  \"recipient_name_column_header\": \"<string>\",\n  \"routing_number_column_index\": \"<integer>\",\n  \"routing_number_column_header\": \"<string>\",\n  \"account_number_column_index\": \"<integer>\",\n  \"account_number_column_header\": \"<string>\",\n  \"account_type_column_index\": \"<integer>\",\n  \"account_type_column_header\": \"<string>\",\n  \"action_column_index\": \"<integer>\",\n  \"action_column_header\": \"<string>\",\n  \"description_column_index\": \"<integer>\",\n  \"description_column_header\": \"<string>\",\n  \"amount_column_index\": \"<integer>\",\n  \"amount_column_header\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:43.000Z",
+                          "updatedAt": "2026-07-28T02:15:43.000Z",
+                          "uid": "35240-6ab7d5a7-b2ec-4e90-b174-df9f25486b64"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:15:43.000Z",
+                      "updatedAt": "2026-07-28T02:15:43.000Z",
+                      "uid": "35240-0307661d-a31a-41a2-9f2e-290671144aae"
+                    }
+                  ],
+                  "id": "f8806bc8-7d4d-4292-8ed3-23b57df6c713",
+                  "createdAt": "2026-07-28T02:15:43.000Z",
+                  "updatedAt": "2026-07-28T02:15:43.000Z",
+                  "uid": "35240-f8806bc8-7d4d-4292-8ed3-23b57df6c713"
+                },
+                {
+                  "name": "parse",
+                  "item": [
+                    {
+                      "name": "Parse ACH CSV",
+                      "id": "c7f0b449-60ca-496e-90b0-3891ec4645e5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"column_mappings\": [\n    {\n      \"column_header\": \"<string>\",\n      \"column_index\": \"<integer>\",\n      \"field\": \"<string>\"\n    },\n    {\n      \"column_header\": \"<string>\",\n      \"column_index\": \"<integer>\",\n      \"field\": \"<string>\"\n    }\n  ],\n  \"s3_key\": \"<string>\",\n  \"has_header_row\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/ach_import/csv/parse/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "ach_import",
+                            "csv",
+                            "parse",
+                            ""
+                          ]
+                        },
+                        "description": "Given an S3 key and column mapping, validate all rows and return structured data.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "54150e97-f891-4846-a522-aa624a42ec5b",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"column_mappings\": [\n    {\n      \"column_header\": \"<string>\",\n      \"column_index\": \"<integer>\",\n      \"field\": \"<string>\"\n    },\n    {\n      \"column_header\": \"<string>\",\n      \"column_index\": \"<integer>\",\n      \"field\": \"<string>\"\n    }\n  ],\n  \"s3_key\": \"<string>\",\n  \"has_header_row\": true\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/ach_import/csv/parse/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "ach_import",
+                                "csv",
+                                "parse",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"rows\": [\n    {\n      \"account_number\": \"<string>\",\n      \"account_type\": \"<string>\",\n      \"action\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"date\": \"<string>\",\n      \"description\": \"<string>\",\n      \"needs_review\": \"<boolean>\",\n      \"recipient\": {\n        \"name\": \"<string>\",\n        \"id\": \"<uuid>\",\n        \"updated_at\": \"<dateTime>\",\n        \"nickname\": \"<string>\",\n        \"type\": \"person\",\n        \"ach_destination\": {\n          \"account_number\": \"<string>\",\n          \"account_purpose\": \"personal\",\n          \"account_type\": \"loan\",\n          \"routing_number\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"institution_name\": \"<string>\"\n        },\n        \"fedwire_destination\": {\n          \"account_number\": \"<string>\",\n          \"address\": {\n            \"street_address\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"street_address_2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"region_code\": \"<string>\",\n            \"postal_code\": \"<string>\",\n            \"country_code\": \"<string>\"\n          },\n          \"routing_number\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"institution_name\": \"<string>\"\n        },\n        \"swift_destination\": {\n          \"account_identifier\": \"<string>\",\n          \"address\": {\n            \"street_address\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"street_address_2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"region_code\": \"<string>\",\n            \"postal_code\": \"<string>\",\n            \"country_code\": \"<string>\"\n          },\n          \"bic\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"created_at\": \"<dateTime>\",\n          \"updated_at\": \"<dateTime>\",\n          \"metadata\": {},\n          \"branch_address\": {\n            \"street_address\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"street_address_2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"region_code\": \"<string>\",\n            \"postal_code\": \"<string>\",\n            \"country_code\": \"<string>\"\n          }\n        }\n      },\n      \"recipient_name\": \"<string>\",\n      \"routing_number\": \"<string>\",\n      \"row_errors\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"row_index\": \"<integer>\",\n      \"warning\": \"<string>\"\n    },\n    {\n      \"account_number\": \"<string>\",\n      \"account_type\": \"<string>\",\n      \"action\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"date\": \"<string>\",\n      \"description\": \"<string>\",\n      \"needs_review\": \"<boolean>\",\n      \"recipient\": {\n        \"name\": \"<string>\",\n        \"id\": \"<uuid>\",\n        \"updated_at\": \"<dateTime>\",\n        \"nickname\": \"<string>\",\n        \"type\": \"person\",\n        \"ach_destination\": {\n          \"account_number\": \"<string>\",\n          \"account_purpose\": \"business\",\n          \"account_type\": \"savings\",\n          \"routing_number\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"institution_name\": \"<string>\"\n        },\n        \"fedwire_destination\": {\n          \"account_number\": \"<string>\",\n          \"address\": {\n            \"street_address\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"street_address_2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"region_code\": \"<string>\",\n            \"postal_code\": \"<string>\",\n            \"country_code\": \"<string>\"\n          },\n          \"routing_number\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"institution_name\": \"<string>\"\n        },\n        \"swift_destination\": {\n          \"account_identifier\": \"<string>\",\n          \"address\": {\n            \"street_address\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"street_address_2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"region_code\": \"<string>\",\n            \"postal_code\": \"<string>\",\n            \"country_code\": \"<string>\"\n          },\n          \"bic\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"created_at\": \"<dateTime>\",\n          \"updated_at\": \"<dateTime>\",\n          \"metadata\": {},\n          \"branch_address\": {\n            \"street_address\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"street_address_2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"region_code\": \"<string>\",\n            \"postal_code\": \"<string>\",\n            \"country_code\": \"<string>\"\n          }\n        }\n      },\n      \"recipient_name\": \"<string>\",\n      \"routing_number\": \"<string>\",\n      \"row_errors\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"row_index\": \"<integer>\",\n      \"warning\": \"<string>\"\n    }\n  ],\n  \"s3_key\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:43.000Z",
+                          "updatedAt": "2026-07-28T02:15:43.000Z",
+                          "uid": "35240-54150e97-f891-4846-a522-aa624a42ec5b"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:15:43.000Z",
+                      "updatedAt": "2026-07-28T02:15:43.000Z",
+                      "uid": "35240-c7f0b449-60ca-496e-90b0-3891ec4645e5"
+                    }
+                  ],
+                  "id": "7cee7f86-bc6f-4a98-8539-7b5fdb422291",
+                  "createdAt": "2026-07-28T02:15:43.000Z",
+                  "updatedAt": "2026-07-28T02:15:43.000Z",
+                  "uid": "35240-7cee7f86-bc6f-4a98-8539-7b5fdb422291"
+                }
+              ],
+              "id": "29b5bff2-10f1-4132-99bf-7f9e71b1616d",
+              "createdAt": "2026-07-28T02:15:43.000Z",
+              "updatedAt": "2026-07-28T02:15:43.000Z",
+              "uid": "35240-29b5bff2-10f1-4132-99bf-7f9e71b1616d"
+            },
+            {
+              "name": "nacha",
+              "item": [
+                {
+                  "name": "download",
+                  "item": [
+                    {
+                      "name": "{file_name}",
+                      "item": [
+                        {
+                          "name": "Download NACHA file",
+                          "id": "7ea0539f-2953-4128-b3af-0fbdf7d01feb",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "/v2/oauth/token/",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "authUrl",
+                                  "value": "/v2/oauth/authorize/",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "authorization_code",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/octet-stream"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/ach_import/nacha/download/:file_name/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "ach_import",
+                                "nacha",
+                                "download",
+                                ":file_name",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "667b47fd-c8da-42ed-8e13-b2858f87cd79",
+                                  "key": "file_name",
+                                  "value": "#vyJ",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Download a previously uploaded NACHA file by its S3 key for audit purposes.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                          },
+                          "response": [
+                            {
+                              "id": "db27b9e7-9101-4b39-9a45-51a77baba678",
+                              "name": "New Response",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/octet-stream"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/ach_import/nacha/download/:file_name/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "ach_import",
+                                    "nacha",
+                                    "download",
+                                    ":file_name",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "file_name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/octet-stream"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<binary>",
+                              "createdAt": "2026-07-28T02:15:43.000Z",
+                              "updatedAt": "2026-07-28T02:15:43.000Z",
+                              "uid": "35240-db27b9e7-9101-4b39-9a45-51a77baba678"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:15:43.000Z",
+                          "updatedAt": "2026-07-28T02:15:43.000Z",
+                          "uid": "35240-7ea0539f-2953-4128-b3af-0fbdf7d01feb"
+                        }
+                      ],
+                      "id": "0f7655a5-6f99-44ba-bb48-3602fc440f62",
+                      "createdAt": "2026-07-28T02:15:43.000Z",
+                      "updatedAt": "2026-07-28T02:15:43.000Z",
+                      "uid": "35240-0f7655a5-6f99-44ba-bb48-3602fc440f62"
+                    }
+                  ],
+                  "id": "c2004dce-7180-48ca-a784-c1e8aeacbc6d",
+                  "createdAt": "2026-07-28T02:15:43.000Z",
+                  "updatedAt": "2026-07-28T02:15:43.000Z",
+                  "uid": "35240-c2004dce-7180-48ca-a784-c1e8aeacbc6d"
+                },
+                {
+                  "name": "import",
+                  "item": [
+                    {
+                      "name": "Import NACHA file",
+                      "id": "c0e60354-e9db-4b1f-93a7-3f1b68488885",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) * `personal` - Personal\n* `business` - Business (This can only be one of personal,business)",
+                              "key": "account_purpose",
+                              "value": "personal",
+                              "type": "text"
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "file",
+                              "type": "file",
+                              "value": null
+                            },
+                            {
+                              "description": "(Required) ",
+                              "key": "source_account",
+                              "value": "<uuid>",
+                              "type": "text"
+                            },
+                            {
+                              "key": "description",
+                              "value": "",
+                              "type": "text"
+                            },
+                            {
+                              "key": "title",
+                              "value": "",
+                              "type": "text"
+                            },
+                            {
+                              "key": "internal_note",
+                              "value": "",
+                              "type": "text"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/ach_import/nacha/import/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "ach_import",
+                            "nacha",
+                            "import",
+                            ""
+                          ]
+                        },
+                        "description": "Upload a NACHA file, validate via Moov, store in S3, and return parsed payment rows.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "7f514f8e-c293-4487-a1a9-752e5afc2e49",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "multipart/form-data"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "formdata",
+                              "formdata": [
+                                {
+                                  "description": "(Required) * `personal` - Personal\n* `business` - Business (This can only be one of personal,business)",
+                                  "key": "account_purpose",
+                                  "value": "personal",
+                                  "type": "text"
+                                },
+                                {
+                                  "description": "(Required) ",
+                                  "key": "file",
+                                  "type": "file"
+                                },
+                                {
+                                  "description": "(Required) ",
+                                  "key": "source_account",
+                                  "value": "<uuid>",
+                                  "type": "text"
+                                },
+                                {
+                                  "key": "description",
+                                  "value": "",
+                                  "type": "text"
+                                },
+                                {
+                                  "key": "title",
+                                  "value": "",
+                                  "type": "text"
+                                },
+                                {
+                                  "key": "internal_note",
+                                  "value": "",
+                                  "type": "text"
+                                }
+                              ]
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/ach_import/nacha/import/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "ach_import",
+                                "nacha",
+                                "import",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"internal_note\": \"<string>\",\n  \"organization_file_uuid\": \"<uuid>\",\n  \"rows\": [\n    {\n      \"amount\": \"-7757765197634134.0\",\n      \"description\": \"<string>\",\n      \"needs_review\": \"<boolean>\",\n      \"recipient\": {\n        \"name\": \"<string>\",\n        \"id\": \"<uuid>\",\n        \"updated_at\": \"<dateTime>\",\n        \"nickname\": \"<string>\",\n        \"type\": \"person\",\n        \"ach_destination\": {\n          \"account_number\": \"<string>\",\n          \"account_purpose\": \"personal\",\n          \"account_type\": \"loan\",\n          \"routing_number\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"institution_name\": \"<string>\"\n        },\n        \"fedwire_destination\": {\n          \"account_number\": \"<string>\",\n          \"address\": {\n            \"street_address\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"street_address_2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"region_code\": \"<string>\",\n            \"postal_code\": \"<string>\",\n            \"country_code\": \"<string>\"\n          },\n          \"routing_number\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"institution_name\": \"<string>\"\n        },\n        \"swift_destination\": {\n          \"account_identifier\": \"<string>\",\n          \"address\": {\n            \"street_address\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"street_address_2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"region_code\": \"<string>\",\n            \"postal_code\": \"<string>\",\n            \"country_code\": \"<string>\"\n          },\n          \"bic\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"created_at\": \"<dateTime>\",\n          \"updated_at\": \"<dateTime>\",\n          \"metadata\": {},\n          \"branch_address\": {\n            \"street_address\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"street_address_2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"region_code\": \"<string>\",\n            \"postal_code\": \"<string>\",\n            \"country_code\": \"<string>\"\n          }\n        }\n      },\n      \"scheduled_date\": \"<string>\",\n      \"transaction_type\": \"<string>\",\n      \"warning\": \"<string>\"\n    },\n    {\n      \"amount\": \"997178366742.9\",\n      \"description\": \"<string>\",\n      \"needs_review\": \"<boolean>\",\n      \"recipient\": {\n        \"name\": \"<string>\",\n        \"id\": \"<uuid>\",\n        \"updated_at\": \"<dateTime>\",\n        \"nickname\": \"<string>\",\n        \"type\": \"person\",\n        \"ach_destination\": {\n          \"account_number\": \"<string>\",\n          \"account_purpose\": \"personal\",\n          \"account_type\": \"loan\",\n          \"routing_number\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"institution_name\": \"<string>\"\n        },\n        \"fedwire_destination\": {\n          \"account_number\": \"<string>\",\n          \"address\": {\n            \"street_address\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"street_address_2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"region_code\": \"<string>\",\n            \"postal_code\": \"<string>\",\n            \"country_code\": \"<string>\"\n          },\n          \"routing_number\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"institution_name\": \"<string>\"\n        },\n        \"swift_destination\": {\n          \"account_identifier\": \"<string>\",\n          \"address\": {\n            \"street_address\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"street_address_2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"region_code\": \"<string>\",\n            \"postal_code\": \"<string>\",\n            \"country_code\": \"<string>\"\n          },\n          \"bic\": \"<string>\",\n          \"id\": \"<uuid>\",\n          \"created_at\": \"<dateTime>\",\n          \"updated_at\": \"<dateTime>\",\n          \"metadata\": {},\n          \"branch_address\": {\n            \"street_address\": \"<string>\",\n            \"id\": \"<integer>\",\n            \"street_address_2\": \"<string>\",\n            \"city\": \"<string>\",\n            \"region_code\": \"<string>\",\n            \"postal_code\": \"<string>\",\n            \"country_code\": \"<string>\"\n          }\n        }\n      },\n      \"scheduled_date\": \"<string>\",\n      \"transaction_type\": \"<string>\",\n      \"warning\": \"<string>\"\n    }\n  ],\n  \"s3_key\": \"<string>\",\n  \"source_account\": \"<uuid>\",\n  \"title\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:43.000Z",
+                          "updatedAt": "2026-07-28T02:15:43.000Z",
+                          "uid": "35240-7f514f8e-c293-4487-a1a9-752e5afc2e49"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:15:43.000Z",
+                      "updatedAt": "2026-07-28T02:15:43.000Z",
+                      "uid": "35240-c0e60354-e9db-4b1f-93a7-3f1b68488885"
+                    }
+                  ],
+                  "id": "66511817-a8ca-4c83-8370-48e025b8ea7e",
+                  "createdAt": "2026-07-28T02:15:43.000Z",
+                  "updatedAt": "2026-07-28T02:15:43.000Z",
+                  "uid": "35240-66511817-a8ca-4c83-8370-48e025b8ea7e"
+                }
+              ],
+              "id": "1875f801-0d2f-4f58-9a33-10300075d0d6",
+              "createdAt": "2026-07-28T02:15:43.000Z",
+              "updatedAt": "2026-07-28T02:15:43.000Z",
+              "uid": "35240-1875f801-0d2f-4f58-9a33-10300075d0d6"
+            }
+          ],
+          "id": "cecee5f8-f55c-4901-a4ce-c38650c200f5",
+          "createdAt": "2026-07-28T02:15:43.000Z",
+          "updatedAt": "2026-07-28T02:15:43.000Z",
+          "uid": "35240-cecee5f8-f55c-4901-a4ce-c38650c200f5"
+        }
+      ],
+      "id": "8e755c3a-cef7-4493-a434-eccf96cc0528",
+      "createdAt": "2026-07-28T02:15:43.000Z",
+      "updatedAt": "2026-07-28T02:15:43.000Z",
+      "uid": "35240-8e755c3a-cef7-4493-a434-eccf96cc0528"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

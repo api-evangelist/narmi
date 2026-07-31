@@ -1,0 +1,905 @@
+{
+  "info": {
+    "_postman_id": "9e730ed9-a3f5-4d7c-9a2a-caaffe3e784c",
+    "name": "Narmi Public account balances wire recipients API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:17:04.000Z",
+    "updatedAt": "2026-07-28T02:17:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9e730ed9-a3f5-4d7c-9a2a-caaffe3e784c"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "wire_recipients",
+          "item": [
+            {
+              "name": "{uuid}",
+              "item": [
+                {
+                  "name": "Retrieve wire recipients",
+                  "id": "74b69528-ac53-4d29-92f2-84c32fc49eb1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/wire_recipients/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "wire_recipients",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "12b149dc-3cdf-482b-a37f-f0caf8004567",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns wire recipient belonging to authenticated user, identified by `uuid`\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "87130f93-3826-482c-8b17-166047a688cb",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/wire_recipients/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "wire_recipients",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"routing_number\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"destination_institution_name\": \"<string>\",\n  \"fedwire_destination\": {\n    \"name\": \"<string>\",\n    \"routing_number\": \"<string>\",\n    \"account_number\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:17:05.000Z",
+                      "updatedAt": "2026-07-28T02:17:05.000Z",
+                      "uid": "35240-87130f93-3826-482c-8b17-166047a688cb"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:17:05.000Z",
+                  "updatedAt": "2026-07-28T02:17:05.000Z",
+                  "uid": "35240-74b69528-ac53-4d29-92f2-84c32fc49eb1"
+                },
+                {
+                  "name": "Update wire recipients",
+                  "id": "e4b3d661-5942-47ee-a6be-de274d93e074",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"routing_number\": \"<string>\",\n  \"fedwire_destination\": {\n    \"name\": \"<string>\",\n    \"routing_number\": \"<string>\",\n    \"account_number\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/wire_recipients/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "wire_recipients",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "7322b739-448e-4fb9-a47d-b617623f649b",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update the details of a wire recipient belonging to authenticated user, identified by `uuid`\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "bd2dbf15-42c3-4c10-906e-4d776debcc00",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"routing_number\": \"<string>\",\n  \"fedwire_destination\": {\n    \"name\": \"<string>\",\n    \"routing_number\": \"<string>\",\n    \"account_number\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/wire_recipients/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "wire_recipients",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"routing_number\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"destination_institution_name\": \"<string>\",\n  \"fedwire_destination\": {\n    \"name\": \"<string>\",\n    \"routing_number\": \"<string>\",\n    \"account_number\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:17:05.000Z",
+                      "updatedAt": "2026-07-28T02:17:05.000Z",
+                      "uid": "35240-bd2dbf15-42c3-4c10-906e-4d776debcc00"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:17:05.000Z",
+                  "updatedAt": "2026-07-28T02:17:05.000Z",
+                  "uid": "35240-e4b3d661-5942-47ee-a6be-de274d93e074"
+                },
+                {
+                  "name": "Modify wire recipients",
+                  "id": "49aef02c-3fdb-4b80-8533-b1474b51e40a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"routing_number\": \"<string>\",\n  \"fedwire_destination\": {\n    \"name\": \"<string>\",\n    \"routing_number\": \"<string>\",\n    \"account_number\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/wire_recipients/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "wire_recipients",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "72d18240-aaa1-4ae6-bf8f-fc9216387499",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update the details of a wire recipient belonging to authenticated user, identified by `uuid`\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "cc881572-f12d-45df-acde-9d2eaa498f27",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"routing_number\": \"<string>\",\n  \"fedwire_destination\": {\n    \"name\": \"<string>\",\n    \"routing_number\": \"<string>\",\n    \"account_number\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/wire_recipients/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "wire_recipients",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"routing_number\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"destination_institution_name\": \"<string>\",\n  \"fedwire_destination\": {\n    \"name\": \"<string>\",\n    \"routing_number\": \"<string>\",\n    \"account_number\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:17:05.000Z",
+                      "updatedAt": "2026-07-28T02:17:05.000Z",
+                      "uid": "35240-cc881572-f12d-45df-acde-9d2eaa498f27"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:17:05.000Z",
+                  "updatedAt": "2026-07-28T02:17:05.000Z",
+                  "uid": "35240-49aef02c-3fdb-4b80-8533-b1474b51e40a"
+                },
+                {
+                  "name": "Delete wire recipients",
+                  "id": "2bf7105f-578b-4126-ab39-e31e3a042c71",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/wire_recipients/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "wire_recipients",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "d4cc933c-c4b7-4535-9373-5eab1f0ea158",
+                          "key": "uuid",
+                          "value": "<uuid>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Delete an authenticated user's wire recipient identified by `uuid`\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "fc74d467-0fe8-414a-88a9-b8f4c237fc5a",
+                      "name": "No response body",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/wire_recipients/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "wire_recipients",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:17:05.000Z",
+                      "updatedAt": "2026-07-28T02:17:05.000Z",
+                      "uid": "35240-fc74d467-0fe8-414a-88a9-b8f4c237fc5a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:17:05.000Z",
+                  "updatedAt": "2026-07-28T02:17:05.000Z",
+                  "uid": "35240-2bf7105f-578b-4126-ab39-e31e3a042c71"
+                }
+              ],
+              "id": "bea05ef4-440f-4a9b-99e7-8ecd4ef39b62",
+              "createdAt": "2026-07-28T02:17:05.000Z",
+              "updatedAt": "2026-07-28T02:17:05.000Z",
+              "uid": "35240-bea05ef4-440f-4a9b-99e7-8ecd4ef39b62"
+            },
+            {
+              "name": "List wire recipients",
+              "id": "273ca26f-a13b-4485-8614-c40578fc3aac",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/wire_recipients/?page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "wire_recipients",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "A page number within the paginated result set.",
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of the authenticated user's previous wire recipients. They are persisted so the user may easily reference them for future wire transfers.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "df3c3758-dcee-465f-94da-0f059b1bcb82",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/wire_recipients/?page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "wire_recipients",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\",\n  \"results\": [\n    {\n      \"account_number\": \"<string>\",\n      \"address\": {\n        \"street_address\": \"<string>\",\n        \"id\": \"<integer>\",\n        \"street_address_2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region_code\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country_code\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"routing_number\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"destination_institution_name\": \"<string>\",\n      \"fedwire_destination\": {\n        \"name\": \"<string>\",\n        \"routing_number\": \"<string>\",\n        \"account_number\": \"<string>\"\n      }\n    },\n    {\n      \"account_number\": \"<string>\",\n      \"address\": {\n        \"street_address\": \"<string>\",\n        \"id\": \"<integer>\",\n        \"street_address_2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region_code\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country_code\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"routing_number\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"destination_institution_name\": \"<string>\",\n      \"fedwire_destination\": {\n        \"name\": \"<string>\",\n        \"routing_number\": \"<string>\",\n        \"account_number\": \"<string>\"\n      }\n    }\n  ],\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T02:17:05.000Z",
+                  "updatedAt": "2026-07-28T02:17:05.000Z",
+                  "uid": "35240-df3c3758-dcee-465f-94da-0f059b1bcb82"
+                },
+                {
+                  "id": "fb79a48e-ad22-454d-9240-1c53dd63cbc2",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/wire_recipients/?page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "wire_recipients",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+                  "createdAt": "2026-07-28T02:17:05.000Z",
+                  "updatedAt": "2026-07-28T02:17:05.000Z",
+                  "uid": "35240-fb79a48e-ad22-454d-9240-1c53dd63cbc2"
+                },
+                {
+                  "id": "b84f72a7-d1c9-496c-83b3-b51fe4cdabf8",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/wire_recipients/?page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "wire_recipients",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                  "createdAt": "2026-07-28T02:17:05.000Z",
+                  "updatedAt": "2026-07-28T02:17:05.000Z",
+                  "uid": "35240-b84f72a7-d1c9-496c-83b3-b51fe4cdabf8"
+                }
+              ],
+              "createdAt": "2026-07-28T02:17:05.000Z",
+              "updatedAt": "2026-07-28T02:17:05.000Z",
+              "uid": "35240-273ca26f-a13b-4485-8614-c40578fc3aac"
+            },
+            {
+              "name": "Create wire recipients",
+              "id": "0f07e5bf-6a87-48b3-a066-bd38cc832b4c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"routing_number\": \"<string>\",\n  \"fedwire_destination\": {\n    \"name\": \"<string>\",\n    \"routing_number\": \"<string>\",\n    \"account_number\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/wire_recipients/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "wire_recipients",
+                    ""
+                  ]
+                },
+                "description": "Create a new wire recipient for the authenticated user to be referenced in wire transfers.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "57d5d0dd-2468-497d-8fa5-e0c26c5a3754",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"routing_number\": \"<string>\",\n  \"fedwire_destination\": {\n    \"name\": \"<string>\",\n    \"routing_number\": \"<string>\",\n    \"account_number\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/wire_recipients/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "wire_recipients",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"account_number\": \"<string>\",\n  \"address\": {\n    \"street_address\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"street_address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region_code\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country_code\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"routing_number\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"destination_institution_name\": \"<string>\",\n  \"fedwire_destination\": {\n    \"name\": \"<string>\",\n    \"routing_number\": \"<string>\",\n    \"account_number\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:17:05.000Z",
+                  "updatedAt": "2026-07-28T02:17:05.000Z",
+                  "uid": "35240-57d5d0dd-2468-497d-8fa5-e0c26c5a3754"
+                }
+              ],
+              "createdAt": "2026-07-28T02:17:05.000Z",
+              "updatedAt": "2026-07-28T02:17:05.000Z",
+              "uid": "35240-0f07e5bf-6a87-48b3-a066-bd38cc832b4c"
+            }
+          ],
+          "id": "f361351e-1ddd-4e89-aa92-9f82abc7188c",
+          "createdAt": "2026-07-28T02:17:05.000Z",
+          "updatedAt": "2026-07-28T02:17:05.000Z",
+          "uid": "35240-f361351e-1ddd-4e89-aa92-9f82abc7188c"
+        }
+      ],
+      "id": "be586309-ebcf-496f-836e-5446848f03eb",
+      "createdAt": "2026-07-28T02:17:05.000Z",
+      "updatedAt": "2026-07-28T02:17:05.000Z",
+      "uid": "35240-be586309-ebcf-496f-836e-5446848f03eb"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

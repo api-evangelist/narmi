@@ -1,0 +1,500 @@
+{
+  "info": {
+    "_postman_id": "a9ac2f72-b363-459b-9851-d83c60cf0f5e",
+    "name": "Narmi Public account balances automatic savings enrollment API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:15:51.000Z",
+    "updatedAt": "2026-07-28T02:15:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a9ac2f72-b363-459b-9851-d83c60cf0f5e"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "automatic_savings_enrollment",
+          "item": [
+            {
+              "name": "Get automatic savings enrollment",
+              "id": "3346c080-eb25-4364-97b7-e27e60bead76",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/automatic_savings_enrollment/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "automatic_savings_enrollment",
+                    ""
+                  ]
+                },
+                "description": "Fetch a user's automatic saving enrollment. Automatic savings enrollment detects any deposit from the source account and does an internal transfer of 3% of the deposit amount into the specified destination account.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "ae977922-2f6c-4d0d-94b3-133d96f49c4c",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/automatic_savings_enrollment/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "automatic_savings_enrollment",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"source_account\": {\n    \"balances\": {\n      \"id\": \"<string>\",\n      \"account_id\": \"<uuid>\",\n      \"primary\": \"<double>\",\n      \"available\": \"<double>\",\n      \"ledger\": \"<double>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"name\": \"<string>\",\n    \"nickname\": \"<string>\",\n    \"id\": \"<string>\",\n    \"number\": \"<string>\",\n    \"type\": \"<string>\",\n    \"product\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"updated_at\": \"<dateTime>\",\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"features\": {\n      \"aute96_\": {},\n      \"dolore8\": {}\n    },\n    \"routing\": \"<string>\",\n    \"loan_details\": {\n      \"minimum_payment\": \"<integer>\",\n      \"interest_rate\": \"27.6260\",\n      \"next_payment_at\": \"<dateTime>\"\n    },\n    \"source\": \"external\",\n    \"state\": \"verified\",\n    \"favorited\": \"<boolean>\",\n    \"hidden\": false,\n    \"out_of_date\": \"<boolean>\",\n    \"updated_from_source_at\": \"<dateTime>\",\n    \"check_micr\": \"<string>\",\n    \"metadata\": {\n      \"aliquip_2\": {}\n    },\n    \"fi_name\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"verified\": \"<boolean>\",\n    \"fi_svg\": \"<string>\",\n    \"organization\": {\n      \"in0d\": {},\n      \"minim63\": {},\n      \"dolore_74_\": {}\n    }\n  },\n  \"destination_account\": {\n    \"balances\": {\n      \"id\": \"<string>\",\n      \"account_id\": \"<uuid>\",\n      \"primary\": \"<double>\",\n      \"available\": \"<double>\",\n      \"ledger\": \"<double>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    \"name\": \"<string>\",\n    \"nickname\": \"<string>\",\n    \"id\": \"<string>\",\n    \"number\": \"<string>\",\n    \"type\": \"<string>\",\n    \"product\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    \"updated_at\": \"<dateTime>\",\n    \"users\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"features\": {\n      \"occaecatb\": {},\n      \"mollit_c0\": {},\n      \"dolor14\": {}\n    },\n    \"routing\": \"<string>\",\n    \"loan_details\": {\n      \"minimum_payment\": \"<integer>\",\n      \"interest_rate\": \"-07940982602.93\",\n      \"next_payment_at\": \"<dateTime>\"\n    },\n    \"source\": \"institution\",\n    \"state\": \"active\",\n    \"favorited\": \"<boolean>\",\n    \"hidden\": false,\n    \"out_of_date\": \"<boolean>\",\n    \"updated_from_source_at\": \"<dateTime>\",\n    \"check_micr\": \"<string>\",\n    \"metadata\": {\n      \"sintb42\": {}\n    },\n    \"fi_name\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"verified\": \"<boolean>\",\n    \"fi_svg\": \"<string>\",\n    \"organization\": {\n      \"irure_4\": {},\n      \"voluptate14\": {}\n    }\n  },\n  \"automatic_savings_eligible\": \"<boolean>\",\n  \"automatic_savings_active\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T02:15:51.000Z",
+                  "updatedAt": "2026-07-28T02:15:51.000Z",
+                  "uid": "35240-ae977922-2f6c-4d0d-94b3-133d96f49c4c"
+                },
+                {
+                  "id": "9c95b9f0-2916-46cd-979b-0ccc8ca2bb65",
+                  "name": "Invalid request response.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/automatic_savings_enrollment/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "automatic_savings_enrollment",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:15:51.000Z",
+                  "updatedAt": "2026-07-28T02:15:51.000Z",
+                  "uid": "35240-9c95b9f0-2916-46cd-979b-0ccc8ca2bb65"
+                }
+              ],
+              "createdAt": "2026-07-28T02:15:51.000Z",
+              "updatedAt": "2026-07-28T02:15:51.000Z",
+              "uid": "35240-3346c080-eb25-4364-97b7-e27e60bead76"
+            },
+            {
+              "name": "Create automatic savings enrollment",
+              "id": "0fd59198-e61e-4e56-8d0b-8e02843d159b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"destination_account_uuid\": \"<uuid>\",\n  \"source_account_uuid\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/automatic_savings_enrollment/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "automatic_savings_enrollment",
+                    ""
+                  ]
+                },
+                "description": "Create an automatic saving enrollment for a user.Automatic Savings Enrollment detects any deposit from the source account and does an internal transfer of 3% of the deposit amount into the specified destination account.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "97756096-9c4d-4855-8162-c85f8bc9d6ec",
+                  "name": "No response body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"destination_account_uuid\": \"<uuid>\",\n  \"source_account_uuid\": \"<uuid>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/automatic_savings_enrollment/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "automatic_savings_enrollment",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:15:51.000Z",
+                  "updatedAt": "2026-07-28T02:15:51.000Z",
+                  "uid": "35240-97756096-9c4d-4855-8162-c85f8bc9d6ec"
+                },
+                {
+                  "id": "bf17ab56-50b9-432d-ba07-bcf20db3d2a2",
+                  "name": "Invalid request response.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"destination_account_uuid\": \"<uuid>\",\n  \"source_account_uuid\": \"<uuid>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/automatic_savings_enrollment/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "automatic_savings_enrollment",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:15:51.000Z",
+                  "updatedAt": "2026-07-28T02:15:51.000Z",
+                  "uid": "35240-bf17ab56-50b9-432d-ba07-bcf20db3d2a2"
+                }
+              ],
+              "createdAt": "2026-07-28T02:15:51.000Z",
+              "updatedAt": "2026-07-28T02:15:51.000Z",
+              "uid": "35240-0fd59198-e61e-4e56-8d0b-8e02843d159b"
+            },
+            {
+              "name": "Delete automatic savings enrollment",
+              "id": "b7259895-9151-4177-b4a2-012d2ebb5955",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/automatic_savings_enrollment/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "automatic_savings_enrollment",
+                    ""
+                  ]
+                },
+                "description": "Delete a user's automatic saving enrollment. The endpoint will return a 422 in the event that the service fails to unenroll the user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "051fbc71-dc04-4a19-8cda-593da4ef19b2",
+                  "name": "No response body",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/automatic_savings_enrollment/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "automatic_savings_enrollment",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:15:51.000Z",
+                  "updatedAt": "2026-07-28T02:15:51.000Z",
+                  "uid": "35240-051fbc71-dc04-4a19-8cda-593da4ef19b2"
+                },
+                {
+                  "id": "76926963-2c8a-4e44-a7fa-3d6c19e2170c",
+                  "name": "Invalid request response.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/automatic_savings_enrollment/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "automatic_savings_enrollment",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:15:51.000Z",
+                  "updatedAt": "2026-07-28T02:15:51.000Z",
+                  "uid": "35240-76926963-2c8a-4e44-a7fa-3d6c19e2170c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:15:51.000Z",
+              "updatedAt": "2026-07-28T02:15:51.000Z",
+              "uid": "35240-b7259895-9151-4177-b4a2-012d2ebb5955"
+            }
+          ],
+          "id": "4319afcb-17ad-4415-973a-99ddec4f2a29",
+          "createdAt": "2026-07-28T02:15:51.000Z",
+          "updatedAt": "2026-07-28T02:15:51.000Z",
+          "uid": "35240-4319afcb-17ad-4415-973a-99ddec4f2a29"
+        }
+      ],
+      "id": "8d366d3c-d1f1-4328-9bb5-2cd300b1bf1b",
+      "createdAt": "2026-07-28T02:15:51.000Z",
+      "updatedAt": "2026-07-28T02:15:51.000Z",
+      "uid": "35240-8d366d3c-d1f1-4328-9bb5-2cd300b1bf1b"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

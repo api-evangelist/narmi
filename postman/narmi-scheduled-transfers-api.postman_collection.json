@@ -1,0 +1,887 @@
+{
+  "info": {
+    "_postman_id": "c442e388-012e-425f-9c3b-b8fc67be6dc4",
+    "name": "Narmi Public account balances scheduled transfers API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:44.000Z",
+    "updatedAt": "2026-07-28T02:16:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c442e388-012e-425f-9c3b-b8fc67be6dc4"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "transfers",
+          "item": [
+            {
+              "name": "scheduled",
+              "item": [
+                {
+                  "name": "List scheduled transfers",
+                  "id": "5bda1e15-6937-4bbc-9e49-48785d2d2c9f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transfers/scheduled/?is_expired=<boolean>&page=<integer>&per_page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transfers",
+                        "scheduled",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "When present, will filter results by either expired only, or unexpired only.",
+                          "key": "is_expired",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of results to return per page.",
+                          "key": "per_page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "List the authenticated user's scheduled transfers.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "849b9f49-516f-4cf9-84f1-47b551d18416",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transfers/scheduled/?is_expired=<boolean>&page=<integer>&per_page=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transfers",
+                            "scheduled",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "When present, will filter results by either expired only, or unexpired only.",
+                              "key": "is_expired",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "A page number within the paginated result set.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of results to return per page.",
+                              "key": "per_page",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"meta\": {\n    \"total\": \"<integer>\"\n  },\n  \"links\": {\n    \"next\": \"<uri>\",\n    \"prev\": \"<uri>\"\n  },\n  \"scheduled_transfers\": [\n    {\n      \"amount\": \"<integer>\",\n      \"from_account_id\": \"<uuid>\",\n      \"recurring_rule\": \"<string>\",\n      \"to_account_id\": \"<uuid>\",\n      \"id\": \"<uuid>\",\n      \"state\": \"active\",\n      \"created_at\": \"<dateTime>\",\n      \"next_transfer_at\": \"<dateTime>\",\n      \"memo\": \"\",\n      \"description\": \"\"\n    },\n    {\n      \"amount\": \"<integer>\",\n      \"from_account_id\": \"<uuid>\",\n      \"recurring_rule\": \"<string>\",\n      \"to_account_id\": \"<uuid>\",\n      \"id\": \"<uuid>\",\n      \"state\": \"active\",\n      \"created_at\": \"<dateTime>\",\n      \"next_transfer_at\": \"<dateTime>\",\n      \"memo\": \"\",\n      \"description\": \"\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:16:44.000Z",
+                      "updatedAt": "2026-07-28T02:16:44.000Z",
+                      "uid": "35240-849b9f49-516f-4cf9-84f1-47b551d18416"
+                    },
+                    {
+                      "id": "f20ee794-d477-4c75-baa9-37a2f67bc876",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transfers/scheduled/?is_expired=<boolean>&page=<integer>&per_page=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transfers",
+                            "scheduled",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "When present, will filter results by either expired only, or unexpired only.",
+                              "key": "is_expired",
+                              "value": "<boolean>"
+                            },
+                            {
+                              "description": "A page number within the paginated result set.",
+                              "key": "page",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of results to return per page.",
+                              "key": "per_page",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                      "createdAt": "2026-07-28T02:16:44.000Z",
+                      "updatedAt": "2026-07-28T02:16:44.000Z",
+                      "uid": "35240-f20ee794-d477-4c75-baa9-37a2f67bc876"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:44.000Z",
+                  "updatedAt": "2026-07-28T02:16:44.000Z",
+                  "uid": "35240-5bda1e15-6937-4bbc-9e49-48785d2d2c9f"
+                },
+                {
+                  "name": "Create a scheduled transfer",
+                  "id": "289d5a91-ccd9-4f5b-a6eb-2e76e83d3dea",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"agreement\": \"<boolean>\",\n  \"amount\": \"<integer>\",\n  \"from_account_id\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"to_account_id\": \"<uuid>\",\n  \"device_id\": \"<string>\",\n  \"memo\": \"\",\n  \"description\": \"\",\n  \"ach_transfer\": \"<uuid>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transfers/scheduled/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transfers",
+                        "scheduled",
+                        ""
+                      ]
+                    },
+                    "description": "Create a scheduled transfer for the authenticated user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "c5a066d6-3afc-4386-9d91-a464adb5c9c5",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"agreement\": \"<boolean>\",\n  \"amount\": \"<integer>\",\n  \"from_account_id\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"to_account_id\": \"<uuid>\",\n  \"device_id\": \"<string>\",\n  \"memo\": \"\",\n  \"description\": \"\",\n  \"ach_transfer\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transfers/scheduled/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transfers",
+                            "scheduled",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"scheduled_transfers\": [\n    {\n      \"amount\": \"<integer>\",\n      \"from_account_id\": \"<uuid>\",\n      \"recurring_rule\": \"<string>\",\n      \"to_account_id\": \"<uuid>\",\n      \"id\": \"<uuid>\",\n      \"state\": \"active\",\n      \"created_at\": \"<dateTime>\",\n      \"next_transfer_at\": \"<dateTime>\",\n      \"memo\": \"\",\n      \"description\": \"\"\n    },\n    {\n      \"amount\": \"<integer>\",\n      \"from_account_id\": \"<uuid>\",\n      \"recurring_rule\": \"<string>\",\n      \"to_account_id\": \"<uuid>\",\n      \"id\": \"<uuid>\",\n      \"state\": \"active\",\n      \"created_at\": \"<dateTime>\",\n      \"next_transfer_at\": \"<dateTime>\",\n      \"memo\": \"\",\n      \"description\": \"\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:16:44.000Z",
+                      "updatedAt": "2026-07-28T02:16:44.000Z",
+                      "uid": "35240-c5a066d6-3afc-4386-9d91-a464adb5c9c5"
+                    },
+                    {
+                      "id": "05009d3c-a38d-454d-afad-137b607158db",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"agreement\": \"<boolean>\",\n  \"amount\": \"<integer>\",\n  \"from_account_id\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"to_account_id\": \"<uuid>\",\n  \"device_id\": \"<string>\",\n  \"memo\": \"\",\n  \"description\": \"\",\n  \"ach_transfer\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transfers/scheduled/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transfers",
+                            "scheduled",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:44.000Z",
+                      "updatedAt": "2026-07-28T02:16:44.000Z",
+                      "uid": "35240-05009d3c-a38d-454d-afad-137b607158db"
+                    },
+                    {
+                      "id": "75647192-dcd6-4a95-a35c-61c5b45d6750",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"agreement\": \"<boolean>\",\n  \"amount\": \"<integer>\",\n  \"from_account_id\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"to_account_id\": \"<uuid>\",\n  \"device_id\": \"<string>\",\n  \"memo\": \"\",\n  \"description\": \"\",\n  \"ach_transfer\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transfers/scheduled/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transfers",
+                            "scheduled",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:44.000Z",
+                      "updatedAt": "2026-07-28T02:16:44.000Z",
+                      "uid": "35240-75647192-dcd6-4a95-a35c-61c5b45d6750"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:44.000Z",
+                  "updatedAt": "2026-07-28T02:16:44.000Z",
+                  "uid": "35240-289d5a91-ccd9-4f5b-a6eb-2e76e83d3dea"
+                },
+                {
+                  "name": "Edit a scheduled transfer",
+                  "id": "9b54ddf1-e873-414b-8660-58756d22b6df",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"agreement\": \"<boolean>\",\n  \"amount\": \"<integer>\",\n  \"from_account_id\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"to_account_id\": \"<uuid>\",\n  \"device_id\": \"<string>\",\n  \"memo\": \"\",\n  \"description\": \"\",\n  \"ach_transfer\": \"<uuid>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transfers/scheduled/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transfers",
+                        "scheduled",
+                        ""
+                      ]
+                    },
+                    "description": "Edit a scheduled transfer for the authenticated user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "506854d5-7c10-46d5-8ee1-e049bd31fc38",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"agreement\": \"<boolean>\",\n  \"amount\": \"<integer>\",\n  \"from_account_id\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"to_account_id\": \"<uuid>\",\n  \"device_id\": \"<string>\",\n  \"memo\": \"\",\n  \"description\": \"\",\n  \"ach_transfer\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transfers/scheduled/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transfers",
+                            "scheduled",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"scheduled_transfers\": [\n    {\n      \"amount\": \"<integer>\",\n      \"from_account_id\": \"<uuid>\",\n      \"recurring_rule\": \"<string>\",\n      \"to_account_id\": \"<uuid>\",\n      \"id\": \"<uuid>\",\n      \"state\": \"active\",\n      \"created_at\": \"<dateTime>\",\n      \"next_transfer_at\": \"<dateTime>\",\n      \"memo\": \"\",\n      \"description\": \"\"\n    },\n    {\n      \"amount\": \"<integer>\",\n      \"from_account_id\": \"<uuid>\",\n      \"recurring_rule\": \"<string>\",\n      \"to_account_id\": \"<uuid>\",\n      \"id\": \"<uuid>\",\n      \"state\": \"active\",\n      \"created_at\": \"<dateTime>\",\n      \"next_transfer_at\": \"<dateTime>\",\n      \"memo\": \"\",\n      \"description\": \"\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:16:44.000Z",
+                      "updatedAt": "2026-07-28T02:16:44.000Z",
+                      "uid": "35240-506854d5-7c10-46d5-8ee1-e049bd31fc38"
+                    },
+                    {
+                      "id": "e8b7eb3c-6685-4bd3-855c-4a6432aae155",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"agreement\": \"<boolean>\",\n  \"amount\": \"<integer>\",\n  \"from_account_id\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"to_account_id\": \"<uuid>\",\n  \"device_id\": \"<string>\",\n  \"memo\": \"\",\n  \"description\": \"\",\n  \"ach_transfer\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transfers/scheduled/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transfers",
+                            "scheduled",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:44.000Z",
+                      "updatedAt": "2026-07-28T02:16:44.000Z",
+                      "uid": "35240-e8b7eb3c-6685-4bd3-855c-4a6432aae155"
+                    },
+                    {
+                      "id": "264987a2-c551-4036-aaa6-deb4ad0ad9ce",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"agreement\": \"<boolean>\",\n  \"amount\": \"<integer>\",\n  \"from_account_id\": \"<uuid>\",\n  \"recurring_rule\": \"<string>\",\n  \"to_account_id\": \"<uuid>\",\n  \"device_id\": \"<string>\",\n  \"memo\": \"\",\n  \"description\": \"\",\n  \"ach_transfer\": \"<uuid>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transfers/scheduled/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transfers",
+                            "scheduled",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:44.000Z",
+                      "updatedAt": "2026-07-28T02:16:44.000Z",
+                      "uid": "35240-264987a2-c551-4036-aaa6-deb4ad0ad9ce"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:44.000Z",
+                  "updatedAt": "2026-07-28T02:16:44.000Z",
+                  "uid": "35240-9b54ddf1-e873-414b-8660-58756d22b6df"
+                },
+                {
+                  "name": "Delete scheduled transfer",
+                  "id": "5ad3daca-b16c-46b0-b73c-53c21dd2450b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transfers/scheduled/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transfers",
+                        "scheduled",
+                        ""
+                      ]
+                    },
+                    "description": "Delete a user's scheduled transfer. Accepts a payload containing an identifier for the scheduled transfer,\neither a Narmi UUID or a core identifier.\n\nExample:\n```http\nDELETE /v1/transfers/scheduled/ HTTP/1.1\nHost: api.example.com\nContent-Type: application/json\n\n{\n  \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\"\n}\n\n```\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "f920656a-6b0d-4160-86ee-00128ee140cd",
+                      "name": "No response body",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transfers/scheduled/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transfers",
+                            "scheduled",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:44.000Z",
+                      "updatedAt": "2026-07-28T02:16:44.000Z",
+                      "uid": "35240-f920656a-6b0d-4160-86ee-00128ee140cd"
+                    },
+                    {
+                      "id": "fd6738a8-b727-4ba5-8cec-9b17f5b98069",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transfers/scheduled/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transfers",
+                            "scheduled",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:44.000Z",
+                      "updatedAt": "2026-07-28T02:16:44.000Z",
+                      "uid": "35240-fd6738a8-b727-4ba5-8cec-9b17f5b98069"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:44.000Z",
+                  "updatedAt": "2026-07-28T02:16:44.000Z",
+                  "uid": "35240-5ad3daca-b16c-46b0-b73c-53c21dd2450b"
+                }
+              ],
+              "id": "0b389f2e-d8dd-4d9d-8fca-cb1c2c18ac2e",
+              "createdAt": "2026-07-28T02:16:44.000Z",
+              "updatedAt": "2026-07-28T02:16:44.000Z",
+              "uid": "35240-0b389f2e-d8dd-4d9d-8fca-cb1c2c18ac2e"
+            }
+          ],
+          "id": "e0a7d6c0-eefd-4457-b56b-f99311521625",
+          "createdAt": "2026-07-28T02:16:44.000Z",
+          "updatedAt": "2026-07-28T02:16:44.000Z",
+          "uid": "35240-e0a7d6c0-eefd-4457-b56b-f99311521625"
+        }
+      ],
+      "id": "c9164405-f830-4848-8d54-8f467a4602c0",
+      "createdAt": "2026-07-28T02:16:44.000Z",
+      "updatedAt": "2026-07-28T02:16:44.000Z",
+      "uid": "35240-c9164405-f830-4848-8d54-8f467a4602c0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: searched
+source: live probes of Narmi hosts
+hosts:
+  - host: https://www.narmi.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /security.txt
+        status: 404
+  - host: https://docs.narmi.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+notes: >-
+  No /.well-known/ discovery documents are published on the Narmi corporate or
+  docs hosts as of the probe date. The OAuth 2.0 authorization and token
+  endpoints (/v2/oauth/authorize/, /v2/oauth/token/) are declared inside the
+  Public API OpenAPI schema rather than an openid-configuration document. A
+  machine-readable OpenAPI schema IS served at
+  https://online.sandbox.narmi.dev/v1/schema (not under /.well-known/).

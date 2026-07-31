@@ -1,0 +1,212 @@
+# Narmi
+
+> Narmi is a digital banking platform for community banks and credit unions in the United States. The Narmi One platform unifies consumer and business digital banking, omnichannel account opening, instant payments over FedNow, fraud prevention, lending, an API-driven open architecture, and agentic AI capabilities. Narmi integrates with major core banking systems including Corelation Keystone, Symitar, Jack Henry Silverlake, Fiserv DNA, Fiserv Premier, FIS Horizon, FIS IBS, and COCC. Narmi customers have reported as much as 3x account growth in under 30 days and 4x deposit growth in under 90 days, and Narmi-powered institutions have won recognition including Bankrate's Best Online Bank and NerdWallet's Best Bank for Online Experience.
+
+Narmi serves community financial institutions (FIs) ranging from small community to multi-billion-dollar regional institutions ). Customers include Grasshopper Bank, Arrowhead Credit Union, First Internet Bank, Citizens Bank of Edmond, Beacon Bank (formerly Berkshire Bank), Greater Alliance Federal Credit Union, FOCUS Bank, Middlesex Federal Savings, Meridian Trust FCU, Clark County Credit Union, Evergreen Bank Group, Outdoor Bank, Freedom Credit Union, New Cumberland FCU, University Federal Credit Union, LendingClub (formerly Radius Bank), TwinStar Credit Union, CTBC USA, North Brookfield Savings Bank, First Resource Bank, Magnolia Bank, Palisades Credit Union, Metro Credit Union, Savers Bank, PECU, WyHy FCU, Las Colinas FCU, Peoples National Bank, and others.
+
+Narmi was an early mover on AI for community FIs, launching the first MCP (Model Context Protocol) server deployed by a U.S. bank — in partnership with Grasshopper Bank, in August 2025 — enabling business banking customers to query their financial data through LLMs including Claude and ChatGPT under OAuth 2.0–permissioned access. Narmi only leverages AI models whose providers agree not to train on institutional data; all agentic workflows ship with human approval checkpoints, full audit trails, and bank-grade security.
+
+
+## Platform
+
+- [Narmi One Platform](https://www.narmi.com/platform): The unified digital banking platform — a single integrated system delivering all Narmi products through one codebase, one data model, and one set of core integrations.
+- [Products overview](https://www.narmi.com/products): Narmi's approach to digital banking transformation for community FIs and the philosophy behind the unified platform.
+- [Open Platform & AppXchange](https://www.narmi.com/narmi-open): API-driven open architecture, the Narmi Application Framework for embedding third-party fintech apps directly into the digital banking experience, and the AppXchange marketplace.
+
+## Products
+
+- [Narmi Banking](https://www.narmi.com/narmi-banking): Consumer and business digital banking — the everyday digital experience (web and mobile) for end users of a Narmi-powered financial institution. Includes account management, transfers, bill pay, card controls, A2A transfers with real-time core posting, and secure messaging.
+- [Narmi Grow](https://www.narmi.com/narmi-grow): Omnichannel consumer and business account opening. Supports digital self-service account opening, in-branch staff-led account opening, and funding flows. Integrated identity verification stack via Alloy (decision engine), Socure (identity intelligence), and NeuroID (behavioral analytics). Used by customers to drive new account and deposit growth.
+- [Narmi Command](https://www.narmi.com/narmi-command): Streamlined digital back-office for FI staff. Service portal that gives client-service and operations teams the tools to assist customers efficiently, including emulation, identity decisioning toolkit, and integrated CRM/ticketing.
+- [Narmi Now](https://www.narmi.com/narmi-now): Real-time payments built on the Federal Reserve's FedNow Service. Narmi has full FedNow send-and-receive certification and went live with Grasshopper Bank in receive mode in August 2024.
+- [Narmi Guard](https://www.narmi.com/narmi-guard): End-to-end fraud prevention suite securing the customer lifecycle. Defends against account takeover, transaction fraud, synthetic identity fraud, and other evolving threats across the digital channel.
+- [Narmi Open](https://www.narmi.com/narmi-open): The API-driven open platform layer of Narmi One — public APIs, the Narmi Application Framework for embedding apps, and the AppXchange marketplace. Enables FIs to integrate third-party fintech apps and even agentic AI tools directly into the banking environment.
+- [Narmi AI](https://www.narmi.com/narmi-ai): Agentic AI capabilities including the Narmi MCP server (enables end users to query financial data through LLMs like Claude and ChatGPT under OAuth-permissioned access), the Narmi AI search bar (conversational intelligence over banking data), AI-assisted marketing promotion generation, secure messaging assistance, and customer-service response acceleration. All workflows include human approval checkpoints, full audit trails, and bank-grade security. Models used do not train on institutional data.
+- [Narmi Lend](https://www.narmi.com/narmi-lend): Modern, integrated lending platform for community banks and credit unions. Launched as part of the broader Narmi One platform to help FIs unlock new lending opportunities and meaningful growth.
+
+## Outcomes
+
+- [Growth](https://www.narmi.com/outcomes/growth): How Narmi customers acquire customers and grow deposits organically through digital account opening.
+- [User Experience](https://www.narmi.com/outcomes/user-experience): How Narmi enables institutions to become the primary FI through best-in-class digital UX.
+- [Speed](https://www.narmi.com/outcomes/speed): How Narmi's open architecture and pre-built core integrations let FIs build, integrate, and launch new functionality faster than legacy stacks allow.
+
+## Core integrations
+
+- [All core integrations](https://www.narmi.com/cores): Overview of Narmi's certified and production core banking integrations.
+- [Corelation Keystone](https://www.narmi.com/partners/corelation): Strategic, technically certified Corelation partner. Narmi achieved full platform certification on the Corelation KeyStone core for both account opening and digital banking in July 2024.
+- [Symitar (Jack Henry)](https://www.narmi.com/cores/symitar): Jack Henry Symitar VIP member; integration via the SymXchange API platform. Used by Arrowhead, Meridian Trust, NCFCU, Freedom, UFCU, and others.
+- [Jack Henry Silverlake](https://www.narmi.com/cores/jack-henry-silverlake): Integration for banks on the Silverlake core. Used by Evergreen Bank Group, Outdoor Bank, and others.
+- [Fiserv DNA](https://www.narmi.com/cores/fiserv-dna): Integration with the Fiserv DNA core. Used by Clark County Credit Union and others.
+- [Fiserv Premier](https://www.narmi.com/cores/fiserv-premier): Integration with the Fiserv Premier core. Used by FOCUS Bank and others.
+- [FIS Horizon](https://www.narmi.com/cores/fis-horizon): Integration with the FIS Horizon core.
+- [FIS IBS](https://www.narmi.com/cores/fis-ibs): Integration with the FIS IBS core. Used by Beacon Bank and others.
+- [COCC](https://www.narmi.com/cores/cocc): Integration with COCC; noted for rapid go-live timelines among COCC clients. Used by Middlesex Federal Savings.
+
+## Case studies
+
+Customer outcome stories with quantified results. Each study covers the FI's situation, the Narmi products purchased, the implementation approach, and the measurable outcomes. Asset sizes, cores, and locations noted.
+
+- [Outdoor Bank](https://www.narmi.com/case-studies/outdoor-bank): Bank, $559M assets, 11 branches across Kansas, Jack Henry Silverlake core, Narmi customer since 2024. Bought Digital Account Opening (Narmi Grow). Paired Narmi's shopping-cart-style digital account opening with a viral "Make It Rain" $200 new-customer promotion timed to their annual "The Hunt" treasure-hunt campaign (6M+ views over 45 days). Opened 300 new accounts and accumulated $300K+ in deposits in 90 days (3x goal), with monthly account opening volume ~4x the pre-Narmi baseline and rolling YTD funding of $396.7K averaging $26.5K per month.
+- [Middlesex Federal Savings](https://www.narmi.com/case-studies/middlesex-federal-savings): Bank, $710M assets, Somerville MA, COCC core, Narmi customer since 2025. Bought Narmi One. Used Narmi One's open platform to make their digital banking environment programmable, enabling a third-party agentic AI to autonomously execute wires and transfers — avoiding lock-in to any single vendor's roadmap. Customized their platform in under 90 days.
+- [FOCUS Bank](https://www.narmi.com/case-studies/focus-bank): Bank, $880M assets, 9 branches across Southeast Missouri and Northeast Arkansas, Fiserv Premier core, Narmi customer since 2025 (live August 2025). Bought Digital Account Opening (Narmi Grow). Went live 62 days from kickoff with a previously dormant digital channel. Targeting $50M in new deposits in 12 months, driven by CDs reaching customers (notably shift workers) who couldn't make it to a branch during business hours. Integrated verification (Alloy + Socure + NeuroID) reduced 73 manual-review applications by more than half within four months of go-live.
+- [Meridian Trust Federal Credit Union (MTFCU)](https://www.narmi.com/case-studies/meridian-trust): Credit union, $600M assets, Cheyenne WY (serves WY, NE, CO), Jack Henry Symitar core, Narmi customer since 2024. Bought Narmi Grow. Digitized their April Youth Month CD campaign (12-month, 20.25% APY Youth CD up to $1,000 per child), opening 883 accounts digitally and 1,100+ total accounts in April 2025 — a 194% increase over historical in-branch-only performance and nearly triple prior years' results. Implementation in under 90 days.
+- [Clark County Credit Union (CCCU)](https://www.narmi.com/case-studies/clark-county-credit-union): Credit union, $1B+ assets, Las Vegas NV, Fiserv DNA core, Narmi customer since 2024 (live December 2024). Bought staff-led Narmi Grow. Over 1,700 new accounts opened in the first two months (1,000+ staff-led), 84% completion rate for staff-led applications, 75% reduction in time spent on verification tasks (from 1 hour to 15–30 minutes), and 13 custom Narmi Functions built — including automated compliance documents for joint applicants — turning innovation timelines from weeks to days.
+- [Beacon One (Beacon Bank, full platform)](https://www.narmi.com/case-studies/berkshire-one): Bank, $23B assets, Boston MA, FIS IBS core, Narmi customer since 2019. Bought Narmi Grow, Narmi Banking, Narmi Guard, Narmi Open, Narmi Command. The expanded follow-on case study to Beacon Bank's earlier rollout — blending human insight with digital innovation across the full Narmi One stack. (Note: Beacon Bank was previously known as Berkshire Bank; URL slug retained.)
+- [Beacon Bank (initial rollout, formerly Berkshire Bank)](https://www.narmi.com/case-studies/berkshire-bank): Bank, $23B assets, Boston MA, FIS IBS core, Narmi customer since 2019. Bought Digital Account Opening, Consumer Digital Banking, and Admin Platform. Implementation involved 23 cross-functional stakeholders and 8 core project team members. Cut admin review time by more than 50% and reduced fraudulent applicants from 55% to less than 1% of all digital applicants.
+- [Evergreen Bank Group](https://www.narmi.com/case-studies/evergreen-bank-group): Bank, $1.5B assets, Oak Brook IL, Jack Henry Silverlake core, Narmi customer since 2022. Bought Narmi Grow, Narmi Banking, Narmi Command, Narmi Guard. Niche national lender (collector cars, manufactured housing, powersports via FreedomRoad and Performance Finance brands — top-5 powersports lender) serving 100,000+ loan-only customers. Used Narmi to launch a nationwide deposit strategy, including a 5.25% APY online savings account (highest in the U.S. at launch) and conversion of loan-only customers into core deposit customers across three preserved brand identities.
+- [Arrowhead Credit Union](https://www.narmi.com/case-studies/arrowhead-credit-union): Credit union, $2.2B assets, Rancho Cucamonga CA, Symitar core, Narmi customer since 2022. Bought Digital Account Opening. Achieved a fraud rate of nearly 0% post-implementation, 75% average application completion rate (4x industry average and 1.8x their previous platform), 700+ more members onboarded per month versus pre-Narmi, and an 81-business-day implementation timeline.
+- [Greater Alliance Federal Credit Union (GAFCU)](https://www.narmi.com/case-studies/greater-alliance-federal-credit-union-case-study): Credit union, $237M assets (also listed as $300M in some materials), Paramus NJ, Corelation core, Narmi customer since 2021. Bought Consumer Digital Banking, Digital Account Opening, Admin Platform. Customized account opening flow led to 300% increase in digital deposits and 100% account funding via flexible initial funding options. Automated personalized CD-receipt delivery via email to address a labor-intensive cross-sell pain point.
+- [Radius Bank (now LendingClub)](https://www.narmi.com/case-studies/lending-club): Bank, $2B assets, San Francisco CA, Miser Cohesion core, Narmi customer since 2018. Bought Consumer Digital Banking, Business Digital Banking, Admin Platform. Used Narmi's open API framework to integrate consumer fintechs for primacy, added role-based access management for business banking, and centralized support messages into Oracle CRM (the existing Radius support stack).
+- [New Cumberland Federal Credit Union (NCFCU)](https://www.narmi.com/case-studies/ncfcu): Credit union, $201M assets, Harrisburg PA, Symitar core, Narmi customer since 2019. Bought Consumer Digital Banking, Digital Account Opening, Admin Platform. Up to 93% application completion rate for started applications and 41% decrease in call center volumes after introducing native messaging via the Narmi admin platform.
+- [Freedom Credit Union](https://www.narmi.com/case-studies/freedom-credit-union): Credit union, $1.1B assets, Warminster PA, Symitar core, Narmi customer since 2019. Bought Consumer Digital Banking, Digital Account Opening, Admin Platform. 78% increase in account-to-account (A2A) transfers with real-time posting to Symitar via SymXchange and configurable A2A limits for member segments. Native messaging cut call-center volume and Twilio integration enabled SMS/email notifications.
+- [University Federal Credit Union (UFCU)](https://www.narmi.com/case-studies/ufcu): Credit union, $4.5B assets, Austin TX, Symitar core, Narmi customer since 2020. Bought Digital Account Opening. 83% completion rate for started applications (4x industry average, 2.2x their previous platform), 2-minute-13-second average start-to-finish account opening, and 4-month implementation. NeuroID integration saves 40+ hours/month in manual review and helps avoid charge-offs averaging $400 per fraudulent account.
+
+## Press releases
+
+Recent Narmi-published announcements covering product launches, customer go-lives, partnerships, leadership additions, and quarterly milestones. Listed reverse-chronologically.
+
+- [Narmi Brings AI, Innovation, and Industry Leaders to Downtown Detroit for 2026 Innovators Retreat](https://www.narmi.com/press/narmi-brings-ai-innovation-and-industry-leaders-to-downtown-detroit-for-2026-innovators-retreat): Announcement and preview of the 2026 Innovators Retreat in Detroit.
+- [CTBC USA Chooses Narmi for Strategic Digital Banking Initiatives](https://www.narmi.com/press/ctbc-usa-chooses-narmi-for-strategic-digital-banking-initiatives): CTBC USA selects Narmi.
+- [Narmi Adds Fiaz Sindhu to Leadership Team as SVP of Strategy and Operations](https://www.narmi.com/press/narmi-adds-fiaz-sindhu-to-leadership-team-as-svp-of-strategy-and-operations-to-accelerate-next-phase-of-growth): Leadership hire to accelerate next phase of growth.
+- [Narmi Heads to Detroit for Annual Innovators Retreat, Bringing 100+ Community Bank and Credit Union Leaders Together](https://www.narmi.com/press/narmi-heads-to-detroit-for-annual-innovators-retreat-bringing-100-community-bank-and-credit-union-leaders-together-to-challenge-the-status-quo): Innovators Retreat customer/prospect conference announcement.
+- [$23 Billion Beacon Bank Goes Live with Narmi One for Digital Banking and Account Opening Across Business and Consumer Platforms](https://www.narmi.com/press/23-billion-beacon-bank-goes-live-with-narmi-one-for-digital-banking-and-account-opening-across-business-and-consumer-platforms): Beacon Bank goes live on the full Narmi One platform.
+- [Narmi and SavvyMoney Partner to Embed Financial Wellness into Digital Banking](https://www.narmi.com/press/narmi-and-savvymoney-partner-to-embed-financial-wellness-into-digital-banking): Financial-wellness integration via SavvyMoney.
+- [First Resource Bank Selects Narmi Grow to Power Digital Account Opening](https://www.narmi.com/press/first-resource-bank-selects-narmi-grow-to-power-digital-account-opening): New customer announcement.
+- [North Brookfield Savings Bank Selects Narmi Grow for Account Opening](https://www.narmi.com/press/north-brookfield-savings-bank-selects-narmi-grow-to-transform-digital-account-opening-for-consumers-and-businesses): New customer announcement for consumer and business digital account opening.
+- [Narmi Unifies Fraud Defense with Narmi Guard](https://www.narmi.com/press/narmi-unifies-fraud-defense-with-narmi-guard-an-end-to-end-suite-securing-the-customer-lifecycle): Launch of Narmi Guard as a unified end-to-end fraud suite.
+- [14 Financial Institutions Go Live with Narmi in Q4 2025](https://www.narmi.com/press/14-financial-institutions-go-live-with-narmi-in-q4-2025): Q4 2025 customer go-live milestone.
+- [PECU Selects Narmi Grow to Transform Digital Account Opening](https://www.narmi.com/press/pecu-selects-narmi-grow-to-transform-digital-account-opening-and-accelerate-member-growth): New PECU customer announcement.
+- [Nathan Gonzalez Joins Narmi as Senior Vice President of Engineering](https://www.narmi.com/press/nathan-gonzalez-joins-narmi-as-senior-vice-president-of-engineering): Leadership hire.
+- [Narmi Debuts Narmi Lend: Lending For Banks and Credit Unions](https://www.narmi.com/press/narmi-debuts-narmi-lend-modern-integrated-lending-for-banks-and-credit-unions): Product launch of Narmi Lend.
+- [Grasshopper and Narmi Expand Generative AI Access with ChatGPT Integration and OAuth](https://www.narmi.com/press/grasshopper-and-narmi-expand-access-to-generative-ai-to-streamline-financial-workflows-with-chatgpt-integration-oauth): Expansion of the Narmi MCP server to support ChatGPT and OAuth 2.0 permissioned access. Quote from co-founder Chris Griffin frames AI as "the next major channel in banking."
+- [AFS and Narmi Unite to Close the Innovation Gap with New Partnership](https://www.narmi.com/press/afs-and-narmi-unite-to-close-the-innovation-gap-in-positive-pay-and-fraud-defense): Partnership focused on Positive Pay and fraud defense.
+- [Narmi and Fingerprint Announce New Partnership](https://www.narmi.com/press/narmi-and-fingerprint-announce-partnership-to-help-community-financial-institutions-fight-account-takeover): Account-takeover defense partnership.
+- [11 Financial Institutions Go Live with Narmi in Third Quarter 2025](https://www.narmi.com/press/11-financial-institutions-go-live-with-narmi-in-third-quarter-2025): Q3 2025 customer go-live milestone.
+- [Narmi Launches Suite of AI Features Built for Community Financial Institutions](https://www.narmi.com/press/narmi-launches-suite-of-ai-features-built-for-community-financial-institutions): Launch of the Narmi AI feature suite.
+- [Savers Bank Partners With Narmi to Enhance Digital Growth and Customer Experience](https://www.narmi.com/press/savers-bank-partners-with-narmi-to-enhance-digital-growth-and-customer-experience): New customer announcement.
+- [Narmi and Kard Partner to Bring Seamless, Merchant-Funded Card Rewards to Community Banks and Credit Unions](https://www.narmi.com/press/narmi-and-kard-partner-to-bring-seamless-merchant-funded-card-rewards-to-community-banks-and-credit-unions): Card rewards partnership.
+- [Narmi and Ninth Wave Partner to Deliver Open Finance Capabilities to Community Banks and Credit Unions](https://www.narmi.com/press/narmi-and-ninth-wave-partner-to-deliver-open-finance-capabilities-to-community-banks-and-credit-unions): Open finance partnership.
+- [Narmi and Atomic Partner to Bring Direct Deposit Switching and Payroll Connectivity to Community Financial Institutions](https://www.narmi.com/press/narmi-and-atomic-partner-to-bring-direct-deposit-switching-and-payroll-connectivity-to-community-financial-institutions): Direct deposit switching and payroll connectivity partnership.
+- [Focus Bank Modernizes Consumer Account Opening with Narmi Grow](https://www.narmi.com/press/focus-bank-modernizes-consumer-account-opening-with-narmi-grow): FOCUS Bank customer announcement (paired with the FOCUS case study).
+- [Narmi Expands Pinwheel Partnership with Switch Kit](https://www.narmi.com/press/narmi-expands-pinwheel-partnership-with-switch-kit): Extension of the existing Pinwheel partnership with Switch Kit functionality.
+- [Metro Credit Union Streamlines Consumer Account Opening with Narmi Grow](https://www.narmi.com/press/metro-credit-union-streamlines-consumer-account-opening-with-narmi-grow): New customer announcement.
+- [Palisades Credit Union Modernizes Consumer Offerings with Narmi One](https://www.narmi.com/press/palisades-credit-union-modernizes-consumer-offerings-with-narmi-one): New customer announcement.
+- [Narmi Announces 5th Annual Customer and Prospect Conference - Innovators Retreat](https://www.narmi.com/press/narmi-announces-5th-annual-customer-and-prospect-conference---innovators-retreat): Announcement of the 5th annual Innovators Retreat.
+- [LiaFi Partners with Narmi to Empower Small Businesses with Seamless Account Opening and Digital Banking](https://www.narmi.com/press/liafi-partners-with-narmi-to-empower-small-businesses-with-seamless-account-opening-and-digital-banking): LiaFi small-business partnership.
+- [Magnolia Bank Partners with Narmi to Offer Best-in-Class Digital Account Opening for Consumers and Businesses](https://www.narmi.com/press/magnolia-bank-partners-with-narmi-to-offer-best-in-class-digital-account-opening-for-consumers-and-businesses): New customer announcement.
+
+## Developer resources
+
+- [Developer Portal](https://www.narmi.com/developers/developer-portal): Entry point for developers building against Narmi.
+- [Public API documentation](https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api): Narmi's public REST API for FI-side integration.
+- [Account Opening API documentation](https://docs.narmi.com/docs/narmi-developer-docs/j1gfsrho7eeyd-narmi-account-opening-api): API for programmatic digital account opening.
+- [Admin API documentation](https://docs.narmi.com/docs/narmi-developer-docs/36f2ea902e193-narmi-admin-api): API for institution administrators managing the Narmi platform.
+- [ESB documentation](https://esbdocs.s3.amazonaws.com/index.html): Enterprise Service Bus documentation.
+- [UI Components](https://60620d422ffdf100216415b2-ixnrifvgev.chromatic.com/?path=/docs/components-button--overview): Narmi's design system component library (Chromatic).
+- [Narmi Application Framework](https://www.narmi.com/open-platform#platform): Framework for embedding third-party apps into Narmi.
+
+## Insights blog
+
+Narmi publishes regularly on digital banking strategy, the future of banking, and product launches. Posts are tagged either "Future of Banking" (industry analysis and thought leadership) or "Product & Company" (Narmi product launches and company updates). Organized below by theme rather than date.
+
+### AI, MCP, and agentic banking
+
+- [What 50+ Community Financial Institution Leaders Actually Think About AI](https://www.narmi.com/insights/what-50-community-financial-institution-leaders-actually-think-about-ai) (May 2026): Primary research on AI sentiment and adoption priorities among community FI leadership.
+- [AI Pulse Check: Reading the Room at Community Financial Institutions](https://www.narmi.com/insights/ai-pulse-check-reading-the-room-at-community-financial-institutions) (Apr 2026): State of AI adoption among community FIs.
+- [Founders Corner: Benchmarking AI Adoption in Digital Channels](https://www.narmi.com/insights/founders-corner-benchmarking-ai-adoption-in-digital-channels) (Apr 2026): Founder commentary on where AI adoption stands in digital banking channels.
+- [3 Stats Defining the SMB AI Opportunity](https://www.narmi.com/insights/3-stats-defining-the-smb-ai-opportunity) (Mar 2026): Data on the small-business AI opportunity for community FIs.
+- [LLM Banking is the Digital Channel for the AI Era](https://www.narmi.com/insights/llm-banking-is-the-digital-channel-for-the-ai-era) (Mar 2026): Narmi's thesis that conversational LLM interfaces will become the primary digital channel for banking.
+- [Turn Data into Action with Conversational Intelligence: Introducing Narmi's New AI Search Bar](https://www.narmi.com/insights/turn-data-into-action-with-conversational-intelligence-introducing-narmis-new-ai-search-bar) (Jan 2026): Launch of Narmi's natural-language search across banking data.
+- [What is MCP, and why should I care?](https://www.narmi.com/insights/what-is-mcp-and-why-should-i-care) (Oct 2025): Primer on Model Context Protocol for FIs.
+- [The Next Era of Financial Insights: AI Through MCP](https://www.narmi.com/insights/driving-personal-financial-management-with-the-power-of-ai) (Aug 2025): Launch announcement and explanation of Narmi's MCP server — the first deployed by a U.S. bank, in partnership with Grasshopper Bank.
+- [Banking on AI: By the Numbers](https://www.narmi.com/insights/banking-on-ai-by-the-numbers) (Jul 2025): AI adoption data and trends in banking.
+
+### Account opening and growth
+
+- [From Personas to Products: How Narmi Makes Account Opening Feel Personal](https://www.narmi.com/insights/from-personas-to-products-how-narmi-makes-account-opening-feel-personal) (Apr 2026): The personalization approach inside Narmi Grow.
+- [Turn Abandonment into Applications: Introducing Narmi's Mobile-First Account Opening Redesign](https://www.narmi.com/insights/turn-abandonment-into-applications-introducing-narmis-mobile-first-account-opening-redesign) (Mar 2026): Launch of the mobile-first account opening experience designed to reduce application abandonment.
+- [Small Banking, Big Opportunities: Harnessing Technology for Deposit Growth](https://www.narmi.com/insights/small-banking-big-opportunities-harnessing-technology-for-deposit-growth) (Apr 2024): How smaller FIs can compete for deposits through digital.
+
+### Payments, FedNow, and instant payments
+
+- [Is FedNow Catching Up Faster Than Expected?](https://www.narmi.com/insights/is-fednow-catching-up-faster-than-expected) (Jan 2026): Current state of FedNow adoption.
+- [Meeting Customers Where They Are: FedNow for Business Banking](https://www.narmi.com/insights/meeting-customers-where-they-are-fednow-for-business-banking) (Feb 2025): Business banking use cases for FedNow.
+- [FedNow and the Future of Instant Payments](https://www.narmi.com/insights/fednow-and-the-future-of-instant-payments) (Oct 2024): Foundational explainer on the FedNow Service.
+- [Delivering Real-Time Value: Three Use Cases for the FedNow Service](https://www.narmi.com/insights/delivering-real-time-value-three-use-cases-for-the-fednow-service) (Jan 2024): Three concrete FedNow deployment patterns.
+- [Modernize High-Volume Disbursements with Expedited Payments](https://www.narmi.com/insights/modernize-high-volume-disbursements-with-expedited-payments) (Mar 2026): Faster disbursement workflows.
+- [Connect Your Business Customers to the World with International Wire Transfers](https://www.narmi.com/insights/connect-your-business-customers-to-the-world-with-international-wire-transfers) (Apr 2026): International wires in business digital banking.
+- [Streamline High-Volume Payments and Strengthen Business Relationships with Bulk ACH](https://www.narmi.com/insights/streamline-high-volume-payments-and-strengthen-business-relationships-with-bulk-ach) (Jan 2026): Bulk ACH for business customers.
+
+### Business and SMB banking
+
+- [The Community Financial Institutions Guide to Digital Banking for Businesses](https://www.narmi.com/insights/the-community-financial-institutions-guide-to-digital-banking-for-businesses) (Feb 2026): Strategic guide to business digital banking for community FIs.
+- [The Churn Problem in SMB Banking](https://www.narmi.com/insights/the-churn-problem-in-smb-banking) (Mar 2025): Why SMB customers leave their FIs and how to address it.
+- [Introducing Narmi's Monthly Business Banking Spotlight](https://www.narmi.com/insights/introducing-narmis-monthly-business-banking-spotlight) (Dec 2025): Launch of a recurring business banking series.
+- [Webinar: The New Opportunities in Business Banking](https://www.narmi.com/insights/the-new-opportunities-in-business-banking) (Aug 2024): Webinar on business banking opportunities for community FIs.
+
+### Fraud and risk
+
+- [Invisible Threats: Navigating Supply Chain Crises](https://www.narmi.com/insights/invisible-threats-navigating-supply-chain-crises) (Mar 2026): Operational risk from third-party and supply-chain incidents.
+- [Proactive Fraud Prevention with Alloy and UFCU](https://www.narmi.com/insights/proactive-fraud-prevention-with-alloy-and-ufcu) (Apr 2025): Joint case study on fraud prevention with Alloy and University FCU.
+
+### Platform, integrations, and architecture
+
+- [BAI2 and CSV Export, Built Into Digital Banking](https://www.narmi.com/insights/bai2-and-csv-export-built-into-digital-banking) (May 2026): Native BAI2 and CSV exports inside the digital banking experience.
+- [Elevating the Digital Card Experience: The Narmi + FIS Card Suite Pro Integration](https://www.narmi.com/insights/elevating-the-digital-card-experience-the-narmi-fis-card-suite-pro-integration) (Feb 2026): Integration with FIS Card Suite Pro.
+- [Deliver Secure, Scalable Open Finance with Narmi and Ninth Wave](https://www.narmi.com/insights/deliver-secure-scalable-open-finance-with-narmi-and-ninth-wave) (Feb 2026): Open finance integration with Ninth Wave.
+- [Narmi Joins Fiserv AppMarket](https://www.narmi.com/insights/narmi-joins-fiserv-appmarket) (Feb 2026): Narmi's listing in the Fiserv AppMarket.
+- [Forward Deployed Engineering in Banking: A Primer](https://www.narmi.com/insights/forward-deployed-engineering-in-banking-a-primer) (Aug 2025): Narmi's forward-deployed engineering model.
+- [Founders Corner: Integration is the Real Feature of Any Digital Banking Platform](https://www.narmi.com/insights/integration-is-the-real-feature-of-any-digital-banking-platform) (Mar 2025): Founder commentary on why integration depth, not feature breadth, defines a digital banking platform.
+- [The Real Cost of Disconnected Banking Technology](https://www.narmi.com/insights/the-real-cost-of-disconnected-banking-technology) (Dec 2024): The hidden cost of running fragmented vendor stacks.
+- [Implementing Technology on Your FIS IBS Core](https://www.narmi.com/insights/implementing-technology-on-your-fis-ibs-core) (Aug 2024): Implementation guidance for FIS IBS customers.
+- [10 Ways to Transform Your Customer Experience With Narmi and FIS IBS](https://www.narmi.com/insights/10-ways-to-transform-your-customer-experience-with-narmi-and-fis-ibs) (Aug 2024): Ten use cases on FIS IBS.
+- [10 Ways to Transform Your Member Experience With Narmi and Corelation](https://www.narmi.com/insights/10-ways-narmi-leverages-the-corelation-keystone-core-banking-system-to-improve-the-member-and-credit-union-staff-experience) (May 2024): Ten use cases on Corelation Keystone.
+- [The Power of Narmi and KeyStone Integration on Display at the 2024 Corelation Conference](https://www.narmi.com/insights/the-power-of-narmi-and-keystone-integration-on-display-at-the-2024-corelation-conference) (Jun 2024): Recap of the 2024 Corelation conference.
+
+### Lending
+
+- [Market-Proofing Your Loan Portfolio](https://www.narmi.com/insights/market-proofing-your-loan-portfolio) (Dec 2025): Lending strategy for community FIs through market cycles.
+
+### Vendor selection and partnership
+
+- [The Narmi Partnership Model: Service, Integration, and Innovation](https://www.narmi.com/insights/the-narmi-partnership-model-service-integration-and-innovation) (Nov 2025): Narmi's articulation of how it works with FI partners — referenced on the homepage as "The Narmi Difference."
+- [Four Ways to Test a Vendor for Strategic Alignment](https://www.narmi.com/insights/four-ways-to-test-a-vendor-for-strategic-alignment) (Jan 2026): Framework for evaluating digital banking vendors.
+- [The CRM Paradigm in Banking](https://www.narmi.com/insights/the-crm-paradigm-in-banking) (Feb 2025): Why banking needs CRM-style thinking.
+- [How Financial Institutions Can Stand Out in the Attention Economy](https://www.narmi.com/insights/how-financial-institutions-can-stand-out-in-the-attention-economy) (Jul 2024): Differentiation strategy for community FIs.
+- [Forget Digital Transformation — It's Time to Embrace Digital Evolution](https://www.narmi.com/insights/forget-digital-transformation-its-time-to-embrace-digital-evolution) (Oct 2024): The case for continuous evolution over one-time transformation projects.
+
+### Company and events
+
+- [2026 Narmi Innovation Awards](https://www.narmi.com/insights/2026-narmi-innovation-awards) (Jan 2026): Customer innovation awards.
+- [Narmi's 2025 Year in Review](https://www.narmi.com/insights/narmis-2025-year-in-review) (Dec 2025): Annual recap.
+- [2025 Fall Innovators Retreat Recap](https://www.narmi.com/insights/2025-fall-innovators-retreat-recap) (Oct 2025): Recap of Narmi's customer conference.
+- [Celebrating Customer Stories: Highlights from the Narmi Innovation Awards](https://www.narmi.com/insights/celebrating-customer-stories-highlights-from-the-narmi-innovation-awards) (Jan 2025): Customer innovation award recap.
+- [Narmi's 2024 Year in Review](https://www.narmi.com/insights/narmis-2024-year-in-review) (Jan 2025): Annual recap.
+- [Introducing: Founder's Corner](https://www.narmi.com/insights/introducing-founders-corner) (Feb 2025): Recurring series of founder commentary.
+- [2024 Fall Innovators Retreat Recap](https://www.narmi.com/insights/2024-fall-innovators-retreat-recap) (Sep 2024): Customer conference recap.
+- [Narmi's Spring 2024 Innovators Retreat](https://www.narmi.com/insights/narmis-spring-2024-innovators-retreat) (Apr 2024): Customer conference recap.
+- [Top Takeaways from Narmi's Uplift Digital Banking Summit](https://www.narmi.com/insights/top-takeaways-from-narmis-uplift-digital-banking-summit) (Jun 2024): Summit recap.
+- [Unlock Narmi's Top Insights from Acquire or Be Acquired 2024](https://www.narmi.com/insights/unlock-narmis-top-insights-from-acquire-or-be-acquired-2024) (Feb 2024): Industry conference takeaways.
+
+## Resources
+
+- [Resource Hub](https://www.narmi.com/resources): Central index of all Narmi resources.
+- [Events and webinars](https://www.narmi.com/events): Upcoming and recorded events including the annual Innovators Retreat.
+- [What's New at Narmi](https://new.narmi.com/): Recent product updates and release notes.
+- [Press](https://www.narmi.com/press): Full press release archive.
+- [Newsletter](https://www.narmi.com/newsletter): Narmi's email newsletter.
+
+## Company
+
+- [About Narmi](https://www.narmi.com/company): Company background, mission, and team.
+- [Customers](https://www.narmi.com/customers): Full list of institutions running on Narmi.
+- [Careers](https://www.narmi.com/careers): Open roles at Narmi.
+- [Contact](https://www.narmi.com/contact): Get in touch.
+- [Request a demo](https://www.narmi.com/request-a-demo): Demo request form for prospective FI customers.
+
+## Privacy & Security
+
+- [Privacy policy](https://www.narmi.com/policies/privacy)
+- [Security](https://www.narmi.com/policies/security)
+- [Website terms and conditions](https://www.narmi.com/policies/terms-and-conditions)
+- [Developer terms and conditions](https://www.narmi.com/policies/developer-terms-conditions)

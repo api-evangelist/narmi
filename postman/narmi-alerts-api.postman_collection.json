@@ -1,0 +1,3521 @@
+{
+  "info": {
+    "_postman_id": "f49d8cd7-81fc-4e78-ba57-faa076a779ad",
+    "name": "Narmi Public account balances alerts API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:15:49.000Z",
+    "updatedAt": "2026-07-28T02:15:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f49d8cd7-81fc-4e78-ba57-faa076a779ad"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "alerts",
+          "item": [
+            {
+              "name": "account",
+              "item": [
+                {
+                  "name": "{uuid}",
+                  "item": [
+                    {
+                      "name": "Retrieve an account alert",
+                      "id": "8235e1ee-97cb-42ef-8458-8e7e1ee83c94",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/account/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "account",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "583fa631-bf70-4fd4-84d7-fbb62dd9f516",
+                              "key": "uuid",
+                              "value": "c8d7850f8-fc87a6aA22B5B42727cC9BAf0b",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieves an account alert for the user\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "260431e2-46eb-4165-b827-5c60b9bd030f",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/account/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "account",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"alert_key\": \"low_available_balance\",\n  \"delivery_channels\": [\n    \"sms\",\n    \"email\"\n  ],\n  \"subscribed_accounts\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"id\": \"<uuid>\",\n  \"rrule\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"next_alert_at\": \"<dateTime>\",\n  \"threshold_amount\": \"89136.3\",\n  \"last_delivered_date\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-260431e2-46eb-4165-b827-5c60b9bd030f"
+                        },
+                        {
+                          "id": "65150030-8245-4b69-87d5-0f347b990360",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/account/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "account",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-65150030-8245-4b69-87d5-0f347b990360"
+                        },
+                        {
+                          "id": "39436edf-2187-4012-9562-e93861ffbfb0",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/account/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "account",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-39436edf-2187-4012-9562-e93861ffbfb0"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-8235e1ee-97cb-42ef-8458-8e7e1ee83c94"
+                    },
+                    {
+                      "name": "Update an account alert",
+                      "id": "11400e12-e2e2-48b7-b9c1-ddf3e4103843",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"alert_key\": \"available_balance\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"subscribed_accounts\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rrule\": \"<string>\",\n  \"threshold_amount\": \"157851808103.10\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/account/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "account",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "4c9f1764-1a8d-4418-9c95-cc8aedfca438",
+                              "key": "uuid",
+                              "value": "c8d7850f8-fc87a6aA22B5B42727cC9BAf0b",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Updates an account alert's metadata for the user\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "b74818e0-3351-4486-aa9a-bd7fd3eff279",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"alert_key\": \"available_balance\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"subscribed_accounts\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rrule\": \"<string>\",\n  \"threshold_amount\": \"157851808103.10\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/account/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "account",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"alert_key\": \"low_available_balance\",\n  \"delivery_channels\": [\n    \"sms\",\n    \"email\"\n  ],\n  \"subscribed_accounts\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"id\": \"<uuid>\",\n  \"rrule\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"next_alert_at\": \"<dateTime>\",\n  \"threshold_amount\": \"89136.3\",\n  \"last_delivered_date\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-b74818e0-3351-4486-aa9a-bd7fd3eff279"
+                        },
+                        {
+                          "id": "ff5a8f9b-7234-4372-be51-861bc7992e50",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"alert_key\": \"available_balance\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"subscribed_accounts\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rrule\": \"<string>\",\n  \"threshold_amount\": \"157851808103.10\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/account/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "account",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-ff5a8f9b-7234-4372-be51-861bc7992e50"
+                        },
+                        {
+                          "id": "8e4c574b-e5c6-4c59-968e-b6b9b63d3e41",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"alert_key\": \"available_balance\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"subscribed_accounts\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rrule\": \"<string>\",\n  \"threshold_amount\": \"157851808103.10\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/account/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "account",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-8e4c574b-e5c6-4c59-968e-b6b9b63d3e41"
+                        },
+                        {
+                          "id": "b529132c-ff56-4a4a-b7bf-59a7bc586f74",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"alert_key\": \"available_balance\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"subscribed_accounts\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rrule\": \"<string>\",\n  \"threshold_amount\": \"157851808103.10\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/account/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "account",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-b529132c-ff56-4a4a-b7bf-59a7bc586f74"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-11400e12-e2e2-48b7-b9c1-ddf3e4103843"
+                    },
+                    {
+                      "name": "Delete an account alert",
+                      "id": "48ecd39e-c448-4f52-8ada-15ef7afd591a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/account/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "account",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "b02c73c7-5e76-46fc-ad71-9ad93eb0614e",
+                              "key": "uuid",
+                              "value": "c8d7850f8-fc87a6aA22B5B42727cC9BAf0b",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Deactivates an account alert for the user. The `alert_key` field determines which alert to deactivate for the user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "7bb18cdf-ec69-4c24-af19-5e6e83a8dd1d",
+                          "name": "No response body",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/account/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "account",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-7bb18cdf-ec69-4c24-af19-5e6e83a8dd1d"
+                        },
+                        {
+                          "id": "a5f72e25-5d66-4615-b488-9b9e18dba156",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/account/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "account",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-a5f72e25-5d66-4615-b488-9b9e18dba156"
+                        },
+                        {
+                          "id": "864ecbaa-6118-4ad0-ade0-3c074f1d4410",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/account/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "account",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-864ecbaa-6118-4ad0-ade0-3c074f1d4410"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-48ecd39e-c448-4f52-8ada-15ef7afd591a"
+                    }
+                  ],
+                  "id": "5ced9019-32a0-47fc-bd9b-fd44a7e109a6",
+                  "createdAt": "2026-07-28T02:15:50.000Z",
+                  "updatedAt": "2026-07-28T02:15:50.000Z",
+                  "uid": "35240-5ced9019-32a0-47fc-bd9b-fd44a7e109a6"
+                },
+                {
+                  "name": "List account alerts",
+                  "id": "8e2164c3-1470-43b1-9c3e-d9d92225d4e6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/alerts/account/?page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "alerts",
+                        "account",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "List all active account alerts for the user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "2a4cc275-0a60-4648-842f-72ec48777129",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/account/?page=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "account",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "A page number within the paginated result set.",
+                              "key": "page",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"results\": [\n    {\n      \"alert_key\": \"low_available_balance\",\n      \"delivery_channels\": [\n        \"email\",\n        \"sms\"\n      ],\n      \"subscribed_accounts\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"id\": \"<uuid>\",\n      \"rrule\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"next_alert_at\": \"<dateTime>\",\n      \"threshold_amount\": \"0364635.\",\n      \"last_delivered_date\": \"<dateTime>\"\n    },\n    {\n      \"alert_key\": \"available_balance\",\n      \"delivery_channels\": [\n        \"sms\",\n        \"sms\"\n      ],\n      \"subscribed_accounts\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"id\": \"<uuid>\",\n      \"rrule\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"next_alert_at\": \"<dateTime>\",\n      \"threshold_amount\": \"3\",\n      \"last_delivered_date\": \"<dateTime>\"\n    }\n  ],\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\"\n}",
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-2a4cc275-0a60-4648-842f-72ec48777129"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:15:50.000Z",
+                  "updatedAt": "2026-07-28T02:15:50.000Z",
+                  "uid": "35240-8e2164c3-1470-43b1-9c3e-d9d92225d4e6"
+                },
+                {
+                  "name": "Create an account alert",
+                  "id": "03d1dba4-f1fa-438f-b593-03f474a837d0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"alert_key\": \"available_balance\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"subscribed_accounts\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rrule\": \"<string>\",\n  \"threshold_amount\": \"157851808103.10\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/alerts/account/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "alerts",
+                        "account",
+                        ""
+                      ]
+                    },
+                    "description": "Activates an account alert for the user. The `alert_key` field determines which alert to activate for the user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "37ed24f4-4827-4e42-b13e-8003a86aad0b",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"alert_key\": \"available_balance\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"subscribed_accounts\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rrule\": \"<string>\",\n  \"threshold_amount\": \"157851808103.10\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/account/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "account",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"alert_key\": \"low_available_balance\",\n  \"delivery_channels\": [\n    \"sms\",\n    \"email\"\n  ],\n  \"subscribed_accounts\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"id\": \"<uuid>\",\n  \"rrule\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"next_alert_at\": \"<dateTime>\",\n  \"threshold_amount\": \"89136.3\",\n  \"last_delivered_date\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-37ed24f4-4827-4e42-b13e-8003a86aad0b"
+                    },
+                    {
+                      "id": "fde7882a-9e81-43cc-ab44-56878ffa12f1",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"alert_key\": \"available_balance\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"subscribed_accounts\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rrule\": \"<string>\",\n  \"threshold_amount\": \"157851808103.10\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/account/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "account",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-fde7882a-9e81-43cc-ab44-56878ffa12f1"
+                    },
+                    {
+                      "id": "9a39fec4-2092-4309-b42c-b33c37109db8",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"alert_key\": \"available_balance\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"subscribed_accounts\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"rrule\": \"<string>\",\n  \"threshold_amount\": \"157851808103.10\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/account/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "account",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-9a39fec4-2092-4309-b42c-b33c37109db8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:15:50.000Z",
+                  "updatedAt": "2026-07-28T02:15:50.000Z",
+                  "uid": "35240-03d1dba4-f1fa-438f-b593-03f474a837d0"
+                }
+              ],
+              "id": "0bdf8cbb-4597-43e5-81d6-6ed468b3c00a",
+              "createdAt": "2026-07-28T02:15:50.000Z",
+              "updatedAt": "2026-07-28T02:15:50.000Z",
+              "uid": "35240-0bdf8cbb-4597-43e5-81d6-6ed468b3c00a"
+            },
+            {
+              "name": "loan",
+              "item": [
+                {
+                  "name": "{uuid}",
+                  "item": [
+                    {
+                      "name": "Retrieve a loan alert",
+                      "id": "8105ab4f-0bac-41f5-a94c-23b8ba6e8f4a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/loan/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "loan",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "ff80e078-4dd5-46b3-a090-0b831a5fbc6c",
+                              "key": "uuid",
+                              "value": "c8d7850f8-fc87a6aA22B5B42727cC9BAf0b",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a loan alert for the user\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "0118eb49-5b15-46e3-b387-af312349db66",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/loan/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "loan",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"alert_key\": \"loan_overdue\",\n  \"delivery_channels\": [\n    \"push\",\n    \"push\"\n  ],\n  \"id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"last_delivered_date\": \"<dateTime>\",\n  \"reminder_days_offset\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-0118eb49-5b15-46e3-b387-af312349db66"
+                        },
+                        {
+                          "id": "9b914fb1-8413-4163-813c-3669163e4c0c",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/loan/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "loan",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-9b914fb1-8413-4163-813c-3669163e4c0c"
+                        },
+                        {
+                          "id": "efb65249-aae5-4757-8a4a-c0dab00393b3",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/loan/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "loan",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-efb65249-aae5-4757-8a4a-c0dab00393b3"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-8105ab4f-0bac-41f5-a94c-23b8ba6e8f4a"
+                    },
+                    {
+                      "name": "Update a loan alert",
+                      "id": "faf8c1ad-2362-4f1f-ba90-a969b80b7c13",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"alert_key\": \"loan_overdue\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"reminder_days_offset\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/loan/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "loan",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "1a20c2de-d77b-406e-b16c-c3049fafd310",
+                              "key": "uuid",
+                              "value": "c8d7850f8-fc87a6aA22B5B42727cC9BAf0b",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Updates a loan alert's metadata for the user\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "965f005a-af56-492f-903d-514af4be266e",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"alert_key\": \"loan_overdue\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"reminder_days_offset\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/loan/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "loan",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"alert_key\": \"loan_overdue\",\n  \"delivery_channels\": [\n    \"push\",\n    \"push\"\n  ],\n  \"id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"last_delivered_date\": \"<dateTime>\",\n  \"reminder_days_offset\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-965f005a-af56-492f-903d-514af4be266e"
+                        },
+                        {
+                          "id": "5067ba7d-e295-4358-bd87-b157956f8596",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"alert_key\": \"loan_overdue\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"reminder_days_offset\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/loan/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "loan",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-5067ba7d-e295-4358-bd87-b157956f8596"
+                        },
+                        {
+                          "id": "9661cce7-c966-4715-8109-128217b944f8",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"alert_key\": \"loan_overdue\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"reminder_days_offset\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/loan/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "loan",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-9661cce7-c966-4715-8109-128217b944f8"
+                        },
+                        {
+                          "id": "127c4c9b-ec94-4ed6-a0e1-fc698e802c72",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"alert_key\": \"loan_overdue\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"reminder_days_offset\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/loan/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "loan",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-127c4c9b-ec94-4ed6-a0e1-fc698e802c72"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-faf8c1ad-2362-4f1f-ba90-a969b80b7c13"
+                    },
+                    {
+                      "name": "Delete a loan alert",
+                      "id": "e19a8b9e-3ab3-4524-9098-b943b3bc0b0f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/loan/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "loan",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "57950657-b375-471f-afc9-02ca5fe065f8",
+                              "key": "uuid",
+                              "value": "c8d7850f8-fc87a6aA22B5B42727cC9BAf0b",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Deactivates a loan alert for the user. The `alert_key` field determines which alert to deactivate for the user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "522faa2c-8a80-44fe-a3f0-ebed57b03a08",
+                          "name": "No response body",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/loan/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "loan",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-522faa2c-8a80-44fe-a3f0-ebed57b03a08"
+                        },
+                        {
+                          "id": "f0abd4da-118c-437e-b20d-b98f7f1b0043",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/loan/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "loan",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-f0abd4da-118c-437e-b20d-b98f7f1b0043"
+                        },
+                        {
+                          "id": "a5306810-4c03-4e5b-942b-8d9e222e91ab",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/loan/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "loan",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-a5306810-4c03-4e5b-942b-8d9e222e91ab"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-e19a8b9e-3ab3-4524-9098-b943b3bc0b0f"
+                    }
+                  ],
+                  "id": "318521dd-f321-4b6f-a517-62872eb91afd",
+                  "createdAt": "2026-07-28T02:15:50.000Z",
+                  "updatedAt": "2026-07-28T02:15:50.000Z",
+                  "uid": "35240-318521dd-f321-4b6f-a517-62872eb91afd"
+                },
+                {
+                  "name": "List loan alerts",
+                  "id": "c3c3f27d-2883-4238-a86f-7388e930f8fe",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/alerts/loan/?page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "alerts",
+                        "loan",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "List all active loan alerts for the user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "ac3d04a9-b31d-4ddc-bcb7-b18f22315b72",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/loan/?page=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "loan",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "A page number within the paginated result set.",
+                              "key": "page",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"results\": [\n    {\n      \"alert_key\": \"loan_reminder\",\n      \"delivery_channels\": [\n        \"push\",\n        \"sms\"\n      ],\n      \"id\": \"<uuid>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"last_delivered_date\": \"<dateTime>\",\n      \"reminder_days_offset\": \"<integer>\"\n    },\n    {\n      \"alert_key\": \"loan_reminder\",\n      \"delivery_channels\": [\n        \"email\",\n        \"sms\"\n      ],\n      \"id\": \"<uuid>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"last_delivered_date\": \"<dateTime>\",\n      \"reminder_days_offset\": \"<integer>\"\n    }\n  ],\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\"\n}",
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-ac3d04a9-b31d-4ddc-bcb7-b18f22315b72"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:15:50.000Z",
+                  "updatedAt": "2026-07-28T02:15:50.000Z",
+                  "uid": "35240-c3c3f27d-2883-4238-a86f-7388e930f8fe"
+                },
+                {
+                  "name": "Create a loan alert",
+                  "id": "940f1302-0f20-4632-84be-3c20399349a4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"alert_key\": \"loan_overdue\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"reminder_days_offset\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/alerts/loan/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "alerts",
+                        "loan",
+                        ""
+                      ]
+                    },
+                    "description": "Activates a loan alert for the user. The `alert_key` field determines which alert to activate for the user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "62bbfd0a-4a88-4934-aa7a-8965aaed706e",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"alert_key\": \"loan_overdue\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"reminder_days_offset\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/loan/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "loan",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"alert_key\": \"loan_overdue\",\n  \"delivery_channels\": [\n    \"push\",\n    \"push\"\n  ],\n  \"id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"last_delivered_date\": \"<dateTime>\",\n  \"reminder_days_offset\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-62bbfd0a-4a88-4934-aa7a-8965aaed706e"
+                    },
+                    {
+                      "id": "e2a61e73-7043-421b-b33c-1c55106a9737",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"alert_key\": \"loan_overdue\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"reminder_days_offset\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/loan/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "loan",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-e2a61e73-7043-421b-b33c-1c55106a9737"
+                    },
+                    {
+                      "id": "3e7081c1-b71a-4958-bc94-b9991eed3b97",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"alert_key\": \"loan_overdue\",\n  \"delivery_channels\": [\n    \"email\",\n    \"sms\"\n  ],\n  \"reminder_days_offset\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/loan/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "loan",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-3e7081c1-b71a-4958-bc94-b9991eed3b97"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:15:50.000Z",
+                  "updatedAt": "2026-07-28T02:15:50.000Z",
+                  "uid": "35240-940f1302-0f20-4632-84be-3c20399349a4"
+                }
+              ],
+              "id": "29fa26a2-18cc-4456-94da-f0711af4fbd0",
+              "createdAt": "2026-07-28T02:15:50.000Z",
+              "updatedAt": "2026-07-28T02:15:50.000Z",
+              "uid": "35240-29fa26a2-18cc-4456-94da-f0711af4fbd0"
+            },
+            {
+              "name": "transaction",
+              "item": [
+                {
+                  "name": "{uuid}",
+                  "item": [
+                    {
+                      "name": "Retrieve a transaction alert",
+                      "id": "cf87af70-3071-41c1-a915-55c320d187bb",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/transaction/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "transaction",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "e53fb2ac-f6be-45f0-bf96-6e883e6e3d69",
+                              "key": "uuid",
+                              "value": "c8d7850f8-fc87a6aA22B5B42727cC9BAf0b",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a transaction alert for the user\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "9bd20d19-a3e5-479f-bda9-0eae03e4f874",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/transaction/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "transaction",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"alert_key\": \"credit\",\n  \"delivery_channels\": [\n    \"push\",\n    \"email\"\n  ],\n  \"transaction_query\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"last_delivered_date\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-9bd20d19-a3e5-479f-bda9-0eae03e4f874"
+                        },
+                        {
+                          "id": "4a1e4a64-5ccb-46e8-ad7d-efb3892c3c52",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/transaction/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "transaction",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-4a1e4a64-5ccb-46e8-ad7d-efb3892c3c52"
+                        },
+                        {
+                          "id": "1cb235ed-5f40-4b2b-ad33-c3dc60f1214f",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/transaction/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "transaction",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-1cb235ed-5f40-4b2b-ad33-c3dc60f1214f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-cf87af70-3071-41c1-a915-55c320d187bb"
+                    },
+                    {
+                      "name": "Update a transaction alert",
+                      "id": "2bcf6fe8-b79b-4b76-8b9f-c2884eec12f2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"alert_key\": \"credit\",\n  \"delivery_channels\": [\n    \"sms\",\n    \"sms\"\n  ],\n  \"transaction_query\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/transaction/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "transaction",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "02b51ab7-7303-4223-adcf-d2730aa47b2c",
+                              "key": "uuid",
+                              "value": "c8d7850f8-fc87a6aA22B5B42727cC9BAf0b",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Updates a transaction alert's metadata for the user\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "038c875a-be48-4e14-92b4-e021db9efbb1",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"alert_key\": \"credit\",\n  \"delivery_channels\": [\n    \"sms\",\n    \"sms\"\n  ],\n  \"transaction_query\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/transaction/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "transaction",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"alert_key\": \"credit\",\n  \"delivery_channels\": [\n    \"push\",\n    \"email\"\n  ],\n  \"transaction_query\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"last_delivered_date\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-038c875a-be48-4e14-92b4-e021db9efbb1"
+                        },
+                        {
+                          "id": "f152498e-1b90-4687-8c14-994b671452b7",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"alert_key\": \"credit\",\n  \"delivery_channels\": [\n    \"sms\",\n    \"sms\"\n  ],\n  \"transaction_query\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/transaction/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "transaction",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-f152498e-1b90-4687-8c14-994b671452b7"
+                        },
+                        {
+                          "id": "a6db1de1-27ab-427d-8552-90a03bae5db0",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"alert_key\": \"credit\",\n  \"delivery_channels\": [\n    \"sms\",\n    \"sms\"\n  ],\n  \"transaction_query\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/transaction/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "transaction",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-a6db1de1-27ab-427d-8552-90a03bae5db0"
+                        },
+                        {
+                          "id": "e139ad98-7670-41d7-93c6-45f35d535362",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"alert_key\": \"credit\",\n  \"delivery_channels\": [\n    \"sms\",\n    \"sms\"\n  ],\n  \"transaction_query\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/transaction/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "transaction",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-e139ad98-7670-41d7-93c6-45f35d535362"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-2bcf6fe8-b79b-4b76-8b9f-c2884eec12f2"
+                    },
+                    {
+                      "name": "Delete a transaction alert",
+                      "id": "9e0b85a2-683e-4561-b86a-8b1c1ab2e6da",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/transaction/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "transaction",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "cd800d28-2611-4918-819a-966513d91bf0",
+                              "key": "uuid",
+                              "value": "c8d7850f8-fc87a6aA22B5B42727cC9BAf0b",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Deactivates a transaction alert for the user. The `alert_key` determines which alert to deactivate for the user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "29c31628-9943-4e03-8a7c-c2acb1fb0ee9",
+                          "name": "No response body",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/transaction/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "transaction",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-29c31628-9943-4e03-8a7c-c2acb1fb0ee9"
+                        },
+                        {
+                          "id": "ff13a169-a24a-429e-aaf9-23a22b7970a4",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/transaction/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "transaction",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-ff13a169-a24a-429e-aaf9-23a22b7970a4"
+                        },
+                        {
+                          "id": "1fba3fe8-990d-4be0-ac9b-8fcee8a13c6c",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/alerts/transaction/:uuid/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "alerts",
+                                "transaction",
+                                ":uuid",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:15:50.000Z",
+                          "updatedAt": "2026-07-28T02:15:50.000Z",
+                          "uid": "35240-1fba3fe8-990d-4be0-ac9b-8fcee8a13c6c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-9e0b85a2-683e-4561-b86a-8b1c1ab2e6da"
+                    }
+                  ],
+                  "id": "4207cefe-b0bf-4ce2-a097-dc724319da80",
+                  "createdAt": "2026-07-28T02:15:50.000Z",
+                  "updatedAt": "2026-07-28T02:15:50.000Z",
+                  "uid": "35240-4207cefe-b0bf-4ce2-a097-dc724319da80"
+                },
+                {
+                  "name": "List transaction alerts",
+                  "id": "a31af6d3-220d-41f0-b682-05675d209852",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/alerts/transaction/?page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "alerts",
+                        "transaction",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "List all active transaction alerts for the user. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "6a58d3ce-59e4-4be7-b1d1-6cc0a0335a5c",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/transaction/?page=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "transaction",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "A page number within the paginated result set.",
+                              "key": "page",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"results\": [\n    {\n      \"alert_key\": \"credit\",\n      \"delivery_channels\": [\n        \"sms\",\n        \"sms\"\n      ],\n      \"transaction_query\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"last_delivered_date\": \"<dateTime>\"\n    },\n    {\n      \"alert_key\": \"credit\",\n      \"delivery_channels\": [\n        \"email\",\n        \"email\"\n      ],\n      \"transaction_query\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"last_delivered_date\": \"<dateTime>\"\n    }\n  ],\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\"\n}",
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-6a58d3ce-59e4-4be7-b1d1-6cc0a0335a5c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:15:50.000Z",
+                  "updatedAt": "2026-07-28T02:15:50.000Z",
+                  "uid": "35240-a31af6d3-220d-41f0-b682-05675d209852"
+                },
+                {
+                  "name": "Create a transaction alert",
+                  "id": "5e6689b2-1d25-46cf-84be-3cddc761c0be",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"alert_key\": \"credit\",\n  \"delivery_channels\": [\n    \"sms\",\n    \"sms\"\n  ],\n  \"transaction_query\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/alerts/transaction/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "alerts",
+                        "transaction",
+                        ""
+                      ]
+                    },
+                    "description": "Activates a transaction alert for the user. The `alert_key` determines which alert to activate for the user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "71035f6b-02b5-4669-8321-c0074bc9d28e",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"alert_key\": \"credit\",\n  \"delivery_channels\": [\n    \"sms\",\n    \"sms\"\n  ],\n  \"transaction_query\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/transaction/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "transaction",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"alert_key\": \"credit\",\n  \"delivery_channels\": [\n    \"push\",\n    \"email\"\n  ],\n  \"transaction_query\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"last_delivered_date\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-71035f6b-02b5-4669-8321-c0074bc9d28e"
+                    },
+                    {
+                      "id": "78f0c14f-949e-4bef-9466-d07bf784f0a4",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"alert_key\": \"credit\",\n  \"delivery_channels\": [\n    \"sms\",\n    \"sms\"\n  ],\n  \"transaction_query\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/transaction/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "transaction",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-78f0c14f-949e-4bef-9466-d07bf784f0a4"
+                    },
+                    {
+                      "id": "2a245261-1931-47ce-8ed3-b9e7742f4254",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"alert_key\": \"credit\",\n  \"delivery_channels\": [\n    \"sms\",\n    \"sms\"\n  ],\n  \"transaction_query\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/alerts/transaction/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "alerts",
+                            "transaction",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:15:50.000Z",
+                      "updatedAt": "2026-07-28T02:15:50.000Z",
+                      "uid": "35240-2a245261-1931-47ce-8ed3-b9e7742f4254"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:15:50.000Z",
+                  "updatedAt": "2026-07-28T02:15:50.000Z",
+                  "uid": "35240-5e6689b2-1d25-46cf-84be-3cddc761c0be"
+                }
+              ],
+              "id": "bf6f95ee-0199-4f30-8d27-d18c0870073d",
+              "createdAt": "2026-07-28T02:15:50.000Z",
+              "updatedAt": "2026-07-28T02:15:50.000Z",
+              "uid": "35240-bf6f95ee-0199-4f30-8d27-d18c0870073d"
+            }
+          ],
+          "id": "c839688b-151b-402f-ab71-b97f86b27ccc",
+          "createdAt": "2026-07-28T02:15:50.000Z",
+          "updatedAt": "2026-07-28T02:15:50.000Z",
+          "uid": "35240-c839688b-151b-402f-ab71-b97f86b27ccc"
+        }
+      ],
+      "id": "c532abdf-5925-43c3-941e-2a0e8b42fc22",
+      "createdAt": "2026-07-28T02:15:50.000Z",
+      "updatedAt": "2026-07-28T02:15:50.000Z",
+      "uid": "35240-c532abdf-5925-43c3-941e-2a0e8b42fc22"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

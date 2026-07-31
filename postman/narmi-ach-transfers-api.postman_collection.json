@@ -1,0 +1,536 @@
+{
+  "info": {
+    "_postman_id": "52d2de10-d8ee-4dda-8194-77ac60d11900",
+    "name": "Narmi Public account balances ach transfers API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:15:44.000Z",
+    "updatedAt": "2026-07-28T02:15:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-52d2de10-d8ee-4dda-8194-77ac60d11900"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "transfers",
+          "item": [
+            {
+              "name": "List ACH transfers",
+              "id": "5980ac96-724c-4b65-8e7e-c1636e0b62ad",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/transfers/?filter=recent&page=<integer>&per_page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "transfers",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "recent"
+                    },
+                    {
+                      "description": "A page number within the paginated result set.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of results to return per page.",
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "List the authenticated user's ACH transfers. Transfers are movements of funds between two internal accounts or two verified external accounts.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "75bdf915-b6fc-40b4-8e40-343110b020ac",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transfers/?filter=recent&page=<integer>&per_page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transfers",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "key": "filter",
+                          "value": "recent"
+                        },
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of results to return per page.",
+                          "key": "per_page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"meta\": {\n    \"total\": \"<integer>\"\n  },\n  \"links\": {\n    \"next\": \"<uri>\",\n    \"prev\": \"<uri>\"\n  },\n  \"transfers\": [\n    {\n      \"amount\": \"<integer>\",\n      \"from_account_id\": \"<uuid>\",\n      \"to_account_id\": \"<uuid>\",\n      \"id\": \"<uuid>\",\n      \"state\": \"canceled_by_user\",\n      \"created_at\": \"<dateTime>\",\n      \"estimated_process_date\": \"<dateTime>\",\n      \"estimated_arrival_date\": \"<dateTime>\"\n    },\n    {\n      \"amount\": \"<integer>\",\n      \"from_account_id\": \"<uuid>\",\n      \"to_account_id\": \"<uuid>\",\n      \"id\": \"<uuid>\",\n      \"state\": \"rejected\",\n      \"created_at\": \"<dateTime>\",\n      \"estimated_process_date\": \"<dateTime>\",\n      \"estimated_arrival_date\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:15:45.000Z",
+                  "updatedAt": "2026-07-28T02:15:45.000Z",
+                  "uid": "35240-75bdf915-b6fc-40b4-8e40-343110b020ac"
+                },
+                {
+                  "id": "fa106277-d0ad-4fdd-bd8a-ff78271a6992",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transfers/?filter=recent&page=<integer>&per_page=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transfers",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "key": "filter",
+                          "value": "recent"
+                        },
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of results to return per page.",
+                          "key": "per_page",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                  "createdAt": "2026-07-28T02:15:45.000Z",
+                  "updatedAt": "2026-07-28T02:15:45.000Z",
+                  "uid": "35240-fa106277-d0ad-4fdd-bd8a-ff78271a6992"
+                }
+              ],
+              "createdAt": "2026-07-28T02:15:45.000Z",
+              "updatedAt": "2026-07-28T02:15:45.000Z",
+              "uid": "35240-5980ac96-724c-4b65-8e7e-c1636e0b62ad"
+            },
+            {
+              "name": "Create an ACH transfer",
+              "id": "7e0fbe61-c965-45fd-ba0b-dd359dfd6975",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"agreement\": \"<boolean>\",\n  \"amount\": \"<integer>\",\n  \"from_account_id\": \"<uuid>\",\n  \"to_account_id\": \"<uuid>\",\n  \"device_id\": \"<string>\",\n  \"instant\": false,\n  \"memo\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/transfers/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "transfers",
+                    ""
+                  ]
+                },
+                "description": "Transfer funds between two accounts. The target accounts should be either an account at the financial institution belonging to the user or a verified external account.\n\nA list of eligible accounts can be retrieved or listed from the accounts endpoints.\n\nIf the `instant` flag is provided for a push external transfer, processing will be done via FedNow and core posting will be immediate, otherwise all external transfers are processed via ACH by default.\n\nAdditionally, this endpoint requires the use of sudo elevation. For details, please refer to the <a href=\"#/operations/retrieve_sudo\">sudo documentation.</a>\n\n\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "c063e5b0-e7c3-44ec-a2c5-590d3b749cf9",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"agreement\": \"<boolean>\",\n  \"amount\": \"<integer>\",\n  \"from_account_id\": \"<uuid>\",\n  \"to_account_id\": \"<uuid>\",\n  \"device_id\": \"<string>\",\n  \"instant\": false,\n  \"memo\": \"\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transfers/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transfers",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"transfer\": {\n    \"amount\": \"<integer>\",\n    \"from_account_id\": \"<uuid>\",\n    \"to_account_id\": \"<uuid>\",\n    \"id\": \"<uuid>\",\n    \"state\": \"processing\",\n    \"created_at\": \"<dateTime>\",\n    \"estimated_process_date\": \"<dateTime>\",\n    \"estimated_arrival_date\": \"<dateTime>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:15:45.000Z",
+                  "updatedAt": "2026-07-28T02:15:45.000Z",
+                  "uid": "35240-c063e5b0-e7c3-44ec-a2c5-590d3b749cf9"
+                },
+                {
+                  "id": "3dfe6cdb-0250-49bc-81e3-c654ed538f1a",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"agreement\": \"<boolean>\",\n  \"amount\": \"<integer>\",\n  \"from_account_id\": \"<uuid>\",\n  \"to_account_id\": \"<uuid>\",\n  \"device_id\": \"<string>\",\n  \"instant\": false,\n  \"memo\": \"\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transfers/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transfers",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:15:45.000Z",
+                  "updatedAt": "2026-07-28T02:15:45.000Z",
+                  "uid": "35240-3dfe6cdb-0250-49bc-81e3-c654ed538f1a"
+                },
+                {
+                  "id": "ac60f078-7bf3-4b79-a0b4-1810256c73e0",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"agreement\": \"<boolean>\",\n  \"amount\": \"<integer>\",\n  \"from_account_id\": \"<uuid>\",\n  \"to_account_id\": \"<uuid>\",\n  \"device_id\": \"<string>\",\n  \"instant\": false,\n  \"memo\": \"\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transfers/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transfers",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": {\n    \"amount\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:15:45.000Z",
+                  "updatedAt": "2026-07-28T02:15:45.000Z",
+                  "uid": "35240-ac60f078-7bf3-4b79-a0b4-1810256c73e0"
+                },
+                {
+                  "id": "8d4b428e-d9a6-4c91-afda-0353136f00ed",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"agreement\": \"<boolean>\",\n  \"amount\": \"<integer>\",\n  \"from_account_id\": \"<uuid>\",\n  \"to_account_id\": \"<uuid>\",\n  \"device_id\": \"<string>\",\n  \"instant\": false,\n  \"memo\": \"\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transfers/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transfers",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Service Unavailable",
+                  "code": 503,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:15:45.000Z",
+                  "updatedAt": "2026-07-28T02:15:45.000Z",
+                  "uid": "35240-8d4b428e-d9a6-4c91-afda-0353136f00ed"
+                }
+              ],
+              "createdAt": "2026-07-28T02:15:45.000Z",
+              "updatedAt": "2026-07-28T02:15:45.000Z",
+              "uid": "35240-7e0fbe61-c965-45fd-ba0b-dd359dfd6975"
+            }
+          ],
+          "id": "89b02de8-e6aa-43f8-8834-ed72780d14c8",
+          "createdAt": "2026-07-28T02:15:45.000Z",
+          "updatedAt": "2026-07-28T02:15:45.000Z",
+          "uid": "35240-89b02de8-e6aa-43f8-8834-ed72780d14c8"
+        }
+      ],
+      "id": "c87e0237-5a7a-493f-8c63-455f924d34a1",
+      "createdAt": "2026-07-28T02:15:45.000Z",
+      "updatedAt": "2026-07-28T02:15:45.000Z",
+      "uid": "35240-c87e0237-5a7a-493f-8c63-455f924d34a1"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

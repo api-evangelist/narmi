@@ -1,0 +1,284 @@
+{
+  "info": {
+    "_postman_id": "750d04ec-42cd-416d-be28-f9f1a0a09690",
+    "name": "Narmi Public account balances institution API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:13.000Z",
+    "updatedAt": "2026-07-28T02:16:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-750d04ec-42cd-416d-be28-f9f1a0a09690"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "institution",
+          "item": [
+            {
+              "name": "Get current institution info",
+              "id": "235cb6e7-ccde-4c3a-935c-8708bae1f187",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/institution/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "institution",
+                    ""
+                  ]
+                },
+                "description": "Returns configurable data for the active Institution including URLs, asset URLs, and customizable settings.\n\nAuthentication required: None\n\nResponse includes (partial list):\n- Institution branding: colors, logos, names\n- URLs: `forgot_password_url`, `register_url`, support links\n- Feature flags and institution-specific settings\n- Color values in both hex (`*_color_hex`) and RGB CSS variable formats\n\nEdge cases:\n- Color keys (`primary_color`, `secondary_color`, `tertiary_color`) are converted to RGB CSS variables\n- Response format varies based on `api-version` header (versions \u2264 0011 use legacy format)\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "ca60113d-9c2f-43c3-a98c-07b50fbde79a",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/institution/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "institution",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"institution\": {\n    \"banking_url\": \"<string>\",\n    \"forgot_password_url\": \"<string>\",\n    \"favicon_url\": \"<string>\",\n    \"register_url\": \"<string>\",\n    \"main_domain\": \"<string>\",\n    \"short_name\": \"<string>\",\n    \"long_name\": \"<string>\",\n    \"routing_number\": \"<string>\",\n    \"help_phone\": \"<string>\",\n    \"help_email\": \"<string>\",\n    \"help_card_phone\": \"<string>\",\n    \"internal_name\": \"<string>\",\n    \"mixpanel_project_token\": \"<string>\",\n    \"force_complete_mixpanel_sampling\": \"<boolean>\",\n    \"terms_url\": \"<string>\",\n    \"logo_url\": \"<string>\",\n    \"mobile_splash_screen_logo_url\": \"<string>\",\n    \"primary_color_hex\": \"<string>\",\n    \"secondary_color_hex\": \"<string>\",\n    \"tertiary_color_hex\": \"<string>\",\n    \"primary_color\": \"<string>\",\n    \"secondary_color\": \"<string>\",\n    \"tertiary_color\": \"<string>\",\n    \"s3_images_bucket\": \"<string>\",\n    \"lending_minimum_applicant_birth_year\": \"<integer>\",\n    \"lending_minimum_applicant_age\": \"<integer>\",\n    \"lending_requested_amount_params\": {},\n    \"lending_welcome_screen_logo_url\": \"<string>\",\n    \"features\": {\n      \"lending\": \"<boolean>\"\n    },\n    \"lending_enabled_products\": {},\n    \"lending_application_steps\": {\n      \"living_arrangement\": \"<boolean>\",\n      \"employment_details\": \"<boolean>\"\n    },\n    \"lending_offer_info_and_disclaimer_url\": \"<string>\",\n    \"lending_website_flow_logo_nav_url\": \"<string>\",\n    \"lending_flows_enabled\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"lending_co_applicants_enabled_products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"membership_share_product_for_lending\": \"<string>\",\n    \"dao_disclosures\": [\n      {\n        \"checkbox_text\": \"<string>\",\n        \"markdown\": \"<string>\",\n        \"links\": [\n          {\n            \"text\": \"<string>\",\n            \"url\": \"<string>\"\n          },\n          {\n            \"text\": \"<string>\",\n            \"url\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"checkbox_text\": \"<string>\",\n        \"markdown\": \"<string>\",\n        \"links\": [\n          {\n            \"text\": \"<string>\",\n            \"url\": \"<string>\"\n          },\n          {\n            \"text\": \"<string>\",\n            \"url\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:13.000Z",
+                  "updatedAt": "2026-07-28T02:16:13.000Z",
+                  "uid": "35240-ca60113d-9c2f-43c3-a98c-07b50fbde79a"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:13.000Z",
+              "updatedAt": "2026-07-28T02:16:13.000Z",
+              "uid": "35240-235cb6e7-ccde-4c3a-935c-8708bae1f187"
+            }
+          ],
+          "id": "1eab5ea1-f60b-4b88-82ec-11648b3761b2",
+          "createdAt": "2026-07-28T02:16:13.000Z",
+          "updatedAt": "2026-07-28T02:16:13.000Z",
+          "uid": "35240-1eab5ea1-f60b-4b88-82ec-11648b3761b2"
+        },
+        {
+          "name": "institutions",
+          "item": [
+            {
+              "name": "{routing_number}",
+              "item": [
+                {
+                  "name": "{type}",
+                  "item": [
+                    {
+                      "name": "Get institution name by routing number",
+                      "id": "dbd3058a-0284-40fa-8327-3445160e7625",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/institutions/:routing_number/:type/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "institutions",
+                            ":routing_number",
+                            ":type",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "52dfbe2b-0f31-47c7-bec0-d147d84928ea",
+                              "key": "routing_number",
+                              "value": "3010607751",
+                              "description": "(Required) "
+                            },
+                            {
+                              "id": "41cf26ca-42ab-4be2-baf1-83510b1e554f",
+                              "key": "type",
+                              "value": "<string>",
+                              "description": "(Required) Lookup type: omit for ACH, or specify `wire` for FedWire names"
+                            }
+                          ]
+                        },
+                        "description": "Returns the name of the financial institution for a given routing number from the FedWire database.\n\nUseful for displaying institution name when funding via external transfer.\n\nEdge cases:\n- `type` parameter is optional; omitting it defaults to ACH lookup\n- Pass `type=wire` for FedWire-specific institution names\n- Returns 404 if routing number not found in database\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "fc0ce962-f49f-4d39-878c-acb8f0bee006",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/institutions/:routing_number/:type/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "institutions",
+                                ":routing_number",
+                                ":type",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "routing_number"
+                                },
+                                {
+                                  "key": "type"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"institution\": {\n    \"name\": \"BANK OF AMERICA, N.A.\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:16:13.000Z",
+                          "updatedAt": "2026-07-28T02:16:13.000Z",
+                          "uid": "35240-fc0ce962-f49f-4d39-878c-acb8f0bee006"
+                        },
+                        {
+                          "id": "78056056-10a6-4c2d-ad5c-b2c2300a0c1c",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/institutions/:routing_number/:type/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "institutions",
+                                ":routing_number",
+                                ":type",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "routing_number"
+                                },
+                                {
+                                  "key": "type"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                          "createdAt": "2026-07-28T02:16:13.000Z",
+                          "updatedAt": "2026-07-28T02:16:13.000Z",
+                          "uid": "35240-78056056-10a6-4c2d-ad5c-b2c2300a0c1c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:16:13.000Z",
+                      "updatedAt": "2026-07-28T02:16:13.000Z",
+                      "uid": "35240-dbd3058a-0284-40fa-8327-3445160e7625"
+                    }
+                  ],
+                  "id": "6aa5ec58-1466-477a-adfc-b8060e703a2d",
+                  "createdAt": "2026-07-28T02:16:13.000Z",
+                  "updatedAt": "2026-07-28T02:16:13.000Z",
+                  "uid": "35240-6aa5ec58-1466-477a-adfc-b8060e703a2d"
+                }
+              ],
+              "id": "ff389a32-82c0-447f-afcc-a23327da58b0",
+              "createdAt": "2026-07-28T02:16:13.000Z",
+              "updatedAt": "2026-07-28T02:16:13.000Z",
+              "uid": "35240-ff389a32-82c0-447f-afcc-a23327da58b0"
+            }
+          ],
+          "id": "ea4a470a-802c-4070-ab52-1509e2407f0e",
+          "createdAt": "2026-07-28T02:16:13.000Z",
+          "updatedAt": "2026-07-28T02:16:13.000Z",
+          "uid": "35240-ea4a470a-802c-4070-ab52-1509e2407f0e"
+        }
+      ],
+      "id": "952c0c6d-e24b-4979-a129-bd6b872cb83c",
+      "createdAt": "2026-07-28T02:16:13.000Z",
+      "updatedAt": "2026-07-28T02:16:13.000Z",
+      "uid": "35240-952c0c6d-e24b-4979-a129-bd6b872cb83c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

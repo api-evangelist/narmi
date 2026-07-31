@@ -1,0 +1,1207 @@
+{
+  "info": {
+    "_postman_id": "28821eb0-9026-4f91-b038-a10809420186",
+    "name": "Narmi Public account balances transactions API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:58.000Z",
+    "updatedAt": "2026-07-28T02:16:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-28821eb0-9026-4f91-b038-a10809420186"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "transactions",
+          "item": [
+            {
+              "name": "{uuid}",
+              "item": [
+                {
+                  "name": "images",
+                  "item": [
+                    {
+                      "name": "Retrieve transaction image",
+                      "id": "a4825e2b-0a17-4f6b-a8b6-d0b202e5e8bf",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v2/oauth/token/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "/v2/oauth/authorize/",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transactions/:uuid/images/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transactions",
+                            ":uuid",
+                            "images",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "e7b98fb8-d6ba-4b32-940e-c2563404b2f8",
+                              "key": "uuid",
+                              "value": "luzd",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Fetch the base 64 encoded front and back check images for a specified transaction. This endpoint may return 503 or 422 status codes when interacting with the 3rd party integration that manages these images.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                      },
+                      "response": [
+                        {
+                          "id": "7002d374-482c-4a8f-abaf-5eb26631ffa6",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/transactions/:uuid/images/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "transactions",
+                                ":uuid",
+                                "images",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"check_images\": [\n    {\n      \"front\": \"<string>\",\n      \"back\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:16:59.000Z",
+                          "updatedAt": "2026-07-28T02:16:59.000Z",
+                          "uid": "35240-7002d374-482c-4a8f-abaf-5eb26631ffa6"
+                        },
+                        {
+                          "id": "cb41c7fa-cf26-45e5-a01d-44e311ffa0b3",
+                          "name": "Invalid request response.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/transactions/:uuid/images/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "transactions",
+                                ":uuid",
+                                "images",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:16:59.000Z",
+                          "updatedAt": "2026-07-28T02:16:59.000Z",
+                          "uid": "35240-cb41c7fa-cf26-45e5-a01d-44e311ffa0b3"
+                        },
+                        {
+                          "id": "63a4ef7e-4f4e-4147-bc9e-7e2502615152",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/transactions/:uuid/images/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "transactions",
+                                ":uuid",
+                                "images",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:16:59.000Z",
+                          "updatedAt": "2026-07-28T02:16:59.000Z",
+                          "uid": "35240-63a4ef7e-4f4e-4147-bc9e-7e2502615152"
+                        },
+                        {
+                          "id": "7c1140cb-1b12-4591-834f-df34a98f0bd0",
+                          "name": "New Response",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/transactions/:uuid/images/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "transactions",
+                                ":uuid",
+                                "images",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "uuid"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:16:59.000Z",
+                          "updatedAt": "2026-07-28T02:16:59.000Z",
+                          "uid": "35240-7c1140cb-1b12-4591-834f-df34a98f0bd0"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:16:59.000Z",
+                      "updatedAt": "2026-07-28T02:16:59.000Z",
+                      "uid": "35240-a4825e2b-0a17-4f6b-a8b6-d0b202e5e8bf"
+                    }
+                  ],
+                  "id": "72f68986-e8c4-4a8c-a65c-8290b2f73bd1",
+                  "createdAt": "2026-07-28T02:16:59.000Z",
+                  "updatedAt": "2026-07-28T02:16:59.000Z",
+                  "uid": "35240-72f68986-e8c4-4a8c-a65c-8290b2f73bd1"
+                },
+                {
+                  "name": "Retrieve transaction",
+                  "id": "69dfe8b8-4bd1-4ffb-b217-6d9e8ebe4e95",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transactions/:uuid/?file_format=pdf",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transactions",
+                        ":uuid",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "key": "file_format",
+                          "value": "pdf"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "e9cae025-e7fe-4b9c-9727-7bdb74c618af",
+                          "key": "uuid",
+                          "value": "luzd",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Fetch a specified transaction.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "380daa8a-dba1-4cf2-8b3d-4a6cb4c85365",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transactions/:uuid/?file_format=pdf",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transactions",
+                            ":uuid",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "key": "file_format",
+                              "value": "pdf"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"transaction\": {\n    \"description\": \"<string>\",\n    \"raw_description\": \"<string>\",\n    \"id\": \"<string>\",\n    \"source\": \"<string>\",\n    \"settled_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\",\n    \"account_id\": \"<string>\",\n    \"category\": \"<string>\",\n    \"sub_category\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"ledger_balance\": \"<integer>\",\n    \"location\": {\n      \"city\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"check\": {\n      \"number\": \"<string>\"\n    },\n    \"merchant\": \"<string>\",\n    \"metadata\": {\n      \"aute_2\": {}\n    },\n    \"note\": \"\",\n    \"type\": \"debit\",\n    \"recurring\": false,\n    \"flex_plan_eligible\": \"<boolean>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:59.000Z",
+                      "updatedAt": "2026-07-28T02:16:59.000Z",
+                      "uid": "35240-380daa8a-dba1-4cf2-8b3d-4a6cb4c85365"
+                    },
+                    {
+                      "id": "8bb0842f-9919-4a0c-85a3-ba3e26250b1d",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transactions/:uuid/?file_format=pdf",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transactions",
+                            ":uuid",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "key": "file_format",
+                              "value": "pdf"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"id\": \"not_found\"\n}",
+                      "createdAt": "2026-07-28T02:16:59.000Z",
+                      "updatedAt": "2026-07-28T02:16:59.000Z",
+                      "uid": "35240-8bb0842f-9919-4a0c-85a3-ba3e26250b1d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:59.000Z",
+                  "updatedAt": "2026-07-28T02:16:59.000Z",
+                  "uid": "35240-69dfe8b8-4bd1-4ffb-b217-6d9e8ebe4e95"
+                },
+                {
+                  "name": "Update transaction",
+                  "id": "5bc60d5e-fef6-4619-aa07-fa15d74bdb09",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"note\": \"\",\n  \"recurring\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transactions/:uuid/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transactions",
+                        ":uuid",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "74384c41-4eac-444a-bdcd-f55c0176959d",
+                          "key": "uuid",
+                          "value": "luzd",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Update fields for a specified transaction.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "ad71ff4a-77cc-4cae-98c1-059304453a3b",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"note\": \"\",\n  \"recurring\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transactions/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transactions",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"transaction\": {\n    \"description\": \"<string>\",\n    \"raw_description\": \"<string>\",\n    \"id\": \"<string>\",\n    \"source\": \"<string>\",\n    \"settled_at\": \"<dateTime>\",\n    \"created_at\": \"<dateTime>\",\n    \"account_id\": \"<string>\",\n    \"category\": \"<string>\",\n    \"sub_category\": \"<string>\",\n    \"amount\": \"<integer>\",\n    \"ledger_balance\": \"<integer>\",\n    \"location\": {\n      \"city\": \"<string>\",\n      \"region_code\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    \"check\": {\n      \"number\": \"<string>\"\n    },\n    \"merchant\": \"<string>\",\n    \"metadata\": {\n      \"aute_2\": {}\n    },\n    \"note\": \"\",\n    \"type\": \"debit\",\n    \"recurring\": false,\n    \"flex_plan_eligible\": \"<boolean>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:59.000Z",
+                      "updatedAt": "2026-07-28T02:16:59.000Z",
+                      "uid": "35240-ad71ff4a-77cc-4cae-98c1-059304453a3b"
+                    },
+                    {
+                      "id": "f430c4fa-83c9-41f1-a40c-578778ac5f8e",
+                      "name": "Invalid request response.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"note\": \"\",\n  \"recurring\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/transactions/:uuid/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "transactions",
+                            ":uuid",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "uuid"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:16:59.000Z",
+                      "updatedAt": "2026-07-28T02:16:59.000Z",
+                      "uid": "35240-f430c4fa-83c9-41f1-a40c-578778ac5f8e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:59.000Z",
+                  "updatedAt": "2026-07-28T02:16:59.000Z",
+                  "uid": "35240-5bc60d5e-fef6-4619-aa07-fa15d74bdb09"
+                }
+              ],
+              "id": "5eaa3ee2-7978-466c-9975-f9085a0ca17f",
+              "createdAt": "2026-07-28T02:16:59.000Z",
+              "updatedAt": "2026-07-28T02:16:59.000Z",
+              "uid": "35240-5eaa3ee2-7978-466c-9975-f9085a0ca17f"
+            },
+            {
+              "name": "List user transactions",
+              "id": "22e472fc-faab-4a60-b3a2-775c09ae71b5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/transactions/?after=<uuid>&before=<uuid>&block=<boolean>&created_from=<dateTime>&created_to=<dateTime>&filter=hidden&page=<integer>&q=<string>&settled_from=<dateTime>&settled_to=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "transactions",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Cursor value which indicates the first index to be queried. This can be used to paginate using cursor pagination along with the `before` parameter.",
+                      "key": "after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "description": "Cursor value which indicates the last index to be queried. This can be used to paginate using cursor pagination along with the `after` parameter.",
+                      "key": "before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "description": "Whether or not to call a blocking operation to update the transaction results before fetching. When calling with this flag, the endpoint may respond with a 500 in the event of issues with the core.",
+                      "key": "block",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Earliest date-time the transaction should be created from.",
+                      "key": "created_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Latest date-time the transaction should be created to.",
+                      "key": "created_to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Omit the defined transaction state from transaction results.",
+                      "key": "filter",
+                      "value": "hidden"
+                    },
+                    {
+                      "description": "Page number value, this will populate automatically via the `next` and `previous` urls which are generated in the response.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Search string with which to filter results.",
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Earliest date-time the transaction should be settled from.",
+                      "key": "settled_from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Latest date-time the transaction should be settled to.",
+                      "key": "settled_to",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                },
+                "description": "List transactions for the authenticated user. Transactions are collated from accounts which the user is a member of.<br /><br />If queried via the v1/accounts/{account_uuids}/transactions endpoint,the call will return a 404 if all the comma-separated list of `account_uuids` are non-existent.<br /><br />Pagination can be defined either via the `before` and `after` query parameters for cursor pagination or via the `page` parameter for page number pagination. Both styles of pagination accept a `per_page` parameter, which indicates how many results should be returned.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "b7e0f22b-a64f-4737-b73e-7d581579eed2",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transactions/?after=<uuid>&before=<uuid>&block=<boolean>&created_from=<dateTime>&created_to=<dateTime>&filter=hidden&page=<integer>&q=<string>&settled_from=<dateTime>&settled_to=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transactions",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Cursor value which indicates the first index to be queried. This can be used to paginate using cursor pagination along with the `before` parameter.",
+                          "key": "after",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "Cursor value which indicates the last index to be queried. This can be used to paginate using cursor pagination along with the `after` parameter.",
+                          "key": "before",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "Whether or not to call a blocking operation to update the transaction results before fetching. When calling with this flag, the endpoint may respond with a 500 in the event of issues with the core.",
+                          "key": "block",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Earliest date-time the transaction should be created from.",
+                          "key": "created_from",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Latest date-time the transaction should be created to.",
+                          "key": "created_to",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Omit the defined transaction state from transaction results.",
+                          "key": "filter",
+                          "value": "hidden"
+                        },
+                        {
+                          "description": "Page number value, this will populate automatically via the `next` and `previous` urls which are generated in the response.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Search string with which to filter results.",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Earliest date-time the transaction should be settled from.",
+                          "key": "settled_from",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Latest date-time the transaction should be settled to.",
+                          "key": "settled_to",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"links\": {\n    \"next\": \"<uri>\",\n    \"previous\": \"<uri>\"\n  },\n  \"meta\": {\n    \"total\": \"<integer>\",\n    \"warning_id\": \"pending_transactions_failure\",\n    \"warning_message\": \"Pending transactions could not be fetched for some accounts.\"\n  },\n  \"transactions\": [\n    {\n      \"description\": \"<string>\",\n      \"raw_description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"settled_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"account_id\": \"<string>\",\n      \"category\": \"<string>\",\n      \"sub_category\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"ledger_balance\": \"<integer>\",\n      \"location\": {\n        \"city\": \"<string>\",\n        \"region_code\": \"<string>\",\n        \"country_code\": \"<string>\"\n      },\n      \"check\": {\n        \"number\": \"<string>\"\n      },\n      \"merchant\": \"<string>\",\n      \"metadata\": {\n        \"voluptatea81\": {},\n        \"ipsumb60\": {}\n      },\n      \"note\": \"\",\n      \"type\": \"credit\",\n      \"recurring\": false,\n      \"flex_plan_eligible\": \"<boolean>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"raw_description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"source\": \"<string>\",\n      \"settled_at\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\",\n      \"account_id\": \"<string>\",\n      \"category\": \"<string>\",\n      \"sub_category\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"ledger_balance\": \"<integer>\",\n      \"location\": {\n        \"city\": \"<string>\",\n        \"region_code\": \"<string>\",\n        \"country_code\": \"<string>\"\n      },\n      \"check\": {\n        \"number\": \"<string>\"\n      },\n      \"merchant\": \"<string>\",\n      \"metadata\": {\n        \"animbf\": {},\n        \"eiusmod_\": {}\n      },\n      \"note\": \"\",\n      \"type\": \"debit\",\n      \"recurring\": false,\n      \"flex_plan_eligible\": \"<boolean>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:59.000Z",
+                  "updatedAt": "2026-07-28T02:16:59.000Z",
+                  "uid": "35240-b7e0f22b-a64f-4737-b73e-7d581579eed2"
+                },
+                {
+                  "id": "7afda0b0-c455-4ce2-b6f7-f61bddfb26b7",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transactions/?after=<uuid>&before=<uuid>&block=<boolean>&created_from=<dateTime>&created_to=<dateTime>&filter=hidden&page=<integer>&q=<string>&settled_from=<dateTime>&settled_to=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transactions",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Cursor value which indicates the first index to be queried. This can be used to paginate using cursor pagination along with the `before` parameter.",
+                          "key": "after",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "Cursor value which indicates the last index to be queried. This can be used to paginate using cursor pagination along with the `after` parameter.",
+                          "key": "before",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "Whether or not to call a blocking operation to update the transaction results before fetching. When calling with this flag, the endpoint may respond with a 500 in the event of issues with the core.",
+                          "key": "block",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Earliest date-time the transaction should be created from.",
+                          "key": "created_from",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Latest date-time the transaction should be created to.",
+                          "key": "created_to",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Omit the defined transaction state from transaction results.",
+                          "key": "filter",
+                          "value": "hidden"
+                        },
+                        {
+                          "description": "Page number value, this will populate automatically via the `next` and `previous` urls which are generated in the response.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Search string with which to filter results.",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Earliest date-time the transaction should be settled from.",
+                          "key": "settled_from",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Latest date-time the transaction should be settled to.",
+                          "key": "settled_to",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"No Account matches the given query.\"\n}",
+                  "createdAt": "2026-07-28T02:16:59.000Z",
+                  "updatedAt": "2026-07-28T02:16:59.000Z",
+                  "uid": "35240-7afda0b0-c455-4ce2-b6f7-f61bddfb26b7"
+                },
+                {
+                  "id": "7205c175-ec20-42ee-8093-b9e070992540",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transactions/?after=<uuid>&before=<uuid>&block=<boolean>&created_from=<dateTime>&created_to=<dateTime>&filter=hidden&page=<integer>&q=<string>&settled_from=<dateTime>&settled_to=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transactions",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Cursor value which indicates the first index to be queried. This can be used to paginate using cursor pagination along with the `before` parameter.",
+                          "key": "after",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "Cursor value which indicates the last index to be queried. This can be used to paginate using cursor pagination along with the `after` parameter.",
+                          "key": "before",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "Whether or not to call a blocking operation to update the transaction results before fetching. When calling with this flag, the endpoint may respond with a 500 in the event of issues with the core.",
+                          "key": "block",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Earliest date-time the transaction should be created from.",
+                          "key": "created_from",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Latest date-time the transaction should be created to.",
+                          "key": "created_to",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Omit the defined transaction state from transaction results.",
+                          "key": "filter",
+                          "value": "hidden"
+                        },
+                        {
+                          "description": "Page number value, this will populate automatically via the `next` and `previous` urls which are generated in the response.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Search string with which to filter results.",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Earliest date-time the transaction should be settled from.",
+                          "key": "settled_from",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Latest date-time the transaction should be settled to.",
+                          "key": "settled_to",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:59.000Z",
+                  "updatedAt": "2026-07-28T02:16:59.000Z",
+                  "uid": "35240-7205c175-ec20-42ee-8093-b9e070992540"
+                },
+                {
+                  "id": "a5432705-8c8a-48b3-8cf8-1129bf690c38",
+                  "name": "No response body",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/transactions/?after=<uuid>&before=<uuid>&block=<boolean>&created_from=<dateTime>&created_to=<dateTime>&filter=hidden&page=<integer>&q=<string>&settled_from=<dateTime>&settled_to=<dateTime>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "transactions",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Cursor value which indicates the first index to be queried. This can be used to paginate using cursor pagination along with the `before` parameter.",
+                          "key": "after",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "Cursor value which indicates the last index to be queried. This can be used to paginate using cursor pagination along with the `after` parameter.",
+                          "key": "before",
+                          "value": "<uuid>"
+                        },
+                        {
+                          "description": "Whether or not to call a blocking operation to update the transaction results before fetching. When calling with this flag, the endpoint may respond with a 500 in the event of issues with the core.",
+                          "key": "block",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Earliest date-time the transaction should be created from.",
+                          "key": "created_from",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Latest date-time the transaction should be created to.",
+                          "key": "created_to",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Omit the defined transaction state from transaction results.",
+                          "key": "filter",
+                          "value": "hidden"
+                        },
+                        {
+                          "description": "Page number value, this will populate automatically via the `next` and `previous` urls which are generated in the response.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Search string with which to filter results.",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Earliest date-time the transaction should be settled from.",
+                          "key": "settled_from",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Latest date-time the transaction should be settled to.",
+                          "key": "settled_to",
+                          "value": "<dateTime>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:16:59.000Z",
+                  "updatedAt": "2026-07-28T02:16:59.000Z",
+                  "uid": "35240-a5432705-8c8a-48b3-8cf8-1129bf690c38"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:59.000Z",
+              "updatedAt": "2026-07-28T02:16:59.000Z",
+              "uid": "35240-22e472fc-faab-4a60-b3a2-775c09ae71b5"
+            }
+          ],
+          "id": "3975e431-e6ac-46fc-a3ac-2b267bf2d1c4",
+          "createdAt": "2026-07-28T02:16:59.000Z",
+          "updatedAt": "2026-07-28T02:16:59.000Z",
+          "uid": "35240-3975e431-e6ac-46fc-a3ac-2b267bf2d1c4"
+        }
+      ],
+      "id": "6dac5f2f-9bc3-4140-8590-834089cd0e3b",
+      "createdAt": "2026-07-28T02:16:59.000Z",
+      "updatedAt": "2026-07-28T02:16:59.000Z",
+      "uid": "35240-6dac5f2f-9bc3-4140-8590-834089cd0e3b"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

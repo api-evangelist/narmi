@@ -1,0 +1,533 @@
+{
+  "info": {
+    "_postman_id": "8beea06c-1035-4d88-9831-48c852be3e00",
+    "name": "Narmi Public account balances surveys API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:47.000Z",
+    "updatedAt": "2026-07-28T02:16:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8beea06c-1035-4d88-9831-48c852be3e00"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "survey_impressions",
+          "item": [
+            {
+              "name": "create_answer",
+              "item": [
+                {
+                  "name": "survey impressions create answer create",
+                  "id": "92018a49-a7a4-49f9-8e2b-050eb094f6c9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"impression_uuid\": \"<uuid>\",\n  \"question_uuid\": \"<uuid>\",\n  \"value\": {\n    \"writeOnly\": true\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/survey_impressions/create_answer/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "survey_impressions",
+                        "create_answer",
+                        ""
+                      ]
+                    },
+                    "description": "All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "fffb6065-d464-4ad3-8ea0-2a9a11192897",
+                      "name": "No response body",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"impression_uuid\": \"<uuid>\",\n  \"question_uuid\": \"<uuid>\",\n  \"value\": {\n    \"writeOnly\": true\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/survey_impressions/create_answer/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "survey_impressions",
+                            "create_answer",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:47.000Z",
+                      "updatedAt": "2026-07-28T02:16:47.000Z",
+                      "uid": "35240-fffb6065-d464-4ad3-8ea0-2a9a11192897"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:47.000Z",
+                  "updatedAt": "2026-07-28T02:16:47.000Z",
+                  "uid": "35240-92018a49-a7a4-49f9-8e2b-050eb094f6c9"
+                }
+              ],
+              "id": "3acbc9a9-aba1-43eb-bffe-414ee5a14222",
+              "createdAt": "2026-07-28T02:16:47.000Z",
+              "updatedAt": "2026-07-28T02:16:47.000Z",
+              "uid": "35240-3acbc9a9-aba1-43eb-bffe-414ee5a14222"
+            },
+            {
+              "name": "survey impressions list",
+              "id": "ac126819-a4ad-41f9-bbfe-dd4840370fcd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/survey_impressions/?page=<integer>&uuid=<uuid>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "survey_impressions",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "A page number within the paginated result set.",
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "(Required) UUID of the survey being viewed",
+                      "key": "uuid",
+                      "value": "<uuid>"
+                    }
+                  ]
+                },
+                "description": "All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "8a7634a7-3447-491a-8c75-2ca582c94201",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/survey_impressions/?page=<integer>&uuid=<uuid>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "survey_impressions",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "A page number within the paginated result set.",
+                          "key": "page",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "(Required) UUID of the survey being viewed",
+                          "key": "uuid",
+                          "value": "<uuid>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"count\": \"<integer>\",\n  \"results\": [\n    {\n      \"survey\": \"<uuid>\",\n      \"uuid\": \"<uuid>\",\n      \"viewed_at\": \"<dateTime>\"\n    },\n    {\n      \"survey\": \"<uuid>\",\n      \"uuid\": \"<uuid>\",\n      \"viewed_at\": \"<dateTime>\"\n    }\n  ],\n  \"next\": \"<uri>\",\n  \"previous\": \"<uri>\"\n}",
+                  "createdAt": "2026-07-28T02:16:47.000Z",
+                  "updatedAt": "2026-07-28T02:16:47.000Z",
+                  "uid": "35240-8a7634a7-3447-491a-8c75-2ca582c94201"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:47.000Z",
+              "updatedAt": "2026-07-28T02:16:47.000Z",
+              "uid": "35240-ac126819-a4ad-41f9-bbfe-dd4840370fcd"
+            },
+            {
+              "name": "survey impressions create",
+              "id": "d569bf27-52de-4fce-ad55-19cdf787bcb8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"survey\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/survey_impressions/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "survey_impressions",
+                    ""
+                  ]
+                },
+                "description": "All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "255340d8-2d5b-423e-9de2-63eec0a95d15",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"survey\": \"<uuid>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/survey_impressions/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "survey_impressions",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"survey\": \"<uuid>\",\n  \"uuid\": \"<uuid>\",\n  \"viewed_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:16:47.000Z",
+                  "updatedAt": "2026-07-28T02:16:47.000Z",
+                  "uid": "35240-255340d8-2d5b-423e-9de2-63eec0a95d15"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:47.000Z",
+              "updatedAt": "2026-07-28T02:16:47.000Z",
+              "uid": "35240-d569bf27-52de-4fce-ad55-19cdf787bcb8"
+            }
+          ],
+          "id": "0869b97d-6590-4649-b80c-e96f6450a86c",
+          "createdAt": "2026-07-28T02:16:47.000Z",
+          "updatedAt": "2026-07-28T02:16:47.000Z",
+          "uid": "35240-0869b97d-6590-4649-b80c-e96f6450a86c"
+        },
+        {
+          "name": "surveys",
+          "item": [
+            {
+              "name": "Get current survey",
+              "id": "aeff7e51-5b5c-493d-a64c-59444d9bf29a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/surveys/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "surveys",
+                    ""
+                  ]
+                },
+                "description": "Returns the current survey that should be displayed to the authenticated user. Only one survey is shown at a time, prioritized by creation date (newest first). \n\nSurveys are filtered based on:\n- User's response history and survey frequency settings (once, monthly, quarterly, yearly)\n- Survey status (active, not archived, not draft)\n- Survey date range (starts_at and ends_at)\n- Product type (banking vs command/staff)\n\nReturns empty JSON `{}` if no survey should be shown to the user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "53ae7404-104d-47e6-91a7-9ff088f954b8",
+                  "name": "Successfully retrieved the current survey or empty object if no survey is available",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/surveys/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "surveys",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"uuid\": \"<uuid>\",\n  \"questions\": {\n    \"description\": \"List of questions in the survey, ordered by priority (highest first)\",\n    \"readOnly\": true\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:47.000Z",
+                  "updatedAt": "2026-07-28T02:16:47.000Z",
+                  "uid": "35240-53ae7404-104d-47e6-91a7-9ff088f954b8"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:47.000Z",
+              "updatedAt": "2026-07-28T02:16:47.000Z",
+              "uid": "35240-aeff7e51-5b5c-493d-a64c-59444d9bf29a"
+            }
+          ],
+          "id": "b4eacf31-0cd3-4c89-ad74-517826f773d2",
+          "createdAt": "2026-07-28T02:16:47.000Z",
+          "updatedAt": "2026-07-28T02:16:47.000Z",
+          "uid": "35240-b4eacf31-0cd3-4c89-ad74-517826f773d2"
+        }
+      ],
+      "id": "17e5295b-71eb-4b0e-bdc6-798005b55571",
+      "createdAt": "2026-07-28T02:16:47.000Z",
+      "updatedAt": "2026-07-28T02:16:47.000Z",
+      "uid": "35240-17e5295b-71eb-4b0e-bdc6-798005b55571"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

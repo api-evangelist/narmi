@@ -1,0 +1,140 @@
+{
+  "info": {
+    "_postman_id": "b8f11518-c3a4-457c-9c2d-de4136afc925",
+    "name": "Narmi Public account balances ping API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:36.000Z",
+    "updatedAt": "2026-07-28T02:16:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b8f11518-c3a4-457c-9c2d-de4136afc925"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "ping",
+          "item": [
+            {
+              "name": "Server heartbeat operation",
+              "id": "9da3a2d7-3179-495a-a2fa-67b934fd7316",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ping/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ping",
+                    ""
+                  ]
+                },
+                "description": "Responds with a generic message for use in checking whether the API is available. This response directly calls API code and indicates that the host is reachable and processing requests.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "86b4b8aa-8c73-490e-aace-3d7c7935f375",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ping/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ping",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"helloworld\"\n}",
+                  "createdAt": "2026-07-28T02:16:37.000Z",
+                  "updatedAt": "2026-07-28T02:16:37.000Z",
+                  "uid": "35240-86b4b8aa-8c73-490e-aace-3d7c7935f375"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:37.000Z",
+              "updatedAt": "2026-07-28T02:16:37.000Z",
+              "uid": "35240-9da3a2d7-3179-495a-a2fa-67b934fd7316"
+            }
+          ],
+          "id": "4a4a363a-66e2-4b0a-a71c-5db096f9caa5",
+          "createdAt": "2026-07-28T02:16:37.000Z",
+          "updatedAt": "2026-07-28T02:16:37.000Z",
+          "uid": "35240-4a4a363a-66e2-4b0a-a71c-5db096f9caa5"
+        }
+      ],
+      "id": "7855fa9b-5ed6-42ae-9271-88bbf98ff2e0",
+      "createdAt": "2026-07-28T02:16:37.000Z",
+      "updatedAt": "2026-07-28T02:16:37.000Z",
+      "uid": "35240-7855fa9b-5ed6-42ae-9271-88bbf98ff2e0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

@@ -1,0 +1,596 @@
+{
+  "info": {
+    "_postman_id": "28622ed0-ded7-4920-b4e0-bf293c1537f5",
+    "name": "Narmi Public account balances payments API",
+    "description": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:35.000Z",
+    "updatedAt": "2026-07-28T02:16:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-28622ed0-ded7-4920-b4e0-bf293c1537f5"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "payments",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Delete a bill payment",
+                  "id": "67705e70-cb37-441c-a05d-19c843f5b734",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v2/oauth/token/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "/v2/oauth/authorize/",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/payments/:id/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payments",
+                        ":id",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "84f8c728-ff96-4483-b733-4a3ed56a3627",
+                          "key": "id",
+                          "value": "wcagmhx65qh",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Deletes an authenticated user's bill payment via the third-party integration (typically iPay).\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+                  },
+                  "response": [
+                    {
+                      "id": "62011634-3660-4b0d-904f-e5fc35b703f4",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payments/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payments",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"deleted\": true\n}",
+                      "createdAt": "2026-07-28T02:16:36.000Z",
+                      "updatedAt": "2026-07-28T02:16:36.000Z",
+                      "uid": "35240-62011634-3660-4b0d-904f-e5fc35b703f4"
+                    },
+                    {
+                      "id": "5639db79-3147-4e96-8da6-f95995d4d1fe",
+                      "name": "New Response",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payments/:id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payments",
+                            ":id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:36.000Z",
+                      "updatedAt": "2026-07-28T02:16:36.000Z",
+                      "uid": "35240-5639db79-3147-4e96-8da6-f95995d4d1fe"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:36.000Z",
+                  "updatedAt": "2026-07-28T02:16:36.000Z",
+                  "uid": "35240-67705e70-cb37-441c-a05d-19c843f5b734"
+                }
+              ],
+              "id": "a6624d11-f2a2-46a7-93d8-ecd8cbeacefe",
+              "createdAt": "2026-07-28T02:16:36.000Z",
+              "updatedAt": "2026-07-28T02:16:36.000Z",
+              "uid": "35240-a6624d11-f2a2-46a7-93d8-ecd8cbeacefe"
+            },
+            {
+              "name": "List bill payments",
+              "id": "14b221ba-1865-41c9-b262-17d19360a068",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/payments/?category=scheduled&limit=<integer>&offset=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "payments",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "* `history` - history\n* `scheduled` - scheduled",
+                      "key": "category",
+                      "value": "scheduled"
+                    },
+                    {
+                      "description": "Number of results to return per page.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The initial index from which to return the results.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "List the authenticated user's bill payments. Payments use a third-party service (typically iPay) and represent transfers from a user's account to a specified payee.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "1394e37e-e506-4700-9946-05defd6d9ee7",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/payments/?category=scheduled&limit=<integer>&offset=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payments",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "* `history` - history\n* `scheduled` - scheduled",
+                          "key": "category",
+                          "value": "scheduled"
+                        },
+                        {
+                          "description": "Number of results to return per page.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "The initial index from which to return the results.",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"meta\": {\n    \"total\": \"<integer>\"\n  },\n  \"links\": {\n    \"next\": \"<uri>\",\n    \"prev\": \"<uri>\"\n  },\n  \"payments\": [\n    {\n      \"amount\": \"<integer>\",\n      \"expected_arrival_date\": \"<date>\",\n      \"payee_id\": \"<string>\",\n      \"recurring_rule\": \"<string>\",\n      \"send_date\": \"<date>\",\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"state\": \"processed\",\n      \"from_account_id\": \"<uuid>\"\n    },\n    {\n      \"amount\": \"<integer>\",\n      \"expected_arrival_date\": \"<date>\",\n      \"payee_id\": \"<string>\",\n      \"recurring_rule\": \"<string>\",\n      \"send_date\": \"<date>\",\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"state\": \"returned\",\n      \"from_account_id\": \"<uuid>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:36.000Z",
+                  "updatedAt": "2026-07-28T02:16:36.000Z",
+                  "uid": "35240-1394e37e-e506-4700-9946-05defd6d9ee7"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:36.000Z",
+              "updatedAt": "2026-07-28T02:16:36.000Z",
+              "uid": "35240-14b221ba-1865-41c9-b262-17d19360a068"
+            },
+            {
+              "name": "Creates a bill payment",
+              "id": "1bb63f69-1197-4b9a-b9c8-811413081ef4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "/v2/oauth/token/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "/v2/oauth/authorize/",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"expected_arrival_date\": \"<date>\",\n  \"payee_id\": \"<string>\",\n  \"recurring_rule\": \"<string>\",\n  \"send_date\": \"<date>\",\n  \"type\": \"<string>\",\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/payments/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "payments",
+                    ""
+                  ]
+                },
+                "description": "Creates a bill payment for the authenticated user.Payments use a third-party service (typically iPay) and transfers can execute from a user's account to a specified payee.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+              },
+              "response": [
+                {
+                  "id": "aa26f1a0-2bef-4d12-a228-aa43948094c9",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"expected_arrival_date\": \"<date>\",\n  \"payee_id\": \"<string>\",\n  \"recurring_rule\": \"<string>\",\n  \"send_date\": \"<date>\",\n  \"type\": \"<string>\",\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/payments/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payments",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"payment\": {\n    \"amount\": \"<integer>\",\n    \"expected_arrival_date\": \"<date>\",\n    \"payee_id\": \"<string>\",\n    \"recurring_rule\": \"<string>\",\n    \"send_date\": \"<date>\",\n    \"type\": \"<string>\",\n    \"id\": \"<string>\",\n    \"state\": \"returned\",\n    \"from_account_id\": \"<uuid>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:36.000Z",
+                  "updatedAt": "2026-07-28T02:16:36.000Z",
+                  "uid": "35240-aa26f1a0-2bef-4d12-a228-aa43948094c9"
+                },
+                {
+                  "id": "f4acc780-7053-4a22-8a74-82a16df8581a",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"expected_arrival_date\": \"<date>\",\n  \"payee_id\": \"<string>\",\n  \"recurring_rule\": \"<string>\",\n  \"send_date\": \"<date>\",\n  \"type\": \"<string>\",\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/payments/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payments",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:36.000Z",
+                  "updatedAt": "2026-07-28T02:16:36.000Z",
+                  "uid": "35240-f4acc780-7053-4a22-8a74-82a16df8581a"
+                },
+                {
+                  "id": "85ea8344-1901-49ea-9f75-9df77ace912a",
+                  "name": "New Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<integer>\",\n  \"expected_arrival_date\": \"<date>\",\n  \"payee_id\": \"<string>\",\n  \"recurring_rule\": \"<string>\",\n  \"send_date\": \"<date>\",\n  \"type\": \"<string>\",\n  \"ignore_warnings\": [\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/payments/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payments",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:36.000Z",
+                  "updatedAt": "2026-07-28T02:16:36.000Z",
+                  "uid": "35240-85ea8344-1901-49ea-9f75-9df77ace912a"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:36.000Z",
+              "updatedAt": "2026-07-28T02:16:36.000Z",
+              "uid": "35240-1bb63f69-1197-4b9a-b9c8-811413081ef4"
+            }
+          ],
+          "id": "5ae7178a-25ca-4e4f-9073-73af0d838463",
+          "createdAt": "2026-07-28T02:16:36.000Z",
+          "updatedAt": "2026-07-28T02:16:36.000Z",
+          "uid": "35240-5ae7178a-25ca-4e4f-9073-73af0d838463"
+        }
+      ],
+      "id": "8276cd53-8dea-4f5c-8b71-b81ddb9b5e2f",
+      "createdAt": "2026-07-28T02:16:36.000Z",
+      "updatedAt": "2026-07-28T02:16:36.000Z",
+      "uid": "35240-8276cd53-8dea-4f5c-8b71-b81ddb9b5e2f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.sandbox.narmi.dev/"
+    }
+  ]
+}

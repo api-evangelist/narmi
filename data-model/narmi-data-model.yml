@@ -1,0 +1,92 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/narmi-public-openapi-original.yml
+description: >-
+  Entity-relationship graph for the Narmi Public API, derived from the OpenAPI
+  path structure (nested resources) and schema references. Identifiers are UUIDs
+  unless noted. Monetary fields are in minor units (cents).
+entities:
+  - name: User
+    id: user_uuid
+    paths: [/v1/users/, /v1/me/]
+  - name: Account
+    id: uuid (account_uuid)
+    paths: [/v1/accounts/, /v1/account_balances/]
+  - name: Transaction
+    id: uuid
+    paths: ['/v1/transactions/', '/v1/accounts/{account_uuids}/transactions/']
+  - name: Card
+    id: card_id
+    paths: [/v1/cards/]
+  - name: Payee
+    id: id
+    paths: [/v1/payees/]
+  - name: Recipient
+    id: uuid
+    paths: [/v1/recipients/, /v1/wire_recipients/]
+  - name: ACHPayment
+    id: uuid
+    paths: [/v1/ach_payments/, /v1/transfers/]
+  - name: Wire
+    id: uuid
+    paths: [/v1/wires/, /v1/fedwire_templates/, /v1/swiftwire_templates/]
+  - name: Deposit
+    id: deposit_id
+    paths: [/v1/deposits/]
+  - name: Alert
+    id: uuid
+    paths: [/v1/alerts/account/, /v1/alerts/loan/, /v1/alerts/transaction/]
+  - name: Thread
+    id: uuid
+    paths: [/v1/threads/]
+  - name: Subscription
+    id: uuid
+    paths: [/v1/subscriptions/]
+  - name: Document
+    id: document_id
+    paths: [/v1/documents/]
+relationships:
+  - from: Account
+    type: has_many
+    to: Transaction
+    via: /v1/accounts/{account_uuids}/transactions/
+  - from: Account
+    type: has_many
+    to: Hold
+    via: /v1/accounts/{account_uuid}/holds/
+  - from: Account
+    type: has_many
+    to: Stop
+    via: /v1/accounts/{account_uuid}/stops/
+  - from: Account
+    type: has_many
+    to: Document
+    via: /v1/accounts/{account_uuid}/documents/{document_id}/
+  - from: Account
+    type: has_one
+    to: Balance
+    via: /v1/account_balances/{uuid}/
+  - from: Card
+    type: has_one
+    to: Limits
+    via: /v1/cards/{card_id}/limits/
+  - from: Card
+    type: has_many
+    to: TravelNote
+    via: /v1/cards/{card_id}/travel_note/
+  - from: Card
+    type: has_many
+    to: Subscription
+    via: /v1/cards/{card_id}/subscriptions/
+  - from: Thread
+    type: has_many
+    to: Message
+    via: /v1/threads/{thread_uuids}/messages/
+  - from: User
+    type: has_many
+    to: Estatement
+    via: /v1/users/{user_uuid}/estatements/
+  - from: Transaction
+    type: has_many
+    to: Image
+    via: /v1/transactions/{uuid}/images/
