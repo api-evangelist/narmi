@@ -1,0 +1,508 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Narmi Public account balances accounts API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/accounts/",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List the authenticated user's accounts. The account data will update from the core when this endpoint is requested if the oldest account has not been updated in over `Core Minimum Update Seconds`. The response contains both internal and external account types.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feed"
+        },
+        {
+          "info": {
+            "name": "Create external account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.narmi.dev/v1/accounts/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a reference to an external account. Returns a list of accounts that will always be length 1.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        },
+        {
+          "info": {
+            "name": "List user transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/accounts/:account_uuids/transactions/",
+            "params": [
+              {
+                "name": "account_uuids",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor value which indicates the first index to be queried. This can be used to paginate using cursor pagination along with the `before` parameter."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Cursor value which indicates the last index to be queried. This can be used to paginate using cursor pagination along with the `after` parameter."
+              },
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to call a blocking operation to update the transaction results before fetching. When calling with this flag, the endpoint may respond with a 500 in the event of issues with the core."
+              },
+              {
+                "name": "created_from",
+                "value": "",
+                "type": "query",
+                "description": "Earliest date-time the transaction should be created from."
+              },
+              {
+                "name": "created_to",
+                "value": "",
+                "type": "query",
+                "description": "Latest date-time the transaction should be created to."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Omit the defined transaction state from transaction results."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number value, this will populate automatically via the `next` and `previous` urls which are generated in the response."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search string with which to filter results."
+              },
+              {
+                "name": "settled_from",
+                "value": "",
+                "type": "query",
+                "description": "Earliest date-time the transaction should be settled from."
+              },
+              {
+                "name": "settled_to",
+                "value": "",
+                "type": "query",
+                "description": "Latest date-time the transaction should be settled to."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List transactions for the authenticated user. Transactions are collated from accounts which the user is a member of.<br /><br />If queried via the v1/accounts/{account_uuids}/transactions endpoint,the call will return a 404 if all the comma-separated list of `account_uuids` are non-existent.<br /><br />Pagination can be defined either via the `before` and `after` query parameters for cursor pagination or via the `page` parameter for page number pagination. Both styles of pagination accept a `per"
+        },
+        {
+          "info": {
+            "name": "Retrieve a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/accounts/:account_uuid/documents/:document_id/",
+            "params": [
+              {
+                "name": "account_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "data",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to include base64 encoded file data in the `data` field."
+              },
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch a specific statement by statement ID. \n\nAn invalid document ID will typically return the documented error response, however if the `statements` feature is not enabled, it may also return a blank 404 response.\n\nThis endpoint will return a 404 if a trailing slash is included in the request.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?   "
+        },
+        {
+          "info": {
+            "name": "List holds for account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/accounts/:account_uuid/holds/",
+            "params": [
+              {
+                "name": "account_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List the holds for an authenticated user's account specified by UUID, excluding expired holds.Will return 404 if the account specified does not exist. Will return 500 error if there are any issues connecting to the core.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a>"
+        },
+        {
+          "info": {
+            "name": "List stop payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/accounts/:account_uuid/stops/",
+            "params": [
+              {
+                "name": "account_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List stop payments for a specified account. Pagination for this response is used only as a placeholder for future implementation and will not return metadata or pagination links.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        },
+        {
+          "info": {
+            "name": "Create a stop payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.narmi.dev/v1/accounts/:account_uuid/stops/",
+            "params": [
+              {
+                "name": "account_uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a stop payment for a specified account. This endpoint will return a 404 if the account does not exist or if the stop feature is not enabled for the institution. Some cores will support the ability to specify a stop payment range (`min_check_number`->`max_check_number`) but in the event that it is not supported, the endpoint will also return a 404. If the core is inactive the endpoint will return a 500, and if there is an issue creating the stop on the core, the endpoint will return a 503."
+        },
+        {
+          "info": {
+            "name": "Get transactions download",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/accounts/:account_uuid/transactions_download/",
+            "params": [
+              {
+                "name": "account_uuid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "file_format",
+                "value": "",
+                "type": "query",
+                "description": "File format of the response."
+              },
+              {
+                "name": "max_date",
+                "value": "",
+                "type": "query",
+                "description": "Upper bound date of format`YYYY-MM-DD` to filter transactions by when specifying `period` as `custom`."
+              },
+              {
+                "name": "min_date",
+                "value": "",
+                "type": "query",
+                "description": "Lower bound date of format `YYYY-MM-DD` to filter transactions by when specifying `period` as `custom`."
+              },
+              {
+                "name": "period",
+                "value": "",
+                "type": "query",
+                "description": "Time period to filter transactions by."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Export transaction history to a file.\n\nCustom date range can be defined by specifying the `period` parameter as `custom`.\n\nSome validation errors (e.g. when specifying a min date which is greater than a max date) may result in malformatted error responses.\n\nPlease note that the response headers do not indicate the proper response content type.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represente"
+        },
+        {
+          "info": {
+            "name": "Retrieve an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/accounts/:uuid/",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch a specified account. Both external and internal accounts can be listed using this call. Account information is not updated from the core, and is fetched from the database.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        },
+        {
+          "info": {
+            "name": "Update an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sandbox.narmi.dev/v1/accounts/:uuid/",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update fields for a specified account. This endpoint performs a partial, non-idempotent update, so any fields can be included or omitted. Any missing or additional fields will be ignored.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        },
+        {
+          "info": {
+            "name": "Remove user from an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sandbox.narmi.dev/v1/accounts/:uuid/",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Remove the logged-in user from a specified account. The account must be external, users cannot unlink themselves from internal accounts.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        },
+        {
+          "info": {
+            "name": "Run account verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.narmi.dev/v1/accounts/:uuid/verify/",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Verify the micro-deposit amounts for a specified external account. Additional information on micro-deposits/micro-entries and how they work can be found here https://www.nacha.org/micro-entries.\n\nIn the event that the account does not exist or cannot be associated with the user, or ACH is not enabled, the endpoint will return a 404.\n\nIn the event that the user does not have permission to modify the account, the endpoint will return a 403.\n\nAll monetary values are represented in minor units, or t"
+        },
+        {
+          "info": {
+            "name": "Create account withdrawal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.narmi.dev/v1/accounts/:uuid/withdrawals/",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a withdrawal for an account specified by UUID.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        },
+        {
+          "info": {
+            "name": "Run instant account verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.narmi.dev/v1/accounts/verify/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Instant verification for accounts that have been linked through MX. The FI must have features `ach` and `instant_account_verification` enabled. If ACH is not enabled the endpoint will return a 404. If `instant_account_verification` is not enabled, the endpoint will return a 422 detailing the issue. In the event that there is an issue running verification, the endpoint will return a 500.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

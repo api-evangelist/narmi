@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Narmi Public account balances automatic savings enrollment API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "automatic savings enrollment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get automatic savings enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/automatic_savings_enrollment/",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch a user's automatic saving enrollment. Automatic savings enrollment detects any deposit from the source account and does an internal transfer of 3% of the deposit amount into the specified destination account.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        },
+        {
+          "info": {
+            "name": "Create automatic savings enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.narmi.dev/v1/automatic_savings_enrollment/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create an automatic saving enrollment for a user.Automatic Savings Enrollment detects any deposit from the source account and does an internal transfer of 3% of the deposit amount into the specified destination account.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a><"
+        },
+        {
+          "info": {
+            "name": "Delete automatic savings enrollment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sandbox.narmi.dev/v1/automatic_savings_enrollment/",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a user's automatic saving enrollment. The endpoint will return a 422 in the event that the service fails to unenroll the user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

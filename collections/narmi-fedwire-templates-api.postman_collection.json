@@ -1,0 +1,1395 @@
+{
+  "item": [
+    {
+      "id": "289f9907-ed6a-497c-940e-9232f060c338",
+      "name": "fedwire templates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ba593522-5b80-4ed0-8f39-e3e201d62a0a",
+          "name": "List Fedwire templates",
+          "request": {
+            "name": "List Fedwire templates",
+            "description": {
+              "content": "List a user's templates, including templates created by other users in their organization. Templates will only be included in the returned list where the user has access to the template's source account.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fedwire_templates",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A page number within the paginated result set."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0b29938e-9680-4afb-9e8e-20b270c3c3af",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fedwire_templates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"name\": \"Construction\",\n      \"recipient\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n      \"source_account\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n      \"last_used\": \"2019-11-04T14:27:31.588Z\",\n      \"version_id\": \"e28e3b5e9076550cd276ba4d0ddbc93c52a273129238f107ed599edc0483d509\",\n      \"id\": \"9c5b5a5c-57bb-8c1d-c0be-8d082ab6ffd0\",\n      \"wire_reason\": \"Payment for an invoice or bill\",\n      \"amount\": 500000,\n      \"memo\": \"Invoice #1234\"\n    },\n    {\n      \"name\": \"Construction\",\n      \"recipient\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n      \"source_account\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n      \"last_used\": \"1983-08-07T06:23:05.730Z\",\n      \"version_id\": \"e28e3b5e9076550cd276ba4d0ddbc93c52a273129238f107ed599edc0483d509\",\n      \"id\": \"cd1123a0-86e3-f0b2-6ed4-de1b425979aa\",\n      \"wire_reason\": \"Payment for an invoice or bill\",\n      \"amount\": 500000,\n      \"memo\": \"Invoice #1234\"\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?page=4\",\n  \"previous\": \"http://api.example.org/accounts/?page=2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af174a21-2eb2-40b5-87d0-dad5be2d1c61",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fedwire_templates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"not_found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c23b6b4e-1242-49bc-aaf7-867553853f53",
+          "name": "Create a Fedwire template",
+          "request": {
+            "name": "Create a Fedwire template",
+            "description": {
+              "content": "Create a template that can be used to send wires.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fedwire_templates",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Name of the wire template for easy reference in the UI. This name must be unique to all templates owned by an organization."
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient",
+                  "value": "<uuid>",
+                  "description": "(Required) The UUID of the wire recipient for wires sent using this template."
+                },
+                {
+                  "disabled": false,
+                  "key": "source_account",
+                  "value": "<uuid>",
+                  "description": "(Required) The UUID of the source account for wires sent using this template."
+                },
+                {
+                  "disabled": false,
+                  "key": "wire_reason",
+                  "value": "<string>",
+                  "description": "Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. If not provided, this value must be included when making a request to send a wire."
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<integer>",
+                  "description": "A field that returns the original value in the currency's smallest unit (e.g. cents). If not provided, this value must be included when making a request to send a wire. "
+                },
+                {
+                  "disabled": false,
+                  "key": "memo",
+                  "value": "<string>",
+                  "description": "Memo for wires sent using this template. If not provided, this value must be included when making a request to send a wire."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0a59c043-ee2d-41cd-b2d0-40b4bbbb9d61",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fedwire_templates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the wire template for easy reference in the UI. This name must be unique to all templates owned by an organization.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Construction"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the wire recipient for wires sent using this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the source account for wires sent using this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "source_account",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. If not provided, this value must be included when making a request to send a wire.",
+                        "type": "text/plain"
+                      },
+                      "key": "wire_reason",
+                      "value": "Payment for an invoice or bill"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A field that returns the original value in the currency's smallest unit (e.g. cents). If not provided, this value must be included when making a request to send a wire. ",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "500000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Memo for wires sent using this template. If not provided, this value must be included when making a request to send a wire.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": "Invoice #1234"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Construction\",\n  \"recipient\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n  \"source_account\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n  \"last_used\": \"2003-08-16T15:19:34.752Z\",\n  \"version_id\": \"e28e3b5e9076550cd276ba4d0ddbc93c52a273129238f107ed599edc0483d509\",\n  \"id\": \"b3ba8007-1139-443f-d37b-4a2bf51afd1d\",\n  \"wire_reason\": \"Payment for an invoice or bill\",\n  \"amount\": 500000,\n  \"memo\": \"Invoice #1234\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "305b93ba-b7c4-41ea-8682-9c99f036ae3c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fedwire_templates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the wire template for easy reference in the UI. This name must be unique to all templates owned by an organization.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Construction"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the wire recipient for wires sent using this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the source account for wires sent using this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "source_account",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. If not provided, this value must be included when making a request to send a wire.",
+                        "type": "text/plain"
+                      },
+                      "key": "wire_reason",
+                      "value": "Payment for an invoice or bill"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A field that returns the original value in the currency's smallest unit (e.g. cents). If not provided, this value must be included when making a request to send a wire. ",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "500000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Memo for wires sent using this template. If not provided, this value must be included when making a request to send a wire.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": "Invoice #1234"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fce2571e-36cb-4dcf-ac60-0ee063b91097",
+          "name": "Retrieve a Fedwire template",
+          "request": {
+            "name": "Retrieve a Fedwire template",
+            "description": {
+              "content": "Fetch details for a specified template.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fedwire_templates",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1eab3379-fd28-431a-8f74-be29a4e0f6ca",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fedwire_templates",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Construction\",\n  \"recipient\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n  \"source_account\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n  \"last_used\": \"2003-08-16T15:19:34.752Z\",\n  \"version_id\": \"e28e3b5e9076550cd276ba4d0ddbc93c52a273129238f107ed599edc0483d509\",\n  \"id\": \"b3ba8007-1139-443f-d37b-4a2bf51afd1d\",\n  \"wire_reason\": \"Payment for an invoice or bill\",\n  \"amount\": 500000,\n  \"memo\": \"Invoice #1234\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df7e137a-b6a9-4e1f-8c9b-44331dbea3b1",
+          "name": "Update a Fedwire template",
+          "request": {
+            "name": "Update a Fedwire template",
+            "description": {
+              "content": "Update the details of a template belonging to authenticated user, identified by `uuid`\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fedwire_templates",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Name of the wire template for easy reference in the UI. This name must be unique to all templates owned by an organization."
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient",
+                  "value": "<uuid>",
+                  "description": "(Required) The UUID of the wire recipient for wires sent using this template."
+                },
+                {
+                  "disabled": false,
+                  "key": "source_account",
+                  "value": "<uuid>",
+                  "description": "(Required) The UUID of the source account for wires sent using this template."
+                },
+                {
+                  "disabled": false,
+                  "key": "wire_reason",
+                  "value": "<string>",
+                  "description": "Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. If not provided, this value must be included when making a request to send a wire."
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<integer>",
+                  "description": "A field that returns the original value in the currency's smallest unit (e.g. cents). If not provided, this value must be included when making a request to send a wire. "
+                },
+                {
+                  "disabled": false,
+                  "key": "memo",
+                  "value": "<string>",
+                  "description": "Memo for wires sent using this template. If not provided, this value must be included when making a request to send a wire."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8e2621b7-2d5e-44b3-9db1-479a0cbad6fd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fedwire_templates",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the wire template for easy reference in the UI. This name must be unique to all templates owned by an organization.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Construction"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the wire recipient for wires sent using this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the source account for wires sent using this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "source_account",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. If not provided, this value must be included when making a request to send a wire.",
+                        "type": "text/plain"
+                      },
+                      "key": "wire_reason",
+                      "value": "Payment for an invoice or bill"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A field that returns the original value in the currency's smallest unit (e.g. cents). If not provided, this value must be included when making a request to send a wire. ",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "500000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Memo for wires sent using this template. If not provided, this value must be included when making a request to send a wire.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": "Invoice #1234"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Construction\",\n  \"recipient\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n  \"source_account\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n  \"last_used\": \"2003-08-16T15:19:34.752Z\",\n  \"version_id\": \"e28e3b5e9076550cd276ba4d0ddbc93c52a273129238f107ed599edc0483d509\",\n  \"id\": \"b3ba8007-1139-443f-d37b-4a2bf51afd1d\",\n  \"wire_reason\": \"Payment for an invoice or bill\",\n  \"amount\": 500000,\n  \"memo\": \"Invoice #1234\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e0fe1d0-8f83-4f3e-aaf4-04ba93e16338",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fedwire_templates",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the wire template for easy reference in the UI. This name must be unique to all templates owned by an organization.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Construction"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the wire recipient for wires sent using this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the source account for wires sent using this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "source_account",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. If not provided, this value must be included when making a request to send a wire.",
+                        "type": "text/plain"
+                      },
+                      "key": "wire_reason",
+                      "value": "Payment for an invoice or bill"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A field that returns the original value in the currency's smallest unit (e.g. cents). If not provided, this value must be included when making a request to send a wire. ",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "500000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Memo for wires sent using this template. If not provided, this value must be included when making a request to send a wire.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": "Invoice #1234"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "183eb756-9f99-40a3-99ff-86a6b869e2da",
+          "name": "Update a Fedwire template",
+          "request": {
+            "name": "Update a Fedwire template",
+            "description": {
+              "content": "Update the details of a template belonging to authenticated user, identified by `uuid`\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fedwire_templates",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Name of the wire template for easy reference in the UI. This name must be unique to all templates owned by an organization."
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient",
+                  "value": "<uuid>",
+                  "description": "(Required) The UUID of the wire recipient for wires sent using this template."
+                },
+                {
+                  "disabled": false,
+                  "key": "source_account",
+                  "value": "<uuid>",
+                  "description": "(Required) The UUID of the source account for wires sent using this template."
+                },
+                {
+                  "disabled": false,
+                  "key": "wire_reason",
+                  "value": "<string>",
+                  "description": "Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. If not provided, this value must be included when making a request to send a wire."
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<integer>",
+                  "description": "A field that returns the original value in the currency's smallest unit (e.g. cents). If not provided, this value must be included when making a request to send a wire. "
+                },
+                {
+                  "disabled": false,
+                  "key": "memo",
+                  "value": "<string>",
+                  "description": "Memo for wires sent using this template. If not provided, this value must be included when making a request to send a wire."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8d986485-0137-4e7e-9c19-696e828aa631",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fedwire_templates",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the wire template for easy reference in the UI. This name must be unique to all templates owned by an organization.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Construction"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the wire recipient for wires sent using this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the source account for wires sent using this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "source_account",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. If not provided, this value must be included when making a request to send a wire.",
+                        "type": "text/plain"
+                      },
+                      "key": "wire_reason",
+                      "value": "Payment for an invoice or bill"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A field that returns the original value in the currency's smallest unit (e.g. cents). If not provided, this value must be included when making a request to send a wire. ",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "500000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Memo for wires sent using this template. If not provided, this value must be included when making a request to send a wire.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": "Invoice #1234"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Construction\",\n  \"recipient\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n  \"source_account\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n  \"last_used\": \"2003-08-16T15:19:34.752Z\",\n  \"version_id\": \"e28e3b5e9076550cd276ba4d0ddbc93c52a273129238f107ed599edc0483d509\",\n  \"id\": \"b3ba8007-1139-443f-d37b-4a2bf51afd1d\",\n  \"wire_reason\": \"Payment for an invoice or bill\",\n  \"amount\": 500000,\n  \"memo\": \"Invoice #1234\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e86faf2d-f1f1-400e-b0ea-0c1202294fbc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fedwire_templates",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name of the wire template for easy reference in the UI. This name must be unique to all templates owned by an organization.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Construction"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the wire recipient for wires sent using this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the source account for wires sent using this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "source_account",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. If not provided, this value must be included when making a request to send a wire.",
+                        "type": "text/plain"
+                      },
+                      "key": "wire_reason",
+                      "value": "Payment for an invoice or bill"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A field that returns the original value in the currency's smallest unit (e.g. cents). If not provided, this value must be included when making a request to send a wire. ",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "500000"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Memo for wires sent using this template. If not provided, this value must be included when making a request to send a wire.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": "Invoice #1234"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a1eb4de-81dc-4327-9fd5-4b7238cac68b",
+          "name": "Delete a Fedwire template",
+          "request": {
+            "name": "Delete a Fedwire template",
+            "description": {
+              "content": "Delete a specified template belonging to the user. The template will continue to exist in the database, but won't be retrievable by the user. The name of the deleted template will be available for use in creating a new template.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fedwire_templates",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "24ecdc71-978e-4c0d-bf86-10cc4b9ef5ba",
+              "name": "No response body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fedwire_templates",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3df8547e-4b2e-49ec-9096-ddcd39a48bf3",
+    "name": "Narmi Public account balances fedwire templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

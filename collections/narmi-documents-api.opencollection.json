@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Narmi Public account balances documents API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/documents/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The initial index from which to return the results."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List the authenticated user's documents (statements, tax forms, etc.).\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        },
+        {
+          "info": {
+            "name": "Retrieve a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/documents/:document_id/",
+            "params": [
+              {
+                "name": "data",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to include base64 encoded file data in the `data` field."
+              },
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch a specific statement by statement ID. \n\nAn invalid document ID will typically return the documented error response, however if the `statements` feature is not enabled, it may also return a blank 404 response.\n\nThis endpoint will return a 404 if a trailing slash is included in the request.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?   "
+        },
+        {
+          "info": {
+            "name": "Create zip file of selected documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.narmi.dev/v1/documents/download/",
+            "params": [
+              {
+                "name": "share",
+                "value": "",
+                "type": "query",
+                "description": "When 1, zip file will be emailed to the request's user's email instead of returning it in the response."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a zip file of the requested document ids.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

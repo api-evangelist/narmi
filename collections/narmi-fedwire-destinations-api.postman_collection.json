@@ -1,0 +1,1082 @@
+{
+  "item": [
+    {
+      "id": "1b08f491-abdf-48e6-a99b-a79fe8dadf4b",
+      "name": "fedwire destinations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6df8e56c-fd7c-4b51-b7a8-622d3780bbd8",
+          "name": "Create a Fedwire destination",
+          "request": {
+            "name": "Create a Fedwire destination",
+            "description": {
+              "content": "Create a set of Fedwire details that can be used as a destination for fedwires.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fedwire_destinations",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "account_number",
+                  "value": "<string>",
+                  "description": "(Required) Account number for the Fedwire destination."
+                },
+                {
+                  "disabled": false,
+                  "key": "street_address",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "street_address_2",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "region_code",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "postal_code",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "country_code",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID of the recipient associated with this Fedwire destination."
+                },
+                {
+                  "disabled": false,
+                  "key": "routing_number",
+                  "value": "<string>",
+                  "description": "(Required) Routing number for the Fedwire destination."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b748e62d-d03a-4ed2-be42-b56396225df8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fedwire_destinations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Account number for the Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_number",
+                      "value": "123456"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "street_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "street_address_2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "region_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "postal_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "country_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the recipient associated with this Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Routing number for the Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "routing_number",
+                      "value": "021030004"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_number\": \"123456\",\n  \"address\": {\n    \"street_address\": \"string\",\n    \"id\": 841,\n    \"street_address_2\": \"string\",\n    \"city\": \"string\",\n    \"region_code\": \"string\",\n    \"postal_code\": \"string\",\n    \"country_code\": \"st\"\n  },\n  \"routing_number\": \"021030004\",\n  \"id\": \"97f231af-2740-601e-001f-143922ee1371\",\n  \"institution_name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ce70b6b-d1d2-49cd-bbd3-0d3f90c10ccd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fedwire_destinations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Account number for the Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_number",
+                      "value": "123456"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "street_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "street_address_2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "region_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "postal_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "country_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the recipient associated with this Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Routing number for the Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "routing_number",
+                      "value": "021030004"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid input.\",\n  \"id\": \"invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a71b6f74-3772-4894-80e3-49a664bbb33f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fedwire_destinations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Account number for the Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_number",
+                      "value": "123456"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "street_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "street_address_2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "region_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "postal_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "country_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the recipient associated with this Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Routing number for the Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "routing_number",
+                      "value": "021030004"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a27c811-6f42-4c93-af46-2116a2d66c6b",
+          "name": "Update a Fedwire destination",
+          "request": {
+            "name": "Update a Fedwire destination",
+            "description": {
+              "content": "Update a set of Fedwire details that can be used as a destination for fedwires.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fedwire_destinations",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "account_number",
+                  "value": "<string>",
+                  "description": "(Required) Account number for the Fedwire destination."
+                },
+                {
+                  "disabled": false,
+                  "key": "street_address",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "street_address_2",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "region_code",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "postal_code",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "country_code",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID of the recipient associated with this Fedwire destination."
+                },
+                {
+                  "disabled": false,
+                  "key": "routing_number",
+                  "value": "<string>",
+                  "description": "(Required) Routing number for the Fedwire destination."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f53c37a1-bf9d-41dd-8eb2-80f8a4afe447",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fedwire_destinations",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Account number for the Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_number",
+                      "value": "123456"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "street_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "street_address_2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "region_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "postal_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "country_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the recipient associated with this Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Routing number for the Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "routing_number",
+                      "value": "021030004"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_number\": \"123456\",\n  \"address\": {\n    \"street_address\": \"string\",\n    \"id\": 841,\n    \"street_address_2\": \"string\",\n    \"city\": \"string\",\n    \"region_code\": \"string\",\n    \"postal_code\": \"string\",\n    \"country_code\": \"st\"\n  },\n  \"routing_number\": \"021030004\",\n  \"id\": \"97f231af-2740-601e-001f-143922ee1371\",\n  \"institution_name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "028cfcb0-61c4-4242-8e07-e84361cc50d3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fedwire_destinations",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Account number for the Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_number",
+                      "value": "123456"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "street_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "street_address_2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "region_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "postal_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "country_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the recipient associated with this Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Routing number for the Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "routing_number",
+                      "value": "021030004"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid input.\",\n  \"id\": \"invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24172ff3-2036-43bd-8176-9b70d6f10849",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fedwire_destinations",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Account number for the Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_number",
+                      "value": "123456"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "street_address",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "street_address_2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "region_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "postal_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "country_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the recipient associated with this Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Routing number for the Fedwire destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "routing_number",
+                      "value": "021030004"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1f3a7ced-f97d-464e-86af-46ccd7744d10",
+    "name": "Narmi Public account balances fedwire destinations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

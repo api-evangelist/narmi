@@ -1,0 +1,1040 @@
+{
+  "item": [
+    {
+      "id": "b3bdf947-33ad-44c1-8bc5-ec4fb98866f5",
+      "name": "card linked offers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e04c3baa-e31f-42f0-82e9-ac780e1e296c",
+          "name": "Get card offers",
+          "request": {
+            "name": "Get card offers",
+            "description": {
+              "content": "Get available card offers for a user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-linked-offers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "is_targeted",
+                  "value": "false",
+                  "description": "Filter for targeted/recommended offers only"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "75b130bd-fd6d-4d6b-9ae7-b92121db86ef",
+              "name": "List of available card offers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "is_targeted",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"assets\": [\n      {\n        \"alt_text\": \"string\",\n        \"type\": \"string\",\n        \"url\": \"http://cfAH.sgeKjnCr8N5zZPMX8zvN9gmIJnQuczc7rtg2joSIrvMuqID1GTyc9+s6nd6ZGgkMV1irPB8eW\"\n      },\n      {\n        \"alt_text\": \"string\",\n        \"type\": \"string\",\n        \"url\": \"https://GgdgORHohFDatmtTRs.nimu2jX6,RDBzigKN7RxFo7K5O+yzx3nQt\"\n      }\n    ],\n    \"categories\": [\n      \"Baby, Kids & Toys\",\n      \"Travel\"\n    ],\n    \"description\": \"string\",\n    \"expiration_date\": \"2016-09-07T05:01:42.173Z\",\n    \"id\": \"string\",\n    \"max_reward_amount\": 100,\n    \"max_transaction_amount\": 100,\n    \"merchant_url\": \"https://LuMuDkxOgnpmdRUqXMpExDUkNu.ifpE7xLBndiNtu9Anqg5pFhBR2XurNqr2.MGAx61blvy8cPpHdIk,pPH8DsIZj0XW3VDeac.zTBcwM-8oB\",\n    \"min_reward_amount\": 100,\n    \"min_transaction_amount\": 100,\n    \"name\": \"string\",\n    \"purchase_channels\": [\n      \"online\",\n      \"online\"\n    ],\n    \"reward_type\": \"percentage\",\n    \"reward_value\": 100,\n    \"start_date\": \"1976-06-07T18:03:04.076Z\",\n    \"terms\": \"string\"\n  },\n  {\n    \"assets\": [\n      {\n        \"alt_text\": \"string\",\n        \"type\": \"string\",\n        \"url\": \"http://nyFUkoBuymeZZwykZaxxvCpIhGDXZLEn.pfpqCCS+AcntL1fnCiK01-Lb3+pV\"\n      },\n      {\n        \"alt_text\": \"string\",\n        \"type\": \"string\",\n        \"url\": \"http://TalZFVFPvQ.dhBlDdn2Z\"\n      }\n    ],\n    \"categories\": [\n      \"Department Stores\",\n      \"Health & Beauty\"\n    ],\n    \"description\": \"string\",\n    \"expiration_date\": \"1955-06-01T23:31:12.832Z\",\n    \"id\": \"string\",\n    \"max_reward_amount\": 100,\n    \"max_transaction_amount\": 100,\n    \"merchant_url\": \"http://BKCmFA.soeuYRi.t2pmlb-lq8E1c0nnk2Gxdm.dHgHo\",\n    \"min_reward_amount\": 100,\n    \"min_transaction_amount\": 100,\n    \"name\": \"string\",\n    \"purchase_channels\": [\n      \"in_store\",\n      \"online\"\n    ],\n    \"reward_type\": \"flat\",\n    \"reward_value\": 100,\n    \"start_date\": \"1966-01-25T07:04:11.846Z\",\n    \"terms\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91c064da-bb68-4d96-8270-d5766a51efa6",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "is_targeted",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"permission_denied\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bd295f5-411e-4800-8704-05ad91867c23",
+              "name": "Invalid request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "is_targeted",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": \"Missing required profile data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6efe4b8e-8b80-40f3-abd0-7f0f5ecf6304",
+              "name": "Server side error. Typically an issue related to connecting to the core or a third-party API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "is_targeted",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b422a2f8-3f8f-49df-bd75-fd960d83df62",
+          "name": "Check enrollment status",
+          "request": {
+            "name": "Check enrollment status",
+            "description": {
+              "content": "Check if the user is enrolled in a card linked offers program.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-linked-offers",
+                "enrollment",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "68f30e3d-5062-4941-ade4-1804058c3181",
+              "name": "Enrollment status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    "enrollment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"is_enrolled\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ef24bc0-ddb7-4ff3-9a94-cc989af6fa76",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    "enrollment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"permission_denied\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aeabf059-4148-440d-aee8-349a6c9caf98",
+              "name": "Invalid request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    "enrollment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": \"An error string specifying the error.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e0a5b4c-96ef-43ba-b4fc-8e9a28315734",
+              "name": "Server side error. Typically an issue related to connecting to the core or a third-party API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    "enrollment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ab5fe6d-f353-4bfc-b662-2a6e1143a023",
+          "name": "Enroll user in card linked offers",
+          "request": {
+            "name": "Enroll user in card linked offers",
+            "description": {
+              "content": "Enroll the user in card linked offers feature using their profile information.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-linked-offers",
+                "enrollment",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d12f8da5-24c7-4ef5-bb57-169cbb434686",
+              "name": "No response body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    "enrollment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "362bdcc4-7a06-4eec-8a89-0d777c7c2c55",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    "enrollment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"permission_denied\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a239c2fd-8550-441c-8d33-da585a4234f7",
+              "name": "Invalid request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    "enrollment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": \"An error string specifying the error.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16aa2713-4f62-4e19-a09a-0a0cd688aee5",
+              "name": "Server side error. Typically an issue related to connecting to the core or a third-party API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    "enrollment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca2344bb-3c58-4deb-b0cb-6306ecc77e41",
+          "name": "Unenroll user from card linked offers",
+          "request": {
+            "name": "Unenroll user from card linked offers",
+            "description": {
+              "content": "Unenroll the user from the card linked offers feature using their profile information.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-linked-offers",
+                "enrollment",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1d5685de-42d5-4583-be20-409a22264e66",
+              "name": "No response body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    "enrollment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "55241253-d59e-434b-a955-145da7d712d7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    "enrollment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"permission_denied\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a3c237d-2d89-4bf0-afe8-4622f8f6ea9c",
+              "name": "Invalid request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    "enrollment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": \"User is not enrolled in card linked offers\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0dcceba5-1277-4c95-8e45-4712ccf84eed",
+              "name": "Invalid request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    "enrollment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": \"Missing required profile data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86b140ef-c6b7-4b34-81ba-1484074acbc5",
+              "name": "Server side error. Typically an issue related to connecting to the core or a third-party API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-linked-offers",
+                    "enrollment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7f0665a1-1185-4e4e-948f-506f174a498c",
+    "name": "Narmi Public account balances card linked offers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

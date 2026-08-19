@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Narmi Public account balances ach destinations API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ach destinations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an ACH destination",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.narmi.dev/v1/ach_details/",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a set of ACH details that can be used as a destination for ACH Payments.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

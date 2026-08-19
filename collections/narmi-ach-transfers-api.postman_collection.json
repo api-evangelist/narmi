@@ -1,0 +1,756 @@
+{
+  "item": [
+    {
+      "id": "d0b4374f-d35d-4f9a-9104-712d1098ef64",
+      "name": "ach transfers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6d3c91b2-578e-46c1-b806-78ba9f9efca3",
+          "name": "List ACH transfers",
+          "request": {
+            "name": "List ACH transfers",
+            "description": {
+              "content": "List the authenticated user's ACH transfers. Transfers are movements of funds between two internal accounts or two verified external accounts.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "transfers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A page number within the paginated result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "acda75b1-ba46-44f6-b349-474f9553acf2",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transfers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"total\": 330\n  },\n  \"links\": {\n    \"next\": \"http://api.example.org/accounts/?page=4\",\n    \"prev\": \"http://api.example.org/accounts/?page=4\"\n  },\n  \"transfers\": [\n    {\n      \"amount\": 100,\n      \"from_account_id\": \"e299bd79-880d-e400-3b57-09686ab52886\",\n      \"to_account_id\": \"c1c969e3-e171-6caa-9b19-02eb061944df\",\n      \"id\": \"a9a1415a-7591-3a20-b3cb-0cce09f99b1a\",\n      \"state\": \"processed\",\n      \"created_at\": \"1981-01-22T11:00:49.166Z\",\n      \"estimated_process_date\": \"1959-01-15T23:22:48.246Z\",\n      \"estimated_arrival_date\": \"1971-04-17T02:21:39.684Z\"\n    },\n    {\n      \"amount\": 100,\n      \"from_account_id\": \"50c67a1a-b962-da06-4f64-12df15278fb6\",\n      \"to_account_id\": \"2144a089-abe1-d08e-f685-26ee02b678f9\",\n      \"id\": \"abe08365-e000-50ea-53ad-f17875e79719\",\n      \"state\": \"canceled\",\n      \"created_at\": \"2023-05-04T11:25:39.821Z\",\n      \"estimated_process_date\": \"2002-08-17T17:50:44.560Z\",\n      \"estimated_arrival_date\": \"1967-11-30T14:13:32.766Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9de40eb-b999-496b-a61a-4d6fc9a5dc35",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transfers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"not_found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8214797e-3626-449b-af8a-1116119332e5",
+          "name": "Create an ACH transfer",
+          "request": {
+            "name": "Create an ACH transfer",
+            "description": {
+              "content": "Transfer funds between two accounts. The target accounts should be either an account at the financial institution belonging to the user or a verified external account.\n\nA list of eligible accounts can be retrieved or listed from the accounts endpoints.\n\nIf the `instant` flag is provided for a push external transfer, processing will be done via FedNow and core posting will be immediate, otherwise all external transfers are processed via ACH by default.\n\nAdditionally, this endpoint requires the use of sudo elevation. For details, please refer to the <a href=\"#/operations/retrieve_sudo\">sudo documentation.</a>\n\n\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "transfers",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "agreement",
+                  "value": "<boolean>",
+                  "description": "(Required) Whether or not the terms of the transfer were agreed to."
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<integer>",
+                  "description": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents)."
+                },
+                {
+                  "disabled": false,
+                  "key": "from_account_id",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID identifying the source account in the Narmi database."
+                },
+                {
+                  "disabled": false,
+                  "key": "to_account_id",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID identifying the destination account in the Narmi database."
+                },
+                {
+                  "disabled": false,
+                  "key": "device_id",
+                  "value": "<string>",
+                  "description": "Device 'fingerprint' from alloy/iovation."
+                },
+                {
+                  "disabled": false,
+                  "key": "instant",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "memo",
+                  "value": "",
+                  "description": "Free-form description of transfer."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ef32b05b-faf2-4211-88b5-461e5a08928d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transfers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Whether or not the terms of the transfer were agreed to.",
+                        "type": "text/plain"
+                      },
+                      "key": "agreement",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the source account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the destination account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Device 'fingerprint' from alloy/iovation.",
+                        "type": "text/plain"
+                      },
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "instant",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Free-form description of transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transfer\": {\n    \"amount\": 100,\n    \"from_account_id\": \"bd97077c-a567-ace7-4f92-4ed1e4a2c47c\",\n    \"to_account_id\": \"47cbf586-47a3-d767-7c0d-2055eb7b7fb4\",\n    \"id\": \"cda1444f-65d4-5c15-d78b-6e4d184712ea\",\n    \"state\": \"canceled\",\n    \"created_at\": \"1997-02-10T13:37:09.885Z\",\n    \"estimated_process_date\": \"1959-08-22T00:14:06.475Z\",\n    \"estimated_arrival_date\": \"2007-12-15T07:39:56.536Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24a57f09-758a-462e-9379-12e5f4b38f79",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transfers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Whether or not the terms of the transfer were agreed to.",
+                        "type": "text/plain"
+                      },
+                      "key": "agreement",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the source account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the destination account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Device 'fingerprint' from alloy/iovation.",
+                        "type": "text/plain"
+                      },
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "instant",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Free-form description of transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"Your account does not support internal transfers.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cefa6a35-867b-4d72-ae35-8c2dd025e193",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transfers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Whether or not the terms of the transfer were agreed to.",
+                        "type": "text/plain"
+                      },
+                      "key": "agreement",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the source account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the destination account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Device 'fingerprint' from alloy/iovation.",
+                        "type": "text/plain"
+                      },
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "instant",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Free-form description of transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"amount\": \"This field is required.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19b7a57d-ce18-4748-8f14-f9756d26c1d8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transfers",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Whether or not the terms of the transfer were agreed to.",
+                        "type": "text/plain"
+                      },
+                      "key": "agreement",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the source account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the destination account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Device 'fingerprint' from alloy/iovation.",
+                        "type": "text/plain"
+                      },
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "instant",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Free-form description of transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"api_connection_error\",\n  \"message\": \"Sorry, we were unable to process your request, please check back soon.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "934b3a81-1f7d-46b3-bde5-adb0a1343dfe",
+    "name": "Narmi Public account balances ach transfers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

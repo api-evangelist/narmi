@@ -1,0 +1,133 @@
+{
+  "item": [
+    {
+      "id": "1fdacc26-706e-4b9e-bfa4-864afa71f615",
+      "name": "me",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e7ef18f8-2a36-40b0-bcb6-0e3b1b406d79",
+          "name": "List authenticated user information",
+          "request": {
+            "name": "List authenticated user information",
+            "description": {
+              "content": "List the authenticated users profile information.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "me",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5be3cc6e-933f-4ca5-81de-bbc07fb05016",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "me",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"users\": [\n    {\n      \"email\": \"demo@narmitech.com\",\n      \"core_provided_email\": null,\n      \"username\": \"testuser\",\n      \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n      \"institution_user_identifier\": \"\",\n      \"updated_at\": \"2018-11-02T03:29:18.317000+00:00\",\n      \"addresses\": [],\n      \"phone_numbers\": [],\n      \"first_name\": \"\",\n      \"last_name\": \"\",\n      \"paper_statements\": true,\n      \"user_category\": \"personal\",\n      \"features\": {\n        \"ach\": true,\n        \"allow_olb_device_remembering\": true,\n        \"check_order\": true,\n        \"edit_scheduled_transfers\": true,\n        \"stop_payment_by_range\": true,\n        \"top_menu\": {\n          \"Dashboard\": {\n            \"url\": \"/dashboard\"\n          },\n          \"Accounts\": {\n            \"accounts\": true\n          },\n          \"Documents\": {\n            \"url\": \"/statements\"\n          },\n          \"Support\": {\n            \"url\": \"/support\"\n          },\n          \"Tools\": {\n            \"menu\": {\n              \"Transfer funds\": {\n                \"url\": \"/transfer\"\n              },\n              \"Transactions\": {\n                \"url\": \"/transactions\"\n              },\n              \"Cards\": {\n                \"url\": \"/cards\"\n              },\n              \"Trends\": {\n                \"url\": \"/trends\"\n              },\n              \"Automatic savings\": {\n                \"url\": \"/automatic\"\n              },\n              \"Manage users\": {\n                \"url\": \"/access_manager\",\n                \"feature_flag\": \"indigo.OrganizationUser_permission\"\n              },\n              \"List all NAF options\": {\n                \"naf\": true\n              }\n            }\n          }\n        },\n        \"internal_transfers\": true,\n        \"account_membership\": true,\n        \"address_change\": true,\n        \"alerts\": true,\n        \"allpoint_locator_atm\": true,\n        \"automatic_savings\": \"OPT_IN\",\n        \"bill_pay\": \"ipay\",\n        \"billshark\": true,\n        \"business_account_opening\": true,\n        \"personal_banking\": true,\n        \"business_banking\": true,\n        \"cards\": true,\n        \"coop_locator_atm\": true,\n        \"coop_locator_branch\": true,\n        \"core_based_alerts\": false,\n        \"existing_user_account_opening\": true,\n        \"existing_user_dao\": true,\n        \"instant_account_verification\": \"mx\",\n        \"insurance\": \"lemonade\",\n        \"login_and_enroll_blocked\": false,\n        \"mobile_banking\": true,\n        \"moneypass_locator_atm\": true,\n        \"deposit_sso\": true,\n        \"new_account_opening\": true,\n        \"offers\": true,\n        \"offline_verification\": true,\n        \"online_banking\": true,\n        \"p2p\": [\n          \"m2m\"\n        ],\n        \"paperless_statement_enrollment\": true,\n        \"paperless_statement_unenrollment\": false,\n        \"phone_change\": true,\n        \"push_notifications\": true,\n        \"rdc\": true,\n        \"refer_a_member\": true,\n        \"show_transaction_contact_support\": true,\n        \"statements\": true,\n        \"transfers\": true,\n        \"trends\": \"mx\",\n        \"user_message_uploads\": true,\n        \"username\": true,\n        \"wires\": true,\n        \"stop_payment\": true,\n        \"beneficiaries\": true,\n        \"naf_app_management\": true,\n        \"profile_switcher\": true,\n        \"mobile_login_switcher\": true,\n        \"limits\": {\n          \"immediate_rdc\": {\n            \"3\": 7000\n          },\n          \"immediate_ach_pull\": {\n            \"1\": 1000\n          },\n          \"ach_pull\": {\n            \"1\": 500,\n            \"30\": 5500\n          },\n          \"ach_push\": {\n            \"3\": 5000\n          }\n        },\n        \"indigo.Account_permission\": \"*\",\n        \"indigo.AchTransfer_permission\": \"*\",\n        \"integrations.base.Card_permission\": \"*\",\n        \"indigo.ExternalAccount_permission\": \"*\",\n        \"indigo.IntraInstitutionTransfer_permission\": \"*\",\n        \"indigo.MemberFriend_permission\": \"*\",\n        \"integrations.base.Payee_permission\": \"*\",\n        \"integrations.base.Payment_permission\": \"*\",\n        \"indigo.Transaction_permission\": \"*\",\n        \"indigo.WireTransaction_permission\": \"*\",\n        \"integrations.documents_permission\": \"*\",\n        \"integrations.rdc_permission\": \"*\",\n        \"can_change_username\": false,\n        \"can_change_estatements\": true,\n        \"zelle\": false,\n        \"hold_days\": {\n          \"rdc_hold_days\": 4,\n          \"ach_hold_days\": 2\n        }\n      },\n      \"org_uuid\": null,\n      \"org_role\": null,\n      \"org_name\": \"\",\n      \"business_permissions\": [],\n      \"dual_approval_required\": false,\n      \"is_staff\": false,\n      \"is_active\": true,\n      \"is_superuser\": false,\n      \"is_narmi\": false,\n      \"date_joined\": \"2018-03-26T14:43:59.004000+00:00\",\n      \"last_login\": \"2024-04-22T21:06:02.006532+00:00\",\n      \"segment\": \"\",\n      \"metadata\": {},\n      \"has_username\": true,\n      \"has_password\": true,\n      \"has_accepted_latest_terms\": false,\n      \"requires_enrollment_code_verification\": false,\n      \"enabled_estatements_at\": null,\n      \"is_converting\": false,\n      \"has_permitted_device\": true,\n      \"has_backup_codes\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0aa1c3e8-b1cb-4402-93d4-32cb9437fac5",
+    "name": "Narmi Public account balances me API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Narmi Public account balances reports API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List BAI transaction type codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/reports/bai_transaction_types/",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return the institution's configured BAI transaction type codes from core metadata. Each entry includes the 3-digit BAI code, an optional description, and a direction (credit/debit/misc) derived from the code range.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        },
+        {
+          "info": {
+            "name": "Export multi-account transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.narmi.dev/v1/reports/transactions_download/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Export transaction history across one or more accounts as CSV or BAI2.\n\nUse the `format` field to select the output format (defaults to `csv`).\n\nUse the optional `filename` field to set a custom filename in the Content-Disposition header.\nIf omitted, a default name like `transaction-export-2024-03-05.csv` is generated.\n\nTransactions are filtered by the specified date range. Optionally, results can be narrowed to\nspecific BAI transaction type codes.\n\nCSV returns columns: Posted Date, Type, Descri"
+        },
+        {
+          "info": {
+            "name": "Get multi-account transaction statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.narmi.dev/v1/reports/transactions_stats/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Return aggregate statistics (count, credits, debits, net total) for transactions across one or more accounts within a date range.\n\nOptionally filter by BAI transaction type codes. All monetary values are returned as integers representing amounts in cents.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

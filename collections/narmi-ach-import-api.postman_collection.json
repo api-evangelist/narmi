@@ -1,0 +1,1151 @@
+{
+  "item": [
+    {
+      "id": "520ba20a-492f-431c-8e43-838e6bb60a80",
+      "name": "ach import",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "963469e7-2c34-4778-ad42-2cadc5f01c65",
+          "name": "Import ACH CSV",
+          "request": {
+            "name": "Import ACH CSV",
+            "description": {
+              "content": "Upload a CSV file, store it in S3, and return preview rows with a suggested column mapping.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ach_import",
+                "csv",
+                "import",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "file",
+                  "value": "<binary>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "has_header_row",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c849d8f3-d99d-422c-a1e1-8c3188bf1f18",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_import",
+                    "csv",
+                    "import",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "has_header_row",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"columns\": [\n    \"string\",\n    \"string\"\n  ],\n  \"organization_file_uuid\": \"8daf8da3-8286-a633-4b62-b6801f3aa3c9\",\n  \"preview_rows\": [\n    [\n      \"string\",\n      \"string\"\n    ],\n    [\n      \"string\",\n      \"string\"\n    ]\n  ],\n  \"row_count\": 6170,\n  \"s3_key\": \"string\",\n  \"suggested_mapping\": {\n    \"column_mappings\": [\n      {\n        \"column_header\": \"string\",\n        \"column_index\": 589,\n        \"field\": \"string\"\n      },\n      {\n        \"column_header\": \"string\",\n        \"column_index\": 2833,\n        \"field\": \"string\"\n      }\n    ],\n    \"mapping_name\": \"string\",\n    \"mapping_uuid\": \"9416a0eb-1093-de53-2140-c16289975dca\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "351a2120-bdb4-4a1a-a335-1f0ba481d981",
+          "name": "List saved CSV mappings",
+          "request": {
+            "name": "List saved CSV mappings",
+            "description": {
+              "content": "Return all saved CSV field mappings for the authenticated user's organization.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ach_import",
+                "csv",
+                "mappings",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A page number within the paginated result set."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "311f22db-b7c8-4f7b-8293-42f7db69a0b1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_import",
+                    "csv",
+                    "mappings",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"name\": \"string\",\n      \"id\": \"cd8a6c45-266b-4f9a-12d5-b03421c07c51\",\n      \"created_at\": \"2014-04-22T06:38:34.233Z\",\n      \"updated_at\": \"2009-07-02T04:24:06.931Z\",\n      \"has_header_row\": false,\n      \"date_column_index\": 1692845819,\n      \"date_column_header\": \"string\",\n      \"recipient_name_column_index\": 874155748,\n      \"recipient_name_column_header\": \"string\",\n      \"routing_number_column_index\": 683847815,\n      \"routing_number_column_header\": \"string\",\n      \"account_number_column_index\": 1010859970,\n      \"account_number_column_header\": \"string\",\n      \"account_type_column_index\": 570232639,\n      \"account_type_column_header\": \"string\",\n      \"action_column_index\": 161934761,\n      \"action_column_header\": \"string\",\n      \"description_column_index\": 213476756,\n      \"description_column_header\": \"string\",\n      \"amount_column_index\": 1366532927,\n      \"amount_column_header\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"id\": \"3165e90c-9b91-a1f1-3129-a1773a0d75ee\",\n      \"created_at\": \"1981-05-07T19:58:31.038Z\",\n      \"updated_at\": \"1948-01-26T20:37:44.936Z\",\n      \"has_header_row\": true,\n      \"date_column_index\": 1262874719,\n      \"date_column_header\": \"string\",\n      \"recipient_name_column_index\": 774128283,\n      \"recipient_name_column_header\": \"string\",\n      \"routing_number_column_index\": 630402858,\n      \"routing_number_column_header\": \"string\",\n      \"account_number_column_index\": 809801095,\n      \"account_number_column_header\": \"string\",\n      \"account_type_column_index\": 410050667,\n      \"account_type_column_header\": \"string\",\n      \"action_column_index\": 511051902,\n      \"action_column_header\": \"string\",\n      \"description_column_index\": 1883348412,\n      \"description_column_header\": \"string\",\n      \"amount_column_index\": 290849703,\n      \"amount_column_header\": \"string\"\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?page=4\",\n  \"previous\": \"http://api.example.org/accounts/?page=2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eea31664-030a-4385-a566-2e132f8f522c",
+          "name": "Create a saved CSV mapping",
+          "request": {
+            "name": "Create a saved CSV mapping",
+            "description": {
+              "content": "Save a new named CSV field mapping for the authenticated user's organization.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ach_import",
+                "csv",
+                "mappings",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "has_header_row",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_column_index",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "date_column_header",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient_name_column_index",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient_name_column_header",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "routing_number_column_index",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "routing_number_column_header",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "account_number_column_index",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "account_number_column_header",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "account_type_column_index",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "account_type_column_header",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "action_column_index",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "action_column_header",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description_column_index",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "description_column_header",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount_column_index",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount_column_header",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cc48a9da-0b9d-43e4-a6ad-3b04f5ddfc68",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_import",
+                    "csv",
+                    "mappings",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "has_header_row",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "date_column_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "date_column_header",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "recipient_name_column_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "recipient_name_column_header",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "routing_number_column_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "routing_number_column_header",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "account_number_column_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "account_number_column_header",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "account_type_column_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "account_type_column_header",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "action_column_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "action_column_header",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description_column_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description_column_header",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "amount_column_index",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "amount_column_header",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"id\": \"ba95c369-591d-7a67-5bd8-894ac48ddd10\",\n  \"created_at\": \"1978-04-24T06:49:28.842Z\",\n  \"updated_at\": \"1954-12-12T01:30:19.837Z\",\n  \"has_header_row\": true,\n  \"date_column_index\": 1156926311,\n  \"date_column_header\": \"string\",\n  \"recipient_name_column_index\": 1419924637,\n  \"recipient_name_column_header\": \"string\",\n  \"routing_number_column_index\": 2016059363,\n  \"routing_number_column_header\": \"string\",\n  \"account_number_column_index\": 1824798902,\n  \"account_number_column_header\": \"string\",\n  \"account_type_column_index\": 1410975489,\n  \"account_type_column_header\": \"string\",\n  \"action_column_index\": 1150027348,\n  \"action_column_header\": \"string\",\n  \"description_column_index\": 2022206976,\n  \"description_column_header\": \"string\",\n  \"amount_column_index\": 216633627,\n  \"amount_column_header\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ddf7796d-d3bf-4e79-9781-6685041961a9",
+          "name": "Delete a saved CSV mapping",
+          "request": {
+            "name": "Delete a saved CSV mapping",
+            "description": {
+              "content": "Delete a saved CSV field mapping by UUID.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ach_import",
+                "csv",
+                "mappings",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "edbb6ea5-0dc2-426c-9a32-66c3bef0bd96",
+              "name": "No response body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_import",
+                    "csv",
+                    "mappings",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf33ee25-1628-4cc0-8e6d-dcf1b4f71b6d",
+          "name": "Parse ACH CSV",
+          "request": {
+            "name": "Parse ACH CSV",
+            "description": {
+              "content": "Given an S3 key and column mapping, validate all rows and return structured data.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ach_import",
+                "csv",
+                "parse",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"column_mappings\": [\n    {\n      \"column_header\": \"<string>\",\n      \"column_index\": \"<integer>\",\n      \"field\": \"<string>\"\n    },\n    {\n      \"column_header\": \"<string>\",\n      \"column_index\": \"<integer>\",\n      \"field\": \"<string>\"\n    }\n  ],\n  \"s3_key\": \"<string>\",\n  \"has_header_row\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3c34be2f-ab8e-4769-9019-b3f160cc32ec",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_import",
+                    "csv",
+                    "parse",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"column_mappings\": [\n    {\n      \"column_header\": \"<string>\",\n      \"column_index\": \"<integer>\",\n      \"field\": \"<string>\"\n    },\n    {\n      \"column_header\": \"<string>\",\n      \"column_index\": \"<integer>\",\n      \"field\": \"<string>\"\n    }\n  ],\n  \"s3_key\": \"<string>\",\n  \"has_header_row\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rows\": [\n    {\n      \"account_number\": \"string\",\n      \"account_type\": \"string\",\n      \"action\": \"string\",\n      \"amount\": \"string\",\n      \"date\": \"string\",\n      \"description\": \"string\",\n      \"needs_review\": false,\n      \"recipient\": {\n        \"name\": \"string\",\n        \"id\": \"b0cd8675-921b-c6b8-4ecc-822d7b5c38d3\",\n        \"updated_at\": \"1960-12-22T12:19:33.042Z\",\n        \"nickname\": \"string\",\n        \"type\": \"person\",\n        \"ach_destination\": {\n          \"account_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"account_purpose\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"account_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"routing_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"institution_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"fedwire_destination\": {\n          \"account_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"routing_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"institution_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"swift_destination\": {\n          \"account_identifier\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bic\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"metadata\": \"\",\n          \"branch_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"recipient_name\": \"string\",\n      \"routing_number\": \"string\",\n      \"row_errors\": [\n        \"string\",\n        \"string\"\n      ],\n      \"row_index\": 8256,\n      \"warning\": \"string\"\n    },\n    {\n      \"account_number\": \"string\",\n      \"account_type\": \"string\",\n      \"action\": \"string\",\n      \"amount\": \"string\",\n      \"date\": \"string\",\n      \"description\": \"string\",\n      \"needs_review\": false,\n      \"recipient\": {\n        \"name\": \"string\",\n        \"id\": \"5a71bac2-6ad9-592f-2fb5-1ea5fff93ffe\",\n        \"updated_at\": \"1991-03-02T01:35:43.485Z\",\n        \"nickname\": \"string\",\n        \"type\": \"person\",\n        \"ach_destination\": {\n          \"account_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"account_purpose\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"account_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"routing_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"institution_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"fedwire_destination\": {\n          \"account_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"routing_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"institution_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"swift_destination\": {\n          \"account_identifier\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bic\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"metadata\": \"\",\n          \"branch_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"recipient_name\": \"string\",\n      \"routing_number\": \"string\",\n      \"row_errors\": [\n        \"string\",\n        \"string\"\n      ],\n      \"row_index\": 5749,\n      \"warning\": \"string\"\n    }\n  ],\n  \"s3_key\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b736225b-037a-46b6-a37e-826bccb53029",
+          "name": "Download NACHA file",
+          "request": {
+            "name": "Download NACHA file",
+            "description": {
+              "content": "Download a previously uploaded NACHA file by its S3 key for audit purposes.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ach_import",
+                "nacha",
+                "download",
+                ":file_name",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "file_name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3b97447f-409e-48df-92a8-9358abf821b9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_import",
+                    "nacha",
+                    "download",
+                    ":file_name",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "file_name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09e6cc8b-9c42-4a3e-9bde-55d966497351",
+          "name": "Import NACHA file",
+          "request": {
+            "name": "Import NACHA file",
+            "description": {
+              "content": "Upload a NACHA file, validate via Moov, store in S3, and return parsed payment rows.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ach_import",
+                "nacha",
+                "import",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "account_purpose",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "file",
+                  "value": "<binary>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "source_account",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "internal_note",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7856280c-674c-4c92-9bb7-f3ff23439328",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_import",
+                    "nacha",
+                    "import",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "account_purpose",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "source_account",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "key": "title",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "key": "internal_note",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internal_note\": \"string\",\n  \"organization_file_uuid\": \"620f2ec5-d7f9-84ad-79ee-829014366986\",\n  \"rows\": [\n    {\n      \"amount\": \"38712\",\n      \"description\": \"string\",\n      \"needs_review\": true,\n      \"recipient\": {\n        \"name\": \"string\",\n        \"id\": \"21d8326d-f624-70f1-3b4c-a7298727fb2d\",\n        \"updated_at\": \"1955-07-05T22:54:10.316Z\",\n        \"nickname\": \"string\",\n        \"type\": \"person\",\n        \"ach_destination\": {\n          \"account_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"account_purpose\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"account_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"routing_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"institution_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"fedwire_destination\": {\n          \"account_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"routing_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"institution_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"swift_destination\": {\n          \"account_identifier\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bic\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"metadata\": \"\",\n          \"branch_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"scheduled_date\": \"string\",\n      \"transaction_type\": \"string\",\n      \"warning\": \"string\"\n    },\n    {\n      \"amount\": \"-124165371727.23\",\n      \"description\": \"string\",\n      \"needs_review\": true,\n      \"recipient\": {\n        \"name\": \"string\",\n        \"id\": \"edbe5ca8-deb5-27f7-dda4-674fe894020a\",\n        \"updated_at\": \"2002-11-02T19:05:31.043Z\",\n        \"nickname\": \"string\",\n        \"type\": \"person\",\n        \"ach_destination\": {\n          \"account_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"account_purpose\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"account_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"routing_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"institution_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"fedwire_destination\": {\n          \"account_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"routing_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"institution_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"swift_destination\": {\n          \"account_identifier\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"bic\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated_at\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"metadata\": \"\",\n          \"branch_address\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"scheduled_date\": \"string\",\n      \"transaction_type\": \"string\",\n      \"warning\": \"string\"\n    }\n  ],\n  \"s3_key\": \"string\",\n  \"source_account\": \"e71645f6-992d-e40f-fde2-0885422c42f2\",\n  \"title\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e83f1a84-bc2c-434a-b1f9-8a31597fc788",
+    "name": "Narmi Public account balances ach import API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

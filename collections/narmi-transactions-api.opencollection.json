@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Narmi Public account balances transactions API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List user transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/transactions/",
+            "params": [
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor value which indicates the first index to be queried. This can be used to paginate using cursor pagination along with the `before` parameter."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Cursor value which indicates the last index to be queried. This can be used to paginate using cursor pagination along with the `after` parameter."
+              },
+              {
+                "name": "block",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to call a blocking operation to update the transaction results before fetching. When calling with this flag, the endpoint may respond with a 500 in the event of issues with the core."
+              },
+              {
+                "name": "created_from",
+                "value": "",
+                "type": "query",
+                "description": "Earliest date-time the transaction should be created from."
+              },
+              {
+                "name": "created_to",
+                "value": "",
+                "type": "query",
+                "description": "Latest date-time the transaction should be created to."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Omit the defined transaction state from transaction results."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number value, this will populate automatically via the `next` and `previous` urls which are generated in the response."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search string with which to filter results."
+              },
+              {
+                "name": "settled_from",
+                "value": "",
+                "type": "query",
+                "description": "Earliest date-time the transaction should be settled from."
+              },
+              {
+                "name": "settled_to",
+                "value": "",
+                "type": "query",
+                "description": "Latest date-time the transaction should be settled to."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List transactions for the authenticated user. Transactions are collated from accounts which the user is a member of.<br /><br />If queried via the v1/accounts/{account_uuids}/transactions endpoint,the call will return a 404 if all the comma-separated list of `account_uuids` are non-existent.<br /><br />Pagination can be defined either via the `before` and `after` query parameters for cursor pagination or via the `page` parameter for page number pagination. Both styles of pagination accept a `per"
+        },
+        {
+          "info": {
+            "name": "Retrieve transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/transactions/:uuid/",
+            "params": [
+              {
+                "name": "file_format",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch a specified transaction.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        },
+        {
+          "info": {
+            "name": "Update transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sandbox.narmi.dev/v1/transactions/:uuid/",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update fields for a specified transaction.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        },
+        {
+          "info": {
+            "name": "Retrieve transaction image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/transactions/:uuid/images/",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch the base 64 encoded front and back check images for a specified transaction. This endpoint may return 503 or 422 status codes when interacting with the 3rd party integration that manages these images.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

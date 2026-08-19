@@ -1,0 +1,1491 @@
+{
+  "item": [
+    {
+      "id": "ee822ca4-c46a-4d1c-a985-addcb9cac48f",
+      "name": "subscriptions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "02993e98-299c-4c7d-b2f5-7d23dff3acdb",
+          "name": "List subscriptions",
+          "request": {
+            "name": "List subscriptions",
+            "description": {
+              "content": "List the authenticated user's subscriptions.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriptions",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A page number within the paginated result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3b16f906-48cf-4e13-a400-9850e15e3484",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriptions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"total\": 6453\n  },\n  \"links\": {\n    \"next\": \"http://api.example.org/accounts/?page=4\",\n    \"prev\": \"http://api.example.org/accounts/?page=4\"\n  },\n  \"results\": [\n    {\n      \"url\": \"http://okRV.hkcdMJWO.7lo8GhMO8wAfRWPTB.L.6oiXR3Ab31bWVPDPNXUtEpgqh7XV5-UamQ\",\n      \"id\": \"1f428078-d075-410a-939d-194357a7be0b\",\n      \"is_active\": true,\n      \"version\": \"\",\n      \"event_type\": \"user.login\",\n      \"secret\": \"aLwDFGWc5suR\",\n      \"description\": \"Webhook subscription for monitoring user logins.\",\n      \"created_at\": \"1962-11-10T03:24:44.554Z\",\n      \"updated_at\": \"1961-02-19T12:04:39.581Z\"\n    },\n    {\n      \"url\": \"http://zzSBvShbO.bdrkf3vGlBfMe2H97v,gHOEw.qVB.mW3boF\",\n      \"id\": \"1f428078-d075-410a-939d-194357a7be0b\",\n      \"is_active\": true,\n      \"version\": \"\",\n      \"event_type\": \"user.login\",\n      \"secret\": \"aLwDFGWc5suR\",\n      \"description\": \"Webhook subscription for monitoring user logins.\",\n      \"created_at\": \"1982-12-23T23:26:48.020Z\",\n      \"updated_at\": \"1963-05-10T17:10:26.240Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15904877-2ce6-40d3-a491-72202c44cfbd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriptions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"not_found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90b5e74a-f041-4a38-8005-fb6e3eff62b8",
+          "name": "Create a subscription",
+          "request": {
+            "name": "Create a subscription",
+            "description": {
+              "content": "Creates a subscription for the authenticated user to fire a webhook when a target object is modified.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriptions",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "(Required) The URL called when the webhook event occurs."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_active",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "Version string for future versioning functionality, can be left blank"
+                },
+                {
+                  "disabled": false,
+                  "key": "event_type",
+                  "value": "<string>",
+                  "description": "The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9c221aaf-4f5d-4f88-9ec5-5daede9d1ba4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriptions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The URL called when the webhook event occurs.",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Version string for future versioning functionality, can be left blank",
+                        "type": "text/plain"
+                      },
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`",
+                        "type": "text/plain"
+                      },
+                      "key": "event_type",
+                      "value": "user.login"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "Webhook subscription for monitoring user logins."
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"subscription\": {\n    \"url\": \"http://jsOUqaTFmdGRWVvuQCATO.apvznsGC0r7krJSPQMVdgKDz7l2jsBJvGmubjK1shDPcNgtgtD-A.ibDDnQAR09a6QI\",\n    \"id\": \"1f428078-d075-410a-939d-194357a7be0b\",\n    \"is_active\": false,\n    \"version\": \"\",\n    \"event_type\": \"user.login\",\n    \"secret\": \"aLwDFGWc5suR\",\n    \"description\": \"Webhook subscription for monitoring user logins.\",\n    \"created_at\": \"1982-02-08T16:47:08.941Z\",\n    \"updated_at\": \"1984-07-04T21:03:54.528Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3396d9b-3058-4c78-9c79-2c9306a40877",
+              "name": "Invalid request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriptions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The URL called when the webhook event occurs.",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Version string for future versioning functionality, can be left blank",
+                        "type": "text/plain"
+                      },
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`",
+                        "type": "text/plain"
+                      },
+                      "key": "event_type",
+                      "value": "user.login"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "Webhook subscription for monitoring user logins."
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": \"Message describing nature of error.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed6d494f-102f-445b-967e-5b231398eb87",
+          "name": "Retrieve a subscription",
+          "request": {
+            "name": "Retrieve a subscription",
+            "description": {
+              "content": "Fetch a specified subscription.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriptions",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1c920ae9-8d79-4624-bdb1-878668ab709b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriptions",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"subscription\": {\n    \"url\": \"http://jsOUqaTFmdGRWVvuQCATO.apvznsGC0r7krJSPQMVdgKDz7l2jsBJvGmubjK1shDPcNgtgtD-A.ibDDnQAR09a6QI\",\n    \"id\": \"1f428078-d075-410a-939d-194357a7be0b\",\n    \"is_active\": false,\n    \"version\": \"\",\n    \"event_type\": \"user.login\",\n    \"secret\": \"aLwDFGWc5suR\",\n    \"description\": \"Webhook subscription for monitoring user logins.\",\n    \"created_at\": \"1982-02-08T16:47:08.941Z\",\n    \"updated_at\": \"1984-07-04T21:03:54.528Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2570003c-7f3c-4769-a308-ee5042918cd8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriptions",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"Not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "25e9e7b3-8caa-496c-9fd1-1ef2948ef847",
+          "name": "Update a subscription",
+          "request": {
+            "name": "Update a subscription",
+            "description": {
+              "content": "Update a specified subscription.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriptions",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "(Required) The URL called when the webhook event occurs."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_active",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "Version string for future versioning functionality, can be left blank"
+                },
+                {
+                  "disabled": false,
+                  "key": "event_type",
+                  "value": "<string>",
+                  "description": "The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1339293a-947c-419b-8e7a-6c0375c8cd51",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriptions",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The URL called when the webhook event occurs.",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Version string for future versioning functionality, can be left blank",
+                        "type": "text/plain"
+                      },
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`",
+                        "type": "text/plain"
+                      },
+                      "key": "event_type",
+                      "value": "user.login"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "Webhook subscription for monitoring user logins."
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"subscription\": {\n    \"url\": \"http://jsOUqaTFmdGRWVvuQCATO.apvznsGC0r7krJSPQMVdgKDz7l2jsBJvGmubjK1shDPcNgtgtD-A.ibDDnQAR09a6QI\",\n    \"id\": \"1f428078-d075-410a-939d-194357a7be0b\",\n    \"is_active\": false,\n    \"version\": \"\",\n    \"event_type\": \"user.login\",\n    \"secret\": \"aLwDFGWc5suR\",\n    \"description\": \"Webhook subscription for monitoring user logins.\",\n    \"created_at\": \"1982-02-08T16:47:08.941Z\",\n    \"updated_at\": \"1984-07-04T21:03:54.528Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "271c70e7-e821-4d5f-a9e4-c81b08e7c2fa",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriptions",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The URL called when the webhook event occurs.",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Version string for future versioning functionality, can be left blank",
+                        "type": "text/plain"
+                      },
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`",
+                        "type": "text/plain"
+                      },
+                      "key": "event_type",
+                      "value": "user.login"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "Webhook subscription for monitoring user logins."
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"Not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5856b35-a535-4ddc-b42d-9dfd01e6dd64",
+              "name": "Invalid request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriptions",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The URL called when the webhook event occurs.",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Version string for future versioning functionality, can be left blank",
+                        "type": "text/plain"
+                      },
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`",
+                        "type": "text/plain"
+                      },
+                      "key": "event_type",
+                      "value": "user.login"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "Webhook subscription for monitoring user logins."
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": \"Message describing nature of error.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5639cd3b-a730-43f6-80c1-26977d2d27eb",
+          "name": "Modify subscription",
+          "request": {
+            "name": "Modify subscription",
+            "description": {
+              "content": "Update specific fields for a specified subscription.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriptions",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "(Required) The URL called when the webhook event occurs."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_active",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "Version string for future versioning functionality, can be left blank"
+                },
+                {
+                  "disabled": false,
+                  "key": "event_type",
+                  "value": "<string>",
+                  "description": "The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "20733f03-851c-4ca3-84f2-9357f44519ae",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriptions",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The URL called when the webhook event occurs.",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Version string for future versioning functionality, can be left blank",
+                        "type": "text/plain"
+                      },
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`",
+                        "type": "text/plain"
+                      },
+                      "key": "event_type",
+                      "value": "user.login"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "Webhook subscription for monitoring user logins."
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"https://sQCFJFjeWQrCYFvqX.xxrcbNLvuHzGVaS2.ewksF8jBq,kMQ4YkSgYZXx7elcgu\",\n  \"id\": \"1f428078-d075-410a-939d-194357a7be0b\",\n  \"is_active\": true,\n  \"version\": \"\",\n  \"event_type\": \"user.login\",\n  \"secret\": \"aLwDFGWc5suR\",\n  \"description\": \"Webhook subscription for monitoring user logins.\",\n  \"created_at\": \"1990-12-29T08:35:10.917Z\",\n  \"updated_at\": \"1957-07-04T12:46:35.115Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6c73ee3-171a-4321-a920-bb1bb9ab2ff3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriptions",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The URL called when the webhook event occurs.",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "is_active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Version string for future versioning functionality, can be left blank",
+                        "type": "text/plain"
+                      },
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`",
+                        "type": "text/plain"
+                      },
+                      "key": "event_type",
+                      "value": "user.login"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": "Webhook subscription for monitoring user logins."
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"Not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a12ac88-aa4b-4d2e-9590-a26b366c7c36",
+          "name": "Delete a subscription",
+          "request": {
+            "name": "Delete a subscription",
+            "description": {
+              "content": "Delete a specified subscription.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "subscriptions",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "30ffd10c-cd1e-4ed9-91e8-9433b81656c1",
+              "name": "No response body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriptions",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "29facd84-24a4-4b0e-b456-b2a47dd2d3e7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "subscriptions",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"Not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d71a2f24-2811-40f7-aef4-28d3b1670328",
+    "name": "Narmi Public account balances subscriptions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1238 @@
+{
+  "item": [
+    {
+      "id": "44c47805-00ca-43c0-a174-5043212ad6fa",
+      "name": "international wires",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "21d67805-87e1-475c-9469-6c6bcc0b709f",
+          "name": "List Swift wire transactions",
+          "request": {
+            "name": "List Swift wire transactions",
+            "description": {
+              "content": "List the authenticated user's Swift wire transactions.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "swift_transactions",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A page number within the paginated result set."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b3a550e1-1356-453a-a5e5-abe4196a4a59",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "swift_transactions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"amount\": 100,\n      \"destination\": \"0ab51a22-87a8-8665-91a8-b8dc4b604e1b\",\n      \"from_account\": \"e9148ef2-9dfd-0655-6569-ae9cd27de662\",\n      \"user\": \"string\",\n      \"id\": \"b2bf815c-84ee-69d9-a4ea-26a46a3729e6\",\n      \"created_at\": \"2006-03-29T00:45:19.071Z\",\n      \"updated_at\": \"1980-03-04T10:33:44.313Z\",\n      \"payment_identification\": \"string\",\n      \"recipient\": \"cc0a793f-433b-8a85-6a10-e75ea85461aa\",\n      \"template_name\": \"string\",\n      \"wire_reason\": \"string\",\n      \"memo\": \"string\",\n      \"note\": \"string\",\n      \"state\": \"rejected\",\n      \"quote\": {\n        \"id\": \"string\",\n        \"amount\": \"string\",\n        \"specified_currency\": \"string\",\n        \"converted_currency\": \"string\",\n        \"settlement_currency\": \"string\",\n        \"expiration_in_seconds\": 3973,\n        \"rate\": \"string\",\n        \"converted_amount\": \"string\"\n      }\n    },\n    {\n      \"amount\": 100,\n      \"destination\": \"4d63072d-9777-fa87-3a91-7f86c7b04b90\",\n      \"from_account\": \"98116438-3f19-cc23-55a6-8d85d7a66bae\",\n      \"user\": \"string\",\n      \"id\": \"6bd7d6be-1ee0-fe4b-7b58-b2ee9af77166\",\n      \"created_at\": \"1957-10-31T13:58:13.200Z\",\n      \"updated_at\": \"1997-02-25T02:09:22.211Z\",\n      \"payment_identification\": \"string\",\n      \"recipient\": \"847424f9-b2be-4c27-a1bc-0ceaf5bdc60d\",\n      \"template_name\": \"string\",\n      \"wire_reason\": \"string\",\n      \"memo\": \"string\",\n      \"note\": \"string\",\n      \"state\": \"rejected\",\n      \"quote\": {\n        \"id\": \"string\",\n        \"amount\": \"string\",\n        \"specified_currency\": \"string\",\n        \"converted_currency\": \"string\",\n        \"settlement_currency\": \"string\",\n        \"expiration_in_seconds\": 3969,\n        \"rate\": \"string\",\n        \"converted_amount\": \"string\"\n      }\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?page=4\",\n  \"previous\": \"http://api.example.org/accounts/?page=2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78c8da88-8440-42d3-86eb-0b24913c5fae",
+          "name": "Create a Swift wire transaction",
+          "request": {
+            "name": "Create a Swift wire transaction",
+            "description": {
+              "content": "Create a Swift wire transaction using the provided details.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "swift_transactions",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<integer>",
+                  "description": "(Required) The amount of the swift payment in cents."
+                },
+                {
+                  "disabled": false,
+                  "key": "destination",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID of the recipient associated with this Swift destination."
+                },
+                {
+                  "disabled": false,
+                  "key": "from_account",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID of the account from which the transaction is initiated."
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "wire_reason",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "memo",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "note",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "device_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "device_request_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "swiftwire_template",
+                  "value": "<uuid>",
+                  "description": "The UUID of the swiftwire template to use for the swiftwire transaction."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2efb4317-1bef-43e7-b724-a19784072485",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "swift_transactions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The amount of the swift payment in cents.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the recipient associated with this Swift destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "destination",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the account from which the transaction is initiated.",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "wire_reason",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "note",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_request_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The UUID of the swiftwire template to use for the swiftwire transaction.",
+                        "type": "text/plain"
+                      },
+                      "key": "swiftwire_template",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amount\": 100,\n  \"destination\": \"f9a06ba8-f7d8-5968-37c6-1c5a100fe5ac\",\n  \"from_account\": \"6cda9dac-51c5-4ee6-46f6-b572e9fb26a2\",\n  \"user\": \"string\",\n  \"id\": \"52da8e0f-20e6-4ce7-bfd2-ea8cbc88ba36\",\n  \"created_at\": \"1978-12-23T05:20:21.350Z\",\n  \"updated_at\": \"1978-08-15T07:35:37.336Z\",\n  \"payment_identification\": \"string\",\n  \"recipient\": \"c2a70127-974d-bbc3-f0fe-a92b4d8588bc\",\n  \"template_name\": \"string\",\n  \"wire_reason\": \"string\",\n  \"memo\": \"string\",\n  \"note\": \"string\",\n  \"state\": \"<string>\",\n  \"quote\": {\n    \"id\": \"string\",\n    \"amount\": \"string\",\n    \"specified_currency\": \"string\",\n    \"converted_currency\": \"string\",\n    \"settlement_currency\": \"string\",\n    \"expiration_in_seconds\": 4019,\n    \"rate\": \"string\",\n    \"converted_amount\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de94ca7f-1364-4d92-a9ba-6f19ba44607e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "swift_transactions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The amount of the swift payment in cents.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the recipient associated with this Swift destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "destination",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the account from which the transaction is initiated.",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "wire_reason",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "note",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_request_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The UUID of the swiftwire template to use for the swiftwire transaction.",
+                        "type": "text/plain"
+                      },
+                      "key": "swiftwire_template",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d9b2d44-eae5-41c7-9c1a-e685cd4e11af",
+          "name": "Retrieve a Swift wire transaction",
+          "request": {
+            "name": "Retrieve a Swift wire transaction",
+            "description": {
+              "content": "Fetch details for a specified Swift wire transaction.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "swift_transactions",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "935995ab-9ff5-4ad2-8a85-da2329372c4e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "swift_transactions",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amount\": 100,\n  \"destination\": \"f9a06ba8-f7d8-5968-37c6-1c5a100fe5ac\",\n  \"from_account\": \"6cda9dac-51c5-4ee6-46f6-b572e9fb26a2\",\n  \"user\": \"string\",\n  \"id\": \"52da8e0f-20e6-4ce7-bfd2-ea8cbc88ba36\",\n  \"created_at\": \"1978-12-23T05:20:21.350Z\",\n  \"updated_at\": \"1978-08-15T07:35:37.336Z\",\n  \"payment_identification\": \"string\",\n  \"recipient\": \"c2a70127-974d-bbc3-f0fe-a92b4d8588bc\",\n  \"template_name\": \"string\",\n  \"wire_reason\": \"string\",\n  \"memo\": \"string\",\n  \"note\": \"string\",\n  \"state\": \"<string>\",\n  \"quote\": {\n    \"id\": \"string\",\n    \"amount\": \"string\",\n    \"specified_currency\": \"string\",\n    \"converted_currency\": \"string\",\n    \"settlement_currency\": \"string\",\n    \"expiration_in_seconds\": 4019,\n    \"rate\": \"string\",\n    \"converted_amount\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2f0c902-bf07-438d-9047-86bbd06320c9",
+          "name": "Retrieve Swift payment codes",
+          "request": {
+            "name": "Retrieve Swift payment codes",
+            "description": {
+              "content": "Retrieve payment codes for a specific BIC. This is used to get the purpose codes for international wire transactions.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "swift_transactions",
+                "payment_codes",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4f3b9e6d-cc0c-48c4-a49d-8b2baf7fdbd3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "swift_transactions",
+                    "payment_codes",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amount\": 100,\n  \"destination\": \"f9a06ba8-f7d8-5968-37c6-1c5a100fe5ac\",\n  \"from_account\": \"6cda9dac-51c5-4ee6-46f6-b572e9fb26a2\",\n  \"user\": \"string\",\n  \"id\": \"52da8e0f-20e6-4ce7-bfd2-ea8cbc88ba36\",\n  \"created_at\": \"1978-12-23T05:20:21.350Z\",\n  \"updated_at\": \"1978-08-15T07:35:37.336Z\",\n  \"payment_identification\": \"string\",\n  \"recipient\": \"c2a70127-974d-bbc3-f0fe-a92b4d8588bc\",\n  \"template_name\": \"string\",\n  \"wire_reason\": \"string\",\n  \"memo\": \"string\",\n  \"note\": \"string\",\n  \"state\": \"<string>\",\n  \"quote\": {\n    \"id\": \"string\",\n    \"amount\": \"string\",\n    \"specified_currency\": \"string\",\n    \"converted_currency\": \"string\",\n    \"settlement_currency\": \"string\",\n    \"expiration_in_seconds\": 4019,\n    \"rate\": \"string\",\n    \"converted_amount\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de69e0d5-d75d-4e9c-ad30-c85dc8647786",
+          "name": "Send a swift wire using a swift wire template",
+          "request": {
+            "name": "Send a swift wire using a swift wire template",
+            "description": {
+              "content": "Send a swift wire using an existing swift wire template.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "swift_transactions",
+                "templates",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<integer>",
+                  "description": "(Required) The amount of the swift payment in cents."
+                },
+                {
+                  "disabled": false,
+                  "key": "destination",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID of the recipient associated with this Swift destination."
+                },
+                {
+                  "disabled": false,
+                  "key": "from_account",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID of the account from which the transaction is initiated."
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "wire_reason",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "memo",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "note",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "device_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "device_request_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "swiftwire_template",
+                  "value": "<uuid>",
+                  "description": "The UUID of the swiftwire template to use for the swiftwire transaction."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c88a6c6a-5b48-488c-bcc9-aaf44f0cf740",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "swift_transactions",
+                    "templates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The amount of the swift payment in cents.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the recipient associated with this Swift destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "destination",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the account from which the transaction is initiated.",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "wire_reason",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "note",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_request_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The UUID of the swiftwire template to use for the swiftwire transaction.",
+                        "type": "text/plain"
+                      },
+                      "key": "swiftwire_template",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amount\": 100,\n  \"destination\": \"f9a06ba8-f7d8-5968-37c6-1c5a100fe5ac\",\n  \"from_account\": \"6cda9dac-51c5-4ee6-46f6-b572e9fb26a2\",\n  \"user\": \"string\",\n  \"id\": \"52da8e0f-20e6-4ce7-bfd2-ea8cbc88ba36\",\n  \"created_at\": \"1978-12-23T05:20:21.350Z\",\n  \"updated_at\": \"1978-08-15T07:35:37.336Z\",\n  \"payment_identification\": \"string\",\n  \"recipient\": \"c2a70127-974d-bbc3-f0fe-a92b4d8588bc\",\n  \"template_name\": \"string\",\n  \"wire_reason\": \"string\",\n  \"memo\": \"string\",\n  \"note\": \"string\",\n  \"state\": \"<string>\",\n  \"quote\": {\n    \"id\": \"string\",\n    \"amount\": \"string\",\n    \"specified_currency\": \"string\",\n    \"converted_currency\": \"string\",\n    \"settlement_currency\": \"string\",\n    \"expiration_in_seconds\": 4019,\n    \"rate\": \"string\",\n    \"converted_amount\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe64d27c-3642-4647-86bc-6c59336a5b4a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "swift_transactions",
+                    "templates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The amount of the swift payment in cents.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the recipient associated with this Swift destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "destination",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the account from which the transaction is initiated.",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "wire_reason",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "note",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_request_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The UUID of the swiftwire template to use for the swiftwire transaction.",
+                        "type": "text/plain"
+                      },
+                      "key": "swiftwire_template",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b75cc826-b4e3-4384-a6bf-c203cc75edb5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "swift_transactions",
+                    "templates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The amount of the swift payment in cents.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the recipient associated with this Swift destination.",
+                        "type": "text/plain"
+                      },
+                      "key": "destination",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID of the account from which the transaction is initiated.",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "wire_reason",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "note",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_request_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The UUID of the swiftwire template to use for the swiftwire transaction.",
+                        "type": "text/plain"
+                      },
+                      "key": "swiftwire_template",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Idempotency-Key is already used.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b4121f67-f1db-46b4-a0cc-67cb467a98f3",
+    "name": "Narmi Public account balances international wires API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

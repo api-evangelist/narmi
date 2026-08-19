@@ -1,0 +1,1258 @@
+{
+  "item": [
+    {
+      "id": "e55dc636-ecb8-4b8e-b726-db198a91862d",
+      "name": "enrollments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6a6534af-28f2-4017-bf1b-875feb13b14b",
+          "name": "Create a digital banking user",
+          "request": {
+            "name": "Create a digital banking user",
+            "description": {
+              "content": "Verifies a user's details against the core and creates a digital banking user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "enroll",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "user_category",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "primary_account_number",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dob",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ssn",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ein",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "payload",
+                  "value": "<string>",
+                  "description": "If user is pre-validated via Link Service, supply encoded payload instead of other fields."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8c3d6585-7a48-4b27-8bd4-3f1a9f9e9003",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "enroll",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "user_category",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "primary_account_number",
+                      "value": "abc123def3456"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "dob",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ssn",
+                      "value": "123121234"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ein",
+                      "value": "123121234"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If user is pre-validated via Link Service, supply encoded payload instead of other fields.",
+                        "type": "text/plain"
+                      },
+                      "key": "payload",
+                      "value": "eyJlbWFpbCI6ICJ0ZXN0QGV4YW1wbGUuY29tIiwgInBob25lX251bWJlciI6ICIxMjM0NTY3ODkwIiwgInRheF9pZCI6ICIxMjMtNDUtNjc4OSIsICJlaW4iOiAiMTItMzQ1Njc4OSIsICJkb2IiOiAiMTk5MC0wMS0wMSIsICJ1c2VyX2NhdGVnb3J5IjogInRlc3RfY2F0ZWdvcnkiLCAiY29yZV9vcmdfaWQiOiAib3JnMTIzIiwgImZpcnN0X25hbWUiOiAiSm9obiIsICJsYXN0X25hbWUiOiAiRG9lIn0="
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": {\n    \"email\": \"demo@narmitech.com\",\n    \"core_provided_email\": null,\n    \"username\": \"testuser\",\n    \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n    \"institution_user_identifier\": \"\",\n    \"updated_at\": \"2018-11-02T03:29:18.317000+00:00\",\n    \"notifications_enabled\": true,\n    \"first_name\": \"\",\n    \"last_name\": \"\",\n    \"paper_statements\": true,\n    \"user_category\": \"personal\",\n    \"features\": {\n      \"key_0\": {}\n    },\n    \"org_uuid\": null,\n    \"org_role\": \"Admin\",\n    \"org_name\": \"\",\n    \"dual_approval_required\": false,\n    \"ach_dual_approval_required\": true,\n    \"income_sources\": [\n      {\n        \"income\": 2046949715,\n        \"income_type\": \"part_time\",\n        \"uuid\": \"e4aa3c88-94eb-eb52-aab9-fc24c919d23c\",\n        \"mortgage_rent\": 1321509202,\n        \"industry\": \"string\",\n        \"occupation\": \"string\"\n      },\n      {\n        \"income\": 1750466287,\n        \"income_type\": \"part_time\",\n        \"uuid\": \"299c6c4c-3ef5-c330-6ef9-91f6ee9a529a\",\n        \"mortgage_rent\": 1615009122,\n        \"industry\": \"string\",\n        \"occupation\": \"string\"\n      }\n    ],\n    \"international_wire_dual_approval_required\": false,\n    \"is_staff\": false,\n    \"is_active\": true,\n    \"is_superuser\": false,\n    \"is_narmi\": false,\n    \"date_joined\": \"2018-03-26T14:43:59.004000+00:00\",\n    \"last_login\": \"2024-04-22T21:06:02.006532+00:00\",\n    \"segment\": \"\",\n    \"metadata\": {},\n    \"has_username\": true,\n    \"has_password\": true,\n    \"has_accepted_latest_terms\": false,\n    \"requires_enrollment_code_verification\": false,\n    \"enabled_estatements_at\": \"2013-10-13T12:04:11.703Z\",\n    \"is_converting\": false,\n    \"has_permitted_device\": true,\n    \"has_backup_codes\": false,\n    \"support_teams\": [\n      \"b8804f11-5dc4-886e-a866-b5b84160d345\",\n      \"38f8e445-1cf5-927a-9f08-812c93b9feaa\"\n    ],\n    \"session_oidc_provider\": \"string\"\n  },\n  \"devices\": [\n    {\n      \"id\": \"otp_twilio.models.TwilioSMSDevice/1\",\n      \"number_type\": \"mobile\",\n      \"name\": \"User's iPhone\"\n    },\n    {\n      \"id\": \"otp_twilio.models.TwilioSMSDevice/1\",\n      \"number_type\": \"mobile\",\n      \"name\": \"User's iPhone\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b95badb1-d20d-4f82-afc8-5d982305b71c",
+              "name": "Invalid request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "enroll",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "user_category",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "primary_account_number",
+                      "value": "abc123def3456"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "dob",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ssn",
+                      "value": "123121234"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ein",
+                      "value": "123121234"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "If user is pre-validated via Link Service, supply encoded payload instead of other fields.",
+                        "type": "text/plain"
+                      },
+                      "key": "payload",
+                      "value": "eyJlbWFpbCI6ICJ0ZXN0QGV4YW1wbGUuY29tIiwgInBob25lX251bWJlciI6ICIxMjM0NTY3ODkwIiwgInRheF9pZCI6ICIxMjMtNDUtNjc4OSIsICJlaW4iOiAiMTItMzQ1Njc4OSIsICJkb2IiOiAiMTk5MC0wMS0wMSIsICJ1c2VyX2NhdGVnb3J5IjogInRlc3RfY2F0ZWdvcnkiLCAiY29yZV9vcmdfaWQiOiAib3JnMTIzIiwgImZpcnN0X25hbWUiOiAiSm9obiIsICJsYXN0X25hbWUiOiAiRG9lIn0="
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid\",\n  \"message\": \"We could not find an email address associated with this account, which is required for Digital Banking. Please contact Support.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4d69089-6d6b-4eca-ab82-935a8e8ea7e2",
+          "name": "Verify enrollment code",
+          "request": {
+            "name": "Verify enrollment code",
+            "description": {
+              "content": "Verifies an enrolling user's enrollment code.\n\nEnrollment codes can be generated via the regenerate enrollment code endpoint /v1/users/{user_uuid}/enrollment_code/.\n\nIf verified, returns user information.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "enroll_verify",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "enrollment_code",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0bff7e24-65b8-471d-929a-51b229e8ef7e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "enroll_verify",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "enrollment_code",
+                      "value": "ur3yheyw"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": {\n    \"email\": \"demo@narmitech.com\",\n    \"core_provided_email\": null,\n    \"username\": \"testuser\",\n    \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n    \"institution_user_identifier\": \"\",\n    \"updated_at\": \"2018-11-02T03:29:18.317000+00:00\",\n    \"notifications_enabled\": false,\n    \"first_name\": \"\",\n    \"last_name\": \"\",\n    \"paper_statements\": true,\n    \"user_category\": \"personal\",\n    \"features\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"org_uuid\": null,\n    \"org_role\": \"Admin\",\n    \"org_name\": \"\",\n    \"dual_approval_required\": false,\n    \"ach_dual_approval_required\": false,\n    \"income_sources\": [\n      {\n        \"income\": 887231038,\n        \"income_type\": \"retirement\",\n        \"uuid\": \"ebd3b6bd-ea9c-7cfd-e25d-c82eb74333ab\",\n        \"mortgage_rent\": 1648648563,\n        \"industry\": \"string\",\n        \"occupation\": \"string\"\n      },\n      {\n        \"income\": 433024616,\n        \"income_type\": \"employed\",\n        \"uuid\": \"50a16167-ee17-5c10-eef9-8110089be38f\",\n        \"mortgage_rent\": 511373256,\n        \"industry\": \"string\",\n        \"occupation\": \"string\"\n      }\n    ],\n    \"international_wire_dual_approval_required\": false,\n    \"is_staff\": false,\n    \"is_active\": true,\n    \"is_superuser\": false,\n    \"is_narmi\": false,\n    \"date_joined\": \"2018-03-26T14:43:59.004000+00:00\",\n    \"last_login\": \"2024-04-22T21:06:02.006532+00:00\",\n    \"segment\": \"\",\n    \"metadata\": {},\n    \"has_username\": true,\n    \"has_password\": true,\n    \"has_accepted_latest_terms\": false,\n    \"requires_enrollment_code_verification\": false,\n    \"enabled_estatements_at\": \"1981-03-22T04:27:20.675Z\",\n    \"is_converting\": false,\n    \"has_permitted_device\": true,\n    \"has_backup_codes\": false,\n    \"support_teams\": [\n      \"e3832d2c-c2db-bf85-71e9-a49dfc57f013\",\n      \"bc849ca7-ff48-ba53-c6ac-2318c19c3eb0\"\n    ],\n    \"session_oidc_provider\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d023a97f-bbc3-4c9c-81ef-c4b19ab97de9",
+              "name": "Invalid request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "enroll_verify",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "enrollment_code",
+                      "value": "ur3yheyw"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"enrollment_code\": \"Incorrect verification code entered, please try again.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "903281a2-29e5-447a-87a4-12bb6a7263af",
+          "name": "Create enrollment URL",
+          "request": {
+            "name": "Create enrollment URL",
+            "description": {
+              "content": "Returns a URL that enables a user to enroll without entering their details on the first step of enrollment. Verifies a user's information on the core and generates a link that allows the user to automatically proceed past the initial step of enrollment. After clicking the link, and depending on configuration, the user is redirected to the enrollment code verification or username/password step of enrollment.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "enrollments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "account_number",
+                  "value": "<string>",
+                  "description": "The enrolling account number."
+                },
+                {
+                  "disabled": false,
+                  "key": "date_of_birth",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tax_id",
+                  "value": "<string>",
+                  "description": "User social security number."
+                },
+                {
+                  "disabled": false,
+                  "key": "institution_business_identifier",
+                  "value": "<string>",
+                  "description": "Organization identifier from the banking core. Only required for business accounts."
+                },
+                {
+                  "disabled": false,
+                  "key": "ein",
+                  "value": "<string>",
+                  "description": "Only required for business accounts."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9913129c-092b-4502-801d-3bfb83028452",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "enrollments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The enrolling account number.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_number",
+                      "value": "43333"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "date_of_birth",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "User social security number.",
+                        "type": "text/plain"
+                      },
+                      "key": "tax_id",
+                      "value": "123121234"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Organization identifier from the banking core. Only required for business accounts.",
+                        "type": "text/plain"
+                      },
+                      "key": "institution_business_identifier",
+                      "value": "abc123456"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only required for business accounts.",
+                        "type": "text/plain"
+                      },
+                      "key": "ein",
+                      "value": "123121234"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"enrollment\": {\n    \"url\": \"http://fQHiPkiBfGNElzqwDZHWCvKq.mpsvy+NB+0uN+6+Wf\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76544766-a0fc-47f8-a9b1-7bae67047485",
+              "name": "Invalid request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "enrollments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The enrolling account number.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_number",
+                      "value": "43333"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "date_of_birth",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "User social security number.",
+                        "type": "text/plain"
+                      },
+                      "key": "tax_id",
+                      "value": "123121234"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Organization identifier from the banking core. Only required for business accounts.",
+                        "type": "text/plain"
+                      },
+                      "key": "institution_business_identifier",
+                      "value": "abc123456"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Only required for business accounts.",
+                        "type": "text/plain"
+                      },
+                      "key": "ein",
+                      "value": "123121234"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"date_of_birth\": \"Date has wrong format. Use one of these formats instead: YYYY-MM-DD.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "613c716b-0d28-4d5e-9434-e2fa9b646b7f",
+          "name": "Create a new enrollment code",
+          "request": {
+            "name": "Create a new enrollment code",
+            "description": {
+              "content": "Regenerates an enrollment code for an enrolling user and resends the enrollment code email.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users",
+                ":user_uuid",
+                "enrollment_code",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4ad57414-f3dc-4f91-8e98-5c81b7dc6ec9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":user_uuid",
+                    "enrollment_code",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"If we were able to locate your email in our system, you should receive an email with a verification code. If you don't receive this email, please contact support.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76192af6-8bd1-4c11-906a-ef3cf900fe2c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":user_uuid",
+                    "enrollment_code",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"not_found\",\n  \"message\": \"User not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc0d80e0-35d5-416b-9653-f167e4ee7468",
+              "name": "Invalid request response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":user_uuid",
+                    "enrollment_code",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": \"Invalid user\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca6e55fe-7d83-4e43-b01e-c71b131cc525",
+          "name": "Set user as enrolled",
+          "request": {
+            "name": "Set user as enrolled",
+            "description": {
+              "content": "Validates that the user meets the requirements to complete enrollment, which may include that they have a permitted MFA device and that they have correctly assented to their estatement preferences. If they meet these requirements, they'll be registered in our system as having completed enrollment.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users",
+                ":user_uuid",
+                "enrollment_complete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "user_uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "has_estatements",
+                  "value": "<boolean>",
+                  "description": "The enrolling user's estatement preference. Only relevant for the account holder."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5d18ac9c-2644-490b-8f5e-2614df7bc1a4",
+              "name": "No response body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":user_uuid",
+                    "enrollment_complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The enrolling user's estatement preference. Only relevant for the account holder.",
+                        "type": "text/plain"
+                      },
+                      "key": "has_estatements",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1e0abf81-29f1-48f4-a3ce-d68253ac571b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":user_uuid",
+                    "enrollment_complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The enrolling user's estatement preference. Only relevant for the account holder.",
+                        "type": "text/plain"
+                      },
+                      "key": "has_estatements",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"complete_enrollment_user_not_found\",\n  \"message\": \"User not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16aa532b-cc26-4c97-add1-b24222e44081",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":user_uuid",
+                    "enrollment_complete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "user_uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The enrolling user's estatement preference. Only relevant for the account holder.",
+                        "type": "text/plain"
+                      },
+                      "key": "has_estatements",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"enrollment_already_completed\",\n  \"message\": \"You have already completed enrollment. Please refresh the page.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5ebfa85c-d7f5-4552-9444-851f31c62af3",
+    "name": "Narmi Public account balances enrollments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

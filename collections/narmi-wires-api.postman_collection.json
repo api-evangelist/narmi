@@ -1,0 +1,1334 @@
+{
+  "item": [
+    {
+      "id": "261e14cf-9016-44a2-a5fd-7bcf20ade7d4",
+      "name": "wires",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "edd2ec7b-6b57-4ce1-8dd1-8e3f4a868f7a",
+          "name": "List wire transactions.",
+          "request": {
+            "name": "List wire transactions.",
+            "description": {
+              "content": "List the authenticated user's wire transactions. Accepts `account_uuid` as a query parameter, limiting results to those relevant to the specified account. User must have permission to read account information. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "wires",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_uuid",
+                  "value": "<uuid>",
+                  "description": "Optional account UUID used to filter wire transactions to those for the specified account."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A page number within the paginated result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d4cdce43-1f16-42ce-8805-16ddb7aa5e78",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "wires",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_uuid",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"total\": 7128\n  },\n  \"links\": {\n    \"next\": \"http://api.example.org/accounts/?page=4\",\n    \"prev\": \"http://api.example.org/accounts/?page=4\"\n  },\n  \"wires\": [\n    {\n      \"id\": \"string\",\n      \"created_at\": \"1962-10-06T13:49:32.568Z\",\n      \"processed_at\": \"1972-01-27T20:43:32.967Z\",\n      \"amount\": 100,\n      \"from_account\": \"8529d661-8fe1-4e87-322d-f8cf8abf5154\",\n      \"from_account_display\": \"string\",\n      \"to_account_number\": \"string\",\n      \"to_account_routing_number\": \"string\",\n      \"to_account_institution_name\": \"string\",\n      \"beneficiary_name\": \"string\",\n      \"beneficiary_address_1\": \"string\",\n      \"beneficiary_address_2\": \"string\",\n      \"beneficiary_address_3\": \"string\",\n      \"memo_1\": \"string\",\n      \"memo_2\": \"string\",\n      \"memo_3\": \"string\",\n      \"memo_4\": \"string\",\n      \"state\": \"string\",\n      \"display_state\": \"string\",\n      \"template_name\": \"string\",\n      \"wire_reason\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"created_at\": \"2019-02-22T14:42:59.565Z\",\n      \"processed_at\": \"1987-02-06T13:07:01.921Z\",\n      \"amount\": 100,\n      \"from_account\": \"76fb496b-19c2-8e90-af27-c26721df8555\",\n      \"from_account_display\": \"string\",\n      \"to_account_number\": \"string\",\n      \"to_account_routing_number\": \"string\",\n      \"to_account_institution_name\": \"string\",\n      \"beneficiary_name\": \"string\",\n      \"beneficiary_address_1\": \"string\",\n      \"beneficiary_address_2\": \"string\",\n      \"beneficiary_address_3\": \"string\",\n      \"memo_1\": \"string\",\n      \"memo_2\": \"string\",\n      \"memo_3\": \"string\",\n      \"memo_4\": \"string\",\n      \"state\": \"string\",\n      \"display_state\": \"string\",\n      \"template_name\": \"string\",\n      \"wire_reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aff709eb-e11b-421d-9470-0998db7f7423",
+          "name": "Create a new wire transaction.",
+          "request": {
+            "name": "Create a new wire transaction.",
+            "description": {
+              "content": "Creates a new wire transaction. A confirmation email may be sent to members of the `from_account` if wire was submitted for processing (prerequisites such as dual approval were not required).\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "wires",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<integer>",
+                  "description": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents)."
+                },
+                {
+                  "disabled": false,
+                  "key": "from_account",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "memo_1",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "to_account_number",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "to_account_routing_number",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "to_account_institution_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "beneficiary_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "beneficiary_address_1",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "beneficiary_address_2",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "beneficiary_address_3",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "memo_2",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "memo_3",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "memo_4",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "wire_reason",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "device_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "device_request_id",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fec8fafa-534d-402a-a6cf-11a62f912126",
+              "name": "Wire transaction successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "wires",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "memo_1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account_routing_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "to_account_institution_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "beneficiary_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "beneficiary_address_1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "beneficiary_address_2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "beneficiary_address_3",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo_2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo_3",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo_4",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "wire_reason",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_request_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"wires\": [\n    {\n      \"id\": \"string\",\n      \"created_at\": \"1966-07-23T09:50:49.610Z\",\n      \"processed_at\": \"2022-08-15T20:15:37.721Z\",\n      \"amount\": 100,\n      \"from_account\": \"cebb3647-7b06-90cc-64aa-16d661b5bc66\",\n      \"from_account_display\": \"string\",\n      \"to_account_number\": \"string\",\n      \"to_account_routing_number\": \"string\",\n      \"to_account_institution_name\": \"string\",\n      \"beneficiary_name\": \"string\",\n      \"beneficiary_address_1\": \"string\",\n      \"beneficiary_address_2\": \"string\",\n      \"beneficiary_address_3\": \"string\",\n      \"memo_1\": \"string\",\n      \"memo_2\": \"string\",\n      \"memo_3\": \"string\",\n      \"memo_4\": \"string\",\n      \"state\": \"string\",\n      \"display_state\": \"string\",\n      \"template_name\": \"string\",\n      \"wire_reason\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"created_at\": \"1957-04-25T19:30:35.834Z\",\n      \"processed_at\": \"1980-03-14T02:46:34.813Z\",\n      \"amount\": 100,\n      \"from_account\": \"cc927d3c-447d-b132-d51e-8beb2747188e\",\n      \"from_account_display\": \"string\",\n      \"to_account_number\": \"string\",\n      \"to_account_routing_number\": \"string\",\n      \"to_account_institution_name\": \"string\",\n      \"beneficiary_name\": \"string\",\n      \"beneficiary_address_1\": \"string\",\n      \"beneficiary_address_2\": \"string\",\n      \"beneficiary_address_3\": \"string\",\n      \"memo_1\": \"string\",\n      \"memo_2\": \"string\",\n      \"memo_3\": \"string\",\n      \"memo_4\": \"string\",\n      \"state\": \"string\",\n      \"display_state\": \"string\",\n      \"template_name\": \"string\",\n      \"wire_reason\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "595c0c80-9e07-4a5a-8431-8c2092a0abb2",
+              "name": "Bad request. Validation failed for the submitted wire data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "wires",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "memo_1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account_routing_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "to_account_institution_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "beneficiary_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "beneficiary_address_1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "beneficiary_address_2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "beneficiary_address_3",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo_2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo_3",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo_4",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "wire_reason",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_request_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "361dc2fd-06aa-4bda-95f6-e9acbe8105d3",
+              "name": "Unprocessable entity. Validation failed for the submitted wire data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "wires",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "memo_1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account_routing_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "to_account_institution_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "beneficiary_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "beneficiary_address_1",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "beneficiary_address_2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "beneficiary_address_3",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo_2",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo_3",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo_4",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "wire_reason",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_request_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f9a3e61-d37a-40dd-8e33-c1fd5177f937",
+          "name": "Retrieve a wire transaction",
+          "request": {
+            "name": "Retrieve a wire transaction",
+            "description": {
+              "content": "Retrieve details for a specific wire transaction by UUID.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "wires",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "105a46d8-f112-42e0-b082-1ea30056e3f0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "wires",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"created_at\": \"1970-12-23T15:48:24.333Z\",\n  \"processed_at\": \"1978-02-06T02:04:39.686Z\",\n  \"amount\": 100,\n  \"from_account\": \"412cd5d4-06c6-d7ea-6367-98a18960a2ed\",\n  \"from_account_display\": \"string\",\n  \"to_account_number\": \"string\",\n  \"to_account_routing_number\": \"string\",\n  \"to_account_institution_name\": \"string\",\n  \"beneficiary_name\": \"string\",\n  \"beneficiary_address_1\": \"string\",\n  \"beneficiary_address_2\": \"string\",\n  \"beneficiary_address_3\": \"string\",\n  \"memo_1\": \"string\",\n  \"memo_2\": \"string\",\n  \"memo_3\": \"string\",\n  \"memo_4\": \"string\",\n  \"state\": \"string\",\n  \"display_state\": \"string\",\n  \"template_name\": \"string\",\n  \"wire_reason\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26e7083f-9f5f-46da-94be-53b8b5a3e033",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "wires",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"not_found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90ee7a80-a9a8-4bcd-8325-1be4160708b0",
+          "name": "Send a wire using a wire template",
+          "request": {
+            "name": "Send a wire using a wire template",
+            "description": {
+              "content": "Send a wire using an existing wire template.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "wires",
+                "fedwire_templates",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "fedwire_template",
+                  "value": "<uuid>",
+                  "description": "(Required) The UUID of the fedwire template to use for the wire transaction."
+                },
+                {
+                  "disabled": false,
+                  "key": "version_id",
+                  "value": "<string>",
+                  "description": "(Required) The version ID of the template, based on when template or recipient details were last updated. This value is used to ensure that the template hasn't been updated since the user began drafting a wire using this template."
+                },
+                {
+                  "disabled": false,
+                  "key": "wire_reason",
+                  "value": "<string>",
+                  "description": "Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. "
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<integer>",
+                  "description": "A field that returns the original value in the currency's smallest unit (e.g. cents)."
+                },
+                {
+                  "disabled": false,
+                  "key": "memo",
+                  "value": "<string>",
+                  "description": "Memo for the wire transaction. If not provided, the memo will be generated from the template's memo field."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "297da46e-d3ab-4656-aabf-54e4cc570aa1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "wires",
+                    "fedwire_templates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the fedwire template to use for the wire transaction.",
+                        "type": "text/plain"
+                      },
+                      "key": "fedwire_template",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The version ID of the template, based on when template or recipient details were last updated. This value is used to ensure that the template hasn't been updated since the user began drafting a wire using this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "version_id",
+                      "value": "e28e3b5e9076550cd276ba4d0ddbc93c52a273129238f107ed599edc0483d509"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. ",
+                        "type": "text/plain"
+                      },
+                      "key": "wire_reason",
+                      "value": "Payment for a subscription service"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Memo for the wire transaction. If not provided, the memo will be generated from the template's memo field.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": "Invoice #1234"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"012ed42a-0cac-df39-f0aa-362c6ee6193f\",\n  \"created_at\": \"1969-03-20T00:25:00.110Z\",\n  \"processed_at\": \"1946-10-09T17:53:54.635Z\",\n  \"from_account_display\": \"Checking (******7890)\",\n  \"display_state\": \"Submitted\",\n  \"to_account_institution_name\": \"LIVERMORE FALLS TR\",\n  \"from_account\": \"f3bd7acc-d9c2-559c-4202-0a2072da8b59\",\n  \"to_account_number\": \"123456\",\n  \"to_account_routing_number\": \"string\",\n  \"beneficiary_name\": \"John Doe\",\n  \"beneficiary_address_1\": \"123 Main Street\",\n  \"beneficiary_address_2\": \"Apt 4B\",\n  \"beneficiary_address_3\": \"New York, NY 10017 US\",\n  \"memo_1\": \"The first memo line\",\n  \"memo_2\": \"The second memo line\",\n  \"memo_3\": \"The third memo line\",\n  \"memo_4\": \"The fourth memo line\",\n  \"template_name\": \"Construction\",\n  \"wire_reason\": \"Payment for a subscription service\",\n  \"state\": \"processed\",\n  \"amount\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e97e6da5-1c91-4c11-bbef-042ce016dc5d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "wires",
+                    "fedwire_templates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the fedwire template to use for the wire transaction.",
+                        "type": "text/plain"
+                      },
+                      "key": "fedwire_template",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The version ID of the template, based on when template or recipient details were last updated. This value is used to ensure that the template hasn't been updated since the user began drafting a wire using this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "version_id",
+                      "value": "e28e3b5e9076550cd276ba4d0ddbc93c52a273129238f107ed599edc0483d509"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. ",
+                        "type": "text/plain"
+                      },
+                      "key": "wire_reason",
+                      "value": "Payment for a subscription service"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Memo for the wire transaction. If not provided, the memo will be generated from the template's memo field.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": "Invoice #1234"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ec3e12f-b779-4f3f-9a06-4366a88129ee",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "wires",
+                    "fedwire_templates",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the fedwire template to use for the wire transaction.",
+                        "type": "text/plain"
+                      },
+                      "key": "fedwire_template",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The version ID of the template, based on when template or recipient details were last updated. This value is used to ensure that the template hasn't been updated since the user began drafting a wire using this template.",
+                        "type": "text/plain"
+                      },
+                      "key": "version_id",
+                      "value": "e28e3b5e9076550cd276ba4d0ddbc93c52a273129238f107ed599edc0483d509"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. ",
+                        "type": "text/plain"
+                      },
+                      "key": "wire_reason",
+                      "value": "Payment for a subscription service"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Memo for the wire transaction. If not provided, the memo will be generated from the template's memo field.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": "Invoice #1234"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Idempotency-Key is already used.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "18977d28-2fe7-47d7-8b3f-6767dec4ec8d",
+    "name": "Narmi Public account balances wires API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

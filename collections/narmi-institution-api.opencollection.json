@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Narmi Public account balances institution API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "institution",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current institution info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/institution/"
+          },
+          "docs": "Returns configurable data for the active Institution including URLs, asset URLs, and customizable settings.\n\nAuthentication required: None\n\nResponse includes (partial list):\n- Institution branding: colors, logos, names\n- URLs: `forgot_password_url`, `register_url`, support links\n- Feature flags and institution-specific settings\n- Color values in both hex (`*_color_hex`) and RGB CSS variable formats\n\nEdge cases:\n- Color keys (`primary_color`, `secondary_color`, `tertiary_color`) are converted to "
+        },
+        {
+          "info": {
+            "name": "Get institution name by routing number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/institutions/:routing_number/:type/",
+            "params": [
+              {
+                "name": "routing_number",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Lookup type: omit for ACH, or specify `wire` for FedWire names"
+              }
+            ]
+          },
+          "docs": "Returns the name of the financial institution for a given routing number from the FedWire database.\n\nUseful for displaying institution name when funding via external transfer.\n\nEdge cases:\n- `type` parameter is optional; omitting it defaults to ACH lookup\n- Pass `type=wire` for FedWire-specific institution names\n- Returns 404 if routing number not found in database\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

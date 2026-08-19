@@ -1,0 +1,265 @@
+{
+  "item": [
+    {
+      "id": "a471ae10-4e74-47cf-854b-5c705e07828d",
+      "name": "institution",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "26f4d5c5-d220-4ec3-87cf-6fcce665ab21",
+          "name": "Get current institution info",
+          "request": {
+            "name": "Get current institution info",
+            "description": {
+              "content": "Returns configurable data for the active Institution including URLs, asset URLs, and customizable settings.\n\nAuthentication required: None\n\nResponse includes (partial list):\n- Institution branding: colors, logos, names\n- URLs: `forgot_password_url`, `register_url`, support links\n- Feature flags and institution-specific settings\n- Color values in both hex (`*_color_hex`) and RGB CSS variable formats\n\nEdge cases:\n- Color keys (`primary_color`, `secondary_color`, `tertiary_color`) are converted to RGB CSS variables\n- Response format varies based on `api-version` header (versions ≤ 0011 use legacy format)\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "institution",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d54ece26-11c1-469c-96c5-7fa8495aff1a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "institution",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"institution\": {\n    \"banking_url\": \"string\",\n    \"forgot_password_url\": \"http://example.com/password_reset/\",\n    \"favicon_url\": \"string\",\n    \"register_url\": \"http://example.com/enroll/\",\n    \"main_domain\": \"example.com\",\n    \"short_name\": \"Example Bank\",\n    \"long_name\": \"string\",\n    \"routing_number\": \"0000-0000-01\",\n    \"help_phone\": \"(830) 981-2403\",\n    \"help_email\": \"help@example.com\",\n    \"help_card_phone\": \"string\",\n    \"internal_name\": \"string\",\n    \"mixpanel_project_token\": \"string\",\n    \"force_complete_mixpanel_sampling\": true,\n    \"terms_url\": \"https://www.example.com/terms\",\n    \"logo_url\": \"https://example.com/logo.png\",\n    \"mobile_splash_screen_logo_url\": \"string\",\n    \"primary_color_hex\": \"#1A4338\",\n    \"secondary_color_hex\": \"#006553\",\n    \"tertiary_color_hex\": \"#54a444\",\n    \"primary_color\": \"string\",\n    \"secondary_color\": \"string\",\n    \"tertiary_color\": \"string\",\n    \"s3_images_bucket\": \"string\",\n    \"lending_minimum_applicant_birth_year\": 9694,\n    \"lending_minimum_applicant_age\": 8953,\n    \"lending_requested_amount_params\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"lending_welcome_screen_logo_url\": \"string\",\n    \"features\": {\n      \"lending\": true\n    },\n    \"lending_enabled_products\": {\n      \"key_0\": {}\n    },\n    \"lending_application_steps\": {\n      \"living_arrangement\": true,\n      \"employment_details\": false\n    },\n    \"lending_offer_info_and_disclaimer_url\": \"string\",\n    \"lending_website_flow_logo_nav_url\": \"string\",\n    \"lending_flows_enabled\": [\n      \"string\",\n      \"string\"\n    ],\n    \"lending_co_applicants_enabled_products\": [\n      \"string\",\n      \"string\"\n    ],\n    \"membership_share_product_for_lending\": \"string\",\n    \"dao_disclosures\": [\n      {\n        \"checkbox_text\": \"string\",\n        \"markdown\": \"string\",\n        \"links\": [\n          {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      {\n        \"checkbox_text\": \"string\",\n        \"markdown\": \"string\",\n        \"links\": [\n          {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"text\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0889a56-48c8-4131-9343-ec217c5fcee1",
+          "name": "Get institution name by routing number",
+          "request": {
+            "name": "Get institution name by routing number",
+            "description": {
+              "content": "Returns the name of the financial institution for a given routing number from the FedWire database.\n\nUseful for displaying institution name when funding via external transfer.\n\nEdge cases:\n- `type` parameter is optional; omitting it defaults to ACH lookup\n- Pass `type=wire` for FedWire-specific institution names\n- Returns 404 if routing number not found in database\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "institutions",
+                ":routing_number",
+                ":type",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "routing_number",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) Lookup type: omit for ACH, or specify `wire` for FedWire names"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cddb6e3c-2226-4193-9b08-f371b75eda11",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "institutions",
+                    ":routing_number",
+                    ":type",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routing_number",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) Lookup type: omit for ACH, or specify `wire` for FedWire names"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"institution\": {\n    \"name\": \"BANK OF AMERICA, N.A.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b65ebba-0719-444a-9400-fa5ac6549a7a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "institutions",
+                    ":routing_number",
+                    ":type",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routing_number",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) Lookup type: omit for ACH, or specify `wire` for FedWire names"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"not_found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "58175c0b-d631-4430-bd3a-5ce7ed367510",
+    "name": "Narmi Public account balances institution API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

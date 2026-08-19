@@ -1,0 +1,129 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Narmi Public account balances income source API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "income source",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create income source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.narmi.dev/v1/income_source/",
+            "params": [
+              {
+                "name": "income",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "income_type",
+                "value": "",
+                "type": "query",
+                "description": "* `employed` - Employed\n* `part_time` - Part time\n* `not_employed` - Not employed\n* `self_employed` - Self employed\n* `retirement` - Retirement\n* `other` - Other"
+              },
+              {
+                "name": "industry",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mortgage_rent",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "occupation",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a self-reported income source instance for a user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        },
+        {
+          "info": {
+            "name": "Edit an income source",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sandbox.narmi.dev/v1/income_source/:uuid/",
+            "params": [
+              {
+                "name": "income",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "income_type",
+                "value": "",
+                "type": "query",
+                "description": "* `employed` - Employed\n* `part_time` - Part time\n* `not_employed` - Not employed\n* `self_employed` - Self employed\n* `retirement` - Retirement\n* `other` - Other"
+              },
+              {
+                "name": "industry",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mortgage_rent",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "occupation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Edits a specific self-reported income source instance referencing the UUID.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

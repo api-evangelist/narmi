@@ -1,0 +1,1740 @@
+{
+  "item": [
+    {
+      "id": "b5f1bc11-c9e3-45ac-9324-9a0a46584a56",
+      "name": "ach payments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d0d0ce94-85eb-4814-b13a-b47b35079247",
+          "name": "List ACH payments",
+          "request": {
+            "name": "List ACH payments",
+            "description": {
+              "content": "List the authenticated user's ACH payments.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ach_payments",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A page number within the paginated result set."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4a8963fd-bfdf-49af-8753-7a9efb149487",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_payments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"amount\": 100,\n      \"entry_desc\": \"string\",\n      \"institution_account\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n      \"recipient\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n      \"std_ent_cls_code\": \"POS\",\n      \"id\": \"25bedb6e-8361-2592-d43b-bce7eac168ad\",\n      \"created_at\": \"1949-08-19T02:48:07.509Z\",\n      \"updated_at\": \"1986-10-27T19:53:28.536Z\",\n      \"processed_at\": \"1999-08-26T11:35:01.084Z\",\n      \"state\": \"processed\",\n      \"display_state\": \"string\",\n      \"company_id\": \"stringstri\",\n      \"company_name\": \"string\",\n      \"description\": \"\",\n      \"external_account_details\": \"string\",\n      \"memo\": \"\",\n      \"transaction_type\": \"credit\"\n    },\n    {\n      \"amount\": 100,\n      \"entry_desc\": \"string\",\n      \"institution_account\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n      \"recipient\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n      \"std_ent_cls_code\": \"SHR\",\n      \"id\": \"808e1625-5ad3-c439-0195-43d2ac513b2c\",\n      \"created_at\": \"1976-10-24T16:35:09.077Z\",\n      \"updated_at\": \"2009-11-09T07:41:49.529Z\",\n      \"processed_at\": \"2018-08-29T12:23:18.750Z\",\n      \"state\": \"review\",\n      \"display_state\": \"string\",\n      \"company_id\": \"stringstri\",\n      \"company_name\": \"s\",\n      \"description\": \"\",\n      \"external_account_details\": \"string\",\n      \"memo\": \"\",\n      \"transaction_type\": \"debit\"\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?page=4\",\n  \"previous\": \"http://api.example.org/accounts/?page=2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f4b1e6c-f1ba-4f5c-8ac7-fbb158d73f23",
+          "name": "Send an ACH Payment",
+          "request": {
+            "name": "Send an ACH Payment",
+            "description": {
+              "content": "Send an ACH Payment using an existing recipient and set of external account details (i.e. account number, routing number, account type, account purpose).\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ach_payments",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<integer>",
+                  "description": "(Required) The amount of the ACH payment in cents."
+                },
+                {
+                  "disabled": false,
+                  "key": "entry_desc",
+                  "value": "<string>",
+                  "description": "(Required) A field that describes the purpose of the transaction to the receiver. It's used to help identify, monitor, and count payments for specific purposes."
+                },
+                {
+                  "disabled": false,
+                  "key": "institution_account",
+                  "value": "<uuid>",
+                  "description": "(Required) The UUID of the originating account for the transaction."
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient",
+                  "value": "<uuid>",
+                  "description": "(Required) The UUID of the recipient of the transaction."
+                },
+                {
+                  "disabled": false,
+                  "key": "std_ent_cls_code",
+                  "value": "<string>",
+                  "description": "(Required) A three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction. SEC stands for 'Standard Entry Class'. SEC codes are defined and maintained by NACHA, the governing body for the ACH network.\n\n* `PPD` - Batch Personal\n* `CCD` - Batch Corporate\n* `ARC` - Batch Accounts Receivable\n* `CTX` - Batch Corporate Exchange\n* `POS` - Batch Point Of Sale\n* `WEB` - Batch Internet Initiated\n* `BOC` - Batch Backoffice Conversion\n* `TEL` - Batch Telephone Initiated\n* `MTE` - Batch Machine Transfer\n* `SHR` - Batch Shared Network\n* `CIE` - Batch Customer Initiated\n* `POP` - Batch Point Of Purchase\n* `RCK` - Batch Represented Check"
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "",
+                  "description": "Memo for the transaction. This is currently only used for internal record-keeping, and will not be not included in the resulting NACHA file entry."
+                },
+                {
+                  "disabled": false,
+                  "key": "ach_company",
+                  "value": "<uuid>",
+                  "description": "DEPRECATED: The client submits the UUID of the ACHCompany to use for the transaction, and we map this instances fields into the company_id and company_name fields below. These values could presumably change, and we want to maintain a record of these values at the time the transaction is submitted. Note this field should not be used once the FI is configured to fetch the ACHCompany based from the institution_account's originating organization."
+                },
+                {
+                  "disabled": false,
+                  "key": "memo",
+                  "value": "",
+                  "description": "A field that adds a memo to the transaction. It's used to help identify transaction to the sender."
+                },
+                {
+                  "disabled": false,
+                  "key": "device_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "device_request_id",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "63713d8e-038a-4061-a217-e1058542f962",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_payments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The amount of the ACH payment in cents.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that describes the purpose of the transaction to the receiver. It's used to help identify, monitor, and count payments for specific purposes.",
+                        "type": "text/plain"
+                      },
+                      "key": "entry_desc",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the originating account for the transaction.",
+                        "type": "text/plain"
+                      },
+                      "key": "institution_account",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the recipient of the transaction.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction. SEC stands for 'Standard Entry Class'. SEC codes are defined and maintained by NACHA, the governing body for the ACH network.\n\n* `PPD` - Batch Personal\n* `CCD` - Batch Corporate\n* `ARC` - Batch Accounts Receivable\n* `CTX` - Batch Corporate Exchange\n* `POS` - Batch Point Of Sale\n* `WEB` - Batch Internet Initiated\n* `BOC` - Batch Backoffice Conversion\n* `TEL` - Batch Telephone Initiated\n* `MTE` - Batch Machine Transfer\n* `SHR` - Batch Shared Network\n* `CIE` - Batch Customer Initiated\n* `POP` - Batch Point Of Purchase\n* `RCK` - Batch Represented Check",
+                        "type": "text/plain"
+                      },
+                      "key": "std_ent_cls_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Memo for the transaction. This is currently only used for internal record-keeping, and will not be not included in the resulting NACHA file entry.",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "DEPRECATED: The client submits the UUID of the ACHCompany to use for the transaction, and we map this instances fields into the company_id and company_name fields below. These values could presumably change, and we want to maintain a record of these values at the time the transaction is submitted. Note this field should not be used once the FI is configured to fetch the ACHCompany based from the institution_account's originating organization.",
+                        "type": "text/plain"
+                      },
+                      "key": "ach_company",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A field that adds a memo to the transaction. It's used to help identify transaction to the sender.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_request_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amount\": 100,\n  \"entry_desc\": \"string\",\n  \"institution_account\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n  \"recipient\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n  \"std_ent_cls_code\": \"<string>\",\n  \"transaction_type\": \"credit\",\n  \"id\": \"e4d3eb3e-9993-9b98-fa7d-189f3d6235ad\",\n  \"created_at\": \"1952-06-28T21:06:02.266Z\",\n  \"updated_at\": \"1961-03-20T02:55:42.473Z\",\n  \"processed_at\": \"1995-09-06T18:55:58.583Z\",\n  \"state\": \"canceled_by_user\",\n  \"display_state\": \"string\",\n  \"company_id\": \"stringstri\",\n  \"company_name\": \"string\",\n  \"description\": \"\",\n  \"external_account_details\": \"string\",\n  \"memo\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bb71e33-8185-4bb5-a88a-b2b8ffad07eb",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_payments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The amount of the ACH payment in cents.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that describes the purpose of the transaction to the receiver. It's used to help identify, monitor, and count payments for specific purposes.",
+                        "type": "text/plain"
+                      },
+                      "key": "entry_desc",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the originating account for the transaction.",
+                        "type": "text/plain"
+                      },
+                      "key": "institution_account",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the recipient of the transaction.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction. SEC stands for 'Standard Entry Class'. SEC codes are defined and maintained by NACHA, the governing body for the ACH network.\n\n* `PPD` - Batch Personal\n* `CCD` - Batch Corporate\n* `ARC` - Batch Accounts Receivable\n* `CTX` - Batch Corporate Exchange\n* `POS` - Batch Point Of Sale\n* `WEB` - Batch Internet Initiated\n* `BOC` - Batch Backoffice Conversion\n* `TEL` - Batch Telephone Initiated\n* `MTE` - Batch Machine Transfer\n* `SHR` - Batch Shared Network\n* `CIE` - Batch Customer Initiated\n* `POP` - Batch Point Of Purchase\n* `RCK` - Batch Represented Check",
+                        "type": "text/plain"
+                      },
+                      "key": "std_ent_cls_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Memo for the transaction. This is currently only used for internal record-keeping, and will not be not included in the resulting NACHA file entry.",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "DEPRECATED: The client submits the UUID of the ACHCompany to use for the transaction, and we map this instances fields into the company_id and company_name fields below. These values could presumably change, and we want to maintain a record of these values at the time the transaction is submitted. Note this field should not be used once the FI is configured to fetch the ACHCompany based from the institution_account's originating organization.",
+                        "type": "text/plain"
+                      },
+                      "key": "ach_company",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A field that adds a memo to the transaction. It's used to help identify transaction to the sender.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_request_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "800bf567-9cf5-49b3-84be-8cab4a3585c9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_payments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The amount of the ACH payment in cents.",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that describes the purpose of the transaction to the receiver. It's used to help identify, monitor, and count payments for specific purposes.",
+                        "type": "text/plain"
+                      },
+                      "key": "entry_desc",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the originating account for the transaction.",
+                        "type": "text/plain"
+                      },
+                      "key": "institution_account",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The UUID of the recipient of the transaction.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction. SEC stands for 'Standard Entry Class'. SEC codes are defined and maintained by NACHA, the governing body for the ACH network.\n\n* `PPD` - Batch Personal\n* `CCD` - Batch Corporate\n* `ARC` - Batch Accounts Receivable\n* `CTX` - Batch Corporate Exchange\n* `POS` - Batch Point Of Sale\n* `WEB` - Batch Internet Initiated\n* `BOC` - Batch Backoffice Conversion\n* `TEL` - Batch Telephone Initiated\n* `MTE` - Batch Machine Transfer\n* `SHR` - Batch Shared Network\n* `CIE` - Batch Customer Initiated\n* `POP` - Batch Point Of Purchase\n* `RCK` - Batch Represented Check",
+                        "type": "text/plain"
+                      },
+                      "key": "std_ent_cls_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Memo for the transaction. This is currently only used for internal record-keeping, and will not be not included in the resulting NACHA file entry.",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "DEPRECATED: The client submits the UUID of the ACHCompany to use for the transaction, and we map this instances fields into the company_id and company_name fields below. These values could presumably change, and we want to maintain a record of these values at the time the transaction is submitted. Note this field should not be used once the FI is configured to fetch the ACHCompany based from the institution_account's originating organization.",
+                        "type": "text/plain"
+                      },
+                      "key": "ach_company",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A field that adds a memo to the transaction. It's used to help identify transaction to the sender.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_request_id",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Idempotency-Key is already used.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b882ee1a-2a9a-48ce-8ab9-224f9f9d39db",
+          "name": "Retrieve an ACH payment",
+          "request": {
+            "name": "Retrieve an ACH payment",
+            "description": {
+              "content": "Fetch details for a specified ACH payment.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ach_payments",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "89134566-85f0-46c9-a7e9-a410a6cac179",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_payments",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amount\": 100,\n  \"entry_desc\": \"string\",\n  \"institution_account\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n  \"recipient\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n  \"std_ent_cls_code\": \"<string>\",\n  \"id\": \"0c21880f-c748-f982-0bf4-8d73531cea6e\",\n  \"created_at\": \"1951-02-08T22:00:27.797Z\",\n  \"updated_at\": \"2002-04-27T14:08:51.747Z\",\n  \"processed_at\": \"2011-09-18T04:20:48.293Z\",\n  \"state\": \"analyzing\",\n  \"display_state\": \"string\",\n  \"company_id\": \"stringstri\",\n  \"company_name\": \"string\",\n  \"description\": \"\",\n  \"external_account_details\": \"string\",\n  \"memo\": \"\",\n  \"transaction_type\": \"debit\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60d6ebbf-a763-40fb-8048-7f5cc9e7cbac",
+          "name": "List scheduled ACH payments",
+          "request": {
+            "name": "List scheduled ACH payments",
+            "description": {
+              "content": "List the authenticated user's scheduled ACH payments.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ach_payments",
+                "scheduled",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A page number within the paginated result set."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e583a8af-759f-458e-b2b1-6fc97aa38ac8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_payments",
+                    "scheduled",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 123,\n  \"results\": [\n    {\n      \"amount\": 100,\n      \"entry_desc\": \"string\",\n      \"institution_account\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n      \"recipient\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n      \"recurring_rule\": \"string\",\n      \"std_ent_cls_code\": \"<string>\",\n      \"memo\": \"\",\n      \"id\": \"15c8c9f7-5eb6-2c3e-01b5-c96541d99357\",\n      \"company_id\": \"stringstri\",\n      \"company_name\": \"string\",\n      \"description\": \"\",\n      \"next_transfer_at\": \"2000-07-14T15:40:23.119Z\",\n      \"dual_approval_state\": \"string\",\n      \"display_state\": \"string\",\n      \"completed_at\": \"1993-12-10T23:20:52.321Z\",\n      \"transaction_type\": \"debit\"\n    },\n    {\n      \"amount\": 100,\n      \"entry_desc\": \"string\",\n      \"institution_account\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n      \"recipient\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n      \"recurring_rule\": \"string\",\n      \"std_ent_cls_code\": \"<string>\",\n      \"memo\": \"\",\n      \"id\": \"ffc817ad-2074-c807-cec0-9b9020c8d8c2\",\n      \"company_id\": \"stringstri\",\n      \"company_name\": \"str\",\n      \"description\": \"\",\n      \"next_transfer_at\": \"1976-10-02T15:06:00.444Z\",\n      \"dual_approval_state\": \"string\",\n      \"display_state\": \"string\",\n      \"completed_at\": \"1999-02-13T05:33:04.051Z\",\n      \"transaction_type\": \"debit\"\n    }\n  ],\n  \"next\": \"http://api.example.org/accounts/?page=4\",\n  \"previous\": \"http://api.example.org/accounts/?page=2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12001c90-f151-4196-ac8a-a9523127bf03",
+          "name": "Create a scheduled ACH payment",
+          "request": {
+            "name": "Create a scheduled ACH payment",
+            "description": {
+              "content": "All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ach_payments",
+                "scheduled",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<integer>",
+                  "description": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents)."
+                },
+                {
+                  "disabled": false,
+                  "key": "entry_desc",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "institution_account",
+                  "value": "<uuid>",
+                  "description": "(Required) A field that represents the stringified UUID of a related object."
+                },
+                {
+                  "disabled": false,
+                  "key": "recipient",
+                  "value": "<uuid>",
+                  "description": "(Required) A field that represents the stringified UUID of a related object."
+                },
+                {
+                  "disabled": false,
+                  "key": "recurring_rule",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "std_ent_cls_code",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "device_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "device_request_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "memo",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "ach_company",
+                  "value": "<uuid>",
+                  "description": "A field that represents the stringified UUID of a related object."
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ccd7d65d-9d2e-4f12-b6e6-02a43ad49c93",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_payments",
+                    "scheduled",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "entry_desc",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that represents the stringified UUID of a related object.",
+                        "type": "text/plain"
+                      },
+                      "key": "institution_account",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that represents the stringified UUID of a related object.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "recurring_rule",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "std_ent_cls_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_request_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A field that represents the stringified UUID of a related object.",
+                        "type": "text/plain"
+                      },
+                      "key": "ach_company",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amount\": 100,\n  \"entry_desc\": \"string\",\n  \"institution_account\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n  \"recipient\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n  \"recurring_rule\": \"string\",\n  \"std_ent_cls_code\": \"<string>\",\n  \"memo\": \"\",\n  \"id\": \"3e1b0591-e8df-145b-d6f9-6eebc2fdda6c\",\n  \"company_id\": \"stringstri\",\n  \"company_name\": \"string\",\n  \"description\": \"\",\n  \"next_transfer_at\": \"1996-10-21T03:21:35.240Z\",\n  \"dual_approval_state\": \"string\",\n  \"display_state\": \"string\",\n  \"completed_at\": \"2002-08-13T04:33:09.897Z\",\n  \"transaction_type\": \"debit\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7f2288e-dab6-441f-87d6-043c03a7b47d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_payments",
+                    "scheduled",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "entry_desc",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that represents the stringified UUID of a related object.",
+                        "type": "text/plain"
+                      },
+                      "key": "institution_account",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that represents the stringified UUID of a related object.",
+                        "type": "text/plain"
+                      },
+                      "key": "recipient",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "recurring_rule",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "std_ent_cls_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_request_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "A field that represents the stringified UUID of a related object.",
+                        "type": "text/plain"
+                      },
+                      "key": "ach_company",
+                      "value": "ccae3440-0c1f-45ce-9b91-57cbbb252818"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "description",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e128ff05-bff0-4f68-9b3d-c2526e952ada",
+          "name": "Retrieve a scheduled ACH payment",
+          "request": {
+            "name": "Retrieve a scheduled ACH payment",
+            "description": {
+              "content": "All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ach_payments",
+                "scheduled",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e599b369-7adf-497c-9e6e-2a429f12fefc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_payments",
+                    "scheduled",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amount\": 100,\n  \"entry_desc\": \"string\",\n  \"institution_account\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n  \"recipient\": \"ccae3440-0c1f-45ce-9b91-57cbbb252818\",\n  \"recurring_rule\": \"string\",\n  \"std_ent_cls_code\": \"<string>\",\n  \"memo\": \"\",\n  \"id\": \"3e1b0591-e8df-145b-d6f9-6eebc2fdda6c\",\n  \"company_id\": \"stringstri\",\n  \"company_name\": \"string\",\n  \"description\": \"\",\n  \"next_transfer_at\": \"1996-10-21T03:21:35.240Z\",\n  \"dual_approval_state\": \"string\",\n  \"display_state\": \"string\",\n  \"completed_at\": \"2002-08-13T04:33:09.897Z\",\n  \"transaction_type\": \"debit\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81d07bc7-267a-4243-acb7-8fc3a1f457e4",
+          "name": "Delete a scheduled ACH payment",
+          "request": {
+            "name": "Delete a scheduled ACH payment",
+            "description": {
+              "content": "All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ach_payments",
+                "scheduled",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d3fdd832-28f8-40a6-9ffa-e442dbf79654",
+              "name": "No response body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ach_payments",
+                    "scheduled",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3dcfd199-c078-480c-8c50-8cdfcd028b21",
+          "name": "Create an ACH loan payment",
+          "request": {
+            "name": "Create an ACH loan payment",
+            "description": {
+              "content": "Create an ACH payment from an external account to a loan.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "loan_payments",
+                "ach",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<integer>",
+                  "description": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents)."
+                },
+                {
+                  "disabled": false,
+                  "key": "from_account",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "payment_type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "to_account",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "ach_transfer",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "memo",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "device_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "{}"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "{}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6d4710d2-6bfa-43a4-98e6-570e0da2b53a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "loan_payments",
+                    "ach",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "payment_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ach_transfer",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "memo",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "{}"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"amount\": 100,\n  \"from_account\": \"c9907c2e-5ee3-baa6-d700-b2d7056027be\",\n  \"payment_type\": \"string\",\n  \"to_account\": \"baafba65-a68c-21e4-fa36-1a5b53219223\",\n  \"ach_transfer\": 8356,\n  \"memo\": \"string\",\n  \"device_id\": \"string\",\n  \"metadata\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bf54c06e-1fd4-46d8-abc1-7b4e9c11b9af",
+    "name": "Narmi Public account balances ach payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

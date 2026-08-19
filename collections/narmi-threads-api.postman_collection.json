@@ -1,0 +1,2053 @@
+{
+  "item": [
+    {
+      "id": "34c90503-df49-4d48-972e-8e05a9fb4a59",
+      "name": "threads",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7f0b30d4-37c5-4529-8c19-19d55f827322",
+          "name": "Create a signed request for uploading a file to S3",
+          "request": {
+            "name": "Create a signed request for uploading a file to S3",
+            "description": {
+              "content": "Creates the payload for a signed request to upload a file directly to S3. Further documentation can be found via the AWS documentation: https://aws.amazon.com/blogs/compute/uploading-to-amazon-s3-directly-from-a-web-or-mobile-application/\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "thread_files",
+                "policies",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Target filename for the uploaded file."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) MIME content type for the target upload."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e938e884-a7b0-4983-9d85-24e4a8185aab",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "thread_files",
+                    "policies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Target filename for the uploaded file.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) MIME content type for the target upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy\": \"eyJleHBpcmF0aW9uIjogIjIwMjQtMDYtMThUMTQ6MDA6MDkuMDAwWiIsICJjb25kaXRpb25zIjogW3siYnVja2V0IjogImJ1Y2tldCJ9LCB7ImFjbCI6ICJjkkl2YXRlIn0sIHsia2V5IjogIm9yaWdpsdFsL3N1cHBvcnQvNGQ1ZjQ1NjA2MjhjNDA2YWFiMTVhYjkwMmRhMTI3MDUvZmlsZS5wbmcifSwgeyJzdWNjZXNzX2FjdGlvbl9zdGF0dXMiOiAiMjAxIn0sIHsieC1hbXotY3JlZGVudGlhbCI6ICIvMjAyNDA2MTgvbG9jYWwvczMvYXdzNF9yZXF1ZXN0In0sIHsieC1hbXotYWxnb3JpdGhtIjogIkFXUzQtSE1BQy1TSEEyNTYifSwgeyJ4LWFtei1kYXRlIjogIjIwMjQwNjE4VDEzNTUwOTAwMFoifSwgeyJjb250ZW50LXR5cGUiOiAiaW1hZ2UvcG5nIn0sIHsiQ2FjaGUtQ29udHJvbCI6ICJtYXgtYWdlPTI1OTIwMDAifSwgeyJDb250ZW50LURpc3Bvc2l0aW9uIjogImF0dGFjaG1lbnQifSwgeyJ4LWFtei1zZXJ2ZXItc2lkZS1lbmNyeXB0aW9uIjogIkFFUzI1NiJ9LCBbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwgMCwgMjAwMDAwMDBdXX0=\",\n  \"success_action_status\": 201,\n  \"x-amz-credential\": \"/20240618/local/s3/aws4_request\",\n  \"x-amz-date\": \"20240618T135509000Z\",\n  \"x-amz-signature\": \"a249243213026c97ac80f9b2e4b2ef06c7c491022a8cf8e46f0ddf95a746e6f7\",\n  \"x-amz-algorithm\": \"AWS4-HMAC-SHA256\",\n  \"form_action\": \"http://example.com/__s3_upload__\",\n  \"key\": \"original/support/4d5f8372828c406aab15ab902da12705/file.png\",\n  \"acl\": \"private\",\n  \"content-type\": \"image/png\",\n  \"Cache-Control\": \"max-age=2592000\",\n  \"Content-Disposition\": \"attachment\",\n  \"x-amz-server-side-encryption\": \"AES256\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca610717-293a-49aa-9e91-70292c9febed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "thread_files",
+                    "policies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Target filename for the uploaded file.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) MIME content type for the target upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reason\": \"File destination does not exist or is invalid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46d1699e-4a28-4ed9-ac3d-634392f15b38",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "thread_files",
+                    "policies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Target filename for the uploaded file.",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) MIME content type for the target upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f919bfea-d68b-4194-bd4d-ffd10a7a3d4c",
+          "name": "List user's message threads",
+          "request": {
+            "name": "List user's message threads",
+            "description": {
+              "content": "List support message threads for the authenticated user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "threads",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Parameter filters threads by subject and message body."
+                },
+                {
+                  "disabled": false,
+                  "key": "order_by",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6ef4d442-bd03-4d35-b0ed-d5284bc2ac4d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "threads",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"threads\": [\n    {\n      \"id\": \"1cde160e-592d-4ed6-94de-9460861793ba\",\n      \"subject\": \"Traveling Abroad\",\n      \"state\": \"open\",\n      \"message_preview\": \"Can you please put a travel alert on my card?\",\n      \"created_at\": \"2018-10-27T12:38:51.369000-04:00\",\n      \"updated_at\": \"2018-11-01T23:29:18.317000-04:00\",\n      \"is_read\": true\n    },\n    {\n      \"id\": \"ef0b1d5f-b65c-4430-9bc4-38e6cfe77467\",\n      \"subject\": \"Debit Pin\",\n      \"state\": \"closed\",\n      \"message_preview\": \"I forgot the PIN number for my debit card.\",\n      \"created_at\": \"2019-04-21T11:37:35.693000-04:00\",\n      \"updated_at\": \"2019-05-01T18:16:14.095000-04:00\",\n      \"is_read\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e7ce02f-f270-439b-955f-7139ce80b69c",
+          "name": "Create message thread for a user",
+          "request": {
+            "name": "Create message thread for a user",
+            "description": {
+              "content": "Create a support message thread for the authenticated user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "threads",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "subject",
+                  "value": "<string>",
+                  "description": "(Required) Subject of the thread."
+                },
+                {
+                  "disabled": false,
+                  "key": "body",
+                  "value": "<string>",
+                  "description": "Text content of the initial message for this thread."
+                },
+                {
+                  "disabled": false,
+                  "key": "signature",
+                  "value": "<string>",
+                  "description": "File to upload to this thread. Must include both 'url' and 'signature'."
+                },
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "File to upload to this thread. Must include both 'url' and 'signature'."
+                },
+                {
+                  "disabled": false,
+                  "key": "team_uuid",
+                  "value": "<string>",
+                  "description": "Identifier for relevant team."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8a187fbb-7677-4075-9071-5daa3ca8f750",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "threads",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Subject of the thread.",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Text content of the initial message for this thread.",
+                        "type": "text/plain"
+                      },
+                      "key": "body",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File to upload to this thread. Must include both 'url' and 'signature'.",
+                        "type": "text/plain"
+                      },
+                      "key": "signature",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File to upload to this thread. Must include both 'url' and 'signature'.",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Identifier for relevant team.",
+                        "type": "text/plain"
+                      },
+                      "key": "team_uuid",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"thread\": {\n    \"id\": \"1cde160e-592d-4ed6-94de-9460861793ba\",\n    \"subject\": \"Traveling Abroad\",\n    \"state\": \"open\",\n    \"message_preview\": \"Can you please put a travel alert on my card?\",\n    \"created_at\": \"2018-10-27T12:38:51.369000-04:00\",\n    \"updated_at\": \"2018-11-01T23:29:18.317000-04:00\",\n    \"is_read\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5f4710c-91a6-4537-a3f4-fe7ebc1e53ec",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "threads",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Subject of the thread.",
+                        "type": "text/plain"
+                      },
+                      "key": "subject",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Text content of the initial message for this thread.",
+                        "type": "text/plain"
+                      },
+                      "key": "body",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File to upload to this thread. Must include both 'url' and 'signature'.",
+                        "type": "text/plain"
+                      },
+                      "key": "signature",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File to upload to this thread. Must include both 'url' and 'signature'.",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Identifier for relevant team.",
+                        "type": "text/plain"
+                      },
+                      "key": "team_uuid",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": \"subject\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d538e480-2be7-46de-831e-9b5f22753395",
+          "name": "List messages in a thread",
+          "request": {
+            "name": "List messages in a thread",
+            "description": {
+              "content": "List messages for the specified support message threads. The threads are specified in the path parameters as comma-separated UUIDs. If the thread does not exist, this endpoint will return a 404. Response will include both messages and thread files (i.e. attachments).\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "threads",
+                ":thread_uuids",
+                "messages",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "thread_uuids",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "aaef690f-8183-43e0-98b3-4baf31313fae",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "threads",
+                    ":thread_uuids",
+                    "messages",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "thread_uuids",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": {\n    \"next\": null,\n    \"previous\": null\n  },\n  \"meta\": {\n    \"total\": 16\n  },\n  \"messages\": [\n    {\n      \"body\": \"0\",\n      \"internal_note\": false,\n      \"id\": \"508fce18-3092-48bd-82ae-5df24f768470\",\n      \"thread_id\": \"70598155-99e0-4080-8124-1dcc36940eee\",\n      \"author\": {\n        \"email\": \"demo@narmitech.com\",\n        \"core_provided_email\": null,\n        \"username\": \"testuser\",\n        \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n        \"institution_user_identifier\": \"\",\n        \"updated_at\": \"2024-04-30T20:16:46.861043+00:00\",\n        \"addresses\": [],\n        \"phone_numbers\": [],\n        \"first_name\": \"\",\n        \"last_name\": \"\",\n        \"paper_statements\": null,\n        \"user_category\": \"personal\",\n        \"features\": {\n          \"ach\": true,\n          \"allow_olb_device_remembering\": true,\n          \"check_order\": true,\n          \"edit_scheduled_transfers\": true,\n          \"stop_payment_by_range\": true,\n          \"top_menu\": {\n            \"Dashboard\": {\n              \"url\": \"/dashboard\"\n            },\n            \"Accounts\": {\n              \"accounts\": true\n            },\n            \"Documents\": {\n              \"url\": \"/statements\"\n            },\n            \"Support\": {\n              \"url\": \"/support\"\n            },\n            \"Tools\": {\n              \"menu\": {\n                \"Transfer funds\": {\n                  \"url\": \"/transfer\"\n                },\n                \"Transactions\": {\n                  \"url\": \"/transactions\"\n                },\n                \"Cards\": {\n                  \"url\": \"/cards\"\n                },\n                \"Trends\": {\n                  \"url\": \"/trends\"\n                },\n                \"Automatic savings\": {\n                  \"url\": \"/automatic\"\n                },\n                \"Manage users\": {\n                  \"url\": \"/access_manager\",\n                  \"feature_flag\": \"indigo.OrganizationUser_permission\"\n                },\n                \"List all NAF options\": {\n                  \"naf\": true\n                }\n              }\n            }\n          },\n          \"internal_transfers\": true,\n          \"account_membership\": true,\n          \"address_change\": true,\n          \"alerts\": true,\n          \"allpoint_locator_atm\": true,\n          \"automatic_savings\": \"OPT_IN\",\n          \"bill_pay\": \"ipay\",\n          \"billshark\": true,\n          \"business_account_opening\": true,\n          \"personal_banking\": true,\n          \"business_banking\": true,\n          \"cards\": true,\n          \"coop_locator_atm\": true,\n          \"coop_locator_branch\": true,\n          \"core_based_alerts\": false,\n          \"existing_user_account_opening\": true,\n          \"existing_user_dao\": true,\n          \"instant_account_verification\": \"mx\",\n          \"insurance\": \"lemonade\",\n          \"login_and_enroll_blocked\": false,\n          \"mobile_banking\": true,\n          \"moneypass_locator_atm\": true,\n          \"deposit_sso\": true,\n          \"new_account_opening\": true,\n          \"offers\": true,\n          \"offline_verification\": true,\n          \"online_banking\": true,\n          \"p2p\": [\n            \"m2m\"\n          ],\n          \"paperless_statement_enrollment\": true,\n          \"paperless_statement_unenrollment\": false,\n          \"phone_change\": true,\n          \"push_notifications\": true,\n          \"rdc\": true,\n          \"refer_a_member\": true,\n          \"show_transaction_contact_support\": true,\n          \"statements\": true,\n          \"transfers\": true,\n          \"trends\": \"mx\",\n          \"user_message_uploads\": true,\n          \"username\": true,\n          \"wires\": true,\n          \"stop_payment\": true,\n          \"beneficiaries\": true,\n          \"naf_app_management\": true,\n          \"profile_switcher\": true,\n          \"mobile_login_switcher\": true,\n          \"limits\": {\n            \"immediate_rdc\": {\n              \"3\": 7000\n            },\n            \"immediate_ach_pull\": {\n              \"1\": 1000\n            },\n            \"ach_pull\": {\n              \"1\": 500,\n              \"30\": 5500\n            },\n            \"ach_push\": {\n              \"3\": 5000\n            }\n          },\n          \"indigo.Account_permission\": \"*\",\n          \"indigo.AchTransfer_permission\": \"*\",\n          \"integrations.base.Card_permission\": \"*\",\n          \"indigo.ExternalAccount_permission\": \"*\",\n          \"indigo.IntraInstitutionTransfer_permission\": \"*\",\n          \"indigo.MemberFriend_permission\": \"*\",\n          \"integrations.base.Payee_permission\": \"*\",\n          \"integrations.base.Payment_permission\": \"*\",\n          \"indigo.Transaction_permission\": \"*\",\n          \"indigo.WireTransaction_permission\": \"*\",\n          \"integrations.documents_permission\": \"*\",\n          \"integrations.rdc_permission\": \"*\",\n          \"can_change_username\": false,\n          \"can_change_estatements\": false,\n          \"zelle\": false,\n          \"hold_days\": {\n            \"rdc_hold_days\": 4,\n            \"ach_hold_days\": 2\n          }\n        },\n        \"org_uuid\": null,\n        \"org_role\": null,\n        \"org_name\": \"\",\n        \"business_permissions\": [],\n        \"dual_approval_required\": false,\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"is_narmi\": false,\n        \"date_joined\": \"2018-03-26T14:43:59.004000+00:00\",\n        \"last_login\": \"2024-06-11 15:05:32.862565+00:00\",\n        \"segment\": \"\",\n        \"metadata\": {},\n        \"has_username\": true,\n        \"has_password\": true,\n        \"has_accepted_latest_terms\": true,\n        \"requires_enrollment_code_verification\": false,\n        \"enabled_estatements_at\": \"2024-04-29T16:09:32.780547-04:00\",\n        \"is_converting\": false,\n        \"has_permitted_device\": true,\n        \"has_backup_codes\": false\n      },\n      \"created_at\": \"2024-05-16T14:31:48.940392-04:00\",\n      \"updated_at\": \"2024-05-16T14:31:48.940401-04:00\"\n    },\n    {\n      \"body\": \"1\",\n      \"internal_note\": false,\n      \"id\": \"1718d5bd-54b3-4b4d-af0e-c2b856cf6552\",\n      \"thread_id\": \"3e788485-2d04-4ed8-ac88-a89b5ca3b104\",\n      \"author\": {\n        \"email\": \"demo@narmitech.com\",\n        \"core_provided_email\": null,\n        \"username\": \"testuser\",\n        \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n        \"institution_user_identifier\": \"\",\n        \"updated_at\": \"2024-04-30T20:16:46.861043+00:00\",\n        \"addresses\": [],\n        \"phone_numbers\": [],\n        \"first_name\": \"\",\n        \"last_name\": \"\",\n        \"paper_statements\": null,\n        \"user_category\": \"personal\",\n        \"features\": {\n          \"ach\": true,\n          \"allow_olb_device_remembering\": true,\n          \"check_order\": true,\n          \"edit_scheduled_transfers\": true,\n          \"stop_payment_by_range\": true,\n          \"top_menu\": {\n            \"Dashboard\": {\n              \"url\": \"/dashboard\"\n            },\n            \"Accounts\": {\n              \"accounts\": true\n            },\n            \"Documents\": {\n              \"url\": \"/statements\"\n            },\n            \"Support\": {\n              \"url\": \"/support\"\n            },\n            \"Tools\": {\n              \"menu\": {\n                \"Transfer funds\": {\n                  \"url\": \"/transfer\"\n                },\n                \"Transactions\": {\n                  \"url\": \"/transactions\"\n                },\n                \"Cards\": {\n                  \"url\": \"/cards\"\n                },\n                \"Trends\": {\n                  \"url\": \"/trends\"\n                },\n                \"Automatic savings\": {\n                  \"url\": \"/automatic\"\n                },\n                \"Manage users\": {\n                  \"url\": \"/access_manager\",\n                  \"feature_flag\": \"indigo.OrganizationUser_permission\"\n                },\n                \"List all NAF options\": {\n                  \"naf\": true\n                }\n              }\n            }\n          },\n          \"internal_transfers\": true,\n          \"account_membership\": true,\n          \"address_change\": true,\n          \"alerts\": true,\n          \"allpoint_locator_atm\": true,\n          \"automatic_savings\": \"OPT_IN\",\n          \"bill_pay\": \"ipay\",\n          \"billshark\": true,\n          \"business_account_opening\": true,\n          \"personal_banking\": true,\n          \"business_banking\": true,\n          \"cards\": true,\n          \"coop_locator_atm\": true,\n          \"coop_locator_branch\": true,\n          \"core_based_alerts\": false,\n          \"existing_user_account_opening\": true,\n          \"existing_user_dao\": true,\n          \"instant_account_verification\": \"mx\",\n          \"insurance\": \"lemonade\",\n          \"login_and_enroll_blocked\": false,\n          \"mobile_banking\": true,\n          \"moneypass_locator_atm\": true,\n          \"deposit_sso\": true,\n          \"new_account_opening\": true,\n          \"offers\": true,\n          \"offline_verification\": true,\n          \"online_banking\": true,\n          \"p2p\": [\n            \"m2m\"\n          ],\n          \"paperless_statement_enrollment\": true,\n          \"paperless_statement_unenrollment\": false,\n          \"phone_change\": true,\n          \"push_notifications\": true,\n          \"rdc\": true,\n          \"refer_a_member\": true,\n          \"show_transaction_contact_support\": true,\n          \"statements\": true,\n          \"transfers\": true,\n          \"trends\": \"mx\",\n          \"user_message_uploads\": true,\n          \"username\": true,\n          \"wires\": true,\n          \"stop_payment\": true,\n          \"beneficiaries\": true,\n          \"naf_app_management\": true,\n          \"profile_switcher\": true,\n          \"mobile_login_switcher\": true,\n          \"limits\": {\n            \"immediate_rdc\": {\n              \"3\": 7000\n            },\n            \"immediate_ach_pull\": {\n              \"1\": 1000\n            },\n            \"ach_pull\": {\n              \"1\": 500,\n              \"30\": 5500\n            },\n            \"ach_push\": {\n              \"3\": 5000\n            }\n          },\n          \"indigo.Account_permission\": \"*\",\n          \"indigo.AchTransfer_permission\": \"*\",\n          \"integrations.base.Card_permission\": \"*\",\n          \"indigo.ExternalAccount_permission\": \"*\",\n          \"indigo.IntraInstitutionTransfer_permission\": \"*\",\n          \"indigo.MemberFriend_permission\": \"*\",\n          \"integrations.base.Payee_permission\": \"*\",\n          \"integrations.base.Payment_permission\": \"*\",\n          \"indigo.Transaction_permission\": \"*\",\n          \"indigo.WireTransaction_permission\": \"*\",\n          \"integrations.documents_permission\": \"*\",\n          \"integrations.rdc_permission\": \"*\",\n          \"can_change_username\": false,\n          \"can_change_estatements\": false,\n          \"zelle\": false,\n          \"hold_days\": {\n            \"rdc_hold_days\": 4,\n            \"ach_hold_days\": 2\n          }\n        },\n        \"org_uuid\": null,\n        \"org_role\": null,\n        \"org_name\": \"\",\n        \"business_permissions\": [],\n        \"dual_approval_required\": false,\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"is_narmi\": false,\n        \"date_joined\": \"2018-03-26T14:43:59.004000+00:00\",\n        \"last_login\": \"2024-06-11 15:05:32.862565+00:00\",\n        \"segment\": \"\",\n        \"metadata\": {},\n        \"has_username\": true,\n        \"has_password\": true,\n        \"has_accepted_latest_terms\": true,\n        \"requires_enrollment_code_verification\": false,\n        \"enabled_estatements_at\": \"2024-04-29T16:09:32.780547-04:00\",\n        \"is_converting\": false,\n        \"has_permitted_device\": true,\n        \"has_backup_codes\": false\n      },\n      \"created_at\": \"2024-05-16T14:31:48.559740-04:00\",\n      \"updated_at\": \"2024-05-16T14:31:48.559752-04:00\"\n    },\n    {\n      \"body\": \"0\",\n      \"internal_note\": false,\n      \"id\": \"94f6f42e-b441-4c3f-9227-3b7218c0a032\",\n      \"thread_id\": \"26ac2bdb-0426-4563-8bfb-cd1d35efbd02\",\n      \"author\": {\n        \"email\": \"demo@narmitech.com\",\n        \"core_provided_email\": null,\n        \"username\": \"testuser\",\n        \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n        \"institution_user_identifier\": \"\",\n        \"updated_at\": \"2024-04-30T20:16:46.861043+00:00\",\n        \"addresses\": [],\n        \"phone_numbers\": [],\n        \"first_name\": \"\",\n        \"last_name\": \"\",\n        \"paper_statements\": null,\n        \"user_category\": \"personal\",\n        \"features\": {\n          \"ach\": true,\n          \"allow_olb_device_remembering\": true,\n          \"check_order\": true,\n          \"edit_scheduled_transfers\": true,\n          \"stop_payment_by_range\": true,\n          \"top_menu\": {\n            \"Dashboard\": {\n              \"url\": \"/dashboard\"\n            },\n            \"Accounts\": {\n              \"accounts\": true\n            },\n            \"Documents\": {\n              \"url\": \"/statements\"\n            },\n            \"Support\": {\n              \"url\": \"/support\"\n            },\n            \"Tools\": {\n              \"menu\": {\n                \"Transfer funds\": {\n                  \"url\": \"/transfer\"\n                },\n                \"Transactions\": {\n                  \"url\": \"/transactions\"\n                },\n                \"Cards\": {\n                  \"url\": \"/cards\"\n                },\n                \"Trends\": {\n                  \"url\": \"/trends\"\n                },\n                \"Automatic savings\": {\n                  \"url\": \"/automatic\"\n                },\n                \"Manage users\": {\n                  \"url\": \"/access_manager\",\n                  \"feature_flag\": \"indigo.OrganizationUser_permission\"\n                },\n                \"List all NAF options\": {\n                  \"naf\": true\n                }\n              }\n            }\n          },\n          \"internal_transfers\": true,\n          \"account_membership\": true,\n          \"address_change\": true,\n          \"alerts\": true,\n          \"allpoint_locator_atm\": true,\n          \"automatic_savings\": \"OPT_IN\",\n          \"bill_pay\": \"ipay\",\n          \"billshark\": true,\n          \"business_account_opening\": true,\n          \"personal_banking\": true,\n          \"business_banking\": true,\n          \"cards\": true,\n          \"coop_locator_atm\": true,\n          \"coop_locator_branch\": true,\n          \"core_based_alerts\": false,\n          \"existing_user_account_opening\": true,\n          \"existing_user_dao\": true,\n          \"instant_account_verification\": \"mx\",\n          \"insurance\": \"lemonade\",\n          \"login_and_enroll_blocked\": false,\n          \"mobile_banking\": true,\n          \"moneypass_locator_atm\": true,\n          \"deposit_sso\": true,\n          \"new_account_opening\": true,\n          \"offers\": true,\n          \"offline_verification\": true,\n          \"online_banking\": true,\n          \"p2p\": [\n            \"m2m\"\n          ],\n          \"paperless_statement_enrollment\": true,\n          \"paperless_statement_unenrollment\": false,\n          \"phone_change\": true,\n          \"push_notifications\": true,\n          \"rdc\": true,\n          \"refer_a_member\": true,\n          \"show_transaction_contact_support\": true,\n          \"statements\": true,\n          \"transfers\": true,\n          \"trends\": \"mx\",\n          \"user_message_uploads\": true,\n          \"username\": true,\n          \"wires\": true,\n          \"stop_payment\": true,\n          \"beneficiaries\": true,\n          \"naf_app_management\": true,\n          \"profile_switcher\": true,\n          \"mobile_login_switcher\": true,\n          \"limits\": {\n            \"immediate_rdc\": {\n              \"3\": 7000\n            },\n            \"immediate_ach_pull\": {\n              \"1\": 1000\n            },\n            \"ach_pull\": {\n              \"1\": 500,\n              \"30\": 5500\n            },\n            \"ach_push\": {\n              \"3\": 5000\n            }\n          },\n          \"indigo.Account_permission\": \"*\",\n          \"indigo.AchTransfer_permission\": \"*\",\n          \"integrations.base.Card_permission\": \"*\",\n          \"indigo.ExternalAccount_permission\": \"*\",\n          \"indigo.IntraInstitutionTransfer_permission\": \"*\",\n          \"indigo.MemberFriend_permission\": \"*\",\n          \"integrations.base.Payee_permission\": \"*\",\n          \"integrations.base.Payment_permission\": \"*\",\n          \"indigo.Transaction_permission\": \"*\",\n          \"indigo.WireTransaction_permission\": \"*\",\n          \"integrations.documents_permission\": \"*\",\n          \"integrations.rdc_permission\": \"*\",\n          \"can_change_username\": false,\n          \"can_change_estatements\": false,\n          \"zelle\": false,\n          \"hold_days\": {\n            \"rdc_hold_days\": 4,\n            \"ach_hold_days\": 2\n          }\n        },\n        \"org_uuid\": null,\n        \"org_role\": null,\n        \"org_name\": \"\",\n        \"business_permissions\": [],\n        \"dual_approval_required\": false,\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"is_narmi\": false,\n        \"date_joined\": \"2018-03-26T14:43:59.004000+00:00\",\n        \"last_login\": \"2024-06-11 15:05:32.862565+00:00\",\n        \"segment\": \"\",\n        \"metadata\": {},\n        \"has_username\": true,\n        \"has_password\": true,\n        \"has_accepted_latest_terms\": true,\n        \"requires_enrollment_code_verification\": false,\n        \"enabled_estatements_at\": \"2024-04-29T16:09:32.780547-04:00\",\n        \"is_converting\": false,\n        \"has_permitted_device\": true,\n        \"has_backup_codes\": false\n      },\n      \"created_at\": \"2024-05-16T14:18:12.700044-04:00\",\n      \"updated_at\": \"2024-05-16T14:18:12.700053-04:00\"\n    },\n    {\n      \"body\": \"1\",\n      \"internal_note\": false,\n      \"id\": \"827df9b3-0906-4b62-a017-ac68bfcb8c3d\",\n      \"thread_id\": \"d1c6c02c-eaf2-44ed-961e-dcc5a7ec75bb\",\n      \"author\": {\n        \"email\": \"demo@narmitech.com\",\n        \"core_provided_email\": null,\n        \"username\": \"testuser\",\n        \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n        \"institution_user_identifier\": \"\",\n        \"updated_at\": \"2024-04-30T20:16:46.861043+00:00\",\n        \"addresses\": [],\n        \"phone_numbers\": [],\n        \"first_name\": \"\",\n        \"last_name\": \"\",\n        \"paper_statements\": null,\n        \"user_category\": \"personal\",\n        \"features\": {\n          \"ach\": true,\n          \"allow_olb_device_remembering\": true,\n          \"check_order\": true,\n          \"edit_scheduled_transfers\": true,\n          \"stop_payment_by_range\": true,\n          \"top_menu\": {\n            \"Dashboard\": {\n              \"url\": \"/dashboard\"\n            },\n            \"Accounts\": {\n              \"accounts\": true\n            },\n            \"Documents\": {\n              \"url\": \"/statements\"\n            },\n            \"Support\": {\n              \"url\": \"/support\"\n            },\n            \"Tools\": {\n              \"menu\": {\n                \"Transfer funds\": {\n                  \"url\": \"/transfer\"\n                },\n                \"Transactions\": {\n                  \"url\": \"/transactions\"\n                },\n                \"Cards\": {\n                  \"url\": \"/cards\"\n                },\n                \"Trends\": {\n                  \"url\": \"/trends\"\n                },\n                \"Automatic savings\": {\n                  \"url\": \"/automatic\"\n                },\n                \"Manage users\": {\n                  \"url\": \"/access_manager\",\n                  \"feature_flag\": \"indigo.OrganizationUser_permission\"\n                },\n                \"List all NAF options\": {\n                  \"naf\": true\n                }\n              }\n            }\n          },\n          \"internal_transfers\": true,\n          \"account_membership\": true,\n          \"address_change\": true,\n          \"alerts\": true,\n          \"allpoint_locator_atm\": true,\n          \"automatic_savings\": \"OPT_IN\",\n          \"bill_pay\": \"ipay\",\n          \"billshark\": true,\n          \"business_account_opening\": true,\n          \"personal_banking\": true,\n          \"business_banking\": true,\n          \"cards\": true,\n          \"coop_locator_atm\": true,\n          \"coop_locator_branch\": true,\n          \"core_based_alerts\": false,\n          \"existing_user_account_opening\": true,\n          \"existing_user_dao\": true,\n          \"instant_account_verification\": \"mx\",\n          \"insurance\": \"lemonade\",\n          \"login_and_enroll_blocked\": false,\n          \"mobile_banking\": true,\n          \"moneypass_locator_atm\": true,\n          \"deposit_sso\": true,\n          \"new_account_opening\": true,\n          \"offers\": true,\n          \"offline_verification\": true,\n          \"online_banking\": true,\n          \"p2p\": [\n            \"m2m\"\n          ],\n          \"paperless_statement_enrollment\": true,\n          \"paperless_statement_unenrollment\": false,\n          \"phone_change\": true,\n          \"push_notifications\": true,\n          \"rdc\": true,\n          \"refer_a_member\": true,\n          \"show_transaction_contact_support\": true,\n          \"statements\": true,\n          \"transfers\": true,\n          \"trends\": \"mx\",\n          \"user_message_uploads\": true,\n          \"username\": true,\n          \"wires\": true,\n          \"stop_payment\": true,\n          \"beneficiaries\": true,\n          \"naf_app_management\": true,\n          \"profile_switcher\": true,\n          \"mobile_login_switcher\": true,\n          \"limits\": {\n            \"immediate_rdc\": {\n              \"3\": 7000\n            },\n            \"immediate_ach_pull\": {\n              \"1\": 1000\n            },\n            \"ach_pull\": {\n              \"1\": 500,\n              \"30\": 5500\n            },\n            \"ach_push\": {\n              \"3\": 5000\n            }\n          },\n          \"indigo.Account_permission\": \"*\",\n          \"indigo.AchTransfer_permission\": \"*\",\n          \"integrations.base.Card_permission\": \"*\",\n          \"indigo.ExternalAccount_permission\": \"*\",\n          \"indigo.IntraInstitutionTransfer_permission\": \"*\",\n          \"indigo.MemberFriend_permission\": \"*\",\n          \"integrations.base.Payee_permission\": \"*\",\n          \"integrations.base.Payment_permission\": \"*\",\n          \"indigo.Transaction_permission\": \"*\",\n          \"indigo.WireTransaction_permission\": \"*\",\n          \"integrations.documents_permission\": \"*\",\n          \"integrations.rdc_permission\": \"*\",\n          \"can_change_username\": false,\n          \"can_change_estatements\": false,\n          \"zelle\": false,\n          \"hold_days\": {\n            \"rdc_hold_days\": 4,\n            \"ach_hold_days\": 2\n          }\n        },\n        \"org_uuid\": null,\n        \"org_role\": null,\n        \"org_name\": \"\",\n        \"business_permissions\": [],\n        \"dual_approval_required\": false,\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"is_narmi\": false,\n        \"date_joined\": \"2018-03-26T14:43:59.004000+00:00\",\n        \"last_login\": \"2024-06-11 15:05:32.862565+00:00\",\n        \"segment\": \"\",\n        \"metadata\": {},\n        \"has_username\": true,\n        \"has_password\": true,\n        \"has_accepted_latest_terms\": true,\n        \"requires_enrollment_code_verification\": false,\n        \"enabled_estatements_at\": \"2024-04-29T16:09:32.780547-04:00\",\n        \"is_converting\": false,\n        \"has_permitted_device\": true,\n        \"has_backup_codes\": false\n      },\n      \"created_at\": \"2024-05-16T14:18:10.176627-04:00\",\n      \"updated_at\": \"2024-05-16T14:18:10.176639-04:00\"\n    },\n    {\n      \"body\": \"1\",\n      \"internal_note\": false,\n      \"id\": \"6c0ef2f0-ef3a-402d-bb90-eb6a5f863fed\",\n      \"thread_id\": \"ec286528-0eba-4ab7-bbe2-508b2584c588\",\n      \"author\": {\n        \"email\": \"demo@narmitech.com\",\n        \"core_provided_email\": null,\n        \"username\": \"testuser\",\n        \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n        \"institution_user_identifier\": \"\",\n        \"updated_at\": \"2024-04-30T20:16:46.861043+00:00\",\n        \"addresses\": [],\n        \"phone_numbers\": [],\n        \"first_name\": \"\",\n        \"last_name\": \"\",\n        \"paper_statements\": null,\n        \"user_category\": \"personal\",\n        \"features\": {\n          \"ach\": true,\n          \"allow_olb_device_remembering\": true,\n          \"check_order\": true,\n          \"edit_scheduled_transfers\": true,\n          \"stop_payment_by_range\": true,\n          \"top_menu\": {\n            \"Dashboard\": {\n              \"url\": \"/dashboard\"\n            },\n            \"Accounts\": {\n              \"accounts\": true\n            },\n            \"Documents\": {\n              \"url\": \"/statements\"\n            },\n            \"Support\": {\n              \"url\": \"/support\"\n            },\n            \"Tools\": {\n              \"menu\": {\n                \"Transfer funds\": {\n                  \"url\": \"/transfer\"\n                },\n                \"Transactions\": {\n                  \"url\": \"/transactions\"\n                },\n                \"Cards\": {\n                  \"url\": \"/cards\"\n                },\n                \"Trends\": {\n                  \"url\": \"/trends\"\n                },\n                \"Automatic savings\": {\n                  \"url\": \"/automatic\"\n                },\n                \"Manage users\": {\n                  \"url\": \"/access_manager\",\n                  \"feature_flag\": \"indigo.OrganizationUser_permission\"\n                },\n                \"List all NAF options\": {\n                  \"naf\": true\n                }\n              }\n            }\n          },\n          \"internal_transfers\": true,\n          \"account_membership\": true,\n          \"address_change\": true,\n          \"alerts\": true,\n          \"allpoint_locator_atm\": true,\n          \"automatic_savings\": \"OPT_IN\",\n          \"bill_pay\": \"ipay\",\n          \"billshark\": true,\n          \"business_account_opening\": true,\n          \"personal_banking\": true,\n          \"business_banking\": true,\n          \"cards\": true,\n          \"coop_locator_atm\": true,\n          \"coop_locator_branch\": true,\n          \"core_based_alerts\": false,\n          \"existing_user_account_opening\": true,\n          \"existing_user_dao\": true,\n          \"instant_account_verification\": \"mx\",\n          \"insurance\": \"lemonade\",\n          \"login_and_enroll_blocked\": false,\n          \"mobile_banking\": true,\n          \"moneypass_locator_atm\": true,\n          \"deposit_sso\": true,\n          \"new_account_opening\": true,\n          \"offers\": true,\n          \"offline_verification\": true,\n          \"online_banking\": true,\n          \"p2p\": [\n            \"m2m\"\n          ],\n          \"paperless_statement_enrollment\": true,\n          \"paperless_statement_unenrollment\": false,\n          \"phone_change\": true,\n          \"push_notifications\": true,\n          \"rdc\": true,\n          \"refer_a_member\": true,\n          \"show_transaction_contact_support\": true,\n          \"statements\": true,\n          \"transfers\": true,\n          \"trends\": \"mx\",\n          \"user_message_uploads\": true,\n          \"username\": true,\n          \"wires\": true,\n          \"stop_payment\": true,\n          \"beneficiaries\": true,\n          \"naf_app_management\": true,\n          \"profile_switcher\": true,\n          \"mobile_login_switcher\": true,\n          \"limits\": {\n            \"immediate_rdc\": {\n              \"3\": 7000\n            },\n            \"immediate_ach_pull\": {\n              \"1\": 1000\n            },\n            \"ach_pull\": {\n              \"1\": 500,\n              \"30\": 5500\n            },\n            \"ach_push\": {\n              \"3\": 5000\n            }\n          },\n          \"indigo.Account_permission\": \"*\",\n          \"indigo.AchTransfer_permission\": \"*\",\n          \"integrations.base.Card_permission\": \"*\",\n          \"indigo.ExternalAccount_permission\": \"*\",\n          \"indigo.IntraInstitutionTransfer_permission\": \"*\",\n          \"indigo.MemberFriend_permission\": \"*\",\n          \"integrations.base.Payee_permission\": \"*\",\n          \"integrations.base.Payment_permission\": \"*\",\n          \"indigo.Transaction_permission\": \"*\",\n          \"indigo.WireTransaction_permission\": \"*\",\n          \"integrations.documents_permission\": \"*\",\n          \"integrations.rdc_permission\": \"*\",\n          \"can_change_username\": false,\n          \"can_change_estatements\": false,\n          \"zelle\": false,\n          \"hold_days\": {\n            \"rdc_hold_days\": 4,\n            \"ach_hold_days\": 2\n          }\n        },\n        \"org_uuid\": null,\n        \"org_role\": null,\n        \"org_name\": \"\",\n        \"business_permissions\": [],\n        \"dual_approval_required\": false,\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"is_narmi\": false,\n        \"date_joined\": \"2018-03-26T14:43:59.004000+00:00\",\n        \"last_login\": \"2024-06-11 15:05:32.862565+00:00\",\n        \"segment\": \"\",\n        \"metadata\": {},\n        \"has_username\": true,\n        \"has_password\": true,\n        \"has_accepted_latest_terms\": true,\n        \"requires_enrollment_code_verification\": false,\n        \"enabled_estatements_at\": \"2024-04-29T16:09:32.780547-04:00\",\n        \"is_converting\": false,\n        \"has_permitted_device\": true,\n        \"has_backup_codes\": false\n      },\n      \"created_at\": \"2024-05-16T13:58:47.991922-04:00\",\n      \"updated_at\": \"2024-05-16T13:58:47.991928-04:00\"\n    },\n    {\n      \"body\": \"0\",\n      \"internal_note\": false,\n      \"id\": \"a598d9b3-1d55-4d67-8e26-01d1f1a32890\",\n      \"thread_id\": \"6e9e82ff-bf4d-475f-a266-77e002474ce2\",\n      \"author\": {\n        \"email\": \"demo@narmitech.com\",\n        \"core_provided_email\": null,\n        \"username\": \"testuser\",\n        \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n        \"institution_user_identifier\": \"\",\n        \"updated_at\": \"2024-04-30T20:16:46.861043+00:00\",\n        \"addresses\": [],\n        \"phone_numbers\": [],\n        \"first_name\": \"\",\n        \"last_name\": \"\",\n        \"paper_statements\": null,\n        \"user_category\": \"personal\",\n        \"features\": {\n          \"ach\": true,\n          \"allow_olb_device_remembering\": true,\n          \"check_order\": true,\n          \"edit_scheduled_transfers\": true,\n          \"stop_payment_by_range\": true,\n          \"top_menu\": {\n            \"Dashboard\": {\n              \"url\": \"/dashboard\"\n            },\n            \"Accounts\": {\n              \"accounts\": true\n            },\n            \"Documents\": {\n              \"url\": \"/statements\"\n            },\n            \"Support\": {\n              \"url\": \"/support\"\n            },\n            \"Tools\": {\n              \"menu\": {\n                \"Transfer funds\": {\n                  \"url\": \"/transfer\"\n                },\n                \"Transactions\": {\n                  \"url\": \"/transactions\"\n                },\n                \"Cards\": {\n                  \"url\": \"/cards\"\n                },\n                \"Trends\": {\n                  \"url\": \"/trends\"\n                },\n                \"Automatic savings\": {\n                  \"url\": \"/automatic\"\n                },\n                \"Manage users\": {\n                  \"url\": \"/access_manager\",\n                  \"feature_flag\": \"indigo.OrganizationUser_permission\"\n                },\n                \"List all NAF options\": {\n                  \"naf\": true\n                }\n              }\n            }\n          },\n          \"internal_transfers\": true,\n          \"account_membership\": true,\n          \"address_change\": true,\n          \"alerts\": true,\n          \"allpoint_locator_atm\": true,\n          \"automatic_savings\": \"OPT_IN\",\n          \"bill_pay\": \"ipay\",\n          \"billshark\": true,\n          \"business_account_opening\": true,\n          \"personal_banking\": true,\n          \"business_banking\": true,\n          \"cards\": true,\n          \"coop_locator_atm\": true,\n          \"coop_locator_branch\": true,\n          \"core_based_alerts\": false,\n          \"existing_user_account_opening\": true,\n          \"existing_user_dao\": true,\n          \"instant_account_verification\": \"mx\",\n          \"insurance\": \"lemonade\",\n          \"login_and_enroll_blocked\": false,\n          \"mobile_banking\": true,\n          \"moneypass_locator_atm\": true,\n          \"deposit_sso\": true,\n          \"new_account_opening\": true,\n          \"offers\": true,\n          \"offline_verification\": true,\n          \"online_banking\": true,\n          \"p2p\": [\n            \"m2m\"\n          ],\n          \"paperless_statement_enrollment\": true,\n          \"paperless_statement_unenrollment\": false,\n          \"phone_change\": true,\n          \"push_notifications\": true,\n          \"rdc\": true,\n          \"refer_a_member\": true,\n          \"show_transaction_contact_support\": true,\n          \"statements\": true,\n          \"transfers\": true,\n          \"trends\": \"mx\",\n          \"user_message_uploads\": true,\n          \"username\": true,\n          \"wires\": true,\n          \"stop_payment\": true,\n          \"beneficiaries\": true,\n          \"naf_app_management\": true,\n          \"profile_switcher\": true,\n          \"mobile_login_switcher\": true,\n          \"limits\": {\n            \"immediate_rdc\": {\n              \"3\": 7000\n            },\n            \"immediate_ach_pull\": {\n              \"1\": 1000\n            },\n            \"ach_pull\": {\n              \"1\": 500,\n              \"30\": 5500\n            },\n            \"ach_push\": {\n              \"3\": 5000\n            }\n          },\n          \"indigo.Account_permission\": \"*\",\n          \"indigo.AchTransfer_permission\": \"*\",\n          \"integrations.base.Card_permission\": \"*\",\n          \"indigo.ExternalAccount_permission\": \"*\",\n          \"indigo.IntraInstitutionTransfer_permission\": \"*\",\n          \"indigo.MemberFriend_permission\": \"*\",\n          \"integrations.base.Payee_permission\": \"*\",\n          \"integrations.base.Payment_permission\": \"*\",\n          \"indigo.Transaction_permission\": \"*\",\n          \"indigo.WireTransaction_permission\": \"*\",\n          \"integrations.documents_permission\": \"*\",\n          \"integrations.rdc_permission\": \"*\",\n          \"can_change_username\": false,\n          \"can_change_estatements\": false,\n          \"zelle\": false,\n          \"hold_days\": {\n            \"rdc_hold_days\": 4,\n            \"ach_hold_days\": 2\n          }\n        },\n        \"org_uuid\": null,\n        \"org_role\": null,\n        \"org_name\": \"\",\n        \"business_permissions\": [],\n        \"dual_approval_required\": false,\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"is_narmi\": false,\n        \"date_joined\": \"2018-03-26T14:43:59.004000+00:00\",\n        \"last_login\": \"2024-06-11 15:05:32.862565+00:00\",\n        \"segment\": \"\",\n        \"metadata\": {},\n        \"has_username\": true,\n        \"has_password\": true,\n        \"has_accepted_latest_terms\": true,\n        \"requires_enrollment_code_verification\": false,\n        \"enabled_estatements_at\": \"2024-04-29T16:09:32.780547-04:00\",\n        \"is_converting\": false,\n        \"has_permitted_device\": true,\n        \"has_backup_codes\": false\n      },\n      \"created_at\": \"2024-05-16T13:58:47.067507-04:00\",\n      \"updated_at\": \"2024-05-16T13:58:47.067511-04:00\"\n    },\n    {\n      \"body\": \"0\",\n      \"internal_note\": false,\n      \"id\": \"743e91e5-0f2e-44a2-a848-24c5bb639e0f\",\n      \"thread_id\": \"de771818-1097-4b30-86b5-24457554b0a9\",\n      \"author\": {\n        \"email\": \"demo@narmitech.com\",\n        \"core_provided_email\": null,\n        \"username\": \"testuser\",\n        \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n        \"institution_user_identifier\": \"\",\n        \"updated_at\": \"2024-04-30T20:16:46.861043+00:00\",\n        \"addresses\": [],\n        \"phone_numbers\": [],\n        \"first_name\": \"\",\n        \"last_name\": \"\",\n        \"paper_statements\": null,\n        \"user_category\": \"personal\",\n        \"features\": {\n          \"ach\": true,\n          \"allow_olb_device_remembering\": true,\n          \"check_order\": true,\n          \"edit_scheduled_transfers\": true,\n          \"stop_payment_by_range\": true,\n          \"top_menu\": {\n            \"Dashboard\": {\n              \"url\": \"/dashboard\"\n            },\n            \"Accounts\": {\n              \"accounts\": true\n            },\n            \"Documents\": {\n              \"url\": \"/statements\"\n            },\n            \"Support\": {\n              \"url\": \"/support\"\n            },\n            \"Tools\": {\n              \"menu\": {\n                \"Transfer funds\": {\n                  \"url\": \"/transfer\"\n                },\n                \"Transactions\": {\n                  \"url\": \"/transactions\"\n                },\n                \"Cards\": {\n                  \"url\": \"/cards\"\n                },\n                \"Trends\": {\n                  \"url\": \"/trends\"\n                },\n                \"Automatic savings\": {\n                  \"url\": \"/automatic\"\n                },\n                \"Manage users\": {\n                  \"url\": \"/access_manager\",\n                  \"feature_flag\": \"indigo.OrganizationUser_permission\"\n                },\n                \"List all NAF options\": {\n                  \"naf\": true\n                }\n              }\n            }\n          },\n          \"internal_transfers\": true,\n          \"account_membership\": true,\n          \"address_change\": true,\n          \"alerts\": true,\n          \"allpoint_locator_atm\": true,\n          \"automatic_savings\": \"OPT_IN\",\n          \"bill_pay\": \"ipay\",\n          \"billshark\": true,\n          \"business_account_opening\": true,\n          \"personal_banking\": true,\n          \"business_banking\": true,\n          \"cards\": true,\n          \"coop_locator_atm\": true,\n          \"coop_locator_branch\": true,\n          \"core_based_alerts\": false,\n          \"existing_user_account_opening\": true,\n          \"existing_user_dao\": true,\n          \"instant_account_verification\": \"mx\",\n          \"insurance\": \"lemonade\",\n          \"login_and_enroll_blocked\": false,\n          \"mobile_banking\": true,\n          \"moneypass_locator_atm\": true,\n          \"deposit_sso\": true,\n          \"new_account_opening\": true,\n          \"offers\": true,\n          \"offline_verification\": true,\n          \"online_banking\": true,\n          \"p2p\": [\n            \"m2m\"\n          ],\n          \"paperless_statement_enrollment\": true,\n          \"paperless_statement_unenrollment\": false,\n          \"phone_change\": true,\n          \"push_notifications\": true,\n          \"rdc\": true,\n          \"refer_a_member\": true,\n          \"show_transaction_contact_support\": true,\n          \"statements\": true,\n          \"transfers\": true,\n          \"trends\": \"mx\",\n          \"user_message_uploads\": true,\n          \"username\": true,\n          \"wires\": true,\n          \"stop_payment\": true,\n          \"beneficiaries\": true,\n          \"naf_app_management\": true,\n          \"profile_switcher\": true,\n          \"mobile_login_switcher\": true,\n          \"limits\": {\n            \"immediate_rdc\": {\n              \"3\": 7000\n            },\n            \"immediate_ach_pull\": {\n              \"1\": 1000\n            },\n            \"ach_pull\": {\n              \"1\": 500,\n              \"30\": 5500\n            },\n            \"ach_push\": {\n              \"3\": 5000\n            }\n          },\n          \"indigo.Account_permission\": \"*\",\n          \"indigo.AchTransfer_permission\": \"*\",\n          \"integrations.base.Card_permission\": \"*\",\n          \"indigo.ExternalAccount_permission\": \"*\",\n          \"indigo.IntraInstitutionTransfer_permission\": \"*\",\n          \"indigo.MemberFriend_permission\": \"*\",\n          \"integrations.base.Payee_permission\": \"*\",\n          \"integrations.base.Payment_permission\": \"*\",\n          \"indigo.Transaction_permission\": \"*\",\n          \"indigo.WireTransaction_permission\": \"*\",\n          \"integrations.documents_permission\": \"*\",\n          \"integrations.rdc_permission\": \"*\",\n          \"can_change_username\": false,\n          \"can_change_estatements\": false,\n          \"zelle\": false,\n          \"hold_days\": {\n            \"rdc_hold_days\": 4,\n            \"ach_hold_days\": 2\n          }\n        },\n        \"org_uuid\": null,\n        \"org_role\": null,\n        \"org_name\": \"\",\n        \"business_permissions\": [],\n        \"dual_approval_required\": false,\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"is_narmi\": false,\n        \"date_joined\": \"2018-03-26T14:43:59.004000+00:00\",\n        \"last_login\": \"2024-06-11 15:05:32.862565+00:00\",\n        \"segment\": \"\",\n        \"metadata\": {},\n        \"has_username\": true,\n        \"has_password\": true,\n        \"has_accepted_latest_terms\": true,\n        \"requires_enrollment_code_verification\": false,\n        \"enabled_estatements_at\": \"2024-04-29T16:09:32.780547-04:00\",\n        \"is_converting\": false,\n        \"has_permitted_device\": true,\n        \"has_backup_codes\": false\n      },\n      \"created_at\": \"2024-05-16T13:48:16.914467-04:00\",\n      \"updated_at\": \"2024-05-16T13:48:16.914475-04:00\"\n    },\n    {\n      \"body\": \"1\",\n      \"internal_note\": false,\n      \"id\": \"87779e8a-edde-4d29-9d3a-53fbedb36e9c\",\n      \"thread_id\": \"741bc5cc-d3de-4176-bbe8-4112f8c82aa9\",\n      \"author\": {\n        \"email\": \"demo@narmitech.com\",\n        \"core_provided_email\": null,\n        \"username\": \"testuser\",\n        \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n        \"institution_user_identifier\": \"\",\n        \"updated_at\": \"2024-04-30T20:16:46.861043+00:00\",\n        \"addresses\": [],\n        \"phone_numbers\": [],\n        \"first_name\": \"\",\n        \"last_name\": \"\",\n        \"paper_statements\": null,\n        \"user_category\": \"personal\",\n        \"features\": {\n          \"ach\": true,\n          \"allow_olb_device_remembering\": true,\n          \"check_order\": true,\n          \"edit_scheduled_transfers\": true,\n          \"stop_payment_by_range\": true,\n          \"top_menu\": {\n            \"Dashboard\": {\n              \"url\": \"/dashboard\"\n            },\n            \"Accounts\": {\n              \"accounts\": true\n            },\n            \"Documents\": {\n              \"url\": \"/statements\"\n            },\n            \"Support\": {\n              \"url\": \"/support\"\n            },\n            \"Tools\": {\n              \"menu\": {\n                \"Transfer funds\": {\n                  \"url\": \"/transfer\"\n                },\n                \"Transactions\": {\n                  \"url\": \"/transactions\"\n                },\n                \"Cards\": {\n                  \"url\": \"/cards\"\n                },\n                \"Trends\": {\n                  \"url\": \"/trends\"\n                },\n                \"Automatic savings\": {\n                  \"url\": \"/automatic\"\n                },\n                \"Manage users\": {\n                  \"url\": \"/access_manager\",\n                  \"feature_flag\": \"indigo.OrganizationUser_permission\"\n                },\n                \"List all NAF options\": {\n                  \"naf\": true\n                }\n              }\n            }\n          },\n          \"internal_transfers\": true,\n          \"account_membership\": true,\n          \"address_change\": true,\n          \"alerts\": true,\n          \"allpoint_locator_atm\": true,\n          \"automatic_savings\": \"OPT_IN\",\n          \"bill_pay\": \"ipay\",\n          \"billshark\": true,\n          \"business_account_opening\": true,\n          \"personal_banking\": true,\n          \"business_banking\": true,\n          \"cards\": true,\n          \"coop_locator_atm\": true,\n          \"coop_locator_branch\": true,\n          \"core_based_alerts\": false,\n          \"existing_user_account_opening\": true,\n          \"existing_user_dao\": true,\n          \"instant_account_verification\": \"mx\",\n          \"insurance\": \"lemonade\",\n          \"login_and_enroll_blocked\": false,\n          \"mobile_banking\": true,\n          \"moneypass_locator_atm\": true,\n          \"deposit_sso\": true,\n          \"new_account_opening\": true,\n          \"offers\": true,\n          \"offline_verification\": true,\n          \"online_banking\": true,\n          \"p2p\": [\n            \"m2m\"\n          ],\n          \"paperless_statement_enrollment\": true,\n          \"paperless_statement_unenrollment\": false,\n          \"phone_change\": true,\n          \"push_notifications\": true,\n          \"rdc\": true,\n          \"refer_a_member\": true,\n          \"show_transaction_contact_support\": true,\n          \"statements\": true,\n          \"transfers\": true,\n          \"trends\": \"mx\",\n          \"user_message_uploads\": true,\n          \"username\": true,\n          \"wires\": true,\n          \"stop_payment\": true,\n          \"beneficiaries\": true,\n          \"naf_app_management\": true,\n          \"profile_switcher\": true,\n          \"mobile_login_switcher\": true,\n          \"limits\": {\n            \"immediate_rdc\": {\n              \"3\": 7000\n            },\n            \"immediate_ach_pull\": {\n              \"1\": 1000\n            },\n            \"ach_pull\": {\n              \"1\": 500,\n              \"30\": 5500\n            },\n            \"ach_push\": {\n              \"3\": 5000\n            }\n          },\n          \"indigo.Account_permission\": \"*\",\n          \"indigo.AchTransfer_permission\": \"*\",\n          \"integrations.base.Card_permission\": \"*\",\n          \"indigo.ExternalAccount_permission\": \"*\",\n          \"indigo.IntraInstitutionTransfer_permission\": \"*\",\n          \"indigo.MemberFriend_permission\": \"*\",\n          \"integrations.base.Payee_permission\": \"*\",\n          \"integrations.base.Payment_permission\": \"*\",\n          \"indigo.Transaction_permission\": \"*\",\n          \"indigo.WireTransaction_permission\": \"*\",\n          \"integrations.documents_permission\": \"*\",\n          \"integrations.rdc_permission\": \"*\",\n          \"can_change_username\": false,\n          \"can_change_estatements\": false,\n          \"zelle\": false,\n          \"hold_days\": {\n            \"rdc_hold_days\": 4,\n            \"ach_hold_days\": 2\n          }\n        },\n        \"org_uuid\": null,\n        \"org_role\": null,\n        \"org_name\": \"\",\n        \"business_permissions\": [],\n        \"dual_approval_required\": false,\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"is_narmi\": false,\n        \"date_joined\": \"2018-03-26 14:43:59.004000+00:00\",\n        \"last_login\": \"2024-06-11 15:05:32.862565+00:00\",\n        \"segment\": \"\",\n        \"metadata\": {},\n        \"has_username\": true,\n        \"has_password\": true,\n        \"has_accepted_latest_terms\": true,\n        \"requires_enrollment_code_verification\": false,\n        \"enabled_estatements_at\": \"2024-04-29T16:09:32.780547-04:00\",\n        \"is_converting\": false,\n        \"has_permitted_device\": true,\n        \"has_backup_codes\": false\n      },\n      \"created_at\": \"2024-05-16T13:48:12.227896-04:00\",\n      \"updated_at\": \"2024-05-16T13:48:12.227905-04:00\"\n    },\n    {\n      \"body\": \"0\",\n      \"internal_note\": false,\n      \"id\": \"1b0e310e-ebdc-4b74-b397-a887eaba0d01\",\n      \"thread_id\": \"6393ba4e-e788-4346-86d8-d21092db8569\",\n      \"author\": {\n        \"email\": \"demo@narmitech.com\",\n        \"core_provided_email\": null,\n        \"username\": \"testuser\",\n        \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n        \"institution_user_identifier\": \"\",\n        \"updated_at\": \"2024-04-30T20:16:46.861043+00:00\",\n        \"addresses\": [],\n        \"phone_numbers\": [],\n        \"first_name\": \"\",\n        \"last_name\": \"\",\n        \"paper_statements\": null,\n        \"user_category\": \"personal\",\n        \"features\": {\n          \"ach\": true,\n          \"allow_olb_device_remembering\": true,\n          \"check_order\": true,\n          \"edit_scheduled_transfers\": true,\n          \"stop_payment_by_range\": true,\n          \"top_menu\": {\n            \"Dashboard\": {\n              \"url\": \"/dashboard\"\n            },\n            \"Accounts\": {\n              \"accounts\": true\n            },\n            \"Documents\": {\n              \"url\": \"/statements\"\n            },\n            \"Support\": {\n              \"url\": \"/support\"\n            },\n            \"Tools\": {\n              \"menu\": {\n                \"Transfer funds\": {\n                  \"url\": \"/transfer\"\n                },\n                \"Transactions\": {\n                  \"url\": \"/transactions\"\n                },\n                \"Cards\": {\n                  \"url\": \"/cards\"\n                },\n                \"Trends\": {\n                  \"url\": \"/trends\"\n                },\n                \"Automatic savings\": {\n                  \"url\": \"/automatic\"\n                },\n                \"Manage users\": {\n                  \"url\": \"/access_manager\",\n                  \"feature_flag\": \"indigo.OrganizationUser_permission\"\n                },\n                \"List all NAF options\": {\n                  \"naf\": true\n                }\n              }\n            }\n          },\n          \"internal_transfers\": true,\n          \"account_membership\": true,\n          \"address_change\": true,\n          \"alerts\": true,\n          \"allpoint_locator_atm\": true,\n          \"automatic_savings\": \"OPT_IN\",\n          \"bill_pay\": \"ipay\",\n          \"billshark\": true,\n          \"business_account_opening\": true,\n          \"personal_banking\": true,\n          \"business_banking\": true,\n          \"cards\": true,\n          \"coop_locator_atm\": true,\n          \"coop_locator_branch\": true,\n          \"core_based_alerts\": false,\n          \"existing_user_account_opening\": true,\n          \"existing_user_dao\": true,\n          \"instant_account_verification\": \"mx\",\n          \"insurance\": \"lemonade\",\n          \"login_and_enroll_blocked\": false,\n          \"mobile_banking\": true,\n          \"moneypass_locator_atm\": true,\n          \"deposit_sso\": true,\n          \"new_account_opening\": true,\n          \"offers\": true,\n          \"offline_verification\": true,\n          \"online_banking\": true,\n          \"p2p\": [\n            \"m2m\"\n          ],\n          \"paperless_statement_enrollment\": true,\n          \"paperless_statement_unenrollment\": false,\n          \"phone_change\": true,\n          \"push_notifications\": true,\n          \"rdc\": true,\n          \"refer_a_member\": true,\n          \"show_transaction_contact_support\": true,\n          \"statements\": true,\n          \"transfers\": true,\n          \"trends\": \"mx\",\n          \"user_message_uploads\": true,\n          \"username\": true,\n          \"wires\": true,\n          \"stop_payment\": true,\n          \"beneficiaries\": true,\n          \"naf_app_management\": true,\n          \"profile_switcher\": true,\n          \"mobile_login_switcher\": true,\n          \"limits\": {\n            \"immediate_rdc\": {\n              \"3\": 7000\n            },\n            \"immediate_ach_pull\": {\n              \"1\": 1000\n            },\n            \"ach_pull\": {\n              \"1\": 500,\n              \"30\": 5500\n            },\n            \"ach_push\": {\n              \"3\": 5000\n            }\n          },\n          \"indigo.Account_permission\": \"*\",\n          \"indigo.AchTransfer_permission\": \"*\",\n          \"integrations.base.Card_permission\": \"*\",\n          \"indigo.ExternalAccount_permission\": \"*\",\n          \"indigo.IntraInstitutionTransfer_permission\": \"*\",\n          \"indigo.MemberFriend_permission\": \"*\",\n          \"integrations.base.Payee_permission\": \"*\",\n          \"integrations.base.Payment_permission\": \"*\",\n          \"indigo.Transaction_permission\": \"*\",\n          \"indigo.WireTransaction_permission\": \"*\",\n          \"integrations.documents_permission\": \"*\",\n          \"integrations.rdc_permission\": \"*\",\n          \"can_change_username\": false,\n          \"can_change_estatements\": false,\n          \"zelle\": false,\n          \"hold_days\": {\n            \"rdc_hold_days\": 4,\n            \"ach_hold_days\": 2\n          }\n        },\n        \"org_uuid\": null,\n        \"org_role\": null,\n        \"org_name\": \"\",\n        \"business_permissions\": [],\n        \"dual_approval_required\": false,\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"is_narmi\": false,\n        \"date_joined\": \"2018-03-26 14:43:59.004000+00:00\",\n        \"last_login\": \"2024-06-11 15:05:32.862565+00:00\",\n        \"segment\": \"\",\n        \"metadata\": {},\n        \"has_username\": true,\n        \"has_password\": true,\n        \"has_accepted_latest_terms\": true,\n        \"requires_enrollment_code_verification\": false,\n        \"enabled_estatements_at\": \"2024-04-29T16:09:32.780547-04:00\",\n        \"is_converting\": false,\n        \"has_permitted_device\": true,\n        \"has_backup_codes\": false\n      },\n      \"created_at\": \"2024-05-16T13:48:11.495597-04:00\",\n      \"updated_at\": \"2024-05-16T13:48:11.495604-04:00\"\n    },\n    {\n      \"body\": \"ȁ񰰄\",\n      \"internal_note\": false,\n      \"id\": \"f64157c2-4edf-4e51-a072-03d4f091d123\",\n      \"thread_id\": \"3cd73d6b-9289-4094-8e00-7a9de310eb27\",\n      \"author\": {\n        \"email\": \"demo@narmitech.com\",\n        \"core_provided_email\": null,\n        \"username\": \"testuser\",\n        \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n        \"institution_user_identifier\": \"\",\n        \"updated_at\": \"2024-04-30T20:16:46.861043+00:00\",\n        \"addresses\": [],\n        \"phone_numbers\": [],\n        \"first_name\": \"\",\n        \"last_name\": \"\",\n        \"paper_statements\": null,\n        \"user_category\": \"personal\",\n        \"features\": {\n          \"ach\": true,\n          \"allow_olb_device_remembering\": true,\n          \"check_order\": true,\n          \"edit_scheduled_transfers\": true,\n          \"stop_payment_by_range\": true,\n          \"top_menu\": {\n            \"Dashboard\": {\n              \"url\": \"/dashboard\"\n            },\n            \"Accounts\": {\n              \"accounts\": true\n            },\n            \"Documents\": {\n              \"url\": \"/statements\"\n            },\n            \"Support\": {\n              \"url\": \"/support\"\n            },\n            \"Tools\": {\n              \"menu\": {\n                \"Transfer funds\": {\n                  \"url\": \"/transfer\"\n                },\n                \"Transactions\": {\n                  \"url\": \"/transactions\"\n                },\n                \"Cards\": {\n                  \"url\": \"/cards\"\n                },\n                \"Trends\": {\n                  \"url\": \"/trends\"\n                },\n                \"Automatic savings\": {\n                  \"url\": \"/automatic\"\n                },\n                \"Manage users\": {\n                  \"url\": \"/access_manager\",\n                  \"feature_flag\": \"indigo.OrganizationUser_permission\"\n                },\n                \"List all NAF options\": {\n                  \"naf\": true\n                }\n              }\n            }\n          },\n          \"internal_transfers\": true,\n          \"account_membership\": true,\n          \"address_change\": true,\n          \"alerts\": true,\n          \"allpoint_locator_atm\": true,\n          \"automatic_savings\": \"OPT_IN\",\n          \"bill_pay\": \"ipay\",\n          \"billshark\": true,\n          \"business_account_opening\": true,\n          \"personal_banking\": true,\n          \"business_banking\": true,\n          \"cards\": true,\n          \"coop_locator_atm\": true,\n          \"coop_locator_branch\": true,\n          \"core_based_alerts\": false,\n          \"existing_user_account_opening\": true,\n          \"existing_user_dao\": true,\n          \"instant_account_verification\": \"mx\",\n          \"insurance\": \"lemonade\",\n          \"login_and_enroll_blocked\": false,\n          \"mobile_banking\": true,\n          \"moneypass_locator_atm\": true,\n          \"deposit_sso\": true,\n          \"new_account_opening\": true,\n          \"offers\": true,\n          \"offline_verification\": true,\n          \"online_banking\": true,\n          \"p2p\": [\n            \"m2m\"\n          ],\n          \"paperless_statement_enrollment\": true,\n          \"paperless_statement_unenrollment\": false,\n          \"phone_change\": true,\n          \"push_notifications\": true,\n          \"rdc\": true,\n          \"refer_a_member\": true,\n          \"show_transaction_contact_support\": true,\n          \"statements\": true,\n          \"transfers\": true,\n          \"trends\": \"mx\",\n          \"user_message_uploads\": true,\n          \"username\": true,\n          \"wires\": true,\n          \"stop_payment\": true,\n          \"beneficiaries\": true,\n          \"naf_app_management\": true,\n          \"profile_switcher\": true,\n          \"mobile_login_switcher\": true,\n          \"limits\": {\n            \"immediate_rdc\": {\n              \"3\": 7000\n            },\n            \"immediate_ach_pull\": {\n              \"1\": 1000\n            },\n            \"ach_pull\": {\n              \"1\": 500,\n              \"30\": 5500\n            },\n            \"ach_push\": {\n              \"3\": 5000\n            }\n          },\n          \"indigo.Account_permission\": \"*\",\n          \"indigo.AchTransfer_permission\": \"*\",\n          \"integrations.base.Card_permission\": \"*\",\n          \"indigo.ExternalAccount_permission\": \"*\",\n          \"indigo.IntraInstitutionTransfer_permission\": \"*\",\n          \"indigo.MemberFriend_permission\": \"*\",\n          \"integrations.base.Payee_permission\": \"*\",\n          \"integrations.base.Payment_permission\": \"*\",\n          \"indigo.Transaction_permission\": \"*\",\n          \"indigo.WireTransaction_permission\": \"*\",\n          \"integrations.documents_permission\": \"*\",\n          \"integrations.rdc_permission\": \"*\",\n          \"can_change_username\": false,\n          \"can_change_estatements\": false,\n          \"zelle\": false,\n          \"hold_days\": {\n            \"rdc_hold_days\": 4,\n            \"ach_hold_days\": 2\n          }\n        },\n        \"org_uuid\": null,\n        \"org_role\": null,\n        \"org_name\": \"\",\n        \"business_permissions\": [],\n        \"dual_approval_required\": false,\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"is_narmi\": false,\n        \"date_joined\": \"2018-03-26 14:43:59.004000+00:00\",\n        \"last_login\": \"2024-06-11 15:05:32.862565+00:00\",\n        \"segment\": \"\",\n        \"metadata\": {},\n        \"has_username\": true,\n        \"has_password\": true,\n        \"has_accepted_latest_terms\": true,\n        \"requires_enrollment_code_verification\": false,\n        \"enabled_estatements_at\": \"2024-04-29T16:09:32.780547-04:00\",\n        \"is_converting\": false,\n        \"has_permitted_device\": true,\n        \"has_backup_codes\": false\n      },\n      \"created_at\": \"2024-05-16T13:48:03.513579-04:00\",\n      \"updated_at\": \"2024-05-16T13:48:03.513586-04:00\"\n    },\n    {\n      \"body\": \"[Attached File](https://bucket.s3-local.amazonaws.com/original/support/ba602c5309ba41f28c7c63853785a607/file.txt?AWSAccessKeyId=&Expires=1718123455&Signature=1FDXjiXiRaJxPpCE%2FVP%2B045R7NQ%3D)\",\n      \"url\": \"https://bucket.s3-local.amazonaws.com/original/support/ba602c5309ba41f28c7c63853785a607/file.txt\",\n      \"internal_note\": false,\n      \"id\": \"54887f55-f8fe-435c-84b9-53b4d442092d\",\n      \"thread_id\": \"519f5228-0b72-4cd2-8e8d-e99869678dfb\",\n      \"author\": {\n        \"email\": \"\",\n        \"core_provided_email\": null,\n        \"username\": \"\",\n        \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n        \"institution_user_identifier\": \"\",\n        \"updated_at\": \"2024-04-30T20:16:46.861043+00:00\",\n        \"addresses\": [],\n        \"phone_numbers\": [],\n        \"first_name\": \"Jane\",\n        \"last_name\": \"\",\n        \"paper_statements\": null,\n        \"user_category\": \"personal\",\n        \"features\": {\n          \"ach\": true,\n          \"allow_olb_device_remembering\": true,\n          \"check_order\": true,\n          \"edit_scheduled_transfers\": true,\n          \"stop_payment_by_range\": true,\n          \"top_menu\": {\n            \"Dashboard\": {\n              \"url\": \"/dashboard\"\n            },\n            \"Accounts\": {\n              \"accounts\": true\n            },\n            \"Documents\": {\n              \"url\": \"/statements\"\n            },\n            \"Support\": {\n              \"url\": \"/support\"\n            },\n            \"Tools\": {\n              \"menu\": {\n                \"Transfer funds\": {\n                  \"url\": \"/transfer\"\n                },\n                \"Transactions\": {\n                  \"url\": \"/transactions\"\n                },\n                \"Cards\": {\n                  \"url\": \"/cards\"\n                },\n                \"Trends\": {\n                  \"url\": \"/trends\"\n                },\n                \"Automatic savings\": {\n                  \"url\": \"/automatic\"\n                },\n                \"Manage users\": {\n                  \"url\": \"/access_manager\",\n                  \"feature_flag\": \"indigo.OrganizationUser_permission\"\n                },\n                \"List all NAF options\": {\n                  \"naf\": true\n                }\n              }\n            }\n          },\n          \"internal_transfers\": true,\n          \"account_membership\": true,\n          \"address_change\": true,\n          \"alerts\": true,\n          \"allpoint_locator_atm\": true,\n          \"automatic_savings\": \"OPT_IN\",\n          \"bill_pay\": \"ipay\",\n          \"billshark\": true,\n          \"business_account_opening\": true,\n          \"personal_banking\": true,\n          \"business_banking\": true,\n          \"cards\": true,\n          \"coop_locator_atm\": true,\n          \"coop_locator_branch\": true,\n          \"core_based_alerts\": false,\n          \"existing_user_account_opening\": true,\n          \"existing_user_dao\": true,\n          \"instant_account_verification\": \"mx\",\n          \"insurance\": \"lemonade\",\n          \"login_and_enroll_blocked\": false,\n          \"mobile_banking\": true,\n          \"moneypass_locator_atm\": true,\n          \"deposit_sso\": true,\n          \"new_account_opening\": true,\n          \"offers\": true,\n          \"offline_verification\": true,\n          \"online_banking\": true,\n          \"p2p\": [\n            \"m2m\"\n          ],\n          \"paperless_statement_enrollment\": true,\n          \"paperless_statement_unenrollment\": false,\n          \"phone_change\": true,\n          \"push_notifications\": true,\n          \"rdc\": true,\n          \"refer_a_member\": true,\n          \"show_transaction_contact_support\": true,\n          \"statements\": true,\n          \"transfers\": true,\n          \"trends\": \"mx\",\n          \"user_message_uploads\": true,\n          \"username\": true,\n          \"wires\": true,\n          \"stop_payment\": true,\n          \"beneficiaries\": true,\n          \"naf_app_management\": true,\n          \"profile_switcher\": true,\n          \"mobile_login_switcher\": true,\n          \"limits\": {\n            \"immediate_rdc\": {\n              \"3\": 7000\n            },\n            \"immediate_ach_pull\": {\n              \"1\": 1000\n            },\n            \"ach_pull\": {\n              \"1\": 500,\n              \"30\": 5500\n            },\n            \"ach_push\": {\n              \"3\": 5000\n            }\n          },\n          \"indigo.Account_permission\": \"*\",\n          \"indigo.AchTransfer_permission\": \"*\",\n          \"integrations.base.Card_permission\": \"*\",\n          \"indigo.ExternalAccount_permission\": \"*\",\n          \"indigo.IntraInstitutionTransfer_permission\": \"*\",\n          \"indigo.MemberFriend_permission\": \"*\",\n          \"integrations.base.Payee_permission\": \"*\",\n          \"integrations.base.Payment_permission\": \"*\",\n          \"indigo.Transaction_permission\": \"*\",\n          \"indigo.WireTransaction_permission\": \"*\",\n          \"integrations.documents_permission\": \"*\",\n          \"integrations.rdc_permission\": \"*\",\n          \"can_change_username\": false,\n          \"can_change_estatements\": false,\n          \"zelle\": false,\n          \"hold_days\": {\n            \"rdc_hold_days\": 4,\n            \"ach_hold_days\": 2\n          }\n        },\n        \"org_uuid\": null,\n        \"org_role\": null,\n        \"org_name\": \"\",\n        \"business_permissions\": [],\n        \"dual_approval_required\": false,\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"is_narmi\": false,\n        \"date_joined\": \"2018-03-26 14:43:59.004000+00:00\",\n        \"last_login\": \"2024-06-11 15:05:32.862565+00:00\",\n        \"segment\": \"\",\n        \"metadata\": {},\n        \"has_username\": true,\n        \"has_password\": true,\n        \"has_accepted_latest_terms\": true,\n        \"requires_enrollment_code_verification\": false,\n        \"enabled_estatements_at\": \"2024-04-29T16:09:32.780547-04:00\",\n        \"is_converting\": false,\n        \"has_permitted_device\": true,\n        \"has_backup_codes\": false\n      },\n      \"created_at\": \"2019-04-26T19:36:29.570000-04:00\",\n      \"updated_at\": \"2024-06-11T11:15:04.367456-04:00\"\n    },\n    {\n      \"body\": \"Hi Jack - We don't currently offer a home equity loan. We are always looking for ways to improve and I'll log your inquiry so we know that it would be a welcomed addition.\",\n      \"internal_note\": false,\n      \"id\": \"f69622aa-a2cc-4d1d-9624-fd16512357ab\",\n      \"thread_id\": \"519a5228-0b72-4cd2-8e8d-e99869678dfb\",\n      \"author\": {\n        \"email\": \"\",\n        \"core_provided_email\": null,\n        \"username\": \"\",\n        \"id\": \"8e0b92dd-ee33-4f64-a376-502c78ae88e7\",\n        \"institution_user_identifier\": \"\",\n        \"updated_at\": \"2018-11-02T03:29:18.317000+00:00\",\n        \"addresses\": [],\n        \"phone_numbers\": [],\n        \"first_name\": \"John\",\n        \"last_name\": \"\",\n        \"paper_statements\": null,\n        \"user_category\": \"personal\",\n        \"features\": {\n          \"ach\": true,\n          \"allow_olb_device_remembering\": true,\n          \"check_order\": true,\n          \"edit_scheduled_transfers\": true,\n          \"stop_payment_by_range\": true,\n          \"top_menu\": \"default\",\n          \"internal_transfers\": true,\n          \"account_membership\": true,\n          \"address_change\": true,\n          \"alerts\": true,\n          \"allpoint_locator_atm\": true,\n          \"automatic_savings\": \"OPT_IN\",\n          \"bill_pay\": \"ipay\",\n          \"billshark\": true,\n          \"business_account_opening\": true,\n          \"personal_banking\": true,\n          \"business_banking\": true,\n          \"cards\": true,\n          \"coop_locator_atm\": true,\n          \"coop_locator_branch\": true,\n          \"core_based_alerts\": false,\n          \"existing_user_account_opening\": true,\n          \"existing_user_dao\": true,\n          \"instant_account_verification\": \"mx\",\n          \"insurance\": \"lemonade\",\n          \"login_and_enroll_blocked\": true,\n          \"mobile_banking\": true,\n          \"moneypass_locator_atm\": true,\n          \"deposit_sso\": true,\n          \"new_account_opening\": true,\n          \"offers\": true,\n          \"offline_verification\": true,\n          \"online_banking\": true,\n          \"p2p\": [\n            \"m2m\"\n          ],\n          \"paperless_statement_enrollment\": true,\n          \"paperless_statement_unenrollment\": false,\n          \"phone_change\": true,\n          \"push_notifications\": true,\n          \"rdc\": true,\n          \"refer_a_member\": true,\n          \"show_transaction_contact_support\": true,\n          \"statements\": true,\n          \"transfers\": true,\n          \"trends\": \"mx\",\n          \"user_message_uploads\": true,\n          \"username\": true,\n          \"wires\": true,\n          \"stop_payment\": true,\n          \"beneficiaries\": true,\n          \"naf_app_management\": true,\n          \"profile_switcher\": true,\n          \"mobile_login_switcher\": true\n        },\n        \"org_uuid\": null,\n        \"org_role\": null,\n        \"org_name\": \"\",\n        \"business_permissions\": [],\n        \"dual_approval_required\": false,\n        \"is_staff\": true,\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"is_narmi\": false,\n        \"date_joined\": \"2018-10-26 19:55:19.777000+00:00\",\n        \"last_login\": \"2020-05-18 15:24:21.589000+00:00\",\n        \"segment\": \"\",\n        \"metadata\": {},\n        \"has_username\": true,\n        \"has_password\": true,\n        \"has_accepted_latest_terms\": false,\n        \"requires_enrollment_code_verification\": false,\n        \"enabled_estatements_at\": null,\n        \"is_converting\": false,\n        \"has_permitted_device\": true,\n        \"has_backup_codes\": false\n      },\n      \"created_at\": \"2018-11-13T14:55:15.144000-05:00\",\n      \"updated_at\": \"2018-11-13T14:55:15.144000-05:00\"\n    },\n    {\n      \"body\": \"Hi Jane - Sorry to hear about the card. I've gone ahead and cancelled the card and sent a new one to the following address:\\r\\n\\r\\n3700 O St NW\\r\\nWashington, DC 20007\\r\\n\\r\\nPlease let me know if I can do anything else to help.\",\n      \"internal_note\": false,\n      \"id\": \"5089770e-bb97-4df3-9f01-6e3949971825\",\n      \"thread_id\": \"519f5228-0b72-4cd2-8e8d-e99869678dfb\",\n      \"author\": {\n        \"email\": \"\",\n        \"core_provided_email\": null,\n        \"username\": \"\",\n        \"id\": \"8e0b92dd-ee33-4f64-a376-502c78ae88e7\",\n        \"institution_user_identifier\": \"\",\n        \"updated_at\": \"2018-11-02T03:29:18.317000+00:00\",\n        \"addresses\": [],\n        \"phone_numbers\": [],\n        \"first_name\": \"John\",\n        \"last_name\": \"\",\n        \"paper_statements\": null,\n        \"user_category\": \"personal\",\n        \"features\": {\n          \"ach\": true,\n          \"allow_olb_device_remembering\": true,\n          \"check_order\": true,\n          \"edit_scheduled_transfers\": true,\n          \"stop_payment_by_range\": true,\n          \"top_menu\": \"default\",\n          \"internal_transfers\": true,\n          \"account_membership\": true,\n          \"address_change\": true,\n          \"alerts\": true,\n          \"allpoint_locator_atm\": true,\n          \"automatic_savings\": \"OPT_IN\",\n          \"bill_pay\": \"ipay\",\n          \"billshark\": true,\n          \"business_account_opening\": true,\n          \"personal_banking\": true,\n          \"business_banking\": true,\n          \"cards\": true,\n          \"coop_locator_atm\": true,\n          \"coop_locator_branch\": true,\n          \"core_based_alerts\": false,\n          \"existing_user_account_opening\": true,\n          \"existing_user_dao\": true,\n          \"instant_account_verification\": \"mx\",\n          \"insurance\": \"lemonade\",\n          \"login_and_enroll_blocked\": true,\n          \"mobile_banking\": true,\n          \"moneypass_locator_atm\": true,\n          \"deposit_sso\": true,\n          \"new_account_opening\": true,\n          \"offers\": true,\n          \"offline_verification\": true,\n          \"online_banking\": true,\n          \"p2p\": [\n            \"m2m\"\n          ],\n          \"paperless_statement_enrollment\": true,\n          \"paperless_statement_unenrollment\": false,\n          \"phone_change\": true,\n          \"push_notifications\": true,\n          \"rdc\": true,\n          \"refer_a_member\": true,\n          \"show_transaction_contact_support\": true,\n          \"statements\": true,\n          \"transfers\": true,\n          \"trends\": \"mx\",\n          \"user_message_uploads\": true,\n          \"username\": true,\n          \"wires\": true,\n          \"stop_payment\": true,\n          \"beneficiaries\": true,\n          \"naf_app_management\": true,\n          \"profile_switcher\": true,\n          \"mobile_login_switcher\": true\n        },\n        \"org_uuid\": null,\n        \"org_role\": null,\n        \"org_name\": \"\",\n        \"business_permissions\": [],\n        \"dual_approval_required\": false,\n        \"is_staff\": true,\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"is_narmi\": false,\n        \"date_joined\": \"2018-10-26 19:55:19.777000+00:00\",\n        \"last_login\": \"2020-05-18 15:24:21.589000+00:00\",\n        \"segment\": \"\",\n        \"metadata\": {},\n        \"has_username\": true,\n        \"has_password\": true,\n        \"has_accepted_latest_terms\": false,\n        \"requires_enrollment_code_verification\": false,\n        \"enabled_estatements_at\": null,\n        \"is_converting\": false,\n        \"has_permitted_device\": true,\n        \"has_backup_codes\": false\n      },\n      \"created_at\": \"2018-11-10T14:21:38.012000-05:00\",\n      \"updated_at\": \"2018-11-10T14:21:38.012000-05:00\"\n    },\n    {\n      \"body\": \"Hi - As I previously mentioned, I am currently traveling in Paris. I unfortunately lost my card. Could you please cancel my card and mail me a new card to the account on file.\\r\\n\\r\\nThanks,\\r\\n\\r\\nJane\",\n      \"internal_note\": false,\n      \"id\": \"4b53fc58-86b1-453a-9086-607216df1302\",\n      \"thread_id\": \"519f5228-0b72-4cd2-8e8d-e99869678dfb\",\n      \"author\": {\n        \"email\": \"demo@narmitech.com\",\n        \"core_provided_email\": null,\n        \"username\": \"testuser\",\n        \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n        \"institution_user_identifier\": \"\",\n        \"updated_at\": \"2024-04-30T20:16:46.861043+00:00\",\n        \"addresses\": [],\n        \"phone_numbers\": [],\n        \"first_name\": \"\",\n        \"last_name\": \"\",\n        \"paper_statements\": null,\n        \"user_category\": \"personal\",\n        \"features\": {\n          \"ach\": true,\n          \"allow_olb_device_remembering\": true,\n          \"check_order\": true,\n          \"edit_scheduled_transfers\": true,\n          \"stop_payment_by_range\": true,\n          \"top_menu\": {\n            \"Dashboard\": {\n              \"url\": \"/dashboard\"\n            },\n            \"Accounts\": {\n              \"accounts\": true\n            },\n            \"Documents\": {\n              \"url\": \"/statements\"\n            },\n            \"Support\": {\n              \"url\": \"/support\"\n            },\n            \"Tools\": {\n              \"menu\": {\n                \"Transfer funds\": {\n                  \"url\": \"/transfer\"\n                },\n                \"Transactions\": {\n                  \"url\": \"/transactions\"\n                },\n                \"Cards\": {\n                  \"url\": \"/cards\"\n                },\n                \"Trends\": {\n                  \"url\": \"/trends\"\n                },\n                \"Automatic savings\": {\n                  \"url\": \"/automatic\"\n                },\n                \"Manage users\": {\n                  \"url\": \"/access_manager\",\n                  \"feature_flag\": \"indigo.OrganizationUser_permission\"\n                },\n                \"List all NAF options\": {\n                  \"naf\": true\n                }\n              }\n            }\n          },\n          \"internal_transfers\": true,\n          \"account_membership\": true,\n          \"address_change\": true,\n          \"alerts\": true,\n          \"allpoint_locator_atm\": true,\n          \"automatic_savings\": \"OPT_IN\",\n          \"bill_pay\": \"ipay\",\n          \"billshark\": true,\n          \"business_account_opening\": true,\n          \"personal_banking\": true,\n          \"business_banking\": true,\n          \"cards\": true,\n          \"coop_locator_atm\": true,\n          \"coop_locator_branch\": true,\n          \"core_based_alerts\": false,\n          \"existing_user_account_opening\": true,\n          \"existing_user_dao\": true,\n          \"instant_account_verification\": \"mx\",\n          \"insurance\": \"lemonade\",\n          \"login_and_enroll_blocked\": false,\n          \"mobile_banking\": true,\n          \"moneypass_locator_atm\": true,\n          \"deposit_sso\": true,\n          \"new_account_opening\": true,\n          \"offers\": true,\n          \"offline_verification\": true,\n          \"online_banking\": true,\n          \"p2p\": [\n            \"m2m\"\n          ],\n          \"paperless_statement_enrollment\": true,\n          \"paperless_statement_unenrollment\": false,\n          \"phone_change\": true,\n          \"push_notifications\": true,\n          \"rdc\": true,\n          \"refer_a_member\": true,\n          \"show_transaction_contact_support\": true,\n          \"statements\": true,\n          \"transfers\": true,\n          \"trends\": \"mx\",\n          \"user_message_uploads\": true,\n          \"username\": true,\n          \"wires\": true,\n          \"stop_payment\": true,\n          \"beneficiaries\": true,\n          \"naf_app_management\": true,\n          \"profile_switcher\": true,\n          \"mobile_login_switcher\": true,\n          \"limits\": {\n            \"immediate_rdc\": {\n              \"3\": 7000\n            },\n            \"immediate_ach_pull\": {\n              \"1\": 1000\n            },\n            \"ach_pull\": {\n              \"1\": 500,\n              \"30\": 5500\n            },\n            \"ach_push\": {\n              \"3\": 5000\n            }\n          },\n          \"indigo.Account_permission\": \"*\",\n          \"indigo.AchTransfer_permission\": \"*\",\n          \"integrations.base.Card_permission\": \"*\",\n          \"indigo.ExternalAccount_permission\": \"*\",\n          \"indigo.IntraInstitutionTransfer_permission\": \"*\",\n          \"indigo.MemberFriend_permission\": \"*\",\n          \"integrations.base.Payee_permission\": \"*\",\n          \"integrations.base.Payment_permission\": \"*\",\n          \"indigo.Transaction_permission\": \"*\",\n          \"indigo.WireTransaction_permission\": \"*\",\n          \"integrations.documents_permission\": \"*\",\n          \"integrations.rdc_permission\": \"*\",\n          \"can_change_username\": false,\n          \"can_change_estatements\": false,\n          \"zelle\": false,\n          \"hold_days\": {\n            \"rdc_hold_days\": 4,\n            \"ach_hold_days\": 2\n          }\n        },\n        \"org_uuid\": null,\n        \"org_role\": null,\n        \"org_name\": \"\",\n        \"business_permissions\": [],\n        \"dual_approval_required\": false,\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"is_narmi\": false,\n        \"date_joined\": \"2018-03-26 14:43:59.004000+00:00\",\n        \"last_login\": \"2024-06-11 15:05:32.862565+00:00\",\n        \"segment\": \"\",\n        \"metadata\": {},\n        \"has_username\": true,\n        \"has_password\": true,\n        \"has_accepted_latest_terms\": true,\n        \"requires_enrollment_code_verification\": false,\n        \"enabled_estatements_at\": \"2024-04-29T16:09:32.780547-04:00\",\n        \"is_converting\": false,\n        \"has_permitted_device\": true,\n        \"has_backup_codes\": false\n      },\n      \"created_at\": \"2018-11-10T14:18:59.306000-05:00\",\n      \"updated_at\": \"2018-11-10T14:18:59.306000-05:00\"\n    },\n    {\n      \"body\": \"Hi Jane - I've updated your card records so that you'll be able to use it while in Paris. Have a great trip!\",\n      \"internal_note\": false,\n      \"id\": \"897e9ed7-c57a-4633-8613-638bfc25d76b\",\n      \"thread_id\": \"1cde160e-592d-4ed6-94de-9460861793ba\",\n      \"author\": {\n        \"email\": \"\",\n        \"core_provided_email\": null,\n        \"username\": \"\",\n        \"id\": \"8e0b92dd-ee33-4f64-a376-502c78ae88e7\",\n        \"institution_user_identifier\": \"\",\n        \"updated_at\": \"2018-11-02T03:29:18.317000+00:00\",\n        \"addresses\": [],\n        \"phone_numbers\": [],\n        \"first_name\": \"John\",\n        \"last_name\": \"\",\n        \"paper_statements\": null,\n        \"user_category\": \"personal\",\n        \"features\": {\n          \"ach\": true,\n          \"allow_olb_device_remembering\": true,\n          \"check_order\": true,\n          \"edit_scheduled_transfers\": true,\n          \"stop_payment_by_range\": true,\n          \"top_menu\": \"default\",\n          \"internal_transfers\": true,\n          \"account_membership\": true,\n          \"address_change\": true,\n          \"alerts\": true,\n          \"allpoint_locator_atm\": true,\n          \"automatic_savings\": \"OPT_IN\",\n          \"bill_pay\": \"ipay\",\n          \"billshark\": true,\n          \"business_account_opening\": true,\n          \"personal_banking\": true,\n          \"business_banking\": true,\n          \"cards\": true,\n          \"coop_locator_atm\": true,\n          \"coop_locator_branch\": true,\n          \"core_based_alerts\": false,\n          \"existing_user_account_opening\": true,\n          \"existing_user_dao\": true,\n          \"instant_account_verification\": \"mx\",\n          \"insurance\": \"lemonade\",\n          \"login_and_enroll_blocked\": true,\n          \"mobile_banking\": true,\n          \"moneypass_locator_atm\": true,\n          \"deposit_sso\": true,\n          \"new_account_opening\": true,\n          \"offers\": true,\n          \"offline_verification\": true,\n          \"online_banking\": true,\n          \"p2p\": [\n            \"m2m\"\n          ],\n          \"paperless_statement_enrollment\": true,\n          \"paperless_statement_unenrollment\": false,\n          \"phone_change\": true,\n          \"push_notifications\": true,\n          \"rdc\": true,\n          \"refer_a_member\": true,\n          \"show_transaction_contact_support\": true,\n          \"statements\": true,\n          \"transfers\": true,\n          \"trends\": \"mx\",\n          \"user_message_uploads\": true,\n          \"username\": true,\n          \"wires\": true,\n          \"stop_payment\": true,\n          \"beneficiaries\": true,\n          \"naf_app_management\": true,\n          \"profile_switcher\": true,\n          \"mobile_login_switcher\": true\n        },\n        \"org_uuid\": null,\n        \"org_role\": null,\n        \"org_name\": \"\",\n        \"business_permissions\": [],\n        \"dual_approval_required\": false,\n        \"is_staff\": true,\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"is_narmi\": false,\n        \"date_joined\": \"2018-10-26 19:55:19.777000+00:00\",\n        \"last_login\": \"2020-05-18 15:24:21.589000+00:00\",\n        \"segment\": \"\",\n        \"metadata\": {},\n        \"has_username\": true,\n        \"has_password\": true,\n        \"has_accepted_latest_terms\": false,\n        \"requires_enrollment_code_verification\": false,\n        \"enabled_estatements_at\": null,\n        \"is_converting\": false,\n        \"has_permitted_device\": true,\n        \"has_backup_codes\": false\n      },\n      \"created_at\": \"2018-10-27T13:37:22.971000-04:00\",\n      \"updated_at\": \"2018-10-27T13:37:22.971000-04:00\"\n    },\n    {\n      \"body\": \"Hi - I will be traveling to Paris from November 10th to the 15th. Can you please make sure to put a travel alert on my card.\",\n      \"internal_note\": false,\n      \"id\": \"c3de4cec-c98b-43d8-a240-8cfe8bff0fff\",\n      \"thread_id\": \"1cde160e-592d-4ed6-94de-9460861793ba\",\n      \"author\": {\n        \"email\": \"demo@narmitech.com\",\n        \"core_provided_email\": null,\n        \"username\": \"testuser\",\n        \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n        \"institution_user_identifier\": \"\",\n        \"updated_at\": \"2024-04-30T20:16:46.861043+00:00\",\n        \"addresses\": [],\n        \"phone_numbers\": [],\n        \"first_name\": \"\",\n        \"last_name\": \"\",\n        \"paper_statements\": null,\n        \"user_category\": \"personal\",\n        \"features\": {\n          \"ach\": true,\n          \"allow_olb_device_remembering\": true,\n          \"check_order\": true,\n          \"edit_scheduled_transfers\": true,\n          \"stop_payment_by_range\": true,\n          \"top_menu\": {\n            \"Dashboard\": {\n              \"url\": \"/dashboard\"\n            },\n            \"Accounts\": {\n              \"accounts\": true\n            },\n            \"Documents\": {\n              \"url\": \"/statements\"\n            },\n            \"Support\": {\n              \"url\": \"/support\"\n            },\n            \"Tools\": {\n              \"menu\": {\n                \"Transfer funds\": {\n                  \"url\": \"/transfer\"\n                },\n                \"Transactions\": {\n                  \"url\": \"/transactions\"\n                },\n                \"Cards\": {\n                  \"url\": \"/cards\"\n                },\n                \"Trends\": {\n                  \"url\": \"/trends\"\n                },\n                \"Automatic savings\": {\n                  \"url\": \"/automatic\"\n                },\n                \"Manage users\": {\n                  \"url\": \"/access_manager\",\n                  \"feature_flag\": \"indigo.OrganizationUser_permission\"\n                },\n                \"List all NAF options\": {\n                  \"naf\": true\n                }\n              }\n            }\n          },\n          \"internal_transfers\": true,\n          \"account_membership\": true,\n          \"address_change\": true,\n          \"alerts\": true,\n          \"allpoint_locator_atm\": true,\n          \"automatic_savings\": \"OPT_IN\",\n          \"bill_pay\": \"ipay\",\n          \"billshark\": true,\n          \"business_account_opening\": true,\n          \"personal_banking\": true,\n          \"business_banking\": true,\n          \"cards\": true,\n          \"coop_locator_atm\": true,\n          \"coop_locator_branch\": true,\n          \"core_based_alerts\": false,\n          \"existing_user_account_opening\": true,\n          \"existing_user_dao\": true,\n          \"instant_account_verification\": \"mx\",\n          \"insurance\": \"lemonade\",\n          \"login_and_enroll_blocked\": false,\n          \"mobile_banking\": true,\n          \"moneypass_locator_atm\": true,\n          \"deposit_sso\": true,\n          \"new_account_opening\": true,\n          \"offers\": true,\n          \"offline_verification\": true,\n          \"online_banking\": true,\n          \"p2p\": [\n            \"m2m\"\n          ],\n          \"paperless_statement_enrollment\": true,\n          \"paperless_statement_unenrollment\": false,\n          \"phone_change\": true,\n          \"push_notifications\": true,\n          \"rdc\": true,\n          \"refer_a_member\": true,\n          \"show_transaction_contact_support\": true,\n          \"statements\": true,\n          \"transfers\": true,\n          \"trends\": \"mx\",\n          \"user_message_uploads\": true,\n          \"username\": true,\n          \"wires\": true,\n          \"stop_payment\": true,\n          \"beneficiaries\": true,\n          \"naf_app_management\": true,\n          \"profile_switcher\": true,\n          \"mobile_login_switcher\": true,\n          \"limits\": {\n            \"immediate_rdc\": {\n              \"3\": 7000\n            },\n            \"immediate_ach_pull\": {\n              \"1\": 1000\n            },\n            \"ach_pull\": {\n              \"1\": 500,\n              \"30\": 5500\n            },\n            \"ach_push\": {\n              \"3\": 5000\n            }\n          },\n          \"indigo.Account_permission\": \"*\",\n          \"indigo.AchTransfer_permission\": \"*\",\n          \"integrations.base.Card_permission\": \"*\",\n          \"indigo.ExternalAccount_permission\": \"*\",\n          \"indigo.IntraInstitutionTransfer_permission\": \"*\",\n          \"indigo.MemberFriend_permission\": \"*\",\n          \"integrations.base.Payee_permission\": \"*\",\n          \"integrations.base.Payment_permission\": \"*\",\n          \"indigo.Transaction_permission\": \"*\",\n          \"indigo.WireTransaction_permission\": \"*\",\n          \"integrations.documents_permission\": \"*\",\n          \"integrations.rdc_permission\": \"*\",\n          \"can_change_username\": false,\n          \"can_change_estatements\": false,\n          \"zelle\": false,\n          \"hold_days\": {\n            \"rdc_hold_days\": 4,\n            \"ach_hold_days\": 2\n          }\n        },\n        \"org_uuid\": null,\n        \"org_role\": null,\n        \"org_name\": \"\",\n        \"business_permissions\": [],\n        \"dual_approval_required\": false,\n        \"is_staff\": false,\n        \"is_active\": true,\n        \"is_superuser\": false,\n        \"is_narmi\": false,\n        \"date_joined\": \"2018-03-26 14:43:59.004000+00:00\",\n        \"last_login\": \"2024-06-11 15:05:32.862565+00:00\",\n        \"segment\": \"\",\n        \"metadata\": {},\n        \"has_username\": true,\n        \"has_password\": true,\n        \"has_accepted_latest_terms\": true,\n        \"requires_enrollment_code_verification\": false,\n        \"enabled_estatements_at\": \"2024-04-29T16:09:32.780547-04:00\",\n        \"is_converting\": false,\n        \"has_permitted_device\": true,\n        \"has_backup_codes\": false\n      },\n      \"created_at\": \"2018-10-27T12:38:51.389000-04:00\",\n      \"updated_at\": \"2018-10-27T12:38:51.389000-04:00\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07709a3d-b996-42e1-9ce5-ded4f517fa0d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "threads",
+                    ":thread_uuids",
+                    "messages",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "thread_uuids",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"No Thread matches the given query.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "502e156f-971c-4ab9-98f2-cca5f12f9ba3",
+          "name": "Create a message in a thread",
+          "request": {
+            "name": "Create a message in a thread",
+            "description": {
+              "content": "Create a message on the specified support message thread as the authenticated user. \n\nDefine either `body` or `url` in the request to create a message or attachment, respectively.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "threads",
+                ":thread_uuids",
+                "messages",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "thread_uuids",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "body",
+                  "value": "<string>",
+                  "description": "Text content of the message; should not be specified with the `file` parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "signature",
+                  "value": "<string>",
+                  "description": "File to upload to this message. Must include both 'url' and 'signature'."
+                },
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "File to upload to this message. Must include both 'url' and 'signature'."
+                },
+                {
+                  "disabled": false,
+                  "key": "internal_note",
+                  "value": "false",
+                  "description": "Text which should only be visible to FI staff members."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5188909d-2378-43cb-846a-bf329a11c4b0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "threads",
+                    ":thread_uuids",
+                    "messages",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "thread_uuids",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Text content of the message; should not be specified with the `file` parameter.",
+                        "type": "text/plain"
+                      },
+                      "key": "body",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File to upload to this message. Must include both 'url' and 'signature'.",
+                        "type": "text/plain"
+                      },
+                      "key": "signature",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File to upload to this message. Must include both 'url' and 'signature'.",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Text which should only be visible to FI staff members.",
+                        "type": "text/plain"
+                      },
+                      "key": "internal_note",
+                      "value": "false"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": {\n    \"body\": \"hello world\",\n    \"internal_note\": false,\n    \"id\": \"6092644e-8d2a-4a75-b1db-d4f2012548a2\",\n    \"thread_id\": \"014b6275-3abd-48b9-ac6a-3ab261a3ce8d\",\n    \"author\": {\n      \"email\": \"johndoe_1@emailpalace.com\",\n      \"core_provided_email\": null,\n      \"username\": \"test_user_1\",\n      \"id\": \"1a1947ab-f407-4f7d-a17e-35103c7d91b9\",\n      \"institution_user_identifier\": \"\",\n      \"updated_at\": \"2024-06-11T17:42:55.207633+00:00\",\n      \"addresses\": [],\n      \"phone_numbers\": [],\n      \"first_name\": \"\",\n      \"last_name\": \"\",\n      \"paper_statements\": null,\n      \"user_category\": \"personal\",\n      \"features\": {\n        \"ach\": false,\n        \"allow_olb_device_remembering\": true,\n        \"check_order\": true,\n        \"edit_scheduled_transfers\": false,\n        \"stop_payment_by_range\": true,\n        \"top_menu\": {\n          \"Dashboard\": {\n            \"url\": \"/dashboard\"\n          },\n          \"Accounts\": {\n            \"accounts\": true\n          },\n          \"Transfer\": {\n            \"url\": \"/transfer\",\n            \"feature_flag\": [\n              \"internal_transfers\",\n              \"ach\",\n              \"bill_pay\",\n              \"p2p\",\n              \"wires\",\n              \"zelle\"\n            ]\n          },\n          \"Documents\": {\n            \"url\": \"/statements\",\n            \"feature_flag\": \"statements\"\n          },\n          \"Support\": {\n            \"url\": \"/support\"\n          },\n          \"Tools\": {\n            \"menu\": {\n              \"Zelle\": {\n                \"url\": \"/transfer/zelle\",\n                \"feature_flag\": \"zelle\",\n                \"superscript\": \"®\"\n              },\n              \"Cards\": {\n                \"url\": \"/cards\",\n                \"feature_flag\": \"cards\"\n              },\n              \"Trends\": {\n                \"url\": \"/trends\",\n                \"feature_flag\": \"trends\"\n              },\n              \"Automatic savings\": {\n                \"url\": \"/automatic\",\n                \"feature_flag\": \"automatic_savings\"\n              },\n              \"Manage users\": {\n                \"url\": \"/access_manager\",\n                \"feature_flag\": \"indigo.OrganizationUser_permission\"\n              },\n              \"Refer a member\": {\n                \"url\": \"/referral\",\n                \"feature_flag\": \"refer_a_member\"\n              },\n              \"Dual approvals\": {\n                \"url\": \"/approval_requests\",\n                \"feature_flag\": \"indigo.DualApprovalRequest_permission\"\n              },\n              \"List all NAF options\": {\n                \"naf\": true\n              }\n            }\n          }\n        },\n        \"internal_transfers\": false,\n        \"indigo.Account_permission\": \"*\",\n        \"indigo.AchTransfer_permission\": \"*\",\n        \"integrations.base.Card_permission\": \"*\",\n        \"indigo.ExternalAccount_permission\": \"*\",\n        \"indigo.IntraInstitutionTransfer_permission\": \"*\",\n        \"indigo.MemberFriend_permission\": \"*\",\n        \"integrations.base.Payee_permission\": \"*\",\n        \"integrations.base.Payment_permission\": \"*\",\n        \"indigo.Transaction_permission\": \"*\",\n        \"indigo.WireTransaction_permission\": \"*\",\n        \"integrations.documents_permission\": \"*\",\n        \"integrations.rdc_permission\": \"*\",\n        \"wires\": false,\n        \"bill_pay\": false,\n        \"transfers\": false,\n        \"can_change_username\": false,\n        \"stop_payment\": false,\n        \"cards\": false,\n        \"can_change_estatements\": false,\n        \"zelle\": false,\n        \"p2p\": false,\n        \"hold_days\": {\n          \"rdc_hold_days\": 2,\n          \"ach_hold_days\": 2\n        },\n        \"mobile_manage_recipients\": false\n      },\n      \"org_uuid\": null,\n      \"org_role\": null,\n      \"org_name\": \"\",\n      \"business_permissions\": [],\n      \"dual_approval_required\": false,\n      \"is_staff\": false,\n      \"is_active\": true,\n      \"is_superuser\": false,\n      \"is_narmi\": false,\n      \"date_joined\": \"2024-06-11 17:42:32.081609+00:00\",\n      \"last_login\": \"2024-05-22 17:42:32.081606+00:00\",\n      \"segment\": \"\",\n      \"metadata\": {},\n      \"has_username\": true,\n      \"has_password\": false,\n      \"has_accepted_latest_terms\": true,\n      \"requires_enrollment_code_verification\": false,\n      \"enabled_estatements_at\": \"2024-06-11T13:42:32.085474-04:00\",\n      \"is_converting\": false,\n      \"has_permitted_device\": false,\n      \"has_backup_codes\": false\n    },\n    \"created_at\": \"2024-06-11T13:42:55.336036-04:00\",\n    \"updated_at\": \"2024-06-11T13:42:55.336040-04:00\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e580618a-f174-4e5d-9870-49bd29b9d33f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "threads",
+                    ":thread_uuids",
+                    "messages",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "thread_uuids",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Text content of the message; should not be specified with the `file` parameter.",
+                        "type": "text/plain"
+                      },
+                      "key": "body",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File to upload to this message. Must include both 'url' and 'signature'.",
+                        "type": "text/plain"
+                      },
+                      "key": "signature",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File to upload to this message. Must include both 'url' and 'signature'.",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Text which should only be visible to FI staff members.",
+                        "type": "text/plain"
+                      },
+                      "key": "internal_note",
+                      "value": "false"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"No Thread matches the given query.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05d2170e-f2d5-4000-9add-3a95a966ca6b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "threads",
+                    ":thread_uuids",
+                    "messages",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "thread_uuids",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Text content of the message; should not be specified with the `file` parameter.",
+                        "type": "text/plain"
+                      },
+                      "key": "body",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File to upload to this message. Must include both 'url' and 'signature'.",
+                        "type": "text/plain"
+                      },
+                      "key": "signature",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "File to upload to this message. Must include both 'url' and 'signature'.",
+                        "type": "text/plain"
+                      },
+                      "key": "url",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Text which should only be visible to FI staff members.",
+                        "type": "text/plain"
+                      },
+                      "key": "internal_note",
+                      "value": "false"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": \"url\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cdf1256a-bdb3-4fe1-b81c-f0ac79eace69",
+          "name": "Retrieve user messages",
+          "request": {
+            "name": "Retrieve user messages",
+            "description": {
+              "content": "Fetch a specified message on the specified support message thread. This request will not return thread files (i.e. attachments).\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "threads",
+                ":thread_uuid",
+                "messages",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "thread_uuid",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "507e3e04-1dc8-4592-a68e-7087aeb4e774",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "threads",
+                    ":thread_uuid",
+                    "messages",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "thread_uuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": {\n    \"body\": \"Hi - I will be traveling to Paris from November 10th to the 15th. Can you please make sure to put a travel alert on my card.\",\n    \"internal_note\": false,\n    \"id\": \"c3de4cec-c98b-43d8-a240-8cfe8bff0fff\",\n    \"thread_id\": \"1cde160e-592d-4ed6-94de-9460861793ba\",\n    \"author\": {\n      \"email\": \"demo@narmitech.com\",\n      \"core_provided_email\": null,\n      \"username\": \"testuser\",\n      \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\",\n      \"institution_user_identifier\": \"\",\n      \"updated_at\": \"2024-04-30T20:16:46.861043+00:00\",\n      \"addresses\": [],\n      \"phone_numbers\": [],\n      \"first_name\": \"\",\n      \"last_name\": \"\",\n      \"paper_statements\": null,\n      \"user_category\": \"personal\",\n      \"features\": {\n        \"ach\": true,\n        \"allow_olb_device_remembering\": true,\n        \"check_order\": true,\n        \"edit_scheduled_transfers\": true,\n        \"stop_payment_by_range\": true,\n        \"top_menu\": {\n          \"Dashboard\": {\n            \"url\": \"/dashboard\"\n          },\n          \"Accounts\": {\n            \"accounts\": true\n          },\n          \"Documents\": {\n            \"url\": \"/statements\"\n          },\n          \"Support\": {\n            \"url\": \"/support\"\n          },\n          \"Tools\": {\n            \"menu\": {\n              \"Transfer funds\": {\n                \"url\": \"/transfer\"\n              },\n              \"Transactions\": {\n                \"url\": \"/transactions\"\n              },\n              \"Cards\": {\n                \"url\": \"/cards\"\n              },\n              \"Trends\": {\n                \"url\": \"/trends\"\n              },\n              \"Automatic savings\": {\n                \"url\": \"/automatic\"\n              },\n              \"Manage users\": {\n                \"url\": \"/access_manager\",\n                \"feature_flag\": \"indigo.OrganizationUser_permission\"\n              },\n              \"List all NAF options\": {\n                \"naf\": true\n              }\n            }\n          }\n        },\n        \"internal_transfers\": true,\n        \"account_membership\": true,\n        \"address_change\": true,\n        \"alerts\": true,\n        \"allpoint_locator_atm\": true,\n        \"automatic_savings\": \"OPT_IN\",\n        \"bill_pay\": \"ipay\",\n        \"billshark\": true,\n        \"business_account_opening\": true,\n        \"personal_banking\": true,\n        \"business_banking\": true,\n        \"cards\": true,\n        \"coop_locator_atm\": true,\n        \"coop_locator_branch\": true,\n        \"core_based_alerts\": false,\n        \"existing_user_account_opening\": true,\n        \"existing_user_dao\": true,\n        \"instant_account_verification\": \"mx\",\n        \"insurance\": \"lemonade\",\n        \"login_and_enroll_blocked\": false,\n        \"mobile_banking\": true,\n        \"moneypass_locator_atm\": true,\n        \"deposit_sso\": true,\n        \"new_account_opening\": true,\n        \"offers\": true,\n        \"offline_verification\": true,\n        \"online_banking\": true,\n        \"p2p\": [\n          \"m2m\"\n        ],\n        \"paperless_statement_enrollment\": true,\n        \"paperless_statement_unenrollment\": false,\n        \"phone_change\": true,\n        \"push_notifications\": true,\n        \"rdc\": true,\n        \"refer_a_member\": true,\n        \"show_transaction_contact_support\": true,\n        \"statements\": true,\n        \"transfers\": true,\n        \"trends\": \"mx\",\n        \"user_message_uploads\": true,\n        \"username\": true,\n        \"wires\": true,\n        \"stop_payment\": true,\n        \"beneficiaries\": true,\n        \"naf_app_management\": true,\n        \"profile_switcher\": true,\n        \"mobile_login_switcher\": true,\n        \"limits\": {\n          \"immediate_rdc\": {\n            \"3\": 7000\n          },\n          \"immediate_ach_pull\": {\n            \"1\": 1000\n          },\n          \"ach_pull\": {\n            \"1\": 500,\n            \"30\": 5500\n          },\n          \"ach_push\": {\n            \"3\": 5000\n          }\n        },\n        \"indigo.Account_permission\": \"*\",\n        \"indigo.AchTransfer_permission\": \"*\",\n        \"integrations.base.Card_permission\": \"*\",\n        \"indigo.ExternalAccount_permission\": \"*\",\n        \"indigo.IntraInstitutionTransfer_permission\": \"*\",\n        \"indigo.MemberFriend_permission\": \"*\",\n        \"integrations.base.Payee_permission\": \"*\",\n        \"integrations.base.Payment_permission\": \"*\",\n        \"indigo.Transaction_permission\": \"*\",\n        \"indigo.WireTransaction_permission\": \"*\",\n        \"integrations.documents_permission\": \"*\",\n        \"integrations.rdc_permission\": \"*\",\n        \"can_change_username\": false,\n        \"can_change_estatements\": false,\n        \"zelle\": false,\n        \"hold_days\": {\n          \"rdc_hold_days\": 4,\n          \"ach_hold_days\": 2\n        }\n      },\n      \"org_uuid\": null,\n      \"org_role\": null,\n      \"org_name\": \"\",\n      \"business_permissions\": [],\n      \"dual_approval_required\": false,\n      \"is_staff\": false,\n      \"is_active\": true,\n      \"is_superuser\": false,\n      \"is_narmi\": false,\n      \"date_joined\": \"2018-03-26T14:43:59.004000+00:00\",\n      \"last_login\": \"2024-06-11T15:05:32.862565+00:00\",\n      \"segment\": \"\",\n      \"metadata\": {},\n      \"has_username\": true,\n      \"has_password\": true,\n      \"has_accepted_latest_terms\": true,\n      \"requires_enrollment_code_verification\": false,\n      \"enabled_estatements_at\": \"2024-04-29T16:09:32.780547-04:00\",\n      \"is_converting\": false,\n      \"has_permitted_device\": true,\n      \"has_backup_codes\": false\n    },\n    \"created_at\": \"2018-10-27T12:38:51.389000-04:00\",\n    \"updated_at\": \"2018-10-27T12:38:51.389000-04:00\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a5935d7-21ed-4194-be5c-7eb01792c2a7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "threads",
+                    ":thread_uuid",
+                    "messages",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "thread_uuid",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"No Message matches the given query.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "181dba40-acea-4656-a270-fa979da722f9",
+          "name": "Retrieve a thread",
+          "request": {
+            "name": "Retrieve a thread",
+            "description": {
+              "content": "Fetch a specified support message thread.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "threads",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5957520f-1022-4f8f-b3e8-2af995a80766",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "threads",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"thread\": {\n    \"id\": \"1cde160e-592d-4ed6-94de-9460861793ba\",\n    \"subject\": \"Traveling Abroad\",\n    \"state\": \"open\",\n    \"message_preview\": \"Can you please put a travel alert on my card?\",\n    \"created_at\": \"2018-10-27T12:38:51.369000-04:00\",\n    \"updated_at\": \"2018-11-01T23:29:18.317000-04:00\",\n    \"is_read\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0e705db-5247-469c-a904-578dda8964af",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "threads",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"not_found\",\n  \"message\": \"Not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3eafead2-1ecf-4266-9000-661046fa1a47",
+          "name": "Update user's thread",
+          "request": {
+            "name": "Update user's thread",
+            "description": {
+              "content": "Mark a specified support message thread as closed or open.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "threads",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Indicates whether the thread has been closed or remains open.\n\n* `closed` - closed\n* `open` - open"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c4edc5f3-8651-4dd0-acbc-acd0f128840b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "threads",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicates whether the thread has been closed or remains open.\n\n* `closed` - closed\n* `open` - open",
+                        "type": "text/plain"
+                      },
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"thread\": {\n    \"id\": \"1cde160e-592d-4ed6-94de-9460861793ba\",\n    \"subject\": \"Traveling Abroad\",\n    \"state\": \"open\",\n    \"message_preview\": \"Can you please put a travel alert on my card?\",\n    \"created_at\": \"2018-10-27T12:38:51.369000-04:00\",\n    \"updated_at\": \"2018-11-01T23:29:18.317000-04:00\",\n    \"is_read\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "835458a9-9a58-469c-ad66-fec9f16d52ed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "threads",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicates whether the thread has been closed or remains open.\n\n* `closed` - closed\n* `open` - open",
+                        "type": "text/plain"
+                      },
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"not_found\",\n  \"message\": \"Not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ac7f30d-bf42-4a5f-8364-7d93705a60ff",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "threads",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Indicates whether the thread has been closed or remains open.\n\n* `closed` - closed\n* `open` - open",
+                        "type": "text/plain"
+                      },
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": \"state\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38b301da-411e-4355-99e7-6b990fab9a23",
+          "name": "Modify thread mark read",
+          "request": {
+            "name": "Modify thread mark read",
+            "description": {
+              "content": "Mark the specified support message thread as read.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "threads",
+                ":uuid",
+                "mark_read",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0fcc0052-f1fc-46f2-8d9a-9d42ec7d493d",
+              "name": "No response body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "threads",
+                    ":uuid",
+                    "mark_read",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a6fddddd-5641-4a1e-aad0-7a4a5897d7a2",
+    "name": "Narmi Public account balances threads API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

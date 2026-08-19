@@ -1,0 +1,1242 @@
+{
+  "item": [
+    {
+      "id": "1ba42d9e-4140-490b-ae42-5af809f1a5fd",
+      "name": "income source",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "609e2f10-97a7-4332-8a67-a1ed63a75f33",
+          "name": "Create income source",
+          "request": {
+            "name": "Create income source",
+            "description": {
+              "content": "Creates a self-reported income source instance for a user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "income_source",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "income",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "income_type",
+                  "value": "<string>",
+                  "description": "(Required) * `employed` - Employed\n* `part_time` - Part time\n* `not_employed` - Not employed\n* `self_employed` - Self employed\n* `retirement` - Retirement\n* `other` - Other"
+                },
+                {
+                  "disabled": false,
+                  "key": "industry",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "mortgage_rent",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "occupation",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "income",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "income_type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "mortgage_rent",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "industry",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "occupation",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "67471516-a526-473b-b803-f44e6af63beb",
+              "name": "Returns a newly created IncomeSource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "income_source",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"income\": 993257786,\n  \"income_type\": \"<string>\",\n  \"uuid\": \"96bb2c7a-a582-8b56-7310-cd9f0072e083\",\n  \"mortgage_rent\": 1866050946,\n  \"industry\": \"string\",\n  \"occupation\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87bbf86a-f425-4f76-a713-7f95bb7e5efa",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "income_source",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid input.\",\n  \"id\": \"invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72f0da61-e6b6-4592-94b6-3c7ea0b9bb73",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "income_source",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"permission_denied\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2d2e21c-317a-4ef6-a559-b01e1ff7aa0b",
+              "name": "Server side error. Typically an issue related to connecting to the core or a third-party API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "income_source",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8316ce93-8804-4410-a63f-5ee31f99417b",
+          "name": "Edit an income source",
+          "request": {
+            "name": "Edit an income source",
+            "description": {
+              "content": "Edits a specific self-reported income source instance referencing the UUID.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "income_source",
+                ":uuid",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "income",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "income_type",
+                  "value": "<string>",
+                  "description": "(Required) * `employed` - Employed\n* `part_time` - Part time\n* `not_employed` - Not employed\n* `self_employed` - Self employed\n* `retirement` - Retirement\n* `other` - Other"
+                },
+                {
+                  "disabled": false,
+                  "key": "industry",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "mortgage_rent",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "occupation",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "income",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "income_type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "mortgage_rent",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "industry",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "occupation",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "532d6a1b-a5d8-4566-a102-9579dfb0e5d6",
+              "name": "Returns the updated IncomeSource data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "income_source",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"income\": 993257786,\n  \"income_type\": \"<string>\",\n  \"uuid\": \"96bb2c7a-a582-8b56-7310-cd9f0072e083\",\n  \"mortgage_rent\": 1866050946,\n  \"industry\": \"string\",\n  \"occupation\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "deda4664-a1ec-4f2e-9360-6228d166f9e9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "income_source",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid input.\",\n  \"id\": \"invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb82f3e8-da1f-4e2d-b44e-da3f86a3ca9b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "income_source",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"permission_denied\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff7ce2e7-ba3e-45ca-98fa-d759f855af3f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "income_source",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"not_found\",\n  \"message\": \"Not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c95101f-e302-4e3e-8461-3d33f4f9faf0",
+              "name": "Server side error. Typically an issue related to connecting to the core or a third-party API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "income_source",
+                    ":uuid",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "income_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "mortgage_rent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "industry",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "occupation",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "09204330-ea4c-4517-80fc-727914eeabdb",
+    "name": "Narmi Public account balances income source API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Narmi Public account balances subscriptions API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/subscriptions/",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "A page number within the paginated result set."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List the authenticated user's subscriptions.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in minor unit"
+        },
+        {
+          "info": {
+            "name": "Create a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.narmi.dev/v1/subscriptions/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a subscription for the authenticated user to fire a webhook when a target object is modified.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the document"
+        },
+        {
+          "info": {
+            "name": "Retrieve a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/subscriptions/:uuid/",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fetch a specified subscription.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in minor units, or the sma"
+        },
+        {
+          "info": {
+            "name": "Update a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.sandbox.narmi.dev/v1/subscriptions/:uuid/",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a specified subscription.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in minor units, or the sm"
+        },
+        {
+          "info": {
+            "name": "Modify subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.sandbox.narmi.dev/v1/subscriptions/:uuid/",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update specific fields for a specified subscription.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in mi"
+        },
+        {
+          "info": {
+            "name": "Delete a subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.sandbox.narmi.dev/v1/subscriptions/:uuid/",
+            "params": [
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "/v2/oauth/authorize/",
+              "accessTokenUrl": "/v2/oauth/token/",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a specified subscription.\n\nSubscriptions are used to create callback events for the webhook service.\n\nWhen a subscription is created, if an event (such as the creation of a message or a user logging in) occurs, the subscription will make a call to the specified URL with details of the event.\n\nMore information including how to validate the webhook callback request can be found in the webhook events section of the documentation.\n\nAll monetary values are represented in minor units, or the sm"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

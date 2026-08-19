@@ -1,0 +1,221 @@
+{
+  "item": [
+    {
+      "id": "37c86658-f1a9-4999-bee9-a94fcfe3cba3",
+      "name": "merchants",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f2711db2-35a2-4790-9b8e-ea6a2fe2f3ed",
+          "name": "Retrieve merchants",
+          "request": {
+            "name": "Retrieve merchants",
+            "description": {
+              "content": "Retrieve a list of popular merchants for subscriptions and relevant cancellation details.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "merchants",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "960fb287-6202-4f54-93d3-e9ac300f5d59",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"merchant_name\": \"string\",\n    \"website_url\": \"http://gJVbMJMS.dqmuOe8wjy\",\n    \"cancellation_url\": \"http://btWuNLoqokhUfQlrSmAuCOYTciSpHOT.ifqbzp\",\n    \"logo_url\": \"string\",\n    \"contact_number\": \"string\",\n    \"contact_email\": \"0Hs8xT@vUcuCBzB.lul\",\n    \"cancellation_instructions\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"merchant_name\": \"string\",\n    \"website_url\": \"http://wEhZgtUCQpv.gvc7-WBBm+aqa4oiPwnOfQ7fIjU6zzW\",\n    \"cancellation_url\": \"http://ZzbawJGiZ.czxFpFCtc.+ItcGiq,GxhIAPl7Xl\",\n    \"logo_url\": \"string\",\n    \"contact_number\": \"string\",\n    \"contact_email\": \"oDZrcq@BZvcprtXnfjKcYMFnohfWeqMpx.ie\",\n    \"cancellation_instructions\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb436e89-297e-48ed-af45-46f45bc2641d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"authentication_failed\",\n  \"message\": \"Incorrect authentication credentials.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f9cad82-7021-4584-a176-8a81d91a1dad",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"service_failure_error\",\n  \"message\": \"Sorry, we were unable to process your request, please check back soon.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "75c2eea6-e94d-4529-be18-6b51b01e0879",
+    "name": "Narmi Public account balances merchants API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

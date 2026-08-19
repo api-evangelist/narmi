@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Narmi Public account balances express-checkout API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "express-checkout",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create SetupIntent for Express Checkout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sandbox.narmi.dev/v1/express-checkout/create-setup-intent/"
+          },
+          "docs": "Creates a Stripe SetupIntent for collecting payment method details via Express Checkout Element (Apple Pay, Google Pay) without immediate charge.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        },
+        {
+          "info": {
+            "name": "Get payment method details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sandbox.narmi.dev/v1/express-checkout/payment-method/:payment_method_id/",
+            "params": [
+              {
+                "name": "payment_method_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves card brand and last4 digits from a Stripe payment method for display purposes.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

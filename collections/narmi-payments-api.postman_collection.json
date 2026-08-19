@@ -1,0 +1,811 @@
+{
+  "item": [
+    {
+      "id": "0c837be0-72b1-4b7b-a316-bb0c9e4ad39e",
+      "name": "payments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "26127ec7-1042-4494-9477-acc1425e2749",
+          "name": "List bill payments",
+          "request": {
+            "name": "List bill payments",
+            "description": {
+              "content": "List the authenticated user's bill payments. Payments use a third-party service (typically iPay) and represent transfers from a user's account to a specified payee.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payments",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "* `history` - history\n* `scheduled` - scheduled"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The initial index from which to return the results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "43c41ed8-7a62-44ba-b1e5-993caeb8a0d5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"total\": 4739\n  },\n  \"links\": {\n    \"next\": \"https://narmi.example.com/v1/payments?after=400\",\n    \"prev\": \"https://narmi.example.com/v1/payments?before=200\"\n  },\n  \"payments\": [\n    {\n      \"amount\": 100,\n      \"expected_arrival_date\": \"2017-11-02\",\n      \"payee_id\": \"abc123\",\n      \"recurring_rule\": \"RRULE:FREQ=DAILY;COUNT=1\",\n      \"send_date\": \"1956-04-02\",\n      \"type\": \"check\",\n      \"id\": \"abc123\",\n      \"state\": \"pending\",\n      \"from_account_id\": \"ca5277e1-60cb-e9d9-01a1-12a3a5d67c35\"\n    },\n    {\n      \"amount\": 100,\n      \"expected_arrival_date\": \"2015-11-02\",\n      \"payee_id\": \"abc123\",\n      \"recurring_rule\": \"RRULE:FREQ=DAILY;COUNT=1\",\n      \"send_date\": \"1959-06-02\",\n      \"type\": \"check\",\n      \"id\": \"abc123\",\n      \"state\": \"pending\",\n      \"from_account_id\": \"0bd52f89-afbc-87e8-497d-7daf52b7db6f\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad83c39e-66eb-45cf-b292-a988232fe8ed",
+          "name": "Creates a bill payment",
+          "request": {
+            "name": "Creates a bill payment",
+            "description": {
+              "content": "Creates a bill payment for the authenticated user.Payments use a third-party service (typically iPay) and transfers can execute from a user's account to a specified payee.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payments",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<integer>",
+                  "description": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents)."
+                },
+                {
+                  "disabled": false,
+                  "key": "expected_arrival_date",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "payee_id",
+                  "value": "<string>",
+                  "description": "(Required) Identifies payment recipient to the payment processor. Can be fetched via the payees endpoints."
+                },
+                {
+                  "disabled": false,
+                  "key": "recurring_rule",
+                  "value": "<string>",
+                  "description": "(Required) Cadence of recurring payment, as per the RFC-5545 specification."
+                },
+                {
+                  "disabled": false,
+                  "key": "send_date",
+                  "value": "<date>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) The mode of payment, such as check or email."
+                },
+                {
+                  "disabled": false,
+                  "key": "ignore_warnings",
+                  "value": "{\"code\":\"<string>\",\"description\":\"<string>\"}",
+                  "description": "Warning codes to be suppressed during call."
+                },
+                {
+                  "disabled": false,
+                  "key": "ignore_warnings",
+                  "value": "{\"code\":\"<string>\",\"description\":\"<string>\"}",
+                  "description": "Warning codes to be suppressed during call."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9c6a0d65-a6ec-4784-aabb-11e8f7d3a1a7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "expected_arrival_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Identifies payment recipient to the payment processor. Can be fetched via the payees endpoints.",
+                        "type": "text/plain"
+                      },
+                      "key": "payee_id",
+                      "value": "abc123"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Cadence of recurring payment, as per the RFC-5545 specification.",
+                        "type": "text/plain"
+                      },
+                      "key": "recurring_rule",
+                      "value": "RRULE:FREQ=DAILY;COUNT=1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "send_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The mode of payment, such as check or email.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "check"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Warning codes to be suppressed during call.",
+                        "type": "text/plain"
+                      },
+                      "key": "ignore_warnings",
+                      "value": "{\"code\":\"<string>\",\"description\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Warning codes to be suppressed during call.",
+                        "type": "text/plain"
+                      },
+                      "key": "ignore_warnings",
+                      "value": "{\"code\":\"<string>\",\"description\":\"<string>\"}"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payment\": {\n    \"amount\": 100,\n    \"expected_arrival_date\": \"1956-05-16\",\n    \"payee_id\": \"abc123\",\n    \"recurring_rule\": \"RRULE:FREQ=DAILY;COUNT=1\",\n    \"send_date\": \"1987-01-16\",\n    \"type\": \"check\",\n    \"id\": \"abc123\",\n    \"state\": \"pending\",\n    \"from_account_id\": \"dd800631-82de-a565-5112-57b58ee10ef2\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "794b0bef-4096-4d5a-9b94-8e41041609c1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "expected_arrival_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Identifies payment recipient to the payment processor. Can be fetched via the payees endpoints.",
+                        "type": "text/plain"
+                      },
+                      "key": "payee_id",
+                      "value": "abc123"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Cadence of recurring payment, as per the RFC-5545 specification.",
+                        "type": "text/plain"
+                      },
+                      "key": "recurring_rule",
+                      "value": "RRULE:FREQ=DAILY;COUNT=1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "send_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The mode of payment, such as check or email.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "check"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Warning codes to be suppressed during call.",
+                        "type": "text/plain"
+                      },
+                      "key": "ignore_warnings",
+                      "value": "{\"code\":\"<string>\",\"description\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Warning codes to be suppressed during call.",
+                        "type": "text/plain"
+                      },
+                      "key": "ignore_warnings",
+                      "value": "{\"code\":\"<string>\",\"description\":\"<string>\"}"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"You do not have permission to perform this action.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4043cc76-00e2-4f2b-9d8c-feb7e2eb60db",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "expected_arrival_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Identifies payment recipient to the payment processor. Can be fetched via the payees endpoints.",
+                        "type": "text/plain"
+                      },
+                      "key": "payee_id",
+                      "value": "abc123"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Cadence of recurring payment, as per the RFC-5545 specification.",
+                        "type": "text/plain"
+                      },
+                      "key": "recurring_rule",
+                      "value": "RRULE:FREQ=DAILY;COUNT=1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "send_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The mode of payment, such as check or email.",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "check"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Warning codes to be suppressed during call.",
+                        "type": "text/plain"
+                      },
+                      "key": "ignore_warnings",
+                      "value": "{\"code\":\"<string>\",\"description\":\"<string>\"}"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Warning codes to be suppressed during call.",
+                        "type": "text/plain"
+                      },
+                      "key": "ignore_warnings",
+                      "value": "{\"code\":\"<string>\",\"description\":\"<string>\"}"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27d3ac6f-c104-4e15-8c17-f89a7f837fd4",
+          "name": "Delete a bill payment",
+          "request": {
+            "name": "Delete a bill payment",
+            "description": {
+              "content": "Deletes an authenticated user's bill payment via the third-party integration (typically iPay).\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payments",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ed9c3c94-8167-4c12-b844-aa713e44333a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deleted\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b95be1c6-b04c-457c-ae13-470b8695c690",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payments",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f193b9e2-b586-4b22-b10e-aae58e7b06e3",
+    "name": "Narmi Public account balances payments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

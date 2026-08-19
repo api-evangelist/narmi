@@ -1,0 +1,1022 @@
+{
+  "item": [
+    {
+      "id": "9ec6dadf-bb57-421d-a1d3-f3ee9c301ef2",
+      "name": "reports",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "27001074-4b19-4c24-a02f-07b893c88c72",
+          "name": "List BAI transaction type codes",
+          "request": {
+            "name": "List BAI transaction type codes",
+            "description": {
+              "content": "Return the institution's configured BAI transaction type codes from core metadata. Each entry includes the 3-digit BAI code, an optional description, and a direction (credit/debit/misc) derived from the code range.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "reports",
+                "bai_transaction_types",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "affa8aed-2524-4e42-8585-f80ea3200837",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reports",
+                    "bai_transaction_types",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"string\",\n    \"description\": \"string\",\n    \"direction\": \"debit\"\n  },\n  {\n    \"code\": \"string\",\n    \"description\": \"string\",\n    \"direction\": \"credit\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c72623fc-bcdc-423e-83fd-c69ee6f57ea1",
+          "name": "Export multi-account transactions",
+          "request": {
+            "name": "Export multi-account transactions",
+            "description": {
+              "content": "Export transaction history across one or more accounts as CSV or BAI2.\n\nUse the `format` field to select the output format (defaults to `csv`).\n\nUse the optional `filename` field to set a custom filename in the Content-Disposition header.\nIf omitted, a default name like `transaction-export-2024-03-05.csv` is generated.\n\nTransactions are filtered by the specified date range. Optionally, results can be narrowed to\nspecific BAI transaction type codes.\n\nCSV returns columns: Posted Date, Type, Description, Amount, Account, Notes, Balance, Raw Description, BAI Code.\n\nBAI2 returns a spec-compliant BAI2 file with record types 01-99.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "reports",
+                "transactions_download",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "account_uuids",
+                  "value": "<uuid>",
+                  "description": "(Required) List of account UUIDs to include in the export."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_date",
+                  "value": "<date>",
+                  "description": "(Required) End date of the export range (inclusive, end of day)."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_date",
+                  "value": "<date>",
+                  "description": "(Required) Start date of the export range (inclusive)."
+                },
+                {
+                  "disabled": false,
+                  "key": "bai_codes",
+                  "value": "<string>",
+                  "description": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included."
+                },
+                {
+                  "disabled": false,
+                  "key": "bai_codes",
+                  "value": "<string>",
+                  "description": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "csv",
+                  "description": "Export file format. Defaults to CSV.\n\n* `csv` - CSV\n* `bai2` - BAI2"
+                },
+                {
+                  "disabled": false,
+                  "key": "filename",
+                  "value": "<string>",
+                  "description": "Custom filename for the downloaded file. Must end with the correct extension (.csv or .bai2)."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a3c61d04-ea7f-4b69-b4e8-da9052573b80",
+              "name": "Streaming export file (CSV or BAI2) containing matching transactions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reports",
+                    "transactions_download",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) List of account UUIDs to include in the export.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_uuids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) End date of the export range (inclusive, end of day).",
+                        "type": "text/plain"
+                      },
+                      "key": "max_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Start date of the export range (inclusive).",
+                        "type": "text/plain"
+                      },
+                      "key": "min_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included.",
+                        "type": "text/plain"
+                      },
+                      "key": "bai_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included.",
+                        "type": "text/plain"
+                      },
+                      "key": "bai_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Export file format. Defaults to CSV.\n\n* `csv` - CSV\n* `bai2` - BAI2",
+                        "type": "text/plain"
+                      },
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Custom filename for the downloaded file. Must end with the correct extension (.csv or .bai2).",
+                        "type": "text/plain"
+                      },
+                      "key": "filename",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6f3c927f-5156-4df0-9b59-41dccebb7848",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reports",
+                    "transactions_download",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) List of account UUIDs to include in the export.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_uuids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) End date of the export range (inclusive, end of day).",
+                        "type": "text/plain"
+                      },
+                      "key": "max_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Start date of the export range (inclusive).",
+                        "type": "text/plain"
+                      },
+                      "key": "min_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included.",
+                        "type": "text/plain"
+                      },
+                      "key": "bai_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included.",
+                        "type": "text/plain"
+                      },
+                      "key": "bai_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Export file format. Defaults to CSV.\n\n* `csv` - CSV\n* `bai2` - BAI2",
+                        "type": "text/plain"
+                      },
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Custom filename for the downloaded file. Must end with the correct extension (.csv or .bai2).",
+                        "type": "text/plain"
+                      },
+                      "key": "filename",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": \"account_uuids is required\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12e03815-a7cc-4547-ac40-a706f094f8e7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reports",
+                    "transactions_download",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) List of account UUIDs to include in the export.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_uuids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) End date of the export range (inclusive, end of day).",
+                        "type": "text/plain"
+                      },
+                      "key": "max_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Start date of the export range (inclusive).",
+                        "type": "text/plain"
+                      },
+                      "key": "min_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included.",
+                        "type": "text/plain"
+                      },
+                      "key": "bai_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included.",
+                        "type": "text/plain"
+                      },
+                      "key": "bai_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Export file format. Defaults to CSV.\n\n* `csv` - CSV\n* `bai2` - BAI2",
+                        "type": "text/plain"
+                      },
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Custom filename for the downloaded file. Must end with the correct extension (.csv or .bai2).",
+                        "type": "text/plain"
+                      },
+                      "key": "filename",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"api_error\",\n  \"message\": \"No Account matches the given query.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "45a44fa5-21c4-4dbc-abcf-f6dc1b2e4db1",
+          "name": "Get multi-account transaction statistics",
+          "request": {
+            "name": "Get multi-account transaction statistics",
+            "description": {
+              "content": "Return aggregate statistics (count, credits, debits, net total) for transactions across one or more accounts within a date range.\n\nOptionally filter by BAI transaction type codes. All monetary values are returned as integers representing amounts in cents.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "reports",
+                "transactions_stats",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "account_uuids",
+                  "value": "<uuid>",
+                  "description": "(Required) List of account UUIDs to include in the export."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_date",
+                  "value": "<date>",
+                  "description": "(Required) End date of the export range (inclusive, end of day)."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_date",
+                  "value": "<date>",
+                  "description": "(Required) Start date of the export range (inclusive)."
+                },
+                {
+                  "disabled": false,
+                  "key": "bai_codes",
+                  "value": "<string>",
+                  "description": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included."
+                },
+                {
+                  "disabled": false,
+                  "key": "bai_codes",
+                  "value": "<string>",
+                  "description": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included."
+                },
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "csv",
+                  "description": "Export file format. Defaults to CSV.\n\n* `csv` - CSV\n* `bai2` - BAI2"
+                },
+                {
+                  "disabled": false,
+                  "key": "filename",
+                  "value": "<string>",
+                  "description": "Custom filename for the downloaded file. Must end with the correct extension (.csv or .bai2)."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2a704ff9-6d81-4c0e-972c-e8b789e1c63b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reports",
+                    "transactions_stats",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) List of account UUIDs to include in the export.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_uuids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) End date of the export range (inclusive, end of day).",
+                        "type": "text/plain"
+                      },
+                      "key": "max_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Start date of the export range (inclusive).",
+                        "type": "text/plain"
+                      },
+                      "key": "min_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included.",
+                        "type": "text/plain"
+                      },
+                      "key": "bai_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included.",
+                        "type": "text/plain"
+                      },
+                      "key": "bai_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Export file format. Defaults to CSV.\n\n* `csv` - CSV\n* `bai2` - BAI2",
+                        "type": "text/plain"
+                      },
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Custom filename for the downloaded file. Must end with the correct extension (.csv or .bai2).",
+                        "type": "text/plain"
+                      },
+                      "key": "filename",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"credits\": 5580,\n  \"debits\": 9496,\n  \"net_total\": 3965,\n  \"transaction_count\": 4488\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7ab0241-eb48-47be-836f-7497ad32c63b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reports",
+                    "transactions_stats",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) List of account UUIDs to include in the export.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_uuids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) End date of the export range (inclusive, end of day).",
+                        "type": "text/plain"
+                      },
+                      "key": "max_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Start date of the export range (inclusive).",
+                        "type": "text/plain"
+                      },
+                      "key": "min_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included.",
+                        "type": "text/plain"
+                      },
+                      "key": "bai_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included.",
+                        "type": "text/plain"
+                      },
+                      "key": "bai_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Export file format. Defaults to CSV.\n\n* `csv` - CSV\n* `bai2` - BAI2",
+                        "type": "text/plain"
+                      },
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Custom filename for the downloaded file. Must end with the correct extension (.csv or .bai2).",
+                        "type": "text/plain"
+                      },
+                      "key": "filename",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": {\n    \"field_name\": \"Error description.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcc5f020-08b5-4ac7-9c25-c4f2c2df75ab",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reports",
+                    "transactions_stats",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) List of account UUIDs to include in the export.",
+                        "type": "text/plain"
+                      },
+                      "key": "account_uuids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) End date of the export range (inclusive, end of day).",
+                        "type": "text/plain"
+                      },
+                      "key": "max_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Start date of the export range (inclusive).",
+                        "type": "text/plain"
+                      },
+                      "key": "min_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included.",
+                        "type": "text/plain"
+                      },
+                      "key": "bai_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included.",
+                        "type": "text/plain"
+                      },
+                      "key": "bai_codes",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Export file format. Defaults to CSV.\n\n* `csv` - CSV\n* `bai2` - BAI2",
+                        "type": "text/plain"
+                      },
+                      "key": "format",
+                      "value": "csv"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Custom filename for the downloaded file. Must end with the correct extension (.csv or .bai2).",
+                        "type": "text/plain"
+                      },
+                      "key": "filename",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"not_found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "83d61050-b938-4a09-887c-d3cbfca4ce0b",
+    "name": "Narmi Public account balances reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

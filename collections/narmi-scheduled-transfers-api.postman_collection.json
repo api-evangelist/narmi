@@ -1,0 +1,1392 @@
+{
+  "item": [
+    {
+      "id": "2b96eded-f2da-44e0-88a3-4aa80d4f440c",
+      "name": "scheduled transfers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "be3bf236-e2dd-44c8-bf27-6e3e47ed9a7f",
+          "name": "List scheduled transfers",
+          "request": {
+            "name": "List scheduled transfers",
+            "description": {
+              "content": "List the authenticated user's scheduled transfers.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "transfers",
+                "scheduled",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "is_expired",
+                  "value": "<boolean>",
+                  "description": "When present, will filter results by either expired only, or unexpired only."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "A page number within the paginated result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a65e0606-2a20-498c-aac4-504b636293b9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transfers",
+                    "scheduled",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "is_expired",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"total\": 532\n  },\n  \"links\": {\n    \"next\": \"http://api.example.org/accounts/?page=4\",\n    \"prev\": \"http://api.example.org/accounts/?page=4\"\n  },\n  \"scheduled_transfers\": [\n    {\n      \"amount\": 100,\n      \"from_account_id\": \"9b383e40-8770-3c6a-061e-d38c61b68d89\",\n      \"recurring_rule\": \"RRULE:FREQ=DAILY;COUNT=1\",\n      \"to_account_id\": \"6f23105b-b988-8f37-a55f-eb91601af893\",\n      \"id\": \"c2e6a0cd-bffb-596e-7c8a-109a4e07964c\",\n      \"state\": \"active\",\n      \"created_at\": \"1995-01-11T05:07:17.873Z\",\n      \"next_transfer_at\": \"1981-07-26T02:44:00.854Z\",\n      \"memo\": \"\",\n      \"description\": \"\"\n    },\n    {\n      \"amount\": 100,\n      \"from_account_id\": \"ef539d08-2875-9634-a0d1-001f7e6d7fec\",\n      \"recurring_rule\": \"RRULE:FREQ=DAILY;COUNT=1\",\n      \"to_account_id\": \"4c5dffdb-a20e-42b7-75e8-6c3f5e3ea7b0\",\n      \"id\": \"54a2d328-2526-4883-1276-c2c68e07ae10\",\n      \"state\": \"expired\",\n      \"created_at\": \"2000-11-06T06:05:07.841Z\",\n      \"next_transfer_at\": \"1957-09-26T09:16:52.860Z\",\n      \"memo\": \"\",\n      \"description\": \"\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d60e8795-c1c9-4568-b51d-6f56af5d36ba",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transfers",
+                    "scheduled",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "is_expired",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"id\": \"not_found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72f5cd0a-7853-4df7-ae6d-41c77d5a25fe",
+          "name": "Create a scheduled transfer",
+          "request": {
+            "name": "Create a scheduled transfer",
+            "description": {
+              "content": "Create a scheduled transfer for the authenticated user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "transfers",
+                "scheduled",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "agreement",
+                  "value": "<boolean>",
+                  "description": "(Required) Whether or not the terms of the transfer were agreed to."
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<integer>",
+                  "description": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents)."
+                },
+                {
+                  "disabled": false,
+                  "key": "from_account_id",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID identifying the source account in the Narmi database."
+                },
+                {
+                  "disabled": false,
+                  "key": "recurring_rule",
+                  "value": "<string>",
+                  "description": "(Required) Cadence of recurring event, as per the RFC-5545 specification."
+                },
+                {
+                  "disabled": false,
+                  "key": "to_account_id",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID identifying the destination account in the Narmi database."
+                },
+                {
+                  "disabled": false,
+                  "key": "device_id",
+                  "value": "<string>",
+                  "description": "Device 'fingerprint' from alloy/iovation."
+                },
+                {
+                  "disabled": false,
+                  "key": "memo",
+                  "value": "",
+                  "description": "Free-form description of transfer."
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "",
+                  "description": "Free-form description of transfer."
+                },
+                {
+                  "disabled": false,
+                  "key": "ach_transfer",
+                  "value": "<uuid>",
+                  "description": "Associated ACH Transfer used to evaluate transfer limits, and if they've been exceeded."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d2a66dc4-f3e6-4d6e-b88e-4a9107250295",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transfers",
+                    "scheduled",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Whether or not the terms of the transfer were agreed to.",
+                        "type": "text/plain"
+                      },
+                      "key": "agreement",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the source account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Cadence of recurring event, as per the RFC-5545 specification.",
+                        "type": "text/plain"
+                      },
+                      "key": "recurring_rule",
+                      "value": "RRULE:FREQ=DAILY;COUNT=1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the destination account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Device 'fingerprint' from alloy/iovation.",
+                        "type": "text/plain"
+                      },
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Free-form description of transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Free-form description of transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Associated ACH Transfer used to evaluate transfer limits, and if they've been exceeded.",
+                        "type": "text/plain"
+                      },
+                      "key": "ach_transfer",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"scheduled_transfers\": [\n    {\n      \"amount\": 100,\n      \"from_account_id\": \"2fa765dd-1bb3-b6de-ce7b-4d8fc54b3a01\",\n      \"recurring_rule\": \"RRULE:FREQ=DAILY;COUNT=1\",\n      \"to_account_id\": \"5d1297b4-2497-bad7-3b97-37961b0e2f59\",\n      \"id\": \"577d896c-0810-3096-39df-de0567c8ebf0\",\n      \"state\": \"expired\",\n      \"created_at\": \"1954-04-22T03:29:47.979Z\",\n      \"next_transfer_at\": \"1962-10-27T13:35:04.004Z\",\n      \"memo\": \"\",\n      \"description\": \"\"\n    },\n    {\n      \"amount\": 100,\n      \"from_account_id\": \"4518ed41-ffb4-bf06-87ff-640c7ac9add3\",\n      \"recurring_rule\": \"RRULE:FREQ=DAILY;COUNT=1\",\n      \"to_account_id\": \"80874463-a8d0-b14d-3363-1c8bae52aa01\",\n      \"id\": \"5991b0b9-b658-2213-0ac3-4ffc88d9d5e2\",\n      \"state\": \"expired\",\n      \"created_at\": \"1977-08-03T11:01:57.455Z\",\n      \"next_transfer_at\": \"1954-07-03T12:17:15.015Z\",\n      \"memo\": \"\",\n      \"description\": \"\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f91420b-3bb8-43ed-b621-99bfa7ddea7f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transfers",
+                    "scheduled",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Whether or not the terms of the transfer were agreed to.",
+                        "type": "text/plain"
+                      },
+                      "key": "agreement",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the source account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Cadence of recurring event, as per the RFC-5545 specification.",
+                        "type": "text/plain"
+                      },
+                      "key": "recurring_rule",
+                      "value": "RRULE:FREQ=DAILY;COUNT=1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the destination account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Device 'fingerprint' from alloy/iovation.",
+                        "type": "text/plain"
+                      },
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Free-form description of transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Free-form description of transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Associated ACH Transfer used to evaluate transfer limits, and if they've been exceeded.",
+                        "type": "text/plain"
+                      },
+                      "key": "ach_transfer",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"not_found_error\",\n  \"message\": \"The requested resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15974607-c91c-424d-be32-be135a2cbb0a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transfers",
+                    "scheduled",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Whether or not the terms of the transfer were agreed to.",
+                        "type": "text/plain"
+                      },
+                      "key": "agreement",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the source account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Cadence of recurring event, as per the RFC-5545 specification.",
+                        "type": "text/plain"
+                      },
+                      "key": "recurring_rule",
+                      "value": "RRULE:FREQ=DAILY;COUNT=1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the destination account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Device 'fingerprint' from alloy/iovation.",
+                        "type": "text/plain"
+                      },
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Free-form description of transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Free-form description of transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Associated ACH Transfer used to evaluate transfer limits, and if they've been exceeded.",
+                        "type": "text/plain"
+                      },
+                      "key": "ach_transfer",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": \"Transfer amount is greater than account balance.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87be1f0c-a855-4b8d-aeb9-b23fa6dc5bd6",
+          "name": "Edit a scheduled transfer",
+          "request": {
+            "name": "Edit a scheduled transfer",
+            "description": {
+              "content": "Edit a scheduled transfer for the authenticated user.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "transfers",
+                "scheduled",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "agreement",
+                  "value": "<boolean>",
+                  "description": "(Required) Whether or not the terms of the transfer were agreed to."
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<integer>",
+                  "description": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents)."
+                },
+                {
+                  "disabled": false,
+                  "key": "from_account_id",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID identifying the source account in the Narmi database."
+                },
+                {
+                  "disabled": false,
+                  "key": "recurring_rule",
+                  "value": "<string>",
+                  "description": "(Required) Cadence of recurring event, as per the RFC-5545 specification."
+                },
+                {
+                  "disabled": false,
+                  "key": "to_account_id",
+                  "value": "<uuid>",
+                  "description": "(Required) UUID identifying the destination account in the Narmi database."
+                },
+                {
+                  "disabled": false,
+                  "key": "device_id",
+                  "value": "<string>",
+                  "description": "Device 'fingerprint' from alloy/iovation."
+                },
+                {
+                  "disabled": false,
+                  "key": "memo",
+                  "value": "",
+                  "description": "Free-form description of transfer."
+                },
+                {
+                  "disabled": false,
+                  "key": "description",
+                  "value": "",
+                  "description": "Free-form description of transfer."
+                },
+                {
+                  "disabled": false,
+                  "key": "ach_transfer",
+                  "value": "<uuid>",
+                  "description": "Associated ACH Transfer used to evaluate transfer limits, and if they've been exceeded."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7c274b5d-62d7-4ec5-bf5a-51adddda9a0b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transfers",
+                    "scheduled",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Whether or not the terms of the transfer were agreed to.",
+                        "type": "text/plain"
+                      },
+                      "key": "agreement",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the source account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Cadence of recurring event, as per the RFC-5545 specification.",
+                        "type": "text/plain"
+                      },
+                      "key": "recurring_rule",
+                      "value": "RRULE:FREQ=DAILY;COUNT=1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the destination account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Device 'fingerprint' from alloy/iovation.",
+                        "type": "text/plain"
+                      },
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Free-form description of transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Free-form description of transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Associated ACH Transfer used to evaluate transfer limits, and if they've been exceeded.",
+                        "type": "text/plain"
+                      },
+                      "key": "ach_transfer",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"scheduled_transfers\": [\n    {\n      \"amount\": 100,\n      \"from_account_id\": \"2c0b48ef-6c09-a9ca-9923-2660ab510bcc\",\n      \"recurring_rule\": \"RRULE:FREQ=DAILY;COUNT=1\",\n      \"to_account_id\": \"6c85d0fc-f0da-1dc5-879e-229e8fc86edf\",\n      \"id\": \"4d5306fd-4316-02ac-7e88-6314cfc2ee12\",\n      \"state\": \"expired\",\n      \"created_at\": \"1955-10-14T13:39:30.845Z\",\n      \"next_transfer_at\": \"1992-12-31T20:07:14.671Z\",\n      \"memo\": \"\",\n      \"description\": \"\"\n    },\n    {\n      \"amount\": 100,\n      \"from_account_id\": \"51f21ee7-2256-9fec-6831-939bbefef772\",\n      \"recurring_rule\": \"RRULE:FREQ=DAILY;COUNT=1\",\n      \"to_account_id\": \"377adeb2-1432-1fd4-0f36-93b572908824\",\n      \"id\": \"afa72a33-ab28-0dcd-d060-37dcdac530a5\",\n      \"state\": \"expired\",\n      \"created_at\": \"1969-04-01T13:54:50.192Z\",\n      \"next_transfer_at\": \"1959-04-17T03:10:20.957Z\",\n      \"memo\": \"\",\n      \"description\": \"\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcb83c67-bfb0-41f9-93ca-01d99b6ba554",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transfers",
+                    "scheduled",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Whether or not the terms of the transfer were agreed to.",
+                        "type": "text/plain"
+                      },
+                      "key": "agreement",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the source account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Cadence of recurring event, as per the RFC-5545 specification.",
+                        "type": "text/plain"
+                      },
+                      "key": "recurring_rule",
+                      "value": "RRULE:FREQ=DAILY;COUNT=1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the destination account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Device 'fingerprint' from alloy/iovation.",
+                        "type": "text/plain"
+                      },
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Free-form description of transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Free-form description of transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Associated ACH Transfer used to evaluate transfer limits, and if they've been exceeded.",
+                        "type": "text/plain"
+                      },
+                      "key": "ach_transfer",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"not_found_error\",\n  \"message\": \"The requested resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97632951-0a4a-40dc-a2c4-b37e481d1063",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transfers",
+                    "scheduled",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Whether or not the terms of the transfer were agreed to.",
+                        "type": "text/plain"
+                      },
+                      "key": "agreement",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) A field that returns the original value in the currency's smallest unit (e.g. cents).",
+                        "type": "text/plain"
+                      },
+                      "key": "amount",
+                      "value": "100"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the source account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "from_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Cadence of recurring event, as per the RFC-5545 specification.",
+                        "type": "text/plain"
+                      },
+                      "key": "recurring_rule",
+                      "value": "RRULE:FREQ=DAILY;COUNT=1"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) UUID identifying the destination account in the Narmi database.",
+                        "type": "text/plain"
+                      },
+                      "key": "to_account_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Device 'fingerprint' from alloy/iovation.",
+                        "type": "text/plain"
+                      },
+                      "key": "device_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Free-form description of transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "memo",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Free-form description of transfer.",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Associated ACH Transfer used to evaluate transfer limits, and if they've been exceeded.",
+                        "type": "text/plain"
+                      },
+                      "key": "ach_transfer",
+                      "value": "<uuid>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"invalid_request_error\",\n  \"message\": \"Scheduled transfers with end dates cannot be edited. If you want to change this transfer, delete it and create a new one instead.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e2c84a5-06bb-41e5-873d-30790a60b63a",
+          "name": "Delete scheduled transfer",
+          "request": {
+            "name": "Delete scheduled transfer",
+            "description": {
+              "content": "Delete a user's scheduled transfer. Accepts a payload containing an identifier for the scheduled transfer,\neither a Narmi UUID or a core identifier.\n\nExample:\n```http\nDELETE /v1/transfers/scheduled/ HTTP/1.1\nHost: api.example.com\nContent-Type: application/json\n\n{\n  \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\"\n}\n\n```\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "transfers",
+                "scheduled",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "banking:accounts:read banking:transactions:read banking:scheduled_transfers:read banking:scheduled_transfers:write banking:accounts:write banking:transactions:write banking:users:read banking:products:read banking:documents:read"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v2/oauth/token/"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "/v2/oauth/authorize/"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "242d20ba-88a5-4c1f-b883-94c20d701bc1",
+              "name": "No response body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transfers",
+                    "scheduled",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9eb7eaa5-2cfd-49d0-8b2c-1596dd749d65",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "transfers",
+                    "scheduled",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"not_found_error\",\n  \"message\": \"The requested resource was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sandbox.narmi.dev/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2c24bf7d-7041-4426-b81c-be3b494f8909",
+    "name": "Narmi Public account balances scheduled transfers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).\n\nContact Support:\n Name: Narmi Support\n Email: support@narmi.com",
+      "type": "text/plain"
+    }
+  }
+}

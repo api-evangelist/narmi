@@ -8,38 +8,36 @@ server:
   auth: oauth2
   url: null
   deployment: per-institution
-description: >-
-  Narmi launched the first Model Context Protocol (MCP) server deployed by a
-  U.S. bank — in partnership with Grasshopper Bank in August 2025 — enabling
-  business banking customers to query their financial data through LLMs
-  including Claude and ChatGPT under OAuth 2.0-permissioned access. The MCP
-  server is deployed per financial institution as part of Narmi AI / Narmi
-  Open rather than as a single public hosted endpoint, so there is no global
-  MCP URL to advertise. Access is gated by the same OAuth 2.0 authorization-code
-  scopes as the Public API (banking:accounts:read, banking:transactions:read,
-  etc.), and all agentic workflows ship with human approval checkpoints, full
-  audit trails, and bank-grade security. Models used do not train on
-  institutional data.
+description: Narmi launched the first Model Context Protocol (MCP) server deployed by a U.S. bank — in
+  partnership with Grasshopper Bank in August 2025 — enabling business banking customers to query their
+  financial data through LLMs including Claude and ChatGPT under OAuth 2.0-permissioned access. The MCP
+  server is deployed per financial institution as part of Narmi AI / Narmi Open rather than as a single
+  public hosted endpoint, so there is no global MCP URL to advertise. Access is gated by the same OAuth
+  2.0 authorization-code scopes as the Public API (banking:accounts:read, banking:transactions:read, etc.),
+  and all agentic workflows ship with human approval checkpoints, full audit trails, and bank-grade security.
+  Models used do not train on institutional data.
 evidence:
-  - source: https://www.narmi.com/narmi-ai
-    kind: product page
-  - source: https://www.narmi.com/press/grasshopper-and-narmi-expand-access-to-generative-ai-to-streamline-financial-workflows-with-chatgpt-integration-oauth
-    kind: press release
-  - source: https://www.narmi.com/insights/what-is-mcp-and-why-should-i-care
-    kind: blog
-# Candidate tool surface derived from the Public API OpenAPI read operations,
-# reflecting the kind of financial-data queries the production MCP server
-# exposes to LLMs. Illustrative — not the provider's published tool manifest.
+- source: https://www.narmi.com/narmi-ai
+  kind: product page
+- source: https://www.narmi.com/press/grasshopper-and-narmi-expand-access-to-generative-ai-to-streamline-financial-workflows-with-chatgpt-integration-oauth
+  kind: press release
+- source: https://www.narmi.com/insights/what-is-mcp-and-why-should-i-care
+  kind: blog
 candidate_tools:
-  - name: list_account_balances
-    description: List the authenticated user's account balances.
-    source_operation: openapi/narmi-public-openapi-original.yml#account_balances_list
-  - name: list_accounts
-    description: List the authenticated user's accounts.
-    source_operation: openapi/narmi-public-openapi-original.yml#accounts_list
-  - name: list_transactions
-    description: List transactions for an account.
-    source_operation: openapi/narmi-public-openapi-original.yml#transactions_list
-  - name: get_me
-    description: Retrieve the authenticated user profile.
-    source_operation: openapi/narmi-public-openapi-original.yml#me_list
+- name: list_account_balances
+  description: List the authenticated user's account balances.
+  source_operation: openapi/narmi-public-openapi-original.yml#account_balances_list
+- name: list_accounts
+  description: List the authenticated user's accounts.
+  source_operation: openapi/narmi-public-openapi-original.yml#accounts_list
+- name: list_transactions
+  description: List transactions for an account.
+  source_operation: openapi/narmi-public-openapi-original.yml#transactions_list
+- name: get_me
+  description: Retrieve the authenticated user profile.
+  source_operation: openapi/narmi-public-openapi-original.yml#me_list
+deployment:
+  mode: remote
+  verified: searched
+  checked: '2026-08-12'
+  source: catalog MCP census
