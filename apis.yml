@@ -44,6 +44,17 @@ tags:
 - Wires
 - FedNow
 - Cards
+- Financial-Services
+tags_raw:
+- Company
+- Fintech
+- Digital Banking
+- Banking
+- Payments
+- ACH
+- Wires
+- FedNow
+- Cards
 - Financial Services
 apis:
 - aid: narmi:narmi-account-balances-api
@@ -52,6 +63,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Account Balances
+  tags_raw:
   - account balances
   properties:
   - type: OpenAPI
@@ -66,6 +79,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Account
+  tags_raw:
   - accounts
   properties:
   - type: OpenAPI
@@ -136,6 +151,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - ACH Transfers
+  tags_raw:
   - ach transfers
   properties:
   - type: OpenAPI
@@ -150,6 +167,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Alerts
+  tags_raw:
   - alerts
   properties:
   - type: OpenAPI
@@ -179,6 +198,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Card-Linked Offers
+  tags_raw:
   - card linked offers
   properties:
   - type: OpenAPI
@@ -193,6 +214,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Cards
+  tags_raw:
   - cards
   properties:
   - type: OpenAPI
@@ -221,6 +244,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Deposits
+  tags_raw:
   - deposits
   properties:
   - type: OpenAPI
@@ -235,6 +260,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Documents
+  tags_raw:
   - documents
   properties:
   - type: OpenAPI
@@ -249,6 +276,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Enrollments
+  tags_raw:
   - enrollments
   properties:
   - type: OpenAPI
@@ -263,6 +292,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Express Checkout
+  tags_raw:
   - express-checkout
   properties:
   - type: OpenAPI
@@ -347,6 +378,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - International Wires
+  tags_raw:
   - international wires
   properties:
   - type: OpenAPI
@@ -361,6 +394,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Me
+  tags_raw:
   - me
   properties:
   - type: OpenAPI
@@ -375,6 +410,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Merchants
+  tags_raw:
   - merchants
   properties:
   - type: OpenAPI
@@ -389,6 +426,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - MFA
+  tags_raw:
   - mfa
   properties:
   - type: OpenAPI
@@ -403,6 +442,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Payees
+  tags_raw:
   - payees
   properties:
   - type: OpenAPI
@@ -417,6 +458,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Payments
+  tags_raw:
   - payments
   properties:
   - type: OpenAPI
@@ -431,6 +474,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Ping
+  tags_raw:
   - ping
   properties:
   - type: OpenAPI
@@ -445,6 +490,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Recipients
+  tags_raw:
   - recipients
   properties:
   - type: OpenAPI
@@ -459,6 +506,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Reports
+  tags_raw:
   - reports
   properties:
   - type: OpenAPI
@@ -501,6 +550,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Subscription
+  tags_raw:
   - subscriptions
   properties:
   - type: OpenAPI
@@ -515,6 +566,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Support
+  tags_raw:
   - support
   properties:
   - type: OpenAPI
@@ -529,6 +582,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Surveys
+  tags_raw:
   - surveys
   properties:
   - type: OpenAPI
@@ -557,6 +612,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Team
+  tags_raw:
   - teams
   properties:
   - type: OpenAPI
@@ -571,6 +628,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Threads
+  tags_raw:
   - threads
   properties:
   - type: OpenAPI
@@ -585,6 +644,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Transaction
+  tags_raw:
   - transactions
   properties:
   - type: OpenAPI
@@ -614,6 +675,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - User
+  tags_raw:
   - users
   properties:
   - type: OpenAPI
@@ -656,6 +719,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Wires
+  tags_raw:
   - wires
   properties:
   - type: OpenAPI
