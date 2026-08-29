@@ -747,6 +747,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/narmi-capability-edges.yml
+  name: Narmi Business Capability Map
 - type: Overlay
   url: overlays/narmi-public-overlay.yaml
 - type: PostmanWorkspace

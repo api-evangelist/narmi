@@ -1,0 +1,199 @@
+slug: narmi
+provider: Narmi
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 19
+edges:
+- tag: instant transfers
+  spec_file: narmi-instant-transfers-api-openapi.yml
+  capability_id: BC-1340.50
+  capability_id_l1: BC-1340
+  capability_name: Real-Time Payment Management
+  confidence: 0.92
+  evidence: GET /v1/fednow_transaction/{uuid}/ 'Retrieve a FedNow transfer'; 'Check eligibility for instant
+    transfers'; schemas FedNowTransaction, FedNowEligibility
+  reason: Explicitly FedNow instant-payment transfers, eligibility by routing number and fee retrieval
+    — real-time payment rail operations.
+- tag: international wires
+  spec_file: narmi-international-wires-api-openapi.yml
+  capability_id: BC-1340.40
+  capability_id_l1: BC-1340
+  capability_name: Cross-Border Payment Management
+  confidence: 0.9
+  evidence: POST /v1/swift_transactions/ 'Create a Swift wire transaction'; 'Retrieve Swift payment codes';
+    schema FXQuote
+  reason: Creates and tracks SWIFT international wire transactions with FX quoting and payment purpose
+    codes — cross-border payment management.
+- tag: payments
+  spec_file: narmi-payments-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.85
+  evidence: POST /v1/payments/ 'Creates a bill payment'; schema 'BillPayment', 'BillPaymentStateEnum'
+  reason: Operations create, list and cancel bill payments for bank customers — payment instruction capture
+    and authorisation.
+- tag: unverified ach transactions
+  spec_file: narmi-unverified-ach-transactions-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.85
+  evidence: POST /v1/unverified_ach_transactions/ "Originate an Unverified ACH Transaction"; POST /v1/unverified_ach_transactions/scheduled/
+    "Create a scheduled Unverified ACH transaction"
+  reason: Originating and scheduling ACH debit/credit instructions is payment instruction capture and
+    authorisation. Could also be read as clearing/ACH rails, but the surface is initiation of instructions
+    by the customer.
+- tag: wires
+  spec_file: narmi-wires-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.85
+  evidence: POST /v1/wires/ "Create a new wire transaction."; POST /v1/wires/fedwire_templates/ "Send
+    a wire using a wire template"
+  reason: Creation and submission of wire payment instructions (Fedwire) by the customer — payment initiation
+    capture and authorisation.
+- tag: ach payments
+  spec_file: narmi-ach-payments-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.8
+  evidence: POST /v1/ach_payments/ 'Send an ACH Payment'; POST /v1/ach_payments/scheduled/ 'Create a scheduled
+    ACH payment'
+  reason: Origination, scheduling and retrieval of ACH payments is clearly payment initiation on the ACH
+    rail; some ambiguity versus clearing/settlement sub-capability.
+- tag: cards
+  spec_file: narmi-cards-api-openapi.yml
+  capability_id: BC-1340.60
+  capability_id_l1: BC-1340
+  capability_name: Card Issuance Management
+  confidence: 0.8
+  evidence: PUT /v1/cards/{card_id}/ 'Activate or deactivate card'; POST /v1/cards/{card_id}/replace_card/
+    'Replace a missing card'; POST /v1/cards/{card_id}/lock/ 'Lock a card'
+  reason: Card activation, locking, replacement, limits and PAN retrieval are card issuance and in-life
+    card management operations.
+- tag: mfa
+  spec_file: narmi-mfa-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: GET /v1/mfa/ 'List MFA devices'; DELETE /v1/mfa/{id}/ 'Delete MFA device'; POST /v1/sudo/
+    'Elevate sudo permissions'
+  reason: Manages multi-factor authentication devices and privilege elevation (sudo) for authenticated
+    sessions — identity and access management controls, not a banking product capability.
+- tag: payees
+  spec_file: narmi-payees-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.8
+  evidence: GET /v1/payees/ 'List bill payment payees'; schemas 'BillPayee', 'BillDeliveryOption'
+  reason: Managing bill-payment payee records (with addresses and bill delivery options) is part of capturing
+    and setting up payment instructions in a digital banking platform, i.e. payment initiation.
+- tag: scheduled transfers
+  spec_file: narmi-scheduled-transfers-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.8
+  evidence: POST /v1/transfers/scheduled/ 'Create a scheduled transfer'; schema 'ScheduledTransfer', 'ScheduledTransferStateEnum'
+  reason: Creating, editing and cancelling scheduled funds transfers is capture and authorisation of payment
+    instructions in digital banking.
+- tag: swift wire templates
+  spec_file: narmi-swift-wire-templates-api-openapi.yml
+  capability_id: BC-1340.40
+  capability_id_l1: BC-1340
+  capability_name: Cross-Border Payment Management
+  confidence: 0.8
+  evidence: POST /v1/swiftwire_templates/ 'Create a Swift Wire template'; schema 'SwiftWireTemplate'
+  reason: SWIFT wire templates are reusable instruction sets for international/correspondent-bank wire
+    payments, squarely cross-border payment management.
+- tag: surveys
+  spec_file: narmi-surveys-api-openapi.yml
+  capability_id: BC-430.50
+  capability_id_l1: BC-430
+  capability_name: Customer Feedback Management
+  confidence: 0.78
+  evidence: GET /v1/surveys/ 'Get current survey'; POST /v1/survey_impressions/create_answer/; schemas
+    'Survey', 'Impression'
+  reason: Serving in-app surveys and capturing answers/impressions from banking users is voice-of-customer
+    / feedback collection.
+- tag: ach import
+  spec_file: narmi-ach-import-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.75
+  evidence: POST /v1/ach_import/nacha/import/ 'Import NACHA file'; schema 'ACHImportNACHAPaymentRow'
+  reason: Bulk intake and parsing of ACH payment instructions from CSV/NACHA files is payment instruction
+    capture and validation, i.e. payment initiation.
+- tag: recipients
+  spec_file: narmi-recipients-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.75
+  evidence: POST /v1/recipients/ 'Create a recipient'; schemas 'ACHDetails', 'FedwireDestination', 'SwiftWireDestination'
+  reason: Recipients here are payment beneficiaries carrying ACH/Fedwire/SWIFT routing details, i.e. setup
+    data for initiating transfers and wires, not general customer master data.
+- tag: ach destinations
+  spec_file: narmi-ach-destinations-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.7
+  evidence: POST /v1/ach_details/ 'Create an ACH destination'; schema 'ACHDetails'
+  reason: Creating ACH destination (recipient routing/account) details is payee setup supporting payment
+    instruction capture within payment initiation.
+- tag: ach transfers
+  spec_file: narmi-ach-transfers-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.7
+  evidence: POST /v1/transfers/ 'Create an ACH transfer'; schema 'AchTransactionRequest'
+  reason: Creating and listing ACH transfers is capture and authorisation of payment instructions between
+    accounts.
+- tag: fedwire destinations
+  spec_file: narmi-fedwire-destinations-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.7
+  evidence: POST /v1/fedwire_destinations/ 'Create a Fedwire destination'; schemas FedwireRecipientAddress,
+    FedwireDestinationRequest
+  reason: Maintains Fedwire beneficiary/destination records (recipient bank and address) used to instruct
+    domestic wire payments — payment instruction setup and validation. Beneficiary reference data sits
+    closest to Payment Initiation Management, though it could arguably be processing reference data.
+- tag: fedwire templates
+  spec_file: narmi-fedwire-templates-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.7
+  evidence: GET /v1/fedwire_templates/ 'List Fedwire templates'; POST 'Create a Fedwire template'; schema
+    FedwireTemplate
+  reason: CRUD over reusable Fedwire wire-payment templates used to capture and authorise wire instructions
+    — payment initiation reference artefacts within a banking payments platform.
+- tag: users
+  spec_file: narmi-users-api-openapi.yml
+  capability_id: BC-1300.40
+  capability_id_l1: BC-1300
+  capability_name: Customer Information Management
+  confidence: 0.7
+  evidence: GET /v1/users/{user_uuid}/ "Retrieve a user"; PUT "Update a user"; POST /v1/users/{user_uuid}/estatements/
+    "Sets user to receive estatements"; schemas Profile, Address, Phone, IncomeSource
+  reason: Maintenance of banking customer profile data (address, phone, income source) and statement delivery
+    preferences — customer information and preference management within a digital banking platform.
