@@ -11,6 +11,18 @@ description: >-
   transactions, cards, ACH, Fedwire, FedNow, SWIFT wires, deposits, alerts, and messaging. Narmi
   launched the first MCP server deployed by a U.S. bank (with Grasshopper Bank, August 2025).
 url: https://raw.githubusercontent.com/api-evangelist/narmi/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
