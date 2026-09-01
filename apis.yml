@@ -75,7 +75,7 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
-  - account balances
+  - Account Balances
   tags_raw:
   - account balances
   properties:
@@ -165,7 +165,7 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
-  - ach transfers
+  - ACH Transfers
   tags_raw:
   - ach transfers
   properties:
@@ -212,7 +212,7 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
-  - card linked offers
+  - Card-Linked Offers
   tags_raw:
   - card linked offers
   properties:
@@ -228,7 +228,7 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
-  - cards
+  - Cards
   tags_raw:
   - cards
   properties:
@@ -258,7 +258,7 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
-  - deposits
+  - Deposits
   tags_raw:
   - deposits
   properties:
@@ -290,7 +290,7 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
-  - enrollments
+  - Enrollments
   tags_raw:
   - enrollments
   properties:
@@ -306,7 +306,7 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
-  - express-checkout
+  - Express Checkout
   tags_raw:
   - express-checkout
   properties:
@@ -392,7 +392,7 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
-  - international wires
+  - International Wires
   tags_raw:
   - international wires
   properties:
@@ -440,7 +440,7 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
-  - mfa
+  - MFA
   tags_raw:
   - mfa
   properties:
@@ -456,7 +456,7 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
-  - payees
+  - Payees
   tags_raw:
   - payees
   properties:
@@ -504,7 +504,7 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
-  - recipients
+  - Recipients
   tags_raw:
   - recipients
   properties:
@@ -596,7 +596,7 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
-  - surveys
+  - Surveys
   tags_raw:
   - surveys
   properties:
@@ -733,7 +733,7 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
-  - wires
+  - Wires
   tags_raw:
   - wires
   properties:
