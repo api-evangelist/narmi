@@ -290,7 +290,7 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
-  - Enrollments
+  - Enrollment
   tags_raw:
   - enrollments
   properties:
