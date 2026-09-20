@@ -749,6 +749,10 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Pricing
+  url: https://www.narmi.com/variable-pricing
+- type: Plans
+  url: plans/narmi-plans-pricing.yml
 - type: CapabilityMap
   url: capabilities/narmi-capability-edges.yml
   name: Narmi Business Capability Map
