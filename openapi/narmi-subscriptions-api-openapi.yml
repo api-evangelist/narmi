@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances subscriptions API
+  title: Narmi Public Subscriptions API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -11,7 +11,7 @@ servers:
 - url: https://api.sandbox.narmi.dev/
   description: ''
 tags:
-- name: subscriptions
+- name: Subscriptions
 paths:
   /v1/subscriptions/:
     get:
@@ -31,9 +31,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: List subscriptions
       parameters:
       - name: page
@@ -49,7 +47,7 @@ paths:
         schema:
           type: integer
       tags:
-      - subscriptions
+      - Subscriptions
       security:
       - oauth2:
         - read
@@ -85,12 +83,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create a subscription
       tags:
-      - subscriptions
+      - Subscriptions
       requestBody:
         content:
           application/json:
@@ -175,9 +171,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve a subscription
       parameters:
       - in: path
@@ -186,7 +180,7 @@ paths:
           type: string
         required: true
       tags:
-      - subscriptions
+      - Subscriptions
       security:
       - oauth2:
         - read
@@ -222,9 +216,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Update a subscription
       parameters:
       - in: path
@@ -233,7 +225,7 @@ paths:
           type: string
         required: true
       tags:
-      - subscriptions
+      - Subscriptions
       requestBody:
         content:
           application/json:
@@ -323,9 +315,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Modify subscription
       parameters:
       - in: path
@@ -334,7 +324,7 @@ paths:
           type: string
         required: true
       tags:
-      - subscriptions
+      - Subscriptions
       requestBody:
         content:
           application/json:
@@ -382,9 +372,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Delete a subscription
       parameters:
       - in: path
@@ -393,7 +381,7 @@ paths:
           type: string
         required: true
       tags:
-      - subscriptions
+      - Subscriptions
       security:
       - oauth2:
         - write
@@ -410,82 +398,6 @@ paths:
         id: yvwxef2piehum
 components:
   schemas:
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: qazjpvfdteybw
-    SubscriptionRequest:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-          minLength: 1
-          description: The URL called when the webhook event occurs.
-        is_active:
-          type: boolean
-        version:
-          type: string
-          minLength: 1
-          description: Version string for future versioning functionality, can be left blank
-          maxLength: 64
-          example: ''
-        event_type:
-          type: string
-          minLength: 1
-          description: The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`
-          maxLength: 64
-          example: user.login
-        description:
-          type: string
-          minLength: 1
-          maxLength: 64
-          example: Webhook subscription for monitoring user logins.
-      required:
-      - url
-      x-stoplight:
-        id: p7b6jotjjvlvu
-    PaginatedSubscriptionList:
-      type: object
-      required:
-      - meta
-      - links
-      properties:
-        meta:
-          description: Free-form object, contains total object count.
-          type: object
-          properties:
-            total:
-              type: integer
-        links:
-          type: object
-          description: URIs linking to sequential pages of the result.
-          properties:
-            next:
-              type: string
-              format: uri
-              nullable: true
-              example: http://api.example.org/accounts/?page=4
-            prev:
-              type: string
-              format: uri
-              nullable: true
-              example: http://api.example.org/accounts/?page=4
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Subscription'
-      x-stoplight:
-        id: cfy3ohfpwkyn5
     SubscriptionResponse:
       type: object
       properties:
@@ -540,6 +452,40 @@ components:
       - url
       x-stoplight:
         id: gsayimqdodbuv
+    PaginatedSubscriptionList:
+      type: object
+      required:
+      - meta
+      - links
+      properties:
+        meta:
+          description: Free-form object, contains total object count.
+          type: object
+          properties:
+            total:
+              type: integer
+        links:
+          type: object
+          description: URIs linking to sequential pages of the result.
+          properties:
+            next:
+              type:
+              - string
+              - 'null'
+              format: uri
+              example: http://api.example.org/accounts/?page=4
+            prev:
+              type:
+              - string
+              - 'null'
+              format: uri
+              example: http://api.example.org/accounts/?page=4
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Subscription'
+      x-stoplight:
+        id: cfy3ohfpwkyn5
     PatchedSubscriptionRequest:
       type: object
       properties:
@@ -582,6 +528,50 @@ components:
           default: Not found.
       x-stoplight:
         id: z4yx0oczlqjyf
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    SubscriptionRequest:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          minLength: 1
+          description: The URL called when the webhook event occurs.
+        is_active:
+          type: boolean
+        version:
+          type: string
+          minLength: 1
+          description: Version string for future versioning functionality, can be left blank
+          maxLength: 64
+          example: ''
+        event_type:
+          type: string
+          minLength: 1
+          description: The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`
+          maxLength: 64
+          example: user.login
+        description:
+          type: string
+          minLength: 1
+          maxLength: 64
+          example: Webhook subscription for monitoring user logins.
+      required:
+      - url
+      x-stoplight:
+        id: p7b6jotjjvlvu
   securitySchemes:
     oauth2:
       type: oauth2

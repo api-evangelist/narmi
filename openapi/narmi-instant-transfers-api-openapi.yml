@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances instant transfers API
+  title: Narmi Public instant transfers API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -22,9 +22,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve a FedNow transfer
       parameters:
       - in: path
@@ -56,9 +54,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve instant transfer details by payment identification
       parameters:
       - in: path
@@ -89,9 +85,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Check eligibility for instant transfers
       parameters:
       - in: path
@@ -123,9 +117,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve fee information for instant transfers
       tags:
       - instant transfers
@@ -143,6 +135,130 @@ paths:
         id: dk5asim2gu0dq
 components:
   schemas:
+    FedNowEligibility:
+      type: object
+      properties:
+        online:
+          type: boolean
+          default: false
+        enrollment_level:
+          $ref: '#/components/schemas/EnrollmentLevelEnum'
+        name:
+          type: string
+          default: ''
+        routing_number:
+          type: string
+          maxLength: 9
+      required:
+      - enrollment_level
+      - routing_number
+      x-stoplight:
+        id: dwymj4s81xw4o
+    TransfersFee:
+      type: object
+      properties:
+        kind:
+          allOf:
+          - $ref: '#/components/schemas/KindEnum'
+          description: 'Supported fee structures
+
+
+            * `free` - free
+
+            * `fixed` - fixed
+
+            * `percent` - percent'
+        percent:
+          type:
+          - string
+          - 'null'
+          format: decimal
+          pattern: ^-?0?(?:\.\d{0,4})?$
+          description: Percentage fee of transfer amount. For free and fixed kind this will null, for percentage it is the fee percent as a decimal.
+        max:
+          type:
+          - string
+          - 'null'
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          description: Maximum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount cap for the percentage fee.
+        min:
+          type:
+          - string
+          - 'null'
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          description: Minimum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount minimum for the percentage fee.
+      required:
+      - kind
+      x-stoplight:
+        id: rmlugpiarfokw
+    KindEnum:
+      enum:
+      - free
+      - fixed
+      - percent
+      type: string
+      description: '* `free` - free
+
+        * `fixed` - fixed
+
+        * `percent` - percent'
+      x-stoplight:
+        id: qcqed657de0rl
+    FedNowTransaction:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        amount_cents:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        memo:
+          type: string
+          maxLength: 140
+        state:
+          $ref: '#/components/schemas/FedNowTransactionStateEnum'
+        payment_identification:
+          type: string
+          maxLength: 35
+        source_account:
+          type: string
+          format: uuid
+        external_account:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        unverified_recipient:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        bulk_payment:
+          type:
+          - string
+          - 'null'
+          format: uuid
+      required:
+      - amount_cents
+      - bulk_payment
+      - external_account
+      - id
+      - source_account
+      - unverified_recipient
+      x-stoplight:
+        id: 7qinjdob3wcd1
     FedNowTransactionStateEnum:
       enum:
       - pending
@@ -192,149 +308,6 @@ components:
         * `rejected_bulk_approval` - Rejected bulk approval'
       x-stoplight:
         id: otlhozfwfxeds
-    TransfersFee:
-      type: object
-      properties:
-        kind:
-          allOf:
-          - $ref: '#/components/schemas/KindEnum'
-          description: 'Supported fee structures
-
-
-            * `free` - free
-
-            * `fixed` - fixed
-
-            * `percent` - percent'
-        percent:
-          type: string
-          format: decimal
-          pattern: ^-?0?(?:\.\d{0,4})?$
-          nullable: true
-          description: Percentage fee of transfer amount. For free and fixed kind this will null, for percentage it is the fee percent as a decimal.
-        max:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
-          nullable: true
-          description: Maximum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount cap for the percentage fee.
-        min:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
-          nullable: true
-          description: Minimum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount minimum for the percentage fee.
-      required:
-      - kind
-      x-stoplight:
-        id: rmlugpiarfokw
-    FedNowEligibility:
-      type: object
-      properties:
-        online:
-          type: boolean
-          default: false
-        enrollment_level:
-          $ref: '#/components/schemas/EnrollmentLevelEnum'
-        name:
-          type: string
-          default: ''
-        routing_number:
-          type: string
-          maxLength: 9
-      required:
-      - enrollment_level
-      - routing_number
-      x-stoplight:
-        id: dwymj4s81xw4o
-    KindEnum:
-      enum:
-      - free
-      - fixed
-      - percent
-      type: string
-      description: '* `free` - free
-
-        * `fixed` - fixed
-
-        * `percent` - percent'
-      x-stoplight:
-        id: qcqed657de0rl
-    FedNowTransaction:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        amount_cents:
-          type: integer
-          maximum: 2147483647
-          minimum: -2147483648
-        memo:
-          type: string
-          maxLength: 140
-        state:
-          $ref: '#/components/schemas/FedNowTransactionStateEnum'
-        payment_identification:
-          type: string
-          maxLength: 35
-        source_account:
-          type: string
-          format: uuid
-        external_account:
-          type: string
-          format: uuid
-          nullable: true
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-        unverified_recipient:
-          type: string
-          format: uuid
-          nullable: true
-        bulk_payment:
-          type: string
-          format: uuid
-          nullable: true
-      required:
-      - amount_cents
-      - bulk_payment
-      - external_account
-      - id
-      - source_account
-      - unverified_recipient
-      x-stoplight:
-        id: 7qinjdob3wcd1
-    EnrollmentLevelEnum:
-      enum:
-      - receive
-      - send
-      - send_receive
-      - rfp
-      - rfp_send
-      - send_only
-      - none
-      type: string
-      description: '* `receive` - Receive only
-
-        * `send` - Send only
-
-        * `send_receive` - Send and Receive
-
-        * `rfp` - Request for payment and receive only
-
-        * `rfp_send` - Request for payment with send and receive
-
-        * `send_only` - Send only, meant for internal use only
-
-        * `none` - Not in the FedNow network'
-      x-stoplight:
-        id: 3sonktbgvbhvk
     FednowPayment:
       type: object
       properties:
@@ -394,6 +367,31 @@ components:
       - updated_at
       x-stoplight:
         id: g74hjbbstiqwt
+    EnrollmentLevelEnum:
+      enum:
+      - receive
+      - send
+      - send_receive
+      - rfp
+      - rfp_send
+      - send_only
+      - none
+      type: string
+      description: '* `receive` - Receive only
+
+        * `send` - Send only
+
+        * `send_receive` - Send and Receive
+
+        * `rfp` - Request for payment and receive only
+
+        * `rfp_send` - Request for payment with send and receive
+
+        * `send_only` - Send only, meant for internal use only
+
+        * `none` - Not in the FedNow network'
+      x-stoplight:
+        id: 3sonktbgvbhvk
   securitySchemes:
     oauth2:
       type: oauth2

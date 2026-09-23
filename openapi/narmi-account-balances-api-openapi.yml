@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Narmi Public account balances API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -11,15 +11,24 @@ servers:
 - url: https://api.sandbox.narmi.dev/
   description: ''
 tags:
-- name: account balances
+- name: Account Balances
 paths:
   /v1/account_balances/:
     get:
       operationId: account_balances_list
-      description: "List the authenticated user's account balances for each account. A caller may use this endpoint in order to update the balance totals for an account who's data has already been fetched. \n\nA full set of account data can be queried via accounts section.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      description: 'List the authenticated user''s account balances for each account. A caller may use this endpoint in order to update the balance totals for an account who''s data has already been fetched.
+
+
+        A full set of account data can be queried via accounts section.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+        How can we improve these docs? Share your feedback.'
       summary: List account balances
       tags:
-      - account balances
+      - Account Balances
       security:
       - oauth2:
         - read
@@ -54,7 +63,16 @@ paths:
   /v1/account_balances/{uuid}/:
     get:
       operationId: account_balances_retrieve
-      description: "Fetch the balances for an account as specified by its uuid. A caller may use this endpoint in order to update the balance totals for an account who's data has already been fetched. \n\nA full set of account data can be queried via accounts section.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      description: 'Fetch the balances for an account as specified by its uuid. A caller may use this endpoint in order to update the balance totals for an account who''s data has already been fetched.
+
+
+        A full set of account data can be queried via accounts section.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve account balances for an account
       parameters:
       - in: path
@@ -68,7 +86,7 @@ paths:
             value: abl_8b143f3e-70df-4799-a2ae-c5e3dabed963
             summary: sample
       tags:
-      - account balances
+      - Account Balances
       security:
       - oauth2:
         - read
@@ -155,28 +173,31 @@ components:
           maximum: 10000000000000.0
           minimum: -10000000000000.0
           description: The balance to be presented to the customer. Set to the available balance for non CD deposit accounts, and ledger balance otherwise. May be null for external accounts that have not yet been synced with balance data.
-          type: number
+          type:
+          - number
+          - 'null'
           format: double
           readOnly: true
-          nullable: true
         available:
           example: 100.0
           maximum: 10000000000000.0
           minimum: -10000000000000.0
           description: The funds immediately available to use, including any pending transactions or temporary holds on the account. May be null for external accounts that have not yet been synced with balance data.
-          type: number
+          type:
+          - number
+          - 'null'
           format: double
           readOnly: true
-          nullable: true
         ledger:
           example: 100.0
           maximum: 10000000000000.0
           minimum: -10000000000000.0
           description: The total amount of funds in the account not including temporary holds or pending transactions. May be null for external accounts that have not yet been synced with balance data.
-          type: number
+          type:
+          - number
+          - 'null'
           format: double
           readOnly: true
-          nullable: true
         updated_at:
           type: string
           format: date-time

@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances ach import API
+  title: Narmi Public ach import API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -22,9 +22,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Import ACH CSV
       tags:
       - ach import
@@ -58,9 +56,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: List saved CSV mappings
       parameters:
       - name: page
@@ -91,9 +87,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create a saved CSV mapping
       tags:
       - ach import
@@ -130,9 +124,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Delete a saved CSV mapping
       parameters:
       - in: path
@@ -159,9 +151,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Parse ACH CSV
       tags:
       - ach import
@@ -192,9 +182,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Download NACHA file
       parameters:
       - in: path
@@ -227,9 +215,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Import NACHA file
       tags:
       - ach import
@@ -256,79 +242,6 @@ paths:
         id: w0anb9l92l6r7
 components:
   schemas:
-    ACHImportSuggestedMapping:
-      type: object
-      properties:
-        mapping_uuid:
-          type: string
-          format: uuid
-          nullable: true
-        mapping_name:
-          type: string
-          nullable: true
-        column_mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ACHImportColumnMapping'
-      required:
-      - column_mappings
-      - mapping_name
-      - mapping_uuid
-      x-stoplight:
-        id: otzzn5fui4etj
-    PaginatedCSVFieldMappingList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/CSVFieldMapping'
-      x-stoplight:
-        id: yh0os5rdtbxhb
-    WireRecipientAddress:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        street_address:
-          type: string
-          maxLength: 128
-        street_address_2:
-          type: string
-          maxLength: 128
-        city:
-          type: string
-          maxLength: 128
-        region_code:
-          type: string
-          maxLength: 128
-        postal_code:
-          type: string
-          maxLength: 128
-        country_code:
-          type: string
-          maxLength: 2
-      required:
-      - street_address
-      x-stoplight:
-        id: dsp8dadbgwst0
     Recipient:
       type: object
       description: 'Updates to the ach_destination and fedwire_destination fields are handled by the
@@ -374,48 +287,7 @@ components:
       - name
       x-stoplight:
         id: buqdhdq6mraig
-    RecipientTypeEnum:
-      enum:
-      - person
-      - business
-      type: string
-      description: '* `person` - Person
-
-        * `business` - Business'
-      x-stoplight:
-        id: cetfkhhexomuz
-    ACHImportNACHAPaymentRow:
-      type: object
-      properties:
-        recipient:
-          allOf:
-          - $ref: '#/components/schemas/Recipient'
-          nullable: true
-        amount:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
-        description:
-          type: string
-        transaction_type:
-          type: string
-        scheduled_date:
-          type: string
-        needs_review:
-          type: boolean
-        warning:
-          type: string
-      required:
-      - amount
-      - description
-      - needs_review
-      - recipient
-      - scheduled_date
-      - transaction_type
-      - warning
-      x-stoplight:
-        id: 59iee9ughnkkt
-    CSVFieldMapping:
+    SwiftWireDestination:
       type: object
       properties:
         id:
@@ -430,257 +302,23 @@ components:
           type: string
           format: date-time
           readOnly: true
-        name:
+        bic:
           type: string
-          maxLength: 256
-        has_header_row:
-          type: boolean
-        date_column_index:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        date_column_header:
+        metadata: {}
+        address:
+          $ref: '#/components/schemas/WireRecipientAddress'
+        account_identifier:
           type: string
-          nullable: true
-          maxLength: 256
-        recipient_name_column_index:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        recipient_name_column_header:
-          type: string
-          nullable: true
-          maxLength: 256
-        routing_number_column_index:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        routing_number_column_header:
-          type: string
-          nullable: true
-          maxLength: 256
-        account_number_column_index:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        account_number_column_header:
-          type: string
-          nullable: true
-          maxLength: 256
-        account_type_column_index:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        account_type_column_header:
-          type: string
-          nullable: true
-          maxLength: 256
-        action_column_index:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        action_column_header:
-          type: string
-          nullable: true
-          maxLength: 256
-        description_column_index:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        description_column_header:
-          type: string
-          nullable: true
-          maxLength: 256
-        amount_column_index:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        amount_column_header:
-          type: string
-          nullable: true
-          maxLength: 256
+          description: Account identifier (IBAN, account number, phone) for the Swift wire destination.
+        branch_address:
+          allOf:
+          - $ref: '#/components/schemas/WireRecipientAddress'
       required:
-      - name
+      - account_identifier
+      - address
+      - bic
       x-stoplight:
-        id: 4ungymnhpc7vd
-    CSVFieldMappingRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          minLength: 1
-          maxLength: 256
-        has_header_row:
-          type: boolean
-        date_column_index:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        date_column_header:
-          type: string
-          nullable: true
-          maxLength: 256
-        recipient_name_column_index:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        recipient_name_column_header:
-          type: string
-          nullable: true
-          maxLength: 256
-        routing_number_column_index:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        routing_number_column_header:
-          type: string
-          nullable: true
-          maxLength: 256
-        account_number_column_index:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        account_number_column_header:
-          type: string
-          nullable: true
-          maxLength: 256
-        account_type_column_index:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        account_type_column_header:
-          type: string
-          nullable: true
-          maxLength: 256
-        action_column_index:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        action_column_header:
-          type: string
-          nullable: true
-          maxLength: 256
-        description_column_index:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        description_column_header:
-          type: string
-          nullable: true
-          maxLength: 256
-        amount_column_index:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        amount_column_header:
-          type: string
-          nullable: true
-          maxLength: 256
-      required:
-      - name
-      x-stoplight:
-        id: w6wnfjrofrxpg
-    ACHImportCSVParseRequest:
-      type: object
-      properties:
-        s3_key:
-          type: string
-          minLength: 1
-        has_header_row:
-          type: boolean
-          default: true
-        column_mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ACHImportColumnMappingRequest'
-      required:
-      - column_mappings
-      - s3_key
-      x-stoplight:
-        id: ruhdvji7srj4z
-    AccountTypeEnum:
-      enum:
-      - checking
-      - savings
-      - loan
-      type: string
-      description: '* `checking` - Checking
-
-        * `savings` - Savings
-
-        * `loan` - Loan'
-      x-stoplight:
-        id: ds0e59zxe4i8q
-    ACHImportNACHAUploadRequest:
-      type: object
-      properties:
-        file:
-          type: string
-          format: binary
-        account_purpose:
-          $ref: '#/components/schemas/AccountPurposeEnum'
-        source_account:
-          type: string
-          format: uuid
-        description:
-          type: string
-          default: ''
-        title:
-          type: string
-          default: ''
-        internal_note:
-          type: string
-          default: ''
-      required:
-      - account_purpose
-      - file
-      - source_account
-      x-stoplight:
-        id: 4lzbivycmjmlm
-    ACHImportNACHAUploadResponse:
-      type: object
-      properties:
-        s3_key:
-          type: string
-        organization_file_uuid:
-          type: string
-          format: uuid
-        source_account:
-          type: string
-          format: uuid
-        title:
-          type: string
-        internal_note:
-          type: string
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/ACHImportNACHAPaymentRow'
-      required:
-      - internal_note
-      - organization_file_uuid
-      - rows
-      - s3_key
-      - source_account
-      - title
-      x-stoplight:
-        id: gc6usoekpih53
+        id: fsxcazs4nwqxc
     ACHImportCSVUploadResponse:
       type: object
       properties:
@@ -713,6 +351,147 @@ components:
       - suggested_mapping
       x-stoplight:
         id: ifbz6ldyum3k8
+    CSVFieldMappingRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 256
+        has_header_row:
+          type: boolean
+        date_column_index:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        date_column_header:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        recipient_name_column_index:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        recipient_name_column_header:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        routing_number_column_index:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        routing_number_column_header:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        account_number_column_index:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        account_number_column_header:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        account_type_column_index:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        account_type_column_header:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        action_column_index:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        action_column_header:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        description_column_index:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        description_column_header:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        amount_column_index:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        amount_column_header:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+      required:
+      - name
+      x-stoplight:
+        id: w6wnfjrofrxpg
+    ACHImportCSVParseRequest:
+      type: object
+      properties:
+        s3_key:
+          type: string
+          minLength: 1
+        has_header_row:
+          type: boolean
+          default: true
+        column_mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHImportColumnMappingRequest'
+      required:
+      - column_mappings
+      - s3_key
+      x-stoplight:
+        id: ruhdvji7srj4z
+    ACHImportSuggestedMapping:
+      type: object
+      properties:
+        mapping_uuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        mapping_name:
+          type:
+          - string
+          - 'null'
+        column_mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHImportColumnMapping'
+      required:
+      - column_mappings
+      - mapping_name
+      - mapping_uuid
+      x-stoplight:
+        id: otzzn5fui4etj
     ACHImportColumnMapping:
       type: object
       properties:
@@ -722,14 +501,336 @@ components:
           type: integer
           minimum: 0
         column_header:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
       required:
       - column_header
       - column_index
       - field
       x-stoplight:
         id: zxwgxy9wqgrru
+    CSVFieldMapping:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        name:
+          type: string
+          maxLength: 256
+        has_header_row:
+          type: boolean
+        date_column_index:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        date_column_header:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        recipient_name_column_index:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        recipient_name_column_header:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        routing_number_column_index:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        routing_number_column_header:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        account_number_column_index:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        account_number_column_header:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        account_type_column_index:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        account_type_column_header:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        action_column_index:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        action_column_header:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        description_column_index:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        description_column_header:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+        amount_column_index:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        amount_column_header:
+          type:
+          - string
+          - 'null'
+          maxLength: 256
+      required:
+      - name
+      x-stoplight:
+        id: 4ungymnhpc7vd
+    WireRecipientAddress:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        street_address:
+          type: string
+          maxLength: 128
+        street_address_2:
+          type: string
+          maxLength: 128
+        city:
+          type: string
+          maxLength: 128
+        region_code:
+          type: string
+          maxLength: 128
+        postal_code:
+          type: string
+          maxLength: 128
+        country_code:
+          type: string
+          maxLength: 2
+      required:
+      - street_address
+      x-stoplight:
+        id: dsp8dadbgwst0
+    ACHImportNACHAUploadRequest:
+      type: object
+      properties:
+        file:
+          type: string
+          format: binary
+        account_purpose:
+          $ref: '#/components/schemas/AccountPurposeEnum'
+        source_account:
+          type: string
+          format: uuid
+        description:
+          type: string
+          default: ''
+        title:
+          type: string
+          default: ''
+        internal_note:
+          type: string
+          default: ''
+      required:
+      - account_purpose
+      - file
+      - source_account
+      x-stoplight:
+        id: 4lzbivycmjmlm
+    AccountTypeEnum:
+      enum:
+      - checking
+      - savings
+      - loan
+      type: string
+      description: '* `checking` - Checking
+
+        * `savings` - Savings
+
+        * `loan` - Loan'
+      x-stoplight:
+        id: ds0e59zxe4i8q
+    ACHImportCSVParseResponse:
+      type: object
+      properties:
+        s3_key:
+          type: string
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHImportCSVParsedRow'
+      required:
+      - rows
+      - s3_key
+      x-stoplight:
+        id: cb38nxi2sqi27
+    RecipientTypeEnum:
+      enum:
+      - person
+      - business
+      type: string
+      description: '* `person` - Person
+
+        * `business` - Business'
+      x-stoplight:
+        id: cetfkhhexomuz
+    ACHImportCSVUploadRequest:
+      type: object
+      properties:
+        file:
+          type: string
+          format: binary
+        has_header_row:
+          type: boolean
+          default: true
+      required:
+      - file
+      x-stoplight:
+        id: ixrwinllwmc6r
+    ACHImportNACHAPaymentRow:
+      type: object
+      properties:
+        recipient:
+          allOf:
+          - $ref: '#/components/schemas/Recipient'
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+        description:
+          type: string
+        transaction_type:
+          type: string
+        scheduled_date:
+          type: string
+        needs_review:
+          type: boolean
+        warning:
+          type: string
+      required:
+      - amount
+      - description
+      - needs_review
+      - recipient
+      - scheduled_date
+      - transaction_type
+      - warning
+      x-stoplight:
+        id: 59iee9ughnkkt
+    FedwireRecipientAddress:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        street_address:
+          type: string
+          maxLength: 35
+        street_address_2:
+          type: string
+          maxLength: 35
+        city:
+          type: string
+          maxLength: 128
+        region_code:
+          type: string
+          maxLength: 128
+        postal_code:
+          type: string
+          maxLength: 128
+        country_code:
+          type: string
+          maxLength: 2
+      required:
+      - street_address
+      x-stoplight:
+        id: alp6ww1u4r5wf
+    ACHImportColumnMappingRequest:
+      type: object
+      properties:
+        field:
+          type: string
+          minLength: 1
+        column_index:
+          type: integer
+          minimum: 0
+        column_header:
+          type:
+          - string
+          - 'null'
+      required:
+      - column_header
+      - column_index
+      - field
+      x-stoplight:
+        id: naaf0tao58f9y
+    ACHImportNACHAUploadResponse:
+      type: object
+      properties:
+        s3_key:
+          type: string
+        organization_file_uuid:
+          type: string
+          format: uuid
+        source_account:
+          type: string
+          format: uuid
+        title:
+          type: string
+        internal_note:
+          type: string
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHImportNACHAPaymentRow'
+      required:
+      - internal_note
+      - organization_file_uuid
+      - rows
+      - s3_key
+      - source_account
+      - title
+      x-stoplight:
+        id: gc6usoekpih53
     FedwireDestination:
       type: object
       description: 'In addition to the standard FedwireDestination fields you''d expect for a create/updated request,
@@ -813,19 +914,6 @@ components:
       - routing_number
       x-stoplight:
         id: rvctfxe73rl2e
-    ACHImportCSVUploadRequest:
-      type: object
-      properties:
-        file:
-          type: string
-          format: binary
-        has_header_row:
-          type: boolean
-          default: true
-      required:
-      - file
-      x-stoplight:
-        id: ixrwinllwmc6r
     ACHImportCSVParsedRow:
       type: object
       properties:
@@ -851,7 +939,6 @@ components:
         recipient:
           allOf:
           - $ref: '#/components/schemas/Recipient'
-          nullable: true
         needs_review:
           type: boolean
         warning:
@@ -876,99 +963,33 @@ components:
       - warning
       x-stoplight:
         id: ggxy0rbj33kat
-    ACHImportCSVParseResponse:
+    PaginatedCSVFieldMappingList:
       type: object
+      required:
+      - count
+      - results
       properties:
-        s3_key:
-          type: string
-        rows:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
           type: array
           items:
-            $ref: '#/components/schemas/ACHImportCSVParsedRow'
-      required:
-      - rows
-      - s3_key
+            $ref: '#/components/schemas/CSVFieldMapping'
       x-stoplight:
-        id: cb38nxi2sqi27
-    ACHImportColumnMappingRequest:
-      type: object
-      properties:
-        field:
-          type: string
-          minLength: 1
-        column_index:
-          type: integer
-          minimum: 0
-        column_header:
-          type: string
-          nullable: true
-      required:
-      - column_header
-      - column_index
-      - field
-      x-stoplight:
-        id: naaf0tao58f9y
-    SwiftWireDestination:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-        bic:
-          type: string
-        metadata: {}
-        address:
-          $ref: '#/components/schemas/WireRecipientAddress'
-        account_identifier:
-          type: string
-          description: Account identifier (IBAN, account number, phone) for the Swift wire destination.
-        branch_address:
-          allOf:
-          - $ref: '#/components/schemas/WireRecipientAddress'
-          nullable: true
-      required:
-      - account_identifier
-      - address
-      - bic
-      x-stoplight:
-        id: fsxcazs4nwqxc
-    FedwireRecipientAddress:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        street_address:
-          type: string
-          maxLength: 35
-        street_address_2:
-          type: string
-          maxLength: 35
-        city:
-          type: string
-          maxLength: 128
-        region_code:
-          type: string
-          maxLength: 128
-        postal_code:
-          type: string
-          maxLength: 128
-        country_code:
-          type: string
-          maxLength: 2
-      required:
-      - street_address
-      x-stoplight:
-        id: alp6ww1u4r5wf
+        id: yh0os5rdtbxhb
   securitySchemes:
     oauth2:
       type: oauth2

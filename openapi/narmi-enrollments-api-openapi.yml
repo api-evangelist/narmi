@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances enrollments API
+  title: Narmi Public Enrollments API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -11,7 +11,7 @@ servers:
 - url: https://api.sandbox.narmi.dev/
   description: ''
 tags:
-- name: enrollments
+- name: Enrollments
 paths:
   /v1/enroll/:
     post:
@@ -22,12 +22,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create a digital banking user
       tags:
-      - enrollments
+      - Enrollments
       requestBody:
         content:
           application/json:
@@ -108,12 +106,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Verify enrollment code
       tags:
-      - enrollments
+      - Enrollments
       requestBody:
         content:
           application/json:
@@ -189,12 +185,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create enrollment URL
       tags:
-      - enrollments
+      - Enrollments
       requestBody:
         content:
           application/json:
@@ -269,9 +263,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create a new enrollment code
       parameters:
       - in: path
@@ -281,7 +273,7 @@ paths:
           pattern: ^[0-9a-z-]+$
         required: true
       tags:
-      - enrollments
+      - Enrollments
       security:
       - oauth2:
         - write
@@ -366,9 +358,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Set user as enrolled
       parameters:
       - in: path
@@ -378,7 +368,7 @@ paths:
           pattern: ^[0-9a-z-]+$
         required: true
       tags:
-      - enrollments
+      - Enrollments
       requestBody:
         content:
           application/json:
@@ -432,6 +422,20 @@ paths:
         id: 9kzq6labseruv
 components:
   schemas:
+    Enrollment:
+      type: object
+      properties:
+        user:
+          allOf:
+          - $ref: '#/components/schemas/Profile'
+          readOnly: true
+        devices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Device'
+          readOnly: true
+      x-stoplight:
+        id: bim2fzc2964rr
     Address:
       type: object
       properties:
@@ -459,6 +463,236 @@ components:
       - street_address
       x-stoplight:
         id: xatva1xwqb0yk
+    EnrollmentCompleteDocRequest:
+      type: object
+      properties:
+        has_estatements:
+          type: boolean
+          description: The enrolling user's estatement preference. Only relevant for the account holder.
+      x-stoplight:
+        id: yqmzqxq7udcyw
+    Phone:
+      type: object
+      properties:
+        number:
+          type: string
+        device_id:
+          type:
+          - string
+          - 'null'
+        device_request_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - number
+      x-stoplight:
+        id: vm2qlwcduqdwc
+    UserCategory905Enum:
+      enum:
+      - business
+      - personal
+      type: string
+      description: '* `business` - business
+
+        * `personal` - personal'
+      x-stoplight:
+        id: qi34dkcfjktg6
+    EnrollmentDocRequest:
+      type: object
+      properties:
+        user_category:
+          allOf:
+          - $ref: '#/components/schemas/UserCategory905Enum'
+          writeOnly: true
+        primary_account_number:
+          type: string
+          writeOnly: true
+          minLength: 1
+          example: abc123def3456
+        dob:
+          type: string
+          format: date
+          writeOnly: true
+        ssn:
+          type: string
+          writeOnly: true
+          minLength: 9
+          example: '123121234'
+          maxLength: 9
+        ein:
+          type: string
+          writeOnly: true
+          minLength: 9
+          example: '123121234'
+          maxLength: 9
+        payload:
+          type: string
+          writeOnly: true
+          minLength: 1
+          description: If user is pre-validated via Link Service, supply encoded payload instead of other fields.
+          example: eyJlbWFpbCI6ICJ0ZXN0QGV4YW1wbGUuY29tIiwgInBob25lX251bWJlciI6ICIxMjM0NTY3ODkwIiwgInRheF9pZCI6ICIxMjMtNDUtNjc4OSIsICJlaW4iOiAiMTItMzQ1Njc4OSIsICJkb2IiOiAiMTk5MC0wMS0wMSIsICJ1c2VyX2NhdGVnb3J5IjogInRlc3RfY2F0ZWdvcnkiLCAiY29yZV9vcmdfaWQiOiAib3JnMTIzIiwgImZpcnN0X25hbWUiOiAiSm9obiIsICJsYXN0X25hbWUiOiAiRG9lIn0=
+      x-stoplight:
+        id: rn9gtuvmxmlzj
+    IncomeSource:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        income:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        income_type:
+          $ref: '#/components/schemas/IncomeTypeEnum'
+        mortgage_rent:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        industry:
+          type: string
+          maxLength: 128
+        occupation:
+          type: string
+          maxLength: 128
+      required:
+      - income
+      - income_type
+      x-stoplight:
+        id: cf5t7cvffrpat
+    VerifyEnrollmentDocRequest:
+      type: object
+      properties:
+        enrollment_code:
+          type: string
+          writeOnly: true
+          minLength: 1
+          example: ur3yheyw
+      required:
+      - enrollment_code
+      x-stoplight:
+        id: yqsn2yxyvvqqt
+    CreateEnrollmentUrlsResponse:
+      type: object
+      properties:
+        enrollment:
+          $ref: '#/components/schemas/CreateEnrollmentUrlsURLField'
+      required:
+      - enrollment
+      x-stoplight:
+        id: 0u9buvhwp4tg2
+    Device:
+      type: object
+      description: Serializer for two-factor authorization devices.
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: otp_twilio.models.TwilioSMSDevice/1
+        number_type:
+          type: string
+          readOnly: true
+          example: mobile
+        name:
+          type: string
+          readOnly: true
+          example: User's iPhone
+      x-stoplight:
+        id: t9hj1bdrxqmb5
+    NullEnum:
+      enum:
+      - null
+      x-stoplight:
+        id: 2493tmzk9db0y
+    EnrollmentUrlCreateRequest:
+      type: object
+      properties:
+        account_number:
+          type: string
+          writeOnly: true
+          minLength: 1
+          description: The enrolling account number.
+          example: '43333'
+        date_of_birth:
+          type: string
+          format: date
+          writeOnly: true
+        tax_id:
+          type: string
+          writeOnly: true
+          minLength: 9
+          description: User social security number.
+          example: '123121234'
+          maxLength: 9
+        institution_business_identifier:
+          type: string
+          writeOnly: true
+          minLength: 1
+          description: Organization identifier from the banking core. Only required for business accounts.
+          example: abc123456
+        ein:
+          type: string
+          writeOnly: true
+          minLength: 9
+          description: Only required for business accounts.
+          example: '123121234'
+          maxLength: 9
+      x-stoplight:
+        id: 0tae6fiegr4lv
+    CreateEnrollmentUrlsURLField:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL that enables a user to enroll without entering their details.
+      required:
+      - url
+      x-stoplight:
+        id: hxbs06ahrwkbi
+    IncomeTypeEnum:
+      enum:
+      - employed
+      - part_time
+      - not_employed
+      - self_employed
+      - retirement
+      - other
+      type: string
+      description: '* `employed` - Employed
+
+        * `part_time` - Part time
+
+        * `not_employed` - Not employed
+
+        * `self_employed` - Self employed
+
+        * `retirement` - Retirement
+
+        * `other` - Other'
+      x-stoplight:
+        id: vlxoho9hsykzd
+    UserCategory4f2Enum:
+      enum:
+      - personal
+      - business
+      type: string
+      x-stoplight:
+        id: vmvxka9zperhg
+    OrgRoleEnum:
+      enum:
+      - Account Holder
+      - Admin
+      - Collaborator
+      - No Permissions
+      - Viewer
+      type: string
+      x-stoplight:
+        id: bcxpswdnbrned
     Profile:
       type: object
       description: ''
@@ -469,21 +703,24 @@ components:
           description: Email address for the registered user.
           example: demo@narmitech.com
         core_provided_email:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           description: Email address the user has registered to the core.
           example: null
         username:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           description: Username for the registered user.
           example: testuser
         id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
           readOnly: true
           description: UUID of the registered user. This value is used as the unique identifier for the user in the API.
           example: 07231f46-23f1-482e-bdc4-35f2267b60e6
@@ -493,9 +730,10 @@ components:
           description: Core user ID, may be set to empty string if the requesting user does not have the `core_user_id` scope for the target user.
           example: ''
         updated_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           readOnly: true
           description: The last date-time that the information for this user was altered or saved.
           example: '2018-11-02T03:29:18.317000+00:00'
@@ -514,8 +752,9 @@ components:
           description: A list of phone numbers for the registered user. This list often includes only one phone number. This may be set to empty list if the requesting user does not have the `phone` scope for the target user.
           example: []
         notifications_enabled:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
           readOnly: true
           description: Whether the user has registered a device for notifications. This field will also check to make sure that at least one of the devices is set to active.
         first_name:
@@ -529,23 +768,24 @@ components:
           description: Last name of the registered user, may include items such as hyphenated/multiple surnames and generational suffixes (ie. Jr, Sr, III). This may be set to empty string if the requesting user does not have the `name` scope for the target user.
           example: ''
         paper_statements:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
           readOnly: true
           description: Whether the registered user has opted to receive eStatements. This may be set to `null` if the requesting user does not have the `preferences` scope for the target user.
           example: true
         user_category:
           description: Used to distinguish whether this is a `business` or `personal` user.
-          nullable: true
           readOnly: true
           example: personal
           oneOf:
           - $ref: '#/components/schemas/UserCategory4f2Enum'
           - $ref: '#/components/schemas/NullEnum'
         features:
-          type: object
+          type:
+          - object
+          - 'null'
           additionalProperties: {}
-          nullable: true
           readOnly: true
           description: A set of user features which define what the user can and can not do.
           example:
@@ -656,15 +896,15 @@ components:
               rdc_hold_days: 4
               ach_hold_days: 2
         org_uuid:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
           readOnly: true
           description: The UUID of the organization which the user belongs to. This will be set to `null` if the user category is set to `personal`.
           example: null
         org_role:
           description: The role of the user for the organization it belongs to. This will be set to `null` if the user category is set to `personal`.
-          nullable: true
           readOnly: true
           example: null
           oneOf:
@@ -683,14 +923,16 @@ components:
           description: Permissions that a user has to a business. The permissions which are granted are dictated by the users role in the organization. This will be set to an empty list for non-business users.
           example: []
         dual_approval_required:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
           readOnly: true
           description: For business users, this field indicates whether wire transactions initiated by the user require approval from the organization. For non-business users this will always be set to `false`.
           example: false
         ach_dual_approval_required:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
           readOnly: true
           description: For business users, this field indicates whether ACH transactions initiated by the user require approval from the organization. For non-business users this will always be set to `false`.
         income_sources:
@@ -700,8 +942,9 @@ components:
           readOnly: true
           description: A list of user reported income sources.
         international_wire_dual_approval_required:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
           readOnly: true
           description: For business users, this field indicates whether international wire transactions initiated by the user require approval from the organization. For non-business users this will always be set to `false`.
         is_staff:
@@ -731,9 +974,10 @@ components:
           description: The date-time the user was enrolled in the Narmi system.
           example: '2018-03-26T14:43:59.004000+00:00'
         last_login:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           readOnly: true
           description: The date-time the user last logged in.
           example: '2024-04-22T21:06:02.006532+00:00'
@@ -773,7 +1017,6 @@ components:
           - type: string
             format: date-time
           - type: string
-          nullable: true
           readOnly: true
           description: Date-time the user opted into electronic statements.
           example: null
@@ -793,37 +1036,31 @@ components:
           description: Whether the registered user has a one-time password backup code for two-factor authentication.
           example: false
         support_teams:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
             format: uuid
-          nullable: true
           readOnly: true
           description: The UUIDs of the support teams which the user belongs to. This will be set to `null` if the user does not belong to a support team.
         session_oidc_provider:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           description: The OIDC provider associated with the user's current session, if any.
       x-stoplight:
         id: g4tqfglwr85hp
-    UserCategory4f2Enum:
-      enum:
-      - personal
-      - business
-      type: string
+    VerifyEnrollment:
+      type: object
+      properties:
+        user:
+          allOf:
+          - $ref: '#/components/schemas/Profile'
+          readOnly: true
       x-stoplight:
-        id: vmvxka9zperhg
-    UserCategory905Enum:
-      enum:
-      - business
-      - personal
-      type: string
-      description: '* `business` - business
-
-        * `personal` - personal'
-      x-stoplight:
-        id: qi34dkcfjktg6
+        id: 3dvzmhmtfmppd
     BusinessPermissionsField:
       type: object
       properties:
@@ -840,239 +1077,6 @@ components:
       - uuid
       x-stoplight:
         id: rhmxqgl8o5k8x
-    NullEnum:
-      enum:
-      - null
-      x-stoplight:
-        id: 2493tmzk9db0y
-    IncomeSource:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        income:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        income_type:
-          $ref: '#/components/schemas/IncomeTypeEnum'
-        mortgage_rent:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        industry:
-          type: string
-          maxLength: 128
-        occupation:
-          type: string
-          maxLength: 128
-      required:
-      - income
-      - income_type
-      x-stoplight:
-        id: cf5t7cvffrpat
-    CreateEnrollmentUrlsResponse:
-      type: object
-      properties:
-        enrollment:
-          $ref: '#/components/schemas/CreateEnrollmentUrlsURLField'
-      required:
-      - enrollment
-      x-stoplight:
-        id: 0u9buvhwp4tg2
-    VerifyEnrollmentDocRequest:
-      type: object
-      properties:
-        enrollment_code:
-          type: string
-          writeOnly: true
-          minLength: 1
-          example: ur3yheyw
-      required:
-      - enrollment_code
-      x-stoplight:
-        id: yqsn2yxyvvqqt
-    EnrollmentDocRequest:
-      type: object
-      properties:
-        user_category:
-          allOf:
-          - $ref: '#/components/schemas/UserCategory905Enum'
-          writeOnly: true
-        primary_account_number:
-          type: string
-          writeOnly: true
-          minLength: 1
-          example: abc123def3456
-        dob:
-          type: string
-          format: date
-          writeOnly: true
-        ssn:
-          type: string
-          writeOnly: true
-          minLength: 9
-          example: '123121234'
-          maxLength: 9
-        ein:
-          type: string
-          writeOnly: true
-          minLength: 9
-          example: '123121234'
-          maxLength: 9
-        payload:
-          type: string
-          writeOnly: true
-          minLength: 1
-          description: If user is pre-validated via Link Service, supply encoded payload instead of other fields.
-          example: eyJlbWFpbCI6ICJ0ZXN0QGV4YW1wbGUuY29tIiwgInBob25lX251bWJlciI6ICIxMjM0NTY3ODkwIiwgInRheF9pZCI6ICIxMjMtNDUtNjc4OSIsICJlaW4iOiAiMTItMzQ1Njc4OSIsICJkb2IiOiAiMTk5MC0wMS0wMSIsICJ1c2VyX2NhdGVnb3J5IjogInRlc3RfY2F0ZWdvcnkiLCAiY29yZV9vcmdfaWQiOiAib3JnMTIzIiwgImZpcnN0X25hbWUiOiAiSm9obiIsICJsYXN0X25hbWUiOiAiRG9lIn0=
-      x-stoplight:
-        id: rn9gtuvmxmlzj
-    CreateEnrollmentUrlsURLField:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-          description: URL that enables a user to enroll without entering their details.
-      required:
-      - url
-      x-stoplight:
-        id: hxbs06ahrwkbi
-    OrgRoleEnum:
-      enum:
-      - Account Holder
-      - Admin
-      - Collaborator
-      - No Permissions
-      - Viewer
-      type: string
-      x-stoplight:
-        id: bcxpswdnbrned
-    Device:
-      type: object
-      description: Serializer for two-factor authorization devices.
-      properties:
-        id:
-          type: string
-          readOnly: true
-          example: otp_twilio.models.TwilioSMSDevice/1
-        number_type:
-          type: string
-          readOnly: true
-          example: mobile
-        name:
-          type: string
-          readOnly: true
-          example: User's iPhone
-      x-stoplight:
-        id: t9hj1bdrxqmb5
-    EnrollmentCompleteDocRequest:
-      type: object
-      properties:
-        has_estatements:
-          type: boolean
-          description: The enrolling user's estatement preference. Only relevant for the account holder.
-      x-stoplight:
-        id: yqmzqxq7udcyw
-    EnrollmentUrlCreateRequest:
-      type: object
-      properties:
-        account_number:
-          type: string
-          writeOnly: true
-          minLength: 1
-          description: The enrolling account number.
-          example: '43333'
-        date_of_birth:
-          type: string
-          format: date
-          writeOnly: true
-        tax_id:
-          type: string
-          writeOnly: true
-          minLength: 9
-          description: User social security number.
-          example: '123121234'
-          maxLength: 9
-        institution_business_identifier:
-          type: string
-          writeOnly: true
-          minLength: 1
-          description: Organization identifier from the banking core. Only required for business accounts.
-          example: abc123456
-        ein:
-          type: string
-          writeOnly: true
-          minLength: 9
-          description: Only required for business accounts.
-          example: '123121234'
-          maxLength: 9
-      x-stoplight:
-        id: 0tae6fiegr4lv
-    Phone:
-      type: object
-      properties:
-        number:
-          type: string
-        device_id:
-          type: string
-          nullable: true
-        device_request_id:
-          type: string
-          nullable: true
-      required:
-      - number
-      x-stoplight:
-        id: vm2qlwcduqdwc
-    IncomeTypeEnum:
-      enum:
-      - employed
-      - part_time
-      - not_employed
-      - self_employed
-      - retirement
-      - other
-      type: string
-      description: '* `employed` - Employed
-
-        * `part_time` - Part time
-
-        * `not_employed` - Not employed
-
-        * `self_employed` - Self employed
-
-        * `retirement` - Retirement
-
-        * `other` - Other'
-      x-stoplight:
-        id: vlxoho9hsykzd
-    VerifyEnrollment:
-      type: object
-      properties:
-        user:
-          allOf:
-          - $ref: '#/components/schemas/Profile'
-          readOnly: true
-      x-stoplight:
-        id: 3dvzmhmtfmppd
-    Enrollment:
-      type: object
-      properties:
-        user:
-          allOf:
-          - $ref: '#/components/schemas/Profile'
-          readOnly: true
-        devices:
-          type: array
-          items:
-            $ref: '#/components/schemas/Device'
-          readOnly: true
-      x-stoplight:
-        id: bim2fzc2964rr
   securitySchemes:
     oauth2:
       type: oauth2

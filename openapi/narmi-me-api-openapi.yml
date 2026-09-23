@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances me API
+  title: Narmi Public Me API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -11,7 +11,7 @@ servers:
 - url: https://api.sandbox.narmi.dev/
   description: ''
 tags:
-- name: me
+- name: Me
 paths:
   /v1/me/:
     get:
@@ -22,12 +22,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: List authenticated user information
       tags:
-      - me
+      - Me
       security:
       - oauth2:
         - banking:users:read
@@ -214,17 +212,6 @@ components:
       - street_address
       x-stoplight:
         id: xatva1xwqb0yk
-    UsersResponse:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/Profile'
-      required:
-      - users
-      x-stoplight:
-        id: oa4hi1e7x69nz
     Profile:
       type: object
       description: ''
@@ -235,21 +222,24 @@ components:
           description: Email address for the registered user.
           example: demo@narmitech.com
         core_provided_email:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           description: Email address the user has registered to the core.
           example: null
         username:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           description: Username for the registered user.
           example: testuser
         id:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
           readOnly: true
           description: UUID of the registered user. This value is used as the unique identifier for the user in the API.
           example: 07231f46-23f1-482e-bdc4-35f2267b60e6
@@ -259,9 +249,10 @@ components:
           description: Core user ID, may be set to empty string if the requesting user does not have the `core_user_id` scope for the target user.
           example: ''
         updated_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           readOnly: true
           description: The last date-time that the information for this user was altered or saved.
           example: '2018-11-02T03:29:18.317000+00:00'
@@ -280,8 +271,9 @@ components:
           description: A list of phone numbers for the registered user. This list often includes only one phone number. This may be set to empty list if the requesting user does not have the `phone` scope for the target user.
           example: []
         notifications_enabled:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
           readOnly: true
           description: Whether the user has registered a device for notifications. This field will also check to make sure that at least one of the devices is set to active.
         first_name:
@@ -295,23 +287,24 @@ components:
           description: Last name of the registered user, may include items such as hyphenated/multiple surnames and generational suffixes (ie. Jr, Sr, III). This may be set to empty string if the requesting user does not have the `name` scope for the target user.
           example: ''
         paper_statements:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
           readOnly: true
           description: Whether the registered user has opted to receive eStatements. This may be set to `null` if the requesting user does not have the `preferences` scope for the target user.
           example: true
         user_category:
           description: Used to distinguish whether this is a `business` or `personal` user.
-          nullable: true
           readOnly: true
           example: personal
           oneOf:
           - $ref: '#/components/schemas/UserCategory4f2Enum'
           - $ref: '#/components/schemas/NullEnum'
         features:
-          type: object
+          type:
+          - object
+          - 'null'
           additionalProperties: {}
-          nullable: true
           readOnly: true
           description: A set of user features which define what the user can and can not do.
           example:
@@ -422,15 +415,15 @@ components:
               rdc_hold_days: 4
               ach_hold_days: 2
         org_uuid:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
           readOnly: true
           description: The UUID of the organization which the user belongs to. This will be set to `null` if the user category is set to `personal`.
           example: null
         org_role:
           description: The role of the user for the organization it belongs to. This will be set to `null` if the user category is set to `personal`.
-          nullable: true
           readOnly: true
           example: null
           oneOf:
@@ -449,14 +442,16 @@ components:
           description: Permissions that a user has to a business. The permissions which are granted are dictated by the users role in the organization. This will be set to an empty list for non-business users.
           example: []
         dual_approval_required:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
           readOnly: true
           description: For business users, this field indicates whether wire transactions initiated by the user require approval from the organization. For non-business users this will always be set to `false`.
           example: false
         ach_dual_approval_required:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
           readOnly: true
           description: For business users, this field indicates whether ACH transactions initiated by the user require approval from the organization. For non-business users this will always be set to `false`.
         income_sources:
@@ -466,8 +461,9 @@ components:
           readOnly: true
           description: A list of user reported income sources.
         international_wire_dual_approval_required:
-          type: boolean
-          nullable: true
+          type:
+          - boolean
+          - 'null'
           readOnly: true
           description: For business users, this field indicates whether international wire transactions initiated by the user require approval from the organization. For non-business users this will always be set to `false`.
         is_staff:
@@ -497,9 +493,10 @@ components:
           description: The date-time the user was enrolled in the Narmi system.
           example: '2018-03-26T14:43:59.004000+00:00'
         last_login:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           readOnly: true
           description: The date-time the user last logged in.
           example: '2024-04-22T21:06:02.006532+00:00'
@@ -539,7 +536,6 @@ components:
           - type: string
             format: date-time
           - type: string
-          nullable: true
           readOnly: true
           description: Date-time the user opted into electronic statements.
           example: null
@@ -559,27 +555,65 @@ components:
           description: Whether the registered user has a one-time password backup code for two-factor authentication.
           example: false
         support_teams:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
             format: uuid
-          nullable: true
           readOnly: true
           description: The UUIDs of the support teams which the user belongs to. This will be set to `null` if the user does not belong to a support team.
         session_oidc_provider:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           description: The OIDC provider associated with the user's current session, if any.
       x-stoplight:
         id: g4tqfglwr85hp
-    UserCategory4f2Enum:
+    Phone:
+      type: object
+      properties:
+        number:
+          type: string
+        device_id:
+          type:
+          - string
+          - 'null'
+        device_request_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - number
+      x-stoplight:
+        id: vm2qlwcduqdwc
+    NullEnum:
       enum:
-      - personal
-      - business
+      - null
+      x-stoplight:
+        id: 2493tmzk9db0y
+    UsersResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/Profile'
+      required:
+      - users
+      x-stoplight:
+        id: oa4hi1e7x69nz
+    OrgRoleEnum:
+      enum:
+      - Account Holder
+      - Admin
+      - Collaborator
+      - No Permissions
+      - Viewer
       type: string
       x-stoplight:
-        id: vmvxka9zperhg
+        id: bcxpswdnbrned
     IncomeTypeEnum:
       enum:
       - employed
@@ -602,6 +636,13 @@ components:
         * `other` - Other'
       x-stoplight:
         id: vlxoho9hsykzd
+    UserCategory4f2Enum:
+      enum:
+      - personal
+      - business
+      type: string
+      x-stoplight:
+        id: vmvxka9zperhg
     IncomeSource:
       type: object
       properties:
@@ -616,10 +657,11 @@ components:
         income_type:
           $ref: '#/components/schemas/IncomeTypeEnum'
         mortgage_rent:
-          type: integer
+          type:
+          - integer
+          - 'null'
           maximum: 2147483647
           minimum: 0
-          nullable: true
         industry:
           type: string
           maxLength: 128
@@ -631,31 +673,6 @@ components:
       - income_type
       x-stoplight:
         id: cf5t7cvffrpat
-    Phone:
-      type: object
-      properties:
-        number:
-          type: string
-        device_id:
-          type: string
-          nullable: true
-        device_request_id:
-          type: string
-          nullable: true
-      required:
-      - number
-      x-stoplight:
-        id: vm2qlwcduqdwc
-    OrgRoleEnum:
-      enum:
-      - Account Holder
-      - Admin
-      - Collaborator
-      - No Permissions
-      - Viewer
-      type: string
-      x-stoplight:
-        id: bcxpswdnbrned
     BusinessPermissionsField:
       type: object
       properties:
@@ -672,11 +689,6 @@ components:
       - uuid
       x-stoplight:
         id: rhmxqgl8o5k8x
-    NullEnum:
-      enum:
-      - null
-      x-stoplight:
-        id: 2493tmzk9db0y
   securitySchemes:
     oauth2:
       type: oauth2

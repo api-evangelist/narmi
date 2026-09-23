@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances fedwire destinations API
+  title: Narmi Public fedwire destinations API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -22,9 +22,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create a Fedwire destination
       tags:
       - fedwire destinations
@@ -83,9 +81,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Update a Fedwire destination
       parameters:
       - in: path
@@ -144,6 +140,18 @@ paths:
         id: 3nwn3t4lhyd8b
 components:
   schemas:
+    PermissionDeniedError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: You do not have permission to perform this action.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: ywbohhxwqjqj3
     FedwireRecipientAddressRequest:
       type: object
       properties:
@@ -171,81 +179,6 @@ components:
       - street_address
       x-stoplight:
         id: jpxphmdao13bd
-    FedwireDestination:
-      type: object
-      description: 'In addition to the standard FedwireDestination fields you''d expect for a create/updated request,
-
-        this serializer also requires a recipient (passed in as the uuid of the recipient)
-
-        that will be associated with the created/updated FedwireDestination instance.'
-      properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-        account_number:
-          example: '123456'
-          description: Account number for the Fedwire destination.
-          type: string
-          maxLength: 17
-          minLength: 1
-        routing_number:
-          example: '021030004'
-          description: Routing number for the Fedwire destination.
-          type: string
-          maxLength: 9
-          minLength: 9
-        address:
-          $ref: '#/components/schemas/FedwireRecipientAddress'
-        institution_name:
-          type: string
-          readOnly: true
-      required:
-      - account_number
-      - address
-      - routing_number
-      x-stoplight:
-        id: 5nq8io7fuwyrs
-    PermissionDeniedError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: api_error
-        message:
-          type: string
-          default: You do not have permission to perform this action.
-          description: An error response detailing the field and the nature of the error.
-      x-stoplight:
-        id: ywbohhxwqjqj3
-    FedwireRecipientAddress:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        street_address:
-          type: string
-          maxLength: 35
-        street_address_2:
-          type: string
-          maxLength: 35
-        city:
-          type: string
-          maxLength: 128
-        region_code:
-          type: string
-          maxLength: 128
-        postal_code:
-          type: string
-          maxLength: 128
-        country_code:
-          type: string
-          maxLength: 2
-      required:
-      - street_address
-      x-stoplight:
-        id: alp6ww1u4r5wf
     FedwireDestinationRequest:
       type: object
       description: 'In addition to the standard FedwireDestination fields you''d expect for a create/updated request,
@@ -281,6 +214,69 @@ components:
       - routing_number
       x-stoplight:
         id: zthgxtvwxewwu
+    FedwireRecipientAddress:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        street_address:
+          type: string
+          maxLength: 35
+        street_address_2:
+          type: string
+          maxLength: 35
+        city:
+          type: string
+          maxLength: 128
+        region_code:
+          type: string
+          maxLength: 128
+        postal_code:
+          type: string
+          maxLength: 128
+        country_code:
+          type: string
+          maxLength: 2
+      required:
+      - street_address
+      x-stoplight:
+        id: alp6ww1u4r5wf
+    FedwireDestination:
+      type: object
+      description: 'In addition to the standard FedwireDestination fields you''d expect for a create/updated request,
+
+        this serializer also requires a recipient (passed in as the uuid of the recipient)
+
+        that will be associated with the created/updated FedwireDestination instance.'
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        account_number:
+          example: '123456'
+          description: Account number for the Fedwire destination.
+          type: string
+          maxLength: 17
+          minLength: 1
+        routing_number:
+          example: '021030004'
+          description: Routing number for the Fedwire destination.
+          type: string
+          maxLength: 9
+          minLength: 9
+        address:
+          $ref: '#/components/schemas/FedwireRecipientAddress'
+        institution_name:
+          type: string
+          readOnly: true
+      required:
+      - account_number
+      - address
+      - routing_number
+      x-stoplight:
+        id: 5nq8io7fuwyrs
   securitySchemes:
     oauth2:
       type: oauth2

@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances mfa API
+  title: Narmi Public Mfa API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -11,7 +11,7 @@ servers:
 - url: https://api.sandbox.narmi.dev/
   description: ''
 tags:
-- name: mfa
+- name: MFA
 paths:
   /v1/mfa/:
     get:
@@ -22,9 +22,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: List MFA devices
       parameters:
       - name: limit
@@ -42,7 +40,7 @@ paths:
           type: integer
           maximum: 2147483648
       tags:
-      - mfa
+      - MFA
       security:
       - oauth2:
         - read
@@ -90,9 +88,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Delete MFA device
       parameters:
       - in: path
@@ -102,7 +98,7 @@ paths:
         description: MFA device ID, constituted by a string of the device type followed by a device ID e.g. `otp_twilio.models.TwilioSMSDevice/1`.
         required: true
       tags:
-      - mfa
+      - MFA
       security:
       - oauth2:
         - write
@@ -128,12 +124,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve sudo status
       tags:
-      - mfa
+      - MFA
       security:
       - oauth2:
         - read
@@ -164,10 +158,25 @@ paths:
         id: id3s9kglbg24y
     post:
       operationId: sudo_create
-      description: "Elevate user permissions using Two-Factor-Authentication. \n\n\n\nSend a `device_id` to generate and dispatch a one-time-password to the specified device. \n\n\n\nSend `device_id` and `one_time_password` to validate the OTP sent to a user. \n\n\n\nThe endpoint will return a `403` if there is an issue with the `device_id` or `one_time_password`, or if the user has no registered 2FA devices.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      description: 'Elevate user permissions using Two-Factor-Authentication.
+
+
+        Send a `device_id` to generate and dispatch a one-time-password to the specified device.
+
+
+        Send `device_id` and `one_time_password` to validate the OTP sent to a user.
+
+
+        The endpoint will return a `403` if there is an issue with the `device_id` or `one_time_password`, or if the user has no registered 2FA devices.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+        How can we improve these docs? Share your feedback.'
       summary: Elevate sudo permissions
       tags:
-      - mfa
+      - MFA
       requestBody:
         content:
           application/json:
@@ -215,31 +224,24 @@ paths:
         id: 1touz0r3uuwrb
 components:
   schemas:
-    RetrieveSudoResponse:
+    Device:
       type: object
+      description: Serializer for two-factor authorization devices.
       properties:
-        success:
-          type: boolean
+        id:
+          type: string
           readOnly: true
-          default: true
+          example: otp_twilio.models.TwilioSMSDevice/1
+        number_type:
+          type: string
+          readOnly: true
+          example: mobile
+        name:
+          type: string
+          readOnly: true
+          example: User's iPhone
       x-stoplight:
-        id: ecxgpo7l4spwk
-    MFATypeEnum:
-      enum:
-      - phone
-      - email
-      - totp
-      - static
-      type: string
-      description: '* `phone` - phone
-
-        * `email` - email
-
-        * `totp` - totp
-
-        * `static` - static'
-      x-stoplight:
-        id: mh44yrg9eexp8
+        id: t9hj1bdrxqmb5
     MFA:
       type: object
       description: Serializer for two-factor authorization devices.
@@ -260,24 +262,46 @@ components:
           description: This field will be set to the user's phone number or email for the respective device types, otherwise, it will be blank.
       x-stoplight:
         id: uasyxxgs07boc
-    Device:
+    CreateSudo:
       type: object
-      description: Serializer for two-factor authorization devices.
       properties:
-        id:
+        message:
           type: string
           readOnly: true
-          example: otp_twilio.models.TwilioSMSDevice/1
-        number_type:
-          type: string
-          readOnly: true
-          example: mobile
-        name:
-          type: string
-          readOnly: true
-          example: User's iPhone
+          default: sudo mode granted
       x-stoplight:
-        id: t9hj1bdrxqmb5
+        id: bfxhys08o2jvk
+    MFATypeEnum:
+      enum:
+      - phone
+      - email
+      - totp
+      - static
+      type: string
+      description: '* `phone` - phone
+
+        * `email` - email
+
+        * `totp` - totp
+
+        * `static` - static'
+      x-stoplight:
+        id: mh44yrg9eexp8
+    CreateSudoRequest:
+      type: object
+      properties:
+        device_id:
+          type: string
+          writeOnly: true
+          minLength: 1
+          example: otp_twilio.models.TwilioSMSDevice/1
+        one_time_password:
+          type: string
+          writeOnly: true
+          minLength: 1
+          example: '123123'
+      x-stoplight:
+        id: cegpkzjxlrdeq
     PaginatedMFAList:
       type: object
       required:
@@ -294,14 +318,16 @@ components:
           description: URIs linking to sequential pages of the result.
           properties:
             next:
-              type: string
+              type:
+              - string
+              - 'null'
               format: uri
-              nullable: true
               example: https://narmi.example.com/v1/payments?after=400
             prev:
-              type: string
+              type:
+              - string
+              - 'null'
               format: uri
-              nullable: true
               example: https://narmi.example.com/v1/payments?before=200
         meta:
           description: Free-form object, contains total object count.
@@ -311,15 +337,6 @@ components:
               type: integer
       x-stoplight:
         id: 7td8zskzbxtfs
-    CreateSudo:
-      type: object
-      properties:
-        message:
-          type: string
-          readOnly: true
-          default: sudo mode granted
-      x-stoplight:
-        id: bfxhys08o2jvk
     CreateSudoErrorResponse:
       type: object
       properties:
@@ -347,21 +364,15 @@ components:
       - message
       x-stoplight:
         id: plbglbg82ol4i
-    CreateSudoRequest:
+    RetrieveSudoResponse:
       type: object
       properties:
-        device_id:
-          type: string
-          writeOnly: true
-          minLength: 1
-          example: otp_twilio.models.TwilioSMSDevice/1
-        one_time_password:
-          type: string
-          writeOnly: true
-          minLength: 1
-          example: '123123'
+        success:
+          type: boolean
+          readOnly: true
+          default: true
       x-stoplight:
-        id: cegpkzjxlrdeq
+        id: ecxgpo7l4spwk
   securitySchemes:
     oauth2:
       type: oauth2

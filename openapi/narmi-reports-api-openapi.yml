@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances reports API
+  title: Narmi Public Reports API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -11,7 +11,7 @@ servers:
 - url: https://api.sandbox.narmi.dev/
   description: ''
 tags:
-- name: reports
+- name: Reports
 paths:
   /v1/reports/bai_transaction_types/:
     get:
@@ -22,12 +22,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: List BAI transaction type codes
       tags:
-      - reports
+      - Reports
       security:
       - oauth2:
         - read
@@ -70,12 +68,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Export multi-account transactions
       tags:
-      - reports
+      - Reports
       requestBody:
         content:
           application/json:
@@ -132,12 +128,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Get multi-account transaction statistics
       tags:
-      - reports
+      - Reports
       requestBody:
         content:
           application/json:
@@ -176,43 +170,6 @@ paths:
         id: h6lta5x2df2kv
 components:
   schemas:
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: qazjpvfdteybw
-    InvalidRequestError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: invalid_request_error
-        message:
-          type: object
-          additionalProperties: {}
-          default:
-            field_name: Error description.
-          description: An error response detailing the field and the nature of the error.
-      x-stoplight:
-        id: aelrw6rc7wiph
-    FormatEnum:
-      enum:
-      - csv
-      - bai2
-      type: string
-      description: '* `csv` - CSV
-
-        * `bai2` - BAI2'
-      x-stoplight:
-        id: dmtikuvtyippe
     TransactionStatsResponse:
       type: object
       properties:
@@ -231,33 +188,19 @@ components:
       - transaction_count
       x-stoplight:
         id: zctx6dbhmw4hq
-    BaiTransactionType:
+    NotFoundError:
       type: object
       properties:
-        code:
+        id:
           type: string
-          description: 3-digit BAI transaction type code.
-        description:
+          default: not_found
+        message:
           type: string
-          nullable: true
-          description: Human-readable description of the BAI code.
-        direction:
-          allOf:
-          - $ref: '#/components/schemas/DirectionEnum'
-          description: 'Transaction direction derived from the BAI code range.
-
-
-            * `credit` - credit
-
-            * `debit` - debit
-
-            * `misc` - misc'
+          description: An error response detailing the nature of the error.
       required:
-      - code
-      - description
-      - direction
+      - message
       x-stoplight:
-        id: 38y8aokwjqdr4
+        id: qazjpvfdteybw
     MultiAccountTransactionsDownloadRequest:
       type: object
       description: Serializer for multi-account transaction export requests.
@@ -305,6 +248,30 @@ components:
       - min_date
       x-stoplight:
         id: 2xip7egajj3kk
+    FormatEnum:
+      enum:
+      - csv
+      - bai2
+      type: string
+      description: '* `csv` - CSV
+
+        * `bai2` - BAI2'
+      x-stoplight:
+        id: dmtikuvtyippe
+    InvalidRequestError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid_request_error
+        message:
+          type: object
+          additionalProperties: {}
+          default:
+            field_name: Error description.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: aelrw6rc7wiph
     DirectionEnum:
       enum:
       - credit
@@ -318,6 +285,34 @@ components:
         * `misc` - misc'
       x-stoplight:
         id: fnpwkqv4ujmyo
+    BaiTransactionType:
+      type: object
+      properties:
+        code:
+          type: string
+          description: 3-digit BAI transaction type code.
+        description:
+          type:
+          - string
+          - 'null'
+          description: Human-readable description of the BAI code.
+        direction:
+          allOf:
+          - $ref: '#/components/schemas/DirectionEnum'
+          description: 'Transaction direction derived from the BAI code range.
+
+
+            * `credit` - credit
+
+            * `debit` - debit
+
+            * `misc` - misc'
+      required:
+      - code
+      - description
+      - direction
+      x-stoplight:
+        id: 38y8aokwjqdr4
   securitySchemes:
     oauth2:
       type: oauth2

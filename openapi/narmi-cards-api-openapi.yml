@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances cards API
+  title: Narmi Public Cards API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -11,12 +11,18 @@ servers:
 - url: https://api.sandbox.narmi.dev/
   description: ''
 tags:
-- name: cards
+- name: Cards
 paths:
   /v1/cards/:
     get:
       operationId: cards_list
-      description: "List the user's cards. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      description: 'List the user''s cards.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+        How can we improve these docs? Share your feedback.'
       summary: List cards for a user
       parameters:
       - name: page
@@ -26,7 +32,7 @@ paths:
         schema:
           type: integer
       tags:
-      - cards
+      - Cards
       security:
       - oauth2:
         - read
@@ -101,7 +107,13 @@ paths:
   /v1/cards/{card_id}/:
     get:
       operationId: cards_retrieve
-      description: "Retrieve specified card. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      description: 'Retrieve specified card.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve specified card
       parameters:
       - in: path
@@ -110,7 +122,7 @@ paths:
           type: string
         required: true
       tags:
-      - cards
+      - Cards
       security:
       - oauth2:
         - read
@@ -164,7 +176,13 @@ paths:
         id: 1kxqohlsv7zwo
     put:
       operationId: cards_update
-      description: "Activate and deactivate a specified card. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      description: 'Activate and deactivate a specified card.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+        How can we improve these docs? Share your feedback.'
       summary: Activate or deactivate card
       parameters:
       - in: path
@@ -173,7 +191,7 @@ paths:
           type: string
         required: true
       tags:
-      - cards
+      - Cards
       requestBody:
         content:
           application/json:
@@ -281,7 +299,13 @@ paths:
   /v1/cards/{card_id}/address/:
     get:
       operationId: cards_address_retrieve
-      description: "Retrieve the registered address for the specified card. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      description: 'Retrieve the registered address for the specified card.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve card address
       parameters:
       - in: path
@@ -290,7 +314,7 @@ paths:
           type: string
         required: true
       tags:
-      - cards
+      - Cards
       security:
       - oauth2:
         - read
@@ -350,7 +374,13 @@ paths:
   /v1/cards/{card_id}/limits/:
     get:
       operationId: cards_limits_retrieve
-      description: "Get specified card limits. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      description: 'Get specified card limits.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+        How can we improve these docs? Share your feedback.'
       summary: Get specified card limits
       parameters:
       - in: path
@@ -359,7 +389,7 @@ paths:
           type: string
         required: true
       tags:
-      - cards
+      - Cards
       security:
       - oauth2:
         - read
@@ -417,7 +447,13 @@ paths:
         id: pwdilhzyrbsyn
     post:
       operationId: cards_limits_create
-      description: "Update card limits. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      description: 'Update card limits.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+        How can we improve these docs? Share your feedback.'
       summary: Update card limits
       parameters:
       - in: path
@@ -426,7 +462,7 @@ paths:
           type: string
         required: true
       tags:
-      - cards
+      - Cards
       security:
       - oauth2:
         - write
@@ -530,7 +566,13 @@ paths:
   /v1/cards/{card_id}/lock/:
     post:
       operationId: cards_lock_create
-      description: "Freeze a card so that it cannot be used. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      description: 'Freeze a card so that it cannot be used.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+        How can we improve these docs? Share your feedback.'
       summary: Lock a card
       parameters:
       - in: path
@@ -539,7 +581,7 @@ paths:
           type: string
         required: true
       tags:
-      - cards
+      - Cards
       security:
       - oauth2:
         - write
@@ -605,9 +647,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Replace a missing card
       parameters:
       - in: path
@@ -616,7 +656,7 @@ paths:
           type: string
         required: true
       tags:
-      - cards
+      - Cards
       requestBody:
         content:
           application/json:
@@ -710,9 +750,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve card PAN
       parameters:
       - in: path
@@ -721,7 +759,7 @@ paths:
           type: string
         required: true
       tags:
-      - cards
+      - Cards
       security:
       - oauth2:
         - read
@@ -761,9 +799,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve card subscriptions
       parameters:
       - in: path
@@ -787,7 +823,7 @@ paths:
           default: '2025-07-17'
         description: Optional `start_date` parameter. The start date for card subscriptions (YYYY-MM-DD).
       tags:
-      - cards
+      - Cards
       security:
       - oauth2:
         - read
@@ -930,9 +966,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Get a card's travel notice
       parameters:
       - in: path
@@ -948,7 +982,7 @@ paths:
         schema:
           type: integer
       tags:
-      - cards
+      - Cards
       security:
       - oauth2:
         - read
@@ -1003,9 +1037,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create travel note
       parameters:
       - in: path
@@ -1015,7 +1047,7 @@ paths:
           pattern: ^[0-9A-Za-z-]+$
         required: true
       tags:
-      - cards
+      - Cards
       requestBody:
         content:
           application/json:
@@ -1098,9 +1130,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Delete travel note
       parameters:
       - in: path
@@ -1110,7 +1140,7 @@ paths:
           pattern: ^[0-9A-Za-z-]+$
         required: true
       tags:
-      - cards
+      - Cards
       security:
       - oauth2:
         - write
@@ -1156,7 +1186,13 @@ paths:
   /v1/cards/{card_id}/unlock/:
     post:
       operationId: cards_unlock_create
-      description: "Un-freeze a card so that it can be used. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      description: 'Un-freeze a card so that it can be used.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+        How can we improve these docs? Share your feedback.'
       summary: Unlock a card
       parameters:
       - in: path
@@ -1165,7 +1201,7 @@ paths:
           type: string
         required: true
       tags:
-      - cards
+      - Cards
       security:
       - oauth2:
         - write
@@ -1224,125 +1260,15 @@ paths:
         id: iesdurzqprmmm
 components:
   schemas:
-    Address:
+    MissingCardRequest:
       type: object
       properties:
-        street_address:
-          type: string
-        street_address_2:
-          type: string
-        city:
-          type: string
-        region_code:
-          type: string
-          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
-        postal_code:
-          type: string
-          description: Typically a five-digit numeric US ZIP Code.
-        country_code:
-          type: string
-          description: An ISO 3166-1 alpha-2 country code.
-        type:
-          type: string
+        reason:
+          $ref: '#/components/schemas/ReasonEnum'
       required:
-      - city
-      - postal_code
-      - region_code
-      - street_address
+      - reason
       x-stoplight:
-        id: xatva1xwqb0yk
-    CardShippingInfo:
-      type: object
-      description: integrations.cards.api_messages.Shipping
-      properties:
-        address:
-          $ref: '#/components/schemas/Address'
-        method:
-          type: string
-        shipped_on:
-          type: string
-          format: date
-          nullable: true
-      required:
-      - address
-      - method
-      x-stoplight:
-        id: d3dtn5mecxm9n
-    RecurringTransaction:
-      type: object
-      properties:
-        id:
-          type: string
-        amount:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
-        category_code:
-          type: string
-        transaction_date:
-          type: string
-          format: date
-        merchant_name:
-          type: string
-        subscription_id:
-          type: string
-          format: uuid
-      required:
-      - amount
-      - category_code
-      - id
-      - merchant_name
-      - subscription_id
-      - transaction_date
-      x-stoplight:
-        id: ldemqix6pa0tc
-    CardSubscriptionsAndTransactions:
-      type: object
-      properties:
-        monthly_transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardTransactionsByMonth'
-        subscriptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardSubscriptions'
-      required:
-      - monthly_transactions
-      - subscriptions
-      x-stoplight:
-        id: gri4ifgvdrsvw
-    CardRequest:
-      type: object
-      properties:
-        state:
-          allOf:
-          - $ref: '#/components/schemas/CardStateEnum'
-          description: 'Indicates whether the card is functional.
-
-
-            * `active` - active
-
-            * `inactive` - inactive'
-      required:
-      - state
-      x-stoplight:
-        id: lvdyknsgnuyu5
-    CardTravelNote:
-      type: object
-      description: For getting and setting integrations.cards.api_messages.CardTravelNote
-      properties:
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
-      required:
-      - end_date
-      - start_date
-      x-stoplight:
-        id: llgatlkhvo1zf
+        id: htvopglvr495y
     CardSubscriptions:
       type: object
       properties:
@@ -1364,9 +1290,10 @@ components:
           - $ref: '#/components/schemas/RecurrenceFrequencyEnum'
           - $ref: '#/components/schemas/BlankEnum'
         next_payment_date:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
       required:
       - amount
       - category_code
@@ -1377,276 +1304,15 @@ components:
       - state
       x-stoplight:
         id: tzfuauxjtqn3q
-    PaginatedCardInfoList:
+    LegacyUpdateCardResponse:
       type: object
-      required:
-      - count
-      - results
       properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardInfo'
-      x-stoplight:
-        id: l0ulmogdgptfu
-    CardInfo:
-      type: object
-      description: integrations.cards.api_messages.CardInfo
-      properties:
-        id:
-          type: string
-          description: An identifier for the card object.
-        name:
-          type: string
-          description: The card product's name.
-        last_four_digits:
-          type: string
-          description: Last four digits of the card's account number.
-        shipping:
+        card:
           allOf:
-          - $ref: '#/components/schemas/CardShippingInfo'
-          description: Shipping information, not always populated.
-        network:
-          type: string
-          nullable: true
-          default: visa
-          description: The credit card processing network, such as Visa, Discover, etc.
-        state:
-          allOf:
-          - $ref: '#/components/schemas/StateBd5Enum'
-          description: 'Indicates whether the card is functional, and if not for what reason.
-
-
-            * `locked` - locked
-
-            * `normal` - normal
-
-            * `shipped` - shipped
-
-            * `cancelled` - cancelled
-
-            * `damaged` - damaged'
+          - $ref: '#/components/schemas/Card'
           readOnly: true
-        image:
-          type: string
-          description: An image of the card or a placeholder image.
-          readOnly: true
-        text_color:
-          type: string
-          default: '#FFFFFF'
-          description: Hex value indicating text color.
-        card_type:
-          type: string
-          description: The card's type, debit, credit or atm.
-      required:
-      - card_type
-      - id
-      - last_four_digits
-      - name
       x-stoplight:
-        id: odrdkdiznuohw
-    MissingCardRequest:
-      type: object
-      properties:
-        reason:
-          $ref: '#/components/schemas/ReasonEnum'
-      required:
-      - reason
-      x-stoplight:
-        id: htvopglvr495y
-    CommonCard:
-      type: object
-      description: integrations.cards.common.Card
-      properties:
-        id:
-          type: string
-          description: An identifier for the card object.
-        core_user_id:
-          type: string
-          description: String uniquely identifying a user or user's primary account on the banking core
-        last_four_digits:
-          type: string
-          description: Last four digits of the card's account number.
-        state:
-          allOf:
-          - $ref: '#/components/schemas/StateBd5Enum'
-          description: 'Indicates whether the card is functional, and if not for what reason.
-
-
-            * `locked` - locked
-
-            * `normal` - normal
-
-            * `shipped` - shipped
-
-            * `cancelled` - cancelled
-
-            * `damaged` - damaged'
-          readOnly: true
-        bin:
-          type: string
-          description: Bank Identification Number (BIN) is the first 6 to 8 digits of the Primary Account Number (PAN).
-        network:
-          type: string
-          description: The credit card processing network, such as Visa, Discover, etc.
-        name:
-          type: string
-          description: The card product's name.
-        card_type:
-          type: string
-          description: The card's type, debit, credit or atm.
-      required:
-      - bin
-      - card_type
-      - core_user_id
-      - id
-      - last_four_digits
-      - name
-      - network
-      x-stoplight:
-        id: chf14nszhkbex
-    CardTransactionsByMonth:
-      type: object
-      properties:
-        month:
-          type: string
-        total:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
-        transaction_count:
-          type: integer
-        transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecurringTransaction'
-      required:
-      - month
-      - total
-      - transaction_count
-      - transactions
-      x-stoplight:
-        id: terphibvp3zyp
-    CardStateEnum:
-      enum:
-      - active
-      - inactive
-      type: string
-      description: '* `active` - active
-
-        * `inactive` - inactive'
-      x-stoplight:
-        id: or81aivklcwgb
-    CardTravelNoteRequest:
-      type: object
-      description: For getting and setting integrations.cards.api_messages.CardTravelNote
-      properties:
-        travel_destination_codes:
-          type: array
-          items:
-            $ref: '#/components/schemas/TravelDestinationCodesEnum'
-          writeOnly: true
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
-      required:
-      - end_date
-      - start_date
-      - travel_destination_codes
-      x-stoplight:
-        id: a3bgtpnfmeevl
-    Card:
-      type: object
-      properties:
-        state:
-          allOf:
-          - $ref: '#/components/schemas/CardStateEnum'
-          description: 'Indicates whether the card is functional.
-
-
-            * `active` - active
-
-            * `inactive` - inactive'
-        id:
-          type: string
-          readOnly: true
-          description: An identifier for the card object.
-        core_user_id:
-          type: string
-          readOnly: true
-          description: String uniquely identifying a user or user's primary account on the banking core.
-        bin:
-          type: string
-          readOnly: true
-          description: Bank Identification Number (BIN), the first 6 to 8 digits of the Primary Account Number (PAN)
-        last_four_digits:
-          type: string
-          readOnly: true
-          description: Last four digits of the card number.
-        svg:
-          type: string
-          readOnly: true
-          description: An image of the card or a placeholder image.
-        is_card_number_on_front:
-          type: string
-          readOnly: true
-          description: '"True" or "False"'
-        card_text_color:
-          type: string
-          readOnly: true
-          description: Hex value representing card text color.
-      required:
-      - state
-      x-stoplight:
-        id: bsnjpqmciiqgl
-    StateBd5Enum:
-      enum:
-      - locked
-      - normal
-      - shipped
-      - cancelled
-      - damaged
-      type: string
-      description: '* `locked` - locked
-
-        * `normal` - normal
-
-        * `shipped` - shipped
-
-        * `cancelled` - cancelled
-
-        * `damaged` - damaged'
-      x-stoplight:
-        id: xhbwau39q9oko
-    CardSubscriptionsStateEnum:
-      enum:
-      - current
-      - new
-      - cancelled
-      type: string
-      description: '* `current` - current
-
-        * `new` - new
-
-        * `cancelled` - cancelled'
-      x-stoplight:
-        id: hcp1u8tvpuntl
+        id: uc3qkcb24dtla
     SensitiveCardInfo:
       type: object
       properties:
@@ -1666,19 +1332,6 @@ components:
       - pan
       x-stoplight:
         id: y3vcpgnlzduvh
-    ReasonEnum:
-      enum:
-      - damaged
-      - lost
-      - stolen
-      type: string
-      description: '* `damaged` - damaged
-
-        * `lost` - lost
-
-        * `stolen` - stolen'
-      x-stoplight:
-        id: dnkxb7jc76rkm
     TravelDestinationCodesEnum:
       enum:
       - AW
@@ -2430,6 +2083,250 @@ components:
         * `ZW` - ZW'
       x-stoplight:
         id: hbdgoazuxfyfn
+    CardShippingInfo:
+      type: object
+      description: integrations.cards.api_messages.Shipping
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        method:
+          type: string
+        shipped_on:
+          type:
+          - string
+          - 'null'
+          format: date
+      required:
+      - address
+      - method
+      x-stoplight:
+        id: d3dtn5mecxm9n
+    Address:
+      type: object
+      properties:
+        street_address:
+          type: string
+        street_address_2:
+          type: string
+        city:
+          type: string
+        region_code:
+          type: string
+          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
+        postal_code:
+          type: string
+          description: Typically a five-digit numeric US ZIP Code.
+        country_code:
+          type: string
+          description: An ISO 3166-1 alpha-2 country code.
+        type:
+          type: string
+      required:
+      - city
+      - postal_code
+      - region_code
+      - street_address
+      x-stoplight:
+        id: xatva1xwqb0yk
+    CardStateEnum:
+      enum:
+      - active
+      - inactive
+      type: string
+      description: '* `active` - active
+
+        * `inactive` - inactive'
+      x-stoplight:
+        id: or81aivklcwgb
+    RecurringTransaction:
+      type: object
+      properties:
+        id:
+          type: string
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+        category_code:
+          type: string
+        transaction_date:
+          type: string
+          format: date
+        merchant_name:
+          type: string
+        subscription_id:
+          type: string
+          format: uuid
+      required:
+      - amount
+      - category_code
+      - id
+      - merchant_name
+      - subscription_id
+      - transaction_date
+      x-stoplight:
+        id: ldemqix6pa0tc
+    CardTravelNote:
+      type: object
+      description: For getting and setting integrations.cards.api_messages.CardTravelNote
+      properties:
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+      required:
+      - end_date
+      - start_date
+      x-stoplight:
+        id: llgatlkhvo1zf
+    StateBd5Enum:
+      enum:
+      - locked
+      - normal
+      - shipped
+      - cancelled
+      - damaged
+      type: string
+      description: '* `locked` - locked
+
+        * `normal` - normal
+
+        * `shipped` - shipped
+
+        * `cancelled` - cancelled
+
+        * `damaged` - damaged'
+      x-stoplight:
+        id: xhbwau39q9oko
+    CardSubscriptionsAndTransactions:
+      type: object
+      properties:
+        monthly_transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardTransactionsByMonth'
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardSubscriptions'
+      required:
+      - monthly_transactions
+      - subscriptions
+      x-stoplight:
+        id: gri4ifgvdrsvw
+    PaginatedCardInfoList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardInfo'
+      x-stoplight:
+        id: l0ulmogdgptfu
+    Card:
+      type: object
+      properties:
+        state:
+          allOf:
+          - $ref: '#/components/schemas/CardStateEnum'
+          description: 'Indicates whether the card is functional.
+
+
+            * `active` - active
+
+            * `inactive` - inactive'
+        id:
+          type: string
+          readOnly: true
+          description: An identifier for the card object.
+        core_user_id:
+          type: string
+          readOnly: true
+          description: String uniquely identifying a user or user's primary account on the banking core.
+        bin:
+          type: string
+          readOnly: true
+          description: Bank Identification Number (BIN), the first 6 to 8 digits of the Primary Account Number (PAN)
+        last_four_digits:
+          type: string
+          readOnly: true
+          description: Last four digits of the card number.
+        svg:
+          type: string
+          readOnly: true
+          description: An image of the card or a placeholder image.
+        is_card_number_on_front:
+          type: string
+          readOnly: true
+          description: '"True" or "False"'
+        card_text_color:
+          type: string
+          readOnly: true
+          description: Hex value representing card text color.
+      required:
+      - state
+      x-stoplight:
+        id: bsnjpqmciiqgl
+    PaginatedCardTravelNoteList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardTravelNote'
+      x-stoplight:
+        id: cp4oim92gdv1d
+    CardSubscriptionsStateEnum:
+      enum:
+      - current
+      - new
+      - cancelled
+      type: string
+      description: '* `current` - current
+
+        * `new` - new
+
+        * `cancelled` - cancelled'
+      x-stoplight:
+        id: hcp1u8tvpuntl
     CardLimits:
       type: object
       description: For getting and setting card limits
@@ -2460,20 +2357,140 @@ components:
           description: Is the user allowed to request a limit increase?
       x-stoplight:
         id: 0uh0y3w9wzzqe
-    LegacyUpdateCardResponse:
+    CardTravelNoteRequest:
+      type: object
+      description: For getting and setting integrations.cards.api_messages.CardTravelNote
+      properties:
+        travel_destination_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/TravelDestinationCodesEnum'
+          writeOnly: true
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+      required:
+      - end_date
+      - start_date
+      - travel_destination_codes
+      x-stoplight:
+        id: a3bgtpnfmeevl
+    CardInfo:
+      type: object
+      description: integrations.cards.api_messages.CardInfo
+      properties:
+        id:
+          type: string
+          description: An identifier for the card object.
+        name:
+          type: string
+          description: The card product's name.
+        last_four_digits:
+          type: string
+          description: Last four digits of the card's account number.
+        shipping:
+          allOf:
+          - $ref: '#/components/schemas/CardShippingInfo'
+          description: Shipping information, not always populated.
+        network:
+          type:
+          - string
+          - 'null'
+          default: visa
+          description: The credit card processing network, such as Visa, Discover, etc.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/StateBd5Enum'
+          description: 'Indicates whether the card is functional, and if not for what reason.
+
+
+            * `locked` - locked
+
+            * `normal` - normal
+
+            * `shipped` - shipped
+
+            * `cancelled` - cancelled
+
+            * `damaged` - damaged'
+          readOnly: true
+        image:
+          type: string
+          description: An image of the card or a placeholder image.
+          readOnly: true
+        text_color:
+          type: string
+          default: '#FFFFFF'
+          description: Hex value indicating text color.
+        card_type:
+          type: string
+          description: The card's type, debit, credit or atm.
+      required:
+      - card_type
+      - id
+      - last_four_digits
+      - name
+      x-stoplight:
+        id: odrdkdiznuohw
+    CardTransactionsByMonth:
       type: object
       properties:
-        card:
-          allOf:
-          - $ref: '#/components/schemas/Card'
-          readOnly: true
+        month:
+          type: string
+        total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+        transaction_count:
+          type: integer
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecurringTransaction'
+      required:
+      - month
+      - total
+      - transaction_count
+      - transactions
       x-stoplight:
-        id: uc3qkcb24dtla
+        id: terphibvp3zyp
     BlankEnum:
       enum:
       - ''
       x-stoplight:
         id: kjdrahkcokejl
+    CardRequest:
+      type: object
+      properties:
+        state:
+          allOf:
+          - $ref: '#/components/schemas/CardStateEnum'
+          description: 'Indicates whether the card is functional.
+
+
+            * `active` - active
+
+            * `inactive` - inactive'
+      required:
+      - state
+      x-stoplight:
+        id: lvdyknsgnuyu5
+    ReasonEnum:
+      enum:
+      - damaged
+      - lost
+      - stolen
+      type: string
+      description: '* `damaged` - damaged
+
+        * `lost` - lost
+
+        * `stolen` - stolen'
+      x-stoplight:
+        id: dnkxb7jc76rkm
     RecurrenceFrequencyEnum:
       enum:
       - daily
@@ -2501,31 +2518,57 @@ components:
         * `` - '
       x-stoplight:
         id: hnoqaesl0wqdw
-    PaginatedCardTravelNoteList:
+    CommonCard:
       type: object
-      required:
-      - count
-      - results
+      description: integrations.cards.common.Card
       properties:
-        count:
-          type: integer
-          example: 123
-        next:
+        id:
           type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
+          description: An identifier for the card object.
+        core_user_id:
           type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardTravelNote'
+          description: String uniquely identifying a user or user's primary account on the banking core
+        last_four_digits:
+          type: string
+          description: Last four digits of the card's account number.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/StateBd5Enum'
+          description: 'Indicates whether the card is functional, and if not for what reason.
+
+
+            * `locked` - locked
+
+            * `normal` - normal
+
+            * `shipped` - shipped
+
+            * `cancelled` - cancelled
+
+            * `damaged` - damaged'
+          readOnly: true
+        bin:
+          type: string
+          description: Bank Identification Number (BIN) is the first 6 to 8 digits of the Primary Account Number (PAN).
+        network:
+          type: string
+          description: The credit card processing network, such as Visa, Discover, etc.
+        name:
+          type: string
+          description: The card product's name.
+        card_type:
+          type: string
+          description: The card's type, debit, credit or atm.
+      required:
+      - bin
+      - card_type
+      - core_user_id
+      - id
+      - last_four_digits
+      - name
+      - network
       x-stoplight:
-        id: cp4oim92gdv1d
+        id: chf14nszhkbex
   securitySchemes:
     oauth2:
       type: oauth2

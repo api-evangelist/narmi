@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances automatic savings enrollment API
+  title: Narmi Public automatic savings enrollment API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -22,9 +22,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Get automatic savings enrollment
       tags:
       - automatic savings enrollment
@@ -90,9 +88,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create automatic savings enrollment
       tags:
       - automatic savings enrollment
@@ -166,9 +162,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Delete automatic savings enrollment
       tags:
       - automatic savings enrollment
@@ -224,16 +218,68 @@ paths:
         id: 2ndeyxhmmhw0h
 components:
   schemas:
-    State973Enum:
+    SourceEnum:
       enum:
-      - active
-      - inactive
-      - pending
-      - verified
-      - removed
+      - institution
+      - external
       type: string
+      description: '* `institution` - institution
+
+        * `external` - external'
       x-stoplight:
-        id: sx7oslmzp4bem
+        id: z2qbah6dv7xog
+    AccountBalance:
+      type: object
+      description: A representation of an account with respect to its balance totals.
+      properties:
+        id:
+          example: abl_8b143f3e-70df-4799-a2ae-c5e3dabed963
+          description: Account UUID prefixed with "abl_" for use with this endpoint.
+          type: string
+          readOnly: true
+        account_id:
+          example: 8b143f3e-70df-4799-a2ae-c5e3dabed963
+          type: string
+          format: uuid
+          readOnly: true
+          description: UUID to the associated account.
+        primary:
+          example: 100.0
+          maximum: 10000000000000.0
+          minimum: -10000000000000.0
+          description: The balance to be presented to the customer. Set to the available balance for non CD deposit accounts, and ledger balance otherwise. May be null for external accounts that have not yet been synced with balance data.
+          type:
+          - number
+          - 'null'
+          format: double
+          readOnly: true
+        available:
+          example: 100.0
+          maximum: 10000000000000.0
+          minimum: -10000000000000.0
+          description: The funds immediately available to use, including any pending transactions or temporary holds on the account. May be null for external accounts that have not yet been synced with balance data.
+          type:
+          - number
+          - 'null'
+          format: double
+          readOnly: true
+        ledger:
+          example: 100.0
+          maximum: 10000000000000.0
+          minimum: -10000000000000.0
+          description: The total amount of funds in the account not including temporary holds or pending transactions. May be null for external accounts that have not yet been synced with balance data.
+          type:
+          - number
+          - 'null'
+          format: double
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date when the account was last updated.
+      x-stoplight:
+        id: sswt197xsfwzw
     AutomaticSavingsEnrollment:
       type: object
       properties:
@@ -268,79 +314,6 @@ components:
           readOnly: true
       x-stoplight:
         id: quxztlucbcd9s
-    AccountBalance:
-      type: object
-      description: A representation of an account with respect to its balance totals.
-      properties:
-        id:
-          example: abl_8b143f3e-70df-4799-a2ae-c5e3dabed963
-          description: Account UUID prefixed with "abl_" for use with this endpoint.
-          type: string
-          readOnly: true
-        account_id:
-          example: 8b143f3e-70df-4799-a2ae-c5e3dabed963
-          type: string
-          format: uuid
-          readOnly: true
-          description: UUID to the associated account.
-        primary:
-          example: 100.0
-          maximum: 10000000000000.0
-          minimum: -10000000000000.0
-          description: The balance to be presented to the customer. Set to the available balance for non CD deposit accounts, and ledger balance otherwise. May be null for external accounts that have not yet been synced with balance data.
-          type: number
-          format: double
-          readOnly: true
-          nullable: true
-        available:
-          example: 100.0
-          maximum: 10000000000000.0
-          minimum: -10000000000000.0
-          description: The funds immediately available to use, including any pending transactions or temporary holds on the account. May be null for external accounts that have not yet been synced with balance data.
-          type: number
-          format: double
-          readOnly: true
-          nullable: true
-        ledger:
-          example: 100.0
-          maximum: 10000000000000.0
-          minimum: -10000000000000.0
-          description: The total amount of funds in the account not including temporary holds or pending transactions. May be null for external accounts that have not yet been synced with balance data.
-          type: number
-          format: double
-          readOnly: true
-          nullable: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Date when the account was last updated.
-      x-stoplight:
-        id: sswt197xsfwzw
-    AutomaticSavingsEnrollmentDeserializerRequest:
-      type: object
-      properties:
-        source_account_uuid:
-          type: string
-          format: uuid
-        destination_account_uuid:
-          type: string
-          format: uuid
-      required:
-      - destination_account_uuid
-      - source_account_uuid
-      x-stoplight:
-        id: x1brbxl2libjx
-    SourceEnum:
-      enum:
-      - institution
-      - external
-      type: string
-      description: '* `institution` - institution
-
-        * `external` - external'
-      x-stoplight:
-        id: z2qbah6dv7xog
     Account:
       type: object
       description: A representation of either an account or an external account.
@@ -386,8 +359,9 @@ components:
           readOnly: true
           description: List of capabilities for the account. Dictates when and how money can be moved to and from the account. Can contain any of the values `transfer_destination`, `transfer_source`, `ach_destination`, `ach_source`, `check_order`, `stop_payment`, `check_withdrawal`, `external_loan_management`, `zero_balance`, `m2m_source`, and `m2m_destination`.
         routing:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           description: Routing number for the account.
         loan_details:
@@ -424,15 +398,17 @@ components:
           readOnly: true
           description: Whether the account has been recently updated successfully from the upstream core banking system. The threshold is defined by a setting that can vary, but by default is set to 300 seconds.
         updated_from_source_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           readOnly: true
-          nullable: true
           description: Last datetime the account was updated from the core.
         check_micr:
-          type: string
+          type:
+          - string
+          - 'null'
           readOnly: true
-          nullable: true
           description: A unique identifier that has a one-to-one mapping with an account number. This identifier is typically printed on the MICR line of physical checks written against this account and/or used in other externally facing bank payments like ACH or wires. Depending on the financial institution, it may be the same as account number or a different value.
         metadata:
           type: object
@@ -444,8 +420,9 @@ components:
           - $ref: '#/components/schemas/AccountBalance'
           description: Primary, available, and ledger balance information.
         fi_name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           description: Display name of the financial institution the account belongs to, derived from the routing number on the account.
         created_at:
@@ -461,9 +438,10 @@ components:
           readOnly: true
           description: Logo data for the financial institution in SVG (HTML) format.
         organization:
-          type: object
+          type:
+          - object
+          - 'null'
           additionalProperties: {}
-          nullable: true
           readOnly: true
           description: Organization associated with this account, if applicable.
       required:
@@ -474,9 +452,10 @@ components:
       type: object
       properties:
         id:
-          type: string
+          type:
+          - string
+          - 'null'
           readOnly: true
-          nullable: true
         type:
           type: string
           readOnly: true
@@ -485,6 +464,30 @@ components:
           readOnly: true
       x-stoplight:
         id: wzdifft3exj5t
+    AutomaticSavingsEnrollmentDeserializerRequest:
+      type: object
+      properties:
+        source_account_uuid:
+          type: string
+          format: uuid
+        destination_account_uuid:
+          type: string
+          format: uuid
+      required:
+      - destination_account_uuid
+      - source_account_uuid
+      x-stoplight:
+        id: x1brbxl2libjx
+    State973Enum:
+      enum:
+      - active
+      - inactive
+      - pending
+      - verified
+      - removed
+      type: string
+      x-stoplight:
+        id: sx7oslmzp4bem
   securitySchemes:
     oauth2:
       type: oauth2

@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances documents API
+  title: Narmi Public Documents API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -11,7 +11,7 @@ servers:
 - url: https://api.sandbox.narmi.dev/
   description: ''
 tags:
-- name: documents
+- name: Documents
 paths:
   /v1/documents/:
     get:
@@ -22,9 +22,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: List documents
       parameters:
       - name: limit
@@ -40,7 +38,7 @@ paths:
         schema:
           type: integer
       tags:
-      - documents
+      - Documents
       security:
       - oauth2:
         - read
@@ -73,7 +71,19 @@ paths:
   /v1/documents/{document_id}/:
     get:
       operationId: documents_retrieve
-      description: "Fetch a specific statement by statement ID. \n\nAn invalid document ID will typically return the documented error response, however if the `statements` feature is not enabled, it may also return a blank 404 response.\n\nThis endpoint will return a 404 if a trailing slash is included in the request.\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      description: 'Fetch a specific statement by statement ID.
+
+
+        An invalid document ID will typically return the documented error response, however if the `statements` feature is not enabled, it may also return a blank 404 response.
+
+
+        This endpoint will return a 404 if a trailing slash is included in the request.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve a document
       parameters:
       - in: query
@@ -88,7 +98,7 @@ paths:
           pattern: ^[-_%A-Za-z0-9+\/=]+$
         required: true
       tags:
-      - documents
+      - Documents
       security:
       - oauth2:
         - read
@@ -133,9 +143,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create zip file of selected documents
       parameters:
       - in: query
@@ -146,7 +154,7 @@ paths:
           - 1
         description: When 1, zip file will be emailed to the request's user's email instead of returning it in the response.
       tags:
-      - documents
+      - Documents
       security:
       - oauth2:
         - write
@@ -160,7 +168,7 @@ paths:
                 description: Zip file containing PDF documents organized by account.
               examples:
                 ZipFile:
-                  value: "PK\x03\x04..."
+                  value: PK...
                   description: Zip file containing requested PDF documents organized by account.
           description: Returns selected pdf documents inside zip file.
         '400':
@@ -177,6 +185,43 @@ paths:
         id: 3s7tkyokn7zyn
 components:
   schemas:
+    ServiceFailureError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_connection_error
+        message:
+          type: string
+          default: Sorry, we were unable to process your request, please check back soon.
+      x-stoplight:
+        id: 6qutj3sa03we7
+    PaginatedDocumentList:
+      type: object
+      required:
+      - documents
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+      x-stoplight:
+        id: 0aow4ftsieugm
     DocumentResponse:
       type: object
       properties:
@@ -195,20 +240,23 @@ components:
           description: Document ID. The format of the ID can vary between document stores.
           example: f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           description: Document type, this value can vary between document stores.
           example: statement
         type_label:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           description: Human readable type, defaults to value of `type` field when missing.
           example: statement
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           example: Account 43333
         created_at:
@@ -225,31 +273,15 @@ components:
           description: Binary PDF file data, base64 encoded. This is included when `data` parameter is specified.
           example: dGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5ndGVzdGRhdGFmaWxlc3RyaW5nCg==
         url:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uri
-          nullable: true
           description: The URL of the retrieve API call.
           readOnly: true
           example: https://demo2-api.uat.narmitech.com/v1/documents/f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5?data=true
       x-stoplight:
         id: xrmejhjmnyf1h
-    ServiceFailureError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: api_connection_error
-        message:
-          type: string
-          default: Sorry, we were unable to process your request, please check back soon.
-      x-stoplight:
-        id: 6qutj3sa03we7
-    UserDocument:
-      oneOf:
-      - $ref: '#/components/schemas/DocumentResponse'
-      - $ref: '#/components/schemas/DocumentWithDataResponse'
-      x-stoplight:
-        id: hcy6wln20g4we
     Document:
       type: object
       properties:
@@ -259,20 +291,23 @@ components:
           description: Document ID. The format of the ID can vary between document stores.
           example: f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           description: Document type, this value can vary between document stores.
           example: statement
         type_label:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           description: Human readable type, defaults to value of `type` field when missing.
           example: statement
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           example: Account 43333
         created_at:
@@ -284,38 +319,15 @@ components:
           type: string
           readOnly: true
         url:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uri
-          nullable: true
           description: The URL of the retrieve API call.
           readOnly: true
           example: https://demo2-api.uat.narmitech.com/v1/documents/f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5?data=true
       x-stoplight:
         id: 9mjrd0thewwlb
-    PaginatedDocumentList:
-      type: object
-      required:
-      - documents
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
-      x-stoplight:
-        id: 0aow4ftsieugm
     DocumentWithDataResponse:
       type: object
       properties:
@@ -325,6 +337,12 @@ components:
       - document
       x-stoplight:
         id: 64o2djny8szc0
+    UserDocument:
+      oneOf:
+      - $ref: '#/components/schemas/DocumentResponse'
+      - $ref: '#/components/schemas/DocumentWithDataResponse'
+      x-stoplight:
+        id: hcy6wln20g4we
   securitySchemes:
     oauth2:
       type: oauth2

@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances income source API
+  title: Narmi Public income source API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -22,9 +22,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create income source
       parameters:
       - in: query
@@ -66,10 +64,11 @@ paths:
       - in: query
         name: mortgage_rent
         schema:
-          type: integer
+          type:
+          - integer
+          - 'null'
           maximum: 2147483647
           minimum: 0
-          nullable: true
       - in: query
         name: occupation
         schema:
@@ -144,9 +143,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Edit an income source
       parameters:
       - in: query
@@ -188,10 +185,11 @@ paths:
       - in: query
         name: mortgage_rent
         schema:
-          type: integer
+          type:
+          - integer
+          - 'null'
           maximum: 2147483647
           minimum: 0
-          nullable: true
       - in: query
         name: occupation
         schema:
@@ -281,6 +279,32 @@ paths:
         id: iff7zjzisaii8
 components:
   schemas:
+    IncomeSourceRequest:
+      type: object
+      properties:
+        income:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        income_type:
+          $ref: '#/components/schemas/IncomeTypeEnum'
+        mortgage_rent:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        industry:
+          type: string
+          maxLength: 128
+        occupation:
+          type: string
+          maxLength: 128
+      required:
+      - income
+      - income_type
+      x-stoplight:
+        id: 6lravvbf1aphb
     IncomeSource:
       type: object
       properties:
@@ -295,10 +319,11 @@ components:
         income_type:
           $ref: '#/components/schemas/IncomeTypeEnum'
         mortgage_rent:
-          type: integer
+          type:
+          - integer
+          - 'null'
           maximum: 2147483647
           minimum: 0
-          nullable: true
         industry:
           type: string
           maxLength: 128
@@ -310,31 +335,6 @@ components:
       - income_type
       x-stoplight:
         id: cf5t7cvffrpat
-    IncomeSourceRequest:
-      type: object
-      properties:
-        income:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        income_type:
-          $ref: '#/components/schemas/IncomeTypeEnum'
-        mortgage_rent:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-          nullable: true
-        industry:
-          type: string
-          maxLength: 128
-        occupation:
-          type: string
-          maxLength: 128
-      required:
-      - income
-      - income_type
-      x-stoplight:
-        id: 6lravvbf1aphb
     IncomeTypeEnum:
       enum:
       - employed

@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances ach transfers API
+  title: Narmi Public ach transfers API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -11,7 +11,7 @@ servers:
 - url: https://api.sandbox.narmi.dev/
   description: ''
 tags:
-- name: ach transfers
+- name: ACH Transfers
 paths:
   /v1/transfers/:
     get:
@@ -22,9 +22,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: List ACH transfers
       parameters:
       - in: query
@@ -46,7 +44,7 @@ paths:
         schema:
           type: integer
       tags:
-      - ach transfers
+      - ACH Transfers
       security:
       - oauth2:
         - read
@@ -76,20 +74,16 @@ paths:
         If the `instant` flag is provided for a push external transfer, processing will be done via FedNow and core posting will be immediate, otherwise all external transfers are processed via ACH by default.
 
 
-        Additionally, this endpoint requires the use of sudo elevation. For details, please refer to the <a href="#/operations/retrieve_sudo">sudo documentation.</a>
-
-
+        Additionally, this endpoint requires the use of sudo elevation. For details, please refer to the sudo documentation.
 
 
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create an ACH transfer
       tags:
-      - ach transfers
+      - ACH Transfers
       requestBody:
         content:
           application/json:
@@ -170,51 +164,100 @@ paths:
         id: jvxrdrcdpbqdw
 components:
   schemas:
-    NotFoundError:
+    AchTransaction:
       type: object
+      description: Common fields between `ScheduledTransferSerializer`, and AchTransactionSerializer
       properties:
         id:
           type: string
-          default: not_found
-        message:
+          format: uuid
+          readOnly: true
+        state:
+          allOf:
+          - $ref: '#/components/schemas/AchTransactionStateEnum'
+          readOnly: true
+          description: 'Indicates the status of the transfer, for instance, if it''s been processed or is pending.
+
+
+            * `analyzing` - analyzing
+
+            * `pending` - pending
+
+            * `processing` - processing
+
+            * `processed` - processed
+
+            * `rejected` - rejected
+
+            * `review` - review
+
+            * `canceled` - canceled
+
+            * `canceled_by_user` - canceled_by_user'
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        from_account_id:
           type: string
-          description: An error response detailing the nature of the error.
+          format: uuid
+          description: UUID identifying the source account in the Narmi database.
+        to_account_id:
+          type: string
+          format: uuid
+          description: UUID identifying the destination account in the Narmi database.
+        estimated_process_date:
+          type: string
+          format: date-time
+          readOnly: true
+        estimated_arrival_date:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
       required:
-      - message
+      - amount
+      - from_account_id
+      - to_account_id
       x-stoplight:
-        id: qazjpvfdteybw
-    PaginatedAchTransactionList:
-      type: object
-      required:
-      - meta
-      - links
-      properties:
-        meta:
-          description: Free-form object, contains total object count.
-          type: object
-          properties:
-            total:
-              type: integer
-        links:
-          type: object
-          description: URIs linking to sequential pages of the result.
-          properties:
-            next:
-              type: string
-              format: uri
-              nullable: true
-              example: http://api.example.org/accounts/?page=4
-            prev:
-              type: string
-              format: uri
-              nullable: true
-              example: http://api.example.org/accounts/?page=4
-        transfers:
-          type: array
-          items:
-            $ref: '#/components/schemas/AchTransaction'
+        id: h4yj1x7pldwi9
+    AchTransactionStateEnum:
+      enum:
+      - analyzing
+      - pending
+      - processing
+      - processed
+      - rejected
+      - review
+      - canceled
+      - canceled_by_user
+      type: string
+      description: '* `analyzing` - analyzing
+
+        * `pending` - pending
+
+        * `processing` - processing
+
+        * `processed` - processed
+
+        * `rejected` - rejected
+
+        * `review` - review
+
+        * `canceled` - canceled
+
+        * `canceled_by_user` - canceled_by_user'
       x-stoplight:
-        id: fihijvn8nxqxd
+        id: z6genr1ouwuth
     AchTransactionRequest:
       type: object
       description: Common fields between `ScheduledTransferSerializer`, and AchTransactionSerializer
@@ -268,98 +311,53 @@ components:
           readOnly: true
       x-stoplight:
         id: ynzdqhihwwxkd
-    AchTransactionStateEnum:
-      enum:
-      - analyzing
-      - pending
-      - processing
-      - processed
-      - rejected
-      - review
-      - canceled
-      - canceled_by_user
-      type: string
-      description: '* `analyzing` - analyzing
-
-        * `pending` - pending
-
-        * `processing` - processing
-
-        * `processed` - processed
-
-        * `rejected` - rejected
-
-        * `review` - review
-
-        * `canceled` - canceled
-
-        * `canceled_by_user` - canceled_by_user'
-      x-stoplight:
-        id: z6genr1ouwuth
-    AchTransaction:
+    NotFoundError:
       type: object
-      description: Common fields between `ScheduledTransferSerializer`, and AchTransactionSerializer
       properties:
         id:
           type: string
-          format: uuid
-          readOnly: true
-        state:
-          allOf:
-          - $ref: '#/components/schemas/AchTransactionStateEnum'
-          readOnly: true
-          description: 'Indicates the status of the transfer, for instance, if it''s been processed or is pending.
-
-
-            * `analyzing` - analyzing
-
-            * `pending` - pending
-
-            * `processing` - processing
-
-            * `processed` - processed
-
-            * `rejected` - rejected
-
-            * `review` - review
-
-            * `canceled` - canceled
-
-            * `canceled_by_user` - canceled_by_user'
-        created_at:
+          default: not_found
+        message:
           type: string
-          format: date-time
-          readOnly: true
-          nullable: true
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-        from_account_id:
-          type: string
-          format: uuid
-          description: UUID identifying the source account in the Narmi database.
-        to_account_id:
-          type: string
-          format: uuid
-          description: UUID identifying the destination account in the Narmi database.
-        estimated_process_date:
-          type: string
-          format: date-time
-          readOnly: true
-        estimated_arrival_date:
-          type: string
-          format: date-time
-          readOnly: true
-          nullable: true
+          description: An error response detailing the nature of the error.
       required:
-      - amount
-      - from_account_id
-      - to_account_id
+      - message
       x-stoplight:
-        id: h4yj1x7pldwi9
+        id: qazjpvfdteybw
+    PaginatedAchTransactionList:
+      type: object
+      required:
+      - meta
+      - links
+      properties:
+        meta:
+          description: Free-form object, contains total object count.
+          type: object
+          properties:
+            total:
+              type: integer
+        links:
+          type: object
+          description: URIs linking to sequential pages of the result.
+          properties:
+            next:
+              type:
+              - string
+              - 'null'
+              format: uri
+              example: http://api.example.org/accounts/?page=4
+            prev:
+              type:
+              - string
+              - 'null'
+              format: uri
+              example: http://api.example.org/accounts/?page=4
+        transfers:
+          type: array
+          items:
+            $ref: '#/components/schemas/AchTransaction'
+      x-stoplight:
+        id: fihijvn8nxqxd
   securitySchemes:
     oauth2:
       type: oauth2

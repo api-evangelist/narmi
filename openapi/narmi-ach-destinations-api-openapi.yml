@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances ach destinations API
+  title: Narmi Public ach destinations API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -22,9 +22,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create an ACH destination
       tags:
       - ach destinations
@@ -64,16 +62,18 @@ paths:
         id: vuosc0nliwo71
 components:
   schemas:
-    AccountPurposeEnum:
-      enum:
-      - personal
-      - business
-      type: string
-      description: '* `personal` - Personal
-
-        * `business` - Business'
+    PermissionDeniedError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: You do not have permission to perform this action.
+          description: An error response detailing the field and the nature of the error.
       x-stoplight:
-        id: ccf1svqamabvv
+        id: ywbohhxwqjqj3
     AccountTypeEnum:
       enum:
       - checking
@@ -125,18 +125,16 @@ components:
       - routing_number
       x-stoplight:
         id: rvctfxe73rl2e
-    PermissionDeniedError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: api_error
-        message:
-          type: string
-          default: You do not have permission to perform this action.
-          description: An error response detailing the field and the nature of the error.
+    AccountPurposeEnum:
+      enum:
+      - personal
+      - business
+      type: string
+      description: '* `personal` - Personal
+
+        * `business` - Business'
       x-stoplight:
-        id: ywbohhxwqjqj3
+        id: ccf1svqamabvv
   securitySchemes:
     oauth2:
       type: oauth2

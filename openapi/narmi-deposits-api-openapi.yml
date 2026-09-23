@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances deposits API
+  title: Narmi Public Deposits API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -11,7 +11,7 @@ servers:
 - url: https://api.sandbox.narmi.dev/
   description: ''
 tags:
-- name: deposits
+- name: Deposits
 paths:
   /v1/deposits/:
     get:
@@ -28,12 +28,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: List deposits
       tags:
-      - deposits
+      - Deposits
       security:
       - oauth2:
         - read
@@ -91,10 +89,22 @@ paths:
         id: ettcnapvyztdv
     post:
       operationId: deposits_create
-      description: "Create a deposit for authenticated user via third-party processor.\n\nThe endpoint will return a 403 if remote deposit capture has not been enabled. \n\nThe endpoint can also return a 404 if the `account_id` specified is not associated with an available account.\n\n\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      description: 'Create a deposit for authenticated user via third-party processor.
+
+
+        The endpoint will return a 403 if remote deposit capture has not been enabled.
+
+
+        The endpoint can also return a 404 if the `account_id` specified is not associated with an available account.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+        How can we improve these docs? Share your feedback.'
       summary: Create a deposit
       tags:
-      - deposits
+      - Deposits
       requestBody:
         content:
           application/json:
@@ -179,9 +189,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve deposit
       parameters:
       - in: path
@@ -191,7 +199,7 @@ paths:
           pattern: ^[0-9a-z-_]+$
         required: true
       tags:
-      - deposits
+      - Deposits
       security:
       - oauth2:
         - read
@@ -230,44 +238,55 @@ paths:
         id: utbx6qoannchg
 components:
   schemas:
-    CheckDepositError:
+    PageNumberPagination:
       type: object
       properties:
-        id:
-          type: string
-          default: check_deposit_error
-        message:
-          type: string
-          default: An error response detailing the field and the nature of the error.
-      x-stoplight:
-        id: rlxbfeqe3p2v2
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: Link to the next results page.
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: Link to the previous results page.
       required:
-      - message
+      - next
+      - previous
       x-stoplight:
-        id: qazjpvfdteybw
-    InvalidRequestError:
+        id: t59wt6qqevd5i
+    CreateDepositRequestRequest:
       type: object
       properties:
-        id:
+        ignore_warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorRequest'
+          writeOnly: true
+          description: Warning codes to be suppressed during call.
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        front:
           type: string
-          default: invalid_request_error
-        message:
-          type: object
-          additionalProperties: {}
-          default:
-            field_name: Error description.
-          description: An error response detailing the field and the nature of the error.
+          format: binary
+          description: Base64 encoded image of the front of the check.
+        back:
+          type: string
+          format: binary
+          description: Base64 encoded image of the back of the check.
+      required:
+      - amount
+      - back
+      - front
       x-stoplight:
-        id: aelrw6rc7wiph
+        id: yld7zetvdowyw
     Deposit:
       type: object
       description: Returns data on a successful deposit.
@@ -305,15 +324,18 @@ components:
           description: Back of the check. Typically in base64 image format, e.g. `data:image/jpeg;base64`.
       x-stoplight:
         id: wgqgde6bzmnpj
-    CreateDepositResponse:
+    PermissionDeniedError:
       type: object
       properties:
-        deposit:
-          $ref: '#/components/schemas/Deposit'
-      required:
-      - deposit
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: You do not have permission to perform this action.
+          description: An error response detailing the field and the nature of the error.
       x-stoplight:
-        id: buhdg27dej8hc
+        id: ywbohhxwqjqj3
     ErrorRequest:
       type: object
       properties:
@@ -327,7 +349,41 @@ components:
       - code
       x-stoplight:
         id: cqk62uhcqgodx
-    PermissionDeniedError:
+    CheckDepositError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: check_deposit_error
+        message:
+          type: string
+          default: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: rlxbfeqe3p2v2
+    CreateDepositResponse:
+      type: object
+      properties:
+        deposit:
+          $ref: '#/components/schemas/Deposit'
+      required:
+      - deposit
+      x-stoplight:
+        id: buhdg27dej8hc
+    InvalidRequestError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid_request_error
+        message:
+          type: object
+          additionalProperties: {}
+          default:
+            field_name: Error description.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: aelrw6rc7wiph
+    ObjectNotFoundError:
       type: object
       properties:
         id:
@@ -335,10 +391,22 @@ components:
           default: api_error
         message:
           type: string
-          default: You do not have permission to perform this action.
-          description: An error response detailing the field and the nature of the error.
+          default: Not found.
       x-stoplight:
-        id: ywbohhxwqjqj3
+        id: z4yx0oczlqjyf
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
     DepositsResponse:
       type: object
       properties:
@@ -366,64 +434,6 @@ components:
       - deposit
       x-stoplight:
         id: ihfeh7htvt8ck
-    CreateDepositRequestRequest:
-      type: object
-      properties:
-        ignore_warnings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorRequest'
-          writeOnly: true
-          description: Warning codes to be suppressed during call.
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-        front:
-          type: string
-          format: binary
-          description: Base64 encoded image of the front of the check.
-        back:
-          type: string
-          format: binary
-          description: Base64 encoded image of the back of the check.
-      required:
-      - amount
-      - back
-      - front
-      x-stoplight:
-        id: yld7zetvdowyw
-    ObjectNotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: api_error
-        message:
-          type: string
-          default: Not found.
-      x-stoplight:
-        id: z4yx0oczlqjyf
-    PageNumberPagination:
-      type: object
-      properties:
-        next:
-          type: string
-          format: uri
-          nullable: true
-          description: Link to the next results page.
-        previous:
-          type: string
-          format: uri
-          nullable: true
-          description: Link to the previous results page.
-      required:
-      - next
-      - previous
-      x-stoplight:
-        id: t59wt6qqevd5i
   securitySchemes:
     oauth2:
       type: oauth2

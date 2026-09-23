@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances ach payments API
+  title: Narmi Public ach payments API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -11,7 +11,7 @@ servers:
 - url: https://api.sandbox.narmi.dev/
   description: ''
 tags:
-- name: ach payments
+- name: ACH Payments
 paths:
   /v1/ach_payments/:
     get:
@@ -22,9 +22,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: List ACH payments
       parameters:
       - name: page
@@ -34,7 +32,7 @@ paths:
         schema:
           type: integer
       tags:
-      - ach payments
+      - ACH Payments
       security:
       - oauth2:
         - read
@@ -55,12 +53,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Send an ACH Payment
       tags:
-      - ach payments
+      - ACH Payments
       requestBody:
         content:
           application/json:
@@ -114,9 +110,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve an ACH payment
       parameters:
       - in: path
@@ -125,7 +119,7 @@ paths:
           type: string
         required: true
       tags:
-      - ach payments
+      - ACH Payments
       security:
       - oauth2:
         - read
@@ -147,9 +141,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: List scheduled ACH payments
       parameters:
       - name: page
@@ -159,7 +151,7 @@ paths:
         schema:
           type: integer
       tags:
-      - ach payments
+      - ACH Payments
       security:
       - oauth2:
         - read
@@ -176,7 +168,7 @@ paths:
       operationId: ach_payments_scheduled_create
       summary: Create a scheduled ACH payment
       tags:
-      - ach payments
+      - ACH Payments
       requestBody:
         content:
           application/json:
@@ -208,9 +200,7 @@ paths:
       description: 'All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       x-stoplight:
         id: u9plmfzijc34g
   /v1/ach_payments/scheduled/{uuid}/:
@@ -224,7 +214,7 @@ paths:
           type: string
         required: true
       tags:
-      - ach payments
+      - ACH Payments
       security:
       - oauth2:
         - read
@@ -238,9 +228,7 @@ paths:
       description: 'All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       x-stoplight:
         id: jrosr0lbypcwm
     delete:
@@ -253,7 +241,7 @@ paths:
           type: string
         required: true
       tags:
-      - ach payments
+      - ACH Payments
       security:
       - oauth2:
         - write
@@ -263,9 +251,7 @@ paths:
       description: 'All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       x-stoplight:
         id: t7hv3wakkoiwu
   /v1/loan_payments/ach/:
@@ -277,12 +263,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create an ACH loan payment
       tags:
-      - ach payments
+      - ACH Payments
       requestBody:
         content:
           application/json:
@@ -313,172 +297,6 @@ paths:
         id: i0ryiy2vb06qt
 components:
   schemas:
-    ACHPayment:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-        processed_at:
-          type: string
-          format: date-time
-          readOnly: true
-          nullable: true
-          description: timestamp to avoid reprocessing this request
-        state:
-          allOf:
-          - $ref: '#/components/schemas/State40dEnum'
-          readOnly: true
-        display_state:
-          type: string
-          readOnly: true
-        company_id:
-          type: string
-          readOnly: true
-          description: A snapshot of the company_id sourced from the ACHCompany at the time the transaction is submitted. This field is persisted to the resulting ACH transaction instance.
-          maxLength: 10
-          minLength: 10
-        company_name:
-          type: string
-          readOnly: true
-          description: A snapshot of the company_name sourced from the ACHCompany at the time the transaction is submitted. This field is persisted to the resulting ACH transaction instance.
-          maxLength: 16
-          minLength: 1
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: The amount of the ACH payment in cents.
-          type: integer
-        institution_account:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: The UUID of the originating account for the transaction.
-          type: string
-          format: uuid
-        description:
-          type: string
-          default: ''
-          description: Memo for the transaction. This is currently only used for internal record-keeping, and will not be not included in the resulting NACHA file entry.
-          maxLength: 128
-        external_account_details:
-          type: string
-          nullable: true
-          readOnly: true
-          description: 'The UUID of the external account details associated with the recipient. '
-        recipient:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: The UUID of the recipient of the transaction.
-          type: string
-          format: uuid
-        std_ent_cls_code:
-          allOf:
-          - $ref: '#/components/schemas/StdEntClsCodeEnum'
-          description: 'A three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction. SEC stands for ''Standard Entry Class''. SEC codes are defined and maintained by NACHA, the governing body for the ACH network.
-
-
-            * `PPD` - Batch Personal
-
-            * `CCD` - Batch Corporate
-
-            * `ARC` - Batch Accounts Receivable
-
-            * `CTX` - Batch Corporate Exchange
-
-            * `POS` - Batch Point Of Sale
-
-            * `WEB` - Batch Internet Initiated
-
-            * `BOC` - Batch Backoffice Conversion
-
-            * `TEL` - Batch Telephone Initiated
-
-            * `MTE` - Batch Machine Transfer
-
-            * `SHR` - Batch Shared Network
-
-            * `CIE` - Batch Customer Initiated
-
-            * `POP` - Batch Point Of Purchase
-
-            * `RCK` - Batch Represented Check'
-        entry_desc:
-          type: string
-          description: A field that describes the purpose of the transaction to the receiver. It's used to help identify, monitor, and count payments for specific purposes.
-        memo:
-          type: string
-          default: ''
-          description: A field that adds a memo to the transaction. It's used to help identify transaction to the sender.
-          maxLength: 128
-        transaction_type:
-          allOf:
-          - $ref: '#/components/schemas/TransactionTypeEnum'
-          readOnly: true
-          description: 'Indicates whether the ACH transaction is a credit (push) or debit (pull).
-
-
-            * `debit` - Pull (debit)
-
-            * `credit` - Push (credit)'
-      required:
-      - amount
-      - entry_desc
-      - institution_account
-      - recipient
-      - std_ent_cls_code
-      x-stoplight:
-        id: bhxwwb7cteftj
-    State40dEnum:
-      enum:
-      - analyzing
-      - pending
-      - processing
-      - processed
-      - rejected
-      - review
-      - canceled
-      - canceled_by_user
-      - awaiting_approval
-      - rejected_approval
-      - approval_expired
-      - awaiting_bulk_approval
-      - rejected_bulk_approval
-      type: string
-      description: '* `analyzing` - Analyzing
-
-        * `pending` - Pending
-
-        * `processing` - Processing
-
-        * `processed` - Processed (in transit)
-
-        * `rejected` - Rejected by staff
-
-        * `review` - Review
-
-        * `canceled` - Canceled
-
-        * `canceled_by_user` - Canceled by user
-
-        * `awaiting_approval` - Awaiting dual approval
-
-        * `rejected_approval` - Dual approval rejected
-
-        * `approval_expired` - Dual approval expired
-
-        * `awaiting_bulk_approval` - Awaiting bulk approval
-
-        * `rejected_bulk_approval` - Rejected bulk approval'
-      x-stoplight:
-        id: ulhqntis74qyp
     PaginatedScheduledACHPaymentList:
       type: object
       required:
@@ -489,13 +307,15 @@ components:
           type: integer
           example: 123
         next:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: uri
           example: http://api.example.org/accounts/?page=4
         previous:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: uri
           example: http://api.example.org/accounts/?page=2
         results:
@@ -504,19 +324,116 @@ components:
             $ref: '#/components/schemas/ScheduledACHPayment'
       x-stoplight:
         id: 43ond2osuzzsf
-    GeneralError:
+    PaginatedACHPaymentList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHPayment'
+      x-stoplight:
+        id: ershfqhclmswp
+    ScheduledACHPayment:
       type: object
       properties:
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        memo:
+          type: string
+          default: ''
+          maxLength: 128
+        recurring_rule:
+          type: string
         id:
           type: string
-          default: invalid
-        message:
+          format: uuid
+          readOnly: true
+        institution_account:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: A field that represents the stringified UUID of a related object.
           type: string
-          description: An error response detailing the field and the nature of the error.
+          format: uuid
+        recipient:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: A field that represents the stringified UUID of a related object.
+          type: string
+          format: uuid
+        company_id:
+          type: string
+          readOnly: true
+          maxLength: 10
+          minLength: 10
+        company_name:
+          type: string
+          readOnly: true
+          maxLength: 16
+          minLength: 1
+        std_ent_cls_code:
+          $ref: '#/components/schemas/StdEntClsCodeEnum'
+        entry_desc:
+          type: string
+        description:
+          type: string
+          default: ''
+        next_transfer_at:
+          type: string
+          format: date-time
+          readOnly: true
+        dual_approval_state:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        display_state:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        completed_at:
+          type: string
+          format: date-time
+          readOnly: true
+        transaction_type:
+          allOf:
+          - $ref: '#/components/schemas/TransactionTypeEnum'
+          readOnly: true
+          description: 'Indicates whether the Scheduled ACH transaction is a credit (push) or debit (pull).
+
+
+            * `debit` - Pull (debit)
+
+            * `credit` - Push (credit)'
       required:
-      - message
+      - amount
+      - entry_desc
+      - institution_account
+      - recipient
+      - recurring_rule
+      - std_ent_cls_code
       x-stoplight:
-        id: v76fz3qxj5djb
+        id: 9gkzfwvfok3wv
     UnverifiedACHTransaction:
       type: object
       properties:
@@ -533,10 +450,11 @@ components:
           format: date-time
           readOnly: true
         processed_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           readOnly: true
-          nullable: true
           description: timestamp to avoid reprocessing this request
         state:
           allOf:
@@ -574,8 +492,9 @@ components:
           description: Memo for the transaction. This is currently only used for internal record-keeping, and will not be not included in the resulting NACHA file entry.
           maxLength: 128
         external_account_details:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
           description: 'The UUID of the external account details associated with the recipient. '
         recipient:
@@ -640,6 +559,313 @@ components:
       - transaction_type
       x-stoplight:
         id: te2fnxskynbwg
+    LoanPaymentACH:
+      type: object
+      properties:
+        from_account:
+          type: string
+          format: uuid
+        to_account:
+          type: string
+          format: uuid
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        payment_type:
+          type: string
+        ach_transfer:
+          type: integer
+        memo:
+          type: string
+        device_id:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: {}
+      required:
+      - amount
+      - from_account
+      - payment_type
+      - to_account
+      x-stoplight:
+        id: oswqsprazr4xt
+    ScheduledACHPaymentRequest:
+      type: object
+      properties:
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        device_id:
+          type:
+          - string
+          - 'null'
+          writeOnly: true
+        device_request_id:
+          type:
+          - string
+          - 'null'
+          writeOnly: true
+        memo:
+          type: string
+          default: ''
+          maxLength: 128
+        recurring_rule:
+          type: string
+          minLength: 1
+        institution_account:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: A field that represents the stringified UUID of a related object.
+          type: string
+          format: uuid
+        recipient:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: A field that represents the stringified UUID of a related object.
+          type: string
+          format: uuid
+        ach_company:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: A field that represents the stringified UUID of a related object.
+          type: string
+          format: uuid
+          writeOnly: true
+        std_ent_cls_code:
+          $ref: '#/components/schemas/StdEntClsCodeEnum'
+        entry_desc:
+          type: string
+          minLength: 1
+        description:
+          type: string
+          default: ''
+      required:
+      - amount
+      - entry_desc
+      - institution_account
+      - recipient
+      - recurring_rule
+      - std_ent_cls_code
+      x-stoplight:
+        id: squl1ig9cun3t
+    ACHPayment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        processed_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+          description: timestamp to avoid reprocessing this request
+        state:
+          allOf:
+          - $ref: '#/components/schemas/State40dEnum'
+          readOnly: true
+        display_state:
+          type: string
+          readOnly: true
+        company_id:
+          type: string
+          readOnly: true
+          description: A snapshot of the company_id sourced from the ACHCompany at the time the transaction is submitted. This field is persisted to the resulting ACH transaction instance.
+          maxLength: 10
+          minLength: 10
+        company_name:
+          type: string
+          readOnly: true
+          description: A snapshot of the company_name sourced from the ACHCompany at the time the transaction is submitted. This field is persisted to the resulting ACH transaction instance.
+          maxLength: 16
+          minLength: 1
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: The amount of the ACH payment in cents.
+          type: integer
+        institution_account:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the originating account for the transaction.
+          type: string
+          format: uuid
+        description:
+          type: string
+          default: ''
+          description: Memo for the transaction. This is currently only used for internal record-keeping, and will not be not included in the resulting NACHA file entry.
+          maxLength: 128
+        external_account_details:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          description: 'The UUID of the external account details associated with the recipient. '
+        recipient:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the recipient of the transaction.
+          type: string
+          format: uuid
+        std_ent_cls_code:
+          allOf:
+          - $ref: '#/components/schemas/StdEntClsCodeEnum'
+          description: 'A three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction. SEC stands for ''Standard Entry Class''. SEC codes are defined and maintained by NACHA, the governing body for the ACH network.
+
+
+            * `PPD` - Batch Personal
+
+            * `CCD` - Batch Corporate
+
+            * `ARC` - Batch Accounts Receivable
+
+            * `CTX` - Batch Corporate Exchange
+
+            * `POS` - Batch Point Of Sale
+
+            * `WEB` - Batch Internet Initiated
+
+            * `BOC` - Batch Backoffice Conversion
+
+            * `TEL` - Batch Telephone Initiated
+
+            * `MTE` - Batch Machine Transfer
+
+            * `SHR` - Batch Shared Network
+
+            * `CIE` - Batch Customer Initiated
+
+            * `POP` - Batch Point Of Purchase
+
+            * `RCK` - Batch Represented Check'
+        entry_desc:
+          type: string
+          description: A field that describes the purpose of the transaction to the receiver. It's used to help identify, monitor, and count payments for specific purposes.
+        memo:
+          type: string
+          default: ''
+          description: A field that adds a memo to the transaction. It's used to help identify transaction to the sender.
+          maxLength: 128
+        transaction_type:
+          allOf:
+          - $ref: '#/components/schemas/TransactionTypeEnum'
+          readOnly: true
+          description: 'Indicates whether the ACH transaction is a credit (push) or debit (pull).
+
+
+            * `debit` - Pull (debit)
+
+            * `credit` - Push (credit)'
+      required:
+      - amount
+      - entry_desc
+      - institution_account
+      - recipient
+      - std_ent_cls_code
+      x-stoplight:
+        id: bhxwwb7cteftj
+    LoanPaymentACHRequest:
+      type: object
+      properties:
+        from_account:
+          type: string
+          format: uuid
+        to_account:
+          type: string
+          format: uuid
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        payment_type:
+          type: string
+          minLength: 1
+        ach_transfer:
+          type: integer
+        memo:
+          type: string
+        device_id:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: {}
+      required:
+      - amount
+      - from_account
+      - payment_type
+      - to_account
+      x-stoplight:
+        id: 1lkcyxejiw9vk
+    GeneralError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid
+        message:
+          type: string
+          description: An error response detailing the field and the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: v76fz3qxj5djb
+    State40dEnum:
+      enum:
+      - analyzing
+      - pending
+      - processing
+      - processed
+      - rejected
+      - review
+      - canceled
+      - canceled_by_user
+      - awaiting_approval
+      - rejected_approval
+      - approval_expired
+      - awaiting_bulk_approval
+      - rejected_bulk_approval
+      type: string
+      description: '* `analyzing` - Analyzing
+
+        * `pending` - Pending
+
+        * `processing` - Processing
+
+        * `processed` - Processed (in transit)
+
+        * `rejected` - Rejected by staff
+
+        * `review` - Review
+
+        * `canceled` - Canceled
+
+        * `canceled_by_user` - Canceled by user
+
+        * `awaiting_approval` - Awaiting dual approval
+
+        * `rejected_approval` - Dual approval rejected
+
+        * `approval_expired` - Dual approval expired
+
+        * `awaiting_bulk_approval` - Awaiting bulk approval
+
+        * `rejected_bulk_approval` - Rejected bulk approval'
+      x-stoplight:
+        id: ulhqntis74qyp
     StdEntClsCodeEnum:
       enum:
       - PPD
@@ -683,108 +909,6 @@ components:
         * `RCK` - Batch Represented Check'
       x-stoplight:
         id: xgdwqweqfvyee
-    LoanPaymentACH:
-      type: object
-      properties:
-        from_account:
-          type: string
-          format: uuid
-        to_account:
-          type: string
-          format: uuid
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-        payment_type:
-          type: string
-        ach_transfer:
-          type: integer
-        memo:
-          type: string
-        device_id:
-          type: string
-        metadata:
-          type: object
-          additionalProperties: {}
-      required:
-      - amount
-      - from_account
-      - payment_type
-      - to_account
-      x-stoplight:
-        id: oswqsprazr4xt
-    LoanPaymentACHRequest:
-      type: object
-      properties:
-        from_account:
-          type: string
-          format: uuid
-        to_account:
-          type: string
-          format: uuid
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-        payment_type:
-          type: string
-          minLength: 1
-        ach_transfer:
-          type: integer
-        memo:
-          type: string
-        device_id:
-          type: string
-        metadata:
-          type: object
-          additionalProperties: {}
-      required:
-      - amount
-      - from_account
-      - payment_type
-      - to_account
-      x-stoplight:
-        id: 1lkcyxejiw9vk
-    PaginatedACHPaymentList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ACHPayment'
-      x-stoplight:
-        id: ershfqhclmswp
-    TransactionTypeEnum:
-      enum:
-      - debit
-      - credit
-      type: string
-      description: '* `debit` - Pull (debit)
-
-        * `credit` - Push (credit)'
-      x-stoplight:
-        id: acyeadla4mwfp
     ACHPaymentRequest:
       type: object
       properties:
@@ -856,13 +980,15 @@ components:
           description: A field that adds a memo to the transaction. It's used to help identify transaction to the sender.
           maxLength: 128
         device_id:
-          type: string
+          type:
+          - string
+          - 'null'
           writeOnly: true
-          nullable: true
         device_request_id:
-          type: string
+          type:
+          - string
+          - 'null'
           writeOnly: true
-          nullable: true
       required:
       - amount
       - entry_desc
@@ -871,144 +997,16 @@ components:
       - std_ent_cls_code
       x-stoplight:
         id: ifjre5vpcvp53
-    ScheduledACHPaymentRequest:
-      type: object
-      properties:
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-        device_id:
-          type: string
-          writeOnly: true
-          nullable: true
-        device_request_id:
-          type: string
-          writeOnly: true
-          nullable: true
-        memo:
-          type: string
-          default: ''
-          maxLength: 128
-        recurring_rule:
-          type: string
-          minLength: 1
-        institution_account:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: A field that represents the stringified UUID of a related object.
-          type: string
-          format: uuid
-        recipient:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: A field that represents the stringified UUID of a related object.
-          type: string
-          format: uuid
-        ach_company:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: A field that represents the stringified UUID of a related object.
-          type: string
-          format: uuid
-          writeOnly: true
-        std_ent_cls_code:
-          $ref: '#/components/schemas/StdEntClsCodeEnum'
-        entry_desc:
-          type: string
-          minLength: 1
-        description:
-          type: string
-          default: ''
-      required:
-      - amount
-      - entry_desc
-      - institution_account
-      - recipient
-      - recurring_rule
-      - std_ent_cls_code
+    TransactionTypeEnum:
+      enum:
+      - debit
+      - credit
+      type: string
+      description: '* `debit` - Pull (debit)
+
+        * `credit` - Push (credit)'
       x-stoplight:
-        id: squl1ig9cun3t
-    ScheduledACHPayment:
-      type: object
-      properties:
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-        memo:
-          type: string
-          default: ''
-          maxLength: 128
-        recurring_rule:
-          type: string
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-        institution_account:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: A field that represents the stringified UUID of a related object.
-          type: string
-          format: uuid
-        recipient:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: A field that represents the stringified UUID of a related object.
-          type: string
-          format: uuid
-        company_id:
-          type: string
-          readOnly: true
-          maxLength: 10
-          minLength: 10
-        company_name:
-          type: string
-          readOnly: true
-          maxLength: 16
-          minLength: 1
-        std_ent_cls_code:
-          $ref: '#/components/schemas/StdEntClsCodeEnum'
-        entry_desc:
-          type: string
-        description:
-          type: string
-          default: ''
-        next_transfer_at:
-          type: string
-          format: date-time
-          readOnly: true
-        dual_approval_state:
-          type: string
-          nullable: true
-          readOnly: true
-        display_state:
-          type: string
-          nullable: true
-          readOnly: true
-        completed_at:
-          type: string
-          format: date-time
-          readOnly: true
-        transaction_type:
-          allOf:
-          - $ref: '#/components/schemas/TransactionTypeEnum'
-          readOnly: true
-          description: 'Indicates whether the Scheduled ACH transaction is a credit (push) or debit (pull).
-
-
-            * `debit` - Pull (debit)
-
-            * `credit` - Push (credit)'
-      required:
-      - amount
-      - entry_desc
-      - institution_account
-      - recipient
-      - recurring_rule
-      - std_ent_cls_code
-      x-stoplight:
-        id: 9gkzfwvfok3wv
+        id: acyeadla4mwfp
   securitySchemes:
     oauth2:
       type: oauth2

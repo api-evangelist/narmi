@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances merchants API
+  title: Narmi Public Merchants API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -11,7 +11,7 @@ servers:
 - url: https://api.sandbox.narmi.dev/
   description: ''
 tags:
-- name: merchants
+- name: Merchants
 paths:
   /v1/merchants/:
     get:
@@ -22,12 +22,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve merchants
       tags:
-      - merchants
+      - Merchants
       security:
       - oauth2:
         - read
@@ -89,32 +87,37 @@ components:
           description: The website URL of the merchant.
           maxLength: 255
         cancellation_url:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uri
-          nullable: true
           description: The cancellation URL of the merchant.
           maxLength: 255
         logo_url:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           readOnly: true
         contact_number:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: The contact number of the merchant.
           maxLength: 20
         contact_email:
-          type: string
+          type:
+          - string
+          - 'null'
           format: email
-          nullable: true
           description: The contact email of the merchant.
           maxLength: 100
         cancellation_instructions:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
             maxLength: 500
-          nullable: true
           description: Instructions for cancelling a subscription with the merchant.
       required:
       - merchant_name

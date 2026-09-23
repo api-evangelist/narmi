@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances data access management API
+  title: Narmi Public data access management API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -31,11 +31,11 @@ paths:
       description: 'All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       x-stoplight:
         id: 0fvxwfc3scl3c
+      summary: Data access management list
+      x-summary-source: derived
   /v1/data_access_management/revoke/:
     post:
       operationId: data_access_management_revoke_create
@@ -65,13 +65,30 @@ paths:
       description: 'All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       x-stoplight:
         id: nohz0utqhws5g
 components:
   schemas:
+    DataAccessConsent:
+      type: object
+      properties:
+        id:
+          type: string
+        data_partner:
+          type: string
+        application_name:
+          type: string
+        connected_at:
+          type: string
+          format: date-time
+      required:
+      - application_name
+      - connected_at
+      - data_partner
+      - id
+      x-stoplight:
+        id: 2jqpwebufujel
     DataAccessConsentRequest:
       type: object
       properties:
@@ -94,25 +111,6 @@ components:
       - id
       x-stoplight:
         id: qx1nvezsitftj
-    DataAccessConsent:
-      type: object
-      properties:
-        id:
-          type: string
-        data_partner:
-          type: string
-        application_name:
-          type: string
-        connected_at:
-          type: string
-          format: date-time
-      required:
-      - application_name
-      - connected_at
-      - data_partner
-      - id
-      x-stoplight:
-        id: 2jqpwebufujel
     PaginatedDataAccessConsentList:
       type: object
       required:

@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances card linked offers API
+  title: Narmi Public card linked offers API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -22,9 +22,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Get card offers
       parameters:
       - in: query
@@ -118,9 +116,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Check enrollment status
       tags:
       - card linked offers
@@ -204,9 +200,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Enroll user in card linked offers
       tags:
       - card linked offers
@@ -286,9 +280,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Unenroll user from card linked offers
       tags:
       - card linked offers
@@ -414,6 +406,16 @@ components:
         * `in_store` - in_store'
       x-stoplight:
         id: mjmvea9tnh4vq
+    RewardTypeEnum:
+      enum:
+      - flat
+      - percentage
+      type: string
+      description: '* `flat` - flat
+
+        * `percentage` - percentage'
+      x-stoplight:
+        id: wbtxqz7kofhhe
     CardOfferEnrollmentStatus:
       type: object
       description: Serializer for enrollment status response
@@ -423,6 +425,121 @@ components:
           readOnly: true
       x-stoplight:
         id: a6dwo7tpb2ghy
+    CardOfferAsset:
+      type: object
+      description: Serializer for card offer assets.
+      properties:
+        type:
+          type: string
+        url:
+          type: string
+          format: uri
+        alt_text:
+          type: string
+      required:
+      - alt_text
+      - type
+      - url
+      x-stoplight:
+        id: rwb5b0hmczudt
+    CardOffer:
+      type: object
+      description: Serializer for card offers returned by the API.
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        terms:
+          type: string
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/CategoriesEnum'
+        expiration_date:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        start_date:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        reward_type:
+          $ref: '#/components/schemas/RewardTypeEnum'
+        reward_value:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        purchase_channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseChannelsEnum'
+        min_reward_amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type:
+          - integer
+          - 'null'
+        max_reward_amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type:
+          - integer
+          - 'null'
+        min_transaction_amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type:
+          - integer
+          - 'null'
+        max_transaction_amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type:
+          - integer
+          - 'null'
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardOfferAsset'
+        merchant_url:
+          type:
+          - string
+          - 'null'
+          format: uri
+      required:
+      - assets
+      - categories
+      - description
+      - expiration_date
+      - id
+      - max_reward_amount
+      - max_transaction_amount
+      - merchant_url
+      - min_reward_amount
+      - min_transaction_amount
+      - name
+      - purchase_channels
+      - reward_type
+      - reward_value
+      - start_date
+      - terms
+      x-stoplight:
+        id: sfc37b8rofbms
     CategoriesEnum:
       enum:
       - Arts & Entertainment
@@ -481,124 +598,6 @@ components:
         * `Other` - Other'
       x-stoplight:
         id: hnd0c8ky6kbs8
-    CardOfferAsset:
-      type: object
-      description: Serializer for card offer assets.
-      properties:
-        type:
-          type: string
-        url:
-          type: string
-          format: uri
-        alt_text:
-          type: string
-      required:
-      - alt_text
-      - type
-      - url
-      x-stoplight:
-        id: rwb5b0hmczudt
-    RewardTypeEnum:
-      enum:
-      - flat
-      - percentage
-      type: string
-      description: '* `flat` - flat
-
-        * `percentage` - percentage'
-      x-stoplight:
-        id: wbtxqz7kofhhe
-    CardOffer:
-      type: object
-      description: Serializer for card offers returned by the API.
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        terms:
-          type: string
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/CategoriesEnum'
-        expiration_date:
-          type: string
-          format: date-time
-          nullable: true
-        start_date:
-          type: string
-          format: date-time
-          nullable: true
-        reward_type:
-          $ref: '#/components/schemas/RewardTypeEnum'
-        reward_value:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-        purchase_channels:
-          type: array
-          items:
-            $ref: '#/components/schemas/PurchaseChannelsEnum'
-        min_reward_amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-          nullable: true
-        max_reward_amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-          nullable: true
-        min_transaction_amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-          nullable: true
-        max_transaction_amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-          nullable: true
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardOfferAsset'
-        merchant_url:
-          type: string
-          format: uri
-          nullable: true
-      required:
-      - assets
-      - categories
-      - description
-      - expiration_date
-      - id
-      - max_reward_amount
-      - max_transaction_amount
-      - merchant_url
-      - min_reward_amount
-      - min_transaction_amount
-      - name
-      - purchase_channels
-      - reward_type
-      - reward_value
-      - start_date
-      - terms
-      x-stoplight:
-        id: sfc37b8rofbms
   securitySchemes:
     oauth2:
       type: oauth2

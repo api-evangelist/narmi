@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances recipients API
+  title: Narmi Public Recipients API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -11,7 +11,7 @@ servers:
 - url: https://api.sandbox.narmi.dev/
   description: ''
 tags:
-- name: recipients
+- name: Recipients
 paths:
   /v1/recipients/:
     get:
@@ -22,9 +22,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: List recipients
       parameters:
       - name: limit
@@ -40,7 +38,7 @@ paths:
         schema:
           type: integer
       tags:
-      - recipients
+      - Recipients
       security:
       - oauth2:
         - read
@@ -67,12 +65,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create a recipient
       tags:
-      - recipients
+      - Recipients
       requestBody:
         content:
           application/json:
@@ -128,9 +124,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve a recipient
       parameters:
       - in: path
@@ -140,7 +134,7 @@ paths:
           format: uuid
         required: true
       tags:
-      - recipients
+      - Recipients
       security:
       - oauth2:
         - read
@@ -173,9 +167,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Update a recipient
       parameters:
       - in: path
@@ -185,7 +177,7 @@ paths:
           format: uuid
         required: true
       tags:
-      - recipients
+      - Recipients
       requestBody:
         content:
           application/json:
@@ -246,9 +238,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Delete a recipient
       parameters:
       - in: path
@@ -258,7 +248,7 @@ paths:
           format: uuid
         required: true
       tags:
-      - recipients
+      - Recipients
       security:
       - oauth2:
         - write
@@ -269,60 +259,29 @@ paths:
         id: lxwrvkkhisxgm
 components:
   schemas:
-    AccountTypeEnum:
-      enum:
-      - checking
-      - savings
-      - loan
-      type: string
-      description: '* `checking` - Checking
-
-        * `savings` - Savings
-
-        * `loan` - Loan'
-      x-stoplight:
-        id: ds0e59zxe4i8q
-    NotFoundError:
+    RecipientRequest:
       type: object
+      description: 'Updates to the ach_destination and fedwire_destination fields are handled by the
+
+        ACHDetailsSerializer and FedwireDestinationSerializer, respectively.'
       properties:
-        id:
+        name:
           type: string
-          default: not_found
-        message:
+          minLength: 1
+          description: Used to formally identify the recipient (e.g. for sending fedwires.)
+          maxLength: 140
+        nickname:
           type: string
-          description: An error response detailing the nature of the error.
+          description: Name used internally to more easily identify the recipient.
+          maxLength: 256
+        type:
+          allOf:
+          - $ref: '#/components/schemas/RecipientTypeEnum'
+          default: person
       required:
-      - message
+      - name
       x-stoplight:
-        id: qazjpvfdteybw
-    WireRecipientAddress:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        street_address:
-          type: string
-          maxLength: 128
-        street_address_2:
-          type: string
-          maxLength: 128
-        city:
-          type: string
-          maxLength: 128
-        region_code:
-          type: string
-          maxLength: 128
-        postal_code:
-          type: string
-          maxLength: 128
-        country_code:
-          type: string
-          maxLength: 2
-      required:
-      - street_address
-      x-stoplight:
-        id: dsp8dadbgwst0
+        id: n6ayn4zrjmmxd
     Recipient:
       type: object
       description: 'Updates to the ach_destination and fedwire_destination fields are handled by the
@@ -368,31 +327,38 @@ components:
       - name
       x-stoplight:
         id: buqdhdq6mraig
-    PaginatedRecipientList:
+    SwiftWireDestination:
       type: object
-      required:
-      - count
-      - results
       properties:
-        count:
-          type: integer
-          example: 123
-        next:
+        id:
           type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
+          format: uuid
+          readOnly: true
+        created_at:
           type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Recipient'
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        bic:
+          type: string
+        metadata: {}
+        address:
+          $ref: '#/components/schemas/WireRecipientAddress'
+        account_identifier:
+          type: string
+          description: Account identifier (IBAN, account number, phone) for the Swift wire destination.
+        branch_address:
+          allOf:
+          - $ref: '#/components/schemas/WireRecipientAddress'
+      required:
+      - account_identifier
+      - address
+      - bic
       x-stoplight:
-        id: rzjbbg1xbpys1
+        id: fsxcazs4nwqxc
     AccountPurposeEnum:
       enum:
       - personal
@@ -403,16 +369,18 @@ components:
         * `business` - Business'
       x-stoplight:
         id: ccf1svqamabvv
-    RecipientTypeEnum:
-      enum:
-      - person
-      - business
-      type: string
-      description: '* `person` - Person
-
-        * `business` - Business'
+    PermissionDeniedError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: You do not have permission to perform this action.
+          description: An error response detailing the field and the nature of the error.
       x-stoplight:
-        id: cetfkhhexomuz
+        id: ywbohhxwqjqj3
     ACHDetails:
       type: object
       description: 'In addition to the standard ACHDetails fields you''d expect for a create/updated request,
@@ -451,18 +419,125 @@ components:
       - routing_number
       x-stoplight:
         id: rvctfxe73rl2e
-    PermissionDeniedError:
+    WireRecipientAddress:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        street_address:
+          type: string
+          maxLength: 128
+        street_address_2:
+          type: string
+          maxLength: 128
+        city:
+          type: string
+          maxLength: 128
+        region_code:
+          type: string
+          maxLength: 128
+        postal_code:
+          type: string
+          maxLength: 128
+        country_code:
+          type: string
+          maxLength: 2
+      required:
+      - street_address
+      x-stoplight:
+        id: dsp8dadbgwst0
+    PaginatedRecipientList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipient'
+      x-stoplight:
+        id: rzjbbg1xbpys1
+    AccountTypeEnum:
+      enum:
+      - checking
+      - savings
+      - loan
+      type: string
+      description: '* `checking` - Checking
+
+        * `savings` - Savings
+
+        * `loan` - Loan'
+      x-stoplight:
+        id: ds0e59zxe4i8q
+    FedwireRecipientAddress:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        street_address:
+          type: string
+          maxLength: 35
+        street_address_2:
+          type: string
+          maxLength: 35
+        city:
+          type: string
+          maxLength: 128
+        region_code:
+          type: string
+          maxLength: 128
+        postal_code:
+          type: string
+          maxLength: 128
+        country_code:
+          type: string
+          maxLength: 2
+      required:
+      - street_address
+      x-stoplight:
+        id: alp6ww1u4r5wf
+    NotFoundError:
       type: object
       properties:
         id:
           type: string
-          default: api_error
+          default: not_found
         message:
           type: string
-          default: You do not have permission to perform this action.
-          description: An error response detailing the field and the nature of the error.
+          description: An error response detailing the nature of the error.
+      required:
+      - message
       x-stoplight:
-        id: ywbohhxwqjqj3
+        id: qazjpvfdteybw
+    RecipientTypeEnum:
+      enum:
+      - person
+      - business
+      type: string
+      description: '* `person` - Person
+
+        * `business` - Business'
+      x-stoplight:
+        id: cetfkhhexomuz
     FedwireDestination:
       type: object
       description: 'In addition to the standard FedwireDestination fields you''d expect for a create/updated request,
@@ -498,90 +573,6 @@ components:
       - routing_number
       x-stoplight:
         id: 5nq8io7fuwyrs
-    SwiftWireDestination:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-        bic:
-          type: string
-        metadata: {}
-        address:
-          $ref: '#/components/schemas/WireRecipientAddress'
-        account_identifier:
-          type: string
-          description: Account identifier (IBAN, account number, phone) for the Swift wire destination.
-        branch_address:
-          allOf:
-          - $ref: '#/components/schemas/WireRecipientAddress'
-          nullable: true
-      required:
-      - account_identifier
-      - address
-      - bic
-      x-stoplight:
-        id: fsxcazs4nwqxc
-    FedwireRecipientAddress:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        street_address:
-          type: string
-          maxLength: 35
-        street_address_2:
-          type: string
-          maxLength: 35
-        city:
-          type: string
-          maxLength: 128
-        region_code:
-          type: string
-          maxLength: 128
-        postal_code:
-          type: string
-          maxLength: 128
-        country_code:
-          type: string
-          maxLength: 2
-      required:
-      - street_address
-      x-stoplight:
-        id: alp6ww1u4r5wf
-    RecipientRequest:
-      type: object
-      description: 'Updates to the ach_destination and fedwire_destination fields are handled by the
-
-        ACHDetailsSerializer and FedwireDestinationSerializer, respectively.'
-      properties:
-        name:
-          type: string
-          minLength: 1
-          description: Used to formally identify the recipient (e.g. for sending fedwires.)
-          maxLength: 140
-        nickname:
-          type: string
-          description: Name used internally to more easily identify the recipient.
-          maxLength: 256
-        type:
-          allOf:
-          - $ref: '#/components/schemas/RecipientTypeEnum'
-          default: person
-      required:
-      - name
-      x-stoplight:
-        id: n6ayn4zrjmmxd
   securitySchemes:
     oauth2:
       type: oauth2

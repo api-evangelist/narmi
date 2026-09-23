@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances teams API
+  title: Narmi Public Teams API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -11,7 +11,7 @@ servers:
 - url: https://api.sandbox.narmi.dev/
   description: ''
 tags:
-- name: teams
+- name: Teams
 paths:
   /v1/teams/:
     get:
@@ -22,9 +22,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: List teams
       parameters:
       - name: limit
@@ -42,7 +40,7 @@ paths:
           type: integer
           maximum: 2147483648
       tags:
-      - teams
+      - Teams
       security:
       - oauth2:
         - read
@@ -75,14 +73,16 @@ components:
           description: URIs linking to sequential pages of the result.
           properties:
             next:
-              type: string
+              type:
+              - string
+              - 'null'
               format: uri
-              nullable: true
               example: https://narmi.example.com/v1/payments?after=400
             prev:
-              type: string
+              type:
+              - string
+              - 'null'
               format: uri
-              nullable: true
               example: https://narmi.example.com/v1/payments?before=200
         meta:
           description: Free-form object, contains total object count.

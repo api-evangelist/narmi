@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances same-day transfers API
+  title: Narmi Public same-day transfers API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -22,9 +22,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve fee information for same day transfers
       tags:
       - same-day transfers
@@ -70,22 +68,25 @@ components:
 
             * `percent` - percent'
         percent:
-          type: string
+          type:
+          - string
+          - 'null'
           format: decimal
           pattern: ^-?0?(?:\.\d{0,4})?$
-          nullable: true
           description: Percentage fee of transfer amount. For free and fixed kind this will null, for percentage it is the fee percent as a decimal.
         max:
-          type: string
+          type:
+          - string
+          - 'null'
           format: decimal
           pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
-          nullable: true
           description: Maximum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount cap for the percentage fee.
         min:
-          type: string
+          type:
+          - string
+          - 'null'
           format: decimal
           pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
-          nullable: true
           description: Minimum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount minimum for the percentage fee.
       required:
       - kind

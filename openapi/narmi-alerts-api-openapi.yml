@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances alerts API
+  title: Narmi Public Alerts API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -11,7 +11,7 @@ servers:
 - url: https://api.sandbox.narmi.dev/
   description: ''
 tags:
-- name: alerts
+- name: Alerts
 paths:
   /v1/alerts/account/:
     get:
@@ -22,9 +22,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: List account alerts
       parameters:
       - name: page
@@ -34,7 +32,7 @@ paths:
         schema:
           type: integer
       tags:
-      - alerts
+      - Alerts
       security:
       - oauth2:
         - read
@@ -91,12 +89,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create an account alert
       tags:
-      - alerts
+      - Alerts
       requestBody:
         content:
           application/json:
@@ -198,9 +194,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve an account alert
       parameters:
       - in: path
@@ -210,7 +204,7 @@ paths:
           pattern: ^[0-9A-Fa-f-]{36}$
         required: true
       tags:
-      - alerts
+      - Alerts
       security:
       - oauth2:
         - read
@@ -281,9 +275,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Update an account alert
       parameters:
       - in: path
@@ -293,7 +285,7 @@ paths:
           pattern: ^[0-9A-Fa-f-]{36}$
         required: true
       tags:
-      - alerts
+      - Alerts
       requestBody:
         content:
           application/json:
@@ -410,9 +402,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Delete an account alert
       parameters:
       - in: path
@@ -422,7 +412,7 @@ paths:
           pattern: ^[0-9A-Fa-f-]{36}$
         required: true
       tags:
-      - alerts
+      - Alerts
       security:
       - oauth2:
         - write
@@ -472,9 +462,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: List loan alerts
       parameters:
       - name: page
@@ -484,7 +472,7 @@ paths:
         schema:
           type: integer
       tags:
-      - alerts
+      - Alerts
       security:
       - oauth2:
         - read
@@ -532,12 +520,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create a loan alert
       tags:
-      - alerts
+      - Alerts
       requestBody:
         content:
           application/json:
@@ -631,9 +617,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve a loan alert
       parameters:
       - in: path
@@ -643,7 +627,7 @@ paths:
           pattern: ^[0-9A-Fa-f-]{36}$
         required: true
       tags:
-      - alerts
+      - Alerts
       security:
       - oauth2:
         - read
@@ -710,9 +694,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Update a loan alert
       parameters:
       - in: path
@@ -722,7 +704,7 @@ paths:
           pattern: ^[0-9A-Fa-f-]{36}$
         required: true
       tags:
-      - alerts
+      - Alerts
       requestBody:
         content:
           application/json:
@@ -831,9 +813,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Delete a loan alert
       parameters:
       - in: path
@@ -843,7 +823,7 @@ paths:
           pattern: ^[0-9A-Fa-f-]{36}$
         required: true
       tags:
-      - alerts
+      - Alerts
       security:
       - oauth2:
         - write
@@ -887,7 +867,13 @@ paths:
   /v1/alerts/transaction/:
     get:
       operationId: transaction_alert_list
-      description: "List all active transaction alerts for the user. \n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      description: 'List all active transaction alerts for the user.
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+        How can we improve these docs? Share your feedback.'
       summary: List transaction alerts
       parameters:
       - name: page
@@ -897,7 +883,7 @@ paths:
         schema:
           type: integer
       tags:
-      - alerts
+      - Alerts
       security:
       - oauth2:
         - read
@@ -946,12 +932,10 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create a transaction alert
       tags:
-      - alerts
+      - Alerts
       requestBody:
         content:
           application/json:
@@ -1045,9 +1029,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Retrieve a transaction alert
       parameters:
       - in: path
@@ -1057,7 +1039,7 @@ paths:
           pattern: ^[0-9A-Fa-f-]{36}$
         required: true
       tags:
-      - alerts
+      - Alerts
       security:
       - oauth2:
         - read
@@ -1124,9 +1106,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Update a transaction alert
       parameters:
       - in: path
@@ -1136,7 +1116,7 @@ paths:
           pattern: ^[0-9A-Fa-f-]{36}$
         required: true
       tags:
-      - alerts
+      - Alerts
       requestBody:
         content:
           application/json:
@@ -1245,9 +1225,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Delete a transaction alert
       parameters:
       - in: path
@@ -1257,7 +1235,7 @@ paths:
           pattern: ^[0-9A-Fa-f-]{36}$
         required: true
       tags:
-      - alerts
+      - Alerts
       security:
       - oauth2:
         - write
@@ -1300,31 +1278,18 @@ paths:
         id: i1zlspjwfeogj
 components:
   schemas:
-    DeliveryChannelsEnum:
-      enum:
-      - sms
-      - push
-      - email
-      type: string
-      description: '* `sms` - sms
-
-        * `push` - push
-
-        * `email` - email'
-      x-stoplight:
-        id: jds3ywpdugt4t
-    LoanAlertRuleRequest:
+    TransactionAlertRuleRequest:
       type: object
       properties:
         alert_key:
           allOf:
-          - $ref: '#/components/schemas/LoanAlertRuleAlertKeyEnum'
-          description: 'Alert type, can be one of `loan_reminder` or `loan_overdue`.
+          - $ref: '#/components/schemas/AlertKey61cEnum'
+          description: 'Alert type, can be one of `credit` or `debit`.
 
 
-            * `loan_reminder` - loan_reminder
+            * `credit` - credit
 
-            * `loan_overdue` - loan_overdue'
+            * `debit` - debit'
         delivery_channels:
           type: array
           items:
@@ -1338,16 +1303,16 @@ components:
               * `push` - push
 
               * `email` - email'
-        reminder_days_offset:
-          type: integer
-          maximum: 7
-          minimum: 0
-          nullable: true
+        transaction_query:
+          type: string
+          minLength: 1
+          maxLength: 256
       required:
       - alert_key
       - delivery_channels
+      - transaction_query
       x-stoplight:
-        id: khappnecltn0j
+        id: tmgfqcbyivovs
     TransactionAlertRule:
       type: object
       properties:
@@ -1389,179 +1354,17 @@ components:
           type: string
           maxLength: 256
         last_delivered_date:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           readOnly: true
-          nullable: true
       required:
       - alert_key
       - delivery_channels
       - transaction_query
       x-stoplight:
         id: 4rgthd2z87x7k
-    PaginatedTransactionAlertRuleList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransactionAlertRule'
-      x-stoplight:
-        id: 5dcibfdfisdew
-    AccountAlertRule:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-        rrule:
-          type: string
-          nullable: true
-          description: Recurrence rule in RFC 5545 format
-          maxLength: 200
-        alert_key:
-          allOf:
-          - $ref: '#/components/schemas/AccountAlertRuleAlertKeyEnum'
-          description: 'Alert type, can be one of `available_balance` or `low_available_balance`.
-
-
-            * `available_balance` - available_balance
-
-            * `low_available_balance` - low_available_balance'
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-        next_alert_at:
-          type: string
-          format: date-time
-          readOnly: true
-          nullable: true
-        threshold_amount:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
-          nullable: true
-        delivery_channels:
-          type: array
-          items:
-            allOf:
-            - $ref: '#/components/schemas/DeliveryChannelsEnum'
-            description: 'Delivery channels, can be one of `sms`, `push`, or `email`.
-
-
-              * `sms` - sms
-
-              * `push` - push
-
-              * `email` - email'
-        subscribed_accounts:
-          type: array
-          items:
-            type: string
-            format: uuid
-        last_delivered_date:
-          type: string
-          format: date-time
-          readOnly: true
-          nullable: true
-      required:
-      - alert_key
-      - delivery_channels
-      - subscribed_accounts
-      x-stoplight:
-        id: ymbfkpwtpunmq
-    AlertKey61cEnum:
-      enum:
-      - credit
-      - debit
-      type: string
-      description: '* `credit` - credit
-
-        * `debit` - debit'
-      x-stoplight:
-        id: bwsuuwmt9dsnb
-    TransactionAlertRuleRequest:
-      type: object
-      properties:
-        alert_key:
-          allOf:
-          - $ref: '#/components/schemas/AlertKey61cEnum'
-          description: 'Alert type, can be one of `credit` or `debit`.
-
-
-            * `credit` - credit
-
-            * `debit` - debit'
-        delivery_channels:
-          type: array
-          items:
-            allOf:
-            - $ref: '#/components/schemas/DeliveryChannelsEnum'
-            description: 'Delivery channels, can be one of `sms`, `push`, or `email`.
-
-
-              * `sms` - sms
-
-              * `push` - push
-
-              * `email` - email'
-        transaction_query:
-          type: string
-          minLength: 1
-          maxLength: 256
-      required:
-      - alert_key
-      - delivery_channels
-      - transaction_query
-      x-stoplight:
-        id: tmgfqcbyivovs
-    PaginatedLoanAlertRuleList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type: string
-          nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/LoanAlertRule'
-      x-stoplight:
-        id: dlmnypvk45alz
     AccountAlertRuleAlertKeyEnum:
       enum:
       - available_balance
@@ -1572,6 +1375,33 @@ components:
         * `low_available_balance` - low_available_balance'
       x-stoplight:
         id: qthwkg8mfbejw
+    PaginatedLoanAlertRuleList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoanAlertRule'
+      x-stoplight:
+        id: dlmnypvk45alz
     LoanAlertRuleAlertKeyEnum:
       enum:
       - loan_reminder
@@ -1592,13 +1422,15 @@ components:
           type: integer
           example: 123
         next:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: uri
           example: http://api.example.org/accounts/?page=4
         previous:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           format: uri
           example: http://api.example.org/accounts/?page=2
         results:
@@ -1607,52 +1439,6 @@ components:
             $ref: '#/components/schemas/AccountAlertRule'
       x-stoplight:
         id: lcwjdoksklfjh
-    AccountAlertRuleRequest:
-      type: object
-      properties:
-        rrule:
-          type: string
-          nullable: true
-          description: Recurrence rule in RFC 5545 format
-          maxLength: 200
-        alert_key:
-          allOf:
-          - $ref: '#/components/schemas/AccountAlertRuleAlertKeyEnum'
-          description: 'Alert type, can be one of `available_balance` or `low_available_balance`.
-
-
-            * `available_balance` - available_balance
-
-            * `low_available_balance` - low_available_balance'
-        threshold_amount:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
-          nullable: true
-        delivery_channels:
-          type: array
-          items:
-            allOf:
-            - $ref: '#/components/schemas/DeliveryChannelsEnum'
-            description: 'Delivery channels, can be one of `sms`, `push`, or `email`.
-
-
-              * `sms` - sms
-
-              * `push` - push
-
-              * `email` - email'
-        subscribed_accounts:
-          type: array
-          items:
-            type: string
-            format: uuid
-      required:
-      - alert_key
-      - delivery_channels
-      - subscribed_accounts
-      x-stoplight:
-        id: ehvxvi9lluber
     LoanAlertRule:
       type: object
       properties:
@@ -1691,20 +1477,228 @@ components:
 
               * `email` - email'
         last_delivered_date:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
           readOnly: true
-          nullable: true
         reminder_days_offset:
-          type: integer
+          type:
+          - integer
+          - 'null'
           maximum: 7
           minimum: 0
-          nullable: true
       required:
       - alert_key
       - delivery_channels
       x-stoplight:
         id: ngcjm0blyrbyi
+    DeliveryChannelsEnum:
+      enum:
+      - sms
+      - push
+      - email
+      type: string
+      description: '* `sms` - sms
+
+        * `push` - push
+
+        * `email` - email'
+      x-stoplight:
+        id: jds3ywpdugt4t
+    AccountAlertRuleRequest:
+      type: object
+      properties:
+        rrule:
+          type:
+          - string
+          - 'null'
+          description: Recurrence rule in RFC 5545 format
+          maxLength: 200
+        alert_key:
+          allOf:
+          - $ref: '#/components/schemas/AccountAlertRuleAlertKeyEnum'
+          description: 'Alert type, can be one of `available_balance` or `low_available_balance`.
+
+
+            * `available_balance` - available_balance
+
+            * `low_available_balance` - low_available_balance'
+        threshold_amount:
+          type:
+          - string
+          - 'null'
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+        delivery_channels:
+          type: array
+          items:
+            allOf:
+            - $ref: '#/components/schemas/DeliveryChannelsEnum'
+            description: 'Delivery channels, can be one of `sms`, `push`, or `email`.
+
+
+              * `sms` - sms
+
+              * `push` - push
+
+              * `email` - email'
+        subscribed_accounts:
+          type: array
+          items:
+            type: string
+            format: uuid
+      required:
+      - alert_key
+      - delivery_channels
+      - subscribed_accounts
+      x-stoplight:
+        id: ehvxvi9lluber
+    AlertKey61cEnum:
+      enum:
+      - credit
+      - debit
+      type: string
+      description: '* `credit` - credit
+
+        * `debit` - debit'
+      x-stoplight:
+        id: bwsuuwmt9dsnb
+    LoanAlertRuleRequest:
+      type: object
+      properties:
+        alert_key:
+          allOf:
+          - $ref: '#/components/schemas/LoanAlertRuleAlertKeyEnum'
+          description: 'Alert type, can be one of `loan_reminder` or `loan_overdue`.
+
+
+            * `loan_reminder` - loan_reminder
+
+            * `loan_overdue` - loan_overdue'
+        delivery_channels:
+          type: array
+          items:
+            allOf:
+            - $ref: '#/components/schemas/DeliveryChannelsEnum'
+            description: 'Delivery channels, can be one of `sms`, `push`, or `email`.
+
+
+              * `sms` - sms
+
+              * `push` - push
+
+              * `email` - email'
+        reminder_days_offset:
+          type:
+          - integer
+          - 'null'
+          maximum: 7
+          minimum: 0
+      required:
+      - alert_key
+      - delivery_channels
+      x-stoplight:
+        id: khappnecltn0j
+    AccountAlertRule:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        rrule:
+          type:
+          - string
+          - 'null'
+          description: Recurrence rule in RFC 5545 format
+          maxLength: 200
+        alert_key:
+          allOf:
+          - $ref: '#/components/schemas/AccountAlertRuleAlertKeyEnum'
+          description: 'Alert type, can be one of `available_balance` or `low_available_balance`.
+
+
+            * `available_balance` - available_balance
+
+            * `low_available_balance` - low_available_balance'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        next_alert_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+        threshold_amount:
+          type:
+          - string
+          - 'null'
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+        delivery_channels:
+          type: array
+          items:
+            allOf:
+            - $ref: '#/components/schemas/DeliveryChannelsEnum'
+            description: 'Delivery channels, can be one of `sms`, `push`, or `email`.
+
+
+              * `sms` - sms
+
+              * `push` - push
+
+              * `email` - email'
+        subscribed_accounts:
+          type: array
+          items:
+            type: string
+            format: uuid
+        last_delivered_date:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+      required:
+      - alert_key
+      - delivery_channels
+      - subscribed_accounts
+      x-stoplight:
+        id: ymbfkpwtpunmq
+    PaginatedTransactionAlertRuleList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionAlertRule'
+      x-stoplight:
+        id: 5dcibfdfisdew
   securitySchemes:
     oauth2:
       type: oauth2

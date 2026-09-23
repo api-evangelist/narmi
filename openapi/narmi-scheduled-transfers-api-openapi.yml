@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Narmi Public account balances scheduled transfers API
+  title: Narmi Public scheduled transfers API
   version: v1
-  description: To read about Public API access and authentication, go to [API Overview](https://docs.narmi.com/docs/narmi-developer-docs/xl9dvbz84o11l-introduction).
+  description: To read about Public API access and authentication, go to API Overview.
   termsOfService: https://www.narmi.com/policies/developer-terms-conditions
   contact:
     name: Narmi Support
@@ -22,9 +22,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: List scheduled transfers
       parameters:
       - in: query
@@ -72,9 +70,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Create a scheduled transfer
       tags:
       - scheduled transfers
@@ -143,9 +139,7 @@ paths:
         All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
 
 
-
-
-        <i>How can we improve these docs?             <a href="mailto:docs+feedback@narmi.com">Share your feedback.</a></i>'
+        How can we improve these docs? Share your feedback.'
       summary: Edit a scheduled transfer
       tags:
       - scheduled transfers
@@ -208,7 +202,36 @@ paths:
         id: tbggyxdmhikya
     delete:
       operationId: transfers_scheduled_destroy
-      description: "Delete a user's scheduled transfer. Accepts a payload containing an identifier for the scheduled transfer,\neither a Narmi UUID or a core identifier.\n\nExample:\n```http\nDELETE /v1/transfers/scheduled/ HTTP/1.1\nHost: api.example.com\nContent-Type: application/json\n\n{\n  \"id\": \"07231f46-23f1-482e-bdc4-35f2267b60e6\"\n}\n\n```\n\nAll monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.\n\n\n\n<i>How can we improve these docs?             <a href=\"mailto:docs+feedback@narmi.com\">Share your feedback.</a></i>"
+      description: 'Delete a user''s scheduled transfer. Accepts a payload containing an identifier for the scheduled transfer,
+
+        either a Narmi UUID or a core identifier.
+
+
+        Example:
+
+        ```http
+
+        DELETE /v1/transfers/scheduled/ HTTP/1.1
+
+        Host: api.example.com
+
+        Content-Type: application/json
+
+
+        {
+
+        "id": "07231f46-23f1-482e-bdc4-35f2267b60e6"
+
+        }
+
+
+        ```
+
+
+        All monetary values are represented in minor units, or the smallest unit of the currency with no decimal (e.g., cents). For example, $10.00 is represented as 1000.
+
+
+        How can we improve these docs? Share your feedback.'
       summary: Delete scheduled transfer
       tags:
       - scheduled transfers
@@ -238,93 +261,40 @@ paths:
         id: bvn3o9dxj90sz
 components:
   schemas:
-    ScheduledTransfer:
+    PaginatedScheduledTransferList:
       type: object
-      description: 'Represents:
-
-        indigo.models.recurring_transfer.AchTransfer,
-
-        indigo.models.recurring_transfer.IntraInstitutionTransfer'
-      properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-        state:
-          allOf:
-          - $ref: '#/components/schemas/ScheduledTransferStateEnum'
-          readOnly: true
-          description: 'Whether or not the scheduled transfer is expired.
-
-
-            * `expired` - expired
-
-            * `active` - active'
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-          nullable: true
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-        from_account_id:
-          type: string
-          format: uuid
-          description: UUID identifying the source account in the Narmi database.
-        to_account_id:
-          type: string
-          format: uuid
-          description: UUID identifying the destination account in the Narmi database.
-        next_transfer_at:
-          type: string
-          format: date-time
-          readOnly: true
-        recurring_rule:
-          type: string
-          example: RRULE:FREQ=DAILY;COUNT=1
-          description: Cadence of recurring event, as per the RFC-5545 specification.
-        memo:
-          type: string
-          default: ''
-          description: Free-form description of transfer.
-        description:
-          type: string
-          default: ''
-          description: Free-form description of transfer.
       required:
-      - amount
-      - from_account_id
-      - recurring_rule
-      - to_account_id
-      x-stoplight:
-        id: tfuhvwk5p8fsx
-    NotFoundError:
-      type: object
+      - meta
+      - links
       properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
+        meta:
+          description: Free-form object, contains total object count.
+          type: object
+          properties:
+            total:
+              type: integer
+        links:
+          type: object
+          description: URIs linking to sequential pages of the result.
+          properties:
+            next:
+              type:
+              - string
+              - 'null'
+              format: uri
+              example: http://api.example.org/accounts/?page=4
+            prev:
+              type:
+              - string
+              - 'null'
+              format: uri
+              example: http://api.example.org/accounts/?page=4
+        scheduled_transfers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScheduledTransfer'
       x-stoplight:
-        id: qazjpvfdteybw
-    ScheduledTransferStateEnum:
-      enum:
-      - expired
-      - active
-      type: string
-      description: '* `expired` - expired
-
-        * `active` - active'
-      x-stoplight:
-        id: 3uyhod4xb85tf
+        id: dahasasw0vcuq
     NestedScheduledTransfer:
       type: object
       properties:
@@ -395,38 +365,94 @@ components:
       - to_account_id
       x-stoplight:
         id: xtzufkz4xtogz
-    PaginatedScheduledTransferList:
+    ScheduledTransfer:
       type: object
-      required:
-      - meta
-      - links
+      description: 'Represents:
+
+        indigo.models.recurring_transfer.AchTransfer,
+
+        indigo.models.recurring_transfer.IntraInstitutionTransfer'
       properties:
-        meta:
-          description: Free-form object, contains total object count.
-          type: object
-          properties:
-            total:
-              type: integer
-        links:
-          type: object
-          description: URIs linking to sequential pages of the result.
-          properties:
-            next:
-              type: string
-              format: uri
-              nullable: true
-              example: http://api.example.org/accounts/?page=4
-            prev:
-              type: string
-              format: uri
-              nullable: true
-              example: http://api.example.org/accounts/?page=4
-        scheduled_transfers:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScheduledTransfer'
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        state:
+          allOf:
+          - $ref: '#/components/schemas/ScheduledTransferStateEnum'
+          readOnly: true
+          description: 'Whether or not the scheduled transfer is expired.
+
+
+            * `expired` - expired
+
+            * `active` - active'
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        from_account_id:
+          type: string
+          format: uuid
+          description: UUID identifying the source account in the Narmi database.
+        to_account_id:
+          type: string
+          format: uuid
+          description: UUID identifying the destination account in the Narmi database.
+        next_transfer_at:
+          type: string
+          format: date-time
+          readOnly: true
+        recurring_rule:
+          type: string
+          example: RRULE:FREQ=DAILY;COUNT=1
+          description: Cadence of recurring event, as per the RFC-5545 specification.
+        memo:
+          type: string
+          default: ''
+          description: Free-form description of transfer.
+        description:
+          type: string
+          default: ''
+          description: Free-form description of transfer.
+      required:
+      - amount
+      - from_account_id
+      - recurring_rule
+      - to_account_id
       x-stoplight:
-        id: dahasasw0vcuq
+        id: tfuhvwk5p8fsx
+    ScheduledTransferStateEnum:
+      enum:
+      - expired
+      - active
+      type: string
+      description: '* `expired` - expired
+
+        * `active` - active'
+      x-stoplight:
+        id: 3uyhod4xb85tf
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
   securitySchemes:
     oauth2:
       type: oauth2
