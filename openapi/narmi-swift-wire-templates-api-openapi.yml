@@ -251,6 +251,82 @@ paths:
         id: dba72yw8y894w
 components:
   schemas:
+    GeneralError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid
+        message:
+          type: string
+          description: An error response detailing the field and the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: v76fz3qxj5djb
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    PatchedSwiftWireTemplateRequest:
+      type: object
+      properties:
+        recipient:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the recipient for swiftwires sent using this template.
+          type: string
+          format: uuid
+        from_account:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the source account for swiftwires sent using this template.
+          type: string
+          format: uuid
+        name:
+          type: string
+          minLength: 1
+          maxLength: 35
+        wire_reason:
+          type:
+          - string
+          - 'null'
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type:
+          - integer
+          - 'null'
+        amount_currency:
+          type:
+          - string
+          - 'null'
+          description: ISO 4217 currency code the amount is denominated in (e.g. 'USD' or the recipient's currency).
+          maxLength: 3
+        memo:
+          type:
+          - string
+          - 'null'
+          maxLength: 128
+        note:
+          type:
+          - string
+          - 'null'
+        recipient_currency:
+          type: string
+          minLength: 1
+          maxLength: 3
+      x-stoplight:
+        id: dukgiedw1xvjv
     SwiftWireTemplate:
       type: object
       properties:
@@ -318,19 +394,6 @@ components:
       - recipient
       x-stoplight:
         id: k0d9pahpxnqko
-    GeneralError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: invalid
-        message:
-          type: string
-          description: An error response detailing the field and the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: v76fz3qxj5djb
     PaginatedSwiftWireTemplateList:
       type: object
       required:
@@ -358,69 +421,6 @@ components:
             $ref: '#/components/schemas/SwiftWireTemplate'
       x-stoplight:
         id: xgc9i9azikswf
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: qazjpvfdteybw
-    PatchedSwiftWireTemplateRequest:
-      type: object
-      properties:
-        recipient:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: The UUID of the recipient for swiftwires sent using this template.
-          type: string
-          format: uuid
-        from_account:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: The UUID of the source account for swiftwires sent using this template.
-          type: string
-          format: uuid
-        name:
-          type: string
-          minLength: 1
-          maxLength: 35
-        wire_reason:
-          type:
-          - string
-          - 'null'
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type:
-          - integer
-          - 'null'
-        amount_currency:
-          type:
-          - string
-          - 'null'
-          description: ISO 4217 currency code the amount is denominated in (e.g. 'USD' or the recipient's currency).
-          maxLength: 3
-        memo:
-          type:
-          - string
-          - 'null'
-          maxLength: 128
-        note:
-          type:
-          - string
-          - 'null'
-        recipient_currency:
-          type: string
-          minLength: 1
-          maxLength: 3
-      x-stoplight:
-        id: dukgiedw1xvjv
     SwiftWireTemplateRequest:
       type: object
       properties:

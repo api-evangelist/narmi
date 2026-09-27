@@ -164,72 +164,15 @@ paths:
         id: jvxrdrcdpbqdw
 components:
   schemas:
-    AchTransaction:
+    RetrieveAchTransaction:
       type: object
-      description: Common fields between `ScheduledTransferSerializer`, and AchTransactionSerializer
       properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-        state:
+        transfer:
           allOf:
-          - $ref: '#/components/schemas/AchTransactionStateEnum'
+          - $ref: '#/components/schemas/AchTransaction'
           readOnly: true
-          description: 'Indicates the status of the transfer, for instance, if it''s been processed or is pending.
-
-
-            * `analyzing` - analyzing
-
-            * `pending` - pending
-
-            * `processing` - processing
-
-            * `processed` - processed
-
-            * `rejected` - rejected
-
-            * `review` - review
-
-            * `canceled` - canceled
-
-            * `canceled_by_user` - canceled_by_user'
-        created_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          readOnly: true
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-        from_account_id:
-          type: string
-          format: uuid
-          description: UUID identifying the source account in the Narmi database.
-        to_account_id:
-          type: string
-          format: uuid
-          description: UUID identifying the destination account in the Narmi database.
-        estimated_process_date:
-          type: string
-          format: date-time
-          readOnly: true
-        estimated_arrival_date:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          readOnly: true
-      required:
-      - amount
-      - from_account_id
-      - to_account_id
       x-stoplight:
-        id: h4yj1x7pldwi9
+        id: ynzdqhihwwxkd
     AchTransactionStateEnum:
       enum:
       - analyzing
@@ -302,15 +245,6 @@ components:
       - to_account_id
       x-stoplight:
         id: qqfawl4moqr7y
-    RetrieveAchTransaction:
-      type: object
-      properties:
-        transfer:
-          allOf:
-          - $ref: '#/components/schemas/AchTransaction'
-          readOnly: true
-      x-stoplight:
-        id: ynzdqhihwwxkd
     NotFoundError:
       type: object
       properties:
@@ -324,6 +258,72 @@ components:
       - message
       x-stoplight:
         id: qazjpvfdteybw
+    AchTransaction:
+      type: object
+      description: Common fields between `ScheduledTransferSerializer`, and AchTransactionSerializer
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        state:
+          allOf:
+          - $ref: '#/components/schemas/AchTransactionStateEnum'
+          readOnly: true
+          description: 'Indicates the status of the transfer, for instance, if it''s been processed or is pending.
+
+
+            * `analyzing` - analyzing
+
+            * `pending` - pending
+
+            * `processing` - processing
+
+            * `processed` - processed
+
+            * `rejected` - rejected
+
+            * `review` - review
+
+            * `canceled` - canceled
+
+            * `canceled_by_user` - canceled_by_user'
+        created_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        from_account_id:
+          type: string
+          format: uuid
+          description: UUID identifying the source account in the Narmi database.
+        to_account_id:
+          type: string
+          format: uuid
+          description: UUID identifying the destination account in the Narmi database.
+        estimated_process_date:
+          type: string
+          format: date-time
+          readOnly: true
+        estimated_arrival_date:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+      required:
+      - amount
+      - from_account_id
+      - to_account_id
+      x-stoplight:
+        id: h4yj1x7pldwi9
     PaginatedAchTransactionList:
       type: object
       required:

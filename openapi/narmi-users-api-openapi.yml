@@ -713,33 +713,47 @@ paths:
         id: goqw4lzxcqqkn
 components:
   schemas:
-    Address:
+    PermissionDeniedError:
       type: object
       properties:
-        street_address:
+        id:
           type: string
-        street_address_2:
+          default: api_error
+        message:
           type: string
-        city:
-          type: string
-        region_code:
-          type: string
-          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
-        postal_code:
-          type: string
-          description: Typically a five-digit numeric US ZIP Code.
-        country_code:
-          type: string
-          description: An ISO 3166-1 alpha-2 country code.
-        type:
-          type: string
-      required:
-      - city
-      - postal_code
-      - region_code
-      - street_address
+          default: You do not have permission to perform this action.
+          description: An error response detailing the field and the nature of the error.
       x-stoplight:
-        id: xatva1xwqb0yk
+        id: ywbohhxwqjqj3
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    BusinessPermissionsField:
+      type: object
+      properties:
+        model_str:
+          type: string
+        operation:
+          type: string
+        uuid:
+          type: string
+          format: uuid
+      required:
+      - model_str
+      - operation
+      - uuid
+      x-stoplight:
+        id: rhmxqgl8o5k8x
     IncomeSource:
       type: object
       properties:
@@ -787,107 +801,6 @@ components:
       - number
       x-stoplight:
         id: vm2qlwcduqdwc
-    UserResponse:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/Profile'
-      required:
-      - user
-      x-stoplight:
-        id: yxxytavfdkjc0
-    PermissionDeniedError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: api_error
-        message:
-          type: string
-          default: You do not have permission to perform this action.
-          description: An error response detailing the field and the nature of the error.
-      x-stoplight:
-        id: ywbohhxwqjqj3
-    NullEnum:
-      enum:
-      - null
-      x-stoplight:
-        id: 2493tmzk9db0y
-    UsersResponse:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/Profile'
-      required:
-      - users
-      x-stoplight:
-        id: oa4hi1e7x69nz
-    EstatementsResponse:
-      type: object
-      properties:
-        eStatements:
-          type: boolean
-      required:
-      - eStatements
-      x-stoplight:
-        id: ma1e7klanhtdp
-    InvalidRequestError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: invalid_request_error
-        message:
-          type: object
-          additionalProperties: {}
-          default:
-            field_name: Error description.
-          description: An error response detailing the field and the nature of the error.
-      x-stoplight:
-        id: aelrw6rc7wiph
-    PatchedProfileUpdateRequest:
-      type: object
-      description: Write-serializer for updating paper statements.
-      properties:
-        paper_statements:
-          type: boolean
-          description: Whether a user should receive paper statements or eStatements. If the core does not support eStatements or paper statements, or the feature `CoreUpdateEstatementSetting` is not set to true, setting this may fail with a permission denied error.
-      x-stoplight:
-        id: th7vqjustdawm
-    IncomeTypeEnum:
-      enum:
-      - employed
-      - part_time
-      - not_employed
-      - self_employed
-      - retirement
-      - other
-      type: string
-      description: '* `employed` - Employed
-
-        * `part_time` - Part time
-
-        * `not_employed` - Not employed
-
-        * `self_employed` - Self employed
-
-        * `retirement` - Retirement
-
-        * `other` - Other'
-      x-stoplight:
-        id: vlxoho9hsykzd
-    OrgRoleEnum:
-      enum:
-      - Account Holder
-      - Admin
-      - Collaborator
-      - No Permissions
-      - Viewer
-      type: string
-      x-stoplight:
-        id: bcxpswdnbrned
     UserCategory4f2Enum:
       enum:
       - personal
@@ -895,19 +808,6 @@ components:
       type: string
       x-stoplight:
         id: vmvxka9zperhg
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: qazjpvfdteybw
     Profile:
       type: object
       description: ''
@@ -1267,22 +1167,122 @@ components:
           description: The OIDC provider associated with the user's current session, if any.
       x-stoplight:
         id: g4tqfglwr85hp
-    BusinessPermissionsField:
+    UserResponse:
       type: object
       properties:
-        model_str:
-          type: string
-        operation:
-          type: string
-        uuid:
-          type: string
-          format: uuid
+        user:
+          $ref: '#/components/schemas/Profile'
       required:
-      - model_str
-      - operation
-      - uuid
+      - user
       x-stoplight:
-        id: rhmxqgl8o5k8x
+        id: yxxytavfdkjc0
+    InvalidRequestError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid_request_error
+        message:
+          type: object
+          additionalProperties: {}
+          default:
+            field_name: Error description.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: aelrw6rc7wiph
+    UsersResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/Profile'
+      required:
+      - users
+      x-stoplight:
+        id: oa4hi1e7x69nz
+    EstatementsResponse:
+      type: object
+      properties:
+        eStatements:
+          type: boolean
+      required:
+      - eStatements
+      x-stoplight:
+        id: ma1e7klanhtdp
+    PatchedProfileUpdateRequest:
+      type: object
+      description: Write-serializer for updating paper statements.
+      properties:
+        paper_statements:
+          type: boolean
+          description: Whether a user should receive paper statements or eStatements. If the core does not support eStatements or paper statements, or the feature `CoreUpdateEstatementSetting` is not set to true, setting this may fail with a permission denied error.
+      x-stoplight:
+        id: th7vqjustdawm
+    NullEnum:
+      enum:
+      - null
+      x-stoplight:
+        id: 2493tmzk9db0y
+    OrgRoleEnum:
+      enum:
+      - Account Holder
+      - Admin
+      - Collaborator
+      - No Permissions
+      - Viewer
+      type: string
+      x-stoplight:
+        id: bcxpswdnbrned
+    IncomeTypeEnum:
+      enum:
+      - employed
+      - part_time
+      - not_employed
+      - self_employed
+      - retirement
+      - other
+      type: string
+      description: '* `employed` - Employed
+
+        * `part_time` - Part time
+
+        * `not_employed` - Not employed
+
+        * `self_employed` - Self employed
+
+        * `retirement` - Retirement
+
+        * `other` - Other'
+      x-stoplight:
+        id: vlxoho9hsykzd
+    Address:
+      type: object
+      properties:
+        street_address:
+          type: string
+        street_address_2:
+          type: string
+        city:
+          type: string
+        region_code:
+          type: string
+          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
+        postal_code:
+          type: string
+          description: Typically a five-digit numeric US ZIP Code.
+        country_code:
+          type: string
+          description: An ISO 3166-1 alpha-2 country code.
+        type:
+          type: string
+      required:
+      - city
+      - postal_code
+      - region_code
+      - street_address
+      x-stoplight:
+        id: xatva1xwqb0yk
   securitySchemes:
     oauth2:
       type: oauth2

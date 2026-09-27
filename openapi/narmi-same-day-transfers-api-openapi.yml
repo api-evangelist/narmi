@@ -40,19 +40,6 @@ paths:
         id: cstxhyzmdea8d
 components:
   schemas:
-    KindEnum:
-      enum:
-      - free
-      - fixed
-      - percent
-      type: string
-      description: '* `free` - free
-
-        * `fixed` - fixed
-
-        * `percent` - percent'
-      x-stoplight:
-        id: qcqed657de0rl
     TransfersFee:
       type: object
       properties:
@@ -92,6 +79,19 @@ components:
       - kind
       x-stoplight:
         id: rmlugpiarfokw
+    KindEnum:
+      enum:
+      - free
+      - fixed
+      - percent
+      type: string
+      description: '* `free` - free
+
+        * `fixed` - fixed
+
+        * `percent` - percent'
+      x-stoplight:
+        id: qcqed657de0rl
   securitySchemes:
     oauth2:
       type: oauth2

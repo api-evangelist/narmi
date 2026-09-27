@@ -233,91 +233,6 @@ components:
         * `rejected_approval` - Dual approval rejected'
       x-stoplight:
         id: qbox8yql7ah47
-    PaginatedSwiftWireTransactionList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/SwiftWireTransaction'
-      x-stoplight:
-        id: z84pr8zubieyv
-    SwiftWireTransactionRequest:
-      type: object
-      properties:
-        user:
-          type: string
-          minLength: 1
-        from_account:
-          type: string
-          format: uuid
-          description: UUID of the account from which the transaction is initiated.
-        destination:
-          type: string
-          format: uuid
-          description: UUID of the recipient associated with this Swift destination.
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: The amount of the swift payment in cents.
-          type: integer
-        wire_reason:
-          type:
-          - string
-          - 'null'
-        memo:
-          type:
-          - string
-          - 'null'
-          maxLength: 128
-        note:
-          type:
-          - string
-          - 'null'
-        state:
-          $ref: '#/components/schemas/StateC02Enum'
-        device_id:
-          type:
-          - string
-          - 'null'
-          writeOnly: true
-        device_request_id:
-          type:
-          - string
-          - 'null'
-          writeOnly: true
-        swiftwire_template:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: The UUID of the swiftwire template to use for the swiftwire transaction.
-          type: string
-          format: uuid
-          writeOnly: true
-      required:
-      - amount
-      - destination
-      - from_account
-      - user
-      x-stoplight:
-        id: cd5gaaqyl79ov
     GeneralError:
       type: object
       properties:
@@ -430,6 +345,91 @@ components:
           readOnly: true
       x-stoplight:
         id: hodvkt23ysral
+    SwiftWireTransactionRequest:
+      type: object
+      properties:
+        user:
+          type: string
+          minLength: 1
+        from_account:
+          type: string
+          format: uuid
+          description: UUID of the account from which the transaction is initiated.
+        destination:
+          type: string
+          format: uuid
+          description: UUID of the recipient associated with this Swift destination.
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: The amount of the swift payment in cents.
+          type: integer
+        wire_reason:
+          type:
+          - string
+          - 'null'
+        memo:
+          type:
+          - string
+          - 'null'
+          maxLength: 128
+        note:
+          type:
+          - string
+          - 'null'
+        state:
+          $ref: '#/components/schemas/StateC02Enum'
+        device_id:
+          type:
+          - string
+          - 'null'
+          writeOnly: true
+        device_request_id:
+          type:
+          - string
+          - 'null'
+          writeOnly: true
+        swiftwire_template:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the swiftwire template to use for the swiftwire transaction.
+          type: string
+          format: uuid
+          writeOnly: true
+      required:
+      - amount
+      - destination
+      - from_account
+      - user
+      x-stoplight:
+        id: cd5gaaqyl79ov
+    PaginatedSwiftWireTransactionList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SwiftWireTransaction'
+      x-stoplight:
+        id: z84pr8zubieyv
   securitySchemes:
     oauth2:
       type: oauth2

@@ -128,31 +128,6 @@ paths:
         id: 0bpdkj7xssga3
 components:
   schemas:
-    AccountBalancesDocResponse:
-      type: object
-      properties:
-        account_balances:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountBalance'
-          description: A list of account balances for each account.
-      required:
-      - account_balances
-      x-stoplight:
-        id: v5ytn9lfhgobu
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: qazjpvfdteybw
     AccountBalance:
       type: object
       description: A representation of an account with respect to its balance totals.
@@ -205,6 +180,19 @@ components:
           description: Date when the account was last updated.
       x-stoplight:
         id: sswt197xsfwzw
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
     AccountBalanceDocResponse:
       type: object
       properties:
@@ -216,6 +204,18 @@ components:
       - account_balance
       x-stoplight:
         id: bucgaqtqcibez
+    AccountBalancesDocResponse:
+      type: object
+      properties:
+        account_balances:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountBalance'
+          description: A list of account balances for each account.
+      required:
+      - account_balances
+      x-stoplight:
+        id: v5ytn9lfhgobu
   securitySchemes:
     oauth2:
       type: oauth2

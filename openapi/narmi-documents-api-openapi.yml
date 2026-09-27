@@ -185,17 +185,6 @@ paths:
         id: 3s7tkyokn7zyn
 components:
   schemas:
-    ServiceFailureError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: api_connection_error
-        message:
-          type: string
-          default: Sorry, we were unable to process your request, please check back soon.
-      x-stoplight:
-        id: 6qutj3sa03we7
     PaginatedDocumentList:
       type: object
       required:
@@ -222,15 +211,6 @@ components:
             $ref: '#/components/schemas/Document'
       x-stoplight:
         id: 0aow4ftsieugm
-    DocumentResponse:
-      type: object
-      properties:
-        document:
-          $ref: '#/components/schemas/Document'
-      required:
-      - document
-      x-stoplight:
-        id: b2w8p4gq2jw1j
     DocumentWithData:
       type: object
       properties:
@@ -282,6 +262,30 @@ components:
           example: https://demo2-api.uat.narmitech.com/v1/documents/f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5?data=true
       x-stoplight:
         id: xrmejhjmnyf1h
+    UserDocument:
+      oneOf:
+      - $ref: '#/components/schemas/DocumentResponse'
+      - $ref: '#/components/schemas/DocumentWithDataResponse'
+      x-stoplight:
+        id: hcy6wln20g4we
+    DocumentWithDataResponse:
+      type: object
+      properties:
+        document:
+          $ref: '#/components/schemas/DocumentWithData'
+      required:
+      - document
+      x-stoplight:
+        id: 64o2djny8szc0
+    DocumentResponse:
+      type: object
+      properties:
+        document:
+          $ref: '#/components/schemas/Document'
+      required:
+      - document
+      x-stoplight:
+        id: b2w8p4gq2jw1j
     Document:
       type: object
       properties:
@@ -328,21 +332,17 @@ components:
           example: https://demo2-api.uat.narmitech.com/v1/documents/f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5?data=true
       x-stoplight:
         id: 9mjrd0thewwlb
-    DocumentWithDataResponse:
+    ServiceFailureError:
       type: object
       properties:
-        document:
-          $ref: '#/components/schemas/DocumentWithData'
-      required:
-      - document
+        id:
+          type: string
+          default: api_connection_error
+        message:
+          type: string
+          default: Sorry, we were unable to process your request, please check back soon.
       x-stoplight:
-        id: 64o2djny8szc0
-    UserDocument:
-      oneOf:
-      - $ref: '#/components/schemas/DocumentResponse'
-      - $ref: '#/components/schemas/DocumentWithDataResponse'
-      x-stoplight:
-        id: hcy6wln20g4we
+        id: 6qutj3sa03we7
   securitySchemes:
     oauth2:
       type: oauth2

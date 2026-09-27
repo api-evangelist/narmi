@@ -231,99 +231,15 @@ paths:
         id: jjy6u8rhc7uxk
 components:
   schemas:
-    Address:
+    Payee:
       type: object
       properties:
-        street_address:
-          type: string
-        street_address_2:
-          type: string
-        city:
-          type: string
-        region_code:
-          type: string
-          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
-        postal_code:
-          type: string
-          description: Typically a five-digit numeric US ZIP Code.
-        country_code:
-          type: string
-          description: An ISO 3166-1 alpha-2 country code.
-        type:
-          type: string
+        payee:
+          $ref: '#/components/schemas/BillPayee'
       required:
-      - city
-      - postal_code
-      - region_code
-      - street_address
+      - payee
       x-stoplight:
-        id: xatva1xwqb0yk
-    BillDeliveryOptionRequest:
-      type: object
-      properties:
-        date:
-          type: string
-          format: date
-      required:
-      - date
-      x-stoplight:
-        id: i3oemzw6y6ap9
-    PaginatedBillPayeeList:
-      type: object
-      required:
-      - meta
-      - links
-      - payees
-      properties:
-        payees:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillPayee'
-        links:
-          type: object
-          description: URIs linking to sequential pages of the result.
-          properties:
-            next:
-              type:
-              - string
-              - 'null'
-              format: uri
-              example: https://narmi.example.com/v1/payments?after=400
-            prev:
-              type:
-              - string
-              - 'null'
-              format: uri
-              example: https://narmi.example.com/v1/payments?before=200
-        meta:
-          description: Free-form object, contains total object count.
-          type: object
-          properties:
-            total:
-              type: integer
-      x-stoplight:
-        id: tlq0yzqzttgcn
-    InvalidRequestError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: invalid_request_error
-        message:
-          type: object
-          additionalProperties: {}
-          default:
-            field_name: Error description.
-          description: An error response detailing the field and the nature of the error.
-      x-stoplight:
-        id: aelrw6rc7wiph
-    Type905Enum:
-      type: string
-      enum:
-      - personal
-      - business
-      x-stoplight:
-        id: ulcreuinjodf5
+        id: nfevnjkpkwzdk
     BillDeliveryOption:
       type: object
       properties:
@@ -347,49 +263,19 @@ components:
       - date
       x-stoplight:
         id: i4cqeow4pzxv6
-    AddressRequest:
+    ErrorRequest:
       type: object
       properties:
-        street_address:
+        code:
           type: string
           minLength: 1
-        street_address_2:
-          type: string
-        city:
+        description:
           type: string
           minLength: 1
-        region_code:
-          type: string
-          minLength: 1
-          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
-        postal_code:
-          type: string
-          minLength: 1
-          description: Typically a five-digit numeric US ZIP Code.
-        country_code:
-          type: string
-          minLength: 1
-          description: An ISO 3166-1 alpha-2 country code.
-        type:
-          type: string
-          minLength: 1
-        device_id:
-          type:
-          - string
-          - 'null'
-          writeOnly: true
-        device_request_id:
-          type:
-          - string
-          - 'null'
-          writeOnly: true
       required:
-      - city
-      - postal_code
-      - region_code
-      - street_address
+      - code
       x-stoplight:
-        id: 4ixdbnlsh0rei
+        id: cqk62uhcqgodx
     BillPayee:
       type: object
       properties:
@@ -454,15 +340,56 @@ components:
       - type
       x-stoplight:
         id: ewjmueomsaapw
-    BillPayDestroy:
+    AddressRequest:
       type: object
       properties:
-        deleted:
+        street_address:
           type: string
-          readOnly: true
-          default: true
+          minLength: 1
+        street_address_2:
+          type: string
+        city:
+          type: string
+          minLength: 1
+        region_code:
+          type: string
+          minLength: 1
+          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
+        postal_code:
+          type: string
+          minLength: 1
+          description: Typically a five-digit numeric US ZIP Code.
+        country_code:
+          type: string
+          minLength: 1
+          description: An ISO 3166-1 alpha-2 country code.
+        type:
+          type: string
+          minLength: 1
+        device_id:
+          type:
+          - string
+          - 'null'
+          writeOnly: true
+        device_request_id:
+          type:
+          - string
+          - 'null'
+          writeOnly: true
+      required:
+      - city
+      - postal_code
+      - region_code
+      - street_address
       x-stoplight:
-        id: tzrspxlehskqp
+        id: 4ixdbnlsh0rei
+    Type905Enum:
+      type: string
+      enum:
+      - personal
+      - business
+      x-stoplight:
+        id: ulcreuinjodf5
     PayeeCreateDocRequest:
       type: object
       properties:
@@ -535,28 +462,101 @@ components:
       - type
       x-stoplight:
         id: sskdhy8j5ihgs
-    ErrorRequest:
+    BillDeliveryOptionRequest:
       type: object
       properties:
-        code:
+        date:
           type: string
-          minLength: 1
-        description:
-          type: string
-          minLength: 1
+          format: date
       required:
-      - code
+      - date
       x-stoplight:
-        id: cqk62uhcqgodx
-    Payee:
+        id: i3oemzw6y6ap9
+    InvalidRequestError:
       type: object
       properties:
-        payee:
-          $ref: '#/components/schemas/BillPayee'
-      required:
-      - payee
+        id:
+          type: string
+          default: invalid_request_error
+        message:
+          type: object
+          additionalProperties: {}
+          default:
+            field_name: Error description.
+          description: An error response detailing the field and the nature of the error.
       x-stoplight:
-        id: nfevnjkpkwzdk
+        id: aelrw6rc7wiph
+    BillPayDestroy:
+      type: object
+      properties:
+        deleted:
+          type: string
+          readOnly: true
+          default: true
+      x-stoplight:
+        id: tzrspxlehskqp
+    Address:
+      type: object
+      properties:
+        street_address:
+          type: string
+        street_address_2:
+          type: string
+        city:
+          type: string
+        region_code:
+          type: string
+          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
+        postal_code:
+          type: string
+          description: Typically a five-digit numeric US ZIP Code.
+        country_code:
+          type: string
+          description: An ISO 3166-1 alpha-2 country code.
+        type:
+          type: string
+      required:
+      - city
+      - postal_code
+      - region_code
+      - street_address
+      x-stoplight:
+        id: xatva1xwqb0yk
+    PaginatedBillPayeeList:
+      type: object
+      required:
+      - meta
+      - links
+      - payees
+      properties:
+        payees:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillPayee'
+        links:
+          type: object
+          description: URIs linking to sequential pages of the result.
+          properties:
+            next:
+              type:
+              - string
+              - 'null'
+              format: uri
+              example: https://narmi.example.com/v1/payments?after=400
+            prev:
+              type:
+              - string
+              - 'null'
+              format: uri
+              example: https://narmi.example.com/v1/payments?before=200
+        meta:
+          description: Free-form object, contains total object count.
+          type: object
+          properties:
+            total:
+              type: integer
+      x-stoplight:
+        id: tlq0yzqzttgcn
   securitySchemes:
     oauth2:
       type: oauth2

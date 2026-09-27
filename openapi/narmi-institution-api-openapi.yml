@@ -111,94 +111,6 @@ paths:
         id: him0ikxvoojeu
 components:
   schemas:
-    InstitutionDisclosure:
-      type: object
-      description: Disclosure for institution context (e.g., account opening disclosures).
-      properties:
-        checkbox_text:
-          type: string
-        markdown:
-          type: string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/InstitutionDisclosureLink'
-      x-stoplight:
-        id: hib9thlt12afl
-    InstitutionNameField:
-      type: object
-      properties:
-        name:
-          type: string
-          default: BANK OF AMERICA, N.A.
-      x-stoplight:
-        id: lpha2zhfqgaok
-    InstitutionNameResponse:
-      type: object
-      properties:
-        institution:
-          $ref: '#/components/schemas/InstitutionNameField'
-      required:
-      - institution
-      x-stoplight:
-        id: o9xzklivvdxaj
-    InstitutionDisclosureLink:
-      type: object
-      description: Link within an institution disclosure.
-      properties:
-        text:
-          type: string
-        url:
-          type: string
-      required:
-      - text
-      - url
-      x-stoplight:
-        id: dblspf52t9xgp
-    LendingApplicationSteps:
-      type: object
-      description: Controls which lending application steps are shown.
-      properties:
-        living_arrangement:
-          type: boolean
-          readOnly: true
-        employment_details:
-          type: boolean
-          readOnly: true
-      x-stoplight:
-        id: 2auul33i52rfn
-    SwaggerInstitutionGet:
-      type: object
-      description: A serializer to render the institutionContextProcessor
-      properties:
-        institution:
-          allOf:
-          - $ref: '#/components/schemas/InstitutionContextProcessor'
-          readOnly: true
-      x-stoplight:
-        id: m3jmmieciurgi
-    InstitutionFeaturesContextProcessor:
-      type: object
-      description: Serializer for institution features flags and settings.
-      properties:
-        lending:
-          type: boolean
-          readOnly: true
-      x-stoplight:
-        id: iso2gcb5tdq1h
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: qazjpvfdteybw
     InstitutionContextProcessor:
       type: object
       description: Render Institution-specific data, such as URLs, asset URLs, and customizable settings
@@ -341,6 +253,94 @@ components:
           readOnly: true
       x-stoplight:
         id: vagdwjgdrquwt
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    InstitutionNameResponse:
+      type: object
+      properties:
+        institution:
+          $ref: '#/components/schemas/InstitutionNameField'
+      required:
+      - institution
+      x-stoplight:
+        id: o9xzklivvdxaj
+    InstitutionNameField:
+      type: object
+      properties:
+        name:
+          type: string
+          default: BANK OF AMERICA, N.A.
+      x-stoplight:
+        id: lpha2zhfqgaok
+    LendingApplicationSteps:
+      type: object
+      description: Controls which lending application steps are shown.
+      properties:
+        living_arrangement:
+          type: boolean
+          readOnly: true
+        employment_details:
+          type: boolean
+          readOnly: true
+      x-stoplight:
+        id: 2auul33i52rfn
+    InstitutionDisclosure:
+      type: object
+      description: Disclosure for institution context (e.g., account opening disclosures).
+      properties:
+        checkbox_text:
+          type: string
+        markdown:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/InstitutionDisclosureLink'
+      x-stoplight:
+        id: hib9thlt12afl
+    InstitutionFeaturesContextProcessor:
+      type: object
+      description: Serializer for institution features flags and settings.
+      properties:
+        lending:
+          type: boolean
+          readOnly: true
+      x-stoplight:
+        id: iso2gcb5tdq1h
+    SwaggerInstitutionGet:
+      type: object
+      description: A serializer to render the institutionContextProcessor
+      properties:
+        institution:
+          allOf:
+          - $ref: '#/components/schemas/InstitutionContextProcessor'
+          readOnly: true
+      x-stoplight:
+        id: m3jmmieciurgi
+    InstitutionDisclosureLink:
+      type: object
+      description: Link within an institution disclosure.
+      properties:
+        text:
+          type: string
+        url:
+          type: string
+      required:
+      - text
+      - url
+      x-stoplight:
+        id: dblspf52t9xgp
   securitySchemes:
     oauth2:
       type: oauth2

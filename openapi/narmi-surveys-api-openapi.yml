@@ -189,44 +189,25 @@ paths:
         id: nviadxk2jj3d0
 components:
   schemas:
-    Impression:
+    CreateAnswerRequest:
       type: object
-      description: 'Serializer for creating survey impressions.
-
-        Records that a user viewed a survey.'
       properties:
-        uuid:
+        impression_uuid:
           type: string
           format: uuid
-          readOnly: true
-          description: Unique identifier for the impression
-        survey:
+          writeOnly: true
+        question_uuid:
           type: string
           format: uuid
-          description: UUID of the survey that was viewed
-        viewed_at:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Timestamp when the survey was viewed by the user
+          writeOnly: true
+        value:
+          writeOnly: true
       required:
-      - survey
+      - impression_uuid
+      - question_uuid
+      - value
       x-stoplight:
-        id: tph0rpzmae7zm
-    ImpressionRequest:
-      type: object
-      description: 'Serializer for creating survey impressions.
-
-        Records that a user viewed a survey.'
-      properties:
-        survey:
-          type: string
-          format: uuid
-          description: UUID of the survey that was viewed
-      required:
-      - survey
-      x-stoplight:
-        id: aaui1avehvk19
+        id: vxbunjwb2qgfd
     PaginatedImpressionList:
       type: object
       required:
@@ -254,6 +235,44 @@ components:
             $ref: '#/components/schemas/Impression'
       x-stoplight:
         id: atdsmymzgw1ww
+    ImpressionRequest:
+      type: object
+      description: 'Serializer for creating survey impressions.
+
+        Records that a user viewed a survey.'
+      properties:
+        survey:
+          type: string
+          format: uuid
+          description: UUID of the survey that was viewed
+      required:
+      - survey
+      x-stoplight:
+        id: aaui1avehvk19
+    Impression:
+      type: object
+      description: 'Serializer for creating survey impressions.
+
+        Records that a user viewed a survey.'
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+          description: Unique identifier for the impression
+        survey:
+          type: string
+          format: uuid
+          description: UUID of the survey that was viewed
+        viewed_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Timestamp when the survey was viewed by the user
+      required:
+      - survey
+      x-stoplight:
+        id: tph0rpzmae7zm
     Survey:
       type: object
       description: 'Serializer for surveys with nested questions.
@@ -276,25 +295,6 @@ components:
       - uuid
       x-stoplight:
         id: 8wwz1p5y7iqn4
-    CreateAnswerRequest:
-      type: object
-      properties:
-        impression_uuid:
-          type: string
-          format: uuid
-          writeOnly: true
-        question_uuid:
-          type: string
-          format: uuid
-          writeOnly: true
-        value:
-          writeOnly: true
-      required:
-      - impression_uuid
-      - question_uuid
-      - value
-      x-stoplight:
-        id: vxbunjwb2qgfd
   securitySchemes:
     oauth2:
       type: oauth2

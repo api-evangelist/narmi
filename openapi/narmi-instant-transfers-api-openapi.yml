@@ -135,64 +135,6 @@ paths:
         id: dk5asim2gu0dq
 components:
   schemas:
-    FedNowEligibility:
-      type: object
-      properties:
-        online:
-          type: boolean
-          default: false
-        enrollment_level:
-          $ref: '#/components/schemas/EnrollmentLevelEnum'
-        name:
-          type: string
-          default: ''
-        routing_number:
-          type: string
-          maxLength: 9
-      required:
-      - enrollment_level
-      - routing_number
-      x-stoplight:
-        id: dwymj4s81xw4o
-    TransfersFee:
-      type: object
-      properties:
-        kind:
-          allOf:
-          - $ref: '#/components/schemas/KindEnum'
-          description: 'Supported fee structures
-
-
-            * `free` - free
-
-            * `fixed` - fixed
-
-            * `percent` - percent'
-        percent:
-          type:
-          - string
-          - 'null'
-          format: decimal
-          pattern: ^-?0?(?:\.\d{0,4})?$
-          description: Percentage fee of transfer amount. For free and fixed kind this will null, for percentage it is the fee percent as a decimal.
-        max:
-          type:
-          - string
-          - 'null'
-          format: decimal
-          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
-          description: Maximum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount cap for the percentage fee.
-        min:
-          type:
-          - string
-          - 'null'
-          format: decimal
-          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
-          description: Minimum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount minimum for the percentage fee.
-      required:
-      - kind
-      x-stoplight:
-        id: rmlugpiarfokw
     KindEnum:
       enum:
       - free
@@ -259,55 +201,70 @@ components:
       - unverified_recipient
       x-stoplight:
         id: 7qinjdob3wcd1
-    FedNowTransactionStateEnum:
-      enum:
-      - pending
-      - accepted
-      - declined
-      - failed
-      - processed
-      - overridden
-      - processed_settled
-      - processed_reversed
-      - overridden_settled
-      - awaiting_approval
-      - rejected_approval
-      - canceled
-      - approval_expired
-      - awaiting_bulk_approval
-      - rejected_bulk_approval
-      type: string
-      description: '* `pending` - Pending fraud evaluation
+    TransfersFee:
+      type: object
+      properties:
+        kind:
+          allOf:
+          - $ref: '#/components/schemas/KindEnum'
+          description: 'Supported fee structures
 
-        * `accepted` - Fraud evaluation passed
 
-        * `declined` - Fraud evaluation failed
+            * `free` - free
 
-        * `failed` - Failed before FedNow processing was initiated
+            * `fixed` - fixed
 
-        * `processed` - Payment initiated in FedNow service
-
-        * `overridden` - Decline manually overridden and payment initiated in FedNow service
-
-        * `processed_settled` - Payment settlement has been confirmed by FedNow service
-
-        * `processed_reversed` - Payment was returned by FedNow service
-
-        * `overridden_settled` - Payment settlement confirmed after override
-
-        * `awaiting_approval` - Awaiting dual approval
-
-        * `rejected_approval` - Dual approval rejected
-
-        * `canceled` - Canceled
-
-        * `approval_expired` - Dual approval expired
-
-        * `awaiting_bulk_approval` - Awaiting bulk approval
-
-        * `rejected_bulk_approval` - Rejected bulk approval'
+            * `percent` - percent'
+        percent:
+          type:
+          - string
+          - 'null'
+          format: decimal
+          pattern: ^-?0?(?:\.\d{0,4})?$
+          description: Percentage fee of transfer amount. For free and fixed kind this will null, for percentage it is the fee percent as a decimal.
+        max:
+          type:
+          - string
+          - 'null'
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          description: Maximum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount cap for the percentage fee.
+        min:
+          type:
+          - string
+          - 'null'
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          description: Minimum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount minimum for the percentage fee.
+      required:
+      - kind
       x-stoplight:
-        id: otlhozfwfxeds
+        id: rmlugpiarfokw
+    EnrollmentLevelEnum:
+      enum:
+      - receive
+      - send
+      - send_receive
+      - rfp
+      - rfp_send
+      - send_only
+      - none
+      type: string
+      description: '* `receive` - Receive only
+
+        * `send` - Send only
+
+        * `send_receive` - Send and Receive
+
+        * `rfp` - Request for payment and receive only
+
+        * `rfp_send` - Request for payment with send and receive
+
+        * `send_only` - Send only, meant for internal use only
+
+        * `none` - Not in the FedNow network'
+      x-stoplight:
+        id: 3sonktbgvbhvk
     FednowPayment:
       type: object
       properties:
@@ -367,31 +324,74 @@ components:
       - updated_at
       x-stoplight:
         id: g74hjbbstiqwt
-    EnrollmentLevelEnum:
+    FedNowTransactionStateEnum:
       enum:
-      - receive
-      - send
-      - send_receive
-      - rfp
-      - rfp_send
-      - send_only
-      - none
+      - pending
+      - accepted
+      - declined
+      - failed
+      - processed
+      - overridden
+      - processed_settled
+      - processed_reversed
+      - overridden_settled
+      - awaiting_approval
+      - rejected_approval
+      - canceled
+      - approval_expired
+      - awaiting_bulk_approval
+      - rejected_bulk_approval
       type: string
-      description: '* `receive` - Receive only
+      description: '* `pending` - Pending fraud evaluation
 
-        * `send` - Send only
+        * `accepted` - Fraud evaluation passed
 
-        * `send_receive` - Send and Receive
+        * `declined` - Fraud evaluation failed
 
-        * `rfp` - Request for payment and receive only
+        * `failed` - Failed before FedNow processing was initiated
 
-        * `rfp_send` - Request for payment with send and receive
+        * `processed` - Payment initiated in FedNow service
 
-        * `send_only` - Send only, meant for internal use only
+        * `overridden` - Decline manually overridden and payment initiated in FedNow service
 
-        * `none` - Not in the FedNow network'
+        * `processed_settled` - Payment settlement has been confirmed by FedNow service
+
+        * `processed_reversed` - Payment was returned by FedNow service
+
+        * `overridden_settled` - Payment settlement confirmed after override
+
+        * `awaiting_approval` - Awaiting dual approval
+
+        * `rejected_approval` - Dual approval rejected
+
+        * `canceled` - Canceled
+
+        * `approval_expired` - Dual approval expired
+
+        * `awaiting_bulk_approval` - Awaiting bulk approval
+
+        * `rejected_bulk_approval` - Rejected bulk approval'
       x-stoplight:
-        id: 3sonktbgvbhvk
+        id: otlhozfwfxeds
+    FedNowEligibility:
+      type: object
+      properties:
+        online:
+          type: boolean
+          default: false
+        enrollment_level:
+          $ref: '#/components/schemas/EnrollmentLevelEnum'
+        name:
+          type: string
+          default: ''
+        routing_number:
+          type: string
+          maxLength: 9
+      required:
+      - enrollment_level
+      - routing_number
+      x-stoplight:
+        id: dwymj4s81xw4o
   securitySchemes:
     oauth2:
       type: oauth2

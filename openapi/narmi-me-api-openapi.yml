@@ -185,33 +185,87 @@ paths:
         id: rodbxuqyzfxgv
 components:
   schemas:
-    Address:
+    BusinessPermissionsField:
       type: object
       properties:
-        street_address:
+        model_str:
           type: string
-        street_address_2:
+        operation:
           type: string
-        city:
+        uuid:
           type: string
-        region_code:
-          type: string
-          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
-        postal_code:
-          type: string
-          description: Typically a five-digit numeric US ZIP Code.
-        country_code:
-          type: string
-          description: An ISO 3166-1 alpha-2 country code.
-        type:
-          type: string
+          format: uuid
       required:
-      - city
-      - postal_code
-      - region_code
-      - street_address
+      - model_str
+      - operation
+      - uuid
       x-stoplight:
-        id: xatva1xwqb0yk
+        id: rhmxqgl8o5k8x
+    IncomeSource:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        income:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        income_type:
+          $ref: '#/components/schemas/IncomeTypeEnum'
+        mortgage_rent:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        industry:
+          type: string
+          maxLength: 128
+        occupation:
+          type: string
+          maxLength: 128
+      required:
+      - income
+      - income_type
+      x-stoplight:
+        id: cf5t7cvffrpat
+    Phone:
+      type: object
+      properties:
+        number:
+          type: string
+        device_id:
+          type:
+          - string
+          - 'null'
+        device_request_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - number
+      x-stoplight:
+        id: vm2qlwcduqdwc
+    UserCategory4f2Enum:
+      enum:
+      - personal
+      - business
+      type: string
+      x-stoplight:
+        id: vmvxka9zperhg
+    UsersResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/Profile'
+      required:
+      - users
+      x-stoplight:
+        id: oa4hi1e7x69nz
     Profile:
       type: object
       description: ''
@@ -571,39 +625,11 @@ components:
           description: The OIDC provider associated with the user's current session, if any.
       x-stoplight:
         id: g4tqfglwr85hp
-    Phone:
-      type: object
-      properties:
-        number:
-          type: string
-        device_id:
-          type:
-          - string
-          - 'null'
-        device_request_id:
-          type:
-          - string
-          - 'null'
-      required:
-      - number
-      x-stoplight:
-        id: vm2qlwcduqdwc
     NullEnum:
       enum:
       - null
       x-stoplight:
         id: 2493tmzk9db0y
-    UsersResponse:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/Profile'
-      required:
-      - users
-      x-stoplight:
-        id: oa4hi1e7x69nz
     OrgRoleEnum:
       enum:
       - Account Holder
@@ -636,59 +662,33 @@ components:
         * `other` - Other'
       x-stoplight:
         id: vlxoho9hsykzd
-    UserCategory4f2Enum:
-      enum:
-      - personal
-      - business
-      type: string
-      x-stoplight:
-        id: vmvxka9zperhg
-    IncomeSource:
+    Address:
       type: object
       properties:
-        uuid:
+        street_address:
           type: string
-          format: uuid
-          readOnly: true
-        income:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        income_type:
-          $ref: '#/components/schemas/IncomeTypeEnum'
-        mortgage_rent:
-          type:
-          - integer
-          - 'null'
-          maximum: 2147483647
-          minimum: 0
-        industry:
+        street_address_2:
           type: string
-          maxLength: 128
-        occupation:
+        city:
           type: string
-          maxLength: 128
+        region_code:
+          type: string
+          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
+        postal_code:
+          type: string
+          description: Typically a five-digit numeric US ZIP Code.
+        country_code:
+          type: string
+          description: An ISO 3166-1 alpha-2 country code.
+        type:
+          type: string
       required:
-      - income
-      - income_type
+      - city
+      - postal_code
+      - region_code
+      - street_address
       x-stoplight:
-        id: cf5t7cvffrpat
-    BusinessPermissionsField:
-      type: object
-      properties:
-        model_str:
-          type: string
-        operation:
-          type: string
-        uuid:
-          type: string
-          format: uuid
-      required:
-      - model_str
-      - operation
-      - uuid
-      x-stoplight:
-        id: rhmxqgl8o5k8x
+        id: xatva1xwqb0yk
   securitySchemes:
     oauth2:
       type: oauth2

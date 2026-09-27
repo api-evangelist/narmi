@@ -75,33 +75,6 @@ components:
           description: An error response detailing the field and the nature of the error.
       x-stoplight:
         id: ywbohhxwqjqj3
-    PaginatedACHCompanyList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ACHCompany'
-      x-stoplight:
-        id: lsm498fpc94po
     ACHCompany:
       type: object
       properties:
@@ -130,6 +103,33 @@ components:
       - organization
       x-stoplight:
         id: godr0nhfnit5i
+    PaginatedACHCompanyList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHCompany'
+      x-stoplight:
+        id: lsm498fpc94po
   securitySchemes:
     oauth2:
       type: oauth2

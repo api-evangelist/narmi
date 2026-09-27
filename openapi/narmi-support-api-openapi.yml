@@ -40,15 +40,6 @@ paths:
         id: 9o2a4qwhkqwmj
 components:
   schemas:
-    SupportInfoResponse:
-      type: object
-      properties:
-        support_settings:
-          $ref: '#/components/schemas/SupportInfo'
-      required:
-      - support_settings
-      x-stoplight:
-        id: uyw1wyns14pqz
     SupportInfo:
       type: object
       description: Serializer that returns institution specific support information
@@ -123,6 +114,15 @@ components:
           example: Support messages will be responded to within 24 hours.
       x-stoplight:
         id: vdwqdjypiqjmb
+    SupportInfoResponse:
+      type: object
+      properties:
+        support_settings:
+          $ref: '#/components/schemas/SupportInfo'
+      required:
+      - support_settings
+      x-stoplight:
+        id: uyw1wyns14pqz
   securitySchemes:
     oauth2:
       type: oauth2

@@ -56,7 +56,7 @@ tags:
 - Wires
 - FedNow
 - Cards
-- Financial-Services
+- Financial Services
 tags_raw:
 - Company
 - Fintech
@@ -68,6 +68,7 @@ tags_raw:
 - FedNow
 - Cards
 - Financial Services
+- Financial-Services
 apis:
 - aid: narmi:narmi-account-balances-api
   name: Narmi account balances API
@@ -86,7 +87,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-accounts-api
-  name: Narmi accounts API
+  name: Narmi Accounts API
   description: The accounts API from Narmi — 10 operation(s) for accounts.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -176,7 +177,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-alerts-api
-  name: Narmi alerts API
+  name: Narmi Alerts API
   description: The alerts API from Narmi — 6 operation(s) for alerts.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -223,7 +224,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-cards-api
-  name: Narmi cards API
+  name: Narmi Cards API
   description: The cards API from Narmi — 10 operation(s) for cards.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -253,7 +254,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-deposits-api
-  name: Narmi deposits API
+  name: Narmi Deposits API
   description: The deposits API from Narmi — 2 operation(s) for deposits.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -269,7 +270,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-documents-api
-  name: Narmi documents API
+  name: Narmi Documents API
   description: The documents API from Narmi — 3 operation(s) for documents.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -285,7 +286,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-enrollments-api
-  name: Narmi enrollments API
+  name: Narmi Enrollments API
   description: The enrollments API from Narmi — 5 operation(s) for enrollments.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -301,7 +302,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-express-checkout-api
-  name: Narmi express-checkout API
+  name: Narmi Express Checkout API
   description: The express-checkout API from Narmi — 2 operation(s) for express-checkout.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -373,7 +374,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-institution-api
-  name: Narmi institution API
+  name: Narmi Institution API
   description: The institution API from Narmi — 2 operation(s) for institution.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -403,7 +404,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-me-api
-  name: Narmi me API
+  name: Narmi Me API
   description: The me API from Narmi — 1 operation(s) for me.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -419,7 +420,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-merchants-api
-  name: Narmi merchants API
+  name: Narmi Merchants API
   description: The merchants API from Narmi — 1 operation(s) for merchants.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -435,7 +436,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-mfa-api
-  name: Narmi mfa API
+  name: Narmi Mfa API
   description: The mfa API from Narmi — 3 operation(s) for mfa.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -451,7 +452,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-payees-api
-  name: Narmi payees API
+  name: Narmi Payees API
   description: The payees API from Narmi — 2 operation(s) for payees.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -467,7 +468,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-payments-api
-  name: Narmi payments API
+  name: Narmi Payments API
   description: The payments API from Narmi — 2 operation(s) for payments.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -483,7 +484,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-ping-api
-  name: Narmi ping API
+  name: Narmi Ping API
   description: The ping API from Narmi — 1 operation(s) for ping.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -499,7 +500,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-recipients-api
-  name: Narmi recipients API
+  name: Narmi Recipients API
   description: The recipients API from Narmi — 2 operation(s) for recipients.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -515,7 +516,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-reports-api
-  name: Narmi reports API
+  name: Narmi Reports API
   description: The reports API from Narmi — 3 operation(s) for reports.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -559,7 +560,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-subscriptions-api
-  name: Narmi subscriptions API
+  name: Narmi Subscriptions API
   description: The subscriptions API from Narmi — 2 operation(s) for subscriptions.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -575,7 +576,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-support-api
-  name: Narmi support API
+  name: Narmi Support API
   description: The support API from Narmi — 1 operation(s) for support.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -591,7 +592,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-surveys-api
-  name: Narmi surveys API
+  name: Narmi Surveys API
   description: The surveys API from Narmi — 3 operation(s) for surveys.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -621,7 +622,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-teams-api
-  name: Narmi teams API
+  name: Narmi Teams API
   description: The teams API from Narmi — 1 operation(s) for teams.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -637,7 +638,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-threads-api
-  name: Narmi threads API
+  name: Narmi Threads API
   description: The threads API from Narmi — 6 operation(s) for threads.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -653,7 +654,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-transactions-api
-  name: Narmi transactions API
+  name: Narmi Transactions API
   description: The transactions API from Narmi — 3 operation(s) for transactions.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -684,7 +685,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-users-api
-  name: Narmi users API
+  name: Narmi Users API
   description: The users API from Narmi — 3 operation(s) for users.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -700,7 +701,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-whatismyip-api
-  name: Narmi whatismyip API
+  name: Narmi Whatismyip API
   description: The whatismyip API from Narmi — 1 operation(s) for whatismyip.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
@@ -728,7 +729,7 @@ apis:
   - type: APIReference
     url: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
 - aid: narmi:narmi-wires-api
-  name: Narmi wires API
+  name: Narmi Wires API
   description: The wires API from Narmi — 3 operation(s) for wires.
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/

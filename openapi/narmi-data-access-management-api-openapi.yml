@@ -70,6 +70,21 @@ paths:
         id: nohz0utqhws5g
 components:
   schemas:
+    PaginatedDataAccessConsentList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataAccessConsent'
+      x-stoplight:
+        id: 0hfmpfydofabh
     DataAccessConsent:
       type: object
       properties:
@@ -111,21 +126,6 @@ components:
       - id
       x-stoplight:
         id: qx1nvezsitftj
-    PaginatedDataAccessConsentList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataAccessConsent'
-      x-stoplight:
-        id: 0hfmpfydofabh
   securitySchemes:
     oauth2:
       type: oauth2

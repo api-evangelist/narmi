@@ -252,6 +252,33 @@ paths:
         id: tbwsw1jb9caaq
 components:
   schemas:
+    PaginatedFedwireTemplateList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/FedwireTemplate'
+      x-stoplight:
+        id: ysgmbpbdxpd4v
     PatchedFedwireTemplateRequest:
       type: object
       properties:
@@ -299,33 +326,6 @@ components:
       - source_account
       x-stoplight:
         id: aucbpwalozqdc
-    PaginatedFedwireTemplateList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/FedwireTemplate'
-      x-stoplight:
-        id: ysgmbpbdxpd4v
     GeneralError:
       type: object
       properties:
@@ -339,6 +339,66 @@ components:
       - message
       x-stoplight:
         id: v76fz3qxj5djb
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    FedwireTemplateRequest:
+      type: object
+      properties:
+        recipient:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the wire recipient for wires sent using this template.
+          type: string
+          format: uuid
+        source_account:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the source account for wires sent using this template.
+          type: string
+          format: uuid
+        name:
+          type: string
+          minLength: 1
+          maxLength: 35
+          example: Construction
+          description: Name of the wire template for easy reference in the UI. This name must be unique to all templates owned by an organization.
+        wire_reason:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+          example: Payment for an invoice or bill
+          description: Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. If not provided, this value must be included when making a request to send a wire.
+        amount:
+          example: 500000
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: 'A field that returns the original value in the currency''s smallest unit (e.g. cents). If not provided, this value must be included when making a request to send a wire. '
+          type:
+          - integer
+          - 'null'
+        memo:
+          type:
+          - string
+          - 'null'
+          maxLength: 140
+          example: 'Invoice #1234'
+          description: Memo for wires sent using this template. If not provided, this value must be included when making a request to send a wire.
+      required:
+      - name
+      - recipient
+      - source_account
+      x-stoplight:
+        id: x7sgv4axacihg
     FedwireTemplate:
       type: object
       properties:
@@ -401,66 +461,6 @@ components:
       - source_account
       x-stoplight:
         id: sxxn2v1apoapr
-    FedwireTemplateRequest:
-      type: object
-      properties:
-        recipient:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: The UUID of the wire recipient for wires sent using this template.
-          type: string
-          format: uuid
-        source_account:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: The UUID of the source account for wires sent using this template.
-          type: string
-          format: uuid
-        name:
-          type: string
-          minLength: 1
-          maxLength: 35
-          example: Construction
-          description: Name of the wire template for easy reference in the UI. This name must be unique to all templates owned by an organization.
-        wire_reason:
-          type:
-          - string
-          - 'null'
-          maxLength: 100
-          example: Payment for an invoice or bill
-          description: Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. If not provided, this value must be included when making a request to send a wire.
-        amount:
-          example: 500000
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: 'A field that returns the original value in the currency''s smallest unit (e.g. cents). If not provided, this value must be included when making a request to send a wire. '
-          type:
-          - integer
-          - 'null'
-        memo:
-          type:
-          - string
-          - 'null'
-          maxLength: 140
-          example: 'Invoice #1234'
-          description: Memo for wires sent using this template. If not provided, this value must be included when making a request to send a wire.
-      required:
-      - name
-      - recipient
-      - source_account
-      x-stoplight:
-        id: x7sgv4axacihg
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: qazjpvfdteybw
   securitySchemes:
     oauth2:
       type: oauth2
