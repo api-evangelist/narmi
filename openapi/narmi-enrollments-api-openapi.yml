@@ -422,6 +422,20 @@ paths:
         id: 9kzq6labseruv
 components:
   schemas:
+    Enrollment:
+      type: object
+      properties:
+        user:
+          allOf:
+          - $ref: '#/components/schemas/Profile'
+          readOnly: true
+        devices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Device'
+          readOnly: true
+      x-stoplight:
+        id: bim2fzc2964rr
     Phone:
       type: object
       properties:
@@ -439,14 +453,21 @@ components:
       - number
       x-stoplight:
         id: vm2qlwcduqdwc
-    EnrollmentCompleteDocRequest:
-      type: object
-      properties:
-        has_estatements:
-          type: boolean
-          description: The enrolling user's estatement preference. Only relevant for the account holder.
+    NullEnum:
+      enum:
+      - null
       x-stoplight:
-        id: yqmzqxq7udcyw
+        id: 2493tmzk9db0y
+    UserCategory905Enum:
+      enum:
+      - business
+      - personal
+      type: string
+      description: '* `business` - business
+
+        * `personal` - personal'
+      x-stoplight:
+        id: qi34dkcfjktg6
     VerifyEnrollment:
       type: object
       properties:
@@ -456,6 +477,42 @@ components:
           readOnly: true
       x-stoplight:
         id: 3dvzmhmtfmppd
+    EnrollmentDocRequest:
+      type: object
+      properties:
+        user_category:
+          allOf:
+          - $ref: '#/components/schemas/UserCategory905Enum'
+          writeOnly: true
+        primary_account_number:
+          type: string
+          writeOnly: true
+          minLength: 1
+          example: abc123def3456
+        dob:
+          type: string
+          format: date
+          writeOnly: true
+        ssn:
+          type: string
+          writeOnly: true
+          minLength: 9
+          example: '123121234'
+          maxLength: 9
+        ein:
+          type: string
+          writeOnly: true
+          minLength: 9
+          example: '123121234'
+          maxLength: 9
+        payload:
+          type: string
+          writeOnly: true
+          minLength: 1
+          description: If user is pre-validated via Link Service, supply encoded payload instead of other fields.
+          example: eyJlbWFpbCI6ICJ0ZXN0QGV4YW1wbGUuY29tIiwgInBob25lX251bWJlciI6ICIxMjM0NTY3ODkwIiwgInRheF9pZCI6ICIxMjMtNDUtNjc4OSIsICJlaW4iOiAiMTItMzQ1Njc4OSIsICJkb2IiOiAiMTk5MC0wMS0wMSIsICJ1c2VyX2NhdGVnb3J5IjogInRlc3RfY2F0ZWdvcnkiLCAiY29yZV9vcmdfaWQiOiAib3JnMTIzIiwgImZpcnN0X25hbWUiOiAiSm9obiIsICJsYXN0X25hbWUiOiAiRG9lIn0=
+      x-stoplight:
+        id: rn9gtuvmxmlzj
     OrgRoleEnum:
       enum:
       - Account Holder
@@ -493,18 +550,6 @@ components:
       - street_address
       x-stoplight:
         id: xatva1xwqb0yk
-    VerifyEnrollmentDocRequest:
-      type: object
-      properties:
-        enrollment_code:
-          type: string
-          writeOnly: true
-          minLength: 1
-          example: ur3yheyw
-      required:
-      - enrollment_code
-      x-stoplight:
-        id: yqsn2yxyvvqqt
     EnrollmentUrlCreateRequest:
       type: object
       properties:
@@ -540,40 +585,6 @@ components:
           maxLength: 9
       x-stoplight:
         id: 0tae6fiegr4lv
-    Device:
-      type: object
-      description: Serializer for two-factor authorization devices.
-      properties:
-        id:
-          type: string
-          readOnly: true
-          example: otp_twilio.models.TwilioSMSDevice/1
-        number_type:
-          type: string
-          readOnly: true
-          example: mobile
-        name:
-          type: string
-          readOnly: true
-          example: User's iPhone
-      x-stoplight:
-        id: t9hj1bdrxqmb5
-    BusinessPermissionsField:
-      type: object
-      properties:
-        model_str:
-          type: string
-        operation:
-          type: string
-        uuid:
-          type: string
-          format: uuid
-      required:
-      - model_str
-      - operation
-      - uuid
-      x-stoplight:
-        id: rhmxqgl8o5k8x
     IncomeSource:
       type: object
       properties:
@@ -604,20 +615,6 @@ components:
       - income_type
       x-stoplight:
         id: cf5t7cvffrpat
-    Enrollment:
-      type: object
-      properties:
-        user:
-          allOf:
-          - $ref: '#/components/schemas/Profile'
-          readOnly: true
-        devices:
-          type: array
-          items:
-            $ref: '#/components/schemas/Device'
-          readOnly: true
-      x-stoplight:
-        id: bim2fzc2964rr
     CreateEnrollmentUrlsResponse:
       type: object
       properties:
@@ -627,39 +624,44 @@ components:
       - enrollment
       x-stoplight:
         id: 0u9buvhwp4tg2
-    CreateEnrollmentUrlsURLField:
+    EnrollmentCompleteDocRequest:
       type: object
       properties:
-        url:
+        has_estatements:
+          type: boolean
+          description: The enrolling user's estatement preference. Only relevant for the account holder.
+      x-stoplight:
+        id: yqmzqxq7udcyw
+    VerifyEnrollmentDocRequest:
+      type: object
+      properties:
+        enrollment_code:
           type: string
-          format: uri
-          description: URL that enables a user to enroll without entering their details.
+          writeOnly: true
+          minLength: 1
+          example: ur3yheyw
       required:
-      - url
+      - enrollment_code
       x-stoplight:
-        id: hxbs06ahrwkbi
-    IncomeTypeEnum:
-      enum:
-      - employed
-      - part_time
-      - not_employed
-      - self_employed
-      - retirement
-      - other
-      type: string
-      description: '* `employed` - Employed
-
-        * `part_time` - Part time
-
-        * `not_employed` - Not employed
-
-        * `self_employed` - Self employed
-
-        * `retirement` - Retirement
-
-        * `other` - Other'
+        id: yqsn2yxyvvqqt
+    Device:
+      type: object
+      description: Serializer for two-factor authorization devices.
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: otp_twilio.models.TwilioSMSDevice/1
+        number_type:
+          type: string
+          readOnly: true
+          example: mobile
+        name:
+          type: string
+          readOnly: true
+          example: User's iPhone
       x-stoplight:
-        id: vlxoho9hsykzd
+        id: t9hj1bdrxqmb5
     UserCategory4f2Enum:
       enum:
       - personal
@@ -1026,57 +1028,55 @@ components:
           description: The OIDC provider associated with the user's current session, if any.
       x-stoplight:
         id: g4tqfglwr85hp
-    EnrollmentDocRequest:
+    CreateEnrollmentUrlsURLField:
       type: object
       properties:
-        user_category:
-          allOf:
-          - $ref: '#/components/schemas/UserCategory905Enum'
-          writeOnly: true
-        primary_account_number:
+        url:
           type: string
-          writeOnly: true
-          minLength: 1
-          example: abc123def3456
-        dob:
-          type: string
-          format: date
-          writeOnly: true
-        ssn:
-          type: string
-          writeOnly: true
-          minLength: 9
-          example: '123121234'
-          maxLength: 9
-        ein:
-          type: string
-          writeOnly: true
-          minLength: 9
-          example: '123121234'
-          maxLength: 9
-        payload:
-          type: string
-          writeOnly: true
-          minLength: 1
-          description: If user is pre-validated via Link Service, supply encoded payload instead of other fields.
-          example: eyJlbWFpbCI6ICJ0ZXN0QGV4YW1wbGUuY29tIiwgInBob25lX251bWJlciI6ICIxMjM0NTY3ODkwIiwgInRheF9pZCI6ICIxMjMtNDUtNjc4OSIsICJlaW4iOiAiMTItMzQ1Njc4OSIsICJkb2IiOiAiMTk5MC0wMS0wMSIsICJ1c2VyX2NhdGVnb3J5IjogInRlc3RfY2F0ZWdvcnkiLCAiY29yZV9vcmdfaWQiOiAib3JnMTIzIiwgImZpcnN0X25hbWUiOiAiSm9obiIsICJsYXN0X25hbWUiOiAiRG9lIn0=
+          format: uri
+          description: URL that enables a user to enroll without entering their details.
+      required:
+      - url
       x-stoplight:
-        id: rn9gtuvmxmlzj
-    UserCategory905Enum:
+        id: hxbs06ahrwkbi
+    BusinessPermissionsField:
+      type: object
+      properties:
+        model_str:
+          type: string
+        operation:
+          type: string
+        uuid:
+          type: string
+          format: uuid
+      required:
+      - model_str
+      - operation
+      - uuid
+      x-stoplight:
+        id: rhmxqgl8o5k8x
+    IncomeTypeEnum:
       enum:
-      - business
-      - personal
+      - employed
+      - part_time
+      - not_employed
+      - self_employed
+      - retirement
+      - other
       type: string
-      description: '* `business` - business
+      description: '* `employed` - Employed
 
-        * `personal` - personal'
+        * `part_time` - Part time
+
+        * `not_employed` - Not employed
+
+        * `self_employed` - Self employed
+
+        * `retirement` - Retirement
+
+        * `other` - Other'
       x-stoplight:
-        id: qi34dkcfjktg6
-    NullEnum:
-      enum:
-      - null
-      x-stoplight:
-        id: 2493tmzk9db0y
+        id: vlxoho9hsykzd
   securitySchemes:
     oauth2:
       type: oauth2

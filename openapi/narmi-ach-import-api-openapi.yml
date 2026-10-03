@@ -242,20 +242,196 @@ paths:
         id: w0anb9l92l6r7
 components:
   schemas:
-    ACHImportCSVParseResponse:
+    ACHDetails:
+      type: object
+      description: 'In addition to the standard ACHDetails fields you''d expect for a create/updated request,
+
+        this serializer also requires a recipient (passed in as the uuid of the recipient)
+
+        that will be associated with the created/updated ACHDetails.'
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        account_number:
+          example: '123456'
+          description: Account number for the ACH destination.
+          type: string
+          maxLength: 17
+          minLength: 1
+        routing_number:
+          example: '021030004'
+          description: Routing number for the ACH destination.
+          type: string
+          maxLength: 9
+          minLength: 9
+        account_type:
+          $ref: '#/components/schemas/AccountTypeEnum'
+        account_purpose:
+          $ref: '#/components/schemas/AccountPurposeEnum'
+        institution_name:
+          type: string
+          readOnly: true
+      required:
+      - account_number
+      - account_purpose
+      - account_type
+      - routing_number
+      x-stoplight:
+        id: rvctfxe73rl2e
+    ACHImportCSVParsedRow:
+      type: object
+      properties:
+        row_index:
+          type: integer
+          minimum: 0
+        date:
+          type: string
+        recipient_name:
+          type: string
+        routing_number:
+          type: string
+        account_number:
+          type: string
+        account_type:
+          type: string
+        action:
+          type: string
+        description:
+          type: string
+        amount:
+          type: string
+        recipient:
+          allOf:
+          - $ref: '#/components/schemas/Recipient'
+        needs_review:
+          type: boolean
+        warning:
+          type: string
+        row_errors:
+          type: array
+          items:
+            type: string
+      required:
+      - account_number
+      - account_type
+      - action
+      - amount
+      - date
+      - description
+      - needs_review
+      - recipient
+      - recipient_name
+      - routing_number
+      - row_errors
+      - row_index
+      - warning
+      x-stoplight:
+        id: ggxy0rbj33kat
+    ACHImportNACHAUploadResponse:
       type: object
       properties:
         s3_key:
           type: string
+        organization_file_uuid:
+          type: string
+          format: uuid
+        source_account:
+          type: string
+          format: uuid
+        title:
+          type: string
+        internal_note:
+          type: string
         rows:
           type: array
           items:
-            $ref: '#/components/schemas/ACHImportCSVParsedRow'
+            $ref: '#/components/schemas/ACHImportNACHAPaymentRow'
       required:
+      - internal_note
+      - organization_file_uuid
       - rows
       - s3_key
+      - source_account
+      - title
       x-stoplight:
-        id: cb38nxi2sqi27
+        id: gc6usoekpih53
+    ACHImportColumnMappingRequest:
+      type: object
+      properties:
+        field:
+          type: string
+          minLength: 1
+        column_index:
+          type: integer
+          minimum: 0
+        column_header:
+          type:
+          - string
+          - 'null'
+      required:
+      - column_header
+      - column_index
+      - field
+      x-stoplight:
+        id: naaf0tao58f9y
+    AccountTypeEnum:
+      enum:
+      - checking
+      - savings
+      - loan
+      type: string
+      description: '* `checking` - Checking
+
+        * `savings` - Savings
+
+        * `loan` - Loan'
+      x-stoplight:
+        id: ds0e59zxe4i8q
+    ACHImportCSVUploadRequest:
+      type: object
+      properties:
+        file:
+          type: string
+          format: binary
+        has_header_row:
+          type: boolean
+          default: true
+      required:
+      - file
+      x-stoplight:
+        id: ixrwinllwmc6r
+    ACHImportNACHAPaymentRow:
+      type: object
+      properties:
+        recipient:
+          allOf:
+          - $ref: '#/components/schemas/Recipient'
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+        description:
+          type: string
+        transaction_type:
+          type: string
+        scheduled_date:
+          type: string
+        needs_review:
+          type: boolean
+        warning:
+          type: string
+      required:
+      - amount
+      - description
+      - needs_review
+      - recipient
+      - scheduled_date
+      - transaction_type
+      - warning
+      x-stoplight:
+        id: 59iee9ughnkkt
     FedwireDestination:
       type: object
       description: 'In addition to the standard FedwireDestination fields you''d expect for a create/updated request,
@@ -291,51 +467,34 @@ components:
       - routing_number
       x-stoplight:
         id: 5nq8io7fuwyrs
-    Recipient:
+    ACHImportColumnMapping:
       type: object
-      description: 'Updates to the ach_destination and fedwire_destination fields are handled by the
-
-        ACHDetailsSerializer and FedwireDestinationSerializer, respectively.'
       properties:
-        id:
+        field:
           type: string
-          format: uuid
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-        name:
-          type: string
-          description: Used to formally identify the recipient (e.g. for sending fedwires.)
-          maxLength: 140
-        nickname:
-          type: string
-          description: Name used internally to more easily identify the recipient.
-          maxLength: 256
-        type:
-          allOf:
-          - $ref: '#/components/schemas/RecipientTypeEnum'
-          default: person
-        ach_destination:
-          allOf:
-          - $ref: '#/components/schemas/ACHDetails'
-          readOnly: true
-          description: A dictionary containing the destination (account number & routing number), account type (e.g. 'checking'), and account purpose ('personal' or 'business') for the ACH destination. A null value reflects that the recipient does not have an ACH destination.
-        fedwire_destination:
-          allOf:
-          - $ref: '#/components/schemas/FedwireDestination'
-          readOnly: true
-          description: A dictionary containing the destination (account number & routing number) and address for the Fedwire destination. A null value reflects that the recipient does not have a Fedwire destination.
-        swift_destination:
-          allOf:
-          - $ref: '#/components/schemas/SwiftWireDestination'
-          readOnly: true
-          description: A dictionary containing the destination (bic, iban) and address for the Swift destination. A null value reflects that the recipient does not have a Swift destination.
+        column_index:
+          type: integer
+          minimum: 0
+        column_header:
+          type:
+          - string
+          - 'null'
       required:
-      - name
+      - column_header
+      - column_index
+      - field
       x-stoplight:
-        id: buqdhdq6mraig
+        id: zxwgxy9wqgrru
+    AccountPurposeEnum:
+      enum:
+      - personal
+      - business
+      type: string
+      description: '* `personal` - Personal
+
+        * `business` - Business'
+      x-stoplight:
+        id: ccf1svqamabvv
     WireRecipientAddress:
       type: object
       properties:
@@ -364,6 +523,38 @@ components:
       - street_address
       x-stoplight:
         id: dsp8dadbgwst0
+    ACHImportCSVParseRequest:
+      type: object
+      properties:
+        s3_key:
+          type: string
+          minLength: 1
+        has_header_row:
+          type: boolean
+          default: true
+        column_mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHImportColumnMappingRequest'
+      required:
+      - column_mappings
+      - s3_key
+      x-stoplight:
+        id: ruhdvji7srj4z
+    ACHImportCSVParseResponse:
+      type: object
+      properties:
+        s3_key:
+          type: string
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHImportCSVParsedRow'
+      required:
+      - rows
+      - s3_key
+      x-stoplight:
+        id: cb38nxi2sqi27
     SwiftWireDestination:
       type: object
       properties:
@@ -396,19 +587,6 @@ components:
       - bic
       x-stoplight:
         id: fsxcazs4nwqxc
-    ACHImportCSVUploadRequest:
-      type: object
-      properties:
-        file:
-          type: string
-          format: binary
-        has_header_row:
-          type: boolean
-          default: true
-      required:
-      - file
-      x-stoplight:
-        id: ixrwinllwmc6r
     CSVFieldMappingRequest:
       type: object
       properties:
@@ -510,6 +688,79 @@ components:
       - name
       x-stoplight:
         id: w6wnfjrofrxpg
+    Recipient:
+      type: object
+      description: 'Updates to the ach_destination and fedwire_destination fields are handled by the
+
+        ACHDetailsSerializer and FedwireDestinationSerializer, respectively.'
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        name:
+          type: string
+          description: Used to formally identify the recipient (e.g. for sending fedwires.)
+          maxLength: 140
+        nickname:
+          type: string
+          description: Name used internally to more easily identify the recipient.
+          maxLength: 256
+        type:
+          allOf:
+          - $ref: '#/components/schemas/RecipientTypeEnum'
+          default: person
+        ach_destination:
+          allOf:
+          - $ref: '#/components/schemas/ACHDetails'
+          readOnly: true
+          description: A dictionary containing the destination (account number & routing number), account type (e.g. 'checking'), and account purpose ('personal' or 'business') for the ACH destination. A null value reflects that the recipient does not have an ACH destination.
+        fedwire_destination:
+          allOf:
+          - $ref: '#/components/schemas/FedwireDestination'
+          readOnly: true
+          description: A dictionary containing the destination (account number & routing number) and address for the Fedwire destination. A null value reflects that the recipient does not have a Fedwire destination.
+        swift_destination:
+          allOf:
+          - $ref: '#/components/schemas/SwiftWireDestination'
+          readOnly: true
+          description: A dictionary containing the destination (bic, iban) and address for the Swift destination. A null value reflects that the recipient does not have a Swift destination.
+      required:
+      - name
+      x-stoplight:
+        id: buqdhdq6mraig
+    FedwireRecipientAddress:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        street_address:
+          type: string
+          maxLength: 35
+        street_address_2:
+          type: string
+          maxLength: 35
+        city:
+          type: string
+          maxLength: 128
+        region_code:
+          type: string
+          maxLength: 128
+        postal_code:
+          type: string
+          maxLength: 128
+        country_code:
+          type: string
+          maxLength: 2
+      required:
+      - street_address
+      x-stoplight:
+        id: alp6ww1u4r5wf
     ACHImportCSVUploadResponse:
       type: object
       properties:
@@ -542,24 +793,16 @@ components:
       - suggested_mapping
       x-stoplight:
         id: ifbz6ldyum3k8
-    ACHImportCSVParseRequest:
-      type: object
-      properties:
-        s3_key:
-          type: string
-          minLength: 1
-        has_header_row:
-          type: boolean
-          default: true
-        column_mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ACHImportColumnMappingRequest'
-      required:
-      - column_mappings
-      - s3_key
+    RecipientTypeEnum:
+      enum:
+      - person
+      - business
+      type: string
+      description: '* `person` - Person
+
+        * `business` - Business'
       x-stoplight:
-        id: ruhdvji7srj4z
+        id: cetfkhhexomuz
     ACHImportNACHAUploadRequest:
       type: object
       properties:
@@ -586,19 +829,55 @@ components:
       - source_account
       x-stoplight:
         id: 4lzbivycmjmlm
-    AccountTypeEnum:
-      enum:
-      - checking
-      - savings
-      - loan
-      type: string
-      description: '* `checking` - Checking
-
-        * `savings` - Savings
-
-        * `loan` - Loan'
+    ACHImportSuggestedMapping:
+      type: object
+      properties:
+        mapping_uuid:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        mapping_name:
+          type:
+          - string
+          - 'null'
+        column_mappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ACHImportColumnMapping'
+      required:
+      - column_mappings
+      - mapping_name
+      - mapping_uuid
       x-stoplight:
-        id: ds0e59zxe4i8q
+        id: otzzn5fui4etj
+    PaginatedCSVFieldMappingList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CSVFieldMapping'
+      x-stoplight:
+        id: yh0os5rdtbxhb
     CSVFieldMapping:
       type: object
       properties:
@@ -711,285 +990,6 @@ components:
       - name
       x-stoplight:
         id: 4ungymnhpc7vd
-    FedwireRecipientAddress:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        street_address:
-          type: string
-          maxLength: 35
-        street_address_2:
-          type: string
-          maxLength: 35
-        city:
-          type: string
-          maxLength: 128
-        region_code:
-          type: string
-          maxLength: 128
-        postal_code:
-          type: string
-          maxLength: 128
-        country_code:
-          type: string
-          maxLength: 2
-      required:
-      - street_address
-      x-stoplight:
-        id: alp6ww1u4r5wf
-    ACHDetails:
-      type: object
-      description: 'In addition to the standard ACHDetails fields you''d expect for a create/updated request,
-
-        this serializer also requires a recipient (passed in as the uuid of the recipient)
-
-        that will be associated with the created/updated ACHDetails.'
-      properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-        account_number:
-          example: '123456'
-          description: Account number for the ACH destination.
-          type: string
-          maxLength: 17
-          minLength: 1
-        routing_number:
-          example: '021030004'
-          description: Routing number for the ACH destination.
-          type: string
-          maxLength: 9
-          minLength: 9
-        account_type:
-          $ref: '#/components/schemas/AccountTypeEnum'
-        account_purpose:
-          $ref: '#/components/schemas/AccountPurposeEnum'
-        institution_name:
-          type: string
-          readOnly: true
-      required:
-      - account_number
-      - account_purpose
-      - account_type
-      - routing_number
-      x-stoplight:
-        id: rvctfxe73rl2e
-    ACHImportColumnMapping:
-      type: object
-      properties:
-        field:
-          type: string
-        column_index:
-          type: integer
-          minimum: 0
-        column_header:
-          type:
-          - string
-          - 'null'
-      required:
-      - column_header
-      - column_index
-      - field
-      x-stoplight:
-        id: zxwgxy9wqgrru
-    ACHImportSuggestedMapping:
-      type: object
-      properties:
-        mapping_uuid:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        mapping_name:
-          type:
-          - string
-          - 'null'
-        column_mappings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ACHImportColumnMapping'
-      required:
-      - column_mappings
-      - mapping_name
-      - mapping_uuid
-      x-stoplight:
-        id: otzzn5fui4etj
-    ACHImportNACHAUploadResponse:
-      type: object
-      properties:
-        s3_key:
-          type: string
-        organization_file_uuid:
-          type: string
-          format: uuid
-        source_account:
-          type: string
-          format: uuid
-        title:
-          type: string
-        internal_note:
-          type: string
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/ACHImportNACHAPaymentRow'
-      required:
-      - internal_note
-      - organization_file_uuid
-      - rows
-      - s3_key
-      - source_account
-      - title
-      x-stoplight:
-        id: gc6usoekpih53
-    AccountPurposeEnum:
-      enum:
-      - personal
-      - business
-      type: string
-      description: '* `personal` - Personal
-
-        * `business` - Business'
-      x-stoplight:
-        id: ccf1svqamabvv
-    PaginatedCSVFieldMappingList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/CSVFieldMapping'
-      x-stoplight:
-        id: yh0os5rdtbxhb
-    ACHImportColumnMappingRequest:
-      type: object
-      properties:
-        field:
-          type: string
-          minLength: 1
-        column_index:
-          type: integer
-          minimum: 0
-        column_header:
-          type:
-          - string
-          - 'null'
-      required:
-      - column_header
-      - column_index
-      - field
-      x-stoplight:
-        id: naaf0tao58f9y
-    ACHImportCSVParsedRow:
-      type: object
-      properties:
-        row_index:
-          type: integer
-          minimum: 0
-        date:
-          type: string
-        recipient_name:
-          type: string
-        routing_number:
-          type: string
-        account_number:
-          type: string
-        account_type:
-          type: string
-        action:
-          type: string
-        description:
-          type: string
-        amount:
-          type: string
-        recipient:
-          allOf:
-          - $ref: '#/components/schemas/Recipient'
-        needs_review:
-          type: boolean
-        warning:
-          type: string
-        row_errors:
-          type: array
-          items:
-            type: string
-      required:
-      - account_number
-      - account_type
-      - action
-      - amount
-      - date
-      - description
-      - needs_review
-      - recipient
-      - recipient_name
-      - routing_number
-      - row_errors
-      - row_index
-      - warning
-      x-stoplight:
-        id: ggxy0rbj33kat
-    RecipientTypeEnum:
-      enum:
-      - person
-      - business
-      type: string
-      description: '* `person` - Person
-
-        * `business` - Business'
-      x-stoplight:
-        id: cetfkhhexomuz
-    ACHImportNACHAPaymentRow:
-      type: object
-      properties:
-        recipient:
-          allOf:
-          - $ref: '#/components/schemas/Recipient'
-        amount:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
-        description:
-          type: string
-        transaction_type:
-          type: string
-        scheduled_date:
-          type: string
-        needs_review:
-          type: boolean
-        warning:
-          type: string
-      required:
-      - amount
-      - description
-      - needs_review
-      - recipient
-      - scheduled_date
-      - transaction_type
-      - warning
-      x-stoplight:
-        id: 59iee9ughnkkt
   securitySchemes:
     oauth2:
       type: oauth2

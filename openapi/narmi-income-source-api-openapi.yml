@@ -279,6 +279,28 @@ paths:
         id: iff7zjzisaii8
 components:
   schemas:
+    IncomeTypeEnum:
+      enum:
+      - employed
+      - part_time
+      - not_employed
+      - self_employed
+      - retirement
+      - other
+      type: string
+      description: '* `employed` - Employed
+
+        * `part_time` - Part time
+
+        * `not_employed` - Not employed
+
+        * `self_employed` - Self employed
+
+        * `retirement` - Retirement
+
+        * `other` - Other'
+      x-stoplight:
+        id: vlxoho9hsykzd
     IncomeSource:
       type: object
       properties:
@@ -335,28 +357,6 @@ components:
       - income_type
       x-stoplight:
         id: 6lravvbf1aphb
-    IncomeTypeEnum:
-      enum:
-      - employed
-      - part_time
-      - not_employed
-      - self_employed
-      - retirement
-      - other
-      type: string
-      description: '* `employed` - Employed
-
-        * `part_time` - Part time
-
-        * `not_employed` - Not employed
-
-        * `self_employed` - Self employed
-
-        * `retirement` - Retirement
-
-        * `other` - Other'
-      x-stoplight:
-        id: vlxoho9hsykzd
   securitySchemes:
     oauth2:
       type: oauth2

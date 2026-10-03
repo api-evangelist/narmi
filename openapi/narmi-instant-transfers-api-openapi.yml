@@ -135,19 +135,6 @@ paths:
         id: dk5asim2gu0dq
 components:
   schemas:
-    KindEnum:
-      enum:
-      - free
-      - fixed
-      - percent
-      type: string
-      description: '* `free` - free
-
-        * `fixed` - fixed
-
-        * `percent` - percent'
-      x-stoplight:
-        id: qcqed657de0rl
     FedNowTransaction:
       type: object
       properties:
@@ -201,70 +188,6 @@ components:
       - unverified_recipient
       x-stoplight:
         id: 7qinjdob3wcd1
-    TransfersFee:
-      type: object
-      properties:
-        kind:
-          allOf:
-          - $ref: '#/components/schemas/KindEnum'
-          description: 'Supported fee structures
-
-
-            * `free` - free
-
-            * `fixed` - fixed
-
-            * `percent` - percent'
-        percent:
-          type:
-          - string
-          - 'null'
-          format: decimal
-          pattern: ^-?0?(?:\.\d{0,4})?$
-          description: Percentage fee of transfer amount. For free and fixed kind this will null, for percentage it is the fee percent as a decimal.
-        max:
-          type:
-          - string
-          - 'null'
-          format: decimal
-          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
-          description: Maximum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount cap for the percentage fee.
-        min:
-          type:
-          - string
-          - 'null'
-          format: decimal
-          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
-          description: Minimum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount minimum for the percentage fee.
-      required:
-      - kind
-      x-stoplight:
-        id: rmlugpiarfokw
-    EnrollmentLevelEnum:
-      enum:
-      - receive
-      - send
-      - send_receive
-      - rfp
-      - rfp_send
-      - send_only
-      - none
-      type: string
-      description: '* `receive` - Receive only
-
-        * `send` - Send only
-
-        * `send_receive` - Send and Receive
-
-        * `rfp` - Request for payment and receive only
-
-        * `rfp_send` - Request for payment with send and receive
-
-        * `send_only` - Send only, meant for internal use only
-
-        * `none` - Not in the FedNow network'
-      x-stoplight:
-        id: 3sonktbgvbhvk
     FednowPayment:
       type: object
       properties:
@@ -324,6 +247,58 @@ components:
       - updated_at
       x-stoplight:
         id: g74hjbbstiqwt
+    KindEnum:
+      enum:
+      - free
+      - fixed
+      - percent
+      type: string
+      description: '* `free` - free
+
+        * `fixed` - fixed
+
+        * `percent` - percent'
+      x-stoplight:
+        id: qcqed657de0rl
+    TransfersFee:
+      type: object
+      properties:
+        kind:
+          allOf:
+          - $ref: '#/components/schemas/KindEnum'
+          description: 'Supported fee structures
+
+
+            * `free` - free
+
+            * `fixed` - fixed
+
+            * `percent` - percent'
+        percent:
+          type:
+          - string
+          - 'null'
+          format: decimal
+          pattern: ^-?0?(?:\.\d{0,4})?$
+          description: Percentage fee of transfer amount. For free and fixed kind this will null, for percentage it is the fee percent as a decimal.
+        max:
+          type:
+          - string
+          - 'null'
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          description: Maximum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount cap for the percentage fee.
+        min:
+          type:
+          - string
+          - 'null'
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+          description: Minimum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount minimum for the percentage fee.
+      required:
+      - kind
+      x-stoplight:
+        id: rmlugpiarfokw
     FedNowTransactionStateEnum:
       enum:
       - pending
@@ -373,6 +348,31 @@ components:
         * `rejected_bulk_approval` - Rejected bulk approval'
       x-stoplight:
         id: otlhozfwfxeds
+    EnrollmentLevelEnum:
+      enum:
+      - receive
+      - send
+      - send_receive
+      - rfp
+      - rfp_send
+      - send_only
+      - none
+      type: string
+      description: '* `receive` - Receive only
+
+        * `send` - Send only
+
+        * `send_receive` - Send and Receive
+
+        * `rfp` - Request for payment and receive only
+
+        * `rfp_send` - Request for payment with send and receive
+
+        * `send_only` - Send only, meant for internal use only
+
+        * `none` - Not in the FedNow network'
+      x-stoplight:
+        id: 3sonktbgvbhvk
     FedNowEligibility:
       type: object
       properties:

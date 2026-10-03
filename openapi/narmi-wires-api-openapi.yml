@@ -202,138 +202,6 @@ paths:
         id: tzlyv4xykjd5p
 components:
   schemas:
-    Wire:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        processed_at:
-          type: string
-          format: date-time
-          readOnly: true
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-          readOnly: true
-        from_account:
-          type: string
-          format: uuid
-          readOnly: true
-        from_account_display:
-          type: string
-          readOnly: true
-        to_account_number:
-          type: string
-          readOnly: true
-        to_account_routing_number:
-          type: string
-          readOnly: true
-        to_account_institution_name:
-          type: string
-          readOnly: true
-        beneficiary_name:
-          type: string
-          readOnly: true
-        beneficiary_address_1:
-          type: string
-          readOnly: true
-        beneficiary_address_2:
-          type: string
-          readOnly: true
-        beneficiary_address_3:
-          type: string
-          readOnly: true
-        memo_1:
-          type: string
-          readOnly: true
-        memo_2:
-          type: string
-          readOnly: true
-        memo_3:
-          type: string
-          readOnly: true
-        memo_4:
-          type: string
-          readOnly: true
-        state:
-          type: string
-          readOnly: true
-        display_state:
-          type: string
-          readOnly: true
-        template_name:
-          type: string
-          readOnly: true
-        wire_reason:
-          type: string
-          readOnly: true
-      x-stoplight:
-        id: igunvqvoaorhw
-    StateC02Enum:
-      enum:
-      - analyzing
-      - pending
-      - review
-      - processing
-      - processed
-      - rejected
-      - canceled
-      - awaiting_approval
-      - rejected_approval
-      type: string
-      description: '* `analyzing` - Analyzing
-
-        * `pending` - Pending
-
-        * `review` - Review
-
-        * `processing` - Processing
-
-        * `processed` - Processed (in transit)
-
-        * `rejected` - Rejected by staff
-
-        * `canceled` - Canceled
-
-        * `awaiting_approval` - Awaiting dual approval
-
-        * `rejected_approval` - Dual approval rejected'
-      x-stoplight:
-        id: qbox8yql7ah47
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: qazjpvfdteybw
-    GeneralError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: invalid
-        message:
-          type: string
-          description: An error response detailing the field and the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: v76fz3qxj5djb
     PaginatedWireList:
       type: object
       required:
@@ -439,6 +307,98 @@ components:
       - to_account_routing_number
       x-stoplight:
         id: xdw3obgyxcqyz
+    WireTransactionRequest:
+      type: object
+      description: 'Currently, this serializer creates a WireTransaction based on an existing wire template, where the template
+
+        prescribes every field (except a few optional fields that, if not provided, must be filled out by the wire sender).
+
+
+        Most of the logic in this serializer is also relevant to the non-template wire sending flow, so in the near future, we should refactor
+
+        the non-template wire sending flow to use this serializer, and handle the template-specific validation separately.'
+      properties:
+        wire_reason:
+          type:
+          - string
+          - 'null'
+          description: 'Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. '
+          example: Payment for a subscription service
+        fedwire_template:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the fedwire template to use for the wire transaction.
+          type: string
+          format: uuid
+          writeOnly: true
+        amount:
+          example: 1
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        memo:
+          type:
+          - string
+          - 'null'
+          writeOnly: true
+          description: Memo for the wire transaction. If not provided, the memo will be generated from the template's memo field.
+          maxLength: 140
+          example: 'Invoice #1234'
+        version_id:
+          type: string
+          writeOnly: true
+          minLength: 1
+          description: The version ID of the template, based on when template or recipient details were last updated. This value is used to ensure that the template hasn't been updated since the user began drafting a wire using this template.
+          example: e28e3b5e9076550cd276ba4d0ddbc93c52a273129238f107ed599edc0483d509
+      required:
+      - fedwire_template
+      - version_id
+      x-stoplight:
+        id: 68tc9fitepbjn
+    GeneralError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid
+        message:
+          type: string
+          description: An error response detailing the field and the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: v76fz3qxj5djb
+    StateC02Enum:
+      enum:
+      - analyzing
+      - pending
+      - review
+      - processing
+      - processed
+      - rejected
+      - canceled
+      - awaiting_approval
+      - rejected_approval
+      type: string
+      description: '* `analyzing` - Analyzing
+
+        * `pending` - Pending
+
+        * `review` - Review
+
+        * `processing` - Processing
+
+        * `processed` - Processed (in transit)
+
+        * `rejected` - Rejected by staff
+
+        * `canceled` - Canceled
+
+        * `awaiting_approval` - Awaiting dual approval
+
+        * `rejected_approval` - Dual approval rejected'
+      x-stoplight:
+        id: qbox8yql7ah47
     WireTransaction:
       type: object
       description: 'Currently, this serializer creates a WireTransaction based on an existing wire template, where the template
@@ -559,6 +519,94 @@ components:
           type: integer
       x-stoplight:
         id: k58fwfxw4mkym
+    Wire:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        processed_at:
+          type: string
+          format: date-time
+          readOnly: true
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+          readOnly: true
+        from_account:
+          type: string
+          format: uuid
+          readOnly: true
+        from_account_display:
+          type: string
+          readOnly: true
+        to_account_number:
+          type: string
+          readOnly: true
+        to_account_routing_number:
+          type: string
+          readOnly: true
+        to_account_institution_name:
+          type: string
+          readOnly: true
+        beneficiary_name:
+          type: string
+          readOnly: true
+        beneficiary_address_1:
+          type: string
+          readOnly: true
+        beneficiary_address_2:
+          type: string
+          readOnly: true
+        beneficiary_address_3:
+          type: string
+          readOnly: true
+        memo_1:
+          type: string
+          readOnly: true
+        memo_2:
+          type: string
+          readOnly: true
+        memo_3:
+          type: string
+          readOnly: true
+        memo_4:
+          type: string
+          readOnly: true
+        state:
+          type: string
+          readOnly: true
+        display_state:
+          type: string
+          readOnly: true
+        template_name:
+          type: string
+          readOnly: true
+        wire_reason:
+          type: string
+          readOnly: true
+      x-stoplight:
+        id: igunvqvoaorhw
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
     WireCreateResponse:
       type: object
       properties:
@@ -570,54 +618,6 @@ components:
       - wires
       x-stoplight:
         id: mmf7ufl8ct7k7
-    WireTransactionRequest:
-      type: object
-      description: 'Currently, this serializer creates a WireTransaction based on an existing wire template, where the template
-
-        prescribes every field (except a few optional fields that, if not provided, must be filled out by the wire sender).
-
-
-        Most of the logic in this serializer is also relevant to the non-template wire sending flow, so in the near future, we should refactor
-
-        the non-template wire sending flow to use this serializer, and handle the template-specific validation separately.'
-      properties:
-        wire_reason:
-          type:
-          - string
-          - 'null'
-          description: 'Choices are configurable via Institution Settings. Please refer to Institution Settings for the most current list of wire reason types. '
-          example: Payment for a subscription service
-        fedwire_template:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: The UUID of the fedwire template to use for the wire transaction.
-          type: string
-          format: uuid
-          writeOnly: true
-        amount:
-          example: 1
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-        memo:
-          type:
-          - string
-          - 'null'
-          writeOnly: true
-          description: Memo for the wire transaction. If not provided, the memo will be generated from the template's memo field.
-          maxLength: 140
-          example: 'Invoice #1234'
-        version_id:
-          type: string
-          writeOnly: true
-          minLength: 1
-          description: The version ID of the template, based on when template or recipient details were last updated. This value is used to ensure that the template hasn't been updated since the user began drafting a wire using this template.
-          example: e28e3b5e9076550cd276ba4d0ddbc93c52a273129238f107ed599edc0483d509
-      required:
-      - fedwire_template
-      - version_id
-      x-stoplight:
-        id: 68tc9fitepbjn
   securitySchemes:
     oauth2:
       type: oauth2

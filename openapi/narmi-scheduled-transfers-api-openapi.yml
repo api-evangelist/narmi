@@ -261,6 +261,109 @@ paths:
         id: bvn3o9dxj90sz
 components:
   schemas:
+    PaginatedScheduledTransferList:
+      type: object
+      required:
+      - meta
+      - links
+      properties:
+        meta:
+          description: Free-form object, contains total object count.
+          type: object
+          properties:
+            total:
+              type: integer
+        links:
+          type: object
+          description: URIs linking to sequential pages of the result.
+          properties:
+            next:
+              type:
+              - string
+              - 'null'
+              format: uri
+              example: http://api.example.org/accounts/?page=4
+            prev:
+              type:
+              - string
+              - 'null'
+              format: uri
+              example: http://api.example.org/accounts/?page=4
+        scheduled_transfers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScheduledTransfer'
+      x-stoplight:
+        id: dahasasw0vcuq
+    ScheduledTransferStateEnum:
+      enum:
+      - expired
+      - active
+      type: string
+      description: '* `expired` - expired
+
+        * `active` - active'
+      x-stoplight:
+        id: 3uyhod4xb85tf
+    ScheduledTransferRequest:
+      type: object
+      description: 'Represents:
+
+        indigo.models.recurring_transfer.AchTransfer,
+
+        indigo.models.recurring_transfer.IntraInstitutionTransfer'
+      properties:
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        from_account_id:
+          type: string
+          format: uuid
+          description: UUID identifying the source account in the Narmi database.
+        to_account_id:
+          type: string
+          format: uuid
+          description: UUID identifying the destination account in the Narmi database.
+        agreement:
+          type: boolean
+          writeOnly: true
+          description: Whether or not the terms of the transfer were agreed to.
+        device_id:
+          type: string
+          writeOnly: true
+          minLength: 1
+          description: Device 'fingerprint' from alloy/iovation.
+        recurring_rule:
+          type: string
+          minLength: 1
+          example: RRULE:FREQ=DAILY;COUNT=1
+          description: Cadence of recurring event, as per the RFC-5545 specification.
+        memo:
+          type: string
+          minLength: 1
+          default: ''
+          description: Free-form description of transfer.
+        description:
+          type: string
+          minLength: 1
+          default: ''
+          description: Free-form description of transfer.
+        ach_transfer:
+          type: string
+          format: uuid
+          writeOnly: true
+          description: Associated ACH Transfer used to evaluate transfer limits, and if they've been exceeded.
+      required:
+      - agreement
+      - amount
+      - from_account_id
+      - recurring_rule
+      - to_account_id
+      x-stoplight:
+        id: xtzufkz4xtogz
     ScheduledTransfer:
       type: object
       description: 'Represents:
@@ -339,109 +442,6 @@ components:
       - message
       x-stoplight:
         id: qazjpvfdteybw
-    ScheduledTransferRequest:
-      type: object
-      description: 'Represents:
-
-        indigo.models.recurring_transfer.AchTransfer,
-
-        indigo.models.recurring_transfer.IntraInstitutionTransfer'
-      properties:
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-        from_account_id:
-          type: string
-          format: uuid
-          description: UUID identifying the source account in the Narmi database.
-        to_account_id:
-          type: string
-          format: uuid
-          description: UUID identifying the destination account in the Narmi database.
-        agreement:
-          type: boolean
-          writeOnly: true
-          description: Whether or not the terms of the transfer were agreed to.
-        device_id:
-          type: string
-          writeOnly: true
-          minLength: 1
-          description: Device 'fingerprint' from alloy/iovation.
-        recurring_rule:
-          type: string
-          minLength: 1
-          example: RRULE:FREQ=DAILY;COUNT=1
-          description: Cadence of recurring event, as per the RFC-5545 specification.
-        memo:
-          type: string
-          minLength: 1
-          default: ''
-          description: Free-form description of transfer.
-        description:
-          type: string
-          minLength: 1
-          default: ''
-          description: Free-form description of transfer.
-        ach_transfer:
-          type: string
-          format: uuid
-          writeOnly: true
-          description: Associated ACH Transfer used to evaluate transfer limits, and if they've been exceeded.
-      required:
-      - agreement
-      - amount
-      - from_account_id
-      - recurring_rule
-      - to_account_id
-      x-stoplight:
-        id: xtzufkz4xtogz
-    PaginatedScheduledTransferList:
-      type: object
-      required:
-      - meta
-      - links
-      properties:
-        meta:
-          description: Free-form object, contains total object count.
-          type: object
-          properties:
-            total:
-              type: integer
-        links:
-          type: object
-          description: URIs linking to sequential pages of the result.
-          properties:
-            next:
-              type:
-              - string
-              - 'null'
-              format: uri
-              example: http://api.example.org/accounts/?page=4
-            prev:
-              type:
-              - string
-              - 'null'
-              format: uri
-              example: http://api.example.org/accounts/?page=4
-        scheduled_transfers:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScheduledTransfer'
-      x-stoplight:
-        id: dahasasw0vcuq
-    ScheduledTransferStateEnum:
-      enum:
-      - expired
-      - active
-      type: string
-      description: '* `expired` - expired
-
-        * `active` - active'
-      x-stoplight:
-        id: 3uyhod4xb85tf
     NestedScheduledTransfer:
       type: object
       properties:

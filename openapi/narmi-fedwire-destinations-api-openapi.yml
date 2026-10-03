@@ -140,80 +140,6 @@ paths:
         id: 3nwn3t4lhyd8b
 components:
   schemas:
-    FedwireDestinationRequest:
-      type: object
-      description: 'In addition to the standard FedwireDestination fields you''d expect for a create/updated request,
-
-        this serializer also requires a recipient (passed in as the uuid of the recipient)
-
-        that will be associated with the created/updated FedwireDestination instance.'
-      properties:
-        account_number:
-          example: '123456'
-          description: Account number for the Fedwire destination.
-          type: string
-          minLength: 1
-          maxLength: 17
-        routing_number:
-          example: '021030004'
-          description: Routing number for the Fedwire destination.
-          type: string
-          minLength: 9
-          maxLength: 9
-        recipient:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: UUID of the recipient associated with this Fedwire destination.
-          type: string
-          format: uuid
-          writeOnly: true
-        address:
-          $ref: '#/components/schemas/FedwireRecipientAddressRequest'
-      required:
-      - account_number
-      - address
-      - recipient
-      - routing_number
-      x-stoplight:
-        id: zthgxtvwxewwu
-    PermissionDeniedError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: api_error
-        message:
-          type: string
-          default: You do not have permission to perform this action.
-          description: An error response detailing the field and the nature of the error.
-      x-stoplight:
-        id: ywbohhxwqjqj3
-    FedwireRecipientAddressRequest:
-      type: object
-      properties:
-        street_address:
-          type: string
-          minLength: 1
-          maxLength: 35
-        street_address_2:
-          type: string
-          maxLength: 35
-        city:
-          type: string
-          maxLength: 128
-        region_code:
-          type: string
-          maxLength: 128
-        postal_code:
-          type: string
-          maxLength: 128
-        country_code:
-          type: string
-          minLength: 1
-          maxLength: 2
-      required:
-      - street_address
-      x-stoplight:
-        id: jpxphmdao13bd
     FedwireDestination:
       type: object
       description: 'In addition to the standard FedwireDestination fields you''d expect for a create/updated request,
@@ -249,6 +175,41 @@ components:
       - routing_number
       x-stoplight:
         id: 5nq8io7fuwyrs
+    FedwireDestinationRequest:
+      type: object
+      description: 'In addition to the standard FedwireDestination fields you''d expect for a create/updated request,
+
+        this serializer also requires a recipient (passed in as the uuid of the recipient)
+
+        that will be associated with the created/updated FedwireDestination instance.'
+      properties:
+        account_number:
+          example: '123456'
+          description: Account number for the Fedwire destination.
+          type: string
+          minLength: 1
+          maxLength: 17
+        routing_number:
+          example: '021030004'
+          description: Routing number for the Fedwire destination.
+          type: string
+          minLength: 9
+          maxLength: 9
+        recipient:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: UUID of the recipient associated with this Fedwire destination.
+          type: string
+          format: uuid
+          writeOnly: true
+        address:
+          $ref: '#/components/schemas/FedwireRecipientAddressRequest'
+      required:
+      - account_number
+      - address
+      - recipient
+      - routing_number
+      x-stoplight:
+        id: zthgxtvwxewwu
     FedwireRecipientAddress:
       type: object
       properties:
@@ -277,6 +238,45 @@ components:
       - street_address
       x-stoplight:
         id: alp6ww1u4r5wf
+    FedwireRecipientAddressRequest:
+      type: object
+      properties:
+        street_address:
+          type: string
+          minLength: 1
+          maxLength: 35
+        street_address_2:
+          type: string
+          maxLength: 35
+        city:
+          type: string
+          maxLength: 128
+        region_code:
+          type: string
+          maxLength: 128
+        postal_code:
+          type: string
+          maxLength: 128
+        country_code:
+          type: string
+          minLength: 1
+          maxLength: 2
+      required:
+      - street_address
+      x-stoplight:
+        id: jpxphmdao13bd
+    PermissionDeniedError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: You do not have permission to perform this action.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: ywbohhxwqjqj3
   securitySchemes:
     oauth2:
       type: oauth2

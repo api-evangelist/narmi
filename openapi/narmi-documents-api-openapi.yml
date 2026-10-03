@@ -185,32 +185,70 @@ paths:
         id: 3s7tkyokn7zyn
 components:
   schemas:
-    PaginatedDocumentList:
+    Document:
       type: object
-      required:
-      - documents
       properties:
-        count:
-          type: integer
-          example: 123
-        next:
+        id:
+          type: string
+          readOnly: true
+          description: Document ID. The format of the ID can vary between document stores.
+          example: f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5
+        type:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          description: Document type, this value can vary between document stores.
+          example: statement
+        type_label:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          description: Human readable type, defaults to value of `type` field when missing.
+          example: statement
+        description:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          example: Account 43333
+        created_at:
+          type: string
+          readOnly: true
+          description: The date-time the document was posted.
+          example: '2018-10-30T00:00:00-04:00'
+        account_id:
+          type: string
+          readOnly: true
+        url:
           type:
           - string
           - 'null'
           format: uri
-          example: http://api.example.org/accounts/?offset=400&limit=100
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?offset=200&limit=100
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
+          description: The URL of the retrieve API call.
+          readOnly: true
+          example: https://demo2-api.uat.narmitech.com/v1/documents/f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5?data=true
       x-stoplight:
-        id: 0aow4ftsieugm
+        id: 9mjrd0thewwlb
+    DocumentResponse:
+      type: object
+      properties:
+        document:
+          $ref: '#/components/schemas/Document'
+      required:
+      - document
+      x-stoplight:
+        id: b2w8p4gq2jw1j
+    DocumentWithDataResponse:
+      type: object
+      properties:
+        document:
+          $ref: '#/components/schemas/DocumentWithData'
+      required:
+      - document
+      x-stoplight:
+        id: 64o2djny8szc0
     DocumentWithData:
       type: object
       properties:
@@ -262,76 +300,38 @@ components:
           example: https://demo2-api.uat.narmitech.com/v1/documents/f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5?data=true
       x-stoplight:
         id: xrmejhjmnyf1h
+    PaginatedDocumentList:
+      type: object
+      required:
+      - documents
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+      x-stoplight:
+        id: 0aow4ftsieugm
     UserDocument:
       oneOf:
       - $ref: '#/components/schemas/DocumentResponse'
       - $ref: '#/components/schemas/DocumentWithDataResponse'
       x-stoplight:
         id: hcy6wln20g4we
-    DocumentWithDataResponse:
-      type: object
-      properties:
-        document:
-          $ref: '#/components/schemas/DocumentWithData'
-      required:
-      - document
-      x-stoplight:
-        id: 64o2djny8szc0
-    DocumentResponse:
-      type: object
-      properties:
-        document:
-          $ref: '#/components/schemas/Document'
-      required:
-      - document
-      x-stoplight:
-        id: b2w8p4gq2jw1j
-    Document:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-          description: Document ID. The format of the ID can vary between document stores.
-          example: f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5
-        type:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          description: Document type, this value can vary between document stores.
-          example: statement
-        type_label:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          description: Human readable type, defaults to value of `type` field when missing.
-          example: statement
-        description:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          example: Account 43333
-        created_at:
-          type: string
-          readOnly: true
-          description: The date-time the document was posted.
-          example: '2018-10-30T00:00:00-04:00'
-        account_id:
-          type: string
-          readOnly: true
-        url:
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: The URL of the retrieve API call.
-          readOnly: true
-          example: https://demo2-api.uat.narmitech.com/v1/documents/f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5?data=true
-      x-stoplight:
-        id: 9mjrd0thewwlb
     ServiceFailureError:
       type: object
       properties:

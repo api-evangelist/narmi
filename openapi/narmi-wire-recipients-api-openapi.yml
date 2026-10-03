@@ -240,60 +240,48 @@ paths:
         id: phmudftmgswyx
 components:
   schemas:
-    FedwireRecipientAddressRequest:
+    WireRecipientRequest:
       type: object
+      description: 'This serializer supports backwards compatibility for the WireRecipientViewSet,
+
+        which is deprecated and should be avoided in favor of RecipientViewSet.
+
+        WireRecipient was created before we''d had a more general Recipient concept.'
       properties:
-        street_address:
+        name:
           type: string
           minLength: 1
-          maxLength: 35
-        street_address_2:
-          type: string
-          maxLength: 35
-        city:
-          type: string
-          maxLength: 128
-        region_code:
-          type: string
-          maxLength: 128
-        postal_code:
-          type: string
-          maxLength: 128
-        country_code:
+          description: Used to formally identify the recipient and when sending fedwires.
+          maxLength: 140
+        routing_number:
           type: string
           minLength: 1
-          maxLength: 2
+          maxLength: 9
+        account_number:
+          type: string
+          minLength: 1
+          maxLength: 17
+        address:
+          $ref: '#/components/schemas/FedwireRecipientAddressRequest'
+        fedwire_destination:
+          type: object
+          properties:
+            name:
+              type: string
+              example: J. Doe
+            routing_number:
+              type: string
+              example: '021000021'
+            account_number:
+              type: string
+              example: '12345678912345678'
       required:
-      - street_address
+      - account_number
+      - address
+      - name
+      - routing_number
       x-stoplight:
-        id: jpxphmdao13bd
-    PaginatedWireRecipientList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/WireRecipient'
-      x-stoplight:
-        id: helxd3oqo981w
+        id: ifvybcisydbkd
     WireRecipient:
       type: object
       description: 'This serializer supports backwards compatibility for the WireRecipientViewSet,
@@ -355,61 +343,33 @@ components:
           description: An error response detailing the field and the nature of the error.
       x-stoplight:
         id: ywbohhxwqjqj3
-    WireRecipientRequest:
-      type: object
-      description: 'This serializer supports backwards compatibility for the WireRecipientViewSet,
-
-        which is deprecated and should be avoided in favor of RecipientViewSet.
-
-        WireRecipient was created before we''d had a more general Recipient concept.'
-      properties:
-        name:
-          type: string
-          minLength: 1
-          description: Used to formally identify the recipient and when sending fedwires.
-          maxLength: 140
-        routing_number:
-          type: string
-          minLength: 1
-          maxLength: 9
-        account_number:
-          type: string
-          minLength: 1
-          maxLength: 17
-        address:
-          $ref: '#/components/schemas/FedwireRecipientAddressRequest'
-        fedwire_destination:
-          type: object
-          properties:
-            name:
-              type: string
-              example: J. Doe
-            routing_number:
-              type: string
-              example: '021000021'
-            account_number:
-              type: string
-              example: '12345678912345678'
-      required:
-      - account_number
-      - address
-      - name
-      - routing_number
-      x-stoplight:
-        id: ifvybcisydbkd
-    NotFoundError:
+    FedwireRecipientAddressRequest:
       type: object
       properties:
-        id:
+        street_address:
           type: string
-          default: not_found
-        message:
+          minLength: 1
+          maxLength: 35
+        street_address_2:
           type: string
-          description: An error response detailing the nature of the error.
+          maxLength: 35
+        city:
+          type: string
+          maxLength: 128
+        region_code:
+          type: string
+          maxLength: 128
+        postal_code:
+          type: string
+          maxLength: 128
+        country_code:
+          type: string
+          minLength: 1
+          maxLength: 2
       required:
-      - message
+      - street_address
       x-stoplight:
-        id: qazjpvfdteybw
+        id: jpxphmdao13bd
     FedwireRecipientAddress:
       type: object
       properties:
@@ -480,6 +440,46 @@ components:
       - routing_number
       x-stoplight:
         id: sq5docs92xmmk
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    PaginatedWireRecipientList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/WireRecipient'
+      x-stoplight:
+        id: helxd3oqo981w
   securitySchemes:
     oauth2:
       type: oauth2

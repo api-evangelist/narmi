@@ -3602,6 +3602,14 @@ paths:
         id: hek8vudvuqvcr
 components:
   schemas:
+    UploadFileError:
+      type: object
+      properties:
+        reason:
+          type: string
+          default: File destination does not exist or is invalid.
+      x-stoplight:
+        id: tgjembz2s6zp9
     ThreadsResponse:
       type: object
       properties:
@@ -3630,15 +3638,21 @@ components:
       - number
       x-stoplight:
         id: vm2qlwcduqdwc
-    MessageResponse:
-      type: object
-      properties:
-        message:
-          $ref: '#/components/schemas/Message'
-      required:
-      - message
+    NullEnum:
+      enum:
+      - null
       x-stoplight:
-        id: bzlavp0n5ailq
+        id: 2493tmzk9db0y
+    StateFf1Enum:
+      enum:
+      - closed
+      - open
+      type: string
+      description: '* `closed` - closed
+
+        * `open` - open'
+      x-stoplight:
+        id: cyhzi9ykogwtj
     ThreadUploadPolicyCreateDocRequest:
       type: object
       properties:
@@ -3655,6 +3669,20 @@ components:
       - type
       x-stoplight:
         id: 2d9racy3tadfr
+    ThreadUpdateRequest:
+      type: object
+      properties:
+        state:
+          allOf:
+          - $ref: '#/components/schemas/StateFf1Enum'
+          description: 'Indicates whether the thread has been closed or remains open.
+
+
+            * `closed` - closed
+
+            * `open` - open'
+      x-stoplight:
+        id: ech1lwv4agqdr
     OrgRoleEnum:
       enum:
       - Account Holder
@@ -3692,93 +3720,6 @@ components:
       - street_address
       x-stoplight:
         id: xatva1xwqb0yk
-    MessageCreateRequest:
-      type: object
-      properties:
-        body:
-          type: string
-          minLength: 1
-          description: Text content of the message; should not be specified with the `file` parameter.
-        file:
-          allOf:
-          - $ref: '#/components/schemas/ThreadFileRequest'
-          writeOnly: true
-          description: File to upload to this message. Must include both 'url' and 'signature'.
-        internal_note:
-          type: boolean
-          default: false
-          description: Text which should only be visible to FI staff members.
-      x-stoplight:
-        id: eeyyxym9jkngz
-    UploadFileError:
-      type: object
-      properties:
-        reason:
-          type: string
-          default: File destination does not exist or is invalid.
-      x-stoplight:
-        id: tgjembz2s6zp9
-    MessagesResponse:
-      type: object
-      properties:
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Message'
-      required:
-      - messages
-      x-stoplight:
-        id: yvxkjur0cwx0g
-    MessageCreate:
-      type: object
-      properties:
-        body:
-          type: string
-          description: Text content of the message; should not be specified with the `file` parameter.
-        internal_note:
-          type: boolean
-          default: false
-          description: Text which should only be visible to FI staff members.
-      x-stoplight:
-        id: 351zf3p9zkh0g
-    Thread:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-        subject:
-          type: string
-          readOnly: true
-          description: Subject of the thread.
-        state:
-          allOf:
-          - $ref: '#/components/schemas/StateFf1Enum'
-          description: 'Indicates whether the thread has been closed or remains open.
-
-
-            * `closed` - closed
-
-            * `open` - open'
-          readOnly: true
-        message_preview:
-          type: string
-          description: Text content of the initial message for this thread.
-          readOnly: true
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-        is_read:
-          type: boolean
-          readOnly: true
-      x-stoplight:
-        id: dq2x9gtnrpagg
     Message:
       type: object
       properties:
@@ -3822,59 +3763,6 @@ components:
           description: Raw S3 URL of the file attachment, if present. To access the file content, use the presigned secure URL returned in the `body` field.
       x-stoplight:
         id: emav3bmztctyj
-    ThreadCreateRequest:
-      type: object
-      properties:
-        subject:
-          type: string
-          minLength: 1
-          description: Subject of the thread.
-          maxLength: 100
-        body:
-          type: string
-          minLength: 1
-          description: Text content of the initial message for this thread.
-        file:
-          allOf:
-          - $ref: '#/components/schemas/ThreadFileRequest'
-          description: File to upload to this thread. Must include both 'url' and 'signature'.
-        team_uuid:
-          type: string
-          minLength: 1
-          description: Identifier for relevant team.
-      required:
-      - subject
-      x-stoplight:
-        id: ygl8gsxdgfoq9
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: qazjpvfdteybw
-    BusinessPermissionsField:
-      type: object
-      properties:
-        model_str:
-          type: string
-        operation:
-          type: string
-        uuid:
-          type: string
-          format: uuid
-      required:
-      - model_str
-      - operation
-      - uuid
-      x-stoplight:
-        id: rhmxqgl8o5k8x
     IncomeSource:
       type: object
       properties:
@@ -3905,16 +3793,59 @@ components:
       - income_type
       x-stoplight:
         id: cf5t7cvffrpat
-    StateFf1Enum:
-      enum:
-      - closed
-      - open
-      type: string
-      description: '* `closed` - closed
-
-        * `open` - open'
+    MessagesResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+      required:
+      - messages
       x-stoplight:
-        id: cyhzi9ykogwtj
+        id: yvxkjur0cwx0g
+    InvalidRequestError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid_request_error
+        message:
+          type: object
+          additionalProperties: {}
+          default:
+            field_name: Error description.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: aelrw6rc7wiph
+    MessageCreate:
+      type: object
+      properties:
+        body:
+          type: string
+          description: Text content of the message; should not be specified with the `file` parameter.
+        internal_note:
+          type: boolean
+          default: false
+          description: Text which should only be visible to FI staff members.
+      x-stoplight:
+        id: 351zf3p9zkh0g
+    UserCategory4f2Enum:
+      enum:
+      - personal
+      - business
+      type: string
+      x-stoplight:
+        id: vmvxka9zperhg
+    MessageCreateResponse:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/MessageCreate'
+      required:
+      - message
+      x-stoplight:
+        id: jthkudazxuxns
     ThreadResponse:
       type: object
       properties:
@@ -3924,6 +3855,15 @@ components:
       - thread
       x-stoplight:
         id: 7di4huw8j7ria
+    MessageResponse:
+      type: object
+      properties:
+        message:
+          $ref: '#/components/schemas/Message'
+      required:
+      - message
+      x-stoplight:
+        id: bzlavp0n5ailq
     ThreadUploadPolicyResponse:
       type: object
       properties:
@@ -3963,9 +3903,30 @@ components:
       - x-amz-signature
       x-stoplight:
         id: kdb9fsldtqsae
-    ThreadUpdateRequest:
+    NotFoundError:
       type: object
       properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    Thread:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        subject:
+          type: string
+          readOnly: true
+          description: Subject of the thread.
         state:
           allOf:
           - $ref: '#/components/schemas/StateFf1Enum'
@@ -3975,63 +3936,24 @@ components:
             * `closed` - closed
 
             * `open` - open'
-      x-stoplight:
-        id: ech1lwv4agqdr
-    MessageCreateResponse:
-      type: object
-      properties:
-        message:
-          $ref: '#/components/schemas/MessageCreate'
-      required:
-      - message
-      x-stoplight:
-        id: jthkudazxuxns
-    ThreadFileRequest:
-      type: object
-      description: Serializer for file uploads to threads that validates both URL and signature.
-      properties:
-        url:
+          readOnly: true
+        message_preview:
           type: string
-          format: uri
-          minLength: 1
-          pattern: ^https://production-sandbox-uploads\.s3(?:[.-][a-z0-9-]+)?\.amazonaws\.com/original/support/[A-Za-z0-9]{24,}/
-        signature:
+          description: Text content of the initial message for this thread.
+          readOnly: true
+        created_at:
           type: string
-          minLength: 1
-      required:
-      - signature
-      - url
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        is_read:
+          type: boolean
+          readOnly: true
       x-stoplight:
-        id: tl2ecehruzowj
-    IncomeTypeEnum:
-      enum:
-      - employed
-      - part_time
-      - not_employed
-      - self_employed
-      - retirement
-      - other
-      type: string
-      description: '* `employed` - Employed
-
-        * `part_time` - Part time
-
-        * `not_employed` - Not employed
-
-        * `self_employed` - Self employed
-
-        * `retirement` - Retirement
-
-        * `other` - Other'
-      x-stoplight:
-        id: vlxoho9hsykzd
-    UserCategory4f2Enum:
-      enum:
-      - personal
-      - business
-      type: string
-      x-stoplight:
-        id: vmvxka9zperhg
+        id: dq2x9gtnrpagg
     Profile:
       type: object
       description: ''
@@ -4391,25 +4313,103 @@ components:
           description: The OIDC provider associated with the user's current session, if any.
       x-stoplight:
         id: g4tqfglwr85hp
-    NullEnum:
-      enum:
-      - null
-      x-stoplight:
-        id: 2493tmzk9db0y
-    InvalidRequestError:
+    ThreadCreateRequest:
       type: object
       properties:
-        id:
+        subject:
           type: string
-          default: invalid_request_error
-        message:
-          type: object
-          additionalProperties: {}
-          default:
-            field_name: Error description.
-          description: An error response detailing the field and the nature of the error.
+          minLength: 1
+          description: Subject of the thread.
+          maxLength: 100
+        body:
+          type: string
+          minLength: 1
+          description: Text content of the initial message for this thread.
+        file:
+          allOf:
+          - $ref: '#/components/schemas/ThreadFileRequest'
+          description: File to upload to this thread. Must include both 'url' and 'signature'.
+        team_uuid:
+          type: string
+          minLength: 1
+          description: Identifier for relevant team.
+      required:
+      - subject
       x-stoplight:
-        id: aelrw6rc7wiph
+        id: ygl8gsxdgfoq9
+    BusinessPermissionsField:
+      type: object
+      properties:
+        model_str:
+          type: string
+        operation:
+          type: string
+        uuid:
+          type: string
+          format: uuid
+      required:
+      - model_str
+      - operation
+      - uuid
+      x-stoplight:
+        id: rhmxqgl8o5k8x
+    MessageCreateRequest:
+      type: object
+      properties:
+        body:
+          type: string
+          minLength: 1
+          description: Text content of the message; should not be specified with the `file` parameter.
+        file:
+          allOf:
+          - $ref: '#/components/schemas/ThreadFileRequest'
+          writeOnly: true
+          description: File to upload to this message. Must include both 'url' and 'signature'.
+        internal_note:
+          type: boolean
+          default: false
+          description: Text which should only be visible to FI staff members.
+      x-stoplight:
+        id: eeyyxym9jkngz
+    IncomeTypeEnum:
+      enum:
+      - employed
+      - part_time
+      - not_employed
+      - self_employed
+      - retirement
+      - other
+      type: string
+      description: '* `employed` - Employed
+
+        * `part_time` - Part time
+
+        * `not_employed` - Not employed
+
+        * `self_employed` - Self employed
+
+        * `retirement` - Retirement
+
+        * `other` - Other'
+      x-stoplight:
+        id: vlxoho9hsykzd
+    ThreadFileRequest:
+      type: object
+      description: Serializer for file uploads to threads that validates both URL and signature.
+      properties:
+        url:
+          type: string
+          format: uri
+          minLength: 1
+          pattern: ^https://production-sandbox-uploads\.s3(?:[.-][a-z0-9-]+)?\.amazonaws\.com/original/support/[A-Za-z0-9]{24,}/
+        signature:
+          type: string
+          minLength: 1
+      required:
+      - signature
+      - url
+      x-stoplight:
+        id: tl2ecehruzowj
   securitySchemes:
     oauth2:
       type: oauth2

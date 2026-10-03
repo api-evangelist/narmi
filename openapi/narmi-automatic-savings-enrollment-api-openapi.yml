@@ -218,19 +218,16 @@ paths:
         id: 2ndeyxhmmhw0h
 components:
   schemas:
-    AutomaticSavingsEnrollment:
-      type: object
-      properties:
-        source_account:
-          $ref: '#/components/schemas/Account'
-        destination_account:
-          $ref: '#/components/schemas/Account'
-        automatic_savings_eligible:
-          type: boolean
-        automatic_savings_active:
-          type: boolean
+    SourceEnum:
+      enum:
+      - institution
+      - external
+      type: string
+      description: '* `institution` - institution
+
+        * `external` - external'
       x-stoplight:
-        id: qd8r4jdkwdvpe
+        id: z2qbah6dv7xog
     AutomaticSavingsEnrollmentDeserializerRequest:
       type: object
       properties:
@@ -245,6 +242,16 @@ components:
       - source_account_uuid
       x-stoplight:
         id: x1brbxl2libjx
+    State973Enum:
+      enum:
+      - active
+      - inactive
+      - pending
+      - verified
+      - removed
+      type: string
+      x-stoplight:
+        id: sx7oslmzp4bem
     Account:
       type: object
       description: A representation of either an account or an external account.
@@ -379,16 +386,6 @@ components:
       - balances
       x-stoplight:
         id: wknvwcjc17vw6
-    State973Enum:
-      enum:
-      - active
-      - inactive
-      - pending
-      - verified
-      - removed
-      type: string
-      x-stoplight:
-        id: sx7oslmzp4bem
     AccountBalance:
       type: object
       description: A representation of an account with respect to its balance totals.
@@ -441,16 +438,19 @@ components:
           description: Date when the account was last updated.
       x-stoplight:
         id: sswt197xsfwzw
-    SourceEnum:
-      enum:
-      - institution
-      - external
-      type: string
-      description: '* `institution` - institution
-
-        * `external` - external'
+    AutomaticSavingsEnrollment:
+      type: object
+      properties:
+        source_account:
+          $ref: '#/components/schemas/Account'
+        destination_account:
+          $ref: '#/components/schemas/Account'
+        automatic_savings_eligible:
+          type: boolean
+        automatic_savings_active:
+          type: boolean
       x-stoplight:
-        id: z2qbah6dv7xog
+        id: qd8r4jdkwdvpe
     Product:
       type: object
       properties:

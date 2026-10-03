@@ -1260,169 +1260,46 @@ paths:
         id: iesdurzqprmmm
 components:
   schemas:
-    CardTransactionsByMonth:
-      type: object
-      properties:
-        month:
-          type: string
-        total:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
-        transaction_count:
-          type: integer
-        transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecurringTransaction'
-      required:
-      - month
-      - total
-      - transaction_count
-      - transactions
-      x-stoplight:
-        id: terphibvp3zyp
-    PaginatedCardInfoList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardInfo'
-      x-stoplight:
-        id: l0ulmogdgptfu
-    Card:
-      type: object
-      properties:
-        state:
-          allOf:
-          - $ref: '#/components/schemas/CardStateEnum'
-          description: 'Indicates whether the card is functional.
-
-
-            * `active` - active
-
-            * `inactive` - inactive'
-        id:
-          type: string
-          readOnly: true
-          description: An identifier for the card object.
-        core_user_id:
-          type: string
-          readOnly: true
-          description: String uniquely identifying a user or user's primary account on the banking core.
-        bin:
-          type: string
-          readOnly: true
-          description: Bank Identification Number (BIN), the first 6 to 8 digits of the Primary Account Number (PAN)
-        last_four_digits:
-          type: string
-          readOnly: true
-          description: Last four digits of the card number.
-        svg:
-          type: string
-          readOnly: true
-          description: An image of the card or a placeholder image.
-        is_card_number_on_front:
-          type: string
-          readOnly: true
-          description: '"True" or "False"'
-        card_text_color:
-          type: string
-          readOnly: true
-          description: Hex value representing card text color.
-      required:
-      - state
-      x-stoplight:
-        id: bsnjpqmciiqgl
-    MissingCardRequest:
-      type: object
-      properties:
-        reason:
-          $ref: '#/components/schemas/ReasonEnum'
-      required:
-      - reason
-      x-stoplight:
-        id: htvopglvr495y
-    CardStateEnum:
+    CardSubscriptionsStateEnum:
       enum:
-      - active
-      - inactive
+      - current
+      - new
+      - cancelled
       type: string
-      description: '* `active` - active
+      description: '* `current` - current
 
-        * `inactive` - inactive'
+        * `new` - new
+
+        * `cancelled` - cancelled'
       x-stoplight:
-        id: or81aivklcwgb
-    CommonCard:
-      type: object
-      description: integrations.cards.common.Card
-      properties:
-        id:
-          type: string
-          description: An identifier for the card object.
-        core_user_id:
-          type: string
-          description: String uniquely identifying a user or user's primary account on the banking core
-        last_four_digits:
-          type: string
-          description: Last four digits of the card's account number.
-        state:
-          allOf:
-          - $ref: '#/components/schemas/StateBd5Enum'
-          description: 'Indicates whether the card is functional, and if not for what reason.
+        id: hcp1u8tvpuntl
+    RecurrenceFrequencyEnum:
+      enum:
+      - daily
+      - semi-monthly
+      - monthly
+      - bimonthly
+      - quarterly
+      - biannually
+      - annually
+      type: string
+      description: '* `daily` - daily
 
+        * `semi-monthly` - semi-monthly
 
-            * `locked` - locked
+        * `monthly` - monthly
 
-            * `normal` - normal
+        * `bimonthly` - bimonthly
 
-            * `shipped` - shipped
+        * `quarterly` - quarterly
 
-            * `cancelled` - cancelled
+        * `biannually` - biannually
 
-            * `damaged` - damaged'
-          readOnly: true
-        bin:
-          type: string
-          description: Bank Identification Number (BIN) is the first 6 to 8 digits of the Primary Account Number (PAN).
-        network:
-          type: string
-          description: The credit card processing network, such as Visa, Discover, etc.
-        name:
-          type: string
-          description: The card product's name.
-        card_type:
-          type: string
-          description: The card's type, debit, credit or atm.
-      required:
-      - bin
-      - card_type
-      - core_user_id
-      - id
-      - last_four_digits
-      - name
-      - network
+        * `annually` - annually
+
+        * `` - '
       x-stoplight:
-        id: chf14nszhkbex
+        id: hnoqaesl0wqdw
     CardInfo:
       type: object
       description: integrations.cards.api_messages.CardInfo
@@ -1480,130 +1357,6 @@ components:
       - name
       x-stoplight:
         id: odrdkdiznuohw
-    Address:
-      type: object
-      properties:
-        street_address:
-          type: string
-        street_address_2:
-          type: string
-        city:
-          type: string
-        region_code:
-          type: string
-          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
-        postal_code:
-          type: string
-          description: Typically a five-digit numeric US ZIP Code.
-        country_code:
-          type: string
-          description: An ISO 3166-1 alpha-2 country code.
-        type:
-          type: string
-      required:
-      - city
-      - postal_code
-      - region_code
-      - street_address
-      x-stoplight:
-        id: xatva1xwqb0yk
-    StateBd5Enum:
-      enum:
-      - locked
-      - normal
-      - shipped
-      - cancelled
-      - damaged
-      type: string
-      description: '* `locked` - locked
-
-        * `normal` - normal
-
-        * `shipped` - shipped
-
-        * `cancelled` - cancelled
-
-        * `damaged` - damaged'
-      x-stoplight:
-        id: xhbwau39q9oko
-    RecurrenceFrequencyEnum:
-      enum:
-      - daily
-      - semi-monthly
-      - monthly
-      - bimonthly
-      - quarterly
-      - biannually
-      - annually
-      type: string
-      description: '* `daily` - daily
-
-        * `semi-monthly` - semi-monthly
-
-        * `monthly` - monthly
-
-        * `bimonthly` - bimonthly
-
-        * `quarterly` - quarterly
-
-        * `biannually` - biannually
-
-        * `annually` - annually
-
-        * `` - '
-      x-stoplight:
-        id: hnoqaesl0wqdw
-    CardTravelNoteRequest:
-      type: object
-      description: For getting and setting integrations.cards.api_messages.CardTravelNote
-      properties:
-        travel_destination_codes:
-          type: array
-          items:
-            $ref: '#/components/schemas/TravelDestinationCodesEnum'
-          writeOnly: true
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
-      required:
-      - end_date
-      - start_date
-      - travel_destination_codes
-      x-stoplight:
-        id: a3bgtpnfmeevl
-    CardLimits:
-      type: object
-      description: For getting and setting card limits
-      properties:
-        atm_limit:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: Current ATM withdrawal limit.
-          type: integer
-        pos_limit:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: Current spending limit.
-          type: integer
-        has_atm_limit_increased_today:
-          type: boolean
-          default: false
-          description: ATM withdrawal limit was increased today.
-        has_pos_limit_increased_today:
-          type: boolean
-          default: false
-          description: Spending limit was increased today.
-        can_user_request_limit_increase:
-          type: boolean
-          default: false
-          description: Is the user allowed to request a limit increase?
-      x-stoplight:
-        id: 0uh0y3w9wzzqe
     SensitiveCardInfo:
       type: object
       properties:
@@ -1623,21 +1376,22 @@ components:
       - pan
       x-stoplight:
         id: y3vcpgnlzduvh
-    CardTravelNote:
+    CardRequest:
       type: object
-      description: For getting and setting integrations.cards.api_messages.CardTravelNote
       properties:
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
+        state:
+          allOf:
+          - $ref: '#/components/schemas/CardStateEnum'
+          description: 'Indicates whether the card is functional.
+
+
+            * `active` - active
+
+            * `inactive` - inactive'
       required:
-      - end_date
-      - start_date
+      - state
       x-stoplight:
-        id: llgatlkhvo1zf
+        id: lvdyknsgnuyu5
     CardSubscriptions:
       type: object
       properties:
@@ -1673,22 +1427,156 @@ components:
       - state
       x-stoplight:
         id: tzfuauxjtqn3q
-    CardSubscriptionsAndTransactions:
+    CardLimits:
+      type: object
+      description: For getting and setting card limits
+      properties:
+        atm_limit:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: Current ATM withdrawal limit.
+          type: integer
+        pos_limit:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: Current spending limit.
+          type: integer
+        has_atm_limit_increased_today:
+          type: boolean
+          default: false
+          description: ATM withdrawal limit was increased today.
+        has_pos_limit_increased_today:
+          type: boolean
+          default: false
+          description: Spending limit was increased today.
+        can_user_request_limit_increase:
+          type: boolean
+          default: false
+          description: Is the user allowed to request a limit increase?
+      x-stoplight:
+        id: 0uh0y3w9wzzqe
+    CommonCard:
+      type: object
+      description: integrations.cards.common.Card
+      properties:
+        id:
+          type: string
+          description: An identifier for the card object.
+        core_user_id:
+          type: string
+          description: String uniquely identifying a user or user's primary account on the banking core
+        last_four_digits:
+          type: string
+          description: Last four digits of the card's account number.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/StateBd5Enum'
+          description: 'Indicates whether the card is functional, and if not for what reason.
+
+
+            * `locked` - locked
+
+            * `normal` - normal
+
+            * `shipped` - shipped
+
+            * `cancelled` - cancelled
+
+            * `damaged` - damaged'
+          readOnly: true
+        bin:
+          type: string
+          description: Bank Identification Number (BIN) is the first 6 to 8 digits of the Primary Account Number (PAN).
+        network:
+          type: string
+          description: The credit card processing network, such as Visa, Discover, etc.
+        name:
+          type: string
+          description: The card product's name.
+        card_type:
+          type: string
+          description: The card's type, debit, credit or atm.
+      required:
+      - bin
+      - card_type
+      - core_user_id
+      - id
+      - last_four_digits
+      - name
+      - network
+      x-stoplight:
+        id: chf14nszhkbex
+    PaginatedCardInfoList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardInfo'
+      x-stoplight:
+        id: l0ulmogdgptfu
+    Address:
       type: object
       properties:
-        monthly_transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardTransactionsByMonth'
-        subscriptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardSubscriptions'
+        street_address:
+          type: string
+        street_address_2:
+          type: string
+        city:
+          type: string
+        region_code:
+          type: string
+          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
+        postal_code:
+          type: string
+          description: Typically a five-digit numeric US ZIP Code.
+        country_code:
+          type: string
+          description: An ISO 3166-1 alpha-2 country code.
+        type:
+          type: string
       required:
-      - monthly_transactions
-      - subscriptions
+      - city
+      - postal_code
+      - region_code
+      - street_address
       x-stoplight:
-        id: gri4ifgvdrsvw
+        id: xatva1xwqb0yk
+    CardTravelNote:
+      type: object
+      description: For getting and setting integrations.cards.api_messages.CardTravelNote
+      properties:
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+      required:
+      - end_date
+      - start_date
+      x-stoplight:
+        id: llgatlkhvo1zf
     RecurringTransaction:
       type: object
       properties:
@@ -1717,11 +1605,90 @@ components:
       - transaction_date
       x-stoplight:
         id: ldemqix6pa0tc
-    BlankEnum:
-      enum:
-      - ''
+    CardShippingInfo:
+      type: object
+      description: integrations.cards.api_messages.Shipping
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        method:
+          type: string
+        shipped_on:
+          type:
+          - string
+          - 'null'
+          format: date
+      required:
+      - address
+      - method
       x-stoplight:
-        id: kjdrahkcokejl
+        id: d3dtn5mecxm9n
+    Card:
+      type: object
+      properties:
+        state:
+          allOf:
+          - $ref: '#/components/schemas/CardStateEnum'
+          description: 'Indicates whether the card is functional.
+
+
+            * `active` - active
+
+            * `inactive` - inactive'
+        id:
+          type: string
+          readOnly: true
+          description: An identifier for the card object.
+        core_user_id:
+          type: string
+          readOnly: true
+          description: String uniquely identifying a user or user's primary account on the banking core.
+        bin:
+          type: string
+          readOnly: true
+          description: Bank Identification Number (BIN), the first 6 to 8 digits of the Primary Account Number (PAN)
+        last_four_digits:
+          type: string
+          readOnly: true
+          description: Last four digits of the card number.
+        svg:
+          type: string
+          readOnly: true
+          description: An image of the card or a placeholder image.
+        is_card_number_on_front:
+          type: string
+          readOnly: true
+          description: '"True" or "False"'
+        card_text_color:
+          type: string
+          readOnly: true
+          description: Hex value representing card text color.
+      required:
+      - state
+      x-stoplight:
+        id: bsnjpqmciiqgl
+    CardTransactionsByMonth:
+      type: object
+      properties:
+        month:
+          type: string
+        total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+        transaction_count:
+          type: integer
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecurringTransaction'
+      required:
+      - month
+      - total
+      - transaction_count
+      - transactions
+      x-stoplight:
+        id: terphibvp3zyp
     TravelDestinationCodesEnum:
       enum:
       - AW
@@ -2473,75 +2440,43 @@ components:
         * `ZW` - ZW'
       x-stoplight:
         id: hbdgoazuxfyfn
-    ReasonEnum:
-      enum:
-      - damaged
-      - lost
-      - stolen
-      type: string
-      description: '* `damaged` - damaged
-
-        * `lost` - lost
-
-        * `stolen` - stolen'
-      x-stoplight:
-        id: dnkxb7jc76rkm
-    LegacyUpdateCardResponse:
+    CardTravelNoteRequest:
       type: object
+      description: For getting and setting integrations.cards.api_messages.CardTravelNote
       properties:
-        card:
-          allOf:
-          - $ref: '#/components/schemas/Card'
-          readOnly: true
-      x-stoplight:
-        id: uc3qkcb24dtla
-    CardShippingInfo:
-      type: object
-      description: integrations.cards.api_messages.Shipping
-      properties:
-        address:
-          $ref: '#/components/schemas/Address'
-        method:
+        travel_destination_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/TravelDestinationCodesEnum'
+          writeOnly: true
+        start_date:
           type: string
-        shipped_on:
-          type:
-          - string
-          - 'null'
+          format: date
+        end_date:
+          type: string
           format: date
       required:
-      - address
-      - method
+      - end_date
+      - start_date
+      - travel_destination_codes
       x-stoplight:
-        id: d3dtn5mecxm9n
-    CardRequest:
+        id: a3bgtpnfmeevl
+    CardSubscriptionsAndTransactions:
       type: object
       properties:
-        state:
-          allOf:
-          - $ref: '#/components/schemas/CardStateEnum'
-          description: 'Indicates whether the card is functional.
-
-
-            * `active` - active
-
-            * `inactive` - inactive'
+        monthly_transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardTransactionsByMonth'
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardSubscriptions'
       required:
-      - state
+      - monthly_transactions
+      - subscriptions
       x-stoplight:
-        id: lvdyknsgnuyu5
-    CardSubscriptionsStateEnum:
-      enum:
-      - current
-      - new
-      - cancelled
-      type: string
-      description: '* `current` - current
-
-        * `new` - new
-
-        * `cancelled` - cancelled'
-      x-stoplight:
-        id: hcp1u8tvpuntl
+        id: gri4ifgvdrsvw
     PaginatedCardTravelNoteList:
       type: object
       required:
@@ -2569,6 +2504,71 @@ components:
             $ref: '#/components/schemas/CardTravelNote'
       x-stoplight:
         id: cp4oim92gdv1d
+    CardStateEnum:
+      enum:
+      - active
+      - inactive
+      type: string
+      description: '* `active` - active
+
+        * `inactive` - inactive'
+      x-stoplight:
+        id: or81aivklcwgb
+    StateBd5Enum:
+      enum:
+      - locked
+      - normal
+      - shipped
+      - cancelled
+      - damaged
+      type: string
+      description: '* `locked` - locked
+
+        * `normal` - normal
+
+        * `shipped` - shipped
+
+        * `cancelled` - cancelled
+
+        * `damaged` - damaged'
+      x-stoplight:
+        id: xhbwau39q9oko
+    MissingCardRequest:
+      type: object
+      properties:
+        reason:
+          $ref: '#/components/schemas/ReasonEnum'
+      required:
+      - reason
+      x-stoplight:
+        id: htvopglvr495y
+    ReasonEnum:
+      enum:
+      - damaged
+      - lost
+      - stolen
+      type: string
+      description: '* `damaged` - damaged
+
+        * `lost` - lost
+
+        * `stolen` - stolen'
+      x-stoplight:
+        id: dnkxb7jc76rkm
+    LegacyUpdateCardResponse:
+      type: object
+      properties:
+        card:
+          allOf:
+          - $ref: '#/components/schemas/Card'
+          readOnly: true
+      x-stoplight:
+        id: uc3qkcb24dtla
+    BlankEnum:
+      enum:
+      - ''
+      x-stoplight:
+        id: kjdrahkcokejl
   securitySchemes:
     oauth2:
       type: oauth2

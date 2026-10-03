@@ -74,19 +74,16 @@ components:
           description: An error response detailing the field and the nature of the error.
       x-stoplight:
         id: ywbohhxwqjqj3
-    AccountTypeEnum:
+    AccountPurposeEnum:
       enum:
-      - checking
-      - savings
-      - loan
+      - personal
+      - business
       type: string
-      description: '* `checking` - Checking
+      description: '* `personal` - Personal
 
-        * `savings` - Savings
-
-        * `loan` - Loan'
+        * `business` - Business'
       x-stoplight:
-        id: ds0e59zxe4i8q
+        id: ccf1svqamabvv
     ACHDetails:
       type: object
       description: 'In addition to the standard ACHDetails fields you''d expect for a create/updated request,
@@ -125,16 +122,19 @@ components:
       - routing_number
       x-stoplight:
         id: rvctfxe73rl2e
-    AccountPurposeEnum:
+    AccountTypeEnum:
       enum:
-      - personal
-      - business
+      - checking
+      - savings
+      - loan
       type: string
-      description: '* `personal` - Personal
+      description: '* `checking` - Checking
 
-        * `business` - Business'
+        * `savings` - Savings
+
+        * `loan` - Loan'
       x-stoplight:
-        id: ccf1svqamabvv
+        id: ds0e59zxe4i8q
   securitySchemes:
     oauth2:
       type: oauth2

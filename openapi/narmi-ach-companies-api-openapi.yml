@@ -63,18 +63,6 @@ paths:
         id: 9lfgrnxaltxtj
 components:
   schemas:
-    PermissionDeniedError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: api_error
-        message:
-          type: string
-          default: You do not have permission to perform this action.
-          description: An error response detailing the field and the nature of the error.
-      x-stoplight:
-        id: ywbohhxwqjqj3
     ACHCompany:
       type: object
       properties:
@@ -130,6 +118,18 @@ components:
             $ref: '#/components/schemas/ACHCompany'
       x-stoplight:
         id: lsm498fpc94po
+    PermissionDeniedError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: You do not have permission to perform this action.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: ywbohhxwqjqj3
   securitySchemes:
     oauth2:
       type: oauth2

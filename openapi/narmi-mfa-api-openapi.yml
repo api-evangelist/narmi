@@ -224,6 +224,35 @@ paths:
         id: 1touz0r3uuwrb
 components:
   schemas:
+    MFA:
+      type: object
+      description: Serializer for two-factor authorization devices.
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        type:
+          allOf:
+          - $ref: '#/components/schemas/MFATypeEnum'
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+          description: This field will be set to the user's phone number or email for the respective device types, otherwise, it will be blank.
+      x-stoplight:
+        id: uasyxxgs07boc
+    RetrieveSudoResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          readOnly: true
+          default: true
+      x-stoplight:
+        id: ecxgpo7l4spwk
     Device:
       type: object
       description: Serializer for two-factor authorization devices.
@@ -258,48 +287,6 @@ components:
         * `static` - static'
       x-stoplight:
         id: mh44yrg9eexp8
-    CreateSudoErrorResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique code describing the error
-          example: two_factor_authentication_required
-        message:
-          type: string
-          description: Error message detailing what went wrong
-          example: Please enter the code from your second factor device.
-        devices:
-          type: array
-          items:
-            $ref: '#/components/schemas/Device'
-          description: A list of devices that can be used to send an OTP to.
-        device:
-          allOf:
-          - $ref: '#/components/schemas/Device'
-          description: Device which was targetted for the request by the client.
-      required:
-      - device
-      - devices
-      - id
-      - message
-      x-stoplight:
-        id: plbglbg82ol4i
-    CreateSudoRequest:
-      type: object
-      properties:
-        device_id:
-          type: string
-          writeOnly: true
-          minLength: 1
-          example: otp_twilio.models.TwilioSMSDevice/1
-        one_time_password:
-          type: string
-          writeOnly: true
-          minLength: 1
-          example: '123123'
-      x-stoplight:
-        id: cegpkzjxlrdeq
     CreateSudo:
       type: object
       properties:
@@ -309,15 +296,6 @@ components:
           default: sudo mode granted
       x-stoplight:
         id: bfxhys08o2jvk
-    RetrieveSudoResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          readOnly: true
-          default: true
-      x-stoplight:
-        id: ecxgpo7l4spwk
     PaginatedMFAList:
       type: object
       required:
@@ -353,26 +331,48 @@ components:
               type: integer
       x-stoplight:
         id: 7td8zskzbxtfs
-    MFA:
+    CreateSudoRequest:
       type: object
-      description: Serializer for two-factor authorization devices.
+      properties:
+        device_id:
+          type: string
+          writeOnly: true
+          minLength: 1
+          example: otp_twilio.models.TwilioSMSDevice/1
+        one_time_password:
+          type: string
+          writeOnly: true
+          minLength: 1
+          example: '123123'
+      x-stoplight:
+        id: cegpkzjxlrdeq
+    CreateSudoErrorResponse:
+      type: object
       properties:
         id:
           type: string
-          readOnly: true
-        name:
+          description: Unique code describing the error
+          example: two_factor_authentication_required
+        message:
           type: string
-          readOnly: true
-        type:
+          description: Error message detailing what went wrong
+          example: Please enter the code from your second factor device.
+        devices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Device'
+          description: A list of devices that can be used to send an OTP to.
+        device:
           allOf:
-          - $ref: '#/components/schemas/MFATypeEnum'
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
-          description: This field will be set to the user's phone number or email for the respective device types, otherwise, it will be blank.
+          - $ref: '#/components/schemas/Device'
+          description: Device which was targetted for the request by the client.
+      required:
+      - device
+      - devices
+      - id
+      - message
       x-stoplight:
-        id: uasyxxgs07boc
+        id: plbglbg82ol4i
   securitySchemes:
     oauth2:
       type: oauth2

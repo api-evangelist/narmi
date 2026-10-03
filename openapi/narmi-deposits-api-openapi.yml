@@ -251,6 +251,58 @@ components:
       - code
       x-stoplight:
         id: cqk62uhcqgodx
+    ObjectNotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: Not found.
+      x-stoplight:
+        id: z4yx0oczlqjyf
+    PermissionDeniedError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: You do not have permission to perform this action.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: ywbohhxwqjqj3
+    CreateDepositRequestRequest:
+      type: object
+      properties:
+        ignore_warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorRequest'
+          writeOnly: true
+          description: Warning codes to be suppressed during call.
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        front:
+          type: string
+          format: binary
+          description: Base64 encoded image of the front of the check.
+        back:
+          type: string
+          format: binary
+          description: Base64 encoded image of the back of the check.
+      required:
+      - amount
+      - back
+      - front
+      x-stoplight:
+        id: yld7zetvdowyw
     PageNumberPagination:
       type: object
       properties:
@@ -271,18 +323,71 @@ components:
       - previous
       x-stoplight:
         id: t59wt6qqevd5i
-    PermissionDeniedError:
+    DepositResponse:
+      type: object
+      properties:
+        deposit:
+          $ref: '#/components/schemas/Deposit'
+      required:
+      - deposit
+      x-stoplight:
+        id: ihfeh7htvt8ck
+    CheckDepositError:
       type: object
       properties:
         id:
           type: string
-          default: api_error
+          default: check_deposit_error
         message:
           type: string
-          default: You do not have permission to perform this action.
+          default: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: rlxbfeqe3p2v2
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    DepositsResponse:
+      type: object
+      properties:
+        deposits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Deposit'
+        links:
+          $ref: '#/components/schemas/PageNumberPagination'
+        meta:
+          type: object
+          additionalProperties: {}
+      required:
+      - deposits
+      - links
+      - meta
+      x-stoplight:
+        id: jvawrefbkkghx
+    InvalidRequestError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid_request_error
+        message:
+          type: object
+          additionalProperties: {}
+          default:
+            field_name: Error description.
           description: An error response detailing the field and the nature of the error.
       x-stoplight:
-        id: ywbohhxwqjqj3
+        id: aelrw6rc7wiph
     Deposit:
       type: object
       description: Returns data on a successful deposit.
@@ -320,19 +425,6 @@ components:
           description: Back of the check. Typically in base64 image format, e.g. `data:image/jpeg;base64`.
       x-stoplight:
         id: wgqgde6bzmnpj
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: qazjpvfdteybw
     CreateDepositResponse:
       type: object
       properties:
@@ -342,98 +434,6 @@ components:
       - deposit
       x-stoplight:
         id: buhdg27dej8hc
-    DepositResponse:
-      type: object
-      properties:
-        deposit:
-          $ref: '#/components/schemas/Deposit'
-      required:
-      - deposit
-      x-stoplight:
-        id: ihfeh7htvt8ck
-    CheckDepositError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: check_deposit_error
-        message:
-          type: string
-          default: An error response detailing the field and the nature of the error.
-      x-stoplight:
-        id: rlxbfeqe3p2v2
-    ObjectNotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: api_error
-        message:
-          type: string
-          default: Not found.
-      x-stoplight:
-        id: z4yx0oczlqjyf
-    InvalidRequestError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: invalid_request_error
-        message:
-          type: object
-          additionalProperties: {}
-          default:
-            field_name: Error description.
-          description: An error response detailing the field and the nature of the error.
-      x-stoplight:
-        id: aelrw6rc7wiph
-    DepositsResponse:
-      type: object
-      properties:
-        deposits:
-          type: array
-          items:
-            $ref: '#/components/schemas/Deposit'
-        links:
-          $ref: '#/components/schemas/PageNumberPagination'
-        meta:
-          type: object
-          additionalProperties: {}
-      required:
-      - deposits
-      - links
-      - meta
-      x-stoplight:
-        id: jvawrefbkkghx
-    CreateDepositRequestRequest:
-      type: object
-      properties:
-        ignore_warnings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorRequest'
-          writeOnly: true
-          description: Warning codes to be suppressed during call.
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-        front:
-          type: string
-          format: binary
-          description: Base64 encoded image of the front of the check.
-        back:
-          type: string
-          format: binary
-          description: Base64 encoded image of the back of the check.
-      required:
-      - amount
-      - back
-      - front
-      x-stoplight:
-        id: yld7zetvdowyw
   securitySchemes:
     oauth2:
       type: oauth2

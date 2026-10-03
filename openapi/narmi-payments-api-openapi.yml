@@ -175,6 +175,50 @@ components:
       - code
       x-stoplight:
         id: cqk62uhcqgodx
+    BillPaymentStateEnum:
+      type: string
+      enum:
+      - processed
+      - canceled
+      - pending
+      - returned
+      x-stoplight:
+        id: nfluwrqa5rysj
+    PaginatedBillPaymentList:
+      type: object
+      required:
+      - meta
+      - links
+      - payments
+      properties:
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillPayment'
+        links:
+          type: object
+          description: URIs linking to sequential pages of the result.
+          properties:
+            next:
+              type:
+              - string
+              - 'null'
+              format: uri
+              example: https://narmi.example.com/v1/payments?after=400
+            prev:
+              type:
+              - string
+              - 'null'
+              format: uri
+              example: https://narmi.example.com/v1/payments?before=200
+        meta:
+          description: Free-form object, contains total object count.
+          type: object
+          properties:
+            total:
+              type: integer
+      x-stoplight:
+        id: 9en5lvhnoo3yu
     Payment:
       type: object
       properties:
@@ -184,56 +228,6 @@ components:
       - payment
       x-stoplight:
         id: cnircybhdqhxw
-    PaymentCreateDocRequest:
-      type: object
-      properties:
-        payee_id:
-          type: string
-          minLength: 1
-          description: Identifies payment recipient to the payment processor. Can be fetched via the payees endpoints.
-          example: abc123
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-        send_date:
-          type: string
-          format: date
-        expected_arrival_date:
-          type: string
-          format: date
-        type:
-          type: string
-          minLength: 1
-          description: The mode of payment, such as check or email.
-          example: check
-        recurring_rule:
-          type: string
-          minLength: 1
-          description: Cadence of recurring payment, as per the RFC-5545 specification.
-          example: RRULE:FREQ=DAILY;COUNT=1
-        ignore_warnings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ErrorRequest'
-          writeOnly: true
-          description: Warning codes to be suppressed during call.
-          example:
-          - - code: '555'
-              description: Description
-            - code: '920'
-              description: Description
-      required:
-      - amount
-      - expected_arrival_date
-      - payee_id
-      - recurring_rule
-      - send_date
-      - type
-      x-stoplight:
-        id: dy1brabe9nexg
     BillPayment:
       type: object
       properties:
@@ -288,50 +282,15 @@ components:
       - type
       x-stoplight:
         id: 5c2xpcuohb6ih
-    BillPaymentStateEnum:
-      type: string
-      enum:
-      - processed
-      - canceled
-      - pending
-      - returned
-      x-stoplight:
-        id: nfluwrqa5rysj
-    PaginatedBillPaymentList:
+    BillPayDestroy:
       type: object
-      required:
-      - meta
-      - links
-      - payments
       properties:
-        payments:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillPayment'
-        links:
-          type: object
-          description: URIs linking to sequential pages of the result.
-          properties:
-            next:
-              type:
-              - string
-              - 'null'
-              format: uri
-              example: https://narmi.example.com/v1/payments?after=400
-            prev:
-              type:
-              - string
-              - 'null'
-              format: uri
-              example: https://narmi.example.com/v1/payments?before=200
-        meta:
-          description: Free-form object, contains total object count.
-          type: object
-          properties:
-            total:
-              type: integer
+        deleted:
+          type: string
+          readOnly: true
+          default: true
       x-stoplight:
-        id: 9en5lvhnoo3yu
+        id: tzrspxlehskqp
     InvalidRequestError:
       type: object
       properties:
@@ -346,15 +305,56 @@ components:
           description: An error response detailing the field and the nature of the error.
       x-stoplight:
         id: aelrw6rc7wiph
-    BillPayDestroy:
+    PaymentCreateDocRequest:
       type: object
       properties:
-        deleted:
+        payee_id:
           type: string
-          readOnly: true
-          default: true
+          minLength: 1
+          description: Identifies payment recipient to the payment processor. Can be fetched via the payees endpoints.
+          example: abc123
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        send_date:
+          type: string
+          format: date
+        expected_arrival_date:
+          type: string
+          format: date
+        type:
+          type: string
+          minLength: 1
+          description: The mode of payment, such as check or email.
+          example: check
+        recurring_rule:
+          type: string
+          minLength: 1
+          description: Cadence of recurring payment, as per the RFC-5545 specification.
+          example: RRULE:FREQ=DAILY;COUNT=1
+        ignore_warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorRequest'
+          writeOnly: true
+          description: Warning codes to be suppressed during call.
+          example:
+          - - code: '555'
+              description: Description
+            - code: '920'
+              description: Description
+      required:
+      - amount
+      - expected_arrival_date
+      - payee_id
+      - recurring_rule
+      - send_date
+      - type
       x-stoplight:
-        id: tzrspxlehskqp
+        id: dy1brabe9nexg
   securitySchemes:
     oauth2:
       type: oauth2

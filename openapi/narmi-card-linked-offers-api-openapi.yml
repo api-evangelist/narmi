@@ -396,84 +396,6 @@ paths:
         id: kua5wbsfobnao
 components:
   schemas:
-    PurchaseChannelsEnum:
-      enum:
-      - online
-      - in_store
-      type: string
-      description: '* `online` - online
-
-        * `in_store` - in_store'
-      x-stoplight:
-        id: mjmvea9tnh4vq
-    CategoriesEnum:
-      enum:
-      - Arts & Entertainment
-      - Baby, Kids & Toys
-      - Books & Digital Media
-      - Clothing, Shoes & Accessories
-      - Computers, Electronics & Software
-      - Convenience
-      - Gas
-      - Department Stores
-      - Food & Beverage
-      - Health & Beauty
-      - Home & Garden
-      - Miscellaneous
-      - Occasions & Gifts
-      - Pets
-      - Sports & Outdoors
-      - Supplies & Services
-      - Travel
-      - Other
-      type: string
-      description: '* `Arts & Entertainment` - Arts & Entertainment
-
-        * `Baby, Kids & Toys` - Baby, Kids & Toys
-
-        * `Books & Digital Media` - Books & Digital Media
-
-        * `Clothing, Shoes & Accessories` - Clothing, Shoes & Accessories
-
-        * `Computers, Electronics & Software` - Computers, Electronics & Software
-
-        * `Convenience` - Convenience
-
-        * `Gas` - Gas
-
-        * `Department Stores` - Department Stores
-
-        * `Food & Beverage` - Food & Beverage
-
-        * `Health & Beauty` - Health & Beauty
-
-        * `Home & Garden` - Home & Garden
-
-        * `Miscellaneous` - Miscellaneous
-
-        * `Occasions & Gifts` - Occasions & Gifts
-
-        * `Pets` - Pets
-
-        * `Sports & Outdoors` - Sports & Outdoors
-
-        * `Supplies & Services` - Supplies & Services
-
-        * `Travel` - Travel
-
-        * `Other` - Other'
-      x-stoplight:
-        id: hnd0c8ky6kbs8
-    RewardTypeEnum:
-      enum:
-      - flat
-      - percentage
-      type: string
-      description: '* `flat` - flat
-
-        * `percentage` - percentage'
-      x-stoplight:
-        id: wbtxqz7kofhhe
     CardOffer:
       type: object
       description: Serializer for card offers returned by the API.
@@ -572,6 +494,16 @@ components:
       - terms
       x-stoplight:
         id: sfc37b8rofbms
+    RewardTypeEnum:
+      enum:
+      - flat
+      - percentage
+      type: string
+      description: '* `flat` - flat
+
+        * `percentage` - percentage'
+      x-stoplight:
+        id: wbtxqz7kofhhe
     CardOfferEnrollmentStatus:
       type: object
       description: Serializer for enrollment status response
@@ -581,6 +513,64 @@ components:
           readOnly: true
       x-stoplight:
         id: a6dwo7tpb2ghy
+    CategoriesEnum:
+      enum:
+      - Arts & Entertainment
+      - Baby, Kids & Toys
+      - Books & Digital Media
+      - Clothing, Shoes & Accessories
+      - Computers, Electronics & Software
+      - Convenience
+      - Gas
+      - Department Stores
+      - Food & Beverage
+      - Health & Beauty
+      - Home & Garden
+      - Miscellaneous
+      - Occasions & Gifts
+      - Pets
+      - Sports & Outdoors
+      - Supplies & Services
+      - Travel
+      - Other
+      type: string
+      description: '* `Arts & Entertainment` - Arts & Entertainment
+
+        * `Baby, Kids & Toys` - Baby, Kids & Toys
+
+        * `Books & Digital Media` - Books & Digital Media
+
+        * `Clothing, Shoes & Accessories` - Clothing, Shoes & Accessories
+
+        * `Computers, Electronics & Software` - Computers, Electronics & Software
+
+        * `Convenience` - Convenience
+
+        * `Gas` - Gas
+
+        * `Department Stores` - Department Stores
+
+        * `Food & Beverage` - Food & Beverage
+
+        * `Health & Beauty` - Health & Beauty
+
+        * `Home & Garden` - Home & Garden
+
+        * `Miscellaneous` - Miscellaneous
+
+        * `Occasions & Gifts` - Occasions & Gifts
+
+        * `Pets` - Pets
+
+        * `Sports & Outdoors` - Sports & Outdoors
+
+        * `Supplies & Services` - Supplies & Services
+
+        * `Travel` - Travel
+
+        * `Other` - Other'
+      x-stoplight:
+        id: hnd0c8ky6kbs8
     CardOfferAsset:
       type: object
       description: Serializer for card offer assets.
@@ -598,6 +588,16 @@ components:
       - url
       x-stoplight:
         id: rwb5b0hmczudt
+    PurchaseChannelsEnum:
+      enum:
+      - online
+      - in_store
+      type: string
+      description: '* `online` - online
+
+        * `in_store` - in_store'
+      x-stoplight:
+        id: mjmvea9tnh4vq
   securitySchemes:
     oauth2:
       type: oauth2

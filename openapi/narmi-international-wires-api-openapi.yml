@@ -202,37 +202,64 @@ paths:
         id: rjckjhd6e2htv
 components:
   schemas:
-    StateC02Enum:
-      enum:
-      - analyzing
-      - pending
-      - review
-      - processing
-      - processed
-      - rejected
-      - canceled
-      - awaiting_approval
-      - rejected_approval
-      type: string
-      description: '* `analyzing` - Analyzing
-
-        * `pending` - Pending
-
-        * `review` - Review
-
-        * `processing` - Processing
-
-        * `processed` - Processed (in transit)
-
-        * `rejected` - Rejected by staff
-
-        * `canceled` - Canceled
-
-        * `awaiting_approval` - Awaiting dual approval
-
-        * `rejected_approval` - Dual approval rejected'
+    FXQuote:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        amount:
+          type: string
+          readOnly: true
+        specified_currency:
+          type: string
+          readOnly: true
+        converted_currency:
+          type: string
+          readOnly: true
+        settlement_currency:
+          type: string
+          readOnly: true
+        expiration_in_seconds:
+          type: integer
+          readOnly: true
+        rate:
+          type: string
+          readOnly: true
+        converted_amount:
+          type:
+          - string
+          - 'null'
+          readOnly: true
       x-stoplight:
-        id: qbox8yql7ah47
+        id: hodvkt23ysral
+    PaginatedSwiftWireTransactionList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SwiftWireTransaction'
+      x-stoplight:
+        id: z84pr8zubieyv
     GeneralError:
       type: object
       properties:
@@ -314,37 +341,37 @@ components:
       - user
       x-stoplight:
         id: zouzw63lbtog6
-    FXQuote:
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-        amount:
-          type: string
-          readOnly: true
-        specified_currency:
-          type: string
-          readOnly: true
-        converted_currency:
-          type: string
-          readOnly: true
-        settlement_currency:
-          type: string
-          readOnly: true
-        expiration_in_seconds:
-          type: integer
-          readOnly: true
-        rate:
-          type: string
-          readOnly: true
-        converted_amount:
-          type:
-          - string
-          - 'null'
-          readOnly: true
+    StateC02Enum:
+      enum:
+      - analyzing
+      - pending
+      - review
+      - processing
+      - processed
+      - rejected
+      - canceled
+      - awaiting_approval
+      - rejected_approval
+      type: string
+      description: '* `analyzing` - Analyzing
+
+        * `pending` - Pending
+
+        * `review` - Review
+
+        * `processing` - Processing
+
+        * `processed` - Processed (in transit)
+
+        * `rejected` - Rejected by staff
+
+        * `canceled` - Canceled
+
+        * `awaiting_approval` - Awaiting dual approval
+
+        * `rejected_approval` - Dual approval rejected'
       x-stoplight:
-        id: hodvkt23ysral
+        id: qbox8yql7ah47
     SwiftWireTransactionRequest:
       type: object
       properties:
@@ -403,33 +430,6 @@ components:
       - user
       x-stoplight:
         id: cd5gaaqyl79ov
-    PaginatedSwiftWireTransactionList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/SwiftWireTransaction'
-      x-stoplight:
-        id: z84pr8zubieyv
   securitySchemes:
     oauth2:
       type: oauth2

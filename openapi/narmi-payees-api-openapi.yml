@@ -231,38 +231,6 @@ paths:
         id: jjy6u8rhc7uxk
 components:
   schemas:
-    Payee:
-      type: object
-      properties:
-        payee:
-          $ref: '#/components/schemas/BillPayee'
-      required:
-      - payee
-      x-stoplight:
-        id: nfevnjkpkwzdk
-    BillDeliveryOption:
-      type: object
-      properties:
-        description:
-          type: string
-          readOnly: true
-        fee:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-          readOnly: true
-        transit_days:
-          type: integer
-          readOnly: true
-        date:
-          type: string
-          format: date
-      required:
-      - date
-      x-stoplight:
-        id: i4cqeow4pzxv6
     ErrorRequest:
       type: object
       properties:
@@ -276,6 +244,16 @@ components:
       - code
       x-stoplight:
         id: cqk62uhcqgodx
+    BillDeliveryOptionRequest:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+      required:
+      - date
+      x-stoplight:
+        id: i3oemzw6y6ap9
     BillPayee:
       type: object
       properties:
@@ -383,6 +361,56 @@ components:
       - street_address
       x-stoplight:
         id: 4ixdbnlsh0rei
+    Address:
+      type: object
+      properties:
+        street_address:
+          type: string
+        street_address_2:
+          type: string
+        city:
+          type: string
+        region_code:
+          type: string
+          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
+        postal_code:
+          type: string
+          description: Typically a five-digit numeric US ZIP Code.
+        country_code:
+          type: string
+          description: An ISO 3166-1 alpha-2 country code.
+        type:
+          type: string
+      required:
+      - city
+      - postal_code
+      - region_code
+      - street_address
+      x-stoplight:
+        id: xatva1xwqb0yk
+    BillDeliveryOption:
+      type: object
+      properties:
+        description:
+          type: string
+          readOnly: true
+        fee:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+          readOnly: true
+        transit_days:
+          type: integer
+          readOnly: true
+        date:
+          type: string
+          format: date
+      required:
+      - date
+      x-stoplight:
+        id: i4cqeow4pzxv6
     Type905Enum:
       type: string
       enum:
@@ -462,66 +490,6 @@ components:
       - type
       x-stoplight:
         id: sskdhy8j5ihgs
-    BillDeliveryOptionRequest:
-      type: object
-      properties:
-        date:
-          type: string
-          format: date
-      required:
-      - date
-      x-stoplight:
-        id: i3oemzw6y6ap9
-    InvalidRequestError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: invalid_request_error
-        message:
-          type: object
-          additionalProperties: {}
-          default:
-            field_name: Error description.
-          description: An error response detailing the field and the nature of the error.
-      x-stoplight:
-        id: aelrw6rc7wiph
-    BillPayDestroy:
-      type: object
-      properties:
-        deleted:
-          type: string
-          readOnly: true
-          default: true
-      x-stoplight:
-        id: tzrspxlehskqp
-    Address:
-      type: object
-      properties:
-        street_address:
-          type: string
-        street_address_2:
-          type: string
-        city:
-          type: string
-        region_code:
-          type: string
-          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
-        postal_code:
-          type: string
-          description: Typically a five-digit numeric US ZIP Code.
-        country_code:
-          type: string
-          description: An ISO 3166-1 alpha-2 country code.
-        type:
-          type: string
-      required:
-      - city
-      - postal_code
-      - region_code
-      - street_address
-      x-stoplight:
-        id: xatva1xwqb0yk
     PaginatedBillPayeeList:
       type: object
       required:
@@ -557,6 +525,38 @@ components:
               type: integer
       x-stoplight:
         id: tlq0yzqzttgcn
+    Payee:
+      type: object
+      properties:
+        payee:
+          $ref: '#/components/schemas/BillPayee'
+      required:
+      - payee
+      x-stoplight:
+        id: nfevnjkpkwzdk
+    BillPayDestroy:
+      type: object
+      properties:
+        deleted:
+          type: string
+          readOnly: true
+          default: true
+      x-stoplight:
+        id: tzrspxlehskqp
+    InvalidRequestError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid_request_error
+        message:
+          type: object
+          additionalProperties: {}
+          default:
+            field_name: Error description.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: aelrw6rc7wiph
   securitySchemes:
     oauth2:
       type: oauth2

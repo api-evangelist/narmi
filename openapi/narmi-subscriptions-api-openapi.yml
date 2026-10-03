@@ -407,50 +407,6 @@ components:
       - subscription
       x-stoplight:
         id: 1t5cvzomt9ll7
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: qazjpvfdteybw
-    PatchedSubscriptionRequest:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-          minLength: 1
-          description: The URL called when the webhook event occurs.
-        is_active:
-          type: boolean
-        version:
-          type: string
-          minLength: 1
-          description: Version string for future versioning functionality, can be left blank
-          maxLength: 64
-          example: ''
-        event_type:
-          type: string
-          minLength: 1
-          description: The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`
-          maxLength: 64
-          example: user.login
-        description:
-          type: string
-          minLength: 1
-          maxLength: 64
-          example: Webhook subscription for monitoring user logins.
-      required:
-      - url
-      x-stoplight:
-        id: 2iwc8rppnzdr3
     ObjectNotFoundError:
       type: object
       properties:
@@ -462,37 +418,6 @@ components:
           default: Not found.
       x-stoplight:
         id: z4yx0oczlqjyf
-    SubscriptionRequest:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-          minLength: 1
-          description: The URL called when the webhook event occurs.
-        is_active:
-          type: boolean
-        version:
-          type: string
-          minLength: 1
-          description: Version string for future versioning functionality, can be left blank
-          maxLength: 64
-          example: ''
-        event_type:
-          type: string
-          minLength: 1
-          description: The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`
-          maxLength: 64
-          example: user.login
-        description:
-          type: string
-          minLength: 1
-          maxLength: 64
-          example: Webhook subscription for monitoring user logins.
-      required:
-      - url
-      x-stoplight:
-        id: p7b6jotjjvlvu
     PaginatedSubscriptionList:
       type: object
       required:
@@ -572,6 +497,81 @@ components:
       - url
       x-stoplight:
         id: gsayimqdodbuv
+    PatchedSubscriptionRequest:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          minLength: 1
+          description: The URL called when the webhook event occurs.
+        is_active:
+          type: boolean
+        version:
+          type: string
+          minLength: 1
+          description: Version string for future versioning functionality, can be left blank
+          maxLength: 64
+          example: ''
+        event_type:
+          type: string
+          minLength: 1
+          description: The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`
+          maxLength: 64
+          example: user.login
+        description:
+          type: string
+          minLength: 1
+          maxLength: 64
+          example: Webhook subscription for monitoring user logins.
+      required:
+      - url
+      x-stoplight:
+        id: 2iwc8rppnzdr3
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    SubscriptionRequest:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          minLength: 1
+          description: The URL called when the webhook event occurs.
+        is_active:
+          type: boolean
+        version:
+          type: string
+          minLength: 1
+          description: Version string for future versioning functionality, can be left blank
+          maxLength: 64
+          example: ''
+        event_type:
+          type: string
+          minLength: 1
+          description: The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`
+          maxLength: 64
+          example: user.login
+        description:
+          type: string
+          minLength: 1
+          maxLength: 64
+          example: Webhook subscription for monitoring user logins.
+      required:
+      - url
+      x-stoplight:
+        id: p7b6jotjjvlvu
   securitySchemes:
     oauth2:
       type: oauth2

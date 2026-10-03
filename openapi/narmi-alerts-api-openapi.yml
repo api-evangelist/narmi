@@ -1278,13 +1278,32 @@ paths:
         id: i1zlspjwfeogj
 components:
   schemas:
-    TransactionAlertRule:
+    DeliveryChannelsEnum:
+      enum:
+      - sms
+      - push
+      - email
+      type: string
+      description: '* `sms` - sms
+
+        * `push` - push
+
+        * `email` - email'
+      x-stoplight:
+        id: jds3ywpdugt4t
+    AlertKey61cEnum:
+      enum:
+      - credit
+      - debit
+      type: string
+      description: '* `credit` - credit
+
+        * `debit` - debit'
+      x-stoplight:
+        id: bwsuuwmt9dsnb
+    TransactionAlertRuleRequest:
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
         alert_key:
           allOf:
           - $ref: '#/components/schemas/AlertKey61cEnum'
@@ -1294,14 +1313,6 @@ components:
             * `credit` - credit
 
             * `debit` - debit'
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
         delivery_channels:
           type: array
           items:
@@ -1317,236 +1328,14 @@ components:
               * `email` - email'
         transaction_query:
           type: string
+          minLength: 1
           maxLength: 256
-        last_delivered_date:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          readOnly: true
       required:
       - alert_key
       - delivery_channels
       - transaction_query
       x-stoplight:
-        id: 4rgthd2z87x7k
-    DeliveryChannelsEnum:
-      enum:
-      - sms
-      - push
-      - email
-      type: string
-      description: '* `sms` - sms
-
-        * `push` - push
-
-        * `email` - email'
-      x-stoplight:
-        id: jds3ywpdugt4t
-    PaginatedLoanAlertRuleList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/LoanAlertRule'
-      x-stoplight:
-        id: dlmnypvk45alz
-    AlertKey61cEnum:
-      enum:
-      - credit
-      - debit
-      type: string
-      description: '* `credit` - credit
-
-        * `debit` - debit'
-      x-stoplight:
-        id: bwsuuwmt9dsnb
-    AccountAlertRuleRequest:
-      type: object
-      properties:
-        rrule:
-          type:
-          - string
-          - 'null'
-          description: Recurrence rule in RFC 5545 format
-          maxLength: 200
-        alert_key:
-          allOf:
-          - $ref: '#/components/schemas/AccountAlertRuleAlertKeyEnum'
-          description: 'Alert type, can be one of `available_balance` or `low_available_balance`.
-
-
-            * `available_balance` - available_balance
-
-            * `low_available_balance` - low_available_balance'
-        threshold_amount:
-          type:
-          - string
-          - 'null'
-          format: decimal
-          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
-        delivery_channels:
-          type: array
-          items:
-            allOf:
-            - $ref: '#/components/schemas/DeliveryChannelsEnum'
-            description: 'Delivery channels, can be one of `sms`, `push`, or `email`.
-
-
-              * `sms` - sms
-
-              * `push` - push
-
-              * `email` - email'
-        subscribed_accounts:
-          type: array
-          items:
-            type: string
-            format: uuid
-      required:
-      - alert_key
-      - delivery_channels
-      - subscribed_accounts
-      x-stoplight:
-        id: ehvxvi9lluber
-    PaginatedTransactionAlertRuleList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransactionAlertRule'
-      x-stoplight:
-        id: 5dcibfdfisdew
-    LoanAlertRuleAlertKeyEnum:
-      enum:
-      - loan_reminder
-      - loan_overdue
-      type: string
-      description: '* `loan_reminder` - loan_reminder
-
-        * `loan_overdue` - loan_overdue'
-      x-stoplight:
-        id: qiy6mwvgwofef
-    AccountAlertRule:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-          readOnly: true
-        rrule:
-          type:
-          - string
-          - 'null'
-          description: Recurrence rule in RFC 5545 format
-          maxLength: 200
-        alert_key:
-          allOf:
-          - $ref: '#/components/schemas/AccountAlertRuleAlertKeyEnum'
-          description: 'Alert type, can be one of `available_balance` or `low_available_balance`.
-
-
-            * `available_balance` - available_balance
-
-            * `low_available_balance` - low_available_balance'
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-        next_alert_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          readOnly: true
-        threshold_amount:
-          type:
-          - string
-          - 'null'
-          format: decimal
-          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
-        delivery_channels:
-          type: array
-          items:
-            allOf:
-            - $ref: '#/components/schemas/DeliveryChannelsEnum'
-            description: 'Delivery channels, can be one of `sms`, `push`, or `email`.
-
-
-              * `sms` - sms
-
-              * `push` - push
-
-              * `email` - email'
-        subscribed_accounts:
-          type: array
-          items:
-            type: string
-            format: uuid
-        last_delivered_date:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          readOnly: true
-      required:
-      - alert_key
-      - delivery_channels
-      - subscribed_accounts
-      x-stoplight:
-        id: ymbfkpwtpunmq
-    AccountAlertRuleAlertKeyEnum:
-      enum:
-      - available_balance
-      - low_available_balance
-      type: string
-      description: '* `available_balance` - available_balance
-
-        * `low_available_balance` - low_available_balance'
-      x-stoplight:
-        id: qthwkg8mfbejw
+        id: tmgfqcbyivovs
     PaginatedAccountAlertRuleList:
       type: object
       required:
@@ -1664,9 +1453,13 @@ components:
       - delivery_channels
       x-stoplight:
         id: ngcjm0blyrbyi
-    TransactionAlertRuleRequest:
+    TransactionAlertRule:
       type: object
       properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
         alert_key:
           allOf:
           - $ref: '#/components/schemas/AlertKey61cEnum'
@@ -1676,6 +1469,14 @@ components:
             * `credit` - credit
 
             * `debit` - debit'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
         delivery_channels:
           type: array
           items:
@@ -1691,14 +1492,213 @@ components:
               * `email` - email'
         transaction_query:
           type: string
-          minLength: 1
           maxLength: 256
+        last_delivered_date:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
       required:
       - alert_key
       - delivery_channels
       - transaction_query
       x-stoplight:
-        id: tmgfqcbyivovs
+        id: 4rgthd2z87x7k
+    AccountAlertRuleAlertKeyEnum:
+      enum:
+      - available_balance
+      - low_available_balance
+      type: string
+      description: '* `available_balance` - available_balance
+
+        * `low_available_balance` - low_available_balance'
+      x-stoplight:
+        id: qthwkg8mfbejw
+    AccountAlertRule:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        rrule:
+          type:
+          - string
+          - 'null'
+          description: Recurrence rule in RFC 5545 format
+          maxLength: 200
+        alert_key:
+          allOf:
+          - $ref: '#/components/schemas/AccountAlertRuleAlertKeyEnum'
+          description: 'Alert type, can be one of `available_balance` or `low_available_balance`.
+
+
+            * `available_balance` - available_balance
+
+            * `low_available_balance` - low_available_balance'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        next_alert_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+        threshold_amount:
+          type:
+          - string
+          - 'null'
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+        delivery_channels:
+          type: array
+          items:
+            allOf:
+            - $ref: '#/components/schemas/DeliveryChannelsEnum'
+            description: 'Delivery channels, can be one of `sms`, `push`, or `email`.
+
+
+              * `sms` - sms
+
+              * `push` - push
+
+              * `email` - email'
+        subscribed_accounts:
+          type: array
+          items:
+            type: string
+            format: uuid
+        last_delivered_date:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+      required:
+      - alert_key
+      - delivery_channels
+      - subscribed_accounts
+      x-stoplight:
+        id: ymbfkpwtpunmq
+    AccountAlertRuleRequest:
+      type: object
+      properties:
+        rrule:
+          type:
+          - string
+          - 'null'
+          description: Recurrence rule in RFC 5545 format
+          maxLength: 200
+        alert_key:
+          allOf:
+          - $ref: '#/components/schemas/AccountAlertRuleAlertKeyEnum'
+          description: 'Alert type, can be one of `available_balance` or `low_available_balance`.
+
+
+            * `available_balance` - available_balance
+
+            * `low_available_balance` - low_available_balance'
+        threshold_amount:
+          type:
+          - string
+          - 'null'
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+        delivery_channels:
+          type: array
+          items:
+            allOf:
+            - $ref: '#/components/schemas/DeliveryChannelsEnum'
+            description: 'Delivery channels, can be one of `sms`, `push`, or `email`.
+
+
+              * `sms` - sms
+
+              * `push` - push
+
+              * `email` - email'
+        subscribed_accounts:
+          type: array
+          items:
+            type: string
+            format: uuid
+      required:
+      - alert_key
+      - delivery_channels
+      - subscribed_accounts
+      x-stoplight:
+        id: ehvxvi9lluber
+    PaginatedTransactionAlertRuleList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionAlertRule'
+      x-stoplight:
+        id: 5dcibfdfisdew
+    PaginatedLoanAlertRuleList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/LoanAlertRule'
+      x-stoplight:
+        id: dlmnypvk45alz
+    LoanAlertRuleAlertKeyEnum:
+      enum:
+      - loan_reminder
+      - loan_overdue
+      type: string
+      description: '* `loan_reminder` - loan_reminder
+
+        * `loan_overdue` - loan_overdue'
+      x-stoplight:
+        id: qiy6mwvgwofef
   securitySchemes:
     oauth2:
       type: oauth2
