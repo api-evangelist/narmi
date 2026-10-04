@@ -162,63 +162,20 @@ paths:
         id: tkgh2l16a0nou
 components:
   schemas:
-    ErrorRequest:
+    InvalidRequestError:
       type: object
       properties:
-        code:
+        id:
           type: string
-          minLength: 1
-        description:
-          type: string
-          minLength: 1
-      required:
-      - code
-      x-stoplight:
-        id: cqk62uhcqgodx
-    BillPaymentStateEnum:
-      type: string
-      enum:
-      - processed
-      - canceled
-      - pending
-      - returned
-      x-stoplight:
-        id: nfluwrqa5rysj
-    PaginatedBillPaymentList:
-      type: object
-      required:
-      - meta
-      - links
-      - payments
-      properties:
-        payments:
-          type: array
-          items:
-            $ref: '#/components/schemas/BillPayment'
-        links:
+          default: invalid_request_error
+        message:
           type: object
-          description: URIs linking to sequential pages of the result.
-          properties:
-            next:
-              type:
-              - string
-              - 'null'
-              format: uri
-              example: https://narmi.example.com/v1/payments?after=400
-            prev:
-              type:
-              - string
-              - 'null'
-              format: uri
-              example: https://narmi.example.com/v1/payments?before=200
-        meta:
-          description: Free-form object, contains total object count.
-          type: object
-          properties:
-            total:
-              type: integer
+          additionalProperties: {}
+          default:
+            field_name: Error description.
+          description: An error response detailing the field and the nature of the error.
       x-stoplight:
-        id: 9en5lvhnoo3yu
+        id: aelrw6rc7wiph
     Payment:
       type: object
       properties:
@@ -291,20 +248,50 @@ components:
           default: true
       x-stoplight:
         id: tzrspxlehskqp
-    InvalidRequestError:
+    PaginatedBillPaymentList:
       type: object
+      required:
+      - meta
+      - links
+      - payments
       properties:
-        id:
-          type: string
-          default: invalid_request_error
-        message:
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/BillPayment'
+        links:
           type: object
-          additionalProperties: {}
-          default:
-            field_name: Error description.
-          description: An error response detailing the field and the nature of the error.
+          description: URIs linking to sequential pages of the result.
+          properties:
+            next:
+              type:
+              - string
+              - 'null'
+              format: uri
+              example: https://narmi.example.com/v1/payments?after=400
+            prev:
+              type:
+              - string
+              - 'null'
+              format: uri
+              example: https://narmi.example.com/v1/payments?before=200
+        meta:
+          description: Free-form object, contains total object count.
+          type: object
+          properties:
+            total:
+              type: integer
       x-stoplight:
-        id: aelrw6rc7wiph
+        id: 9en5lvhnoo3yu
+    BillPaymentStateEnum:
+      type: string
+      enum:
+      - processed
+      - canceled
+      - pending
+      - returned
+      x-stoplight:
+        id: nfluwrqa5rysj
     PaymentCreateDocRequest:
       type: object
       properties:
@@ -355,6 +342,19 @@ components:
       - type
       x-stoplight:
         id: dy1brabe9nexg
+    ErrorRequest:
+      type: object
+      properties:
+        code:
+          type: string
+          minLength: 1
+        description:
+          type: string
+          minLength: 1
+      required:
+      - code
+      x-stoplight:
+        id: cqk62uhcqgodx
   securitySchemes:
     oauth2:
       type: oauth2

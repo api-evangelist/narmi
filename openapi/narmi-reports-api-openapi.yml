@@ -170,6 +170,56 @@ paths:
         id: h6lta5x2df2kv
 components:
   schemas:
+    InvalidRequestError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid_request_error
+        message:
+          type: object
+          additionalProperties: {}
+          default:
+            field_name: Error description.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: aelrw6rc7wiph
+    DirectionEnum:
+      enum:
+      - credit
+      - debit
+      - misc
+      type: string
+      description: '* `credit` - credit
+
+        * `debit` - debit
+
+        * `misc` - misc'
+      x-stoplight:
+        id: fnpwkqv4ujmyo
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    FormatEnum:
+      enum:
+      - csv
+      - bai2
+      type: string
+      description: '* `csv` - CSV
+
+        * `bai2` - BAI2'
+      x-stoplight:
+        id: dmtikuvtyippe
     BaiTransactionType:
       type: object
       properties:
@@ -198,29 +248,24 @@ components:
       - direction
       x-stoplight:
         id: 38y8aokwjqdr4
-    FormatEnum:
-      enum:
-      - csv
-      - bai2
-      type: string
-      description: '* `csv` - CSV
-
-        * `bai2` - BAI2'
+    TransactionStatsResponse:
+      type: object
+      properties:
+        transaction_count:
+          type: integer
+        net_total:
+          type: integer
+        credits:
+          type: integer
+        debits:
+          type: integer
+      required:
+      - credits
+      - debits
+      - net_total
+      - transaction_count
       x-stoplight:
-        id: dmtikuvtyippe
-    DirectionEnum:
-      enum:
-      - credit
-      - debit
-      - misc
-      type: string
-      description: '* `credit` - credit
-
-        * `debit` - debit
-
-        * `misc` - misc'
-      x-stoplight:
-        id: fnpwkqv4ujmyo
+        id: zctx6dbhmw4hq
     MultiAccountTransactionsDownloadRequest:
       type: object
       description: Serializer for multi-account transaction export requests.
@@ -268,51 +313,6 @@ components:
       - min_date
       x-stoplight:
         id: 2xip7egajj3kk
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: qazjpvfdteybw
-    InvalidRequestError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: invalid_request_error
-        message:
-          type: object
-          additionalProperties: {}
-          default:
-            field_name: Error description.
-          description: An error response detailing the field and the nature of the error.
-      x-stoplight:
-        id: aelrw6rc7wiph
-    TransactionStatsResponse:
-      type: object
-      properties:
-        transaction_count:
-          type: integer
-        net_total:
-          type: integer
-        credits:
-          type: integer
-        debits:
-          type: integer
-      required:
-      - credits
-      - debits
-      - net_total
-      - transaction_count
-      x-stoplight:
-        id: zctx6dbhmw4hq
   securitySchemes:
     oauth2:
       type: oauth2

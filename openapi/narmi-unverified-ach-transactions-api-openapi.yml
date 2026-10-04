@@ -256,6 +256,99 @@ paths:
         id: 61cvjcpetrbgr
 components:
   schemas:
+    PaginatedScheduledACHPaymentList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScheduledACHPayment'
+      x-stoplight:
+        id: 43ond2osuzzsf
+    TransactionTypeEnum:
+      enum:
+      - debit
+      - credit
+      type: string
+      description: '* `debit` - Pull (debit)
+
+        * `credit` - Push (credit)'
+      x-stoplight:
+        id: acyeadla4mwfp
+    StdEntClsCodeEnum:
+      enum:
+      - PPD
+      - CCD
+      - ARC
+      - CTX
+      - POS
+      - WEB
+      - BOC
+      - TEL
+      - MTE
+      - SHR
+      - CIE
+      - POP
+      - RCK
+      type: string
+      description: '* `PPD` - Batch Personal
+
+        * `CCD` - Batch Corporate
+
+        * `ARC` - Batch Accounts Receivable
+
+        * `CTX` - Batch Corporate Exchange
+
+        * `POS` - Batch Point Of Sale
+
+        * `WEB` - Batch Internet Initiated
+
+        * `BOC` - Batch Backoffice Conversion
+
+        * `TEL` - Batch Telephone Initiated
+
+        * `MTE` - Batch Machine Transfer
+
+        * `SHR` - Batch Shared Network
+
+        * `CIE` - Batch Customer Initiated
+
+        * `POP` - Batch Point Of Purchase
+
+        * `RCK` - Batch Represented Check'
+      x-stoplight:
+        id: xgdwqweqfvyee
+    GeneralError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid
+        message:
+          type: string
+          description: An error response detailing the field and the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: v76fz3qxj5djb
     ScheduledACHPayment:
       type: object
       properties:
@@ -339,6 +432,104 @@ components:
       - std_ent_cls_code
       x-stoplight:
         id: 9gkzfwvfok3wv
+    UnverifiedACHTransactionRequest:
+      type: object
+      properties:
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: The amount of the ACH payment in cents.
+          type: integer
+        institution_account:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the originating account for the transaction.
+          type: string
+          format: uuid
+        description:
+          type: string
+          default: ''
+          description: Memo for the transaction. This is currently only used for internal record-keeping, and will not be not included in the resulting NACHA file entry.
+          maxLength: 128
+        recipient:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the recipient of the transaction.
+          type: string
+          format: uuid
+        ach_company:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: 'DEPRECATED: The client submits the UUID of the ACHCompany to use for the transaction, and we map this instances fields into the company_id and company_name fields below. These values could presumably change, and we want to maintain a record of these values at the time the transaction is submitted. Note this field should not be used once the FI is configured to fetch the ACHCompany based from the institution_account''s originating organization.'
+          type: string
+          format: uuid
+          writeOnly: true
+        std_ent_cls_code:
+          allOf:
+          - $ref: '#/components/schemas/StdEntClsCodeEnum'
+          description: 'A three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction. SEC stands for ''Standard Entry Class''. SEC codes are defined and maintained by NACHA, the governing body for the ACH network.
+
+
+            * `PPD` - Batch Personal
+
+            * `CCD` - Batch Corporate
+
+            * `ARC` - Batch Accounts Receivable
+
+            * `CTX` - Batch Corporate Exchange
+
+            * `POS` - Batch Point Of Sale
+
+            * `WEB` - Batch Internet Initiated
+
+            * `BOC` - Batch Backoffice Conversion
+
+            * `TEL` - Batch Telephone Initiated
+
+            * `MTE` - Batch Machine Transfer
+
+            * `SHR` - Batch Shared Network
+
+            * `CIE` - Batch Customer Initiated
+
+            * `POP` - Batch Point Of Purchase
+
+            * `RCK` - Batch Represented Check'
+        entry_desc:
+          type: string
+          minLength: 1
+          description: A field that describes the purpose of the transaction to the receiver. It's used to help identify, monitor, and count payments for specific purposes.
+        memo:
+          type: string
+          default: ''
+          description: A field that adds a memo to the transaction. It's used to help identify transaction to the sender.
+          maxLength: 128
+        device_id:
+          type:
+          - string
+          - 'null'
+          writeOnly: true
+        device_request_id:
+          type:
+          - string
+          - 'null'
+          writeOnly: true
+        transaction_type:
+          allOf:
+          - $ref: '#/components/schemas/TransactionTypeEnum'
+          description: 'Indicates whether the ACH transaction is a credit (push) or debit (pull).
+
+
+            * `debit` - Pull (debit)
+
+            * `credit` - Push (credit)'
+      required:
+      - amount
+      - entry_desc
+      - institution_account
+      - recipient
+      - std_ent_cls_code
+      - transaction_type
+      x-stoplight:
+        id: zo7rhzxjfyig6
     UnverifiedACHTransaction:
       type: object
       properties:
@@ -464,49 +655,49 @@ components:
       - transaction_type
       x-stoplight:
         id: te2fnxskynbwg
-    StdEntClsCodeEnum:
+    State40dEnum:
       enum:
-      - PPD
-      - CCD
-      - ARC
-      - CTX
-      - POS
-      - WEB
-      - BOC
-      - TEL
-      - MTE
-      - SHR
-      - CIE
-      - POP
-      - RCK
+      - analyzing
+      - pending
+      - processing
+      - processed
+      - rejected
+      - review
+      - canceled
+      - canceled_by_user
+      - awaiting_approval
+      - rejected_approval
+      - approval_expired
+      - awaiting_bulk_approval
+      - rejected_bulk_approval
       type: string
-      description: '* `PPD` - Batch Personal
+      description: '* `analyzing` - Analyzing
 
-        * `CCD` - Batch Corporate
+        * `pending` - Pending
 
-        * `ARC` - Batch Accounts Receivable
+        * `processing` - Processing
 
-        * `CTX` - Batch Corporate Exchange
+        * `processed` - Processed (in transit)
 
-        * `POS` - Batch Point Of Sale
+        * `rejected` - Rejected by staff
 
-        * `WEB` - Batch Internet Initiated
+        * `review` - Review
 
-        * `BOC` - Batch Backoffice Conversion
+        * `canceled` - Canceled
 
-        * `TEL` - Batch Telephone Initiated
+        * `canceled_by_user` - Canceled by user
 
-        * `MTE` - Batch Machine Transfer
+        * `awaiting_approval` - Awaiting dual approval
 
-        * `SHR` - Batch Shared Network
+        * `rejected_approval` - Dual approval rejected
 
-        * `CIE` - Batch Customer Initiated
+        * `approval_expired` - Dual approval expired
 
-        * `POP` - Batch Point Of Purchase
+        * `awaiting_bulk_approval` - Awaiting bulk approval
 
-        * `RCK` - Batch Represented Check'
+        * `rejected_bulk_approval` - Rejected bulk approval'
       x-stoplight:
-        id: xgdwqweqfvyee
+        id: ulhqntis74qyp
     PaginatedUnverifiedACHTransactionList:
       type: object
       required:
@@ -534,144 +725,6 @@ components:
             $ref: '#/components/schemas/UnverifiedACHTransaction'
       x-stoplight:
         id: uadcctw2wu5w4
-    PaginatedScheduledACHPaymentList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScheduledACHPayment'
-      x-stoplight:
-        id: 43ond2osuzzsf
-    GeneralError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: invalid
-        message:
-          type: string
-          description: An error response detailing the field and the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: v76fz3qxj5djb
-    UnverifiedACHTransactionRequest:
-      type: object
-      properties:
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: The amount of the ACH payment in cents.
-          type: integer
-        institution_account:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: The UUID of the originating account for the transaction.
-          type: string
-          format: uuid
-        description:
-          type: string
-          default: ''
-          description: Memo for the transaction. This is currently only used for internal record-keeping, and will not be not included in the resulting NACHA file entry.
-          maxLength: 128
-        recipient:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: The UUID of the recipient of the transaction.
-          type: string
-          format: uuid
-        ach_company:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: 'DEPRECATED: The client submits the UUID of the ACHCompany to use for the transaction, and we map this instances fields into the company_id and company_name fields below. These values could presumably change, and we want to maintain a record of these values at the time the transaction is submitted. Note this field should not be used once the FI is configured to fetch the ACHCompany based from the institution_account''s originating organization.'
-          type: string
-          format: uuid
-          writeOnly: true
-        std_ent_cls_code:
-          allOf:
-          - $ref: '#/components/schemas/StdEntClsCodeEnum'
-          description: 'A three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction. SEC stands for ''Standard Entry Class''. SEC codes are defined and maintained by NACHA, the governing body for the ACH network.
-
-
-            * `PPD` - Batch Personal
-
-            * `CCD` - Batch Corporate
-
-            * `ARC` - Batch Accounts Receivable
-
-            * `CTX` - Batch Corporate Exchange
-
-            * `POS` - Batch Point Of Sale
-
-            * `WEB` - Batch Internet Initiated
-
-            * `BOC` - Batch Backoffice Conversion
-
-            * `TEL` - Batch Telephone Initiated
-
-            * `MTE` - Batch Machine Transfer
-
-            * `SHR` - Batch Shared Network
-
-            * `CIE` - Batch Customer Initiated
-
-            * `POP` - Batch Point Of Purchase
-
-            * `RCK` - Batch Represented Check'
-        entry_desc:
-          type: string
-          minLength: 1
-          description: A field that describes the purpose of the transaction to the receiver. It's used to help identify, monitor, and count payments for specific purposes.
-        memo:
-          type: string
-          default: ''
-          description: A field that adds a memo to the transaction. It's used to help identify transaction to the sender.
-          maxLength: 128
-        device_id:
-          type:
-          - string
-          - 'null'
-          writeOnly: true
-        device_request_id:
-          type:
-          - string
-          - 'null'
-          writeOnly: true
-        transaction_type:
-          allOf:
-          - $ref: '#/components/schemas/TransactionTypeEnum'
-          description: 'Indicates whether the ACH transaction is a credit (push) or debit (pull).
-
-
-            * `debit` - Pull (debit)
-
-            * `credit` - Push (credit)'
-      required:
-      - amount
-      - entry_desc
-      - institution_account
-      - recipient
-      - std_ent_cls_code
-      - transaction_type
-      x-stoplight:
-        id: zo7rhzxjfyig6
     ScheduledUnverifiedACHTransactionRequest:
       type: object
       properties:
@@ -741,59 +794,6 @@ components:
       - transaction_type
       x-stoplight:
         id: cq48mualjytfg
-    State40dEnum:
-      enum:
-      - analyzing
-      - pending
-      - processing
-      - processed
-      - rejected
-      - review
-      - canceled
-      - canceled_by_user
-      - awaiting_approval
-      - rejected_approval
-      - approval_expired
-      - awaiting_bulk_approval
-      - rejected_bulk_approval
-      type: string
-      description: '* `analyzing` - Analyzing
-
-        * `pending` - Pending
-
-        * `processing` - Processing
-
-        * `processed` - Processed (in transit)
-
-        * `rejected` - Rejected by staff
-
-        * `review` - Review
-
-        * `canceled` - Canceled
-
-        * `canceled_by_user` - Canceled by user
-
-        * `awaiting_approval` - Awaiting dual approval
-
-        * `rejected_approval` - Dual approval rejected
-
-        * `approval_expired` - Dual approval expired
-
-        * `awaiting_bulk_approval` - Awaiting bulk approval
-
-        * `rejected_bulk_approval` - Rejected bulk approval'
-      x-stoplight:
-        id: ulhqntis74qyp
-    TransactionTypeEnum:
-      enum:
-      - debit
-      - credit
-      type: string
-      description: '* `debit` - Pull (debit)
-
-        * `credit` - Push (credit)'
-      x-stoplight:
-        id: acyeadla4mwfp
   securitySchemes:
     oauth2:
       type: oauth2

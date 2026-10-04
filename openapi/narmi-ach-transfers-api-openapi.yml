@@ -164,6 +164,50 @@ paths:
         id: jvxrdrcdpbqdw
 components:
   schemas:
+    AchTransactionRequest:
+      type: object
+      description: Common fields between `ScheduledTransferSerializer`, and AchTransactionSerializer
+      properties:
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        from_account_id:
+          type: string
+          format: uuid
+          description: UUID identifying the source account in the Narmi database.
+        to_account_id:
+          type: string
+          format: uuid
+          description: UUID identifying the destination account in the Narmi database.
+        agreement:
+          type: boolean
+          writeOnly: true
+          description: Whether or not the terms of the transfer were agreed to.
+        device_id:
+          type: string
+          writeOnly: true
+          minLength: 1
+          description: Device 'fingerprint' from alloy/iovation.
+        instant:
+          type: boolean
+          writeOnly: true
+          default: false
+        memo:
+          type: string
+          writeOnly: true
+          minLength: 1
+          default: ''
+          description: Free-form description of transfer.
+      required:
+      - agreement
+      - amount
+      - from_account_id
+      - to_account_id
+      x-stoplight:
+        id: qqfawl4moqr7y
     AchTransaction:
       type: object
       description: Common fields between `ScheduledTransferSerializer`, and AchTransactionSerializer
@@ -230,15 +274,19 @@ components:
       - to_account_id
       x-stoplight:
         id: h4yj1x7pldwi9
-    RetrieveAchTransaction:
+    NotFoundError:
       type: object
       properties:
-        transfer:
-          allOf:
-          - $ref: '#/components/schemas/AchTransaction'
-          readOnly: true
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
       x-stoplight:
-        id: ynzdqhihwwxkd
+        id: qazjpvfdteybw
     AchTransactionStateEnum:
       enum:
       - analyzing
@@ -267,19 +315,6 @@ components:
         * `canceled_by_user` - canceled_by_user'
       x-stoplight:
         id: z6genr1ouwuth
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: qazjpvfdteybw
     PaginatedAchTransactionList:
       type: object
       required:
@@ -314,50 +349,15 @@ components:
             $ref: '#/components/schemas/AchTransaction'
       x-stoplight:
         id: fihijvn8nxqxd
-    AchTransactionRequest:
+    RetrieveAchTransaction:
       type: object
-      description: Common fields between `ScheduledTransferSerializer`, and AchTransactionSerializer
       properties:
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-        from_account_id:
-          type: string
-          format: uuid
-          description: UUID identifying the source account in the Narmi database.
-        to_account_id:
-          type: string
-          format: uuid
-          description: UUID identifying the destination account in the Narmi database.
-        agreement:
-          type: boolean
-          writeOnly: true
-          description: Whether or not the terms of the transfer were agreed to.
-        device_id:
-          type: string
-          writeOnly: true
-          minLength: 1
-          description: Device 'fingerprint' from alloy/iovation.
-        instant:
-          type: boolean
-          writeOnly: true
-          default: false
-        memo:
-          type: string
-          writeOnly: true
-          minLength: 1
-          default: ''
-          description: Free-form description of transfer.
-      required:
-      - agreement
-      - amount
-      - from_account_id
-      - to_account_id
+        transfer:
+          allOf:
+          - $ref: '#/components/schemas/AchTransaction'
+          readOnly: true
       x-stoplight:
-        id: qqfawl4moqr7y
+        id: ynzdqhihwwxkd
   securitySchemes:
     oauth2:
       type: oauth2

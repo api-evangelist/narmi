@@ -57,6 +57,21 @@ paths:
         id: sqlup8hmn5zfv
 components:
   schemas:
+    Team:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          readOnly: true
+      x-stoplight:
+        id: b6ww36jlgnhwy
     PaginatedTeamList:
       type: object
       required:
@@ -92,21 +107,6 @@ components:
               type: integer
       x-stoplight:
         id: aa5dcsaeijlgi
-    Team:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        name:
-          type: string
-          readOnly: true
-        description:
-          type: string
-          readOnly: true
-      x-stoplight:
-        id: b6ww36jlgnhwy
   securitySchemes:
     oauth2:
       type: oauth2

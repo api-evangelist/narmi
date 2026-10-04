@@ -233,46 +233,37 @@ components:
           readOnly: true
       x-stoplight:
         id: hodvkt23ysral
-    PaginatedSwiftWireTransactionList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/SwiftWireTransaction'
+    StateC02Enum:
+      enum:
+      - analyzing
+      - pending
+      - review
+      - processing
+      - processed
+      - rejected
+      - canceled
+      - awaiting_approval
+      - rejected_approval
+      type: string
+      description: '* `analyzing` - Analyzing
+
+        * `pending` - Pending
+
+        * `review` - Review
+
+        * `processing` - Processing
+
+        * `processed` - Processed (in transit)
+
+        * `rejected` - Rejected by staff
+
+        * `canceled` - Canceled
+
+        * `awaiting_approval` - Awaiting dual approval
+
+        * `rejected_approval` - Dual approval rejected'
       x-stoplight:
-        id: z84pr8zubieyv
-    GeneralError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: invalid
-        message:
-          type: string
-          description: An error response detailing the field and the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: v76fz3qxj5djb
+        id: qbox8yql7ah47
     SwiftWireTransaction:
       type: object
       properties:
@@ -341,37 +332,46 @@ components:
       - user
       x-stoplight:
         id: zouzw63lbtog6
-    StateC02Enum:
-      enum:
-      - analyzing
-      - pending
-      - review
-      - processing
-      - processed
-      - rejected
-      - canceled
-      - awaiting_approval
-      - rejected_approval
-      type: string
-      description: '* `analyzing` - Analyzing
-
-        * `pending` - Pending
-
-        * `review` - Review
-
-        * `processing` - Processing
-
-        * `processed` - Processed (in transit)
-
-        * `rejected` - Rejected by staff
-
-        * `canceled` - Canceled
-
-        * `awaiting_approval` - Awaiting dual approval
-
-        * `rejected_approval` - Dual approval rejected'
+    GeneralError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid
+        message:
+          type: string
+          description: An error response detailing the field and the nature of the error.
+      required:
+      - message
       x-stoplight:
-        id: qbox8yql7ah47
+        id: v76fz3qxj5djb
+    PaginatedSwiftWireTransactionList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SwiftWireTransaction'
+      x-stoplight:
+        id: z84pr8zubieyv
     SwiftWireTransactionRequest:
       type: object
       properties:

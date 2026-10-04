@@ -396,6 +396,43 @@ paths:
         id: kua5wbsfobnao
 components:
   schemas:
+    PurchaseChannelsEnum:
+      enum:
+      - online
+      - in_store
+      type: string
+      description: '* `online` - online
+
+        * `in_store` - in_store'
+      x-stoplight:
+        id: mjmvea9tnh4vq
+    CardOfferAsset:
+      type: object
+      description: Serializer for card offer assets.
+      properties:
+        type:
+          type: string
+        url:
+          type: string
+          format: uri
+        alt_text:
+          type: string
+      required:
+      - alt_text
+      - type
+      - url
+      x-stoplight:
+        id: rwb5b0hmczudt
+    RewardTypeEnum:
+      enum:
+      - flat
+      - percentage
+      type: string
+      description: '* `flat` - flat
+
+        * `percentage` - percentage'
+      x-stoplight:
+        id: wbtxqz7kofhhe
     CardOffer:
       type: object
       description: Serializer for card offers returned by the API.
@@ -494,25 +531,6 @@ components:
       - terms
       x-stoplight:
         id: sfc37b8rofbms
-    RewardTypeEnum:
-      enum:
-      - flat
-      - percentage
-      type: string
-      description: '* `flat` - flat
-
-        * `percentage` - percentage'
-      x-stoplight:
-        id: wbtxqz7kofhhe
-    CardOfferEnrollmentStatus:
-      type: object
-      description: Serializer for enrollment status response
-      properties:
-        is_enrolled:
-          type: boolean
-          readOnly: true
-      x-stoplight:
-        id: a6dwo7tpb2ghy
     CategoriesEnum:
       enum:
       - Arts & Entertainment
@@ -571,33 +589,15 @@ components:
         * `Other` - Other'
       x-stoplight:
         id: hnd0c8ky6kbs8
-    CardOfferAsset:
+    CardOfferEnrollmentStatus:
       type: object
-      description: Serializer for card offer assets.
+      description: Serializer for enrollment status response
       properties:
-        type:
-          type: string
-        url:
-          type: string
-          format: uri
-        alt_text:
-          type: string
-      required:
-      - alt_text
-      - type
-      - url
+        is_enrolled:
+          type: boolean
+          readOnly: true
       x-stoplight:
-        id: rwb5b0hmczudt
-    PurchaseChannelsEnum:
-      enum:
-      - online
-      - in_store
-      type: string
-      description: '* `online` - online
-
-        * `in_store` - in_store'
-      x-stoplight:
-        id: mjmvea9tnh4vq
+        id: a6dwo7tpb2ghy
   securitySchemes:
     oauth2:
       type: oauth2

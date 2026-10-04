@@ -1260,173 +1260,6 @@ paths:
         id: iesdurzqprmmm
 components:
   schemas:
-    CardSubscriptionsStateEnum:
-      enum:
-      - current
-      - new
-      - cancelled
-      type: string
-      description: '* `current` - current
-
-        * `new` - new
-
-        * `cancelled` - cancelled'
-      x-stoplight:
-        id: hcp1u8tvpuntl
-    RecurrenceFrequencyEnum:
-      enum:
-      - daily
-      - semi-monthly
-      - monthly
-      - bimonthly
-      - quarterly
-      - biannually
-      - annually
-      type: string
-      description: '* `daily` - daily
-
-        * `semi-monthly` - semi-monthly
-
-        * `monthly` - monthly
-
-        * `bimonthly` - bimonthly
-
-        * `quarterly` - quarterly
-
-        * `biannually` - biannually
-
-        * `annually` - annually
-
-        * `` - '
-      x-stoplight:
-        id: hnoqaesl0wqdw
-    CardInfo:
-      type: object
-      description: integrations.cards.api_messages.CardInfo
-      properties:
-        id:
-          type: string
-          description: An identifier for the card object.
-        name:
-          type: string
-          description: The card product's name.
-        last_four_digits:
-          type: string
-          description: Last four digits of the card's account number.
-        shipping:
-          allOf:
-          - $ref: '#/components/schemas/CardShippingInfo'
-          description: Shipping information, not always populated.
-        network:
-          type:
-          - string
-          - 'null'
-          default: visa
-          description: The credit card processing network, such as Visa, Discover, etc.
-        state:
-          allOf:
-          - $ref: '#/components/schemas/StateBd5Enum'
-          description: 'Indicates whether the card is functional, and if not for what reason.
-
-
-            * `locked` - locked
-
-            * `normal` - normal
-
-            * `shipped` - shipped
-
-            * `cancelled` - cancelled
-
-            * `damaged` - damaged'
-          readOnly: true
-        image:
-          type: string
-          description: An image of the card or a placeholder image.
-          readOnly: true
-        text_color:
-          type: string
-          default: '#FFFFFF'
-          description: Hex value indicating text color.
-        card_type:
-          type: string
-          description: The card's type, debit, credit or atm.
-      required:
-      - card_type
-      - id
-      - last_four_digits
-      - name
-      x-stoplight:
-        id: odrdkdiznuohw
-    SensitiveCardInfo:
-      type: object
-      properties:
-        pan:
-          type: string
-          example: '4012000033330026'
-        cvv:
-          type: string
-          example: '000'
-        expiration_date:
-          type: string
-          format: date
-          example: 2031-07-24
-      required:
-      - cvv
-      - expiration_date
-      - pan
-      x-stoplight:
-        id: y3vcpgnlzduvh
-    CardRequest:
-      type: object
-      properties:
-        state:
-          allOf:
-          - $ref: '#/components/schemas/CardStateEnum'
-          description: 'Indicates whether the card is functional.
-
-
-            * `active` - active
-
-            * `inactive` - inactive'
-      required:
-      - state
-      x-stoplight:
-        id: lvdyknsgnuyu5
-    CardSubscriptions:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        amount:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
-        category_code:
-          type: string
-        merchant_name:
-          type: string
-        state:
-          $ref: '#/components/schemas/CardSubscriptionsStateEnum'
-        recurrence_frequency:
-          oneOf:
-          - $ref: '#/components/schemas/RecurrenceFrequencyEnum'
-          - $ref: '#/components/schemas/BlankEnum'
-        next_payment_date:
-          type:
-          - string
-          - 'null'
-          format: date
-      required:
-      - amount
-      - category_code
-      - id
-      - merchant_name
-      - next_payment_date
-      - recurrence_frequency
-      - state
-      x-stoplight:
-        id: tzfuauxjtqn3q
     CardLimits:
       type: object
       description: For getting and setting card limits
@@ -1457,84 +1290,6 @@ components:
           description: Is the user allowed to request a limit increase?
       x-stoplight:
         id: 0uh0y3w9wzzqe
-    CommonCard:
-      type: object
-      description: integrations.cards.common.Card
-      properties:
-        id:
-          type: string
-          description: An identifier for the card object.
-        core_user_id:
-          type: string
-          description: String uniquely identifying a user or user's primary account on the banking core
-        last_four_digits:
-          type: string
-          description: Last four digits of the card's account number.
-        state:
-          allOf:
-          - $ref: '#/components/schemas/StateBd5Enum'
-          description: 'Indicates whether the card is functional, and if not for what reason.
-
-
-            * `locked` - locked
-
-            * `normal` - normal
-
-            * `shipped` - shipped
-
-            * `cancelled` - cancelled
-
-            * `damaged` - damaged'
-          readOnly: true
-        bin:
-          type: string
-          description: Bank Identification Number (BIN) is the first 6 to 8 digits of the Primary Account Number (PAN).
-        network:
-          type: string
-          description: The credit card processing network, such as Visa, Discover, etc.
-        name:
-          type: string
-          description: The card product's name.
-        card_type:
-          type: string
-          description: The card's type, debit, credit or atm.
-      required:
-      - bin
-      - card_type
-      - core_user_id
-      - id
-      - last_four_digits
-      - name
-      - network
-      x-stoplight:
-        id: chf14nszhkbex
-    PaginatedCardInfoList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardInfo'
-      x-stoplight:
-        id: l0ulmogdgptfu
     Address:
       type: object
       properties:
@@ -1577,118 +1332,6 @@ components:
       - start_date
       x-stoplight:
         id: llgatlkhvo1zf
-    RecurringTransaction:
-      type: object
-      properties:
-        id:
-          type: string
-        amount:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
-        category_code:
-          type: string
-        transaction_date:
-          type: string
-          format: date
-        merchant_name:
-          type: string
-        subscription_id:
-          type: string
-          format: uuid
-      required:
-      - amount
-      - category_code
-      - id
-      - merchant_name
-      - subscription_id
-      - transaction_date
-      x-stoplight:
-        id: ldemqix6pa0tc
-    CardShippingInfo:
-      type: object
-      description: integrations.cards.api_messages.Shipping
-      properties:
-        address:
-          $ref: '#/components/schemas/Address'
-        method:
-          type: string
-        shipped_on:
-          type:
-          - string
-          - 'null'
-          format: date
-      required:
-      - address
-      - method
-      x-stoplight:
-        id: d3dtn5mecxm9n
-    Card:
-      type: object
-      properties:
-        state:
-          allOf:
-          - $ref: '#/components/schemas/CardStateEnum'
-          description: 'Indicates whether the card is functional.
-
-
-            * `active` - active
-
-            * `inactive` - inactive'
-        id:
-          type: string
-          readOnly: true
-          description: An identifier for the card object.
-        core_user_id:
-          type: string
-          readOnly: true
-          description: String uniquely identifying a user or user's primary account on the banking core.
-        bin:
-          type: string
-          readOnly: true
-          description: Bank Identification Number (BIN), the first 6 to 8 digits of the Primary Account Number (PAN)
-        last_four_digits:
-          type: string
-          readOnly: true
-          description: Last four digits of the card number.
-        svg:
-          type: string
-          readOnly: true
-          description: An image of the card or a placeholder image.
-        is_card_number_on_front:
-          type: string
-          readOnly: true
-          description: '"True" or "False"'
-        card_text_color:
-          type: string
-          readOnly: true
-          description: Hex value representing card text color.
-      required:
-      - state
-      x-stoplight:
-        id: bsnjpqmciiqgl
-    CardTransactionsByMonth:
-      type: object
-      properties:
-        month:
-          type: string
-        total:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
-        transaction_count:
-          type: integer
-        transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/RecurringTransaction'
-      required:
-      - month
-      - total
-      - transaction_count
-      - transactions
-      x-stoplight:
-        id: terphibvp3zyp
     TravelDestinationCodesEnum:
       enum:
       - AW
@@ -2440,6 +2083,353 @@ components:
         * `ZW` - ZW'
       x-stoplight:
         id: hbdgoazuxfyfn
+    StateBd5Enum:
+      enum:
+      - locked
+      - normal
+      - shipped
+      - cancelled
+      - damaged
+      type: string
+      description: '* `locked` - locked
+
+        * `normal` - normal
+
+        * `shipped` - shipped
+
+        * `cancelled` - cancelled
+
+        * `damaged` - damaged'
+      x-stoplight:
+        id: xhbwau39q9oko
+    ReasonEnum:
+      enum:
+      - damaged
+      - lost
+      - stolen
+      type: string
+      description: '* `damaged` - damaged
+
+        * `lost` - lost
+
+        * `stolen` - stolen'
+      x-stoplight:
+        id: dnkxb7jc76rkm
+    MissingCardRequest:
+      type: object
+      properties:
+        reason:
+          $ref: '#/components/schemas/ReasonEnum'
+      required:
+      - reason
+      x-stoplight:
+        id: htvopglvr495y
+    CardSubscriptions:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+        category_code:
+          type: string
+        merchant_name:
+          type: string
+        state:
+          $ref: '#/components/schemas/CardSubscriptionsStateEnum'
+        recurrence_frequency:
+          oneOf:
+          - $ref: '#/components/schemas/RecurrenceFrequencyEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+        next_payment_date:
+          type:
+          - string
+          - 'null'
+          format: date
+      required:
+      - amount
+      - category_code
+      - id
+      - merchant_name
+      - next_payment_date
+      - recurrence_frequency
+      - state
+      x-stoplight:
+        id: tzfuauxjtqn3q
+    CardStateEnum:
+      enum:
+      - active
+      - inactive
+      type: string
+      description: '* `active` - active
+
+        * `inactive` - inactive'
+      x-stoplight:
+        id: or81aivklcwgb
+    Card:
+      type: object
+      properties:
+        state:
+          allOf:
+          - $ref: '#/components/schemas/CardStateEnum'
+          description: 'Indicates whether the card is functional.
+
+
+            * `active` - active
+
+            * `inactive` - inactive'
+        id:
+          type: string
+          readOnly: true
+          description: An identifier for the card object.
+        core_user_id:
+          type: string
+          readOnly: true
+          description: String uniquely identifying a user or user's primary account on the banking core.
+        bin:
+          type: string
+          readOnly: true
+          description: Bank Identification Number (BIN), the first 6 to 8 digits of the Primary Account Number (PAN)
+        last_four_digits:
+          type: string
+          readOnly: true
+          description: Last four digits of the card number.
+        svg:
+          type: string
+          readOnly: true
+          description: An image of the card or a placeholder image.
+        is_card_number_on_front:
+          type: string
+          readOnly: true
+          description: '"True" or "False"'
+        card_text_color:
+          type: string
+          readOnly: true
+          description: Hex value representing card text color.
+      required:
+      - state
+      x-stoplight:
+        id: bsnjpqmciiqgl
+    PaginatedCardInfoList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardInfo'
+      x-stoplight:
+        id: l0ulmogdgptfu
+    RecurrenceFrequencyEnum:
+      enum:
+      - daily
+      - semi-monthly
+      - monthly
+      - bimonthly
+      - quarterly
+      - biannually
+      - annually
+      type: string
+      description: '* `daily` - daily
+
+        * `semi-monthly` - semi-monthly
+
+        * `monthly` - monthly
+
+        * `bimonthly` - bimonthly
+
+        * `quarterly` - quarterly
+
+        * `biannually` - biannually
+
+        * `annually` - annually
+
+        * `` - '
+      x-stoplight:
+        id: hnoqaesl0wqdw
+    RecurringTransaction:
+      type: object
+      properties:
+        id:
+          type: string
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+        category_code:
+          type: string
+        transaction_date:
+          type: string
+          format: date
+        merchant_name:
+          type: string
+        subscription_id:
+          type: string
+          format: uuid
+      required:
+      - amount
+      - category_code
+      - id
+      - merchant_name
+      - subscription_id
+      - transaction_date
+      x-stoplight:
+        id: ldemqix6pa0tc
+    CardInfo:
+      type: object
+      description: integrations.cards.api_messages.CardInfo
+      properties:
+        id:
+          type: string
+          description: An identifier for the card object.
+        name:
+          type: string
+          description: The card product's name.
+        last_four_digits:
+          type: string
+          description: Last four digits of the card's account number.
+        shipping:
+          allOf:
+          - $ref: '#/components/schemas/CardShippingInfo'
+          description: Shipping information, not always populated.
+        network:
+          type:
+          - string
+          - 'null'
+          default: visa
+          description: The credit card processing network, such as Visa, Discover, etc.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/StateBd5Enum'
+          description: 'Indicates whether the card is functional, and if not for what reason.
+
+
+            * `locked` - locked
+
+            * `normal` - normal
+
+            * `shipped` - shipped
+
+            * `cancelled` - cancelled
+
+            * `damaged` - damaged'
+          readOnly: true
+        image:
+          type: string
+          description: An image of the card or a placeholder image.
+          readOnly: true
+        text_color:
+          type: string
+          default: '#FFFFFF'
+          description: Hex value indicating text color.
+        card_type:
+          type: string
+          description: The card's type, debit, credit or atm.
+      required:
+      - card_type
+      - id
+      - last_four_digits
+      - name
+      x-stoplight:
+        id: odrdkdiznuohw
+    CardShippingInfo:
+      type: object
+      description: integrations.cards.api_messages.Shipping
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        method:
+          type: string
+        shipped_on:
+          type:
+          - string
+          - 'null'
+          format: date
+      required:
+      - address
+      - method
+      x-stoplight:
+        id: d3dtn5mecxm9n
+    LegacyUpdateCardResponse:
+      type: object
+      properties:
+        card:
+          allOf:
+          - $ref: '#/components/schemas/Card'
+          readOnly: true
+      x-stoplight:
+        id: uc3qkcb24dtla
+    CommonCard:
+      type: object
+      description: integrations.cards.common.Card
+      properties:
+        id:
+          type: string
+          description: An identifier for the card object.
+        core_user_id:
+          type: string
+          description: String uniquely identifying a user or user's primary account on the banking core
+        last_four_digits:
+          type: string
+          description: Last four digits of the card's account number.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/StateBd5Enum'
+          description: 'Indicates whether the card is functional, and if not for what reason.
+
+
+            * `locked` - locked
+
+            * `normal` - normal
+
+            * `shipped` - shipped
+
+            * `cancelled` - cancelled
+
+            * `damaged` - damaged'
+          readOnly: true
+        bin:
+          type: string
+          description: Bank Identification Number (BIN) is the first 6 to 8 digits of the Primary Account Number (PAN).
+        network:
+          type: string
+          description: The credit card processing network, such as Visa, Discover, etc.
+        name:
+          type: string
+          description: The card product's name.
+        card_type:
+          type: string
+          description: The card's type, debit, credit or atm.
+      required:
+      - bin
+      - card_type
+      - core_user_id
+      - id
+      - last_four_digits
+      - name
+      - network
+      x-stoplight:
+        id: chf14nszhkbex
     CardTravelNoteRequest:
       type: object
       description: For getting and setting integrations.cards.api_messages.CardTravelNote
@@ -2461,22 +2451,41 @@ components:
       - travel_destination_codes
       x-stoplight:
         id: a3bgtpnfmeevl
-    CardSubscriptionsAndTransactions:
+    CardRequest:
       type: object
       properties:
-        monthly_transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardTransactionsByMonth'
-        subscriptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/CardSubscriptions'
+        state:
+          allOf:
+          - $ref: '#/components/schemas/CardStateEnum'
+          description: 'Indicates whether the card is functional.
+
+
+            * `active` - active
+
+            * `inactive` - inactive'
       required:
-      - monthly_transactions
-      - subscriptions
+      - state
       x-stoplight:
-        id: gri4ifgvdrsvw
+        id: lvdyknsgnuyu5
+    SensitiveCardInfo:
+      type: object
+      properties:
+        pan:
+          type: string
+          example: '4012000033330026'
+        cvv:
+          type: string
+          example: '000'
+        expiration_date:
+          type: string
+          format: date
+          example: 2031-07-24
+      required:
+      - cvv
+      - expiration_date
+      - pan
+      x-stoplight:
+        id: y3vcpgnlzduvh
     PaginatedCardTravelNoteList:
       type: object
       required:
@@ -2504,71 +2513,62 @@ components:
             $ref: '#/components/schemas/CardTravelNote'
       x-stoplight:
         id: cp4oim92gdv1d
-    CardStateEnum:
-      enum:
-      - active
-      - inactive
-      type: string
-      description: '* `active` - active
-
-        * `inactive` - inactive'
-      x-stoplight:
-        id: or81aivklcwgb
-    StateBd5Enum:
-      enum:
-      - locked
-      - normal
-      - shipped
-      - cancelled
-      - damaged
-      type: string
-      description: '* `locked` - locked
-
-        * `normal` - normal
-
-        * `shipped` - shipped
-
-        * `cancelled` - cancelled
-
-        * `damaged` - damaged'
-      x-stoplight:
-        id: xhbwau39q9oko
-    MissingCardRequest:
-      type: object
-      properties:
-        reason:
-          $ref: '#/components/schemas/ReasonEnum'
-      required:
-      - reason
-      x-stoplight:
-        id: htvopglvr495y
-    ReasonEnum:
-      enum:
-      - damaged
-      - lost
-      - stolen
-      type: string
-      description: '* `damaged` - damaged
-
-        * `lost` - lost
-
-        * `stolen` - stolen'
-      x-stoplight:
-        id: dnkxb7jc76rkm
-    LegacyUpdateCardResponse:
-      type: object
-      properties:
-        card:
-          allOf:
-          - $ref: '#/components/schemas/Card'
-          readOnly: true
-      x-stoplight:
-        id: uc3qkcb24dtla
     BlankEnum:
       enum:
       - ''
       x-stoplight:
         id: kjdrahkcokejl
+    CardSubscriptionsAndTransactions:
+      type: object
+      properties:
+        monthly_transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardTransactionsByMonth'
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/CardSubscriptions'
+      required:
+      - monthly_transactions
+      - subscriptions
+      x-stoplight:
+        id: gri4ifgvdrsvw
+    CardTransactionsByMonth:
+      type: object
+      properties:
+        month:
+          type: string
+        total:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+        transaction_count:
+          type: integer
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecurringTransaction'
+      required:
+      - month
+      - total
+      - transaction_count
+      - transactions
+      x-stoplight:
+        id: terphibvp3zyp
+    CardSubscriptionsStateEnum:
+      enum:
+      - current
+      - new
+      - cancelled
+      type: string
+      description: '* `current` - current
+
+        * `new` - new
+
+        * `cancelled` - cancelled'
+      x-stoplight:
+        id: hcp1u8tvpuntl
   securitySchemes:
     oauth2:
       type: oauth2

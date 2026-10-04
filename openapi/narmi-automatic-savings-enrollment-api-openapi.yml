@@ -218,16 +218,87 @@ paths:
         id: 2ndeyxhmmhw0h
 components:
   schemas:
-    SourceEnum:
-      enum:
-      - institution
-      - external
-      type: string
-      description: '* `institution` - institution
-
-        * `external` - external'
+    Product:
+      type: object
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        type:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          readOnly: true
       x-stoplight:
-        id: z2qbah6dv7xog
+        id: wzdifft3exj5t
+    AccountBalance:
+      type: object
+      description: A representation of an account with respect to its balance totals.
+      properties:
+        id:
+          example: abl_8b143f3e-70df-4799-a2ae-c5e3dabed963
+          description: Account UUID prefixed with "abl_" for use with this endpoint.
+          type: string
+          readOnly: true
+        account_id:
+          example: 8b143f3e-70df-4799-a2ae-c5e3dabed963
+          type: string
+          format: uuid
+          readOnly: true
+          description: UUID to the associated account.
+        primary:
+          example: 100.0
+          maximum: 10000000000000.0
+          minimum: -10000000000000.0
+          description: The balance to be presented to the customer. Set to the available balance for non CD deposit accounts, and ledger balance otherwise. May be null for external accounts that have not yet been synced with balance data.
+          type:
+          - number
+          - 'null'
+          format: double
+          readOnly: true
+        available:
+          example: 100.0
+          maximum: 10000000000000.0
+          minimum: -10000000000000.0
+          description: The funds immediately available to use, including any pending transactions or temporary holds on the account. May be null for external accounts that have not yet been synced with balance data.
+          type:
+          - number
+          - 'null'
+          format: double
+          readOnly: true
+        ledger:
+          example: 100.0
+          maximum: 10000000000000.0
+          minimum: -10000000000000.0
+          description: The total amount of funds in the account not including temporary holds or pending transactions. May be null for external accounts that have not yet been synced with balance data.
+          type:
+          - number
+          - 'null'
+          format: double
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date when the account was last updated.
+      x-stoplight:
+        id: sswt197xsfwzw
+    AutomaticSavingsEnrollment:
+      type: object
+      properties:
+        source_account:
+          $ref: '#/components/schemas/Account'
+        destination_account:
+          $ref: '#/components/schemas/Account'
+        automatic_savings_eligible:
+          type: boolean
+        automatic_savings_active:
+          type: boolean
+      x-stoplight:
+        id: qd8r4jdkwdvpe
     AutomaticSavingsEnrollmentDeserializerRequest:
       type: object
       properties:
@@ -242,16 +313,27 @@ components:
       - source_account_uuid
       x-stoplight:
         id: x1brbxl2libjx
-    State973Enum:
-      enum:
-      - active
-      - inactive
-      - pending
-      - verified
-      - removed
-      type: string
+    LoanDetails:
+      type: object
+      properties:
+        minimum_payment:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+          readOnly: true
+        interest_rate:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,16}(?:\.\d{0,4})?$
+          readOnly: true
+        next_payment_at:
+          type: string
+          format: date-time
+          readOnly: true
       x-stoplight:
-        id: sx7oslmzp4bem
+        id: quxztlucbcd9s
     Account:
       type: object
       description: A representation of either an account or an external account.
@@ -386,108 +468,26 @@ components:
       - balances
       x-stoplight:
         id: wknvwcjc17vw6
-    AccountBalance:
-      type: object
-      description: A representation of an account with respect to its balance totals.
-      properties:
-        id:
-          example: abl_8b143f3e-70df-4799-a2ae-c5e3dabed963
-          description: Account UUID prefixed with "abl_" for use with this endpoint.
-          type: string
-          readOnly: true
-        account_id:
-          example: 8b143f3e-70df-4799-a2ae-c5e3dabed963
-          type: string
-          format: uuid
-          readOnly: true
-          description: UUID to the associated account.
-        primary:
-          example: 100.0
-          maximum: 10000000000000.0
-          minimum: -10000000000000.0
-          description: The balance to be presented to the customer. Set to the available balance for non CD deposit accounts, and ledger balance otherwise. May be null for external accounts that have not yet been synced with balance data.
-          type:
-          - number
-          - 'null'
-          format: double
-          readOnly: true
-        available:
-          example: 100.0
-          maximum: 10000000000000.0
-          minimum: -10000000000000.0
-          description: The funds immediately available to use, including any pending transactions or temporary holds on the account. May be null for external accounts that have not yet been synced with balance data.
-          type:
-          - number
-          - 'null'
-          format: double
-          readOnly: true
-        ledger:
-          example: 100.0
-          maximum: 10000000000000.0
-          minimum: -10000000000000.0
-          description: The total amount of funds in the account not including temporary holds or pending transactions. May be null for external accounts that have not yet been synced with balance data.
-          type:
-          - number
-          - 'null'
-          format: double
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Date when the account was last updated.
+    SourceEnum:
+      enum:
+      - institution
+      - external
+      type: string
+      description: '* `institution` - institution
+
+        * `external` - external'
       x-stoplight:
-        id: sswt197xsfwzw
-    AutomaticSavingsEnrollment:
-      type: object
-      properties:
-        source_account:
-          $ref: '#/components/schemas/Account'
-        destination_account:
-          $ref: '#/components/schemas/Account'
-        automatic_savings_eligible:
-          type: boolean
-        automatic_savings_active:
-          type: boolean
+        id: z2qbah6dv7xog
+    State973Enum:
+      enum:
+      - active
+      - inactive
+      - pending
+      - verified
+      - removed
+      type: string
       x-stoplight:
-        id: qd8r4jdkwdvpe
-    Product:
-      type: object
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        type:
-          type: string
-          readOnly: true
-        description:
-          type: string
-          readOnly: true
-      x-stoplight:
-        id: wzdifft3exj5t
-    LoanDetails:
-      type: object
-      properties:
-        minimum_payment:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-          readOnly: true
-        interest_rate:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,16}(?:\.\d{0,4})?$
-          readOnly: true
-        next_payment_at:
-          type: string
-          format: date-time
-          readOnly: true
-      x-stoplight:
-        id: quxztlucbcd9s
+        id: sx7oslmzp4bem
   securitySchemes:
     oauth2:
       type: oauth2

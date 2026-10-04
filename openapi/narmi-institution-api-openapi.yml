@@ -111,29 +111,6 @@ paths:
         id: him0ikxvoojeu
 components:
   schemas:
-    InstitutionDisclosureLink:
-      type: object
-      description: Link within an institution disclosure.
-      properties:
-        text:
-          type: string
-        url:
-          type: string
-      required:
-      - text
-      - url
-      x-stoplight:
-        id: dblspf52t9xgp
-    SwaggerInstitutionGet:
-      type: object
-      description: A serializer to render the institutionContextProcessor
-      properties:
-        institution:
-          allOf:
-          - $ref: '#/components/schemas/InstitutionContextProcessor'
-          readOnly: true
-      x-stoplight:
-        id: m3jmmieciurgi
     InstitutionDisclosure:
       type: object
       description: Disclosure for institution context (e.g., account opening disclosures).
@@ -148,23 +125,6 @@ components:
             $ref: '#/components/schemas/InstitutionDisclosureLink'
       x-stoplight:
         id: hib9thlt12afl
-    InstitutionFeaturesContextProcessor:
-      type: object
-      description: Serializer for institution features flags and settings.
-      properties:
-        lending:
-          type: boolean
-          readOnly: true
-      x-stoplight:
-        id: iso2gcb5tdq1h
-    InstitutionNameField:
-      type: object
-      properties:
-        name:
-          type: string
-          default: BANK OF AMERICA, N.A.
-      x-stoplight:
-        id: lpha2zhfqgaok
     InstitutionNameResponse:
       type: object
       properties:
@@ -174,6 +134,15 @@ components:
       - institution
       x-stoplight:
         id: o9xzklivvdxaj
+    InstitutionFeaturesContextProcessor:
+      type: object
+      description: Serializer for institution features flags and settings.
+      properties:
+        lending:
+          type: boolean
+          readOnly: true
+      x-stoplight:
+        id: iso2gcb5tdq1h
     LendingApplicationSteps:
       type: object
       description: Controls which lending application steps are shown.
@@ -186,6 +155,27 @@ components:
           readOnly: true
       x-stoplight:
         id: 2auul33i52rfn
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    InstitutionNameField:
+      type: object
+      properties:
+        name:
+          type: string
+          default: BANK OF AMERICA, N.A.
+      x-stoplight:
+        id: lpha2zhfqgaok
     InstitutionContextProcessor:
       type: object
       description: Render Institution-specific data, such as URLs, asset URLs, and customizable settings
@@ -328,19 +318,29 @@ components:
           readOnly: true
       x-stoplight:
         id: vagdwjgdrquwt
-    NotFoundError:
+    InstitutionDisclosureLink:
       type: object
+      description: Link within an institution disclosure.
       properties:
-        id:
+        text:
           type: string
-          default: not_found
-        message:
+        url:
           type: string
-          description: An error response detailing the nature of the error.
       required:
-      - message
+      - text
+      - url
       x-stoplight:
-        id: qazjpvfdteybw
+        id: dblspf52t9xgp
+    SwaggerInstitutionGet:
+      type: object
+      description: A serializer to render the institutionContextProcessor
+      properties:
+        institution:
+          allOf:
+          - $ref: '#/components/schemas/InstitutionContextProcessor'
+          readOnly: true
+      x-stoplight:
+        id: m3jmmieciurgi
   securitySchemes:
     oauth2:
       type: oauth2

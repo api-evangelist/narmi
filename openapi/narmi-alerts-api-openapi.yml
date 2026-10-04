@@ -1278,127 +1278,6 @@ paths:
         id: i1zlspjwfeogj
 components:
   schemas:
-    DeliveryChannelsEnum:
-      enum:
-      - sms
-      - push
-      - email
-      type: string
-      description: '* `sms` - sms
-
-        * `push` - push
-
-        * `email` - email'
-      x-stoplight:
-        id: jds3ywpdugt4t
-    AlertKey61cEnum:
-      enum:
-      - credit
-      - debit
-      type: string
-      description: '* `credit` - credit
-
-        * `debit` - debit'
-      x-stoplight:
-        id: bwsuuwmt9dsnb
-    TransactionAlertRuleRequest:
-      type: object
-      properties:
-        alert_key:
-          allOf:
-          - $ref: '#/components/schemas/AlertKey61cEnum'
-          description: 'Alert type, can be one of `credit` or `debit`.
-
-
-            * `credit` - credit
-
-            * `debit` - debit'
-        delivery_channels:
-          type: array
-          items:
-            allOf:
-            - $ref: '#/components/schemas/DeliveryChannelsEnum'
-            description: 'Delivery channels, can be one of `sms`, `push`, or `email`.
-
-
-              * `sms` - sms
-
-              * `push` - push
-
-              * `email` - email'
-        transaction_query:
-          type: string
-          minLength: 1
-          maxLength: 256
-      required:
-      - alert_key
-      - delivery_channels
-      - transaction_query
-      x-stoplight:
-        id: tmgfqcbyivovs
-    PaginatedAccountAlertRuleList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountAlertRule'
-      x-stoplight:
-        id: lcwjdoksklfjh
-    LoanAlertRuleRequest:
-      type: object
-      properties:
-        alert_key:
-          allOf:
-          - $ref: '#/components/schemas/LoanAlertRuleAlertKeyEnum'
-          description: 'Alert type, can be one of `loan_reminder` or `loan_overdue`.
-
-
-            * `loan_reminder` - loan_reminder
-
-            * `loan_overdue` - loan_overdue'
-        delivery_channels:
-          type: array
-          items:
-            allOf:
-            - $ref: '#/components/schemas/DeliveryChannelsEnum'
-            description: 'Delivery channels, can be one of `sms`, `push`, or `email`.
-
-
-              * `sms` - sms
-
-              * `push` - push
-
-              * `email` - email'
-        reminder_days_offset:
-          type:
-          - integer
-          - 'null'
-          maximum: 7
-          minimum: 0
-      required:
-      - alert_key
-      - delivery_channels
-      x-stoplight:
-        id: khappnecltn0j
     LoanAlertRule:
       type: object
       properties:
@@ -1505,6 +1384,54 @@ components:
       - transaction_query
       x-stoplight:
         id: 4rgthd2z87x7k
+    AccountAlertRuleRequest:
+      type: object
+      properties:
+        rrule:
+          type:
+          - string
+          - 'null'
+          description: Recurrence rule in RFC 5545 format
+          maxLength: 200
+        alert_key:
+          allOf:
+          - $ref: '#/components/schemas/AccountAlertRuleAlertKeyEnum'
+          description: 'Alert type, can be one of `available_balance` or `low_available_balance`.
+
+
+            * `available_balance` - available_balance
+
+            * `low_available_balance` - low_available_balance'
+        threshold_amount:
+          type:
+          - string
+          - 'null'
+          format: decimal
+          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
+        delivery_channels:
+          type: array
+          items:
+            allOf:
+            - $ref: '#/components/schemas/DeliveryChannelsEnum'
+            description: 'Delivery channels, can be one of `sms`, `push`, or `email`.
+
+
+              * `sms` - sms
+
+              * `push` - push
+
+              * `email` - email'
+        subscribed_accounts:
+          type: array
+          items:
+            type: string
+            format: uuid
+      required:
+      - alert_key
+      - delivery_channels
+      - subscribed_accounts
+      x-stoplight:
+        id: ehvxvi9lluber
     AccountAlertRuleAlertKeyEnum:
       enum:
       - available_balance
@@ -1515,6 +1442,52 @@ components:
         * `low_available_balance` - low_available_balance'
       x-stoplight:
         id: qthwkg8mfbejw
+    LoanAlertRuleRequest:
+      type: object
+      properties:
+        alert_key:
+          allOf:
+          - $ref: '#/components/schemas/LoanAlertRuleAlertKeyEnum'
+          description: 'Alert type, can be one of `loan_reminder` or `loan_overdue`.
+
+
+            * `loan_reminder` - loan_reminder
+
+            * `loan_overdue` - loan_overdue'
+        delivery_channels:
+          type: array
+          items:
+            allOf:
+            - $ref: '#/components/schemas/DeliveryChannelsEnum'
+            description: 'Delivery channels, can be one of `sms`, `push`, or `email`.
+
+
+              * `sms` - sms
+
+              * `push` - push
+
+              * `email` - email'
+        reminder_days_offset:
+          type:
+          - integer
+          - 'null'
+          maximum: 7
+          minimum: 0
+      required:
+      - alert_key
+      - delivery_channels
+      x-stoplight:
+        id: khappnecltn0j
+    LoanAlertRuleAlertKeyEnum:
+      enum:
+      - loan_reminder
+      - loan_overdue
+      type: string
+      description: '* `loan_reminder` - loan_reminder
+
+        * `loan_overdue` - loan_overdue'
+      x-stoplight:
+        id: qiy6mwvgwofef
     AccountAlertRule:
       type: object
       properties:
@@ -1587,55 +1560,7 @@ components:
       - subscribed_accounts
       x-stoplight:
         id: ymbfkpwtpunmq
-    AccountAlertRuleRequest:
-      type: object
-      properties:
-        rrule:
-          type:
-          - string
-          - 'null'
-          description: Recurrence rule in RFC 5545 format
-          maxLength: 200
-        alert_key:
-          allOf:
-          - $ref: '#/components/schemas/AccountAlertRuleAlertKeyEnum'
-          description: 'Alert type, can be one of `available_balance` or `low_available_balance`.
-
-
-            * `available_balance` - available_balance
-
-            * `low_available_balance` - low_available_balance'
-        threshold_amount:
-          type:
-          - string
-          - 'null'
-          format: decimal
-          pattern: ^-?\d{0,18}(?:\.\d{0,2})?$
-        delivery_channels:
-          type: array
-          items:
-            allOf:
-            - $ref: '#/components/schemas/DeliveryChannelsEnum'
-            description: 'Delivery channels, can be one of `sms`, `push`, or `email`.
-
-
-              * `sms` - sms
-
-              * `push` - push
-
-              * `email` - email'
-        subscribed_accounts:
-          type: array
-          items:
-            type: string
-            format: uuid
-      required:
-      - alert_key
-      - delivery_channels
-      - subscribed_accounts
-      x-stoplight:
-        id: ehvxvi9lluber
-    PaginatedTransactionAlertRuleList:
+    PaginatedAccountAlertRuleList:
       type: object
       required:
       - count
@@ -1659,9 +1584,9 @@ components:
         results:
           type: array
           items:
-            $ref: '#/components/schemas/TransactionAlertRule'
+            $ref: '#/components/schemas/AccountAlertRule'
       x-stoplight:
-        id: 5dcibfdfisdew
+        id: lcwjdoksklfjh
     PaginatedLoanAlertRuleList:
       type: object
       required:
@@ -1689,16 +1614,91 @@ components:
             $ref: '#/components/schemas/LoanAlertRule'
       x-stoplight:
         id: dlmnypvk45alz
-    LoanAlertRuleAlertKeyEnum:
-      enum:
-      - loan_reminder
-      - loan_overdue
-      type: string
-      description: '* `loan_reminder` - loan_reminder
-
-        * `loan_overdue` - loan_overdue'
+    PaginatedTransactionAlertRuleList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionAlertRule'
       x-stoplight:
-        id: qiy6mwvgwofef
+        id: 5dcibfdfisdew
+    TransactionAlertRuleRequest:
+      type: object
+      properties:
+        alert_key:
+          allOf:
+          - $ref: '#/components/schemas/AlertKey61cEnum'
+          description: 'Alert type, can be one of `credit` or `debit`.
+
+
+            * `credit` - credit
+
+            * `debit` - debit'
+        delivery_channels:
+          type: array
+          items:
+            allOf:
+            - $ref: '#/components/schemas/DeliveryChannelsEnum'
+            description: 'Delivery channels, can be one of `sms`, `push`, or `email`.
+
+
+              * `sms` - sms
+
+              * `push` - push
+
+              * `email` - email'
+        transaction_query:
+          type: string
+          minLength: 1
+          maxLength: 256
+      required:
+      - alert_key
+      - delivery_channels
+      - transaction_query
+      x-stoplight:
+        id: tmgfqcbyivovs
+    AlertKey61cEnum:
+      enum:
+      - credit
+      - debit
+      type: string
+      description: '* `credit` - credit
+
+        * `debit` - debit'
+      x-stoplight:
+        id: bwsuuwmt9dsnb
+    DeliveryChannelsEnum:
+      enum:
+      - sms
+      - push
+      - email
+      type: string
+      description: '* `sms` - sms
+
+        * `push` - push
+
+        * `email` - email'
+      x-stoplight:
+        id: jds3ywpdugt4t
   securitySchemes:
     oauth2:
       type: oauth2

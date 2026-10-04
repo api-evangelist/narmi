@@ -240,6 +240,45 @@ paths:
         id: phmudftmgswyx
 components:
   schemas:
+    FedwireRecipientAddressRequest:
+      type: object
+      properties:
+        street_address:
+          type: string
+          minLength: 1
+          maxLength: 35
+        street_address_2:
+          type: string
+          maxLength: 35
+        city:
+          type: string
+          maxLength: 128
+        region_code:
+          type: string
+          maxLength: 128
+        postal_code:
+          type: string
+          maxLength: 128
+        country_code:
+          type: string
+          minLength: 1
+          maxLength: 2
+      required:
+      - street_address
+      x-stoplight:
+        id: jpxphmdao13bd
+    PermissionDeniedError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: You do not have permission to perform this action.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: ywbohhxwqjqj3
     WireRecipientRequest:
       type: object
       description: 'This serializer supports backwards compatibility for the WireRecipientViewSet,
@@ -282,6 +321,19 @@ components:
       - routing_number
       x-stoplight:
         id: ifvybcisydbkd
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
     WireRecipient:
       type: object
       description: 'This serializer supports backwards compatibility for the WireRecipientViewSet,
@@ -331,45 +383,6 @@ components:
       - routing_number
       x-stoplight:
         id: acopmwxwejxqo
-    PermissionDeniedError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: api_error
-        message:
-          type: string
-          default: You do not have permission to perform this action.
-          description: An error response detailing the field and the nature of the error.
-      x-stoplight:
-        id: ywbohhxwqjqj3
-    FedwireRecipientAddressRequest:
-      type: object
-      properties:
-        street_address:
-          type: string
-          minLength: 1
-          maxLength: 35
-        street_address_2:
-          type: string
-          maxLength: 35
-        city:
-          type: string
-          maxLength: 128
-        region_code:
-          type: string
-          maxLength: 128
-        postal_code:
-          type: string
-          maxLength: 128
-        country_code:
-          type: string
-          minLength: 1
-          maxLength: 2
-      required:
-      - street_address
-      x-stoplight:
-        id: jpxphmdao13bd
     FedwireRecipientAddress:
       type: object
       properties:
@@ -440,19 +453,6 @@ components:
       - routing_number
       x-stoplight:
         id: sq5docs92xmmk
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: qazjpvfdteybw
     PaginatedWireRecipientList:
       type: object
       required:

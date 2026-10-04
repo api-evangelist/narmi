@@ -188,65 +188,31 @@ components:
       - unverified_recipient
       x-stoplight:
         id: 7qinjdob3wcd1
-    FednowPayment:
-      type: object
-      properties:
-        amount_cents:
-          type: integer
-          maximum: 100000000
-          minimum: 0
-        source_fi:
-          type: string
-        source_fi_name:
-          type: string
-          readOnly: true
-        destination_fi:
-          type: string
-        destination_fi_name:
-          type: string
-          readOnly: true
-        source_account:
-          type: string
-          minLength: 1
-        destination_account:
-          type: string
-          minLength: 1
-        source_name:
-          type: string
-        destination_name:
-          type: string
-        payment_identification:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        memo:
-          type: string
-        state:
-          type: string
-        type:
-          type: string
-        fed_settlement_date:
-          type: string
-          format: date
-        core_transaction_id:
-          type: string
-      required:
-      - amount_cents
-      - created_at
-      - destination_account
-      - destination_fi
-      - fed_settlement_date
-      - payment_identification
-      - source_fi
-      - state
-      - type
-      - updated_at
+    EnrollmentLevelEnum:
+      enum:
+      - receive
+      - send
+      - send_receive
+      - rfp
+      - rfp_send
+      - send_only
+      - none
+      type: string
+      description: '* `receive` - Receive only
+
+        * `send` - Send only
+
+        * `send_receive` - Send and Receive
+
+        * `rfp` - Request for payment and receive only
+
+        * `rfp_send` - Request for payment with send and receive
+
+        * `send_only` - Send only, meant for internal use only
+
+        * `none` - Not in the FedNow network'
       x-stoplight:
-        id: g74hjbbstiqwt
+        id: 3sonktbgvbhvk
     KindEnum:
       enum:
       - free
@@ -260,6 +226,25 @@ components:
         * `percent` - percent'
       x-stoplight:
         id: qcqed657de0rl
+    FedNowEligibility:
+      type: object
+      properties:
+        online:
+          type: boolean
+          default: false
+        enrollment_level:
+          $ref: '#/components/schemas/EnrollmentLevelEnum'
+        name:
+          type: string
+          default: ''
+        routing_number:
+          type: string
+          maxLength: 9
+      required:
+      - enrollment_level
+      - routing_number
+      x-stoplight:
+        id: dwymj4s81xw4o
     TransfersFee:
       type: object
       properties:
@@ -348,50 +333,65 @@ components:
         * `rejected_bulk_approval` - Rejected bulk approval'
       x-stoplight:
         id: otlhozfwfxeds
-    EnrollmentLevelEnum:
-      enum:
-      - receive
-      - send
-      - send_receive
-      - rfp
-      - rfp_send
-      - send_only
-      - none
-      type: string
-      description: '* `receive` - Receive only
-
-        * `send` - Send only
-
-        * `send_receive` - Send and Receive
-
-        * `rfp` - Request for payment and receive only
-
-        * `rfp_send` - Request for payment with send and receive
-
-        * `send_only` - Send only, meant for internal use only
-
-        * `none` - Not in the FedNow network'
-      x-stoplight:
-        id: 3sonktbgvbhvk
-    FedNowEligibility:
+    FednowPayment:
       type: object
       properties:
-        online:
-          type: boolean
-          default: false
-        enrollment_level:
-          $ref: '#/components/schemas/EnrollmentLevelEnum'
-        name:
+        amount_cents:
+          type: integer
+          maximum: 100000000
+          minimum: 0
+        source_fi:
           type: string
-          default: ''
-        routing_number:
+        source_fi_name:
           type: string
-          maxLength: 9
+          readOnly: true
+        destination_fi:
+          type: string
+        destination_fi_name:
+          type: string
+          readOnly: true
+        source_account:
+          type: string
+          minLength: 1
+        destination_account:
+          type: string
+          minLength: 1
+        source_name:
+          type: string
+        destination_name:
+          type: string
+        payment_identification:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        memo:
+          type: string
+        state:
+          type: string
+        type:
+          type: string
+        fed_settlement_date:
+          type: string
+          format: date
+        core_transaction_id:
+          type: string
       required:
-      - enrollment_level
-      - routing_number
+      - amount_cents
+      - created_at
+      - destination_account
+      - destination_fi
+      - fed_settlement_date
+      - payment_identification
+      - source_fi
+      - state
+      - type
+      - updated_at
       x-stoplight:
-        id: dwymj4s81xw4o
+        id: g74hjbbstiqwt
   securitySchemes:
     oauth2:
       type: oauth2

@@ -279,6 +279,32 @@ paths:
         id: iff7zjzisaii8
 components:
   schemas:
+    IncomeSourceRequest:
+      type: object
+      properties:
+        income:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        income_type:
+          $ref: '#/components/schemas/IncomeTypeEnum'
+        mortgage_rent:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        industry:
+          type: string
+          maxLength: 128
+        occupation:
+          type: string
+          maxLength: 128
+      required:
+      - income
+      - income_type
+      x-stoplight:
+        id: 6lravvbf1aphb
     IncomeTypeEnum:
       enum:
       - employed
@@ -331,32 +357,6 @@ components:
       - income_type
       x-stoplight:
         id: cf5t7cvffrpat
-    IncomeSourceRequest:
-      type: object
-      properties:
-        income:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        income_type:
-          $ref: '#/components/schemas/IncomeTypeEnum'
-        mortgage_rent:
-          type:
-          - integer
-          - 'null'
-          maximum: 2147483647
-          minimum: 0
-        industry:
-          type: string
-          maxLength: 128
-        occupation:
-          type: string
-          maxLength: 128
-      required:
-      - income
-      - income_type
-      x-stoplight:
-        id: 6lravvbf1aphb
   securitySchemes:
     oauth2:
       type: oauth2

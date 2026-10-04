@@ -4919,6 +4919,104 @@ paths:
         id: bef33lshkpkmh
 components:
   schemas:
+    PaginatedAccountStopsResponse:
+      type: object
+      properties:
+        stops:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountStop'
+        meta:
+          type: object
+          additionalProperties: {}
+          default: {}
+        links:
+          type: object
+          additionalProperties: {}
+          default: {}
+      required:
+      - stops
+      x-stoplight:
+        id: 4es2gdcilsxqp
+    AccountBalance:
+      type: object
+      description: A representation of an account with respect to its balance totals.
+      properties:
+        id:
+          example: abl_8b143f3e-70df-4799-a2ae-c5e3dabed963
+          description: Account UUID prefixed with "abl_" for use with this endpoint.
+          type: string
+          readOnly: true
+        account_id:
+          example: 8b143f3e-70df-4799-a2ae-c5e3dabed963
+          type: string
+          format: uuid
+          readOnly: true
+          description: UUID to the associated account.
+        primary:
+          example: 100.0
+          maximum: 10000000000000.0
+          minimum: -10000000000000.0
+          description: The balance to be presented to the customer. Set to the available balance for non CD deposit accounts, and ledger balance otherwise. May be null for external accounts that have not yet been synced with balance data.
+          type:
+          - number
+          - 'null'
+          format: double
+          readOnly: true
+        available:
+          example: 100.0
+          maximum: 10000000000000.0
+          minimum: -10000000000000.0
+          description: The funds immediately available to use, including any pending transactions or temporary holds on the account. May be null for external accounts that have not yet been synced with balance data.
+          type:
+          - number
+          - 'null'
+          format: double
+          readOnly: true
+        ledger:
+          example: 100.0
+          maximum: 10000000000000.0
+          minimum: -10000000000000.0
+          description: The total amount of funds in the account not including temporary holds or pending transactions. May be null for external accounts that have not yet been synced with balance data.
+          type:
+          - number
+          - 'null'
+          format: double
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date when the account was last updated.
+      x-stoplight:
+        id: sswt197xsfwzw
+    PermissionDeniedError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: You do not have permission to perform this action.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: ywbohhxwqjqj3
+    UpdateAccountDocRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: User-defined nickname for the account. Will be used as the display name for the user.
+        favorited:
+          type: boolean
+          description: Per-user preference used to mark favorited accounts. This does not affect the data returned from the list accounts endpoint.
+        hidden:
+          type: boolean
+          description: Per-user preference to mark hidden accounts. This does not affect the data returned from the list accounts endpoint.
+      x-stoplight:
+        id: rlyjsjicsqh2f
     TransactionResponseMeta:
       type: object
       properties:
@@ -4937,160 +5035,79 @@ components:
       - total
       x-stoplight:
         id: ub6yse2o1e9au
-    Transaction:
+    TransactionsResponse:
       type: object
-      description: Representation of a non-pending monetary transaction.
       properties:
-        description:
-          type: string
-          readOnly: true
-          description: Customer-facing description of the transaction. Typically an abridged version of the full description.
-        raw_description:
-          type: string
-          readOnly: true
-          description: Full description of the transaction.
-        id:
-          type: string
-          readOnly: true
-          description: UUID of the transaction.
-        source:
-          type: string
-          readOnly: true
-          description: Type of transaction typically starts with a value such as "withdrawal", "transfer", "deposit", "dividend", "fee", "loan_distribution", "loan_payment", and concatenated with a detail such as "ACH", "ATM", "Bill Payment", "Card", "Cash", "Check", "Draft", "Fee", "Home Banking", "Point of Sale".
-        settled_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          readOnly: true
-          description: Date-time the transaction was settled. Null for non-final transactions.
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Date-time when the transaction was created in the database.
-        account_id:
-          type: string
-          readOnly: true
-          description: UUID of the account.
-        category:
-          type: string
-          readOnly: true
-          description: Category of the transaction. Defaults to `"Unknown"`.
-        sub_category:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          description: Sub-category of the transaction. Defaults to empty string `""`.
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: Total amount of the transaction.
-          type: integer
-          readOnly: true
-        ledger_balance:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: New balance as of this transaction.
-          type:
-          - integer
-          - 'null'
-          readOnly: true
-        location:
-          allOf:
-          - $ref: '#/components/schemas/Location'
-          readOnly: true
-          description: Geographic location where the transaction was executed.
-        check:
-          allOf:
-          - $ref: '#/components/schemas/Check'
-          readOnly: true
-          description: Details for the check related to a transaction.
-        tags:
+        transactions:
           type: array
           items:
-            type: string
-          default: []
-          description: A list of user-defined tags associated with the transaction.
-        merchant:
-          type: string
-          readOnly: true
-          description: Merchant associated with the transaction. This is often set to empty string `""`.
-        metadata:
-          type: object
-          additionalProperties: {}
-          readOnly: true
-          description: Supplemental information associated with the account. This is often set to an empty object `{}`.
-        note:
-          type: string
-          default: ''
-          description: Notes about the transaction set by the user.
-          maxLength: 300
-        type:
-          description: Type of transaction (e.g. loan, withdrawal). Can contain additional details about the transaction type.
-          readOnly: true
-          oneOf:
-          - $ref: '#/components/schemas/Type61cEnum'
-          - $ref: '#/components/schemas/NullEnum'
-        recurring:
-          type: boolean
-          default: false
-          description: Whether this is a recurring transaction.
-        flex_plan_eligible:
-          type: boolean
-          readOnly: true
-          description: Whether this transaction is eligible for Flex Plan.
+            $ref: '#/components/schemas/Transaction'
+        links:
+          $ref: '#/components/schemas/PageNumberPagination'
+        meta:
+          allOf:
+          - $ref: '#/components/schemas/TransactionResponseMeta'
+          description: Metadata about the response, including the total number of results and any warnings that may have surfaced during the request.
+      required:
+      - links
+      - meta
+      - transactions
       x-stoplight:
-        id: vdnfwxifwddg1
-    Document:
+        id: kmnmughdcnwys
+    Location:
       type: object
       properties:
-        id:
+        city:
           type: string
           readOnly: true
-          description: Document ID. The format of the ID can vary between document stores.
-          example: f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5
-        type:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          description: Document type, this value can vary between document stores.
-          example: statement
-        type_label:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          description: Human readable type, defaults to value of `type` field when missing.
-          example: statement
-        description:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-          example: Account 43333
-        created_at:
+        region_code:
           type: string
           readOnly: true
-          description: The date-time the document was posted.
-          example: '2018-10-30T00:00:00-04:00'
-        account_id:
+        country_code:
           type: string
           readOnly: true
-        url:
+      x-stoplight:
+        id: ohkm53zydll3a
+    SourceEnum:
+      enum:
+      - institution
+      - external
+      type: string
+      description: '* `institution` - institution
+
+        * `external` - external'
+      x-stoplight:
+        id: z2qbah6dv7xog
+    PageNumberPagination:
+      type: object
+      properties:
+        next:
           type:
           - string
           - 'null'
           format: uri
-          description: The URL of the retrieve API call.
-          readOnly: true
-          example: https://demo2-api.uat.narmitech.com/v1/documents/f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5?data=true
+          description: Link to the next results page.
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: Link to the previous results page.
+      required:
+      - next
+      - previous
       x-stoplight:
-        id: 9mjrd0thewwlb
+        id: t59wt6qqevd5i
+    AccountMeta:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of results.
+      required:
+      - total
+      x-stoplight:
+        id: mglgzn6snhlo1
     State973Enum:
       enum:
       - active
@@ -5101,34 +5118,43 @@ components:
       type: string
       x-stoplight:
         id: sx7oslmzp4bem
-    PatchedAccountStopRequest:
+    PaginatedAccounts:
       type: object
       properties:
-        min_check_number:
-          type: string
-          minLength: 1
-          description: The lower bound check number which the stop applies to or the check number when targeting a single check with a specified amount.
-        max_check_number:
-          type: string
-          minLength: 1
-          description: The upper bound check number which the stop applies to.
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: The amount of the original payment that should be targeted for the stop.
-          type: integer
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/MobileAccount'
+        links:
+          $ref: '#/components/schemas/PageNumberPagination'
+        meta:
+          $ref: '#/components/schemas/AccountMeta'
+      required:
+      - accounts
+      - links
+      - meta
       x-stoplight:
-        id: szy5icfd32dwt
-    DocumentWithDataResponse:
+        id: ikecrzmbnjmzz
+    NestedAccounts:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/MobileAccount'
+      required:
+      - accounts
+      x-stoplight:
+        id: bv3pjyzmfbnhg
+    DocumentResponse:
       type: object
       properties:
         document:
-          $ref: '#/components/schemas/DocumentWithData'
+          $ref: '#/components/schemas/Document'
       required:
       - document
       x-stoplight:
-        id: 64o2djny8szc0
+        id: b2w8p4gq2jw1j
     Product:
       type: object
       properties:
@@ -5145,20 +5171,85 @@ components:
           readOnly: true
       x-stoplight:
         id: wzdifft3exj5t
-    NullEnum:
-      enum:
-      - null
-      x-stoplight:
-        id: 2493tmzk9db0y
-    Check:
+    InvalidRequestError:
       type: object
       properties:
-        number:
+        id:
           type: string
-          readOnly: true
-          description: Sequential number of the check used for bookkeeping.
+          default: invalid_request_error
+        message:
+          type: object
+          additionalProperties: {}
+          default:
+            field_name: Error description.
+          description: An error response detailing the field and the nature of the error.
       x-stoplight:
-        id: julrfoba1ef2k
+        id: aelrw6rc7wiph
+    AccountWithdrawalRequest:
+      type: object
+      properties:
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: Amount of the withdrawal.
+          type: integer
+      required:
+      - amount
+      x-stoplight:
+        id: l6k0rxdd5a1uc
+    LoanDetails:
+      type: object
+      properties:
+        minimum_payment:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+          readOnly: true
+        interest_rate:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,16}(?:\.\d{0,4})?$
+          readOnly: true
+        next_payment_at:
+          type: string
+          format: date-time
+          readOnly: true
+      x-stoplight:
+        id: quxztlucbcd9s
+    HoldsListResponse:
+      type: object
+      properties:
+        holds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Hold'
+        links:
+          $ref: '#/components/schemas/PageNumberPagination'
+        meta:
+          type: object
+          additionalProperties: {}
+          default: {}
+      required:
+      - holds
+      - links
+      x-stoplight:
+        id: p9rgexy0p9nti
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
     ExternalAccountVerificationRequest:
       type: object
       properties:
@@ -5176,27 +5267,6 @@ components:
           minItems: 2
       x-stoplight:
         id: boq18qcar27t2
-    SourceEnum:
-      enum:
-      - institution
-      - external
-      type: string
-      description: '* `institution` - institution
-
-        * `external` - external'
-      x-stoplight:
-        id: z2qbah6dv7xog
-    AccountsNotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: api_error
-        message:
-          type: string
-          default: No Account matches the given query.
-      x-stoplight:
-        id: g7fiwt5ax5keg
     MobileAccount:
       type: object
       description: A representation of either an account or an external account.
@@ -5374,6 +5444,299 @@ components:
       - balances
       x-stoplight:
         id: xdpydc3vjlwlm
+    Success:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: true
+      x-stoplight:
+        id: 9c4gdaystkoyy
+    NestedAccount:
+      type: object
+      properties:
+        account:
+          $ref: '#/components/schemas/MobileAccount'
+      required:
+      - account
+      x-stoplight:
+        id: xrhqmn6en2htc
+    NullEnum:
+      enum:
+      - null
+      x-stoplight:
+        id: 2493tmzk9db0y
+    Transaction:
+      type: object
+      description: Representation of a non-pending monetary transaction.
+      properties:
+        description:
+          type: string
+          readOnly: true
+          description: Customer-facing description of the transaction. Typically an abridged version of the full description.
+        raw_description:
+          type: string
+          readOnly: true
+          description: Full description of the transaction.
+        id:
+          type: string
+          readOnly: true
+          description: UUID of the transaction.
+        source:
+          type: string
+          readOnly: true
+          description: Type of transaction typically starts with a value such as "withdrawal", "transfer", "deposit", "dividend", "fee", "loan_distribution", "loan_payment", and concatenated with a detail such as "ACH", "ATM", "Bill Payment", "Card", "Cash", "Check", "Draft", "Fee", "Home Banking", "Point of Sale".
+        settled_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          readOnly: true
+          description: Date-time the transaction was settled. Null for non-final transactions.
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: Date-time when the transaction was created in the database.
+        account_id:
+          type: string
+          readOnly: true
+          description: UUID of the account.
+        category:
+          type: string
+          readOnly: true
+          description: Category of the transaction. Defaults to `"Unknown"`.
+        sub_category:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          description: Sub-category of the transaction. Defaults to empty string `""`.
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: Total amount of the transaction.
+          type: integer
+          readOnly: true
+        ledger_balance:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: New balance as of this transaction.
+          type:
+          - integer
+          - 'null'
+          readOnly: true
+        location:
+          allOf:
+          - $ref: '#/components/schemas/Location'
+          readOnly: true
+          description: Geographic location where the transaction was executed.
+        check:
+          allOf:
+          - $ref: '#/components/schemas/Check'
+          readOnly: true
+          description: Details for the check related to a transaction.
+        tags:
+          type: array
+          items:
+            type: string
+          default: []
+          description: A list of user-defined tags associated with the transaction.
+        merchant:
+          type: string
+          readOnly: true
+          description: Merchant associated with the transaction. This is often set to empty string `""`.
+        metadata:
+          type: object
+          additionalProperties: {}
+          readOnly: true
+          description: Supplemental information associated with the account. This is often set to an empty object `{}`.
+        note:
+          type: string
+          default: ''
+          description: Notes about the transaction set by the user.
+          maxLength: 300
+        type:
+          description: Type of transaction (e.g. loan, withdrawal). Can contain additional details about the transaction type.
+          readOnly: true
+          oneOf:
+          - $ref: '#/components/schemas/Type61cEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        recurring:
+          type: boolean
+          default: false
+          description: Whether this is a recurring transaction.
+        flex_plan_eligible:
+          type: boolean
+          readOnly: true
+          description: Whether this transaction is eligible for Flex Plan.
+      x-stoplight:
+        id: vdnfwxifwddg1
+    PatchedAccountStopRequest:
+      type: object
+      properties:
+        min_check_number:
+          type: string
+          minLength: 1
+          description: The lower bound check number which the stop applies to or the check number when targeting a single check with a specified amount.
+        max_check_number:
+          type: string
+          minLength: 1
+          description: The upper bound check number which the stop applies to.
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: The amount of the original payment that should be targeted for the stop.
+          type: integer
+      x-stoplight:
+        id: szy5icfd32dwt
+    Hold:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: This id can be disregarded, and is only generated/included to maintain current API contract.
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: The amount to hold on the account.
+          type: integer
+          readOnly: true
+        description:
+          type: string
+          description: A plain text description of the hold.
+        expires_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: The date-time when the hold will be lifted. This will be set to null if the hold does not expire.
+      x-stoplight:
+        id: exz8dgibmktx7
+    AccountPurposeEnum:
+      enum:
+      - personal
+      - business
+      type: string
+      description: '* `personal` - Personal
+
+        * `business` - Business'
+      x-stoplight:
+        id: ccf1svqamabvv
+    AccountStopResponse:
+      type: object
+      properties:
+        stop:
+          $ref: '#/components/schemas/AccountStop'
+      required:
+      - stop
+      x-stoplight:
+        id: jaihq9bvcgd1n
+    AccountsNotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: No Account matches the given query.
+      x-stoplight:
+        id: g7fiwt5ax5keg
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: Document ID. The format of the ID can vary between document stores.
+          example: f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5
+        type:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          description: Document type, this value can vary between document stores.
+          example: statement
+        type_label:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          description: Human readable type, defaults to value of `type` field when missing.
+          example: statement
+        description:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+          example: Account 43333
+        created_at:
+          type: string
+          readOnly: true
+          description: The date-time the document was posted.
+          example: '2018-10-30T00:00:00-04:00'
+        account_id:
+          type: string
+          readOnly: true
+        url:
+          type:
+          - string
+          - 'null'
+          format: uri
+          description: The URL of the retrieve API call.
+          readOnly: true
+          example: https://demo2-api.uat.narmitech.com/v1/documents/f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5?data=true
+      x-stoplight:
+        id: 9mjrd0thewwlb
+    ProductTypeEnum:
+      enum:
+      - checking
+      - savings
+      - loan
+      type: string
+      description: '* `checking` - Checking
+
+        * `savings` - Savings
+
+        * `loan` - Loan'
+      x-stoplight:
+        id: glwfyeoe7jdqc
+    DocumentWithDataResponse:
+      type: object
+      properties:
+        document:
+          $ref: '#/components/schemas/DocumentWithData'
+      required:
+      - document
+      x-stoplight:
+        id: 64o2djny8szc0
+    Check:
+      type: object
+      properties:
+        number:
+          type: string
+          readOnly: true
+          description: Sequential number of the check used for bookkeeping.
+      x-stoplight:
+        id: julrfoba1ef2k
+    GeneralError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid
+        message:
+          type: string
+          description: An error response detailing the field and the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: v76fz3qxj5djb
     ExternalAccountCreateRequest:
       type: object
       description: Shared fields and validation for all ExternalAccount serializers.
@@ -5420,180 +5783,6 @@ components:
       - routing_number
       x-stoplight:
         id: op3ybif6mojpd
-    DocumentResponse:
-      type: object
-      properties:
-        document:
-          $ref: '#/components/schemas/Document'
-      required:
-      - document
-      x-stoplight:
-        id: b2w8p4gq2jw1j
-    HoldsListResponse:
-      type: object
-      properties:
-        holds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Hold'
-        links:
-          $ref: '#/components/schemas/PageNumberPagination'
-        meta:
-          type: object
-          additionalProperties: {}
-          default: {}
-      required:
-      - holds
-      - links
-      x-stoplight:
-        id: p9rgexy0p9nti
-    PaginatedAccounts:
-      type: object
-      properties:
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/MobileAccount'
-        links:
-          $ref: '#/components/schemas/PageNumberPagination'
-        meta:
-          $ref: '#/components/schemas/AccountMeta'
-      required:
-      - accounts
-      - links
-      - meta
-      x-stoplight:
-        id: ikecrzmbnjmzz
-    PaginatedAccountStopsResponse:
-      type: object
-      properties:
-        stops:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountStop'
-        meta:
-          type: object
-          additionalProperties: {}
-          default: {}
-        links:
-          type: object
-          additionalProperties: {}
-          default: {}
-      required:
-      - stops
-      x-stoplight:
-        id: 4es2gdcilsxqp
-    GeneralError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: invalid
-        message:
-          type: string
-          description: An error response detailing the field and the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: v76fz3qxj5djb
-    ServiceFailureError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: api_connection_error
-        message:
-          type: string
-          default: Sorry, we were unable to process your request, please check back soon.
-      x-stoplight:
-        id: 6qutj3sa03we7
-    AccountStopResponse:
-      type: object
-      properties:
-        stop:
-          $ref: '#/components/schemas/AccountStop'
-      required:
-      - stop
-      x-stoplight:
-        id: jaihq9bvcgd1n
-    PageNumberPagination:
-      type: object
-      properties:
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: Link to the next results page.
-        previous:
-          type:
-          - string
-          - 'null'
-          format: uri
-          description: Link to the previous results page.
-      required:
-      - next
-      - previous
-      x-stoplight:
-        id: t59wt6qqevd5i
-    Type61cEnum:
-      enum:
-      - credit
-      - debit
-      type: string
-      x-stoplight:
-        id: zppwuboksqgcu
-    AccountWithdrawalRequest:
-      type: object
-      properties:
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: Amount of the withdrawal.
-          type: integer
-      required:
-      - amount
-      x-stoplight:
-        id: l6k0rxdd5a1uc
-    AccountPurposeEnum:
-      enum:
-      - personal
-      - business
-      type: string
-      description: '* `personal` - Personal
-
-        * `business` - Business'
-      x-stoplight:
-        id: ccf1svqamabvv
-    InvalidRequestError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: invalid_request_error
-        message:
-          type: object
-          additionalProperties: {}
-          default:
-            field_name: Error description.
-          description: An error response detailing the field and the nature of the error.
-      x-stoplight:
-        id: aelrw6rc7wiph
-    Location:
-      type: object
-      properties:
-        city:
-          type: string
-          readOnly: true
-        region_code:
-          type: string
-          readOnly: true
-        country_code:
-          type: string
-          readOnly: true
-      x-stoplight:
-        id: ohkm53zydll3a
     AccountStop:
       type: object
       properties:
@@ -5617,91 +5806,6 @@ components:
       - min_check_number
       x-stoplight:
         id: nzaw2vnvg5clc
-    ProductTypeEnum:
-      enum:
-      - checking
-      - savings
-      - loan
-      type: string
-      description: '* `checking` - Checking
-
-        * `savings` - Savings
-
-        * `loan` - Loan'
-      x-stoplight:
-        id: glwfyeoe7jdqc
-    UserDocument:
-      oneOf:
-      - $ref: '#/components/schemas/DocumentResponse'
-      - $ref: '#/components/schemas/DocumentWithDataResponse'
-      x-stoplight:
-        id: hcy6wln20g4we
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: qazjpvfdteybw
-    UpdateAccountDocRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          minLength: 1
-          description: User-defined nickname for the account. Will be used as the display name for the user.
-        favorited:
-          type: boolean
-          description: Per-user preference used to mark favorited accounts. This does not affect the data returned from the list accounts endpoint.
-        hidden:
-          type: boolean
-          description: Per-user preference to mark hidden accounts. This does not affect the data returned from the list accounts endpoint.
-      x-stoplight:
-        id: rlyjsjicsqh2f
-    TransactionsResponse:
-      type: object
-      properties:
-        transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-        links:
-          $ref: '#/components/schemas/PageNumberPagination'
-        meta:
-          allOf:
-          - $ref: '#/components/schemas/TransactionResponseMeta'
-          description: Metadata about the response, including the total number of results and any warnings that may have surfaced during the request.
-      required:
-      - links
-      - meta
-      - transactions
-      x-stoplight:
-        id: kmnmughdcnwys
-    Success:
-      type: object
-      properties:
-        success:
-          type: boolean
-          default: true
-      x-stoplight:
-        id: 9c4gdaystkoyy
-    NestedAccounts:
-      type: object
-      properties:
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/MobileAccount'
-      required:
-      - accounts
-      x-stoplight:
-        id: bv3pjyzmfbnhg
     DocumentWithData:
       type: object
       properties:
@@ -5753,134 +5857,30 @@ components:
           example: https://demo2-api.uat.narmitech.com/v1/documents/f5bad0c3-38ca-4ad3-bbf6-b5ce8ad500d5?data=true
       x-stoplight:
         id: xrmejhjmnyf1h
-    AccountMeta:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of results.
-      required:
-      - total
+    Type61cEnum:
+      enum:
+      - credit
+      - debit
+      type: string
       x-stoplight:
-        id: mglgzn6snhlo1
-    AccountBalance:
-      type: object
-      description: A representation of an account with respect to its balance totals.
-      properties:
-        id:
-          example: abl_8b143f3e-70df-4799-a2ae-c5e3dabed963
-          description: Account UUID prefixed with "abl_" for use with this endpoint.
-          type: string
-          readOnly: true
-        account_id:
-          example: 8b143f3e-70df-4799-a2ae-c5e3dabed963
-          type: string
-          format: uuid
-          readOnly: true
-          description: UUID to the associated account.
-        primary:
-          example: 100.0
-          maximum: 10000000000000.0
-          minimum: -10000000000000.0
-          description: The balance to be presented to the customer. Set to the available balance for non CD deposit accounts, and ledger balance otherwise. May be null for external accounts that have not yet been synced with balance data.
-          type:
-          - number
-          - 'null'
-          format: double
-          readOnly: true
-        available:
-          example: 100.0
-          maximum: 10000000000000.0
-          minimum: -10000000000000.0
-          description: The funds immediately available to use, including any pending transactions or temporary holds on the account. May be null for external accounts that have not yet been synced with balance data.
-          type:
-          - number
-          - 'null'
-          format: double
-          readOnly: true
-        ledger:
-          example: 100.0
-          maximum: 10000000000000.0
-          minimum: -10000000000000.0
-          description: The total amount of funds in the account not including temporary holds or pending transactions. May be null for external accounts that have not yet been synced with balance data.
-          type:
-          - number
-          - 'null'
-          format: double
-          readOnly: true
-        updated_at:
-          type: string
-          format: date-time
-          readOnly: true
-          description: Date when the account was last updated.
-      x-stoplight:
-        id: sswt197xsfwzw
-    Hold:
+        id: zppwuboksqgcu
+    ServiceFailureError:
       type: object
       properties:
         id:
           type: string
-          readOnly: true
-          description: This id can be disregarded, and is only generated/included to maintain current API contract.
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: The amount to hold on the account.
-          type: integer
-          readOnly: true
-        description:
-          type: string
-          description: A plain text description of the hold.
-        expires_at:
-          type: string
-          format: date-time
-          readOnly: true
-          description: The date-time when the hold will be lifted. This will be set to null if the hold does not expire.
-      x-stoplight:
-        id: exz8dgibmktx7
-    NestedAccount:
-      type: object
-      properties:
-        account:
-          $ref: '#/components/schemas/MobileAccount'
-      required:
-      - account
-      x-stoplight:
-        id: xrhqmn6en2htc
-    LoanDetails:
-      type: object
-      properties:
-        minimum_payment:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-          readOnly: true
-        interest_rate:
-          type: string
-          format: decimal
-          pattern: ^-?\d{0,16}(?:\.\d{0,4})?$
-          readOnly: true
-        next_payment_at:
-          type: string
-          format: date-time
-          readOnly: true
-      x-stoplight:
-        id: quxztlucbcd9s
-    PermissionDeniedError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: api_error
+          default: api_connection_error
         message:
           type: string
-          default: You do not have permission to perform this action.
-          description: An error response detailing the field and the nature of the error.
+          default: Sorry, we were unable to process your request, please check back soon.
       x-stoplight:
-        id: ywbohhxwqjqj3
+        id: 6qutj3sa03we7
+    UserDocument:
+      oneOf:
+      - $ref: '#/components/schemas/DocumentResponse'
+      - $ref: '#/components/schemas/DocumentWithDataResponse'
+      x-stoplight:
+        id: hcy6wln20g4we
   securitySchemes:
     oauth2:
       type: oauth2

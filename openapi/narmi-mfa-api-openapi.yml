@@ -244,15 +244,33 @@ components:
           description: This field will be set to the user's phone number or email for the respective device types, otherwise, it will be blank.
       x-stoplight:
         id: uasyxxgs07boc
-    RetrieveSudoResponse:
+    CreateSudoErrorResponse:
       type: object
       properties:
-        success:
-          type: boolean
-          readOnly: true
-          default: true
+        id:
+          type: string
+          description: Unique code describing the error
+          example: two_factor_authentication_required
+        message:
+          type: string
+          description: Error message detailing what went wrong
+          example: Please enter the code from your second factor device.
+        devices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Device'
+          description: A list of devices that can be used to send an OTP to.
+        device:
+          allOf:
+          - $ref: '#/components/schemas/Device'
+          description: Device which was targetted for the request by the client.
+      required:
+      - device
+      - devices
+      - id
+      - message
       x-stoplight:
-        id: ecxgpo7l4spwk
+        id: plbglbg82ol4i
     Device:
       type: object
       description: Serializer for two-factor authorization devices.
@@ -271,31 +289,6 @@ components:
           example: User's iPhone
       x-stoplight:
         id: t9hj1bdrxqmb5
-    MFATypeEnum:
-      enum:
-      - phone
-      - email
-      - totp
-      - static
-      type: string
-      description: '* `phone` - phone
-
-        * `email` - email
-
-        * `totp` - totp
-
-        * `static` - static'
-      x-stoplight:
-        id: mh44yrg9eexp8
-    CreateSudo:
-      type: object
-      properties:
-        message:
-          type: string
-          readOnly: true
-          default: sudo mode granted
-      x-stoplight:
-        id: bfxhys08o2jvk
     PaginatedMFAList:
       type: object
       required:
@@ -346,33 +339,40 @@ components:
           example: '123123'
       x-stoplight:
         id: cegpkzjxlrdeq
-    CreateSudoErrorResponse:
+    MFATypeEnum:
+      enum:
+      - phone
+      - email
+      - totp
+      - static
+      type: string
+      description: '* `phone` - phone
+
+        * `email` - email
+
+        * `totp` - totp
+
+        * `static` - static'
+      x-stoplight:
+        id: mh44yrg9eexp8
+    RetrieveSudoResponse:
       type: object
       properties:
-        id:
-          type: string
-          description: Unique code describing the error
-          example: two_factor_authentication_required
+        success:
+          type: boolean
+          readOnly: true
+          default: true
+      x-stoplight:
+        id: ecxgpo7l4spwk
+    CreateSudo:
+      type: object
+      properties:
         message:
           type: string
-          description: Error message detailing what went wrong
-          example: Please enter the code from your second factor device.
-        devices:
-          type: array
-          items:
-            $ref: '#/components/schemas/Device'
-          description: A list of devices that can be used to send an OTP to.
-        device:
-          allOf:
-          - $ref: '#/components/schemas/Device'
-          description: Device which was targetted for the request by the client.
-      required:
-      - device
-      - devices
-      - id
-      - message
+          readOnly: true
+          default: sudo mode granted
       x-stoplight:
-        id: plbglbg82ol4i
+        id: bfxhys08o2jvk
   securitySchemes:
     oauth2:
       type: oauth2

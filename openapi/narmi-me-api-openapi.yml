@@ -185,6 +185,62 @@ paths:
         id: rodbxuqyzfxgv
 components:
   schemas:
+    NullEnum:
+      enum:
+      - null
+      x-stoplight:
+        id: 2493tmzk9db0y
+    OrgRoleEnum:
+      enum:
+      - Account Holder
+      - Admin
+      - Collaborator
+      - No Permissions
+      - Viewer
+      type: string
+      x-stoplight:
+        id: bcxpswdnbrned
+    IncomeSource:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        income:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        income_type:
+          $ref: '#/components/schemas/IncomeTypeEnum'
+        mortgage_rent:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        industry:
+          type: string
+          maxLength: 128
+        occupation:
+          type: string
+          maxLength: 128
+      required:
+      - income
+      - income_type
+      x-stoplight:
+        id: cf5t7cvffrpat
+    UsersResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/Profile'
+      required:
+      - users
+      x-stoplight:
+        id: oa4hi1e7x69nz
     Profile:
       type: object
       description: ''
@@ -544,23 +600,6 @@ components:
           description: The OIDC provider associated with the user's current session, if any.
       x-stoplight:
         id: g4tqfglwr85hp
-    UserCategory4f2Enum:
-      enum:
-      - personal
-      - business
-      type: string
-      x-stoplight:
-        id: vmvxka9zperhg
-    OrgRoleEnum:
-      enum:
-      - Account Holder
-      - Admin
-      - Collaborator
-      - No Permissions
-      - Viewer
-      type: string
-      x-stoplight:
-        id: bcxpswdnbrned
     BusinessPermissionsField:
       type: object
       properties:
@@ -577,23 +616,28 @@ components:
       - uuid
       x-stoplight:
         id: rhmxqgl8o5k8x
-    Phone:
-      type: object
-      properties:
-        number:
-          type: string
-        device_id:
-          type:
-          - string
-          - 'null'
-        device_request_id:
-          type:
-          - string
-          - 'null'
-      required:
-      - number
+    IncomeTypeEnum:
+      enum:
+      - employed
+      - part_time
+      - not_employed
+      - self_employed
+      - retirement
+      - other
+      type: string
+      description: '* `employed` - Employed
+
+        * `part_time` - Part time
+
+        * `not_employed` - Not employed
+
+        * `self_employed` - Self employed
+
+        * `retirement` - Retirement
+
+        * `other` - Other'
       x-stoplight:
-        id: vm2qlwcduqdwc
+        id: vlxoho9hsykzd
     Address:
       type: object
       properties:
@@ -621,74 +665,30 @@ components:
       - street_address
       x-stoplight:
         id: xatva1xwqb0yk
-    UsersResponse:
+    Phone:
       type: object
       properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/Profile'
-      required:
-      - users
-      x-stoplight:
-        id: oa4hi1e7x69nz
-    IncomeSource:
-      type: object
-      properties:
-        uuid:
+        number:
           type: string
-          format: uuid
-          readOnly: true
-        income:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        income_type:
-          $ref: '#/components/schemas/IncomeTypeEnum'
-        mortgage_rent:
+        device_id:
           type:
-          - integer
+          - string
           - 'null'
-          maximum: 2147483647
-          minimum: 0
-        industry:
-          type: string
-          maxLength: 128
-        occupation:
-          type: string
-          maxLength: 128
+        device_request_id:
+          type:
+          - string
+          - 'null'
       required:
-      - income
-      - income_type
+      - number
       x-stoplight:
-        id: cf5t7cvffrpat
-    NullEnum:
+        id: vm2qlwcduqdwc
+    UserCategory4f2Enum:
       enum:
-      - null
-      x-stoplight:
-        id: 2493tmzk9db0y
-    IncomeTypeEnum:
-      enum:
-      - employed
-      - part_time
-      - not_employed
-      - self_employed
-      - retirement
-      - other
+      - personal
+      - business
       type: string
-      description: '* `employed` - Employed
-
-        * `part_time` - Part time
-
-        * `not_employed` - Not employed
-
-        * `self_employed` - Self employed
-
-        * `retirement` - Retirement
-
-        * `other` - Other'
       x-stoplight:
-        id: vlxoho9hsykzd
+        id: vmvxka9zperhg
   securitySchemes:
     oauth2:
       type: oauth2

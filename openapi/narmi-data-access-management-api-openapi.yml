@@ -70,25 +70,21 @@ paths:
         id: nohz0utqhws5g
 components:
   schemas:
-    DataAccessConsent:
+    PaginatedDataAccessConsentList:
       type: object
-      properties:
-        id:
-          type: string
-        data_partner:
-          type: string
-        application_name:
-          type: string
-        connected_at:
-          type: string
-          format: date-time
       required:
-      - application_name
-      - connected_at
-      - data_partner
-      - id
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataAccessConsent'
       x-stoplight:
-        id: 2jqpwebufujel
+        id: 0hfmpfydofabh
     DataAccessConsentRequest:
       type: object
       properties:
@@ -111,21 +107,25 @@ components:
       - id
       x-stoplight:
         id: qx1nvezsitftj
-    PaginatedDataAccessConsentList:
+    DataAccessConsent:
       type: object
-      required:
-      - count
-      - results
       properties:
-        count:
-          type: integer
-          example: 123
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataAccessConsent'
+        id:
+          type: string
+        data_partner:
+          type: string
+        application_name:
+          type: string
+        connected_at:
+          type: string
+          format: date-time
+      required:
+      - application_name
+      - connected_at
+      - data_partner
+      - id
       x-stoplight:
-        id: 0hfmpfydofabh
+        id: 2jqpwebufujel
   securitySchemes:
     oauth2:
       type: oauth2

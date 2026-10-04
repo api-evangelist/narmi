@@ -202,111 +202,6 @@ paths:
         id: tzlyv4xykjd5p
 components:
   schemas:
-    PaginatedWireList:
-      type: object
-      required:
-      - meta
-      - links
-      properties:
-        meta:
-          description: Free-form object, contains total object count.
-          type: object
-          properties:
-            total:
-              type: integer
-        links:
-          type: object
-          description: URIs linking to sequential pages of the result.
-          properties:
-            next:
-              type:
-              - string
-              - 'null'
-              format: uri
-              example: http://api.example.org/accounts/?page=4
-            prev:
-              type:
-              - string
-              - 'null'
-              format: uri
-              example: http://api.example.org/accounts/?page=4
-        wires:
-          type: array
-          items:
-            $ref: '#/components/schemas/Wire'
-      x-stoplight:
-        id: 1gar1tw6thkwk
-    WireCreateDocRequest:
-      type: object
-      properties:
-        from_account:
-          type: string
-          format: uuid
-          title: From
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type: integer
-        to_account_routing_number:
-          type: string
-          minLength: 1
-          maxLength: 9
-        to_account_number:
-          type: string
-          minLength: 1
-          maxLength: 34
-        to_account_institution_name:
-          type: string
-          maxLength: 18
-        beneficiary_name:
-          type: string
-          maxLength: 140
-        beneficiary_address_1:
-          type: string
-          maxLength: 35
-        beneficiary_address_2:
-          type: string
-          maxLength: 35
-        beneficiary_address_3:
-          type: string
-          maxLength: 35
-        memo_1:
-          type: string
-          minLength: 1
-          maxLength: 35
-        memo_2:
-          type: string
-          maxLength: 35
-        memo_3:
-          type: string
-          maxLength: 35
-        memo_4:
-          type: string
-          maxLength: 35
-        state:
-          type: string
-          minLength: 1
-        wire_reason:
-          type:
-          - string
-          - 'null'
-          maxLength: 100
-        device_id:
-          type: string
-          minLength: 1
-        device_request_id:
-          type: string
-          minLength: 1
-      required:
-      - amount
-      - from_account
-      - memo_1
-      - to_account_number
-      - to_account_routing_number
-      x-stoplight:
-        id: xdw3obgyxcqyz
     WireTransactionRequest:
       type: object
       description: 'Currently, this serializer creates a WireTransaction based on an existing wire template, where the template
@@ -355,19 +250,6 @@ components:
       - version_id
       x-stoplight:
         id: 68tc9fitepbjn
-    GeneralError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: invalid
-        message:
-          type: string
-          description: An error response detailing the field and the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: v76fz3qxj5djb
     StateC02Enum:
       enum:
       - analyzing
@@ -519,6 +401,148 @@ components:
           type: integer
       x-stoplight:
         id: k58fwfxw4mkym
+    WireCreateDocRequest:
+      type: object
+      properties:
+        from_account:
+          type: string
+          format: uuid
+          title: From
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type: integer
+        to_account_routing_number:
+          type: string
+          minLength: 1
+          maxLength: 9
+        to_account_number:
+          type: string
+          minLength: 1
+          maxLength: 34
+        to_account_institution_name:
+          type: string
+          maxLength: 18
+        beneficiary_name:
+          type: string
+          maxLength: 140
+        beneficiary_address_1:
+          type: string
+          maxLength: 35
+        beneficiary_address_2:
+          type: string
+          maxLength: 35
+        beneficiary_address_3:
+          type: string
+          maxLength: 35
+        memo_1:
+          type: string
+          minLength: 1
+          maxLength: 35
+        memo_2:
+          type: string
+          maxLength: 35
+        memo_3:
+          type: string
+          maxLength: 35
+        memo_4:
+          type: string
+          maxLength: 35
+        state:
+          type: string
+          minLength: 1
+        wire_reason:
+          type:
+          - string
+          - 'null'
+          maxLength: 100
+        device_id:
+          type: string
+          minLength: 1
+        device_request_id:
+          type: string
+          minLength: 1
+      required:
+      - amount
+      - from_account
+      - memo_1
+      - to_account_number
+      - to_account_routing_number
+      x-stoplight:
+        id: xdw3obgyxcqyz
+    PaginatedWireList:
+      type: object
+      required:
+      - meta
+      - links
+      properties:
+        meta:
+          description: Free-form object, contains total object count.
+          type: object
+          properties:
+            total:
+              type: integer
+        links:
+          type: object
+          description: URIs linking to sequential pages of the result.
+          properties:
+            next:
+              type:
+              - string
+              - 'null'
+              format: uri
+              example: http://api.example.org/accounts/?page=4
+            prev:
+              type:
+              - string
+              - 'null'
+              format: uri
+              example: http://api.example.org/accounts/?page=4
+        wires:
+          type: array
+          items:
+            $ref: '#/components/schemas/Wire'
+      x-stoplight:
+        id: 1gar1tw6thkwk
+    WireCreateResponse:
+      type: object
+      properties:
+        wires:
+          type: array
+          items:
+            $ref: '#/components/schemas/Wire'
+      required:
+      - wires
+      x-stoplight:
+        id: mmf7ufl8ct7k7
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    GeneralError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid
+        message:
+          type: string
+          description: An error response detailing the field and the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: v76fz3qxj5djb
     Wire:
       type: object
       properties:
@@ -594,30 +618,6 @@ components:
           readOnly: true
       x-stoplight:
         id: igunvqvoaorhw
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: qazjpvfdteybw
-    WireCreateResponse:
-      type: object
-      properties:
-        wires:
-          type: array
-          items:
-            $ref: '#/components/schemas/Wire'
-      required:
-      - wires
-      x-stoplight:
-        id: mmf7ufl8ct7k7
   securitySchemes:
     oauth2:
       type: oauth2

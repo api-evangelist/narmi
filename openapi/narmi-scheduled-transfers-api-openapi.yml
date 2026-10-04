@@ -295,16 +295,6 @@ components:
             $ref: '#/components/schemas/ScheduledTransfer'
       x-stoplight:
         id: dahasasw0vcuq
-    ScheduledTransferStateEnum:
-      enum:
-      - expired
-      - active
-      type: string
-      description: '* `expired` - expired
-
-        * `active` - active'
-      x-stoplight:
-        id: 3uyhod4xb85tf
     ScheduledTransferRequest:
       type: object
       description: 'Represents:
@@ -364,6 +354,30 @@ components:
       - to_account_id
       x-stoplight:
         id: xtzufkz4xtogz
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
+    NestedScheduledTransfer:
+      type: object
+      properties:
+        scheduled_transfers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScheduledTransfer'
+      required:
+      - scheduled_transfers
+      x-stoplight:
+        id: dsndbtq2zlgwc
     ScheduledTransfer:
       type: object
       description: 'Represents:
@@ -429,30 +443,16 @@ components:
       - to_account_id
       x-stoplight:
         id: tfuhvwk5p8fsx
-    NotFoundError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
-      required:
-      - message
+    ScheduledTransferStateEnum:
+      enum:
+      - expired
+      - active
+      type: string
+      description: '* `expired` - expired
+
+        * `active` - active'
       x-stoplight:
-        id: qazjpvfdteybw
-    NestedScheduledTransfer:
-      type: object
-      properties:
-        scheduled_transfers:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScheduledTransfer'
-      required:
-      - scheduled_transfers
-      x-stoplight:
-        id: dsndbtq2zlgwc
+        id: 3uyhod4xb85tf
   securitySchemes:
     oauth2:
       type: oauth2

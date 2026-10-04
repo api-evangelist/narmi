@@ -251,73 +251,59 @@ paths:
         id: dba72yw8y894w
 components:
   schemas:
-    SwiftWireTemplate:
+    PaginatedSwiftWireTemplateList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type:
+          - string
+          - 'null'
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SwiftWireTemplate'
+      x-stoplight:
+        id: xgc9i9azikswf
+    NotFoundError:
       type: object
       properties:
-        last_used:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          readOnly: true
-          description: Date when the template was last used to send a swiftwire.
-        version_id:
-          type: string
-          readOnly: true
-          description: The version ID of the template, based on when template or recipient details were last updated.
         id:
           type: string
-          format: uuid
-          readOnly: true
-        recipient:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: The UUID of the recipient for swiftwires sent using this template.
+          default: not_found
+        message:
           type: string
-          format: uuid
-        from_account:
-          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
-          description: The UUID of the source account for swiftwires sent using this template.
-          type: string
-          format: uuid
-        name:
-          type: string
-          maxLength: 35
-        wire_reason:
-          type:
-          - string
-          - 'null'
-        amount:
-          example: 100
-          maximum: 1000000000000000
-          minimum: -1000000000000000
-          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
-          type:
-          - integer
-          - 'null'
-        amount_currency:
-          type:
-          - string
-          - 'null'
-          description: ISO 4217 currency code the amount is denominated in (e.g. 'USD' or the recipient's currency).
-          maxLength: 3
-        memo:
-          type:
-          - string
-          - 'null'
-          maxLength: 128
-        note:
-          type:
-          - string
-          - 'null'
-        recipient_currency:
-          type: string
-          maxLength: 3
+          description: An error response detailing the nature of the error.
       required:
-      - from_account
-      - name
-      - recipient
+      - message
       x-stoplight:
-        id: k0d9pahpxnqko
+        id: qazjpvfdteybw
+    GeneralError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid
+        message:
+          type: string
+          description: An error response detailing the field and the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: v76fz3qxj5djb
     SwiftWireTemplateRequest:
       type: object
       properties:
@@ -422,59 +408,73 @@ components:
           maxLength: 3
       x-stoplight:
         id: dukgiedw1xvjv
-    GeneralError:
+    SwiftWireTemplate:
       type: object
       properties:
-        id:
-          type: string
-          default: invalid
-        message:
-          type: string
-          description: An error response detailing the field and the nature of the error.
-      required:
-      - message
-      x-stoplight:
-        id: v76fz3qxj5djb
-    PaginatedSwiftWireTemplateList:
-      type: object
-      required:
-      - count
-      - results
-      properties:
-        count:
-          type: integer
-          example: 123
-        next:
+        last_used:
           type:
           - string
           - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
+          format: date-time
+          readOnly: true
+          description: Date when the template was last used to send a swiftwire.
+        version_id:
+          type: string
+          readOnly: true
+          description: The version ID of the template, based on when template or recipient details were last updated.
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        recipient:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the recipient for swiftwires sent using this template.
+          type: string
+          format: uuid
+        from_account:
+          example: ccae3440-0c1f-45ce-9b91-57cbbb252818
+          description: The UUID of the source account for swiftwires sent using this template.
+          type: string
+          format: uuid
+        name:
+          type: string
+          maxLength: 35
+        wire_reason:
           type:
           - string
           - 'null'
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/SwiftWireTemplate'
-      x-stoplight:
-        id: xgc9i9azikswf
-    NotFoundError:
-      type: object
-      properties:
-        id:
+        amount:
+          example: 100
+          maximum: 1000000000000000
+          minimum: -1000000000000000
+          description: A field that returns the original value in the currency's smallest unit (e.g. cents).
+          type:
+          - integer
+          - 'null'
+        amount_currency:
+          type:
+          - string
+          - 'null'
+          description: ISO 4217 currency code the amount is denominated in (e.g. 'USD' or the recipient's currency).
+          maxLength: 3
+        memo:
+          type:
+          - string
+          - 'null'
+          maxLength: 128
+        note:
+          type:
+          - string
+          - 'null'
+        recipient_currency:
           type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
+          maxLength: 3
       required:
-      - message
+      - from_account
+      - name
+      - recipient
       x-stoplight:
-        id: qazjpvfdteybw
+        id: k0d9pahpxnqko
   securitySchemes:
     oauth2:
       type: oauth2

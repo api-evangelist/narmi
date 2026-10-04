@@ -713,6 +713,86 @@ paths:
         id: goqw4lzxcqqkn
 components:
   schemas:
+    InvalidRequestError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: invalid_request_error
+        message:
+          type: object
+          additionalProperties: {}
+          default:
+            field_name: Error description.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: aelrw6rc7wiph
+    PatchedProfileUpdateRequest:
+      type: object
+      description: Write-serializer for updating paper statements.
+      properties:
+        paper_statements:
+          type: boolean
+          description: Whether a user should receive paper statements or eStatements. If the core does not support eStatements or paper statements, or the feature `CoreUpdateEstatementSetting` is not set to true, setting this may fail with a permission denied error.
+      x-stoplight:
+        id: th7vqjustdawm
+    NullEnum:
+      enum:
+      - null
+      x-stoplight:
+        id: 2493tmzk9db0y
+    OrgRoleEnum:
+      enum:
+      - Account Holder
+      - Admin
+      - Collaborator
+      - No Permissions
+      - Viewer
+      type: string
+      x-stoplight:
+        id: bcxpswdnbrned
+    IncomeSource:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          readOnly: true
+        income:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        income_type:
+          $ref: '#/components/schemas/IncomeTypeEnum'
+        mortgage_rent:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        industry:
+          type: string
+          maxLength: 128
+        occupation:
+          type: string
+          maxLength: 128
+      required:
+      - income
+      - income_type
+      x-stoplight:
+        id: cf5t7cvffrpat
+    PermissionDeniedError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: api_error
+        message:
+          type: string
+          default: You do not have permission to perform this action.
+          description: An error response detailing the field and the nature of the error.
+      x-stoplight:
+        id: ywbohhxwqjqj3
     Profile:
       type: object
       description: ''
@@ -1072,6 +1152,30 @@ components:
           description: The OIDC provider associated with the user's current session, if any.
       x-stoplight:
         id: g4tqfglwr85hp
+    UsersResponse:
+      type: object
+      properties:
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/Profile'
+      required:
+      - users
+      x-stoplight:
+        id: oa4hi1e7x69nz
+    NotFoundError:
+      type: object
+      properties:
+        id:
+          type: string
+          default: not_found
+        message:
+          type: string
+          description: An error response detailing the nature of the error.
+      required:
+      - message
+      x-stoplight:
+        id: qazjpvfdteybw
     UserResponse:
       type: object
       properties:
@@ -1081,6 +1185,22 @@ components:
       - user
       x-stoplight:
         id: yxxytavfdkjc0
+    BusinessPermissionsField:
+      type: object
+      properties:
+        model_str:
+          type: string
+        operation:
+          type: string
+        uuid:
+          type: string
+          format: uuid
+      required:
+      - model_str
+      - operation
+      - uuid
+      x-stoplight:
+        id: rhmxqgl8o5k8x
     IncomeTypeEnum:
       enum:
       - employed
@@ -1103,74 +1223,6 @@ components:
         * `other` - Other'
       x-stoplight:
         id: vlxoho9hsykzd
-    PatchedProfileUpdateRequest:
-      type: object
-      description: Write-serializer for updating paper statements.
-      properties:
-        paper_statements:
-          type: boolean
-          description: Whether a user should receive paper statements or eStatements. If the core does not support eStatements or paper statements, or the feature `CoreUpdateEstatementSetting` is not set to true, setting this may fail with a permission denied error.
-      x-stoplight:
-        id: th7vqjustdawm
-    UserCategory4f2Enum:
-      enum:
-      - personal
-      - business
-      type: string
-      x-stoplight:
-        id: vmvxka9zperhg
-    EstatementsResponse:
-      type: object
-      properties:
-        eStatements:
-          type: boolean
-      required:
-      - eStatements
-      x-stoplight:
-        id: ma1e7klanhtdp
-    OrgRoleEnum:
-      enum:
-      - Account Holder
-      - Admin
-      - Collaborator
-      - No Permissions
-      - Viewer
-      type: string
-      x-stoplight:
-        id: bcxpswdnbrned
-    BusinessPermissionsField:
-      type: object
-      properties:
-        model_str:
-          type: string
-        operation:
-          type: string
-        uuid:
-          type: string
-          format: uuid
-      required:
-      - model_str
-      - operation
-      - uuid
-      x-stoplight:
-        id: rhmxqgl8o5k8x
-    Phone:
-      type: object
-      properties:
-        number:
-          type: string
-        device_id:
-          type:
-          - string
-          - 'null'
-        device_request_id:
-          type:
-          - string
-          - 'null'
-      required:
-      - number
-      x-stoplight:
-        id: vm2qlwcduqdwc
     Address:
       type: object
       properties:
@@ -1198,91 +1250,39 @@ components:
       - street_address
       x-stoplight:
         id: xatva1xwqb0yk
-    InvalidRequestError:
+    Phone:
       type: object
       properties:
-        id:
+        number:
           type: string
-          default: invalid_request_error
-        message:
-          type: object
-          additionalProperties: {}
-          default:
-            field_name: Error description.
-          description: An error response detailing the field and the nature of the error.
-      x-stoplight:
-        id: aelrw6rc7wiph
-    UsersResponse:
-      type: object
-      properties:
-        users:
-          type: array
-          items:
-            $ref: '#/components/schemas/Profile'
-      required:
-      - users
-      x-stoplight:
-        id: oa4hi1e7x69nz
-    IncomeSource:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        income:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        income_type:
-          $ref: '#/components/schemas/IncomeTypeEnum'
-        mortgage_rent:
+        device_id:
           type:
-          - integer
+          - string
           - 'null'
-          maximum: 2147483647
-          minimum: 0
-        industry:
-          type: string
-          maxLength: 128
-        occupation:
-          type: string
-          maxLength: 128
+        device_request_id:
+          type:
+          - string
+          - 'null'
       required:
-      - income
-      - income_type
+      - number
       x-stoplight:
-        id: cf5t7cvffrpat
-    NullEnum:
+        id: vm2qlwcduqdwc
+    UserCategory4f2Enum:
       enum:
-      - null
+      - personal
+      - business
+      type: string
       x-stoplight:
-        id: 2493tmzk9db0y
-    NotFoundError:
+        id: vmvxka9zperhg
+    EstatementsResponse:
       type: object
       properties:
-        id:
-          type: string
-          default: not_found
-        message:
-          type: string
-          description: An error response detailing the nature of the error.
+        eStatements:
+          type: boolean
       required:
-      - message
+      - eStatements
       x-stoplight:
-        id: qazjpvfdteybw
-    PermissionDeniedError:
-      type: object
-      properties:
-        id:
-          type: string
-          default: api_error
-        message:
-          type: string
-          default: You do not have permission to perform this action.
-          description: An error response detailing the field and the nature of the error.
-      x-stoplight:
-        id: ywbohhxwqjqj3
+        id: ma1e7klanhtdp
   securitySchemes:
     oauth2:
       type: oauth2

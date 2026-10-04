@@ -422,61 +422,91 @@ paths:
         id: 9kzq6labseruv
 components:
   schemas:
-    Enrollment:
+    CreateEnrollmentUrlsURLField:
       type: object
       properties:
-        user:
-          allOf:
-          - $ref: '#/components/schemas/Profile'
-          readOnly: true
-        devices:
-          type: array
-          items:
-            $ref: '#/components/schemas/Device'
-          readOnly: true
-      x-stoplight:
-        id: bim2fzc2964rr
-    Phone:
-      type: object
-      properties:
-        number:
+        url:
           type: string
-        device_id:
-          type:
-          - string
-          - 'null'
-        device_request_id:
-          type:
-          - string
-          - 'null'
+          format: uri
+          description: URL that enables a user to enroll without entering their details.
       required:
-      - number
+      - url
       x-stoplight:
-        id: vm2qlwcduqdwc
-    NullEnum:
-      enum:
-      - null
-      x-stoplight:
-        id: 2493tmzk9db0y
-    UserCategory905Enum:
-      enum:
-      - business
-      - personal
-      type: string
-      description: '* `business` - business
-
-        * `personal` - personal'
-      x-stoplight:
-        id: qi34dkcfjktg6
-    VerifyEnrollment:
+        id: hxbs06ahrwkbi
+    EnrollmentUrlCreateRequest:
       type: object
       properties:
-        user:
-          allOf:
-          - $ref: '#/components/schemas/Profile'
-          readOnly: true
+        account_number:
+          type: string
+          writeOnly: true
+          minLength: 1
+          description: The enrolling account number.
+          example: '43333'
+        date_of_birth:
+          type: string
+          format: date
+          writeOnly: true
+        tax_id:
+          type: string
+          writeOnly: true
+          minLength: 9
+          description: User social security number.
+          example: '123121234'
+          maxLength: 9
+        institution_business_identifier:
+          type: string
+          writeOnly: true
+          minLength: 1
+          description: Organization identifier from the banking core. Only required for business accounts.
+          example: abc123456
+        ein:
+          type: string
+          writeOnly: true
+          minLength: 9
+          description: Only required for business accounts.
+          example: '123121234'
+          maxLength: 9
       x-stoplight:
-        id: 3dvzmhmtfmppd
+        id: 0tae6fiegr4lv
+    VerifyEnrollmentDocRequest:
+      type: object
+      properties:
+        enrollment_code:
+          type: string
+          writeOnly: true
+          minLength: 1
+          example: ur3yheyw
+      required:
+      - enrollment_code
+      x-stoplight:
+        id: yqsn2yxyvvqqt
+    Address:
+      type: object
+      properties:
+        street_address:
+          type: string
+        street_address_2:
+          type: string
+        city:
+          type: string
+        region_code:
+          type: string
+          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
+        postal_code:
+          type: string
+          description: Typically a five-digit numeric US ZIP Code.
+        country_code:
+          type: string
+          description: An ISO 3166-1 alpha-2 country code.
+        type:
+          type: string
+      required:
+      - city
+      - postal_code
+      - region_code
+      - street_address
+      x-stoplight:
+        id: xatva1xwqb0yk
     EnrollmentDocRequest:
       type: object
       properties:
@@ -513,108 +543,13 @@ components:
           example: eyJlbWFpbCI6ICJ0ZXN0QGV4YW1wbGUuY29tIiwgInBob25lX251bWJlciI6ICIxMjM0NTY3ODkwIiwgInRheF9pZCI6ICIxMjMtNDUtNjc4OSIsICJlaW4iOiAiMTItMzQ1Njc4OSIsICJkb2IiOiAiMTk5MC0wMS0wMSIsICJ1c2VyX2NhdGVnb3J5IjogInRlc3RfY2F0ZWdvcnkiLCAiY29yZV9vcmdfaWQiOiAib3JnMTIzIiwgImZpcnN0X25hbWUiOiAiSm9obiIsICJsYXN0X25hbWUiOiAiRG9lIn0=
       x-stoplight:
         id: rn9gtuvmxmlzj
-    OrgRoleEnum:
+    UserCategory4f2Enum:
       enum:
-      - Account Holder
-      - Admin
-      - Collaborator
-      - No Permissions
-      - Viewer
+      - personal
+      - business
       type: string
       x-stoplight:
-        id: bcxpswdnbrned
-    Address:
-      type: object
-      properties:
-        street_address:
-          type: string
-        street_address_2:
-          type: string
-        city:
-          type: string
-        region_code:
-          type: string
-          description: A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code.
-        postal_code:
-          type: string
-          description: Typically a five-digit numeric US ZIP Code.
-        country_code:
-          type: string
-          description: An ISO 3166-1 alpha-2 country code.
-        type:
-          type: string
-      required:
-      - city
-      - postal_code
-      - region_code
-      - street_address
-      x-stoplight:
-        id: xatva1xwqb0yk
-    EnrollmentUrlCreateRequest:
-      type: object
-      properties:
-        account_number:
-          type: string
-          writeOnly: true
-          minLength: 1
-          description: The enrolling account number.
-          example: '43333'
-        date_of_birth:
-          type: string
-          format: date
-          writeOnly: true
-        tax_id:
-          type: string
-          writeOnly: true
-          minLength: 9
-          description: User social security number.
-          example: '123121234'
-          maxLength: 9
-        institution_business_identifier:
-          type: string
-          writeOnly: true
-          minLength: 1
-          description: Organization identifier from the banking core. Only required for business accounts.
-          example: abc123456
-        ein:
-          type: string
-          writeOnly: true
-          minLength: 9
-          description: Only required for business accounts.
-          example: '123121234'
-          maxLength: 9
-      x-stoplight:
-        id: 0tae6fiegr4lv
-    IncomeSource:
-      type: object
-      properties:
-        uuid:
-          type: string
-          format: uuid
-          readOnly: true
-        income:
-          type: integer
-          maximum: 2147483647
-          minimum: 0
-        income_type:
-          $ref: '#/components/schemas/IncomeTypeEnum'
-        mortgage_rent:
-          type:
-          - integer
-          - 'null'
-          maximum: 2147483647
-          minimum: 0
-        industry:
-          type: string
-          maxLength: 128
-        occupation:
-          type: string
-          maxLength: 128
-      required:
-      - income
-      - income_type
-      x-stoplight:
-        id: cf5t7cvffrpat
+        id: vmvxka9zperhg
     CreateEnrollmentUrlsResponse:
       type: object
       properties:
@@ -624,51 +559,6 @@ components:
       - enrollment
       x-stoplight:
         id: 0u9buvhwp4tg2
-    EnrollmentCompleteDocRequest:
-      type: object
-      properties:
-        has_estatements:
-          type: boolean
-          description: The enrolling user's estatement preference. Only relevant for the account holder.
-      x-stoplight:
-        id: yqmzqxq7udcyw
-    VerifyEnrollmentDocRequest:
-      type: object
-      properties:
-        enrollment_code:
-          type: string
-          writeOnly: true
-          minLength: 1
-          example: ur3yheyw
-      required:
-      - enrollment_code
-      x-stoplight:
-        id: yqsn2yxyvvqqt
-    Device:
-      type: object
-      description: Serializer for two-factor authorization devices.
-      properties:
-        id:
-          type: string
-          readOnly: true
-          example: otp_twilio.models.TwilioSMSDevice/1
-        number_type:
-          type: string
-          readOnly: true
-          example: mobile
-        name:
-          type: string
-          readOnly: true
-          example: User's iPhone
-      x-stoplight:
-        id: t9hj1bdrxqmb5
-    UserCategory4f2Enum:
-      enum:
-      - personal
-      - business
-      type: string
-      x-stoplight:
-        id: vmvxka9zperhg
     Profile:
       type: object
       description: ''
@@ -1028,33 +918,41 @@ components:
           description: The OIDC provider associated with the user's current session, if any.
       x-stoplight:
         id: g4tqfglwr85hp
-    CreateEnrollmentUrlsURLField:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-          description: URL that enables a user to enroll without entering their details.
-      required:
-      - url
+    NullEnum:
+      enum:
+      - null
       x-stoplight:
-        id: hxbs06ahrwkbi
-    BusinessPermissionsField:
+        id: 2493tmzk9db0y
+    IncomeSource:
       type: object
       properties:
-        model_str:
-          type: string
-        operation:
-          type: string
         uuid:
           type: string
           format: uuid
+          readOnly: true
+        income:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+        income_type:
+          $ref: '#/components/schemas/IncomeTypeEnum'
+        mortgage_rent:
+          type:
+          - integer
+          - 'null'
+          maximum: 2147483647
+          minimum: 0
+        industry:
+          type: string
+          maxLength: 128
+        occupation:
+          type: string
+          maxLength: 128
       required:
-      - model_str
-      - operation
-      - uuid
+      - income
+      - income_type
       x-stoplight:
-        id: rhmxqgl8o5k8x
+        id: cf5t7cvffrpat
     IncomeTypeEnum:
       enum:
       - employed
@@ -1077,6 +975,108 @@ components:
         * `other` - Other'
       x-stoplight:
         id: vlxoho9hsykzd
+    Enrollment:
+      type: object
+      properties:
+        user:
+          allOf:
+          - $ref: '#/components/schemas/Profile'
+          readOnly: true
+        devices:
+          type: array
+          items:
+            $ref: '#/components/schemas/Device'
+          readOnly: true
+      x-stoplight:
+        id: bim2fzc2964rr
+    OrgRoleEnum:
+      enum:
+      - Account Holder
+      - Admin
+      - Collaborator
+      - No Permissions
+      - Viewer
+      type: string
+      x-stoplight:
+        id: bcxpswdnbrned
+    BusinessPermissionsField:
+      type: object
+      properties:
+        model_str:
+          type: string
+        operation:
+          type: string
+        uuid:
+          type: string
+          format: uuid
+      required:
+      - model_str
+      - operation
+      - uuid
+      x-stoplight:
+        id: rhmxqgl8o5k8x
+    UserCategory905Enum:
+      enum:
+      - business
+      - personal
+      type: string
+      description: '* `business` - business
+
+        * `personal` - personal'
+      x-stoplight:
+        id: qi34dkcfjktg6
+    EnrollmentCompleteDocRequest:
+      type: object
+      properties:
+        has_estatements:
+          type: boolean
+          description: The enrolling user's estatement preference. Only relevant for the account holder.
+      x-stoplight:
+        id: yqmzqxq7udcyw
+    Device:
+      type: object
+      description: Serializer for two-factor authorization devices.
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: otp_twilio.models.TwilioSMSDevice/1
+        number_type:
+          type: string
+          readOnly: true
+          example: mobile
+        name:
+          type: string
+          readOnly: true
+          example: User's iPhone
+      x-stoplight:
+        id: t9hj1bdrxqmb5
+    Phone:
+      type: object
+      properties:
+        number:
+          type: string
+        device_id:
+          type:
+          - string
+          - 'null'
+        device_request_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - number
+      x-stoplight:
+        id: vm2qlwcduqdwc
+    VerifyEnrollment:
+      type: object
+      properties:
+        user:
+          allOf:
+          - $ref: '#/components/schemas/Profile'
+          readOnly: true
+      x-stoplight:
+        id: 3dvzmhmtfmppd
   securitySchemes:
     oauth2:
       type: oauth2
