@@ -41,3 +41,43 @@ plans:
 - name: Marketplace & Custom Narmi Functions
   price_text: subject to the pricing set forth by Narmi during the implementation
   period: none
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - subscription
+  units:
+  - compute
+  plans:
+  - name: Self-Serve Functions (Webhook, Scheduled)
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Self-Serve Functions (NAF)
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Invocation request duration
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Marketplace & Custom Narmi Functions
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
