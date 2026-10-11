@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-transaction-images-response-schema.json",
+  "title": "TransactionImagesResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-transactions-api-openapi.yml#/components/schemas/TransactionImagesResponse",
+  "type": "object",
+  "properties": {
+    "check_images": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CheckImage"
+      }
+    }
+  },
+  "required": [
+    "check_images"
+  ],
+  "x-stoplight": {
+    "id": "zklspzyfcxa9y"
+  },
+  "$defs": {
+    "CheckImage": {
+      "type": "object",
+      "properties": {
+        "front": {
+          "type": "string",
+          "readOnly": true,
+          "description": "A base 64 encoded image of the front of the check"
+        },
+        "back": {
+          "type": "string",
+          "readOnly": true,
+          "description": "A base 64 encoded image of the back of the check"
+        }
+      },
+      "x-stoplight": {
+        "id": "a3swngzvihlce"
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-create-deposit-request-request-schema.json",
+  "title": "CreateDepositRequestRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-deposits-api-openapi.yml#/components/schemas/CreateDepositRequestRequest",
+  "type": "object",
+  "properties": {
+    "ignore_warnings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ErrorRequest"
+      },
+      "writeOnly": true,
+      "description": "Warning codes to be suppressed during call."
+    },
+    "amount": {
+      "maximum": 1000000000000000,
+      "minimum": -1000000000000000,
+      "description": "A field that returns the original value in the currency's smallest unit (e.g. cents).",
+      "type": "integer"
+    },
+    "front": {
+      "type": "string",
+      "format": "binary",
+      "description": "Base64 encoded image of the front of the check."
+    },
+    "back": {
+      "type": "string",
+      "format": "binary",
+      "description": "Base64 encoded image of the back of the check."
+    }
+  },
+  "required": [
+    "amount",
+    "back",
+    "front"
+  ],
+  "x-stoplight": {
+    "id": "yld7zetvdowyw"
+  },
+  "$defs": {
+    "ErrorRequest": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "x-stoplight": {
+        "id": "cqk62uhcqgodx"
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-enrollment-doc-request-schema.json",
+  "title": "EnrollmentDocRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-enrollments-api-openapi.yml#/components/schemas/EnrollmentDocRequest",
+  "type": "object",
+  "properties": {
+    "user_category": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/UserCategory905Enum"
+        }
+      ],
+      "writeOnly": true
+    },
+    "primary_account_number": {
+      "type": "string",
+      "writeOnly": true,
+      "minLength": 1
+    },
+    "dob": {
+      "type": "string",
+      "format": "date",
+      "writeOnly": true
+    },
+    "ssn": {
+      "type": "string",
+      "writeOnly": true,
+      "minLength": 9,
+      "maxLength": 9
+    },
+    "ein": {
+      "type": "string",
+      "writeOnly": true,
+      "minLength": 9,
+      "maxLength": 9
+    },
+    "payload": {
+      "type": "string",
+      "writeOnly": true,
+      "minLength": 1,
+      "description": "If user is pre-validated via Link Service, supply encoded payload instead of other fields."
+    }
+  },
+  "x-stoplight": {
+    "id": "rn9gtuvmxmlzj"
+  },
+  "$defs": {
+    "UserCategory905Enum": {
+      "enum": [
+        "business",
+        "personal"
+      ],
+      "type": "string",
+      "description": "* `business` - business\n* `personal` - personal",
+      "x-stoplight": {
+        "id": "qi34dkcfjktg6"
+      }
+    }
+  }
+}

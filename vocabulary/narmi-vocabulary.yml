@@ -1,0 +1,433 @@
+generated: '2026-10-12'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/narmi-account-balances-api-openapi.yml
+- openapi/narmi-accounts-api-openapi.yml
+- openapi/narmi-ach-companies-api-openapi.yml
+- openapi/narmi-ach-destinations-api-openapi.yml
+- openapi/narmi-ach-import-api-openapi.yml
+vocabulary:
+  name: Narmi Domain Vocabulary
+  description: 'Terms declared by Narmi''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-12'
+  terms:
+  - term: AccountBalancesDocResponse
+    definition: 'Object declared by the contract with fields: account_balances.'
+    tags:
+    - Object
+    source: openapi/narmi-account-balances-api-openapi.yml#/components/schemas/AccountBalancesDocResponse
+  - term: AccountBalance
+    definition: A representation of an account with respect to its balance totals.
+    tags:
+    - Object
+    source: openapi/narmi-account-balances-api-openapi.yml#/components/schemas/AccountBalance
+  - term: NotFoundError
+    definition: 'Object declared by the contract with fields: id, message.'
+    tags:
+    - Object
+    source: openapi/narmi-account-balances-api-openapi.yml#/components/schemas/NotFoundError
+  - term: AccountBalanceDocResponse
+    definition: 'Object declared by the contract with fields: account_balance.'
+    tags:
+    - Object
+    source: openapi/narmi-account-balances-api-openapi.yml#/components/schemas/AccountBalanceDocResponse
+  - term: PaginatedAccountStopsResponse
+    definition: 'Object declared by the contract with fields: stops, meta, links.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/PaginatedAccountStopsResponse
+  - term: PermissionDeniedError
+    definition: 'Object declared by the contract with fields: id, message.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/PermissionDeniedError
+  - term: UpdateAccountDocRequest
+    definition: 'Object declared by the contract with fields: name, favorited, hidden.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/UpdateAccountDocRequest
+  - term: TransactionResponseMeta
+    definition: 'Object declared by the contract with fields: total, warning_id, warning_message.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/TransactionResponseMeta
+  - term: TransactionsResponse
+    definition: 'Object declared by the contract with fields: transactions, links, meta.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/TransactionsResponse
+  - term: Location
+    definition: 'Object declared by the contract with fields: city, region_code, country_code.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/Location
+  - term: SourceEnum
+    definition: '* `institution` - institution * `external` - external'
+    tags:
+    - Enumeration
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/SourceEnum
+  - term: PageNumberPagination
+    definition: 'Object declared by the contract with fields: next, previous.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/PageNumberPagination
+  - term: AccountMeta
+    definition: 'Object declared by the contract with fields: total.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/AccountMeta
+  - term: State973Enum
+    definition: 'Enumeration declared by the contract with values: active, inactive, pending, verified, removed.'
+    tags:
+    - Enumeration
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/State973Enum
+  - term: PaginatedAccounts
+    definition: 'Object declared by the contract with fields: accounts, links, meta.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/PaginatedAccounts
+  - term: NestedAccounts
+    definition: 'Object declared by the contract with fields: accounts.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/NestedAccounts
+  - term: DocumentResponse
+    definition: 'Object declared by the contract with fields: document.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/DocumentResponse
+  - term: Product
+    definition: 'Object declared by the contract with fields: id, type, description.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/Product
+  - term: InvalidRequestError
+    definition: 'Object declared by the contract with fields: id, message.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/InvalidRequestError
+  - term: AccountWithdrawalRequest
+    definition: 'Object declared by the contract with fields: amount.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/AccountWithdrawalRequest
+  - term: LoanDetails
+    definition: 'Object declared by the contract with fields: minimum_payment, interest_rate, next_payment_at.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/LoanDetails
+  - term: HoldsListResponse
+    definition: 'Object declared by the contract with fields: holds, links, meta.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/HoldsListResponse
+  - term: ExternalAccountVerificationRequest
+    definition: 'Object declared by the contract with fields: amounts.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/ExternalAccountVerificationRequest
+  - term: MobileAccount
+    definition: A representation of either an account or an external account.
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/MobileAccount
+  - term: Success
+    definition: 'Object declared by the contract with fields: success.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/Success
+  - term: NestedAccount
+    definition: 'Object declared by the contract with fields: account.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/NestedAccount
+  - term: NullEnum
+    definition: 'Enumeration declared by the contract with values: None.'
+    tags:
+    - Enumeration
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/NullEnum
+  - term: Transaction
+    definition: Representation of a non-pending monetary transaction.
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/Transaction
+  - term: PatchedAccountStopRequest
+    definition: 'Object declared by the contract with fields: min_check_number, max_check_number, amount.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/PatchedAccountStopRequest
+  - term: Hold
+    definition: 'Object declared by the contract with fields: id, amount, description, expires_at.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/Hold
+  - term: AccountPurposeEnum
+    definition: '* `personal` - Personal * `business` - Business'
+    tags:
+    - Enumeration
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/AccountPurposeEnum
+  - term: AccountStopResponse
+    definition: 'Object declared by the contract with fields: stop.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/AccountStopResponse
+  - term: AccountsNotFoundError
+    definition: 'Object declared by the contract with fields: id, message.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/AccountsNotFoundError
+  - term: Document
+    definition: 'Object declared by the contract with fields: id, type, type_label, description, created_at, account_id, url.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/Document
+  - term: ProductTypeEnum
+    definition: '* `checking` - Checking * `savings` - Savings * `loan` - Loan'
+    tags:
+    - Enumeration
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/ProductTypeEnum
+  - term: DocumentWithDataResponse
+    definition: 'Object declared by the contract with fields: document.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/DocumentWithDataResponse
+  - term: Check
+    definition: 'Object declared by the contract with fields: number.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/Check
+  - term: GeneralError
+    definition: 'Object declared by the contract with fields: id, message.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/GeneralError
+  - term: ExternalAccountCreateRequest
+    definition: Shared fields and validation for all ExternalAccount serializers.
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/ExternalAccountCreateRequest
+  - term: AccountStop
+    definition: 'Object declared by the contract with fields: account_id, min_check_number, max_check_number, amount.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/AccountStop
+  - term: DocumentWithData
+    definition: 'Object declared by the contract with fields: id, type, type_label, description, created_at, account_id, data, url.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/DocumentWithData
+  - term: Type61cEnum
+    definition: 'Enumeration declared by the contract with values: credit, debit.'
+    tags:
+    - Enumeration
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/Type61cEnum
+  - term: ServiceFailureError
+    definition: 'Object declared by the contract with fields: id, message.'
+    tags:
+    - Object
+    source: openapi/narmi-accounts-api-openapi.yml#/components/schemas/ServiceFailureError
+  - term: ACHCompany
+    definition: 'Object declared by the contract with fields: company_name, company_id, organization, id.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-companies-api-openapi.yml#/components/schemas/ACHCompany
+  - term: PaginatedACHCompanyList
+    definition: 'Object declared by the contract with fields: count, next, previous, results.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-companies-api-openapi.yml#/components/schemas/PaginatedACHCompanyList
+  - term: AccountTypeEnum
+    definition: '* `checking` - Checking * `savings` - Savings * `loan` - Loan'
+    tags:
+    - Enumeration
+    source: openapi/narmi-ach-destinations-api-openapi.yml#/components/schemas/AccountTypeEnum
+  - term: ACHDetails
+    definition: In addition to the standard ACHDetails fields you'd expect for a create/updated request, this serializer also requires a recipient
+      (passed in as the uuid of the recipient) that will be associated with the created/updated ACHDetails.
+    tags:
+    - Object
+    source: openapi/narmi-ach-destinations-api-openapi.yml#/components/schemas/ACHDetails
+  - term: Recipient
+    definition: Updates to the ach_destination and fedwire_destination fields are handled by the ACHDetailsSerializer and FedwireDestinationSerializer,
+      respectively.
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/Recipient
+  - term: CSVFieldMapping
+    definition: 'Object declared by the contract with fields: id, created_at, updated_at, name, has_header_row, date_column_index, date_column_header,
+      recipient_name_column_index, recipient_name_column_header, routing_number_column_index, routing_number_column_header, account_number_column_index.
+      (9 more)'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/CSVFieldMapping
+  - term: ACHImportCSVUploadResponse
+    definition: 'Object declared by the contract with fields: s3_key, organization_file_uuid, row_count, columns, preview_rows, suggested_mapping.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/ACHImportCSVUploadResponse
+  - term: ACHImportCSVParseRequest
+    definition: 'Object declared by the contract with fields: s3_key, has_header_row, column_mappings.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/ACHImportCSVParseRequest
+  - term: ACHImportNACHAUploadRequest
+    definition: 'Object declared by the contract with fields: file, account_purpose, source_account, description, title, internal_note.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/ACHImportNACHAUploadRequest
+  - term: RecipientTypeEnum
+    definition: '* `person` - Person * `business` - Business'
+    tags:
+    - Enumeration
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/RecipientTypeEnum
+  - term: FedwireDestination
+    definition: In addition to the standard FedwireDestination fields you'd expect for a create/updated request, this serializer also requires
+      a recipient (passed in as the uuid of the recipient) that will be associated with the created/updated FedwireDestination instance.
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/FedwireDestination
+  - term: ACHImportSuggestedMapping
+    definition: 'Object declared by the contract with fields: mapping_uuid, mapping_name, column_mappings.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/ACHImportSuggestedMapping
+  - term: ACHImportNACHAUploadResponse
+    definition: 'Object declared by the contract with fields: s3_key, organization_file_uuid, source_account, title, internal_note, rows.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/ACHImportNACHAUploadResponse
+  - term: WireRecipientAddress
+    definition: 'Object declared by the contract with fields: id, street_address, street_address_2, city, region_code, postal_code, country_code.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/WireRecipientAddress
+  - term: FedwireRecipientAddress
+    definition: 'Object declared by the contract with fields: id, street_address, street_address_2, city, region_code, postal_code, country_code.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/FedwireRecipientAddress
+  - term: ACHImportCSVParsedRow
+    definition: 'Object declared by the contract with fields: row_index, date, recipient_name, routing_number, account_number, account_type, action,
+      description, amount, recipient, needs_review, warning. (1 more)'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/ACHImportCSVParsedRow
+  - term: ACHImportCSVParseResponse
+    definition: 'Object declared by the contract with fields: s3_key, rows.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/ACHImportCSVParseResponse
+  - term: SwiftWireDestination
+    definition: 'Object declared by the contract with fields: id, created_at, updated_at, bic, metadata, address, account_identifier, branch_address.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/SwiftWireDestination
+  - term: ACHImportColumnMappingRequest
+    definition: 'Object declared by the contract with fields: field, column_index, column_header.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/ACHImportColumnMappingRequest
+  - term: PaginatedCSVFieldMappingList
+    definition: 'Object declared by the contract with fields: count, next, previous, results.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/PaginatedCSVFieldMappingList
+  - term: ACHImportCSVUploadRequest
+    definition: 'Object declared by the contract with fields: file, has_header_row.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/ACHImportCSVUploadRequest
+  - term: ACHImportNACHAPaymentRow
+    definition: 'Object declared by the contract with fields: recipient, amount, description, transaction_type, scheduled_date, needs_review,
+      warning.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/ACHImportNACHAPaymentRow
+  - term: CSVFieldMappingRequest
+    definition: 'Object declared by the contract with fields: name, has_header_row, date_column_index, date_column_header, recipient_name_column_index,
+      recipient_name_column_header, routing_number_column_index, routing_number_column_header, account_number_column_index, account_number_column_header,
+      account_type_column_index, account_type_column_header. (6 more)'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/CSVFieldMappingRequest
+  - term: ACHImportColumnMapping
+    definition: 'Object declared by the contract with fields: field, column_index, column_header.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-import-api-openapi.yml#/components/schemas/ACHImportColumnMapping
+  - term: ACHPaymentRequest
+    definition: 'Object declared by the contract with fields: amount, institution_account, description, recipient, ach_company, std_ent_cls_code,
+      entry_desc, memo, device_id, device_request_id.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-payments-api-openapi.yml#/components/schemas/ACHPaymentRequest
+  - term: ScheduledACHPaymentRequest
+    definition: 'Object declared by the contract with fields: amount, device_id, device_request_id, memo, recurring_rule, institution_account,
+      recipient, ach_company, std_ent_cls_code, entry_desc, description.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-payments-api-openapi.yml#/components/schemas/ScheduledACHPaymentRequest
+  - term: PaginatedScheduledACHPaymentList
+    definition: 'Object declared by the contract with fields: count, next, previous, results.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-payments-api-openapi.yml#/components/schemas/PaginatedScheduledACHPaymentList
+  - term: TransactionTypeEnum
+    definition: '* `debit` - Pull (debit) * `credit` - Push (credit)'
+    tags:
+    - Enumeration
+    source: openapi/narmi-ach-payments-api-openapi.yml#/components/schemas/TransactionTypeEnum
+  - term: StdEntClsCodeEnum
+    definition: '* `PPD` - Batch Personal * `CCD` - Batch Corporate * `ARC` - Batch Accounts Receivable * `CTX` - Batch Corporate Exchange * `POS`
+      - Batch Point Of Sale * `WEB` - Batch Internet Initiated * `BOC` - Batch Backoffice Conversion * `TEL` - Batch Telephone Initiated * `MTE`
+      - Batch Machine Transfer * `SHR` - Batch Shared Network * `CIE` - Batch Customer Initiated * `POP` - Batch Point Of Purchase * `RCK'
+    tags:
+    - Enumeration
+    source: openapi/narmi-ach-payments-api-openapi.yml#/components/schemas/StdEntClsCodeEnum
+  - term: PaginatedACHPaymentList
+    definition: 'Object declared by the contract with fields: count, next, previous, results.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-payments-api-openapi.yml#/components/schemas/PaginatedACHPaymentList
+  - term: ScheduledACHPayment
+    definition: 'Object declared by the contract with fields: amount, memo, recurring_rule, id, institution_account, recipient, company_id, company_name,
+      std_ent_cls_code, entry_desc, description, next_transfer_at. (4 more)'
+    tags:
+    - Object
+    source: openapi/narmi-ach-payments-api-openapi.yml#/components/schemas/ScheduledACHPayment
+  - term: LoanPaymentACHRequest
+    definition: 'Object declared by the contract with fields: from_account, to_account, amount, payment_type, ach_transfer, memo, device_id, metadata.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-payments-api-openapi.yml#/components/schemas/LoanPaymentACHRequest
+  - term: UnverifiedACHTransaction
+    definition: 'Object declared by the contract with fields: id, created_at, updated_at, processed_at, state, display_state, company_id, company_name,
+      amount, institution_account, description, external_account_details. (5 more)'
+    tags:
+    - Object
+    source: openapi/narmi-ach-payments-api-openapi.yml#/components/schemas/UnverifiedACHTransaction
+  - term: ACHPayment
+    definition: 'Object declared by the contract with fields: id, created_at, updated_at, processed_at, state, display_state, company_id, company_name,
+      amount, institution_account, description, external_account_details. (5 more)'
+    tags:
+    - Object
+    source: openapi/narmi-ach-payments-api-openapi.yml#/components/schemas/ACHPayment
+  - term: State40dEnum
+    definition: '* `analyzing` - Analyzing * `pending` - Pending * `processing` - Processing * `processed` - Processed (in transit) * `rejected`
+      - Rejected by staff * `review` - Review * `canceled` - Canceled * `canceled_by_user` - Canceled by user * `awaiting_approval` - Awaiting
+      dual approval * `rejected_approval` - Dual approval rejected * `approval_expired` - Dual approval expired * `awaiting_bulk_approval` - '
+    tags:
+    - Enumeration
+    source: openapi/narmi-ach-payments-api-openapi.yml#/components/schemas/State40dEnum
+  - term: LoanPaymentACH
+    definition: 'Object declared by the contract with fields: from_account, to_account, amount, payment_type, ach_transfer, memo, device_id, metadata.'
+    tags:
+    - Object
+    source: openapi/narmi-ach-payments-api-openapi.yml#/components/schemas/LoanPaymentACH
+  - term: AchTransactionRequest
+    definition: Common fields between `ScheduledTransferSerializer`, and AchTransactionSerializer
+    tags:
+    - Object
+    source: openapi/narmi-ach-transfers-api-openapi.yml#/components/schemas/AchTransactionRequest

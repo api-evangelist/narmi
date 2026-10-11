@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-transfers-fee-schema.json",
+  "title": "TransfersFee",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-instant-transfers-api-openapi.yml#/components/schemas/TransfersFee",
+  "type": "object",
+  "properties": {
+    "kind": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/KindEnum"
+        }
+      ],
+      "description": "Supported fee structures\n\n* `free` - free\n* `fixed` - fixed\n* `percent` - percent"
+    },
+    "percent": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "decimal",
+      "pattern": "^-?0?(?:\\.\\d{0,4})?$",
+      "description": "Percentage fee of transfer amount. For free and fixed kind this will null, for percentage it is the fee percent as a decimal."
+    },
+    "max": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "decimal",
+      "pattern": "^-?\\d{0,3}(?:\\.\\d{0,2})?$",
+      "description": "Maximum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount cap for the percentage fee."
+    },
+    "min": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "decimal",
+      "pattern": "^-?\\d{0,3}(?:\\.\\d{0,2})?$",
+      "description": "Minimum fee amount. For fixed this will be the fixed fee, for percentage it is the dollar amount minimum for the percentage fee."
+    }
+  },
+  "required": [
+    "kind"
+  ],
+  "x-stoplight": {
+    "id": "rmlugpiarfokw"
+  },
+  "$defs": {
+    "KindEnum": {
+      "enum": [
+        "free",
+        "fixed",
+        "percent"
+      ],
+      "type": "string",
+      "description": "* `free` - free\n* `fixed` - fixed\n* `percent` - percent",
+      "x-stoplight": {
+        "id": "qcqed657de0rl"
+      }
+    }
+  }
+}

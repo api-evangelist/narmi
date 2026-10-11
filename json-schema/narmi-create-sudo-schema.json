@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-create-sudo-schema.json",
+  "title": "CreateSudo",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-mfa-api-openapi.yml#/components/schemas/CreateSudo",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "readOnly": true,
+      "default": "sudo mode granted"
+    }
+  },
+  "x-stoplight": {
+    "id": "bfxhys08o2jvk"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-support-info-response-schema.json",
+  "title": "SupportInfoResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-support-api-openapi.yml#/components/schemas/SupportInfoResponse",
+  "type": "object",
+  "properties": {
+    "support_settings": {
+      "$ref": "#/$defs/SupportInfo"
+    }
+  },
+  "required": [
+    "support_settings"
+  ],
+  "x-stoplight": {
+    "id": "uyw1wyns14pqz"
+  },
+  "$defs": {
+    "SupportInfo": {
+      "type": "object",
+      "description": "Serializer that returns institution specific support information",
+      "properties": {
+        "contacts": {
+          "readOnly": true,
+          "description": "Support contact information, defined by the `Support Page Contact Us Information` institution setting"
+        },
+        "faqs": {
+          "readOnly": true,
+          "description": "Frequently Asked Questions for support, defined by the `Support Page Frequently Asked Questions` institution setting"
+        },
+        "links": {
+          "readOnly": true,
+          "description": "Support links to documentation and utilities, defined by the `Support Page Quick Links` institution setting"
+        },
+        "support_message_reply_time": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Support reply time, defined by the `Support Message Reply Time` institution setting"
+        },
+        "support_message_reply_disclaimer": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Disclaimer information, defined by the `Support Message Reply Disclaimer` institution setting"
+        }
+      },
+      "x-stoplight": {
+        "id": "vdwqdjypiqjmb"
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-fednow-payment-schema.json",
+  "title": "FednowPayment",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-instant-transfers-api-openapi.yml#/components/schemas/FednowPayment",
+  "type": "object",
+  "properties": {
+    "amount_cents": {
+      "type": "integer",
+      "maximum": 100000000,
+      "minimum": 0
+    },
+    "source_fi": {
+      "type": "string"
+    },
+    "source_fi_name": {
+      "type": "string",
+      "readOnly": true
+    },
+    "destination_fi": {
+      "type": "string"
+    },
+    "destination_fi_name": {
+      "type": "string",
+      "readOnly": true
+    },
+    "source_account": {
+      "type": "string",
+      "minLength": 1
+    },
+    "destination_account": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_name": {
+      "type": "string"
+    },
+    "destination_name": {
+      "type": "string"
+    },
+    "payment_identification": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "memo": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "fed_settlement_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "core_transaction_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "amount_cents",
+    "created_at",
+    "destination_account",
+    "destination_fi",
+    "fed_settlement_date",
+    "payment_identification",
+    "source_fi",
+    "state",
+    "type",
+    "updated_at"
+  ],
+  "x-stoplight": {
+    "id": "g74hjbbstiqwt"
+  }
+}

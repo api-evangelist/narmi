@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-paginated-ach-transaction-list-schema.json",
+  "title": "PaginatedAchTransactionList",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-ach-transfers-api-openapi.yml#/components/schemas/PaginatedAchTransactionList",
+  "type": "object",
+  "required": [
+    "meta",
+    "links"
+  ],
+  "properties": {
+    "meta": {
+      "description": "Free-form object, contains total object count.",
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        }
+      }
+    },
+    "links": {
+      "type": "object",
+      "description": "URIs linking to sequential pages of the result.",
+      "properties": {
+        "next": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "prev": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        }
+      }
+    },
+    "transfers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/AchTransaction"
+      }
+    }
+  },
+  "x-stoplight": {
+    "id": "fihijvn8nxqxd"
+  },
+  "$defs": {
+    "AchTransaction": {
+      "type": "object",
+      "description": "Common fields between `ScheduledTransferSerializer`, and AchTransactionSerializer",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "state": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/AchTransactionStateEnum"
+            }
+          ],
+          "readOnly": true,
+          "description": "Indicates the status of the transfer, for instance, if it's been processed or is pending.\n\n* `analyzing` - analyzing\n* `pending` - pending\n* `processing` - processing\n* `processed` - processed\n* `rejected` - rejected\n* `review` - review\n* `canceled` - canceled\n* `canceled_by_user` - canceled_by_user"
+        },
+        "created_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "readOnly": true
+        },
+        "amount": {
+          "maximum": 1000000000000000,
+          "minimum": -1000000000000000,
+          "description": "A field that returns the original value in the currency's smallest unit (e.g. cents).",
+          "type": "integer"
+        },
+        "from_account_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "UUID identifying the source account in the Narmi database."
+        },
+        "to_account_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "UUID identifying the destination account in the Narmi database."
+        },
+        "estimated_process_date": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "estimated_arrival_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "readOnly": true
+        }
+      },
+      "required": [
+        "amount",
+        "from_account_id",
+        "to_account_id"
+      ],
+      "x-stoplight": {
+        "id": "h4yj1x7pldwi9"
+      }
+    },
+    "AchTransactionStateEnum": {
+      "enum": [
+        "analyzing",
+        "pending",
+        "processing",
+        "processed",
+        "rejected",
+        "review",
+        "canceled",
+        "canceled_by_user"
+      ],
+      "type": "string",
+      "description": "* `analyzing` - analyzing\n* `pending` - pending\n* `processing` - processing\n* `processed` - processed\n* `rejected` - rejected\n* `review` - review\n* `canceled` - canceled\n* `canceled_by_user` - canceled_by_user",
+      "x-stoplight": {
+        "id": "z6genr1ouwuth"
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-patched-subscription-request-schema.json",
+  "title": "PatchedSubscriptionRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-subscriptions-api-openapi.yml#/components/schemas/PatchedSubscriptionRequest",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "minLength": 1,
+      "description": "The URL called when the webhook event occurs."
+    },
+    "is_active": {
+      "type": "boolean"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Version string for future versioning functionality, can be left blank",
+      "maxLength": 64
+    },
+    "event_type": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`",
+      "maxLength": 64
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    }
+  },
+  "required": [
+    "url"
+  ],
+  "x-stoplight": {
+    "id": "2iwc8rppnzdr3"
+  }
+}

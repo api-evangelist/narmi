@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-card-limits-schema.json",
+  "title": "CardLimits",
+  "description": "For getting and setting card limits",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-cards-api-openapi.yml#/components/schemas/CardLimits",
+  "type": "object",
+  "properties": {
+    "atm_limit": {
+      "maximum": 1000000000000000,
+      "minimum": -1000000000000000,
+      "description": "Current ATM withdrawal limit.",
+      "type": "integer"
+    },
+    "pos_limit": {
+      "maximum": 1000000000000000,
+      "minimum": -1000000000000000,
+      "description": "Current spending limit.",
+      "type": "integer"
+    },
+    "has_atm_limit_increased_today": {
+      "type": "boolean",
+      "default": false,
+      "description": "ATM withdrawal limit was increased today."
+    },
+    "has_pos_limit_increased_today": {
+      "type": "boolean",
+      "default": false,
+      "description": "Spending limit was increased today."
+    },
+    "can_user_request_limit_increase": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is the user allowed to request a limit increase?"
+    }
+  },
+  "x-stoplight": {
+    "id": "0uh0y3w9wzzqe"
+  }
+}

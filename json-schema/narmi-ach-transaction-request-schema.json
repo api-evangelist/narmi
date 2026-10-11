@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-ach-transaction-request-schema.json",
+  "title": "AchTransactionRequest",
+  "description": "Common fields between `ScheduledTransferSerializer`, and AchTransactionSerializer",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-ach-transfers-api-openapi.yml#/components/schemas/AchTransactionRequest",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "maximum": 1000000000000000,
+      "minimum": -1000000000000000,
+      "description": "A field that returns the original value in the currency's smallest unit (e.g. cents).",
+      "type": "integer"
+    },
+    "from_account_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID identifying the source account in the Narmi database."
+    },
+    "to_account_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID identifying the destination account in the Narmi database."
+    },
+    "agreement": {
+      "type": "boolean",
+      "writeOnly": true,
+      "description": "Whether or not the terms of the transfer were agreed to."
+    },
+    "device_id": {
+      "type": "string",
+      "writeOnly": true,
+      "minLength": 1,
+      "description": "Device 'fingerprint' from alloy/iovation."
+    },
+    "instant": {
+      "type": "boolean",
+      "writeOnly": true,
+      "default": false
+    },
+    "memo": {
+      "type": "string",
+      "writeOnly": true,
+      "minLength": 1,
+      "default": "",
+      "description": "Free-form description of transfer."
+    }
+  },
+  "required": [
+    "agreement",
+    "amount",
+    "from_account_id",
+    "to_account_id"
+  ],
+  "x-stoplight": {
+    "id": "qqfawl4moqr7y"
+  }
+}

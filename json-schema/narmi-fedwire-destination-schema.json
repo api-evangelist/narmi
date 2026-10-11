@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-fedwire-destination-schema.json",
+  "title": "FedwireDestination",
+  "description": "In addition to the standard FedwireDestination fields you'd expect for a create/updated request,\nthis serializer also requires a recipient (passed in as the uuid of the recipient)\nthat will be associated with the created/updated FedwireDestination instance.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-fedwire-destinations-api-openapi.yml#/components/schemas/FedwireDestination",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "readOnly": true
+    },
+    "account_number": {
+      "description": "Account number for the Fedwire destination.",
+      "type": "string",
+      "maxLength": 17,
+      "minLength": 1
+    },
+    "routing_number": {
+      "description": "Routing number for the Fedwire destination.",
+      "type": "string",
+      "maxLength": 9,
+      "minLength": 9
+    },
+    "address": {
+      "$ref": "#/$defs/FedwireRecipientAddress"
+    },
+    "institution_name": {
+      "type": "string",
+      "readOnly": true
+    }
+  },
+  "required": [
+    "account_number",
+    "address",
+    "routing_number"
+  ],
+  "x-stoplight": {
+    "id": "5nq8io7fuwyrs"
+  },
+  "$defs": {
+    "FedwireRecipientAddress": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "street_address": {
+          "type": "string",
+          "maxLength": 35
+        },
+        "street_address_2": {
+          "type": "string",
+          "maxLength": 35
+        },
+        "city": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "region_code": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "postal_code": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "country_code": {
+          "type": "string",
+          "maxLength": 2
+        }
+      },
+      "required": [
+        "street_address"
+      ],
+      "x-stoplight": {
+        "id": "alp6ww1u4r5wf"
+      }
+    }
+  }
+}

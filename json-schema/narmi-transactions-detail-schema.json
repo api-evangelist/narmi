@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-transactions-detail-schema.json",
+  "title": "TransactionsDetail",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-transactions-api-openapi.yml#/components/schemas/TransactionsDetail",
+  "type": "object",
+  "properties": {
+    "transaction": {
+      "$ref": "#/$defs/Transaction"
+    }
+  },
+  "required": [
+    "transaction"
+  ],
+  "x-stoplight": {
+    "id": "gz3wbl23stt5k"
+  },
+  "$defs": {
+    "Check": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Sequential number of the check used for bookkeeping."
+        }
+      },
+      "x-stoplight": {
+        "id": "julrfoba1ef2k"
+      }
+    },
+    "Location": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string",
+          "readOnly": true
+        },
+        "region_code": {
+          "type": "string",
+          "readOnly": true
+        },
+        "country_code": {
+          "type": "string",
+          "readOnly": true
+        }
+      },
+      "x-stoplight": {
+        "id": "ohkm53zydll3a"
+      }
+    },
+    "NullEnum": {
+      "enum": [
+        null
+      ],
+      "x-stoplight": {
+        "id": "2493tmzk9db0y"
+      }
+    },
+    "Transaction": {
+      "type": "object",
+      "description": "Representation of a non-pending monetary transaction.",
+      "properties": {
+        "description": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Customer-facing description of the transaction. Typically an abridged version of the full description."
+        },
+        "raw_description": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Full description of the transaction."
+        },
+        "id": {
+          "type": "string",
+          "readOnly": true,
+          "description": "UUID of the transaction."
+        },
+        "source": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Type of transaction typically starts with a value such as \"withdrawal\", \"transfer\", \"deposit\", \"dividend\", \"fee\", \"loan_distribution\", \"loan_payment\", and concatenated with a detail such as \"ACH\", \"ATM\", \"Bill Payment\", \"Card\", \"Cash\", \"Check\", \"Draft\", \"Fee\", \"Home Banking\", \"Point of Sale\"."
+        },
+        "settled_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "readOnly": true,
+          "description": "Date-time the transaction was settled. Null for non-final transactions."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true,
+          "description": "Date-time when the transaction was created in the database."
+        },
+        "account_id": {
+          "type": "string",
+          "readOnly": true,
+          "description": "UUID of the account."
+        },
+        "category": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Category of the transaction. Defaults to `\"Unknown\"`."
+        },
+        "sub_category": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "readOnly": true,
+          "description": "Sub-category of the transaction. Defaults to empty string `\"\"`."
+        },
+        "amount": {
+          "maximum": 1000000000000000,
+          "minimum": -1000000000000000,
+          "description": "Total amount of the transaction.",
+          "type": "integer",
+          "readOnly": true
+        },
+        "ledger_balance": {
+          "maximum": 1000000000000000,
+          "minimum": -1000000000000000,
+          "description": "New balance as of this transaction.",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "readOnly": true
+        },
+        "location": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Location"
+            }
+          ],
+          "readOnly": true,
+          "description": "Geographic location where the transaction was executed."
+        },
+        "check": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Check"
+            }
+          ],
+          "readOnly": true,
+          "description": "Details for the check related to a transaction."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "A list of user-defined tags associated with the transaction."
+        },
+        "merchant": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Merchant associated with the transaction. This is often set to empty string `\"\"`."
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {},
+          "readOnly": true,
+          "description": "Supplemental information associated with the account. This is often set to an empty object `{}`."
+        },
+        "note": {
+          "type": "string",
+          "default": "",
+          "description": "Notes about the transaction set by the user.",
+          "maxLength": 300
+        },
+        "type": {
+          "description": "Type of transaction (e.g. loan, withdrawal). Can contain additional details about the transaction type.",
+          "readOnly": true,
+          "oneOf": [
+            {
+              "$ref": "#/$defs/Type61cEnum"
+            },
+            {
+              "$ref": "#/$defs/NullEnum"
+            }
+          ]
+        },
+        "recurring": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether this is a recurring transaction."
+        },
+        "flex_plan_eligible": {
+          "type": "boolean",
+          "readOnly": true,
+          "description": "Whether this transaction is eligible for Flex Plan."
+        }
+      },
+      "x-stoplight": {
+        "id": "vdnfwxifwddg1"
+      }
+    },
+    "Type61cEnum": {
+      "enum": [
+        "credit",
+        "debit"
+      ],
+      "type": "string",
+      "x-stoplight": {
+        "id": "zppwuboksqgcu"
+      }
+    }
+  }
+}

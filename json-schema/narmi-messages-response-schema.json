@@ -1,0 +1,554 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-messages-response-schema.json",
+  "title": "MessagesResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-threads-api-openapi.yml#/components/schemas/MessagesResponse",
+  "type": "object",
+  "properties": {
+    "messages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Message"
+      }
+    }
+  },
+  "required": [
+    "messages"
+  ],
+  "x-stoplight": {
+    "id": "yvxkjur0cwx0g"
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "street_address": {
+          "type": "string"
+        },
+        "street_address_2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "region_code": {
+          "type": "string",
+          "description": "A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code."
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "Typically a five-digit numeric US ZIP Code."
+        },
+        "country_code": {
+          "type": "string",
+          "description": "An ISO 3166-1 alpha-2 country code."
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "city",
+        "postal_code",
+        "region_code",
+        "street_address"
+      ],
+      "x-stoplight": {
+        "id": "xatva1xwqb0yk"
+      }
+    },
+    "BusinessPermissionsField": {
+      "type": "object",
+      "properties": {
+        "model_str": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": [
+        "model_str",
+        "operation",
+        "uuid"
+      ],
+      "x-stoplight": {
+        "id": "rhmxqgl8o5k8x"
+      }
+    },
+    "IncomeSource": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "income": {
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "income_type": {
+          "$ref": "#/$defs/IncomeTypeEnum"
+        },
+        "mortgage_rent": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "maximum": 2147483647,
+          "minimum": 0
+        },
+        "industry": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "occupation": {
+          "type": "string",
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "income",
+        "income_type"
+      ],
+      "x-stoplight": {
+        "id": "cf5t7cvffrpat"
+      }
+    },
+    "IncomeTypeEnum": {
+      "enum": [
+        "employed",
+        "part_time",
+        "not_employed",
+        "self_employed",
+        "retirement",
+        "other"
+      ],
+      "type": "string",
+      "description": "* `employed` - Employed\n* `part_time` - Part time\n* `not_employed` - Not employed\n* `self_employed` - Self employed\n* `retirement` - Retirement\n* `other` - Other",
+      "x-stoplight": {
+        "id": "vlxoho9hsykzd"
+      }
+    },
+    "Message": {
+      "type": "object",
+      "properties": {
+        "body": {
+          "type": "string",
+          "default": "Hello World!",
+          "readOnly": true,
+          "description": "The text body of a message or the url of a threadfile/attachment."
+        },
+        "internal_note": {
+          "type": "boolean",
+          "default": false,
+          "description": "Text which should only be visible to FI staff members."
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "thread_id": {
+          "type": "string",
+          "default": "47ea8231-d4ba-41d0-9e50-0c52f5c5205a ",
+          "readOnly": true,
+          "description": "The UUID of the thread to which the message belongs."
+        },
+        "author": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Profile"
+            }
+          ],
+          "readOnly": true,
+          "description": "User information about the author of the message."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri",
+          "readOnly": true,
+          "description": "Raw S3 URL of the file attachment, if present. To access the file content, use the presigned secure URL returned in the `body` field."
+        }
+      },
+      "x-stoplight": {
+        "id": "emav3bmztctyj"
+      }
+    },
+    "NullEnum": {
+      "enum": [
+        null
+      ],
+      "x-stoplight": {
+        "id": "2493tmzk9db0y"
+      }
+    },
+    "OrgRoleEnum": {
+      "enum": [
+        "Account Holder",
+        "Admin",
+        "Collaborator",
+        "No Permissions",
+        "Viewer"
+      ],
+      "type": "string",
+      "x-stoplight": {
+        "id": "bcxpswdnbrned"
+      }
+    },
+    "Phone": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string"
+        },
+        "device_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "device_request_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "number"
+      ],
+      "x-stoplight": {
+        "id": "vm2qlwcduqdwc"
+      }
+    },
+    "Profile": {
+      "type": "object",
+      "description": "",
+      "properties": {
+        "email": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Email address for the registered user."
+        },
+        "core_provided_email": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "readOnly": true,
+          "description": "Email address the user has registered to the core."
+        },
+        "username": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "readOnly": true,
+          "description": "Username for the registered user."
+        },
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid",
+          "readOnly": true,
+          "description": "UUID of the registered user. This value is used as the unique identifier for the user in the API."
+        },
+        "institution_user_identifier": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Core user ID, may be set to empty string if the requesting user does not have the `core_user_id` scope for the target user."
+        },
+        "updated_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "readOnly": true,
+          "description": "The last date-time that the information for this user was altered or saved."
+        },
+        "addresses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Address"
+          },
+          "readOnly": true,
+          "description": "A list of addresses for the registered user. This list contains the primary address and the mailing address of the user, if it exists. This may be set to empty list if the requesting user does not have the `address` scope for the target user."
+        },
+        "phone_numbers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Phone"
+          },
+          "readOnly": true,
+          "description": "A list of phone numbers for the registered user. This list often includes only one phone number. This may be set to empty list if the requesting user does not have the `phone` scope for the target user."
+        },
+        "notifications_enabled": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "readOnly": true,
+          "description": "Whether the user has registered a device for notifications. This field will also check to make sure that at least one of the devices is set to active."
+        },
+        "first_name": {
+          "type": "string",
+          "readOnly": true,
+          "description": "First name of the registered user, can also include middle or second names. This may be set to empty string if the requesting user does not have the `name` scope for the target user."
+        },
+        "last_name": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Last name of the registered user, may include items such as hyphenated/multiple surnames and generational suffixes (ie. Jr, Sr, III). This may be set to empty string if the requesting user does not have the `name` scope for the target user."
+        },
+        "paper_statements": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "readOnly": true,
+          "description": "Whether the registered user has opted to receive eStatements. This may be set to `null` if the requesting user does not have the `preferences` scope for the target user."
+        },
+        "user_category": {
+          "description": "Used to distinguish whether this is a `business` or `personal` user.",
+          "readOnly": true,
+          "oneOf": [
+            {
+              "$ref": "#/$defs/UserCategory4f2Enum"
+            },
+            {
+              "$ref": "#/$defs/NullEnum"
+            }
+          ]
+        },
+        "features": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {},
+          "readOnly": true,
+          "description": "A set of user features which define what the user can and can not do."
+        },
+        "org_uuid": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid",
+          "readOnly": true,
+          "description": "The UUID of the organization which the user belongs to. This will be set to `null` if the user category is set to `personal`."
+        },
+        "org_role": {
+          "description": "The role of the user for the organization it belongs to. This will be set to `null` if the user category is set to `personal`.",
+          "readOnly": true,
+          "oneOf": [
+            {
+              "$ref": "#/$defs/OrgRoleEnum"
+            },
+            {
+              "$ref": "#/$defs/NullEnum"
+            }
+          ]
+        },
+        "org_name": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Name of the organization the user belongs to. This will be the DBA (Doing Business As) name if it exists, otherwise it will be set to the organization's legal name."
+        },
+        "business_permissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BusinessPermissionsField"
+          },
+          "readOnly": true,
+          "description": "Permissions that a user has to a business. The permissions which are granted are dictated by the users role in the organization. This will be set to an empty list for non-business users."
+        },
+        "dual_approval_required": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "readOnly": true,
+          "description": "For business users, this field indicates whether wire transactions initiated by the user require approval from the organization. For non-business users this will always be set to `false`."
+        },
+        "ach_dual_approval_required": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "readOnly": true,
+          "description": "For business users, this field indicates whether ACH transactions initiated by the user require approval from the organization. For non-business users this will always be set to `false`."
+        },
+        "income_sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/IncomeSource"
+          },
+          "readOnly": true,
+          "description": "A list of user reported income sources."
+        },
+        "international_wire_dual_approval_required": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "readOnly": true,
+          "description": "For business users, this field indicates whether international wire transactions initiated by the user require approval from the organization. For non-business users this will always be set to `false`."
+        },
+        "is_staff": {
+          "type": "boolean",
+          "readOnly": true,
+          "description": "Indicates whether the registered user is an employee of the financial institution."
+        },
+        "is_active": {
+          "type": "boolean",
+          "readOnly": true,
+          "description": "Indicates whether the user has been disabled."
+        },
+        "is_superuser": {
+          "type": "boolean",
+          "readOnly": true,
+          "description": "Indicates whether the user is an admin."
+        },
+        "is_narmi": {
+          "type": "boolean",
+          "readOnly": true,
+          "description": "Indicates whether the user is a Narmi user."
+        },
+        "date_joined": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true,
+          "description": "The date-time the user was enrolled in the Narmi system."
+        },
+        "last_login": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "readOnly": true,
+          "description": "The date-time the user last logged in."
+        },
+        "segment": {
+          "type": "string",
+          "readOnly": true,
+          "description": "The banking segment which the user is a member of. These values can be unique for different financial institutions."
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {},
+          "readOnly": true,
+          "description": "Metadata for the registered user, this is often set as an empty object `{}`."
+        },
+        "has_username": {
+          "type": "boolean",
+          "readOnly": true,
+          "description": "Whether the username was defined by the user or was autogenerated by the system."
+        },
+        "has_password": {
+          "type": "boolean",
+          "readOnly": true,
+          "description": "Whether the password was set by the user."
+        },
+        "has_accepted_latest_terms": {
+          "type": "boolean",
+          "readOnly": true,
+          "description": "Whether the user has accepted the latest terms of service."
+        },
+        "requires_enrollment_code_verification": {
+          "type": "boolean",
+          "readOnly": true,
+          "description": "Whether the user has verified their account. This can prevent the user from logging in. Enrollment can be completed via `/v1/enroll_verify/`."
+        },
+        "enabled_estatements_at": {
+          "oneOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "readOnly": true,
+          "description": "Date-time the user opted into electronic statements."
+        },
+        "is_converting": {
+          "type": "boolean",
+          "readOnly": true,
+          "description": "Whether the user is in the process of enrolling into online banking."
+        },
+        "has_permitted_device": {
+          "type": "boolean",
+          "readOnly": true,
+          "description": "When 2FA is enabled for the FI, this field indicates whether the user has a device which they can use to authenticate to the system."
+        },
+        "has_backup_codes": {
+          "type": "boolean",
+          "readOnly": true,
+          "description": "Whether the registered user has a one-time password backup code for two-factor authentication."
+        },
+        "support_teams": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "readOnly": true,
+          "description": "The UUIDs of the support teams which the user belongs to. This will be set to `null` if the user does not belong to a support team."
+        },
+        "session_oidc_provider": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "readOnly": true,
+          "description": "The OIDC provider associated with the user's current session, if any."
+        }
+      },
+      "x-stoplight": {
+        "id": "g4tqfglwr85hp"
+      }
+    },
+    "UserCategory4f2Enum": {
+      "enum": [
+        "personal",
+        "business"
+      ],
+      "type": "string",
+      "x-stoplight": {
+        "id": "vmvxka9zperhg"
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-income-source-schema.json",
+  "title": "IncomeSource",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-income-source-api-openapi.yml#/components/schemas/IncomeSource",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "readOnly": true
+    },
+    "income": {
+      "type": "integer",
+      "maximum": 2147483647,
+      "minimum": 0
+    },
+    "income_type": {
+      "$ref": "#/$defs/IncomeTypeEnum"
+    },
+    "mortgage_rent": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "maximum": 2147483647,
+      "minimum": 0
+    },
+    "industry": {
+      "type": "string",
+      "maxLength": 128
+    },
+    "occupation": {
+      "type": "string",
+      "maxLength": 128
+    }
+  },
+  "required": [
+    "income",
+    "income_type"
+  ],
+  "x-stoplight": {
+    "id": "cf5t7cvffrpat"
+  },
+  "$defs": {
+    "IncomeTypeEnum": {
+      "enum": [
+        "employed",
+        "part_time",
+        "not_employed",
+        "self_employed",
+        "retirement",
+        "other"
+      ],
+      "type": "string",
+      "description": "* `employed` - Employed\n* `part_time` - Part time\n* `not_employed` - Not employed\n* `self_employed` - Self employed\n* `retirement` - Retirement\n* `other` - Other",
+      "x-stoplight": {
+        "id": "vlxoho9hsykzd"
+      }
+    }
+  }
+}

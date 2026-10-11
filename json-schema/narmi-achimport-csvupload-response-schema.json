@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-achimport-csvupload-response-schema.json",
+  "title": "ACHImportCSVUploadResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-ach-import-api-openapi.yml#/components/schemas/ACHImportCSVUploadResponse",
+  "type": "object",
+  "properties": {
+    "s3_key": {
+      "type": "string"
+    },
+    "organization_file_uuid": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "row_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "columns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "preview_rows": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "suggested_mapping": {
+      "$ref": "#/$defs/ACHImportSuggestedMapping"
+    }
+  },
+  "required": [
+    "columns",
+    "organization_file_uuid",
+    "preview_rows",
+    "row_count",
+    "s3_key",
+    "suggested_mapping"
+  ],
+  "x-stoplight": {
+    "id": "ifbz6ldyum3k8"
+  },
+  "$defs": {
+    "ACHImportColumnMapping": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "column_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "column_header": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "column_header",
+        "column_index",
+        "field"
+      ],
+      "x-stoplight": {
+        "id": "zxwgxy9wqgrru"
+      }
+    },
+    "ACHImportSuggestedMapping": {
+      "type": "object",
+      "properties": {
+        "mapping_uuid": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid"
+        },
+        "mapping_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "column_mappings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ACHImportColumnMapping"
+          }
+        }
+      },
+      "required": [
+        "column_mappings",
+        "mapping_name",
+        "mapping_uuid"
+      ],
+      "x-stoplight": {
+        "id": "otzzn5fui4etj"
+      }
+    }
+  }
+}

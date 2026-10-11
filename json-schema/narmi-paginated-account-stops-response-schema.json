@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-paginated-account-stops-response-schema.json",
+  "title": "PaginatedAccountStopsResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-accounts-api-openapi.yml#/components/schemas/PaginatedAccountStopsResponse",
+  "type": "object",
+  "properties": {
+    "stops": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/AccountStop"
+      }
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": {},
+      "default": {}
+    },
+    "links": {
+      "type": "object",
+      "additionalProperties": {},
+      "default": {}
+    }
+  },
+  "required": [
+    "stops"
+  ],
+  "x-stoplight": {
+    "id": "4es2gdcilsxqp"
+  },
+  "$defs": {
+    "AccountStop": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string",
+          "readOnly": true,
+          "description": "The account's unique ID on the core."
+        },
+        "min_check_number": {
+          "type": "string",
+          "description": "The lower bound check number which the stop applies to or the check number when targeting a single check with a specified amount."
+        },
+        "max_check_number": {
+          "type": "string",
+          "description": "The upper bound check number which the stop applies to."
+        },
+        "amount": {
+          "maximum": 1000000000000000,
+          "minimum": -1000000000000000,
+          "description": "The amount of the original payment that should be targeted for the stop.",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "min_check_number"
+      ],
+      "x-stoplight": {
+        "id": "nzaw2vnvg5clc"
+      }
+    }
+  }
+}

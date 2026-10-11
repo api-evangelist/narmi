@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-paginated-bill-payment-list-schema.json",
+  "title": "PaginatedBillPaymentList",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-payments-api-openapi.yml#/components/schemas/PaginatedBillPaymentList",
+  "type": "object",
+  "required": [
+    "meta",
+    "links",
+    "payments"
+  ],
+  "properties": {
+    "payments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/BillPayment"
+      }
+    },
+    "links": {
+      "type": "object",
+      "description": "URIs linking to sequential pages of the result.",
+      "properties": {
+        "next": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "prev": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        }
+      }
+    },
+    "meta": {
+      "description": "Free-form object, contains total object count.",
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "x-stoplight": {
+    "id": "9en5lvhnoo3yu"
+  },
+  "$defs": {
+    "BillPayment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Identifies payment sender to the payment processor."
+        },
+        "state": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/BillPaymentStateEnum"
+            }
+          ],
+          "readOnly": true,
+          "description": "Indicates the status of the payment, for instance, if it's been processed or is pending."
+        },
+        "payee_id": {
+          "type": "string",
+          "description": "Identifies payment recipient to the payment processor. Can be fetched via the payees endpoints."
+        },
+        "amount": {
+          "maximum": 1000000000000000,
+          "minimum": -1000000000000000,
+          "description": "A field that returns the original value in the currency's smallest unit (e.g. cents).",
+          "type": "integer"
+        },
+        "send_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "expected_arrival_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "type": {
+          "type": "string",
+          "description": "The mode of payment, such as check or email."
+        },
+        "recurring_rule": {
+          "type": "string",
+          "description": "Cadence of recurring payment, as per the RFC-5545 specification."
+        },
+        "from_account_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uuid",
+          "readOnly": true,
+          "description": "UUID identifying the source account in the Narmi database."
+        }
+      },
+      "required": [
+        "amount",
+        "expected_arrival_date",
+        "payee_id",
+        "recurring_rule",
+        "send_date",
+        "type"
+      ],
+      "x-stoplight": {
+        "id": "5c2xpcuohb6ih"
+      }
+    },
+    "BillPaymentStateEnum": {
+      "type": "string",
+      "enum": [
+        "processed",
+        "canceled",
+        "pending",
+        "returned"
+      ],
+      "x-stoplight": {
+        "id": "nfluwrqa5rysj"
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 ---
-name: Manage card controls (lock, unlock, limits)
+name: manage-card-controls
 description: List a user's cards and apply controls — lock, unlock, and set spending limits — on the Narmi Public API.
 api: openapi/narmi-public-openapi-original.yml
 operations: [cards_list, cards_retrieve, cards_lock_create, cards_unlock_create, cards_limits_create]

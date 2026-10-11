@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-subscription-response-schema.json",
+  "title": "SubscriptionResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-subscriptions-api-openapi.yml#/components/schemas/SubscriptionResponse",
+  "type": "object",
+  "properties": {
+    "subscription": {
+      "$ref": "#/$defs/Subscription"
+    }
+  },
+  "required": [
+    "subscription"
+  ],
+  "x-stoplight": {
+    "id": "1t5cvzomt9ll7"
+  },
+  "$defs": {
+    "Subscription": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL called when the webhook event occurs."
+        },
+        "is_active": {
+          "type": "boolean"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version string for future versioning functionality, can be left blank",
+          "maxLength": 64
+        },
+        "event_type": {
+          "type": "string",
+          "description": "The target event type, event types are typically lowercase model name, followed by event type, ie. `message.create`, `user.login`",
+          "maxLength": 64
+        },
+        "secret": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Key used to validate signatures sent during webhook calls"
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "x-stoplight": {
+        "id": "gsayimqdodbuv"
+      }
+    }
+  }
+}

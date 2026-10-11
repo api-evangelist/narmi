@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-card-info-schema.json",
+  "title": "CardInfo",
+  "description": "integrations.cards.api_messages.CardInfo",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-cards-api-openapi.yml#/components/schemas/CardInfo",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "An identifier for the card object."
+    },
+    "name": {
+      "type": "string",
+      "description": "The card product's name."
+    },
+    "last_four_digits": {
+      "type": "string",
+      "description": "Last four digits of the card's account number."
+    },
+    "shipping": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CardShippingInfo"
+        }
+      ],
+      "description": "Shipping information, not always populated."
+    },
+    "network": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": "visa",
+      "description": "The credit card processing network, such as Visa, Discover, etc."
+    },
+    "state": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/StateBd5Enum"
+        }
+      ],
+      "description": "Indicates whether the card is functional, and if not for what reason.\n\n* `locked` - locked\n* `normal` - normal\n* `shipped` - shipped\n* `cancelled` - cancelled\n* `damaged` - damaged",
+      "readOnly": true
+    },
+    "image": {
+      "type": "string",
+      "description": "An image of the card or a placeholder image.",
+      "readOnly": true
+    },
+    "text_color": {
+      "type": "string",
+      "default": "#FFFFFF",
+      "description": "Hex value indicating text color."
+    },
+    "card_type": {
+      "type": "string",
+      "description": "The card's type, debit, credit or atm."
+    }
+  },
+  "required": [
+    "card_type",
+    "id",
+    "last_four_digits",
+    "name"
+  ],
+  "x-stoplight": {
+    "id": "odrdkdiznuohw"
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "street_address": {
+          "type": "string"
+        },
+        "street_address_2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "region_code": {
+          "type": "string",
+          "description": "A region, province, parish, or any kind of subdivision represented by up to 3 characters. Typically an ISO 2-character state code."
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "Typically a five-digit numeric US ZIP Code."
+        },
+        "country_code": {
+          "type": "string",
+          "description": "An ISO 3166-1 alpha-2 country code."
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "city",
+        "postal_code",
+        "region_code",
+        "street_address"
+      ],
+      "x-stoplight": {
+        "id": "xatva1xwqb0yk"
+      }
+    },
+    "CardShippingInfo": {
+      "type": "object",
+      "description": "integrations.cards.api_messages.Shipping",
+      "properties": {
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "method": {
+          "type": "string"
+        },
+        "shipped_on": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        }
+      },
+      "required": [
+        "address",
+        "method"
+      ],
+      "x-stoplight": {
+        "id": "d3dtn5mecxm9n"
+      }
+    },
+    "StateBd5Enum": {
+      "enum": [
+        "locked",
+        "normal",
+        "shipped",
+        "cancelled",
+        "damaged"
+      ],
+      "type": "string",
+      "description": "* `locked` - locked\n* `normal` - normal\n* `shipped` - shipped\n* `cancelled` - cancelled\n* `damaged` - damaged",
+      "x-stoplight": {
+        "id": "xhbwau39q9oko"
+      }
+    }
+  }
+}

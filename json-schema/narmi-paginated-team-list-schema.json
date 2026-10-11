@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-paginated-team-list-schema.json",
+  "title": "PaginatedTeamList",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-teams-api-openapi.yml#/components/schemas/PaginatedTeamList",
+  "type": "object",
+  "required": [
+    "meta",
+    "links",
+    "results"
+  ],
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Team"
+      }
+    },
+    "links": {
+      "type": "object",
+      "description": "URIs linking to sequential pages of the result.",
+      "properties": {
+        "next": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "prev": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        }
+      }
+    },
+    "meta": {
+      "description": "Free-form object, contains total object count.",
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "x-stoplight": {
+    "id": "aa5dcsaeijlgi"
+  },
+  "$defs": {
+    "Team": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "description": {
+          "type": "string",
+          "readOnly": true
+        }
+      },
+      "x-stoplight": {
+        "id": "b6ww36jlgnhwy"
+      }
+    }
+  }
+}

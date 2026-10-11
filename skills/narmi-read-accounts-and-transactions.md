@@ -1,5 +1,5 @@
 ---
-name: Read account balances and transactions
+name: read-accounts-and-transactions
 description: Authenticate to the Narmi Public API and read the signed-in user's accounts, balances, and transaction history.
 api: openapi/narmi-public-openapi-original.yml
 operations: [me_list, accounts_list, account_balances_list, transactions_list]

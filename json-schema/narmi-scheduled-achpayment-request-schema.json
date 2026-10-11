@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-scheduled-achpayment-request-schema.json",
+  "title": "ScheduledACHPaymentRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-ach-payments-api-openapi.yml#/components/schemas/ScheduledACHPaymentRequest",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "maximum": 1000000000000000,
+      "minimum": -1000000000000000,
+      "description": "A field that returns the original value in the currency's smallest unit (e.g. cents).",
+      "type": "integer"
+    },
+    "device_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "writeOnly": true
+    },
+    "device_request_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "writeOnly": true
+    },
+    "memo": {
+      "type": "string",
+      "default": "",
+      "maxLength": 128
+    },
+    "recurring_rule": {
+      "type": "string",
+      "minLength": 1
+    },
+    "institution_account": {
+      "description": "A field that represents the stringified UUID of a related object.",
+      "type": "string",
+      "format": "uuid"
+    },
+    "recipient": {
+      "description": "A field that represents the stringified UUID of a related object.",
+      "type": "string",
+      "format": "uuid"
+    },
+    "ach_company": {
+      "description": "A field that represents the stringified UUID of a related object.",
+      "type": "string",
+      "format": "uuid",
+      "writeOnly": true
+    },
+    "std_ent_cls_code": {
+      "$ref": "#/$defs/StdEntClsCodeEnum"
+    },
+    "entry_desc": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "required": [
+    "amount",
+    "entry_desc",
+    "institution_account",
+    "recipient",
+    "recurring_rule",
+    "std_ent_cls_code"
+  ],
+  "x-stoplight": {
+    "id": "squl1ig9cun3t"
+  },
+  "$defs": {
+    "StdEntClsCodeEnum": {
+      "enum": [
+        "PPD",
+        "CCD",
+        "ARC",
+        "CTX",
+        "POS",
+        "WEB",
+        "BOC",
+        "TEL",
+        "MTE",
+        "SHR",
+        "CIE",
+        "POP",
+        "RCK"
+      ],
+      "type": "string",
+      "description": "* `PPD` - Batch Personal\n* `CCD` - Batch Corporate\n* `ARC` - Batch Accounts Receivable\n* `CTX` - Batch Corporate Exchange\n* `POS` - Batch Point Of Sale\n* `WEB` - Batch Internet Initiated\n* `BOC` - Batch Backoffice Conversion\n* `TEL` - Batch Telephone Initiated\n* `MTE` - Batch Machine Transfer\n* `SHR` - Batch Shared Network\n* `CIE` - Batch Customer Initiated\n* `POP` - Batch Point Of Purchase\n* `RCK` - Batch Represented Check",
+      "x-stoplight": {
+        "id": "xgdwqweqfvyee"
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-paginated-card-travel-note-list-schema.json",
+  "title": "PaginatedCardTravelNoteList",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-cards-api-openapi.yml#/components/schemas/PaginatedCardTravelNoteList",
+  "type": "object",
+  "required": [
+    "count",
+    "results"
+  ],
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "next": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "previous": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CardTravelNote"
+      }
+    }
+  },
+  "x-stoplight": {
+    "id": "cp4oim92gdv1d"
+  },
+  "$defs": {
+    "CardTravelNote": {
+      "type": "object",
+      "description": "For getting and setting integrations.cards.api_messages.CardTravelNote",
+      "properties": {
+        "start_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "end_date",
+        "start_date"
+      ],
+      "x-stoplight": {
+        "id": "llgatlkhvo1zf"
+      }
+    }
+  }
+}

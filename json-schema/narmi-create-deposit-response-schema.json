@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-create-deposit-response-schema.json",
+  "title": "CreateDepositResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-deposits-api-openapi.yml#/components/schemas/CreateDepositResponse",
+  "type": "object",
+  "properties": {
+    "deposit": {
+      "$ref": "#/$defs/Deposit"
+    }
+  },
+  "required": [
+    "deposit"
+  ],
+  "x-stoplight": {
+    "id": "buhdg27dej8hc"
+  },
+  "$defs": {
+    "Deposit": {
+      "type": "object",
+      "description": "Returns data on a successful deposit.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Identifier for the deposit, can be used via the retrieve endpoint. This value may differ between integrations."
+        },
+        "amount": {
+          "maximum": 1000000000000000,
+          "minimum": -1000000000000000,
+          "description": "A field that returns the original value in the currency's smallest unit (e.g. cents).",
+          "type": "integer",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "state": {
+          "type": "string",
+          "readOnly": true,
+          "description": "State of the deposit. Can be one of `Submitted`, `Cancelled`, `Approved`, or `Rejected` for Ensenta, but may differ between integrations."
+        },
+        "front": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Front of the check. Typically in base64 image format, e.g. `data:image/jpeg;base64`."
+        },
+        "back": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Back of the check. Typically in base64 image format, e.g. `data:image/jpeg;base64`."
+        }
+      },
+      "x-stoplight": {
+        "id": "wgqgde6bzmnpj"
+      }
+    }
+  }
+}

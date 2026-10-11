@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-account-balance-doc-response-schema.json",
+  "title": "AccountBalanceDocResponse",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-account-balances-api-openapi.yml#/components/schemas/AccountBalanceDocResponse",
+  "type": "object",
+  "properties": {
+    "account_balance": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/AccountBalance"
+        }
+      ],
+      "description": "Account balances for the specified account."
+    }
+  },
+  "required": [
+    "account_balance"
+  ],
+  "x-stoplight": {
+    "id": "bucgaqtqcibez"
+  },
+  "$defs": {
+    "AccountBalance": {
+      "type": "object",
+      "description": "A representation of an account with respect to its balance totals.",
+      "properties": {
+        "id": {
+          "description": "Account UUID prefixed with \"abl_\" for use with this endpoint.",
+          "type": "string",
+          "readOnly": true
+        },
+        "account_id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true,
+          "description": "UUID to the associated account."
+        },
+        "primary": {
+          "maximum": 10000000000000.0,
+          "minimum": -10000000000000.0,
+          "description": "The balance to be presented to the customer. Set to the available balance for non CD deposit accounts, and ledger balance otherwise. May be null for external accounts that have not yet been synced with balance data.",
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double",
+          "readOnly": true
+        },
+        "available": {
+          "maximum": 10000000000000.0,
+          "minimum": -10000000000000.0,
+          "description": "The funds immediately available to use, including any pending transactions or temporary holds on the account. May be null for external accounts that have not yet been synced with balance data.",
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double",
+          "readOnly": true
+        },
+        "ledger": {
+          "maximum": 10000000000000.0,
+          "minimum": -10000000000000.0,
+          "description": "The total amount of funds in the account not including temporary holds or pending transactions. May be null for external accounts that have not yet been synced with balance data.",
+          "type": [
+            "number",
+            "null"
+          ],
+          "format": "double",
+          "readOnly": true
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true,
+          "description": "Date when the account was last updated."
+        }
+      },
+      "x-stoplight": {
+        "id": "sswt197xsfwzw"
+      }
+    }
+  }
+}

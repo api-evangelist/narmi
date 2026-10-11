@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-survey-schema.json",
+  "title": "Survey",
+  "description": "Serializer for surveys with nested questions.\n\nQuestions can be pre-sorted and passed via context['questions'].",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-surveys-api-openapi.yml#/components/schemas/Survey",
+  "type": "object",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the survey"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the survey"
+    },
+    "questions": {
+      "description": "List of questions in the survey, ordered by priority (highest first)",
+      "readOnly": true
+    }
+  },
+  "required": [
+    "name",
+    "uuid"
+  ],
+  "x-stoplight": {
+    "id": "8wwz1p5y7iqn4"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-verify-enrollment-doc-request-schema.json",
+  "title": "VerifyEnrollmentDocRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-enrollments-api-openapi.yml#/components/schemas/VerifyEnrollmentDocRequest",
+  "type": "object",
+  "properties": {
+    "enrollment_code": {
+      "type": "string",
+      "writeOnly": true,
+      "minLength": 1
+    }
+  },
+  "required": [
+    "enrollment_code"
+  ],
+  "x-stoplight": {
+    "id": "yqsn2yxyvvqqt"
+  }
+}

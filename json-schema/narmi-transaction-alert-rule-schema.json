@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-transaction-alert-rule-schema.json",
+  "title": "TransactionAlertRule",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-alerts-api-openapi.yml#/components/schemas/TransactionAlertRule",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "readOnly": true
+    },
+    "alert_key": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/AlertKey61cEnum"
+        }
+      ],
+      "description": "Alert type, can be one of `credit` or `debit`.\n\n* `credit` - credit\n* `debit` - debit"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "delivery_channels": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/$defs/DeliveryChannelsEnum"
+          }
+        ],
+        "description": "Delivery channels, can be one of `sms`, `push`, or `email`.\n\n* `sms` - sms\n* `push` - push\n* `email` - email"
+      }
+    },
+    "transaction_query": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "last_delivered_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "readOnly": true
+    }
+  },
+  "required": [
+    "alert_key",
+    "delivery_channels",
+    "transaction_query"
+  ],
+  "x-stoplight": {
+    "id": "4rgthd2z87x7k"
+  },
+  "$defs": {
+    "AlertKey61cEnum": {
+      "enum": [
+        "credit",
+        "debit"
+      ],
+      "type": "string",
+      "description": "* `credit` - credit\n* `debit` - debit",
+      "x-stoplight": {
+        "id": "bwsuuwmt9dsnb"
+      }
+    },
+    "DeliveryChannelsEnum": {
+      "enum": [
+        "sms",
+        "push",
+        "email"
+      ],
+      "type": "string",
+      "description": "* `sms` - sms\n* `push` - push\n* `email` - email",
+      "x-stoplight": {
+        "id": "jds3ywpdugt4t"
+      }
+    }
+  }
+}

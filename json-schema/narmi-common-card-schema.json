@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-common-card-schema.json",
+  "title": "CommonCard",
+  "description": "integrations.cards.common.Card",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-cards-api-openapi.yml#/components/schemas/CommonCard",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "An identifier for the card object."
+    },
+    "core_user_id": {
+      "type": "string",
+      "description": "String uniquely identifying a user or user's primary account on the banking core"
+    },
+    "last_four_digits": {
+      "type": "string",
+      "description": "Last four digits of the card's account number."
+    },
+    "state": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/StateBd5Enum"
+        }
+      ],
+      "description": "Indicates whether the card is functional, and if not for what reason.\n\n* `locked` - locked\n* `normal` - normal\n* `shipped` - shipped\n* `cancelled` - cancelled\n* `damaged` - damaged",
+      "readOnly": true
+    },
+    "bin": {
+      "type": "string",
+      "description": "Bank Identification Number (BIN) is the first 6 to 8 digits of the Primary Account Number (PAN)."
+    },
+    "network": {
+      "type": "string",
+      "description": "The credit card processing network, such as Visa, Discover, etc."
+    },
+    "name": {
+      "type": "string",
+      "description": "The card product's name."
+    },
+    "card_type": {
+      "type": "string",
+      "description": "The card's type, debit, credit or atm."
+    }
+  },
+  "required": [
+    "bin",
+    "card_type",
+    "core_user_id",
+    "id",
+    "last_four_digits",
+    "name",
+    "network"
+  ],
+  "x-stoplight": {
+    "id": "chf14nszhkbex"
+  },
+  "$defs": {
+    "StateBd5Enum": {
+      "enum": [
+        "locked",
+        "normal",
+        "shipped",
+        "cancelled",
+        "damaged"
+      ],
+      "type": "string",
+      "description": "* `locked` - locked\n* `normal` - normal\n* `shipped` - shipped\n* `cancelled` - cancelled\n* `damaged` - damaged",
+      "x-stoplight": {
+        "id": "xhbwau39q9oko"
+      }
+    }
+  }
+}

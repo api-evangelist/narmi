@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-fed-now-transaction-schema.json",
+  "title": "FedNowTransaction",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-instant-transfers-api-openapi.yml#/components/schemas/FedNowTransaction",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "amount_cents": {
+      "type": "integer",
+      "maximum": 2147483647,
+      "minimum": -2147483648
+    },
+    "memo": {
+      "type": "string",
+      "maxLength": 140
+    },
+    "state": {
+      "$ref": "#/$defs/FedNowTransactionStateEnum"
+    },
+    "payment_identification": {
+      "type": "string",
+      "maxLength": 35
+    },
+    "source_account": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "external_account": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "unverified_recipient": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "bulk_payment": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    }
+  },
+  "required": [
+    "amount_cents",
+    "bulk_payment",
+    "external_account",
+    "id",
+    "source_account",
+    "unverified_recipient"
+  ],
+  "x-stoplight": {
+    "id": "7qinjdob3wcd1"
+  },
+  "$defs": {
+    "FedNowTransactionStateEnum": {
+      "enum": [
+        "pending",
+        "accepted",
+        "declined",
+        "failed",
+        "processed",
+        "overridden",
+        "processed_settled",
+        "processed_reversed",
+        "overridden_settled",
+        "awaiting_approval",
+        "rejected_approval",
+        "canceled",
+        "approval_expired",
+        "awaiting_bulk_approval",
+        "rejected_bulk_approval"
+      ],
+      "type": "string",
+      "description": "* `pending` - Pending fraud evaluation\n* `accepted` - Fraud evaluation passed\n* `declined` - Fraud evaluation failed\n* `failed` - Failed before FedNow processing was initiated\n* `processed` - Payment initiated in FedNow service\n* `overridden` - Decline manually overridden and payment initiated in FedNow service\n* `processed_settled` - Payment settlement has been confirmed by FedNow service\n* `processed_reversed` - Payment was returned by FedNow service\n* `overridden_settled` - Payment settlement confirmed after override\n* `awaiting_approval` - Awaiting dual approval\n* `rejected_approval` - Dual approval rejected\n* `canceled` - Canceled\n* `approval_expired` - Dual approval expired\n* `awaiting_bulk_approval` - Awaiting bulk approval\n* `rejected_bulk_approval` - Rejected bulk approval",
+      "x-stoplight": {
+        "id": "otlhozfwfxeds"
+      }
+    }
+  }
+}

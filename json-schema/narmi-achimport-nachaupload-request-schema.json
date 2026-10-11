@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-achimport-nachaupload-request-schema.json",
+  "title": "ACHImportNACHAUploadRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-ach-import-api-openapi.yml#/components/schemas/ACHImportNACHAUploadRequest",
+  "type": "object",
+  "properties": {
+    "file": {
+      "type": "string",
+      "format": "binary"
+    },
+    "account_purpose": {
+      "$ref": "#/$defs/AccountPurposeEnum"
+    },
+    "source_account": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "internal_note": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "required": [
+    "account_purpose",
+    "file",
+    "source_account"
+  ],
+  "x-stoplight": {
+    "id": "4lzbivycmjmlm"
+  },
+  "$defs": {
+    "AccountPurposeEnum": {
+      "enum": [
+        "personal",
+        "business"
+      ],
+      "type": "string",
+      "description": "* `personal` - Personal\n* `business` - Business",
+      "x-stoplight": {
+        "id": "ccf1svqamabvv"
+      }
+    }
+  }
+}

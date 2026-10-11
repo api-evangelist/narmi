@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-thread-update-request-schema.json",
+  "title": "ThreadUpdateRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-threads-api-openapi.yml#/components/schemas/ThreadUpdateRequest",
+  "type": "object",
+  "properties": {
+    "state": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/StateFf1Enum"
+        }
+      ],
+      "description": "Indicates whether the thread has been closed or remains open.\n\n* `closed` - closed\n* `open` - open"
+    }
+  },
+  "x-stoplight": {
+    "id": "ech1lwv4agqdr"
+  },
+  "$defs": {
+    "StateFf1Enum": {
+      "enum": [
+        "closed",
+        "open"
+      ],
+      "type": "string",
+      "description": "* `closed` - closed\n* `open` - open",
+      "x-stoplight": {
+        "id": "cyhzi9ykogwtj"
+      }
+    }
+  }
+}

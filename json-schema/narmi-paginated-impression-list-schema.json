@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-paginated-impression-list-schema.json",
+  "title": "PaginatedImpressionList",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-surveys-api-openapi.yml#/components/schemas/PaginatedImpressionList",
+  "type": "object",
+  "required": [
+    "count",
+    "results"
+  ],
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "next": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "previous": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Impression"
+      }
+    }
+  },
+  "x-stoplight": {
+    "id": "atdsmymzgw1ww"
+  },
+  "$defs": {
+    "Impression": {
+      "type": "object",
+      "description": "Serializer for creating survey impressions.\nRecords that a user viewed a survey.",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true,
+          "description": "Unique identifier for the impression"
+        },
+        "survey": {
+          "type": "string",
+          "format": "uuid",
+          "description": "UUID of the survey that was viewed"
+        },
+        "viewed_at": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true,
+          "description": "Timestamp when the survey was viewed by the user"
+        }
+      },
+      "required": [
+        "survey"
+      ],
+      "x-stoplight": {
+        "id": "tph0rpzmae7zm"
+      }
+    }
+  }
+}

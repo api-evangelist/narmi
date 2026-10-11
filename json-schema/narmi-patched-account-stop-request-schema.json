@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-patched-account-stop-request-schema.json",
+  "title": "PatchedAccountStopRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-accounts-api-openapi.yml#/components/schemas/PatchedAccountStopRequest",
+  "type": "object",
+  "properties": {
+    "min_check_number": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The lower bound check number which the stop applies to or the check number when targeting a single check with a specified amount."
+    },
+    "max_check_number": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The upper bound check number which the stop applies to."
+    },
+    "amount": {
+      "maximum": 1000000000000000,
+      "minimum": -1000000000000000,
+      "description": "The amount of the original payment that should be targeted for the stop.",
+      "type": "integer"
+    }
+  },
+  "x-stoplight": {
+    "id": "szy5icfd32dwt"
+  }
+}

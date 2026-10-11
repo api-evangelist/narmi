@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-card-offer-schema.json",
+  "title": "CardOffer",
+  "description": "Serializer for card offers returned by the API.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-card-linked-offers-api-openapi.yml#/components/schemas/CardOffer",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "terms": {
+      "type": "string"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CategoriesEnum"
+      }
+    },
+    "expiration_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "start_date": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "reward_type": {
+      "$ref": "#/$defs/RewardTypeEnum"
+    },
+    "reward_value": {
+      "maximum": 1000000000000000,
+      "minimum": -1000000000000000,
+      "description": "A field that returns the original value in the currency's smallest unit (e.g. cents).",
+      "type": "integer"
+    },
+    "purchase_channels": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/PurchaseChannelsEnum"
+      }
+    },
+    "min_reward_amount": {
+      "maximum": 1000000000000000,
+      "minimum": -1000000000000000,
+      "description": "A field that returns the original value in the currency's smallest unit (e.g. cents).",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "max_reward_amount": {
+      "maximum": 1000000000000000,
+      "minimum": -1000000000000000,
+      "description": "A field that returns the original value in the currency's smallest unit (e.g. cents).",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "min_transaction_amount": {
+      "maximum": 1000000000000000,
+      "minimum": -1000000000000000,
+      "description": "A field that returns the original value in the currency's smallest unit (e.g. cents).",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "max_transaction_amount": {
+      "maximum": 1000000000000000,
+      "minimum": -1000000000000000,
+      "description": "A field that returns the original value in the currency's smallest unit (e.g. cents).",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CardOfferAsset"
+      }
+    },
+    "merchant_url": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    }
+  },
+  "required": [
+    "assets",
+    "categories",
+    "description",
+    "expiration_date",
+    "id",
+    "max_reward_amount",
+    "max_transaction_amount",
+    "merchant_url",
+    "min_reward_amount",
+    "min_transaction_amount",
+    "name",
+    "purchase_channels",
+    "reward_type",
+    "reward_value",
+    "start_date",
+    "terms"
+  ],
+  "x-stoplight": {
+    "id": "sfc37b8rofbms"
+  },
+  "$defs": {
+    "CardOfferAsset": {
+      "type": "object",
+      "description": "Serializer for card offer assets.",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "alt_text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "alt_text",
+        "type",
+        "url"
+      ],
+      "x-stoplight": {
+        "id": "rwb5b0hmczudt"
+      }
+    },
+    "CategoriesEnum": {
+      "enum": [
+        "Arts & Entertainment",
+        "Baby, Kids & Toys",
+        "Books & Digital Media",
+        "Clothing, Shoes & Accessories",
+        "Computers, Electronics & Software",
+        "Convenience",
+        "Gas",
+        "Department Stores",
+        "Food & Beverage",
+        "Health & Beauty",
+        "Home & Garden",
+        "Miscellaneous",
+        "Occasions & Gifts",
+        "Pets",
+        "Sports & Outdoors",
+        "Supplies & Services",
+        "Travel",
+        "Other"
+      ],
+      "type": "string",
+      "description": "* `Arts & Entertainment` - Arts & Entertainment\n* `Baby, Kids & Toys` - Baby, Kids & Toys\n* `Books & Digital Media` - Books & Digital Media\n* `Clothing, Shoes & Accessories` - Clothing, Shoes & Accessories\n* `Computers, Electronics & Software` - Computers, Electronics & Software\n* `Convenience` - Convenience\n* `Gas` - Gas\n* `Department Stores` - Department Stores\n* `Food & Beverage` - Food & Beverage\n* `Health & Beauty` - Health & Beauty\n* `Home & Garden` - Home & Garden\n* `Miscellaneous` - Miscellaneous\n* `Occasions & Gifts` - Occasions & Gifts\n* `Pets` - Pets\n* `Sports & Outdoors` - Sports & Outdoors\n* `Supplies & Services` - Supplies & Services\n* `Travel` - Travel\n* `Other` - Other",
+      "x-stoplight": {
+        "id": "hnd0c8ky6kbs8"
+      }
+    },
+    "PurchaseChannelsEnum": {
+      "enum": [
+        "online",
+        "in_store"
+      ],
+      "type": "string",
+      "description": "* `online` - online\n* `in_store` - in_store",
+      "x-stoplight": {
+        "id": "mjmvea9tnh4vq"
+      }
+    },
+    "RewardTypeEnum": {
+      "enum": [
+        "flat",
+        "percentage"
+      ],
+      "type": "string",
+      "description": "* `flat` - flat\n* `percentage` - percentage",
+      "x-stoplight": {
+        "id": "wbtxqz7kofhhe"
+      }
+    }
+  }
+}

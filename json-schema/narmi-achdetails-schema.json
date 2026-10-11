@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-achdetails-schema.json",
+  "title": "ACHDetails",
+  "description": "In addition to the standard ACHDetails fields you'd expect for a create/updated request,\nthis serializer also requires a recipient (passed in as the uuid of the recipient)\nthat will be associated with the created/updated ACHDetails.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-ach-destinations-api-openapi.yml#/components/schemas/ACHDetails",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "readOnly": true
+    },
+    "account_number": {
+      "description": "Account number for the ACH destination.",
+      "type": "string",
+      "maxLength": 17,
+      "minLength": 1
+    },
+    "routing_number": {
+      "description": "Routing number for the ACH destination.",
+      "type": "string",
+      "maxLength": 9,
+      "minLength": 9
+    },
+    "account_type": {
+      "$ref": "#/$defs/AccountTypeEnum"
+    },
+    "account_purpose": {
+      "$ref": "#/$defs/AccountPurposeEnum"
+    },
+    "institution_name": {
+      "type": "string",
+      "readOnly": true
+    }
+  },
+  "required": [
+    "account_number",
+    "account_purpose",
+    "account_type",
+    "routing_number"
+  ],
+  "x-stoplight": {
+    "id": "rvctfxe73rl2e"
+  },
+  "$defs": {
+    "AccountPurposeEnum": {
+      "enum": [
+        "personal",
+        "business"
+      ],
+      "type": "string",
+      "description": "* `personal` - Personal\n* `business` - Business",
+      "x-stoplight": {
+        "id": "ccf1svqamabvv"
+      }
+    },
+    "AccountTypeEnum": {
+      "enum": [
+        "checking",
+        "savings",
+        "loan"
+      ],
+      "type": "string",
+      "description": "* `checking` - Checking\n* `savings` - Savings\n* `loan` - Loan",
+      "x-stoplight": {
+        "id": "ds0e59zxe4i8q"
+      }
+    }
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-user-document-schema.json",
+  "title": "UserDocument",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-documents-api-openapi.yml#/components/schemas/UserDocument",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/DocumentResponse"
+    },
+    {
+      "$ref": "#/$defs/DocumentWithDataResponse"
+    }
+  ],
+  "x-stoplight": {
+    "id": "hcy6wln20g4we"
+  },
+  "$defs": {
+    "Document": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Document ID. The format of the ID can vary between document stores."
+        },
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "readOnly": true,
+          "description": "Document type, this value can vary between document stores."
+        },
+        "type_label": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "readOnly": true,
+          "description": "Human readable type, defaults to value of `type` field when missing."
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "string",
+          "readOnly": true,
+          "description": "The date-time the document was posted."
+        },
+        "account_id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri",
+          "description": "The URL of the retrieve API call.",
+          "readOnly": true
+        }
+      },
+      "x-stoplight": {
+        "id": "9mjrd0thewwlb"
+      }
+    },
+    "DocumentResponse": {
+      "type": "object",
+      "properties": {
+        "document": {
+          "$ref": "#/$defs/Document"
+        }
+      },
+      "required": [
+        "document"
+      ],
+      "x-stoplight": {
+        "id": "b2w8p4gq2jw1j"
+      }
+    },
+    "DocumentWithData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Document ID. The format of the ID can vary between document stores."
+        },
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "readOnly": true,
+          "description": "Document type, this value can vary between document stores."
+        },
+        "type_label": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "readOnly": true,
+          "description": "Human readable type, defaults to value of `type` field when missing."
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "string",
+          "readOnly": true,
+          "description": "The date-time the document was posted."
+        },
+        "account_id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "data": {
+          "type": "string",
+          "format": "uri",
+          "description": "Binary PDF file data, base64 encoded. This is included when `data` parameter is specified."
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri",
+          "description": "The URL of the retrieve API call.",
+          "readOnly": true
+        }
+      },
+      "x-stoplight": {
+        "id": "xrmejhjmnyf1h"
+      }
+    },
+    "DocumentWithDataResponse": {
+      "type": "object",
+      "properties": {
+        "document": {
+          "$ref": "#/$defs/DocumentWithData"
+        }
+      },
+      "required": [
+        "document"
+      ],
+      "x-stoplight": {
+        "id": "64o2djny8szc0"
+      }
+    }
+  }
+}

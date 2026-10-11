@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-recipient-request-schema.json",
+  "title": "RecipientRequest",
+  "description": "Updates to the ach_destination and fedwire_destination fields are handled by the\nACHDetailsSerializer and FedwireDestinationSerializer, respectively.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-recipients-api-openapi.yml#/components/schemas/RecipientRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Used to formally identify the recipient (e.g. for sending fedwires.)",
+      "maxLength": 140
+    },
+    "nickname": {
+      "type": "string",
+      "description": "Name used internally to more easily identify the recipient.",
+      "maxLength": 256
+    },
+    "type": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/RecipientTypeEnum"
+        }
+      ],
+      "default": "person"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "x-stoplight": {
+    "id": "n6ayn4zrjmmxd"
+  },
+  "$defs": {
+    "RecipientTypeEnum": {
+      "enum": [
+        "person",
+        "business"
+      ],
+      "type": "string",
+      "description": "* `person` - Person\n* `business` - Business",
+      "x-stoplight": {
+        "id": "cetfkhhexomuz"
+      }
+    }
+  }
+}

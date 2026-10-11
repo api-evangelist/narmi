@@ -1,0 +1,314 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-recipient-schema.json",
+  "title": "Recipient",
+  "description": "Updates to the ach_destination and fedwire_destination fields are handled by the\nACHDetailsSerializer and FedwireDestinationSerializer, respectively.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-recipients-api-openapi.yml#/components/schemas/Recipient",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "readOnly": true
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string",
+      "description": "Used to formally identify the recipient (e.g. for sending fedwires.)",
+      "maxLength": 140
+    },
+    "nickname": {
+      "type": "string",
+      "description": "Name used internally to more easily identify the recipient.",
+      "maxLength": 256
+    },
+    "type": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/RecipientTypeEnum"
+        }
+      ],
+      "default": "person"
+    },
+    "ach_destination": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/ACHDetails"
+        }
+      ],
+      "readOnly": true,
+      "description": "A dictionary containing the destination (account number & routing number), account type (e.g. 'checking'), and account purpose ('personal' or 'business') for the ACH destination. A null value reflects that the recipient does not have an ACH destination."
+    },
+    "fedwire_destination": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/FedwireDestination"
+        }
+      ],
+      "readOnly": true,
+      "description": "A dictionary containing the destination (account number & routing number) and address for the Fedwire destination. A null value reflects that the recipient does not have a Fedwire destination."
+    },
+    "swift_destination": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/SwiftWireDestination"
+        }
+      ],
+      "readOnly": true,
+      "description": "A dictionary containing the destination (bic, iban) and address for the Swift destination. A null value reflects that the recipient does not have a Swift destination."
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "x-stoplight": {
+    "id": "buqdhdq6mraig"
+  },
+  "$defs": {
+    "ACHDetails": {
+      "type": "object",
+      "description": "In addition to the standard ACHDetails fields you'd expect for a create/updated request,\nthis serializer also requires a recipient (passed in as the uuid of the recipient)\nthat will be associated with the created/updated ACHDetails.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "account_number": {
+          "description": "Account number for the ACH destination.",
+          "type": "string",
+          "maxLength": 17,
+          "minLength": 1
+        },
+        "routing_number": {
+          "description": "Routing number for the ACH destination.",
+          "type": "string",
+          "maxLength": 9,
+          "minLength": 9
+        },
+        "account_type": {
+          "$ref": "#/$defs/AccountTypeEnum"
+        },
+        "account_purpose": {
+          "$ref": "#/$defs/AccountPurposeEnum"
+        },
+        "institution_name": {
+          "type": "string",
+          "readOnly": true
+        }
+      },
+      "required": [
+        "account_number",
+        "account_purpose",
+        "account_type",
+        "routing_number"
+      ],
+      "x-stoplight": {
+        "id": "rvctfxe73rl2e"
+      }
+    },
+    "AccountPurposeEnum": {
+      "enum": [
+        "personal",
+        "business"
+      ],
+      "type": "string",
+      "description": "* `personal` - Personal\n* `business` - Business",
+      "x-stoplight": {
+        "id": "ccf1svqamabvv"
+      }
+    },
+    "AccountTypeEnum": {
+      "enum": [
+        "checking",
+        "savings",
+        "loan"
+      ],
+      "type": "string",
+      "description": "* `checking` - Checking\n* `savings` - Savings\n* `loan` - Loan",
+      "x-stoplight": {
+        "id": "ds0e59zxe4i8q"
+      }
+    },
+    "FedwireDestination": {
+      "type": "object",
+      "description": "In addition to the standard FedwireDestination fields you'd expect for a create/updated request,\nthis serializer also requires a recipient (passed in as the uuid of the recipient)\nthat will be associated with the created/updated FedwireDestination instance.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "account_number": {
+          "description": "Account number for the Fedwire destination.",
+          "type": "string",
+          "maxLength": 17,
+          "minLength": 1
+        },
+        "routing_number": {
+          "description": "Routing number for the Fedwire destination.",
+          "type": "string",
+          "maxLength": 9,
+          "minLength": 9
+        },
+        "address": {
+          "$ref": "#/$defs/FedwireRecipientAddress"
+        },
+        "institution_name": {
+          "type": "string",
+          "readOnly": true
+        }
+      },
+      "required": [
+        "account_number",
+        "address",
+        "routing_number"
+      ],
+      "x-stoplight": {
+        "id": "5nq8io7fuwyrs"
+      }
+    },
+    "FedwireRecipientAddress": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "street_address": {
+          "type": "string",
+          "maxLength": 35
+        },
+        "street_address_2": {
+          "type": "string",
+          "maxLength": 35
+        },
+        "city": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "region_code": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "postal_code": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "country_code": {
+          "type": "string",
+          "maxLength": 2
+        }
+      },
+      "required": [
+        "street_address"
+      ],
+      "x-stoplight": {
+        "id": "alp6ww1u4r5wf"
+      }
+    },
+    "RecipientTypeEnum": {
+      "enum": [
+        "person",
+        "business"
+      ],
+      "type": "string",
+      "description": "* `person` - Person\n* `business` - Business",
+      "x-stoplight": {
+        "id": "cetfkhhexomuz"
+      }
+    },
+    "SwiftWireDestination": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "bic": {
+          "type": "string"
+        },
+        "metadata": {},
+        "address": {
+          "$ref": "#/$defs/WireRecipientAddress"
+        },
+        "account_identifier": {
+          "type": "string",
+          "description": "Account identifier (IBAN, account number, phone) for the Swift wire destination."
+        },
+        "branch_address": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/WireRecipientAddress"
+            }
+          ]
+        }
+      },
+      "required": [
+        "account_identifier",
+        "address",
+        "bic"
+      ],
+      "x-stoplight": {
+        "id": "fsxcazs4nwqxc"
+      }
+    },
+    "WireRecipientAddress": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "street_address": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "street_address_2": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "city": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "region_code": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "postal_code": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "country_code": {
+          "type": "string",
+          "maxLength": 2
+        }
+      },
+      "required": [
+        "street_address"
+      ],
+      "x-stoplight": {
+        "id": "dsp8dadbgwst0"
+      }
+    }
+  }
+}

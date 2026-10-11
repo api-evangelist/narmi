@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/narmi/integrations
 - https://n8n.io/integrations/narmi/
@@ -9,8 +9,68 @@ checked:
 - https://composio.dev/toolkits/narmi
 - https://monid.ai/tools/narmi
 - https://n8n.io/integrations/narmi/
+- https://www.narmi.com/integrations
+- https://www.narmi.com/open-platform
+- https://www.narmi.com/partners/corelation
 - https://zapier.com/apps/narmi/integrations
-summary: null
+summary: No marketplace listings (Zapier/n8n/Composio/Monid all absent); Narmi names seven core-banking integrations
+  on its own Narmi Open platform page.
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: Corelation KeyStone
+  partner: null
+  type: claimed
+  evidence: https://www.narmi.com/partners/corelation
+  marketplace: null
+  direction: provider-built
+  category: core-banking
+  use_case: We are a strategic and technically certified Corelation partner.
+- partner_name: FIS IBS
+  partner: fis
+  type: claimed
+  evidence: https://www.narmi.com/open-platform
+  marketplace: null
+  direction: provider-built
+  category: core-banking
+  use_case: Learn more about Narmi’s FIS IBS core integration expertise.
+- partner_name: FIS Horizon
+  partner: fis
+  type: claimed
+  evidence: https://www.narmi.com/open-platform
+  marketplace: null
+  direction: provider-built
+  category: core-banking
+  use_case: Learn about Narmi’s existing integration with the FIS Horizon core.
+- partner_name: Symitar (Jack Henry)
+  partner: jack-henry
+  type: claimed
+  evidence: https://www.narmi.com/open-platform
+  marketplace: null
+  direction: provider-built
+  category: core-banking
+  use_case: See how Narmi drives value as a Symitar VIP member.
+- partner_name: Silverlake (Jack Henry)
+  partner: jack-henry
+  type: claimed
+  evidence: https://www.narmi.com/open-platform
+  marketplace: null
+  direction: provider-built
+  category: core-banking
+  use_case: Unlock your digital investment in the Silverlake core with Narmi.
+- partner_name: Fiserv Premier
+  partner: fiserv
+  type: claimed
+  evidence: https://www.narmi.com/open-platform
+  marketplace: null
+  direction: provider-built
+  category: core-banking
+  use_case: Drive value with quick connections to the Fiserv Premier core.
+- partner_name: COCC
+  partner: null
+  type: claimed
+  evidence: https://www.narmi.com/open-platform
+  marketplace: null
+  direction: provider-built
+  category: core-banking
+  use_case: Check out how our COCC customers are
 templates: []

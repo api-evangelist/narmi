@@ -1,5 +1,5 @@
 ---
-name: Originate an ACH payment
+name: originate-ach-payment
 description: Create an ACH payment from a Narmi account, safely, using an Idempotency-Key.
 api: openapi/narmi-public-openapi-original.yml
 operations: [accounts_list, ach_companies_list, ach_payments_create, ach_payments_retrieve]

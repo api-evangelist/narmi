@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-enrollment-url-create-request-schema.json",
+  "title": "EnrollmentUrlCreateRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-enrollments-api-openapi.yml#/components/schemas/EnrollmentUrlCreateRequest",
+  "type": "object",
+  "properties": {
+    "account_number": {
+      "type": "string",
+      "writeOnly": true,
+      "minLength": 1,
+      "description": "The enrolling account number."
+    },
+    "date_of_birth": {
+      "type": "string",
+      "format": "date",
+      "writeOnly": true
+    },
+    "tax_id": {
+      "type": "string",
+      "writeOnly": true,
+      "minLength": 9,
+      "description": "User social security number.",
+      "maxLength": 9
+    },
+    "institution_business_identifier": {
+      "type": "string",
+      "writeOnly": true,
+      "minLength": 1,
+      "description": "Organization identifier from the banking core. Only required for business accounts."
+    },
+    "ein": {
+      "type": "string",
+      "writeOnly": true,
+      "minLength": 9,
+      "description": "Only required for business accounts.",
+      "maxLength": 9
+    }
+  },
+  "x-stoplight": {
+    "id": "0tae6fiegr4lv"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-paginated-achcompany-list-schema.json",
+  "title": "PaginatedACHCompanyList",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-ach-companies-api-openapi.yml#/components/schemas/PaginatedACHCompanyList",
+  "type": "object",
+  "required": [
+    "count",
+    "results"
+  ],
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "next": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "previous": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ACHCompany"
+      }
+    }
+  },
+  "x-stoplight": {
+    "id": "lsm498fpc94po"
+  },
+  "$defs": {
+    "ACHCompany": {
+      "type": "object",
+      "properties": {
+        "company_name": {
+          "type": "string",
+          "description": "The name of the entity that is sending money through the ACH network. This name should be recognizable to the recipient.",
+          "maxLength": 16
+        },
+        "company_id": {
+          "type": "string",
+          "description": "10-digit alphanumeric string that identifies the entity that is sending money through the ACH network.",
+          "maxLength": 10
+        },
+        "organization": {
+          "description": "The organization associated with the ACH company.",
+          "type": "string",
+          "format": "uuid"
+        },
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        }
+      },
+      "required": [
+        "company_id",
+        "company_name",
+        "organization"
+      ],
+      "x-stoplight": {
+        "id": "godr0nhfnit5i"
+      }
+    }
+  }
+}

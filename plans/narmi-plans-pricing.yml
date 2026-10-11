@@ -2,6 +2,7 @@
 generated: '2026-09-20'
 method: searched
 source: https://www.narmi.com/variable-pricing
+name: Narmi API Plans
 sources:
 - https://www.narmi.com/variable-pricing
 provenance:

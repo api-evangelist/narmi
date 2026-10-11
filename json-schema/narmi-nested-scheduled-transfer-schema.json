@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-nested-scheduled-transfer-schema.json",
+  "title": "NestedScheduledTransfer",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-scheduled-transfers-api-openapi.yml#/components/schemas/NestedScheduledTransfer",
+  "type": "object",
+  "properties": {
+    "scheduled_transfers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ScheduledTransfer"
+      }
+    }
+  },
+  "required": [
+    "scheduled_transfers"
+  ],
+  "x-stoplight": {
+    "id": "dsndbtq2zlgwc"
+  },
+  "$defs": {
+    "ScheduledTransfer": {
+      "type": "object",
+      "description": "Represents:\nindigo.models.recurring_transfer.AchTransfer,\nindigo.models.recurring_transfer.IntraInstitutionTransfer",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "state": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/ScheduledTransferStateEnum"
+            }
+          ],
+          "readOnly": true,
+          "description": "Whether or not the scheduled transfer is expired.\n\n* `expired` - expired\n* `active` - active"
+        },
+        "created_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time",
+          "readOnly": true
+        },
+        "amount": {
+          "maximum": 1000000000000000,
+          "minimum": -1000000000000000,
+          "description": "A field that returns the original value in the currency's smallest unit (e.g. cents).",
+          "type": "integer"
+        },
+        "from_account_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "UUID identifying the source account in the Narmi database."
+        },
+        "to_account_id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "UUID identifying the destination account in the Narmi database."
+        },
+        "next_transfer_at": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "recurring_rule": {
+          "type": "string",
+          "description": "Cadence of recurring event, as per the RFC-5545 specification."
+        },
+        "memo": {
+          "type": "string",
+          "default": "",
+          "description": "Free-form description of transfer."
+        },
+        "description": {
+          "type": "string",
+          "default": "",
+          "description": "Free-form description of transfer."
+        }
+      },
+      "required": [
+        "amount",
+        "from_account_id",
+        "recurring_rule",
+        "to_account_id"
+      ],
+      "x-stoplight": {
+        "id": "tfuhvwk5p8fsx"
+      }
+    },
+    "ScheduledTransferStateEnum": {
+      "enum": [
+        "expired",
+        "active"
+      ],
+      "type": "string",
+      "description": "* `expired` - expired\n* `active` - active",
+      "x-stoplight": {
+        "id": "3uyhod4xb85tf"
+      }
+    }
+  }
+}

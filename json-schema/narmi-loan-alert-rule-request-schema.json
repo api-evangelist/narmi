@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-loan-alert-rule-request-schema.json",
+  "title": "LoanAlertRuleRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-alerts-api-openapi.yml#/components/schemas/LoanAlertRuleRequest",
+  "type": "object",
+  "properties": {
+    "alert_key": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/LoanAlertRuleAlertKeyEnum"
+        }
+      ],
+      "description": "Alert type, can be one of `loan_reminder` or `loan_overdue`.\n\n* `loan_reminder` - loan_reminder\n* `loan_overdue` - loan_overdue"
+    },
+    "delivery_channels": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/$defs/DeliveryChannelsEnum"
+          }
+        ],
+        "description": "Delivery channels, can be one of `sms`, `push`, or `email`.\n\n* `sms` - sms\n* `push` - push\n* `email` - email"
+      }
+    },
+    "reminder_days_offset": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "maximum": 7,
+      "minimum": 0
+    }
+  },
+  "required": [
+    "alert_key",
+    "delivery_channels"
+  ],
+  "x-stoplight": {
+    "id": "khappnecltn0j"
+  },
+  "$defs": {
+    "DeliveryChannelsEnum": {
+      "enum": [
+        "sms",
+        "push",
+        "email"
+      ],
+      "type": "string",
+      "description": "* `sms` - sms\n* `push` - push\n* `email` - email",
+      "x-stoplight": {
+        "id": "jds3ywpdugt4t"
+      }
+    },
+    "LoanAlertRuleAlertKeyEnum": {
+      "enum": [
+        "loan_reminder",
+        "loan_overdue"
+      ],
+      "type": "string",
+      "description": "* `loan_reminder` - loan_reminder\n* `loan_overdue` - loan_overdue",
+      "x-stoplight": {
+        "id": "qiy6mwvgwofef"
+      }
+    }
+  }
+}

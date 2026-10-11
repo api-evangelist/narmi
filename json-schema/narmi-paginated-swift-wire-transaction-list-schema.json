@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-paginated-swift-wire-transaction-list-schema.json",
+  "title": "PaginatedSwiftWireTransactionList",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-international-wires-api-openapi.yml#/components/schemas/PaginatedSwiftWireTransactionList",
+  "type": "object",
+  "required": [
+    "count",
+    "results"
+  ],
+  "properties": {
+    "count": {
+      "type": "integer"
+    },
+    "next": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "previous": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uri"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SwiftWireTransaction"
+      }
+    }
+  },
+  "x-stoplight": {
+    "id": "z84pr8zubieyv"
+  },
+  "$defs": {
+    "FXQuote": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "amount": {
+          "type": "string",
+          "readOnly": true
+        },
+        "specified_currency": {
+          "type": "string",
+          "readOnly": true
+        },
+        "converted_currency": {
+          "type": "string",
+          "readOnly": true
+        },
+        "settlement_currency": {
+          "type": "string",
+          "readOnly": true
+        },
+        "expiration_in_seconds": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "rate": {
+          "type": "string",
+          "readOnly": true
+        },
+        "converted_amount": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "readOnly": true
+        }
+      },
+      "x-stoplight": {
+        "id": "hodvkt23ysral"
+      }
+    },
+    "StateC02Enum": {
+      "enum": [
+        "analyzing",
+        "pending",
+        "review",
+        "processing",
+        "processed",
+        "rejected",
+        "canceled",
+        "awaiting_approval",
+        "rejected_approval"
+      ],
+      "type": "string",
+      "description": "* `analyzing` - Analyzing\n* `pending` - Pending\n* `review` - Review\n* `processing` - Processing\n* `processed` - Processed (in transit)\n* `rejected` - Rejected by staff\n* `canceled` - Canceled\n* `awaiting_approval` - Awaiting dual approval\n* `rejected_approval` - Dual approval rejected",
+      "x-stoplight": {
+        "id": "qbox8yql7ah47"
+      }
+    },
+    "SwiftWireTransaction": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "payment_identification": {
+          "type": "string",
+          "readOnly": true
+        },
+        "recipient": {
+          "type": "string",
+          "format": "uuid",
+          "readOnly": true,
+          "description": "The UUID of the recipient of the transaction."
+        },
+        "template_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "readOnly": true
+        },
+        "user": {
+          "type": "string"
+        },
+        "from_account": {
+          "type": "string",
+          "format": "uuid",
+          "description": "UUID of the account from which the transaction is initiated."
+        },
+        "destination": {
+          "type": "string",
+          "format": "uuid",
+          "description": "UUID of the recipient associated with this Swift destination."
+        },
+        "amount": {
+          "maximum": 1000000000000000,
+          "minimum": -1000000000000000,
+          "description": "The amount of the swift payment in cents.",
+          "type": "integer"
+        },
+        "wire_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "memo": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 128
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "state": {
+          "$ref": "#/$defs/StateC02Enum"
+        },
+        "quote": {
+          "$ref": "#/$defs/FXQuote"
+        }
+      },
+      "required": [
+        "amount",
+        "destination",
+        "from_account",
+        "user"
+      ],
+      "x-stoplight": {
+        "id": "zouzw63lbtog6"
+      }
+    }
+  }
+}

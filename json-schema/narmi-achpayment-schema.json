@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-achpayment-schema.json",
+  "title": "ACHPayment",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-ach-payments-api-openapi.yml#/components/schemas/ACHPayment",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "readOnly": true
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "processed_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "readOnly": true,
+      "description": "timestamp to avoid reprocessing this request"
+    },
+    "state": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/State40dEnum"
+        }
+      ],
+      "readOnly": true
+    },
+    "display_state": {
+      "type": "string",
+      "readOnly": true
+    },
+    "company_id": {
+      "type": "string",
+      "readOnly": true,
+      "description": "A snapshot of the company_id sourced from the ACHCompany at the time the transaction is submitted. This field is persisted to the resulting ACH transaction instance.",
+      "maxLength": 10,
+      "minLength": 10
+    },
+    "company_name": {
+      "type": "string",
+      "readOnly": true,
+      "description": "A snapshot of the company_name sourced from the ACHCompany at the time the transaction is submitted. This field is persisted to the resulting ACH transaction instance.",
+      "maxLength": 16,
+      "minLength": 1
+    },
+    "amount": {
+      "maximum": 1000000000000000,
+      "minimum": -1000000000000000,
+      "description": "The amount of the ACH payment in cents.",
+      "type": "integer"
+    },
+    "institution_account": {
+      "description": "The UUID of the originating account for the transaction.",
+      "type": "string",
+      "format": "uuid"
+    },
+    "description": {
+      "type": "string",
+      "default": "",
+      "description": "Memo for the transaction. This is currently only used for internal record-keeping, and will not be not included in the resulting NACHA file entry.",
+      "maxLength": 128
+    },
+    "external_account_details": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "readOnly": true,
+      "description": "The UUID of the external account details associated with the recipient. "
+    },
+    "recipient": {
+      "description": "The UUID of the recipient of the transaction.",
+      "type": "string",
+      "format": "uuid"
+    },
+    "std_ent_cls_code": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/StdEntClsCodeEnum"
+        }
+      ],
+      "description": "A three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction. SEC stands for 'Standard Entry Class'. SEC codes are defined and maintained by NACHA, the governing body for the ACH network.\n\n* `PPD` - Batch Personal\n* `CCD` - Batch Corporate\n* `ARC` - Batch Accounts Receivable\n* `CTX` - Batch Corporate Exchange\n* `POS` - Batch Point Of Sale\n* `WEB` - Batch Internet Initiated\n* `BOC` - Batch Backoffice Conversion\n* `TEL` - Batch Telephone Initiated\n* `MTE` - Batch Machine Transfer\n* `SHR` - Batch Shared Network\n* `CIE` - Batch Customer Initiated\n* `POP` - Batch Point Of Purchase\n* `RCK` - Batch Represented Check"
+    },
+    "entry_desc": {
+      "type": "string",
+      "description": "A field that describes the purpose of the transaction to the receiver. It's used to help identify, monitor, and count payments for specific purposes."
+    },
+    "memo": {
+      "type": "string",
+      "default": "",
+      "description": "A field that adds a memo to the transaction. It's used to help identify transaction to the sender.",
+      "maxLength": 128
+    },
+    "transaction_type": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/TransactionTypeEnum"
+        }
+      ],
+      "readOnly": true,
+      "description": "Indicates whether the ACH transaction is a credit (push) or debit (pull).\n\n* `debit` - Pull (debit)\n* `credit` - Push (credit)"
+    }
+  },
+  "required": [
+    "amount",
+    "entry_desc",
+    "institution_account",
+    "recipient",
+    "std_ent_cls_code"
+  ],
+  "x-stoplight": {
+    "id": "bhxwwb7cteftj"
+  },
+  "$defs": {
+    "State40dEnum": {
+      "enum": [
+        "analyzing",
+        "pending",
+        "processing",
+        "processed",
+        "rejected",
+        "review",
+        "canceled",
+        "canceled_by_user",
+        "awaiting_approval",
+        "rejected_approval",
+        "approval_expired",
+        "awaiting_bulk_approval",
+        "rejected_bulk_approval"
+      ],
+      "type": "string",
+      "description": "* `analyzing` - Analyzing\n* `pending` - Pending\n* `processing` - Processing\n* `processed` - Processed (in transit)\n* `rejected` - Rejected by staff\n* `review` - Review\n* `canceled` - Canceled\n* `canceled_by_user` - Canceled by user\n* `awaiting_approval` - Awaiting dual approval\n* `rejected_approval` - Dual approval rejected\n* `approval_expired` - Dual approval expired\n* `awaiting_bulk_approval` - Awaiting bulk approval\n* `rejected_bulk_approval` - Rejected bulk approval",
+      "x-stoplight": {
+        "id": "ulhqntis74qyp"
+      }
+    },
+    "StdEntClsCodeEnum": {
+      "enum": [
+        "PPD",
+        "CCD",
+        "ARC",
+        "CTX",
+        "POS",
+        "WEB",
+        "BOC",
+        "TEL",
+        "MTE",
+        "SHR",
+        "CIE",
+        "POP",
+        "RCK"
+      ],
+      "type": "string",
+      "description": "* `PPD` - Batch Personal\n* `CCD` - Batch Corporate\n* `ARC` - Batch Accounts Receivable\n* `CTX` - Batch Corporate Exchange\n* `POS` - Batch Point Of Sale\n* `WEB` - Batch Internet Initiated\n* `BOC` - Batch Backoffice Conversion\n* `TEL` - Batch Telephone Initiated\n* `MTE` - Batch Machine Transfer\n* `SHR` - Batch Shared Network\n* `CIE` - Batch Customer Initiated\n* `POP` - Batch Point Of Purchase\n* `RCK` - Batch Represented Check",
+      "x-stoplight": {
+        "id": "xgdwqweqfvyee"
+      }
+    },
+    "TransactionTypeEnum": {
+      "enum": [
+        "debit",
+        "credit"
+      ],
+      "type": "string",
+      "description": "* `debit` - Pull (debit)\n* `credit` - Push (credit)",
+      "x-stoplight": {
+        "id": "acyeadla4mwfp"
+      }
+    }
+  }
+}

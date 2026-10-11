@@ -1,0 +1,984 @@
+{
+  "@context": {
+    "@vocab": "https://narmi.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "narmi": "https://narmi.com/schema#",
+    "AccountBalancesDocResponse": "narmi:AccountBalancesDocResponse",
+    "account_balances": {
+      "@id": "narmi:account_balances",
+      "@container": "@list"
+    },
+    "AccountBalance": "narmi:AccountBalance",
+    "id": {
+      "@id": "narmi:id",
+      "@type": "xsd:string"
+    },
+    "account_id": {
+      "@id": "narmi:account_id",
+      "@type": "xsd:string"
+    },
+    "primary": {
+      "@id": "narmi:primary",
+      "@type": "xsd:decimal"
+    },
+    "available": {
+      "@id": "narmi:available",
+      "@type": "xsd:decimal"
+    },
+    "ledger": {
+      "@id": "narmi:ledger",
+      "@type": "xsd:decimal"
+    },
+    "updated_at": {
+      "@id": "narmi:updated_at",
+      "@type": "xsd:dateTime"
+    },
+    "NotFoundError": "narmi:NotFoundError",
+    "message": {
+      "@id": "narmi:message",
+      "@type": "xsd:string"
+    },
+    "AccountBalanceDocResponse": "narmi:AccountBalanceDocResponse",
+    "account_balance": {
+      "@id": "narmi:account_balance"
+    },
+    "PaginatedAccountStopsResponse": "narmi:PaginatedAccountStopsResponse",
+    "stops": {
+      "@id": "narmi:stops",
+      "@container": "@list"
+    },
+    "meta": {
+      "@id": "narmi:meta"
+    },
+    "links": {
+      "@id": "narmi:links"
+    },
+    "PermissionDeniedError": "narmi:PermissionDeniedError",
+    "UpdateAccountDocRequest": "narmi:UpdateAccountDocRequest",
+    "name": {
+      "@id": "narmi:name",
+      "@type": "xsd:string"
+    },
+    "favorited": {
+      "@id": "narmi:favorited",
+      "@type": "xsd:boolean"
+    },
+    "hidden": {
+      "@id": "narmi:hidden",
+      "@type": "xsd:boolean"
+    },
+    "TransactionResponseMeta": "narmi:TransactionResponseMeta",
+    "total": {
+      "@id": "narmi:total",
+      "@type": "xsd:integer"
+    },
+    "warning_id": {
+      "@id": "narmi:warning_id",
+      "@type": "xsd:string"
+    },
+    "warning_message": {
+      "@id": "narmi:warning_message",
+      "@type": "xsd:string"
+    },
+    "TransactionsResponse": "narmi:TransactionsResponse",
+    "transactions": {
+      "@id": "narmi:transactions",
+      "@container": "@list"
+    },
+    "Location": "narmi:Location",
+    "city": {
+      "@id": "narmi:city",
+      "@type": "xsd:string"
+    },
+    "region_code": {
+      "@id": "narmi:region_code",
+      "@type": "xsd:string"
+    },
+    "country_code": {
+      "@id": "narmi:country_code",
+      "@type": "xsd:string"
+    },
+    "SourceEnum": "narmi:SourceEnum",
+    "PageNumberPagination": "narmi:PageNumberPagination",
+    "next": {
+      "@id": "narmi:next",
+      "@type": "@id"
+    },
+    "previous": {
+      "@id": "narmi:previous",
+      "@type": "@id"
+    },
+    "AccountMeta": "narmi:AccountMeta",
+    "State973Enum": "narmi:State973Enum",
+    "PaginatedAccounts": "narmi:PaginatedAccounts",
+    "accounts": {
+      "@id": "narmi:accounts",
+      "@container": "@list"
+    },
+    "NestedAccounts": "narmi:NestedAccounts",
+    "DocumentResponse": "narmi:DocumentResponse",
+    "document": {
+      "@id": "narmi:document",
+      "@type": "@id"
+    },
+    "Product": "narmi:Product",
+    "type": {
+      "@id": "narmi:type",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "narmi:description",
+      "@type": "xsd:string"
+    },
+    "InvalidRequestError": "narmi:InvalidRequestError",
+    "AccountWithdrawalRequest": "narmi:AccountWithdrawalRequest",
+    "amount": {
+      "@id": "narmi:amount",
+      "@type": "xsd:integer"
+    },
+    "LoanDetails": "narmi:LoanDetails",
+    "minimum_payment": {
+      "@id": "narmi:minimum_payment",
+      "@type": "xsd:integer"
+    },
+    "interest_rate": {
+      "@id": "narmi:interest_rate",
+      "@type": "xsd:string"
+    },
+    "next_payment_at": {
+      "@id": "narmi:next_payment_at",
+      "@type": "xsd:dateTime"
+    },
+    "HoldsListResponse": "narmi:HoldsListResponse",
+    "holds": {
+      "@id": "narmi:holds",
+      "@container": "@list"
+    },
+    "ExternalAccountVerificationRequest": "narmi:ExternalAccountVerificationRequest",
+    "amounts": {
+      "@id": "narmi:amounts",
+      "@container": "@list"
+    },
+    "MobileAccount": "narmi:MobileAccount",
+    "nickname": {
+      "@id": "narmi:nickname",
+      "@type": "xsd:string"
+    },
+    "number": {
+      "@id": "narmi:number",
+      "@type": "xsd:string"
+    },
+    "product": {
+      "@id": "narmi:product"
+    },
+    "users": {
+      "@id": "narmi:users",
+      "@container": "@list"
+    },
+    "features": {
+      "@id": "narmi:features",
+      "@container": "@list"
+    },
+    "routing": {
+      "@id": "narmi:routing",
+      "@type": "xsd:string"
+    },
+    "loan_details": {
+      "@id": "narmi:loan_details"
+    },
+    "source": {
+      "@id": "narmi:source"
+    },
+    "state": {
+      "@id": "narmi:state"
+    },
+    "out_of_date": {
+      "@id": "narmi:out_of_date",
+      "@type": "xsd:boolean"
+    },
+    "updated_from_source_at": {
+      "@id": "narmi:updated_from_source_at",
+      "@type": "xsd:dateTime"
+    },
+    "check_micr": {
+      "@id": "narmi:check_micr",
+      "@type": "xsd:string"
+    },
+    "metadata": {
+      "@id": "narmi:metadata"
+    },
+    "balances": {
+      "@id": "narmi:balances"
+    },
+    "fi_name": {
+      "@id": "narmi:fi_name",
+      "@type": "xsd:string"
+    },
+    "created_at": {
+      "@id": "narmi:created_at",
+      "@type": "xsd:string"
+    },
+    "verified": {
+      "@id": "narmi:verified",
+      "@type": "xsd:boolean"
+    },
+    "fi_svg": {
+      "@id": "narmi:fi_svg",
+      "@type": "xsd:string"
+    },
+    "organization": {
+      "@id": "narmi:organization"
+    },
+    "Success": "narmi:Success",
+    "success": {
+      "@id": "narmi:success",
+      "@type": "xsd:boolean"
+    },
+    "NestedAccount": "narmi:NestedAccount",
+    "account": {
+      "@id": "narmi:account",
+      "@type": "@id"
+    },
+    "NullEnum": "narmi:NullEnum",
+    "Transaction": "narmi:Transaction",
+    "raw_description": {
+      "@id": "narmi:raw_description",
+      "@type": "xsd:string"
+    },
+    "settled_at": {
+      "@id": "narmi:settled_at",
+      "@type": "xsd:dateTime"
+    },
+    "category": {
+      "@id": "narmi:category",
+      "@type": "xsd:string"
+    },
+    "sub_category": {
+      "@id": "narmi:sub_category",
+      "@type": "xsd:string"
+    },
+    "ledger_balance": {
+      "@id": "narmi:ledger_balance",
+      "@type": "xsd:integer"
+    },
+    "location": {
+      "@id": "narmi:location"
+    },
+    "check": {
+      "@id": "narmi:check"
+    },
+    "tags": {
+      "@id": "narmi:tags",
+      "@container": "@list"
+    },
+    "merchant": {
+      "@id": "narmi:merchant",
+      "@type": "xsd:string"
+    },
+    "note": {
+      "@id": "narmi:note",
+      "@type": "xsd:string"
+    },
+    "recurring": {
+      "@id": "narmi:recurring",
+      "@type": "xsd:boolean"
+    },
+    "flex_plan_eligible": {
+      "@id": "narmi:flex_plan_eligible",
+      "@type": "xsd:boolean"
+    },
+    "PatchedAccountStopRequest": "narmi:PatchedAccountStopRequest",
+    "min_check_number": {
+      "@id": "narmi:min_check_number",
+      "@type": "xsd:string"
+    },
+    "max_check_number": {
+      "@id": "narmi:max_check_number",
+      "@type": "xsd:string"
+    },
+    "Hold": "narmi:Hold",
+    "expires_at": {
+      "@id": "narmi:expires_at",
+      "@type": "xsd:dateTime"
+    },
+    "AccountPurposeEnum": "narmi:AccountPurposeEnum",
+    "AccountStopResponse": "narmi:AccountStopResponse",
+    "stop": {
+      "@id": "narmi:stop",
+      "@type": "@id"
+    },
+    "AccountsNotFoundError": "narmi:AccountsNotFoundError",
+    "Document": "narmi:Document",
+    "type_label": {
+      "@id": "narmi:type_label",
+      "@type": "xsd:string"
+    },
+    "url": {
+      "@id": "narmi:url",
+      "@type": "@id"
+    },
+    "ProductTypeEnum": "narmi:ProductTypeEnum",
+    "DocumentWithDataResponse": "narmi:DocumentWithDataResponse",
+    "Check": "narmi:Check",
+    "GeneralError": "narmi:GeneralError",
+    "ExternalAccountCreateRequest": "narmi:ExternalAccountCreateRequest",
+    "routing_number": {
+      "@id": "narmi:routing_number",
+      "@type": "xsd:string"
+    },
+    "account_number": {
+      "@id": "narmi:account_number",
+      "@type": "xsd:string"
+    },
+    "product_type": {
+      "@id": "narmi:product_type"
+    },
+    "account_purpose": {
+      "@id": "narmi:account_purpose"
+    },
+    "agreement": {
+      "@id": "narmi:agreement",
+      "@type": "xsd:boolean"
+    },
+    "AccountStop": "narmi:AccountStop",
+    "DocumentWithData": "narmi:DocumentWithData",
+    "data": {
+      "@id": "narmi:data",
+      "@type": "@id"
+    },
+    "Type61cEnum": "narmi:Type61cEnum",
+    "ServiceFailureError": "narmi:ServiceFailureError",
+    "ACHCompany": "narmi:ACHCompany",
+    "company_name": {
+      "@id": "narmi:company_name",
+      "@type": "xsd:string"
+    },
+    "company_id": {
+      "@id": "narmi:company_id",
+      "@type": "xsd:string"
+    },
+    "PaginatedACHCompanyList": "narmi:PaginatedACHCompanyList",
+    "count": {
+      "@id": "narmi:count",
+      "@type": "xsd:integer"
+    },
+    "results": {
+      "@id": "narmi:results",
+      "@container": "@list"
+    },
+    "AccountTypeEnum": "narmi:AccountTypeEnum",
+    "ACHDetails": "narmi:ACHDetails",
+    "account_type": {
+      "@id": "narmi:account_type",
+      "@type": "@id"
+    },
+    "institution_name": {
+      "@id": "narmi:institution_name",
+      "@type": "xsd:string"
+    },
+    "Recipient": "narmi:Recipient",
+    "ach_destination": {
+      "@id": "narmi:ach_destination"
+    },
+    "fedwire_destination": {
+      "@id": "narmi:fedwire_destination"
+    },
+    "swift_destination": {
+      "@id": "narmi:swift_destination"
+    },
+    "CSVFieldMapping": "narmi:CSVFieldMapping",
+    "has_header_row": {
+      "@id": "narmi:has_header_row",
+      "@type": "xsd:boolean"
+    },
+    "date_column_index": {
+      "@id": "narmi:date_column_index",
+      "@type": "xsd:integer"
+    },
+    "date_column_header": {
+      "@id": "narmi:date_column_header",
+      "@type": "xsd:string"
+    },
+    "recipient_name_column_index": {
+      "@id": "narmi:recipient_name_column_index",
+      "@type": "xsd:integer"
+    },
+    "recipient_name_column_header": {
+      "@id": "narmi:recipient_name_column_header",
+      "@type": "xsd:string"
+    },
+    "routing_number_column_index": {
+      "@id": "narmi:routing_number_column_index",
+      "@type": "xsd:integer"
+    },
+    "routing_number_column_header": {
+      "@id": "narmi:routing_number_column_header",
+      "@type": "xsd:string"
+    },
+    "account_number_column_index": {
+      "@id": "narmi:account_number_column_index",
+      "@type": "xsd:integer"
+    },
+    "account_number_column_header": {
+      "@id": "narmi:account_number_column_header",
+      "@type": "xsd:string"
+    },
+    "account_type_column_index": {
+      "@id": "narmi:account_type_column_index",
+      "@type": "xsd:integer"
+    },
+    "account_type_column_header": {
+      "@id": "narmi:account_type_column_header",
+      "@type": "xsd:string"
+    },
+    "action_column_index": {
+      "@id": "narmi:action_column_index",
+      "@type": "xsd:integer"
+    },
+    "action_column_header": {
+      "@id": "narmi:action_column_header",
+      "@type": "xsd:string"
+    },
+    "description_column_index": {
+      "@id": "narmi:description_column_index",
+      "@type": "xsd:integer"
+    },
+    "description_column_header": {
+      "@id": "narmi:description_column_header",
+      "@type": "xsd:string"
+    },
+    "amount_column_index": {
+      "@id": "narmi:amount_column_index",
+      "@type": "xsd:integer"
+    },
+    "amount_column_header": {
+      "@id": "narmi:amount_column_header",
+      "@type": "xsd:string"
+    },
+    "ACHImportCSVUploadResponse": "narmi:ACHImportCSVUploadResponse",
+    "s3_key": {
+      "@id": "narmi:s3_key",
+      "@type": "xsd:string"
+    },
+    "organization_file_uuid": {
+      "@id": "narmi:organization_file_uuid",
+      "@type": "xsd:string"
+    },
+    "row_count": {
+      "@id": "narmi:row_count",
+      "@type": "xsd:integer"
+    },
+    "columns": {
+      "@id": "narmi:columns",
+      "@container": "@list"
+    },
+    "preview_rows": {
+      "@id": "narmi:preview_rows",
+      "@container": "@list"
+    },
+    "suggested_mapping": {
+      "@id": "narmi:suggested_mapping",
+      "@type": "@id"
+    },
+    "ACHImportCSVParseRequest": "narmi:ACHImportCSVParseRequest",
+    "column_mappings": {
+      "@id": "narmi:column_mappings",
+      "@container": "@list"
+    },
+    "ACHImportNACHAUploadRequest": "narmi:ACHImportNACHAUploadRequest",
+    "file": {
+      "@id": "narmi:file",
+      "@type": "xsd:string"
+    },
+    "source_account": {
+      "@id": "narmi:source_account",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "narmi:title",
+      "@type": "xsd:string"
+    },
+    "internal_note": {
+      "@id": "narmi:internal_note",
+      "@type": "xsd:string"
+    },
+    "RecipientTypeEnum": "narmi:RecipientTypeEnum",
+    "FedwireDestination": "narmi:FedwireDestination",
+    "address": {
+      "@id": "narmi:address",
+      "@type": "@id"
+    },
+    "ACHImportSuggestedMapping": "narmi:ACHImportSuggestedMapping",
+    "mapping_uuid": {
+      "@id": "narmi:mapping_uuid",
+      "@type": "xsd:string"
+    },
+    "mapping_name": {
+      "@id": "narmi:mapping_name",
+      "@type": "xsd:string"
+    },
+    "ACHImportNACHAUploadResponse": "narmi:ACHImportNACHAUploadResponse",
+    "rows": {
+      "@id": "narmi:rows",
+      "@container": "@list"
+    },
+    "WireRecipientAddress": "narmi:WireRecipientAddress",
+    "street_address": {
+      "@id": "narmi:street_address",
+      "@type": "xsd:string"
+    },
+    "street_address_2": {
+      "@id": "narmi:street_address_2",
+      "@type": "xsd:string"
+    },
+    "postal_code": {
+      "@id": "narmi:postal_code",
+      "@type": "xsd:string"
+    },
+    "FedwireRecipientAddress": "narmi:FedwireRecipientAddress",
+    "ACHImportCSVParsedRow": "narmi:ACHImportCSVParsedRow",
+    "row_index": {
+      "@id": "narmi:row_index",
+      "@type": "xsd:integer"
+    },
+    "date": {
+      "@id": "narmi:date",
+      "@type": "xsd:string"
+    },
+    "recipient_name": {
+      "@id": "narmi:recipient_name",
+      "@type": "xsd:string"
+    },
+    "action": {
+      "@id": "narmi:action",
+      "@type": "xsd:string"
+    },
+    "recipient": {
+      "@id": "narmi:recipient"
+    },
+    "needs_review": {
+      "@id": "narmi:needs_review",
+      "@type": "xsd:boolean"
+    },
+    "warning": {
+      "@id": "narmi:warning",
+      "@type": "xsd:string"
+    },
+    "row_errors": {
+      "@id": "narmi:row_errors",
+      "@container": "@list"
+    },
+    "ACHImportCSVParseResponse": "narmi:ACHImportCSVParseResponse",
+    "SwiftWireDestination": "narmi:SwiftWireDestination",
+    "bic": {
+      "@id": "narmi:bic",
+      "@type": "xsd:string"
+    },
+    "account_identifier": {
+      "@id": "narmi:account_identifier",
+      "@type": "xsd:string"
+    },
+    "branch_address": {
+      "@id": "narmi:branch_address"
+    },
+    "ACHImportColumnMappingRequest": "narmi:ACHImportColumnMappingRequest",
+    "field": {
+      "@id": "narmi:field",
+      "@type": "xsd:string"
+    },
+    "column_index": {
+      "@id": "narmi:column_index",
+      "@type": "xsd:integer"
+    },
+    "column_header": {
+      "@id": "narmi:column_header",
+      "@type": "xsd:string"
+    },
+    "PaginatedCSVFieldMappingList": "narmi:PaginatedCSVFieldMappingList",
+    "ACHImportCSVUploadRequest": "narmi:ACHImportCSVUploadRequest",
+    "ACHImportNACHAPaymentRow": "narmi:ACHImportNACHAPaymentRow",
+    "transaction_type": {
+      "@id": "narmi:transaction_type",
+      "@type": "xsd:string"
+    },
+    "scheduled_date": {
+      "@id": "narmi:scheduled_date",
+      "@type": "xsd:string"
+    },
+    "CSVFieldMappingRequest": "narmi:CSVFieldMappingRequest",
+    "ACHImportColumnMapping": "narmi:ACHImportColumnMapping",
+    "ACHPaymentRequest": "narmi:ACHPaymentRequest",
+    "institution_account": {
+      "@id": "narmi:institution_account",
+      "@type": "xsd:string"
+    },
+    "ach_company": {
+      "@id": "narmi:ach_company",
+      "@type": "xsd:string"
+    },
+    "std_ent_cls_code": {
+      "@id": "narmi:std_ent_cls_code"
+    },
+    "entry_desc": {
+      "@id": "narmi:entry_desc",
+      "@type": "xsd:string"
+    },
+    "memo": {
+      "@id": "narmi:memo",
+      "@type": "xsd:string"
+    },
+    "device_id": {
+      "@id": "narmi:device_id",
+      "@type": "xsd:string"
+    },
+    "device_request_id": {
+      "@id": "narmi:device_request_id",
+      "@type": "xsd:string"
+    },
+    "ScheduledACHPaymentRequest": "narmi:ScheduledACHPaymentRequest",
+    "recurring_rule": {
+      "@id": "narmi:recurring_rule",
+      "@type": "xsd:string"
+    },
+    "PaginatedScheduledACHPaymentList": "narmi:PaginatedScheduledACHPaymentList",
+    "TransactionTypeEnum": "narmi:TransactionTypeEnum",
+    "StdEntClsCodeEnum": "narmi:StdEntClsCodeEnum",
+    "PaginatedACHPaymentList": "narmi:PaginatedACHPaymentList",
+    "ScheduledACHPayment": "narmi:ScheduledACHPayment",
+    "next_transfer_at": {
+      "@id": "narmi:next_transfer_at",
+      "@type": "xsd:dateTime"
+    },
+    "dual_approval_state": {
+      "@id": "narmi:dual_approval_state",
+      "@type": "xsd:string"
+    },
+    "display_state": {
+      "@id": "narmi:display_state",
+      "@type": "xsd:string"
+    },
+    "completed_at": {
+      "@id": "narmi:completed_at",
+      "@type": "xsd:dateTime"
+    },
+    "LoanPaymentACHRequest": "narmi:LoanPaymentACHRequest",
+    "from_account": {
+      "@id": "narmi:from_account",
+      "@type": "xsd:string"
+    },
+    "to_account": {
+      "@id": "narmi:to_account",
+      "@type": "xsd:string"
+    },
+    "payment_type": {
+      "@id": "narmi:payment_type",
+      "@type": "xsd:string"
+    },
+    "ach_transfer": {
+      "@id": "narmi:ach_transfer",
+      "@type": "xsd:integer"
+    },
+    "UnverifiedACHTransaction": "narmi:UnverifiedACHTransaction",
+    "processed_at": {
+      "@id": "narmi:processed_at",
+      "@type": "xsd:dateTime"
+    },
+    "external_account_details": {
+      "@id": "narmi:external_account_details",
+      "@type": "xsd:string"
+    },
+    "ACHPayment": "narmi:ACHPayment",
+    "State40dEnum": "narmi:State40dEnum",
+    "LoanPaymentACH": "narmi:LoanPaymentACH",
+    "AchTransactionRequest": "narmi:AchTransactionRequest",
+    "from_account_id": {
+      "@id": "narmi:from_account_id",
+      "@type": "xsd:string"
+    },
+    "to_account_id": {
+      "@id": "narmi:to_account_id",
+      "@type": "xsd:string"
+    },
+    "instant": {
+      "@id": "narmi:instant",
+      "@type": "xsd:boolean"
+    },
+    "AchTransaction": "narmi:AchTransaction",
+    "estimated_process_date": {
+      "@id": "narmi:estimated_process_date",
+      "@type": "xsd:dateTime"
+    },
+    "estimated_arrival_date": {
+      "@id": "narmi:estimated_arrival_date",
+      "@type": "xsd:dateTime"
+    },
+    "AchTransactionStateEnum": "narmi:AchTransactionStateEnum",
+    "PaginatedAchTransactionList": "narmi:PaginatedAchTransactionList",
+    "transfers": {
+      "@id": "narmi:transfers",
+      "@container": "@list"
+    },
+    "RetrieveAchTransaction": "narmi:RetrieveAchTransaction",
+    "transfer": {
+      "@id": "narmi:transfer"
+    },
+    "LoanAlertRule": "narmi:LoanAlertRule",
+    "alert_key": {
+      "@id": "narmi:alert_key"
+    },
+    "delivery_channels": {
+      "@id": "narmi:delivery_channels",
+      "@container": "@list"
+    },
+    "last_delivered_date": {
+      "@id": "narmi:last_delivered_date",
+      "@type": "xsd:dateTime"
+    },
+    "reminder_days_offset": {
+      "@id": "narmi:reminder_days_offset",
+      "@type": "xsd:integer"
+    },
+    "TransactionAlertRule": "narmi:TransactionAlertRule",
+    "transaction_query": {
+      "@id": "narmi:transaction_query",
+      "@type": "xsd:string"
+    },
+    "AccountAlertRuleRequest": "narmi:AccountAlertRuleRequest",
+    "rrule": {
+      "@id": "narmi:rrule",
+      "@type": "xsd:string"
+    },
+    "threshold_amount": {
+      "@id": "narmi:threshold_amount",
+      "@type": "xsd:string"
+    },
+    "subscribed_accounts": {
+      "@id": "narmi:subscribed_accounts",
+      "@container": "@list"
+    },
+    "AccountAlertRuleAlertKeyEnum": "narmi:AccountAlertRuleAlertKeyEnum",
+    "LoanAlertRuleRequest": "narmi:LoanAlertRuleRequest",
+    "LoanAlertRuleAlertKeyEnum": "narmi:LoanAlertRuleAlertKeyEnum",
+    "AccountAlertRule": "narmi:AccountAlertRule",
+    "next_alert_at": {
+      "@id": "narmi:next_alert_at",
+      "@type": "xsd:dateTime"
+    },
+    "PaginatedAccountAlertRuleList": "narmi:PaginatedAccountAlertRuleList",
+    "PaginatedLoanAlertRuleList": "narmi:PaginatedLoanAlertRuleList",
+    "PaginatedTransactionAlertRuleList": "narmi:PaginatedTransactionAlertRuleList",
+    "TransactionAlertRuleRequest": "narmi:TransactionAlertRuleRequest",
+    "AlertKey61cEnum": "narmi:AlertKey61cEnum",
+    "DeliveryChannelsEnum": "narmi:DeliveryChannelsEnum",
+    "AutomaticSavingsEnrollment": "narmi:AutomaticSavingsEnrollment",
+    "destination_account": {
+      "@id": "narmi:destination_account",
+      "@type": "@id"
+    },
+    "automatic_savings_eligible": {
+      "@id": "narmi:automatic_savings_eligible",
+      "@type": "xsd:boolean"
+    },
+    "automatic_savings_active": {
+      "@id": "narmi:automatic_savings_active",
+      "@type": "xsd:boolean"
+    },
+    "AutomaticSavingsEnrollmentDeserializerRequest": "narmi:AutomaticSavingsEnrollmentDeserializerRequest",
+    "source_account_uuid": {
+      "@id": "narmi:source_account_uuid",
+      "@type": "xsd:string"
+    },
+    "destination_account_uuid": {
+      "@id": "narmi:destination_account_uuid",
+      "@type": "xsd:string"
+    },
+    "Account": "narmi:Account",
+    "PurchaseChannelsEnum": "narmi:PurchaseChannelsEnum",
+    "CardOfferAsset": "narmi:CardOfferAsset",
+    "alt_text": {
+      "@id": "narmi:alt_text",
+      "@type": "xsd:string"
+    },
+    "RewardTypeEnum": "narmi:RewardTypeEnum",
+    "CardOffer": "narmi:CardOffer",
+    "terms": {
+      "@id": "narmi:terms",
+      "@type": "xsd:string"
+    },
+    "categories": {
+      "@id": "narmi:categories",
+      "@container": "@list"
+    },
+    "expiration_date": {
+      "@id": "narmi:expiration_date",
+      "@type": "xsd:dateTime"
+    },
+    "start_date": {
+      "@id": "narmi:start_date",
+      "@type": "xsd:dateTime"
+    },
+    "reward_type": {
+      "@id": "narmi:reward_type",
+      "@type": "@id"
+    },
+    "reward_value": {
+      "@id": "narmi:reward_value",
+      "@type": "xsd:integer"
+    },
+    "purchase_channels": {
+      "@id": "narmi:purchase_channels",
+      "@container": "@list"
+    },
+    "min_reward_amount": {
+      "@id": "narmi:min_reward_amount",
+      "@type": "xsd:integer"
+    },
+    "max_reward_amount": {
+      "@id": "narmi:max_reward_amount",
+      "@type": "xsd:integer"
+    },
+    "min_transaction_amount": {
+      "@id": "narmi:min_transaction_amount",
+      "@type": "xsd:integer"
+    },
+    "max_transaction_amount": {
+      "@id": "narmi:max_transaction_amount",
+      "@type": "xsd:integer"
+    },
+    "assets": {
+      "@id": "narmi:assets",
+      "@container": "@list"
+    },
+    "merchant_url": {
+      "@id": "narmi:merchant_url",
+      "@type": "@id"
+    },
+    "CategoriesEnum": "narmi:CategoriesEnum",
+    "CardOfferEnrollmentStatus": "narmi:CardOfferEnrollmentStatus",
+    "is_enrolled": {
+      "@id": "narmi:is_enrolled",
+      "@type": "xsd:boolean"
+    },
+    "CardLimits": "narmi:CardLimits",
+    "atm_limit": {
+      "@id": "narmi:atm_limit",
+      "@type": "xsd:integer"
+    },
+    "pos_limit": {
+      "@id": "narmi:pos_limit",
+      "@type": "xsd:integer"
+    },
+    "has_atm_limit_increased_today": {
+      "@id": "narmi:has_atm_limit_increased_today",
+      "@type": "xsd:boolean"
+    },
+    "has_pos_limit_increased_today": {
+      "@id": "narmi:has_pos_limit_increased_today",
+      "@type": "xsd:boolean"
+    },
+    "can_user_request_limit_increase": {
+      "@id": "narmi:can_user_request_limit_increase",
+      "@type": "xsd:boolean"
+    },
+    "Address": "narmi:Address",
+    "CardTravelNote": "narmi:CardTravelNote",
+    "end_date": {
+      "@id": "narmi:end_date",
+      "@type": "xsd:date"
+    },
+    "TravelDestinationCodesEnum": "narmi:TravelDestinationCodesEnum",
+    "StateBd5Enum": "narmi:StateBd5Enum",
+    "ReasonEnum": "narmi:ReasonEnum",
+    "MissingCardRequest": "narmi:MissingCardRequest",
+    "reason": {
+      "@id": "narmi:reason",
+      "@type": "@id"
+    },
+    "CardSubscriptions": "narmi:CardSubscriptions",
+    "category_code": {
+      "@id": "narmi:category_code",
+      "@type": "xsd:string"
+    },
+    "merchant_name": {
+      "@id": "narmi:merchant_name",
+      "@type": "xsd:string"
+    },
+    "recurrence_frequency": {
+      "@id": "narmi:recurrence_frequency"
+    },
+    "next_payment_date": {
+      "@id": "narmi:next_payment_date",
+      "@type": "xsd:date"
+    },
+    "CardStateEnum": "narmi:CardStateEnum",
+    "Card": "narmi:Card",
+    "core_user_id": {
+      "@id": "narmi:core_user_id",
+      "@type": "xsd:string"
+    },
+    "bin": {
+      "@id": "narmi:bin",
+      "@type": "xsd:string"
+    },
+    "last_four_digits": {
+      "@id": "narmi:last_four_digits",
+      "@type": "xsd:string"
+    },
+    "svg": {
+      "@id": "narmi:svg",
+      "@type": "xsd:string"
+    },
+    "is_card_number_on_front": {
+      "@id": "narmi:is_card_number_on_front",
+      "@type": "xsd:string"
+    },
+    "card_text_color": {
+      "@id": "narmi:card_text_color",
+      "@type": "xsd:string"
+    },
+    "PaginatedCardInfoList": "narmi:PaginatedCardInfoList",
+    "RecurrenceFrequencyEnum": "narmi:RecurrenceFrequencyEnum",
+    "RecurringTransaction": "narmi:RecurringTransaction",
+    "transaction_date": {
+      "@id": "narmi:transaction_date",
+      "@type": "xsd:date"
+    },
+    "subscription_id": {
+      "@id": "narmi:subscription_id",
+      "@type": "xsd:string"
+    },
+    "CardInfo": "narmi:CardInfo",
+    "shipping": {
+      "@id": "narmi:shipping"
+    },
+    "network": {
+      "@id": "narmi:network",
+      "@type": "xsd:string"
+    },
+    "image": {
+      "@id": "narmi:image",
+      "@type": "xsd:string"
+    },
+    "text_color": {
+      "@id": "narmi:text_color",
+      "@type": "xsd:string"
+    },
+    "card_type": {
+      "@id": "narmi:card_type",
+      "@type": "xsd:string"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Narmi API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Narmi's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-12) from openapi/narmi-account-balances-api-openapi.yml, openapi/narmi-accounts-api-openapi.yml, openapi/narmi-ach-companies-api-openapi.yml.",
+  "dcterms:created": "2026-10-12",
+  "dcterms:source": [
+    "openapi/narmi-account-balances-api-openapi.yml",
+    "openapi/narmi-accounts-api-openapi.yml",
+    "openapi/narmi-ach-companies-api-openapi.yml",
+    "openapi/narmi-ach-destinations-api-openapi.yml",
+    "openapi/narmi-ach-import-api-openapi.yml"
+  ]
+}

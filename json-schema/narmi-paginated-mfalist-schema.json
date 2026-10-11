@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-paginated-mfalist-schema.json",
+  "title": "PaginatedMFAList",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-mfa-api-openapi.yml#/components/schemas/PaginatedMFAList",
+  "type": "object",
+  "required": [
+    "meta",
+    "links",
+    "results"
+  ],
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/MFA"
+      }
+    },
+    "links": {
+      "type": "object",
+      "description": "URIs linking to sequential pages of the result.",
+      "properties": {
+        "next": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        },
+        "prev": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "uri"
+        }
+      }
+    },
+    "meta": {
+      "description": "Free-form object, contains total object count.",
+      "type": "object",
+      "properties": {
+        "total": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "x-stoplight": {
+    "id": "7td8zskzbxtfs"
+  },
+  "$defs": {
+    "MFA": {
+      "type": "object",
+      "description": "Serializer for two-factor authorization devices.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "readOnly": true
+        },
+        "name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "type": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/MFATypeEnum"
+            }
+          ],
+          "readOnly": true
+        },
+        "value": {
+          "type": "string",
+          "readOnly": true,
+          "description": "This field will be set to the user's phone number or email for the respective device types, otherwise, it will be blank."
+        }
+      },
+      "x-stoplight": {
+        "id": "uasyxxgs07boc"
+      }
+    },
+    "MFATypeEnum": {
+      "enum": [
+        "phone",
+        "email",
+        "totp",
+        "static"
+      ],
+      "type": "string",
+      "description": "* `phone` - phone\n* `email` - email\n* `totp` - totp\n* `static` - static",
+      "x-stoplight": {
+        "id": "mh44yrg9eexp8"
+      }
+    }
+  }
+}

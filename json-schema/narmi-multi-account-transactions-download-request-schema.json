@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-multi-account-transactions-download-request-schema.json",
+  "title": "MultiAccountTransactionsDownloadRequest",
+  "description": "Serializer for multi-account transaction export requests.",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-reports-api-openapi.yml#/components/schemas/MultiAccountTransactionsDownloadRequest",
+  "type": "object",
+  "properties": {
+    "account_uuids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "description": "List of account UUIDs to include in the export.",
+      "minItems": 1
+    },
+    "min_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Start date of the export range (inclusive)."
+    },
+    "max_date": {
+      "type": "string",
+      "format": "date",
+      "description": "End date of the export range (inclusive, end of day)."
+    },
+    "bai_codes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 3
+      },
+      "description": "List of 3-digit BAI transaction type codes to filter by. If omitted, all transaction types are included."
+    },
+    "format": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/FormatEnum"
+        }
+      ],
+      "default": "csv",
+      "description": "Export file format. Defaults to CSV.\n\n* `csv` - CSV\n* `bai2` - BAI2"
+    },
+    "filename": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Custom filename for the downloaded file. Must end with the correct extension (.csv or .bai2).",
+      "maxLength": 255
+    }
+  },
+  "required": [
+    "account_uuids",
+    "max_date",
+    "min_date"
+  ],
+  "x-stoplight": {
+    "id": "2xip7egajj3kk"
+  },
+  "$defs": {
+    "FormatEnum": {
+      "enum": [
+        "csv",
+        "bai2"
+      ],
+      "type": "string",
+      "description": "* `csv` - CSV\n* `bai2` - BAI2",
+      "x-stoplight": {
+        "id": "dmtikuvtyippe"
+      }
+    }
+  }
+}

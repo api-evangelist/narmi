@@ -1,0 +1,275 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-swagger-institution-get-schema.json",
+  "title": "SwaggerInstitutionGet",
+  "description": "A serializer to render the institutionContextProcessor",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-institution-api-openapi.yml#/components/schemas/SwaggerInstitutionGet",
+  "type": "object",
+  "properties": {
+    "institution": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/InstitutionContextProcessor"
+        }
+      ],
+      "readOnly": true
+    }
+  },
+  "x-stoplight": {
+    "id": "m3jmmieciurgi"
+  },
+  "$defs": {
+    "InstitutionContextProcessor": {
+      "type": "object",
+      "description": "Render Institution-specific data, such as URLs, asset URLs, and customizable settings",
+      "properties": {
+        "banking_url": {
+          "type": "string",
+          "readOnly": true
+        },
+        "forgot_password_url": {
+          "type": "string",
+          "readOnly": true
+        },
+        "favicon_url": {
+          "type": "string",
+          "readOnly": true
+        },
+        "register_url": {
+          "type": "string",
+          "readOnly": true
+        },
+        "main_domain": {
+          "type": "string",
+          "readOnly": true
+        },
+        "short_name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "long_name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "routing_number": {
+          "type": "string",
+          "readOnly": true
+        },
+        "help_phone": {
+          "type": "string",
+          "readOnly": true
+        },
+        "help_email": {
+          "type": "string",
+          "readOnly": true
+        },
+        "help_card_phone": {
+          "type": "string",
+          "readOnly": true
+        },
+        "internal_name": {
+          "type": "string",
+          "readOnly": true
+        },
+        "mixpanel_project_token": {
+          "type": "string",
+          "readOnly": true
+        },
+        "force_complete_mixpanel_sampling": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "terms_url": {
+          "type": "string",
+          "readOnly": true
+        },
+        "logo_url": {
+          "type": "string",
+          "readOnly": true
+        },
+        "mobile_splash_screen_logo_url": {
+          "type": "string",
+          "readOnly": true
+        },
+        "primary_color_hex": {
+          "type": "string",
+          "readOnly": true,
+          "maxLength": 7
+        },
+        "secondary_color_hex": {
+          "type": "string",
+          "readOnly": true,
+          "maxLength": 7
+        },
+        "tertiary_color_hex": {
+          "type": "string",
+          "readOnly": true,
+          "maxLength": 7
+        },
+        "primary_color": {
+          "type": "string",
+          "readOnly": true
+        },
+        "secondary_color": {
+          "type": "string",
+          "readOnly": true
+        },
+        "tertiary_color": {
+          "type": "string",
+          "readOnly": true
+        },
+        "s3_images_bucket": {
+          "type": "string",
+          "readOnly": true
+        },
+        "lending_minimum_applicant_birth_year": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "lending_minimum_applicant_age": {
+          "type": "integer",
+          "readOnly": true
+        },
+        "lending_requested_amount_params": {
+          "type": "object",
+          "additionalProperties": {},
+          "readOnly": true
+        },
+        "lending_welcome_screen_logo_url": {
+          "type": "string",
+          "readOnly": true
+        },
+        "features": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/InstitutionFeaturesContextProcessor"
+            }
+          ],
+          "readOnly": true
+        },
+        "lending_enabled_products": {
+          "type": "object",
+          "additionalProperties": {},
+          "readOnly": true
+        },
+        "lending_application_steps": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/LendingApplicationSteps"
+            }
+          ],
+          "readOnly": true
+        },
+        "lending_offer_info_and_disclaimer_url": {
+          "type": "string",
+          "readOnly": true
+        },
+        "lending_website_flow_logo_nav_url": {
+          "type": "string",
+          "readOnly": true
+        },
+        "lending_flows_enabled": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true
+        },
+        "lending_co_applicants_enabled_products": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true
+        },
+        "membership_share_product_for_lending": {
+          "type": "string",
+          "readOnly": true
+        },
+        "dao_disclosures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/InstitutionDisclosure"
+          },
+          "readOnly": true
+        }
+      },
+      "x-stoplight": {
+        "id": "vagdwjgdrquwt"
+      }
+    },
+    "InstitutionDisclosure": {
+      "type": "object",
+      "description": "Disclosure for institution context (e.g., account opening disclosures).",
+      "properties": {
+        "checkbox_text": {
+          "type": "string"
+        },
+        "markdown": {
+          "type": "string"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/InstitutionDisclosureLink"
+          }
+        }
+      },
+      "x-stoplight": {
+        "id": "hib9thlt12afl"
+      }
+    },
+    "InstitutionDisclosureLink": {
+      "type": "object",
+      "description": "Link within an institution disclosure.",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "url"
+      ],
+      "x-stoplight": {
+        "id": "dblspf52t9xgp"
+      }
+    },
+    "InstitutionFeaturesContextProcessor": {
+      "type": "object",
+      "description": "Serializer for institution features flags and settings.",
+      "properties": {
+        "lending": {
+          "type": "boolean",
+          "readOnly": true
+        }
+      },
+      "x-stoplight": {
+        "id": "iso2gcb5tdq1h"
+      }
+    },
+    "LendingApplicationSteps": {
+      "type": "object",
+      "description": "Controls which lending application steps are shown.",
+      "properties": {
+        "living_arrangement": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "employment_details": {
+          "type": "boolean",
+          "readOnly": true
+        }
+      },
+      "x-stoplight": {
+        "id": "2auul33i52rfn"
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-loan-payment-achrequest-schema.json",
+  "title": "LoanPaymentACHRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-ach-payments-api-openapi.yml#/components/schemas/LoanPaymentACHRequest",
+  "type": "object",
+  "properties": {
+    "from_account": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "to_account": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "amount": {
+      "maximum": 1000000000000000,
+      "minimum": -1000000000000000,
+      "description": "A field that returns the original value in the currency's smallest unit (e.g. cents).",
+      "type": "integer"
+    },
+    "payment_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ach_transfer": {
+      "type": "integer"
+    },
+    "memo": {
+      "type": "string"
+    },
+    "device_id": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": {}
+    }
+  },
+  "required": [
+    "amount",
+    "from_account",
+    "payment_type",
+    "to_account"
+  ],
+  "x-stoplight": {
+    "id": "1lkcyxejiw9vk"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-swift-wire-transaction-request-schema.json",
+  "title": "SwiftWireTransactionRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-international-wires-api-openapi.yml#/components/schemas/SwiftWireTransactionRequest",
+  "type": "object",
+  "properties": {
+    "user": {
+      "type": "string",
+      "minLength": 1
+    },
+    "from_account": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID of the account from which the transaction is initiated."
+    },
+    "destination": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID of the recipient associated with this Swift destination."
+    },
+    "amount": {
+      "maximum": 1000000000000000,
+      "minimum": -1000000000000000,
+      "description": "The amount of the swift payment in cents.",
+      "type": "integer"
+    },
+    "wire_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "memo": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 128
+    },
+    "note": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "state": {
+      "$ref": "#/$defs/StateC02Enum"
+    },
+    "device_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "writeOnly": true
+    },
+    "device_request_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "writeOnly": true
+    },
+    "swiftwire_template": {
+      "description": "The UUID of the swiftwire template to use for the swiftwire transaction.",
+      "type": "string",
+      "format": "uuid",
+      "writeOnly": true
+    }
+  },
+  "required": [
+    "amount",
+    "destination",
+    "from_account",
+    "user"
+  ],
+  "x-stoplight": {
+    "id": "cd5gaaqyl79ov"
+  },
+  "$defs": {
+    "StateC02Enum": {
+      "enum": [
+        "analyzing",
+        "pending",
+        "review",
+        "processing",
+        "processed",
+        "rejected",
+        "canceled",
+        "awaiting_approval",
+        "rejected_approval"
+      ],
+      "type": "string",
+      "description": "* `analyzing` - Analyzing\n* `pending` - Pending\n* `review` - Review\n* `processing` - Processing\n* `processed` - Processed (in transit)\n* `rejected` - Rejected by staff\n* `canceled` - Canceled\n* `awaiting_approval` - Awaiting dual approval\n* `rejected_approval` - Dual approval rejected",
+      "x-stoplight": {
+        "id": "qbox8yql7ah47"
+      }
+    }
+  }
+}

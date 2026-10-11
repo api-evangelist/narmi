@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-card-offer-enrollment-status-schema.json",
+  "title": "CardOfferEnrollmentStatus",
+  "description": "Serializer for enrollment status response",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-card-linked-offers-api-openapi.yml#/components/schemas/CardOfferEnrollmentStatus",
+  "type": "object",
+  "properties": {
+    "is_enrolled": {
+      "type": "boolean",
+      "readOnly": true
+    }
+  },
+  "x-stoplight": {
+    "id": "a6dwo7tpb2ghy"
+  }
+}

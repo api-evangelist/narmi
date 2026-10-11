@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-bai-transaction-type-schema.json",
+  "title": "BaiTransactionType",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-reports-api-openapi.yml#/components/schemas/BaiTransactionType",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "3-digit BAI transaction type code."
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Human-readable description of the BAI code."
+    },
+    "direction": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/DirectionEnum"
+        }
+      ],
+      "description": "Transaction direction derived from the BAI code range.\n\n* `credit` - credit\n* `debit` - debit\n* `misc` - misc"
+    }
+  },
+  "required": [
+    "code",
+    "description",
+    "direction"
+  ],
+  "x-stoplight": {
+    "id": "38y8aokwjqdr4"
+  },
+  "$defs": {
+    "DirectionEnum": {
+      "enum": [
+        "credit",
+        "debit",
+        "misc"
+      ],
+      "type": "string",
+      "description": "* `credit` - credit\n* `debit` - debit\n* `misc` - misc",
+      "x-stoplight": {
+        "id": "fnpwkqv4ujmyo"
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/narmi/main/json-schema/narmi-achpayment-request-schema.json",
+  "title": "ACHPaymentRequest",
+  "x-generated": "2026-10-12",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/narmi-ach-payments-api-openapi.yml#/components/schemas/ACHPaymentRequest",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "maximum": 1000000000000000,
+      "minimum": -1000000000000000,
+      "description": "The amount of the ACH payment in cents.",
+      "type": "integer"
+    },
+    "institution_account": {
+      "description": "The UUID of the originating account for the transaction.",
+      "type": "string",
+      "format": "uuid"
+    },
+    "description": {
+      "type": "string",
+      "default": "",
+      "description": "Memo for the transaction. This is currently only used for internal record-keeping, and will not be not included in the resulting NACHA file entry.",
+      "maxLength": 128
+    },
+    "recipient": {
+      "description": "The UUID of the recipient of the transaction.",
+      "type": "string",
+      "format": "uuid"
+    },
+    "ach_company": {
+      "description": "DEPRECATED: The client submits the UUID of the ACHCompany to use for the transaction, and we map this instances fields into the company_id and company_name fields below. These values could presumably change, and we want to maintain a record of these values at the time the transaction is submitted. Note this field should not be used once the FI is configured to fetch the ACHCompany based from the institution_account's originating organization.",
+      "type": "string",
+      "format": "uuid",
+      "writeOnly": true
+    },
+    "std_ent_cls_code": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/StdEntClsCodeEnum"
+        }
+      ],
+      "description": "A three letter code that describes how a payment was authorized by the consumer or business receiving an ACH transaction. SEC stands for 'Standard Entry Class'. SEC codes are defined and maintained by NACHA, the governing body for the ACH network.\n\n* `PPD` - Batch Personal\n* `CCD` - Batch Corporate\n* `ARC` - Batch Accounts Receivable\n* `CTX` - Batch Corporate Exchange\n* `POS` - Batch Point Of Sale\n* `WEB` - Batch Internet Initiated\n* `BOC` - Batch Backoffice Conversion\n* `TEL` - Batch Telephone Initiated\n* `MTE` - Batch Machine Transfer\n* `SHR` - Batch Shared Network\n* `CIE` - Batch Customer Initiated\n* `POP` - Batch Point Of Purchase\n* `RCK` - Batch Represented Check"
+    },
+    "entry_desc": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A field that describes the purpose of the transaction to the receiver. It's used to help identify, monitor, and count payments for specific purposes."
+    },
+    "memo": {
+      "type": "string",
+      "default": "",
+      "description": "A field that adds a memo to the transaction. It's used to help identify transaction to the sender.",
+      "maxLength": 128
+    },
+    "device_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "writeOnly": true
+    },
+    "device_request_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "writeOnly": true
+    }
+  },
+  "required": [
+    "amount",
+    "entry_desc",
+    "institution_account",
+    "recipient",
+    "std_ent_cls_code"
+  ],
+  "x-stoplight": {
+    "id": "ifjre5vpcvp53"
+  },
+  "$defs": {
+    "StdEntClsCodeEnum": {
+      "enum": [
+        "PPD",
+        "CCD",
+        "ARC",
+        "CTX",
+        "POS",
+        "WEB",
+        "BOC",
+        "TEL",
+        "MTE",
+        "SHR",
+        "CIE",
+        "POP",
+        "RCK"
+      ],
+      "type": "string",
+      "description": "* `PPD` - Batch Personal\n* `CCD` - Batch Corporate\n* `ARC` - Batch Accounts Receivable\n* `CTX` - Batch Corporate Exchange\n* `POS` - Batch Point Of Sale\n* `WEB` - Batch Internet Initiated\n* `BOC` - Batch Backoffice Conversion\n* `TEL` - Batch Telephone Initiated\n* `MTE` - Batch Machine Transfer\n* `SHR` - Batch Shared Network\n* `CIE` - Batch Customer Initiated\n* `POP` - Batch Point Of Purchase\n* `RCK` - Batch Represented Check",
+      "x-stoplight": {
+        "id": "xgdwqweqfvyee"
+      }
+    }
+  }
+}

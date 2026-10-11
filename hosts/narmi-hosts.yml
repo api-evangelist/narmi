@@ -1,0 +1,76 @@
+generated: '2026-10-12'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 5
+  own: 2
+  other_domain: 1
+  platform: 2
+  roles:
+  - api
+  - docs
+  - other
+  - source
+  - website
+hosts:
+- host: api.sandbox.narmi.dev
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: narmi.dev
+  role: api
+  relation: other-domain
+- host: docs.narmi.com
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - Documentation
+  - APIReference
+  - GettingStarted
+  serves:
+  - docs
+  registrable_domain: narmi.com
+  role: docs
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrganization
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: www.narmi.com
+  found_by:
+  - pointer
+  - vendor-detect
+  types:
+  - Newsroom
+  - Pricing
+  - Website
+  - DeveloperPortal
+  - Blog
+  - TermsOfService
+  - PrivacyPolicy
+  - SignUp
+  - Security
+  serves:
+  - cdn
+  vendor: cloudflare
+  registrable_domain: narmi.com
+  role: website
+  relation: own
+- host: www.postman.com
+  found_by:
+  - pointer
+  types:
+  - PostmanWorkspace
+  serves: []
+  registrable_domain: postman.com
+  role: other
+  relation: platform
