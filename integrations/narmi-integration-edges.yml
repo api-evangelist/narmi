@@ -74,3 +74,25 @@ edges:
   category: core-banking
   use_case: Check out how our COCC customers are
 templates: []
+skips:
+- label: FIS IBS
+  cause: catalog
+  why: 'fis/openapi has no IBS core contract: its specs are FIS Payments (api.fisglobal.com) and Accounting Data
+    as a Service (Railz). There is no core-banking operation for the Narmi-to-IBS integration.'
+- label: FIS Horizon
+  cause: catalog
+  why: No Horizon core contract in fis/openapi, only Payments and Railz accounting specs. Any operation picked would
+    be invented.
+- label: Symitar (Jack Henry)
+  cause: catalog
+  why: The jack-henry jXchange REST specs say they cover SilverLake and CIF 20/20, not Symitar, which uses SymXchange.
+    The Banno consumer specs are a digital-banking front end that competes with Narmi, not the core.
+- label: Silverlake (Jack Henry)
+  cause: catalog
+  why: 'jXchange REST specs exist (getDepositAccount, getCustomer), but they look like a thin unverified scaffold:
+    ''REST variant'' at jxchange.jackhenry.com, minimal schemas. Narmi''s public API exposes the digital-banking
+    user side and has no core-sync operation that pairs with them, so wiring a workflow wou'
+- label: Fiserv Premier
+  cause: partner-contract
+  why: fiserv/openapi holds CommerceHub/card/BankingHub specs. Nothing is specific to the Premier core, and the
+    Narmi-Premier connection is a back-end core integration with no public operation on either side.
