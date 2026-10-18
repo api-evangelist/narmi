@@ -836,6 +836,8 @@ apis:
   humanURL: https://docs.narmi.com/docs/narmi-developer-docs/68n444msv6n7x-narmi-public-api
   baseURL: https://api.sandbox.narmi.dev/
   tags:
+  - Scheduled Transfers
+  tags_raw:
   - scheduled transfers
   properties:
   - type: OpenAPI
