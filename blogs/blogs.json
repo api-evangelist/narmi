@@ -5,8 +5,15 @@
       "source": "https://www.narmi.com/insights",
       "feed_url": "https://www.narmi.com/insights/rss.xml",
       "title": "",
-      "saved": 1,
+      "saved": 0,
       "method": "discovered"
+    },
+    {
+      "source": "https://www.narmi.com/insights/rss.xml",
+      "feed_url": "https://www.narmi.com/insights/rss.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
     },
     {
       "source": "https://docs.narmi.com/docs/narmi-developer-docs/p6fy3ne24ivqc-quick-start-guide",
@@ -16,6 +23,6 @@
       "method": "none"
     }
   ],
-  "post_count": 1,
-  "fetched": "2026-10-10T13:15:00Z"
+  "post_count": 50,
+  "fetched": "2026-10-17T14:53:57Z"
 }
